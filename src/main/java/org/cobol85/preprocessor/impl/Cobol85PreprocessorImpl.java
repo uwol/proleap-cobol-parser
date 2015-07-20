@@ -278,6 +278,12 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		public void enterCopyStatement(@NotNull final Cobol85PreprocessorParser.CopyStatementContext ctx) {
 			// push a new context for COPY terminals
 			push();
+		};
+
+		@Override
+		public void enterExecSqlStatement(final org.cobol85.Cobol85PreprocessorParser.ExecSqlStatementContext ctx) {
+			// push a new context for SQL terminals
+			push();
 		}
 
 		@Override
@@ -330,6 +336,12 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		}
 
 		@Override
+		public void exitExecSqlStatement(final org.cobol85.Cobol85PreprocessorParser.ExecSqlStatementContext ctx) {
+			// throw away EXEC SQL terminals -> FIXME
+			pop();
+		}
+
+		@Override
 		public void exitReplaceArea(@NotNull final Cobol85PreprocessorParser.ReplaceAreaContext ctx) {
 			/*
 			 * replacement phrase
@@ -348,7 +360,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		public void exitReplaceByStatement(@NotNull final Cobol85PreprocessorParser.ReplaceByStatementContext ctx) {
 			// throw away REPLACE BY terminals
 			pop();
-		}
+		};
 
 		@Override
 		public void exitReplaceOffStatement(@NotNull final Cobol85PreprocessorParser.ReplaceOffStatementContext ctx) {
@@ -356,10 +368,16 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			pop();
 		}
 
+		/**
+		 * Pops the current preprocessing context from the stack.
+		 */
 		private PreprocessingContext pop() {
 			return contexts.pop();
 		}
 
+		/**
+		 * Pushes a new preprocessing context onto the stack.
+		 */
 		private PreprocessingContext push() {
 			return contexts.push(new PreprocessingContext());
 		}
@@ -636,11 +654,11 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	public String process(final String input, final File libDirectory) {
 		final String normalizedInput = normalizeLines(input);
 
-		final boolean requiresCopyReplaceExecution = requiresCopyReplace(normalizedInput);
+		final boolean requiresProcessorExecution = requiresProcessing(normalizedInput);
 		final String result;
 
-		if (requiresCopyReplaceExecution) {
-			result = processCopyReplace(normalizedInput, libDirectory);
+		if (requiresProcessorExecution) {
+			result = processWithParser(normalizedInput, libDirectory);
 		} else {
 			result = normalizedInput;
 		}
@@ -648,7 +666,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return result;
 	}
 
-	protected String processCopyReplace(final String program, final File libDirectory) {
+	protected String processWithParser(final String program, final File libDirectory) {
 		// run the lexer
 		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(new ANTLRInputStream(program));
 
@@ -673,12 +691,12 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 		final String result = listener.context().read();
 
-		LOG.debug("Copy-replaced input:\n\n{}\n\n", result);
+		LOG.debug("Preprocessed input:\n\n{}\n\n", result);
 
 		return result;
 	}
 
-	private boolean requiresCopyReplace(final String input) {
+	private boolean requiresProcessing(final String input) {
 		final String inputLowerCase = input.toLowerCase();
 		final boolean result;
 
@@ -688,7 +706,13 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			result = true;
 		} else {
 			final boolean containsReplace = inputLowerCase.contains("replace");
-			result = containsReplace;
+
+			if (containsReplace) {
+				result = true;
+			} else {
+				final boolean containsExecSql = inputLowerCase.contains("exec sql");
+				result = containsExecSql;
+			}
 		}
 
 		return result;

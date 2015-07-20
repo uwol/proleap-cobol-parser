@@ -855,7 +855,7 @@ sentence :
 ;
 
 statements :
-	statement+
+	statement*
 ;
 
 statement :

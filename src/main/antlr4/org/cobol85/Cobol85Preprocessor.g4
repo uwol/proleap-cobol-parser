@@ -34,10 +34,18 @@ options
 
 startRule : (
 	copyStatement 
+	| execSqlStatement
 	| replaceOffStatement
 	| replaceArea 
 	| charData
 )* EOF;
+
+
+// exec sql statement
+
+execSqlStatement :
+	EXEC SQL charData END_EXEC
+;
 
 
 // copy statement
@@ -134,12 +142,15 @@ charDataKeyword :
 // keywords
 BY : B Y;
 COPY : C O P Y;
+END_EXEC : E N D '-' E X E C; 
+EXEC : E X E C;
 IN : I N;
 OF : O F;
 OFF : O F F;
 ON : O N;
 REPLACE : R E P L A C E;
 REPLACING : R E P L A C I N G;
+SQL : S Q L;
 
 
 // symbols
