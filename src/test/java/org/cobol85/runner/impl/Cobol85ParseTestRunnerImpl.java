@@ -1,19 +1,19 @@
 /*
-Copyright (C) 2014 u.wol@wwu.de
+Copyright (C) 2015 u.wol@wwu.de
 
 This file is part of cobol85grammar.
 
 cobol85grammar is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+it under the terms of the GNU Lesser General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
 
 cobol85grammar is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Lesser General Public License for more details.
 
-You should have received a copy of the GNU General Public License
+You should have received a copy of the GNU Lesser General Public License
 along with cobol85grammar. If not, see <http://www.gnu.org/licenses/>.
  */
 
@@ -37,8 +37,7 @@ import org.cobol85.runner.Cobol85ParseTestRunner;
  */
 public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 
-	private final static Logger LOG = LogManager
-			.getLogger(Cobol85ParseTestRunnerImpl.class);
+	private final static Logger LOG = LogManager.getLogger(Cobol85ParseTestRunnerImpl.class);
 
 	@Override
 	public void parseDirectory(final File inputDirectory) throws IOException {
@@ -56,14 +55,13 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 		final File libDirectory = inputFile.getParentFile();
 
 		// preprocess input stream
-		final String preProcessedInput = Cobol85GrammarContext.getInstance()
-				.getCobol85Preprocessor().process(inputFile, libDirectory);
+		final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor().process(inputFile,
+				libDirectory);
 
 		LOG.info("Parsing file {}.", inputFile.getName());
 
 		// run the lexer
-		final Cobol85Lexer lexer = new Cobol85Lexer(new ANTLRInputStream(
-				preProcessedInput));
+		final Cobol85Lexer lexer = new Cobol85Lexer(new ANTLRInputStream(preProcessedInput));
 
 		lexer.removeErrorListeners();
 		lexer.addErrorListener(ThrowingErrorListener.INSTANCE);
