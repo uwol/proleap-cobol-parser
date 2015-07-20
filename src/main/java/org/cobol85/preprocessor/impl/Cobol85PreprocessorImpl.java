@@ -398,6 +398,29 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected final String[] extensions = new String[] { "", "CPY", "COB", "CBL" };
 
+	private String cleanLineArea(final String strippedLine) {
+		final String lineArea = strippedLine.substring(1);
+		final String trimmedLineArea = lineArea.trim();
+		final String cleanLineArea;
+
+		/*
+		 * repair trimmed whitespace after comma separator
+		 */
+		if (trimmedLineArea.isEmpty()) {
+			cleanLineArea = trimmedLineArea;
+		} else {
+			final char lastCharAtTrimmedLineArea = trimmedLineArea.charAt(trimmedLineArea.length() - 1);
+
+			if (lastCharAtTrimmedLineArea == ',' || lastCharAtTrimmedLineArea == ';') {
+				cleanLineArea = trimmedLineArea + " ";
+			} else {
+				cleanLineArea = trimmedLineArea;
+			}
+		}
+
+		return cleanLineArea;
+	}
+
 	protected Cobol85Format determineFormat(final String line) {
 		Cobol85Format result;
 
@@ -409,6 +432,22 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			result = Cobol85Format.TANDEM;
 		} else {
 			result = null;
+		}
+
+		return result;
+	}
+
+	/**
+	 * Determines the line indicator of a line-number-trimmed line.
+	 */
+	private char determineLineIndicator(final String lineWithoutLineNumber) {
+		final String trimmedLineWithoutLineNumber = lineWithoutLineNumber.trim();
+		final char result;
+
+		if (trimmedLineWithoutLineNumber.isEmpty()) {
+			result = ' ';
+		} else {
+			result = trimmedLineWithoutLineNumber.charAt(0);
 		}
 
 		return result;
@@ -486,7 +525,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	}
 
 	protected String normalizeLine(final String line, final Cobol85Format format, final boolean isFirstLine) {
-		final String strippedLine = stripLineNumber(line, format);
+		final String lineWithoutLineNumber = stripLineNumber(line, format);
 
 		/*
 		 * determine line prefix
@@ -500,60 +539,43 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		/*
 		 * treat line by line indicator
 		 */
-		if (strippedLine.isEmpty()) {
-			result = strippedLine;
+		if (lineWithoutLineNumber.isEmpty()) {
+			result = lineWithoutLineNumber;
 		} else {
-			final String lineArea = strippedLine.substring(1);
-			final String trimmedLineArea = lineArea.trim();
-			final String cleanLineArea;
-
-			/*
-			 * repair trimmed whitespace after comma separator
-			 */
-			if (trimmedLineArea.isEmpty()) {
-				cleanLineArea = trimmedLineArea;
-			} else {
-				final char lastCharAtTrimmedLineArea = trimmedLineArea.charAt(trimmedLineArea.length() - 1);
-
-				if (lastCharAtTrimmedLineArea == ',' || lastCharAtTrimmedLineArea == ';') {
-					cleanLineArea = trimmedLineArea + " ";
-				} else {
-					cleanLineArea = trimmedLineArea;
-				}
-			}
+			final String cleanedLineArea = cleanLineArea(lineWithoutLineNumber);
 
 			/*
 			 * switch on line indicator
 			 */
-			final char lineIndicator = strippedLine.charAt(0);
+			final char lineIndicator = determineLineIndicator(lineWithoutLineNumber);
 
 			switch (lineIndicator) {
 			// debugging line
 			case 'd':
 			case 'D':
-				result = linePrefix + trimmedLineArea;
+				result = linePrefix + cleanedLineArea;
 				break;
 			// continuation line
 			case '-':
-				final char firstCharOfLineArea = cleanLineArea.charAt(0);
+				final char firstCharOfLineArea = cleanedLineArea.charAt(0);
 
 				switch (firstCharOfLineArea) {
 				case '\"':
-					result = cleanLineArea.substring(1);
+					result = cleanedLineArea.substring(1);
 					break;
 				default:
-					result = cleanLineArea;
+					result = cleanedLineArea;
 					break;
 				}
 				break;
 			// comment line
 			case '*':
 			case '/':
-				result = linePrefix + COMMENT_TAG + " " + cleanLineArea;
+				result = linePrefix + COMMENT_TAG + " " + cleanedLineArea;
 				break;
 			case ' ':
 			default:
-				result = linePrefix + cleanLineArea;
+				result = linePrefix + cleanedLineArea;
 				break;
 			}
 		}
@@ -672,6 +694,9 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return result;
 	}
 
+	/**
+	 * Returns the given line without a line number.
+	 */
 	protected final String stripLineNumber(final String line, final Cobol85Format format) {
 		final String result;
 
