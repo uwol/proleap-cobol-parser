@@ -19,6 +19,8 @@ build/
 lib/
 src/test/java/org/cobol85/cics
 src/test/java/org/cobol85/nist
+src/test/java/org/cobol85/project
 src/test/resources/org/cobol85/cics
 src/test/resources/org/cobol85/nist
+src/test/resources/org/cobol85/project
 target/
