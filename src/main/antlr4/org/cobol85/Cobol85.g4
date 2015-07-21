@@ -644,12 +644,12 @@ communicationSection :
 ;
 
 communicationDescriptionEntry :
-	communicationDescriptionEntry_format1 
-	| communicationDescriptionEntry_format2
-	| communicationDescriptionEntry_format3
+	communicationDescriptionEntryFormat1 
+	| communicationDescriptionEntryFormat2
+	| communicationDescriptionEntryFormat3
 ;
 
-communicationDescriptionEntry_format1 :
+communicationDescriptionEntryFormat1 :
 	CD cdName FOR INITIAL? INPUT
 	( 
 		(
@@ -670,7 +670,7 @@ communicationDescriptionEntry_format1 :
 	DOT
 ;
 
-communicationDescriptionEntry_format2 :
+communicationDescriptionEntryFormat2 :
 	CD cdName FOR OUTPUT
 	(
 		DESTINATION COUNT IS dataDescName
@@ -683,7 +683,7 @@ communicationDescriptionEntry_format2 :
 	DOT
 ;
 
-communicationDescriptionEntry_format3 :
+communicationDescriptionEntryFormat3 :
 	CD cdName FOR INITIAL I_O
 	( 	
 		(
