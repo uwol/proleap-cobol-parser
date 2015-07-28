@@ -23,12 +23,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class TestGenerator {
+
+	private final static String[] extensions = new String[] { "cbl", "cob", "jcl", "txt", "" };
 
 	private final static File inputDirectory = new File("src/test/resources/org/cobol85");
 
@@ -102,6 +105,7 @@ public class TestGenerator {
 						 * should be placed
 						 */
 						final File subOutputDirectory = new File(outputDirectoryPath + "/" + subInputDirectoryName);
+						subOutputDirectory.mkdirs();
 
 						// determine the package name of test classes
 						final String subPackageName = packageName + "." + subInputDirectoryName;
@@ -115,7 +119,7 @@ public class TestGenerator {
 
 	protected static boolean isCobolFile(final File inputFile) {
 		final String extension = FilenameUtils.getExtension(inputFile.getName()).toLowerCase();
-		return "cbl".equals(extension);
+		return inputFile.isFile() && Arrays.asList(extensions).contains(extension);
 	}
 
 	public static void main(final String[] args) throws IOException {
