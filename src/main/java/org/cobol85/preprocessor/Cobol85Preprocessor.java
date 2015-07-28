@@ -27,25 +27,41 @@ public interface Cobol85Preprocessor {
 	public enum Cobol85Format {
 
 		/**
-		 * Fixed format, standard ANSI. Each line exactly 80 chars.<br />
-		 * 1-6 : comments<br />
+		 * Fixed format, standard ANSI / IBM reference. Each line exactly 80
+		 * chars.<br />
+		 * 1-6 : sequence area<br />
 		 * 7: indicator field<br />
 		 * 8-12: area A<br />
 		 * 13-72: area B<br />
 		 * 73-80: comments<br />
 		 */
-		FIXED,
+		FIXED(".{6}[ABCdD\\-/* ].{5}.{60}.{8}"),
 
 		/**
-		 * Tandem format.
+		 * HP Tandem format.<br />
+		 * 1: indicator field<br />
+		 * 2-5: area A<br />
+		 * 6-132: area B<br />
 		 */
-		TANDEM,
+		TANDEM("[ABCdD\\-/* ].+"),
 
 		/**
-		 * Variable format.
+		 * Variable format.<br />
+		 * 1-6 : sequence area<br />
+		 * 7: indicator field<br />
+		 * 8-12: area A<br />
+		 * 13-*: area B<br />
 		 */
-		VARIABLE
+		VARIABLE("[0-9a-zA-Z]{6}[ABCdD\\-/* ].*");
+
+		public final String regex;
+
+		Cobol85Format(final String regex) {
+			this.regex = regex;
+		}
 	}
+
+	boolean hasLineFormat(String line, Cobol85Format format);
 
 	String process(File inputFile, File libDirectory) throws IOException;
 

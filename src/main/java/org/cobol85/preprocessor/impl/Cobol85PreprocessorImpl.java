@@ -25,7 +25,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Stack;
 import java.util.regex.Matcher;
@@ -416,7 +418,15 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected final String[] extensions = new String[] { "", "CPY", "COB", "CBL" };
 
-	private String cleanLineArea(final String strippedLine) {
+	protected Map<Cobol85Format, Pattern> patterns = new HashMap<Cobol85Format, Pattern>();
+
+	public Cobol85PreprocessorImpl() {
+		for (final Cobol85Format format : Cobol85Format.values()) {
+			patterns.put(format, Pattern.compile(format.regex));
+		}
+	}
+
+	protected String cleanLineArea(final String strippedLine) {
 		final String lineArea = strippedLine.substring(1);
 		final String trimmedLineArea = lineArea.trim();
 		final String cleanLineArea;
@@ -439,14 +449,14 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return cleanLineArea;
 	}
 
-	protected Cobol85Format determineFormat(final String line) {
-		Cobol85Format result;
+	protected Cobol85Format determineLineFormat(final String line) {
+		final Cobol85Format result;
 
-		if (line.length() > 72) {
+		if (hasLineFormat(line, Cobol85Format.FIXED)) {
 			result = Cobol85Format.FIXED;
-		} else if (line.length() > 6) {
+		} else if (hasLineFormat(line, Cobol85Format.VARIABLE)) {
 			result = Cobol85Format.VARIABLE;
-		} else if (line.length() > 0) {
+		} else if (hasLineFormat(line, Cobol85Format.TANDEM)) {
 			result = Cobol85Format.TANDEM;
 		} else {
 			result = null;
@@ -458,20 +468,20 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	/**
 	 * Determines the line indicator of a line-number-trimmed line.
 	 */
-	private char determineLineIndicator(final String lineWithoutLineNumber) {
-		final String trimmedLineWithoutLineNumber = lineWithoutLineNumber.trim();
+	protected char determineLineIndicator(final String lineWithoutSequenceNumber) {
+		final String trimmedLineWithoutSequenceNumber = lineWithoutSequenceNumber.trim();
 		final char result;
 
-		if (trimmedLineWithoutLineNumber.isEmpty()) {
+		if (trimmedLineWithoutSequenceNumber.isEmpty()) {
 			result = ' ';
 		} else {
-			result = trimmedLineWithoutLineNumber.charAt(0);
+			result = trimmedLineWithoutSequenceNumber.charAt(0);
 		}
 
 		return result;
 	}
 
-	private String getCopyFileContent(final String filename, final File libDirectory) {
+	protected String getCopyFileContent(final String filename, final File libDirectory) {
 		final File copyFile = identifyCopyFile(filename, libDirectory);
 		String result;
 
@@ -491,7 +501,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return result;
 	}
 
-	private String getHiddenTokensToLeft(final BufferedTokenStream tokens, final int tokPos) {
+	protected String getHiddenTokensToLeft(final BufferedTokenStream tokens, final int tokPos) {
 		final List<Token> refChannel = tokens.getHiddenTokensToLeft(tokPos, Cobol85PreprocessorLexer.HIDDEN);
 		final StringBuffer sb = new StringBuffer();
 
@@ -505,7 +515,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return sb.toString();
 	}
 
-	private String getTextIncludingHiddenTokens(final ParseTree ctx, final BufferedTokenStream tokens) {
+	protected String getTextIncludingHiddenTokens(final ParseTree ctx, final BufferedTokenStream tokens) {
 		final Cobol85HiddenTokenCollectorImpl listener = new Cobol85HiddenTokenCollectorImpl(tokens);
 		final ParseTreeWalker walker = new ParseTreeWalker();
 
@@ -514,7 +524,13 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return listener.read();
 	}
 
-	private File identifyCopyFile(final String filename, final File libDirectory) {
+	@Override
+	public boolean hasLineFormat(final String line, final Cobol85Format format) {
+		final Pattern pattern = patterns.get(format);
+		return line == null || pattern.matcher(line).matches();
+	}
+
+	protected File identifyCopyFile(final String filename, final File libDirectory) {
 		File copyFile = null;
 
 		for (final String extension : extensions) {
@@ -538,12 +554,12 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return copyFile;
 	}
 
-	private boolean isEOF(final TerminalNode node) {
+	protected boolean isEOF(final TerminalNode node) {
 		return Token.EOF == node.getSymbol().getType();
 	}
 
 	protected String normalizeLine(final String line, final Cobol85Format format, final boolean isFirstLine) {
-		final String lineWithoutLineNumber = stripLineNumber(line, format);
+		final String lineWithoutSequenceNumber = stripSequenceNumber(line, format);
 
 		/*
 		 * determine line prefix
@@ -557,15 +573,15 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		/*
 		 * treat line by line indicator
 		 */
-		if (lineWithoutLineNumber.isEmpty()) {
-			result = lineWithoutLineNumber;
+		if (lineWithoutSequenceNumber.isEmpty()) {
+			result = lineWithoutSequenceNumber;
 		} else {
-			final String cleanedLineArea = cleanLineArea(lineWithoutLineNumber);
+			final String cleanedLineArea = cleanLineArea(lineWithoutSequenceNumber);
 
 			/*
 			 * switch on line indicator
 			 */
-			final char lineIndicator = determineLineIndicator(lineWithoutLineNumber);
+			final char lineIndicator = determineLineIndicator(lineWithoutSequenceNumber);
 
 			switch (lineIndicator) {
 			// debugging line
@@ -605,17 +621,13 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		final Scanner scanner = new Scanner(input);
 		final StringBuffer outputBuffer = new StringBuffer();
 
-		Cobol85Format format = null;
 		String line = null;
 		boolean isFirstLine = true;
 
 		while (scanner.hasNextLine()) {
 			line = scanner.nextLine();
 
-			if (format == null) {
-				format = determineFormat(line);
-			}
-
+			final Cobol85Format format = determineLineFormat(line);
 			outputBuffer.append(normalizeLine(line, format, isFirstLine));
 			isFirstLine = false;
 		}
@@ -696,7 +708,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return result;
 	}
 
-	private boolean requiresProcessing(final String input) {
+	protected boolean requiresProcessing(final String input) {
 		final String inputLowerCase = input.toLowerCase();
 		final boolean result;
 
@@ -721,7 +733,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	/**
 	 * Returns the given line without a line number.
 	 */
-	protected final String stripLineNumber(final String line, final Cobol85Format format) {
+	protected final String stripSequenceNumber(final String line, final Cobol85Format format) {
 		final String result;
 
 		if (format == null) {
