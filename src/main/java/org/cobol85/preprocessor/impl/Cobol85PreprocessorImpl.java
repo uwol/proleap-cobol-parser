@@ -408,13 +408,13 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected final static String COMMENT_TAG = ">*";
 
-	protected final static String LINEINDICATOR_PLACEHOLDER = " ";
-
-	protected final static String LINENUMBER_PLACEHOLDER = "      ";
+	protected final static String LINE_INDICATOR_PLACEHOLDER = " ";
 
 	private final static Logger LOG = LogManager.getLogger(Cobol85PreprocessorImpl.class);
 
 	protected final static String NEWLINE = "\n";
+
+	protected final static String SEQUENCE_AREA_PLACEHOLDER = "      ";
 
 	protected final String[] extensions = new String[] { "", "CPY", "COB", "CBL" };
 
@@ -481,6 +481,16 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return result;
 	}
 
+	protected String determineLinePrefix(final Cobol85Format format, final boolean isFirstLine) {
+		/*
+		 * determine line prefix
+		 */
+		final String newLine = isFirstLine ? "" : NEWLINE;
+		final String sequenceAreaPlaceholder = Cobol85Format.TANDEM.equals(format) ? "" : SEQUENCE_AREA_PLACEHOLDER;
+		final String result = newLine + sequenceAreaPlaceholder + LINE_INDICATOR_PLACEHOLDER;
+		return result;
+	}
+
 	protected String getCopyFileContent(final String filename, final File libDirectory) {
 		final File copyFile = identifyCopyFile(filename, libDirectory);
 		String result;
@@ -530,6 +540,9 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return line == null || pattern.matcher(line).matches();
 	}
 
+	/**
+	 * Identifies a copy file by its name and directory.
+	 */
 	protected File identifyCopyFile(final String filename, final File libDirectory) {
 		File copyFile = null;
 
@@ -558,15 +571,14 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return Token.EOF == node.getSymbol().getType();
 	}
 
+	/**
+	 * Normalizes a line by stripping the sequence number and line indicator,
+	 * and interpreting the line indicator.
+	 */
 	protected String normalizeLine(final String line, final Cobol85Format format, final boolean isFirstLine) {
+		final String linePrefix = determineLinePrefix(format, isFirstLine);
 		final String lineWithoutSequenceNumber = stripSequenceNumber(line, format);
-
-		/*
-		 * determine line prefix
-		 */
-		final String newLine = isFirstLine ? "" : NEWLINE;
-		final String lineNumberPlaceholder = Cobol85Format.TANDEM.equals(format) ? "" : LINENUMBER_PLACEHOLDER;
-		final String linePrefix = newLine + lineNumberPlaceholder + LINEINDICATOR_PLACEHOLDER;
+		final char lineIndicator = determineLineIndicator(lineWithoutSequenceNumber);
 
 		final String result;
 
@@ -581,8 +593,6 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			/*
 			 * switch on line indicator
 			 */
-			final char lineIndicator = determineLineIndicator(lineWithoutSequenceNumber);
-
 			switch (lineIndicator) {
 			// debugging line
 			case 'd':
