@@ -35,12 +35,12 @@ public interface Cobol85Preprocessor {
 		 * 13-72: area B<br />
 		 * 73-80: comments<br />
 		 */
-		FIXED("(.{6})([ABCdD\\-/* ])(.{5}.{60})(.{8})"),
+		FIXED("(.{6})([ABCdD\\-/* ])(.{65})(.{8})"),
 
 		/**
 		 * Floating layout of unknown vendor.
 		 */
-		FLOATING("\\s*([0-9]+)\\s*([ABCdD\\-/* ])(.*)()"),
+		FLOATING("\\s*([0-9]+)\\s{7}([ABCdD\\-/* ])(.{0,105})(.*)"),
 
 		/**
 		 * HP Tandem format.<br />
