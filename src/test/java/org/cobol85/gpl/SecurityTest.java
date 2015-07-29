@@ -15,6 +15,6 @@ public class SecurityTest {
 
 		final File inputFile = new File("src/test/resources/org/cobol85/gpl/Security.cbl");
 		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();
-		runner.parseFile(inputFile);
+		runner.parseFile(inputFile, null);
 	}
 }

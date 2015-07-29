@@ -41,11 +41,6 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 	private final static Logger LOG = LogManager.getLogger(Cobol85ParseTestRunnerImpl.class);
 
 	@Override
-	public void parseDirectory(final File inputDirectory) throws IOException {
-		parseDirectory(inputDirectory, null);
-	}
-
-	@Override
 	public void parseDirectory(final File inputDirectory, final Cobol85Format[] formats) throws IOException {
 		if (inputDirectory.isDirectory() && !inputDirectory.isHidden()) {
 			for (final File inputFile : inputDirectory.listFiles()) {
@@ -54,11 +49,6 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 				}
 			}
 		}
-	}
-
-	@Override
-	public void parseFile(final File inputFile) throws IOException {
-		parseFile(inputFile, null);
 	}
 
 	@Override

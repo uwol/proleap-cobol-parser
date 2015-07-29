@@ -15,6 +15,6 @@ public class CopyInAddTest {
 
 		final File inputFile = new File("src/test/resources/org/cobol85/gpl/CopyInAdd.cbl");
 		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();
-		runner.parseFile(inputFile);
+		runner.parseFile(inputFile, null);
 	}
 }

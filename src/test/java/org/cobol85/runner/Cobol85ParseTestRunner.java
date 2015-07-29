@@ -26,11 +26,7 @@ import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85Format;
 
 public interface Cobol85ParseTestRunner {
 
-	void parseDirectory(final File inputDirectory) throws IOException;
+	void parseDirectory(File inputDirectory, final Cobol85Format[] formats) throws IOException;
 
-	void parseDirectory(final File inputDirectory, final Cobol85Format[] formats) throws IOException;
-
-	void parseFile(final File inputFile) throws IOException;
-
-	void parseFile(final File inputFile, final Cobol85Format[] formats) throws IOException;
+	void parseFile(File inputFile, Cobol85Format[] formats) throws IOException;
 }

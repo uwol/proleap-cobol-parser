@@ -74,7 +74,7 @@ public class TestGenerator {
 			pWriter.write("\n");
 			pWriter.write("		final File inputFile = new File(\"" + vb6InputFileName + "\");\n");
 			pWriter.write("		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();\n");
-			pWriter.write("		runner.parseFile(inputFile);\n");
+			pWriter.write("		runner.parseFile(inputFile, null);\n");
 			pWriter.write("	}\n");
 			pWriter.write("}");
 

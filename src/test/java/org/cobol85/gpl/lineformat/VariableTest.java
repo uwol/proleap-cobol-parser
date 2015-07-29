@@ -25,6 +25,6 @@ public class VariableTest {
 
 		final File inputFile = new File("src/test/resources/org/cobol85/gpl/lineformat/Variable.cbl");
 		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();
-		runner.parseFile(inputFile);
+		runner.parseFile(inputFile, null);
 	}
 }
