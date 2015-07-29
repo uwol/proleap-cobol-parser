@@ -40,7 +40,7 @@ public interface Cobol85Preprocessor {
 		/**
 		 * Floating layout of unknown vendor.
 		 */
-		FLOATING("\\s*([0-9]+)\\s*([ABCdD\\-/* ])(.{5}.{60})(.{8})"),
+		FLOATING("\\s*([0-9]+)\\s*([ABCdD\\-/* ])(.*)()"),
 
 		/**
 		 * HP Tandem format.<br />

@@ -134,6 +134,19 @@ public class Cobol85PreprocessorTest {
 	}
 
 	@Test
+	public void testParseCobol85Line_FLOATING() throws Exception {
+		final String line = "     100       *---------*";
+		final Cobol85Line parseCobol85Line = preprocessor.parseCobol85Line(line,
+				new Cobol85Format[] { Cobol85Format.FLOATING });
+
+		Assert.assertEquals(Cobol85Format.FLOATING, parseCobol85Line.lineFormat);
+		Assert.assertEquals("100", parseCobol85Line.sequenceArea);
+		Assert.assertEquals('*', parseCobol85Line.indicatorArea);
+		Assert.assertEquals("---------*", parseCobol85Line.contentArea);
+		Assert.assertEquals("", parseCobol85Line.comment);
+	}
+
+	@Test
 	public void testParseCobol85Line_TANDEM_nosequence_false() throws Exception {
 		final String line = "      *HEADER,COBOL,NC114M                                                            ";
 		final Cobol85Line parseCobol85Line = preprocessor.parseCobol85Line(line,

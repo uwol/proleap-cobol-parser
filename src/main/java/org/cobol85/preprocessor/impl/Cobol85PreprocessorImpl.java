@@ -425,6 +425,8 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected final String[] extensions = new String[] { "", "CPY", "COB", "CBL" };
 
+	protected final String[] parsingTriggers = new String[] { "copy", "replace", "exec sql", "kpir" };
+
 	protected Map<Cobol85Format, Pattern> patterns = new HashMap<Cobol85Format, Pattern>();
 
 	public Cobol85PreprocessorImpl() {
@@ -717,20 +719,14 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected boolean requiresParsing(final String input) {
 		final String inputLowerCase = input.toLowerCase();
-		final boolean result;
+		boolean result = false;
 
-		final boolean containsCopy = inputLowerCase.contains("copy");
+		for (final String trigger : parsingTriggers) {
+			final boolean containsTrigger = inputLowerCase.contains(trigger);
 
-		if (containsCopy) {
-			result = true;
-		} else {
-			final boolean containsReplace = inputLowerCase.contains("replace");
-
-			if (containsReplace) {
+			if (containsTrigger) {
 				result = true;
-			} else {
-				final boolean containsExecSql = inputLowerCase.contains("exec sql");
-				result = containsExecSql;
+				break;
 			}
 		}
 
