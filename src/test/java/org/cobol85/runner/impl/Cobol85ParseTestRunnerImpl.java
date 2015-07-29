@@ -40,6 +40,22 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 
 	private final static Logger LOG = LogManager.getLogger(Cobol85ParseTestRunnerImpl.class);
 
+	protected void doParse(final String preProcessedInput) {
+		// run the lexer
+		final Cobol85Lexer lexer = new Cobol85Lexer(new ANTLRInputStream(preProcessedInput));
+
+		lexer.removeErrorListeners();
+		lexer.addErrorListener(ThrowingErrorListener.INSTANCE);
+
+		final CommonTokenStream tokens = new CommonTokenStream(lexer);
+		final Cobol85Parser parser = new Cobol85Parser(tokens);
+
+		parser.removeErrorListeners();
+		parser.addErrorListener(ThrowingErrorListener.INSTANCE);
+
+		parser.startRule();
+	}
+
 	@Override
 	public void parseDirectory(final File inputDirectory, final Cobol85Format[] formats) throws IOException {
 		if (inputDirectory.isDirectory() && !inputDirectory.isHidden()) {
@@ -61,18 +77,17 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 
 		LOG.info("Parsing file {}.", inputFile.getName());
 
-		// run the lexer
-		final Cobol85Lexer lexer = new Cobol85Lexer(new ANTLRInputStream(preProcessedInput));
+		doParse(preProcessedInput);
+	}
 
-		lexer.removeErrorListeners();
-		lexer.addErrorListener(ThrowingErrorListener.INSTANCE);
+	@Override
+	public void parseString(final String inputString, final File libDirectory, final Cobol85Format[] formats) {
+		// preprocess input stream
+		final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor()
+				.process(inputString, libDirectory, formats);
 
-		final CommonTokenStream tokens = new CommonTokenStream(lexer);
-		final Cobol85Parser parser = new Cobol85Parser(tokens);
+		LOG.info("Parsing string.");
 
-		parser.removeErrorListeners();
-		parser.addErrorListener(ThrowingErrorListener.INSTANCE);
-
-		parser.startRule();
+		doParse(preProcessedInput);
 	}
 }

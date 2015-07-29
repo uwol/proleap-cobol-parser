@@ -29,4 +29,6 @@ public interface Cobol85ParseTestRunner {
 	void parseDirectory(File inputDirectory, final Cobol85Format[] formats) throws IOException;
 
 	void parseFile(File inputFile, Cobol85Format[] formats) throws IOException;
+
+	void parseString(String inputString, File libDirectory, Cobol85Format[] formats);
 }
