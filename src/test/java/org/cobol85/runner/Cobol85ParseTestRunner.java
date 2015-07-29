@@ -22,9 +22,15 @@ package org.cobol85.runner;
 import java.io.File;
 import java.io.IOException;
 
+import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85Format;
+
 public interface Cobol85ParseTestRunner {
 
-	public void parseDirectory(final File inputDirectory) throws IOException;
+	void parseDirectory(final File inputDirectory) throws IOException;
 
-	public void parseFile(final File inputFile) throws IOException;
+	void parseDirectory(final File inputDirectory, final Cobol85Format[] formats) throws IOException;
+
+	void parseFile(final File inputFile) throws IOException;
+
+	void parseFile(final File inputFile, final Cobol85Format[] formats) throws IOException;
 }

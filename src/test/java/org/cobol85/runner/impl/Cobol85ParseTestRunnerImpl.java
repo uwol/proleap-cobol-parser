@@ -30,10 +30,11 @@ import org.cobol85.Cobol85Lexer;
 import org.cobol85.Cobol85Parser;
 import org.cobol85.ThrowingErrorListener;
 import org.cobol85.applicationcontext.Cobol85GrammarContext;
+import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85Format;
 import org.cobol85.runner.Cobol85ParseTestRunner;
 
 /**
- * VB6 parse runner for JUnit tests.
+ * Cobol 85 parse runner for JUnit tests.
  */
 public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 
@@ -41,10 +42,15 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 
 	@Override
 	public void parseDirectory(final File inputDirectory) throws IOException {
+		parseDirectory(inputDirectory, null);
+	}
+
+	@Override
+	public void parseDirectory(final File inputDirectory, final Cobol85Format[] formats) throws IOException {
 		if (inputDirectory.isDirectory() && !inputDirectory.isHidden()) {
 			for (final File inputFile : inputDirectory.listFiles()) {
 				if (inputFile.isFile() && !inputFile.isHidden()) {
-					parseFile(inputFile);
+					parseFile(inputFile, formats);
 				}
 			}
 		}
@@ -52,11 +58,16 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 
 	@Override
 	public void parseFile(final File inputFile) throws IOException {
+		parseFile(inputFile, null);
+	}
+
+	@Override
+	public void parseFile(final File inputFile, final Cobol85Format[] formats) throws IOException {
 		final File libDirectory = inputFile.getParentFile();
 
 		// preprocess input stream
 		final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor().process(inputFile,
-				libDirectory);
+				libDirectory, formats);
 
 		LOG.info("Parsing file {}.", inputFile.getName());
 
