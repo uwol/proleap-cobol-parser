@@ -27,6 +27,11 @@ public interface Cobol85Preprocessor {
 	public enum Cobol85Format {
 
 		/**
+		 * Custom layout.
+		 */
+		CUSTOM_AUTHOR("(\\s*[0-9]+.{7})([ABCdD\\-/* ])(.{0,65})(.*)?"),
+
+		/**
 		 * Fixed format, standard ANSI / IBM reference. Each line exactly 80
 		 * chars.<br />
 		 * 1-6 : sequence area<br />
@@ -36,11 +41,6 @@ public interface Cobol85Preprocessor {
 		 * 73-80: comments<br />
 		 */
 		FIXED("(.{6})([ABCdD\\-/* ])(.{65})(.{8})"),
-
-		/**
-		 * Floating layout of unknown vendor.
-		 */
-		FLOATING("\\s*([0-9]+)\\s{7}([ABCdD\\-/* ])(.{0,105})(.*)"),
 
 		/**
 		 * HP Tandem format.<br />

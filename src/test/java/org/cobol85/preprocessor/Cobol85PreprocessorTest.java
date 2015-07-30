@@ -83,6 +83,19 @@ public class Cobol85PreprocessorTest {
 	}
 
 	@Test
+	public void testParseCobol85Line_Custom() throws Exception {
+		final String line = "     100       *---------*";
+		final Cobol85Line parseCobol85Line = preprocessor.parseCobol85Line(line,
+				new Cobol85Format[] { Cobol85Format.CUSTOM_AUTHOR });
+
+		Assert.assertEquals(Cobol85Format.CUSTOM_AUTHOR, parseCobol85Line.lineFormat);
+		Assert.assertEquals("     100       ", parseCobol85Line.sequenceArea);
+		Assert.assertEquals('*', parseCobol85Line.indicatorArea);
+		Assert.assertEquals("---------*", parseCobol85Line.contentArea);
+		Assert.assertEquals("", parseCobol85Line.comment);
+	}
+
+	@Test
 	public void testParseCobol85Line_FIXED_comment_true() throws Exception {
 		final String line = "000100 Identification Division.                                         1234.6-8";
 		final Cobol85Line parseCobol85Line = preprocessor.parseCobol85Line(line,
@@ -131,19 +144,6 @@ public class Cobol85PreprocessorTest {
 		Assert.assertEquals("Identification Division.                                         ",
 				parseCobol85Line.contentArea);
 		Assert.assertEquals("12345678", parseCobol85Line.comment);
-	}
-
-	@Test
-	public void testParseCobol85Line_FLOATING() throws Exception {
-		final String line = "     100       *---------*";
-		final Cobol85Line parseCobol85Line = preprocessor.parseCobol85Line(line,
-				new Cobol85Format[] { Cobol85Format.FLOATING });
-
-		Assert.assertEquals(Cobol85Format.FLOATING, parseCobol85Line.lineFormat);
-		Assert.assertEquals("100", parseCobol85Line.sequenceArea);
-		Assert.assertEquals('*', parseCobol85Line.indicatorArea);
-		Assert.assertEquals("---------*", parseCobol85Line.contentArea);
-		Assert.assertEquals("", parseCobol85Line.comment);
 	}
 
 	@Test

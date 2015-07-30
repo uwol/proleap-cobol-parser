@@ -417,7 +417,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	protected final static String NEWLINE = "\n";
 
 	protected final Cobol85Format[] defaultFormats = new Cobol85Format[] { Cobol85Format.FIXED, Cobol85Format.VARIABLE,
-			Cobol85Format.FLOATING, Cobol85Format.TANDEM };
+			Cobol85Format.TANDEM };
 
 	protected final String[] extensions = new String[] { "", "CPY", "COB", "CBL" };
 
@@ -425,8 +425,8 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected Map<Cobol85Format, Pattern> patterns = new HashMap<Cobol85Format, Pattern>();
 
-	public Cobol85PreprocessorImpl() {
-		for (final Cobol85Format format : defaultFormats) {
+	protected void assurePatternForFormat(final Cobol85Format format) {
+		if (patterns.get(format) == null) {
 			patterns.put(format, Pattern.compile(format.regex));
 		}
 	}
@@ -563,6 +563,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 			switch (firstCharOfContentArea) {
 			case '\"':
+			case '\'':
 				result = trimmedContentArea.substring(1);
 				break;
 			default:
@@ -609,7 +610,15 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			line = scanner.nextLine();
 
 			final Cobol85Line parsedLine = parseCobol85Line(line, formats);
-			outputBuffer.append(normalizeLine(parsedLine, isFirstLine));
+			final String normalizedLine;
+
+			if (parsedLine == null) {
+				normalizedLine = NEWLINE;
+			} else {
+				normalizedLine = normalizeLine(parsedLine, isFirstLine);
+			}
+
+			outputBuffer.append(normalizedLine);
 			isFirstLine = false;
 		}
 
@@ -629,6 +638,8 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		final Cobol85Format[] effectiveFormats = determineFormats(formats);
 
 		for (final Cobol85Format format : effectiveFormats) {
+			assurePatternForFormat(format);
+
 			final Pattern pattern = patterns.get(format);
 			final Matcher matcher = pattern.matcher(line);
 
