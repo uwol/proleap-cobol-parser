@@ -412,13 +412,9 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected final static String COMMENT_TAG = ">*";
 
-	protected final static String LINE_INDICATOR_PLACEHOLDER = " ";
-
 	private final static Logger LOG = LogManager.getLogger(Cobol85PreprocessorImpl.class);
 
 	protected final static String NEWLINE = "\n";
-
-	protected final static String SEQUENCE_AREA_PLACEHOLDER = "      ";
 
 	protected final Cobol85Format[] defaultFormats = new Cobol85Format[] { Cobol85Format.FIXED, Cobol85Format.VARIABLE,
 			Cobol85Format.FLOATING, Cobol85Format.TANDEM };
@@ -437,17 +433,6 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected Cobol85Format[] determineFormats(final Cobol85Format[] formats) {
 		return formats != null ? formats : defaultFormats;
-	}
-
-	protected String determineLinePrefix(final Cobol85Line line, final boolean isFirstLine) {
-		/*
-		 * determine line prefix
-		 */
-		final String newLine = isFirstLine ? "" : NEWLINE;
-		final String sequenceAreaPlaceholder = Cobol85Format.TANDEM.equals(line.lineFormat) ? ""
-				: SEQUENCE_AREA_PLACEHOLDER;
-		final String result = newLine + sequenceAreaPlaceholder + LINE_INDICATOR_PLACEHOLDER;
-		return result;
 	}
 
 	protected String getCopyFileContent(final String filename, final File libDirectory, final Cobol85Format[] formats) {
@@ -551,55 +536,65 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	 */
 	@Override
 	public String normalizeLine(final Cobol85Line line, final boolean isFirstLine) {
-		final String linePrefix = determineLinePrefix(line, isFirstLine);
-
 		final String result;
 
+		// determine line prefix
+		final String linePrefix = normalizeLineBreakAndSequenceArea(line, isFirstLine);
+
+		// trim trailing whitespace
+		final String trimmedTrailWsContentArea = line.contentArea.replaceAll("\\s+$", "");
+
+		// handle trailing comma
+		final String handledContentArea = handleTrailingComma(trimmedTrailWsContentArea);
+
 		/*
-		 * treat line by line indicator
+		 * switch on line indicator
 		 */
-		if (line.contentArea.isEmpty()) {
-			result = line.contentArea;
-		} else {
-			// trim trailing whitespace
-			final String trimmedTrailWsContentArea = line.contentArea.replaceAll("\\s+$", "");
-			final String handledContentArea = handleTrailingComma(trimmedTrailWsContentArea);
+		switch (line.indicatorArea) {
+		// debugging line
+		case 'd':
+		case 'D':
+			result = linePrefix + ' ' + handledContentArea;
+			break;
+		// continuation line
+		case '-':
+			final String trimmedContentArea = handledContentArea.trim();
+			final char firstCharOfContentArea = trimmedContentArea.charAt(0);
 
-			/*
-			 * switch on line indicator
-			 */
-			switch (line.indicatorArea) {
-			// debugging line
-			case 'd':
-			case 'D':
-				result = linePrefix + handledContentArea;
+			switch (firstCharOfContentArea) {
+			case '\"':
+				result = trimmedContentArea.substring(1);
 				break;
-			// continuation line
-			case '-':
-				final String trimmedContentArea = handledContentArea.trim();
-				final char firstCharOfContentArea = trimmedContentArea.charAt(0);
-
-				switch (firstCharOfContentArea) {
-				case '\"':
-					result = trimmedContentArea.substring(1);
-					break;
-				default:
-					result = trimmedContentArea;
-					break;
-				}
-				break;
-			// comment line
-			case '*':
-			case '/':
-				result = linePrefix + COMMENT_TAG + " " + handledContentArea;
-				break;
-			case ' ':
 			default:
-				result = linePrefix + handledContentArea;
+				result = trimmedContentArea;
 				break;
 			}
+			break;
+		// comment line
+		case '*':
+		case '/':
+			result = linePrefix + COMMENT_TAG + " " + handledContentArea;
+			break;
+		case ' ':
+		default:
+			result = linePrefix + ' ' + handledContentArea;
+			break;
 		}
 
+		return result;
+	}
+
+	/**
+	 * Normalizes the sequence and indicator area to NEWLINE and whitespace.
+	 */
+	protected String normalizeLineBreakAndSequenceArea(final Cobol85Line line, final boolean isFirstLine) {
+		// newline
+		final String newLine = isFirstLine ? "" : NEWLINE;
+
+		// sequence area
+		final String sequenceAreaPlaceholder = StringUtils.leftPad("", line.sequenceArea.length());
+
+		final String result = newLine + sequenceAreaPlaceholder;
 		return result;
 	}
 
