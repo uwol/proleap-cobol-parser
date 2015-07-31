@@ -30,7 +30,7 @@ import org.cobol85.Cobol85Lexer;
 import org.cobol85.Cobol85Parser;
 import org.cobol85.ThrowingErrorListener;
 import org.cobol85.applicationcontext.Cobol85GrammarContext;
-import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85Format;
+import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85FormatEnum;
 import org.cobol85.runner.Cobol85ParseTestRunner;
 
 /**
@@ -57,7 +57,7 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 	}
 
 	@Override
-	public void parseDirectory(final File inputDirectory, final Cobol85Format[] formats) throws IOException {
+	public void parseDirectory(final File inputDirectory, final Cobol85FormatEnum[] formats) throws IOException {
 		if (inputDirectory.isDirectory() && !inputDirectory.isHidden()) {
 			for (final File inputFile : inputDirectory.listFiles()) {
 				if (inputFile.isFile() && !inputFile.isHidden()) {
@@ -68,7 +68,7 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 	}
 
 	@Override
-	public void parseFile(final File inputFile, final Cobol85Format[] formats) throws IOException {
+	public void parseFile(final File inputFile, final Cobol85FormatEnum[] formats) throws IOException {
 		final File libDirectory = inputFile.getParentFile();
 
 		// preprocess input stream
@@ -81,7 +81,7 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 	}
 
 	@Override
-	public void parseString(final String inputString, final File libDirectory, final Cobol85Format[] formats) {
+	public void parseString(final String inputString, final File libDirectory, final Cobol85FormatEnum[] formats) {
 		// preprocess input stream
 		final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor()
 				.process(inputString, libDirectory, formats);

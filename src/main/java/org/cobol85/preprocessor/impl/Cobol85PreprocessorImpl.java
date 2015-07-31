@@ -416,8 +416,8 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected final static String NEWLINE = "\n";
 
-	protected final Cobol85Format[] defaultFormats = new Cobol85Format[] { Cobol85Format.FIXED, Cobol85Format.VARIABLE,
-			Cobol85Format.TANDEM };
+	protected final Cobol85Format[] defaultFormats = new Cobol85Format[] { Cobol85FormatEnum.FIXED,
+			Cobol85FormatEnum.VARIABLE, Cobol85FormatEnum.TANDEM };
 
 	protected final String[] extensions = new String[] { "", "CPY", "COB", "CBL" };
 
@@ -427,7 +427,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected void assurePatternForFormat(final Cobol85Format format) {
 		if (patterns.get(format) == null) {
-			patterns.put(format, Pattern.compile(format.regex));
+			patterns.put(format, Pattern.compile(format.getRegex()));
 		}
 	}
 

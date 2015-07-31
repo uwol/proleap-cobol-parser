@@ -24,7 +24,12 @@ import java.io.IOException;
 
 public interface Cobol85Preprocessor {
 
-	public enum Cobol85Format {
+	public interface Cobol85Format {
+
+		String getRegex();
+	}
+
+	public enum Cobol85FormatEnum implements Cobol85Format {
 
 		/**
 		 * Custom layout.
@@ -59,10 +64,15 @@ public interface Cobol85Preprocessor {
 		 */
 		VARIABLE("(.{6})([ABCdD\\-/* ])(.*)()");
 
-		public final String regex;
+		private final String regex;
 
-		Cobol85Format(final String regex) {
+		Cobol85FormatEnum(final String regex) {
 			this.regex = regex;
+		}
+
+		@Override
+		public String getRegex() {
+			return regex;
 		}
 	}
 
