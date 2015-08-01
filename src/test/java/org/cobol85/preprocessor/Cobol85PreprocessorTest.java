@@ -86,10 +86,10 @@ public class Cobol85PreprocessorTest {
 	public void testParseCobol85Line_Custom() throws Exception {
 		final String line = "     100       *---------*";
 		final Cobol85Line parseCobol85Line = preprocessor.parseCobol85Line(line,
-				new Cobol85FormatEnum[] { Cobol85FormatEnum.CUSTOM_AUTHOR });
+				new Cobol85FormatEnum[] { Cobol85FormatEnum.CUSTOM_1 });
 
-		Assert.assertEquals(Cobol85FormatEnum.CUSTOM_AUTHOR, parseCobol85Line.lineFormat);
-		Assert.assertEquals("     100       ", parseCobol85Line.sequenceArea);
+		Assert.assertEquals(Cobol85FormatEnum.CUSTOM_1, parseCobol85Line.lineFormat);
+		Assert.assertEquals("     100", parseCobol85Line.sequenceArea);
 		Assert.assertEquals('*', parseCobol85Line.indicatorArea);
 		Assert.assertEquals("---------*", parseCobol85Line.contentArea);
 		Assert.assertEquals("", parseCobol85Line.comment);

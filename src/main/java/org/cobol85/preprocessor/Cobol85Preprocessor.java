@@ -32,9 +32,9 @@ public interface Cobol85Preprocessor {
 	public enum Cobol85FormatEnum implements Cobol85Format {
 
 		/**
-		 * Custom layout.
+		 * Custom layout 1.
 		 */
-		CUSTOM_AUTHOR("(\\s*[0-9]+.{7})([ABCdD\\-/* ])(.{0,65})(.*)?"),
+		CUSTOM_1("(\\s*[0-9]+)(?:.{7}([ABCdD\\-/* ])(.{0,65})(.*)?)?"),
 
 		/**
 		 * Fixed format, standard ANSI / IBM reference. Each line exactly 80
@@ -62,7 +62,7 @@ public interface Cobol85Preprocessor {
 		 * 8-12: area A<br />
 		 * 13-*: area B<br />
 		 */
-		VARIABLE("(.{6})([ABCdD\\-/* ])(.*)()");
+		VARIABLE("(.{6})(?:([ABCdD\\-/* ])(.*)())?");
 
 		private final String regex;
 

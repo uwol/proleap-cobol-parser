@@ -613,7 +613,8 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			final String normalizedLine;
 
 			if (parsedLine == null) {
-				normalizedLine = NEWLINE;
+				LOG.warn("unknown line format: {}", line);
+				normalizedLine = line;
 			} else {
 				normalizedLine = normalizeLine(parsedLine, isFirstLine);
 			}
@@ -644,8 +645,17 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			final Matcher matcher = pattern.matcher(line);
 
 			if (matcher.matches()) {
-				result = new Cobol85Line(matcher.group(1), matcher.group(2).charAt(0), matcher.group(3),
-						matcher.group(4), format);
+				final String sequenceAreaGroup = matcher.group(1);
+				final String indicatorAreaGroup = matcher.group(2);
+				final String contentAreaGroup = matcher.group(3);
+				final String commentAreaGroup = matcher.group(4);
+
+				final String sequenceArea = sequenceAreaGroup != null ? sequenceAreaGroup : "";
+				final char indicatorArea = indicatorAreaGroup != null ? indicatorAreaGroup.charAt(0) : ' ';
+				final String contentArea = contentAreaGroup != null ? contentAreaGroup : "";
+				final String commentArea = commentAreaGroup != null ? commentAreaGroup : "";
+
+				result = new Cobol85Line(sequenceArea, indicatorArea, contentArea, commentArea, format);
 				break;
 			}
 		}
