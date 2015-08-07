@@ -62,7 +62,7 @@ public interface Cobol85Preprocessor {
 		 * 8-12: area A<br />
 		 * 13-*: area B<br />
 		 */
-		VARIABLE("(.{6})(?:([ABCdD\\-/* ])(.*)())?");
+		VARIABLE("(?:(.{6})(?:([ABCdD\\-/* ])(.*)())?)?");
 
 		private final String regex;
 
