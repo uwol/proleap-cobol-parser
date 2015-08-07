@@ -33,12 +33,20 @@ options
 }
 
 startRule : (
-	copyStatement 
+	copyStatement
+	| execCicsStatement
 	| execSqlStatement
 	| replaceOffStatement
 	| replaceArea 
 	| charData
 )* EOF;
+
+
+// exec cics statemen
+
+execCicsStatement :
+	EXEC CICS charData END_EXEC
+;
 
 
 // exec sql statement
@@ -141,6 +149,7 @@ charDataKeyword :
 
 // keywords
 BY : B Y;
+CICS : C I C S;
 COPY : C O P Y;
 END_EXEC : E N D '-' E X E C; 
 EXEC : E X E C;

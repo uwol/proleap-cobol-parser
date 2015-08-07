@@ -287,6 +287,12 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		};
 
 		@Override
+		public void enterExecCicsStatement(final org.cobol85.Cobol85PreprocessorParser.ExecCicsStatementContext ctx) {
+			// push a new context for SQL terminals
+			push();
+		}
+
+		@Override
 		public void enterExecSqlStatement(final org.cobol85.Cobol85PreprocessorParser.ExecSqlStatementContext ctx) {
 			// push a new context for SQL terminals
 			push();
@@ -339,6 +345,12 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			pop();
 
 			context().write(content);
+		}
+
+		@Override
+		public void exitExecCicsStatement(final org.cobol85.Cobol85PreprocessorParser.ExecCicsStatementContext ctx) {
+			// throw away EXEC SQL terminals -> FIXME
+			pop();
 		}
 
 		@Override
@@ -421,7 +433,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected final String[] extensions = new String[] { "", "CPY", "COB", "CBL" };
 
-	protected final String[] parsingTriggers = new String[] { "copy", "replace", "exec sql", "kpir" };
+	protected final String[] parsingTriggers = new String[] { "copy", "exec sql", "exec cics", "replace" };
 
 	protected Map<Cobol85Format, Pattern> patterns = new HashMap<Cobol85Format, Pattern>();
 
