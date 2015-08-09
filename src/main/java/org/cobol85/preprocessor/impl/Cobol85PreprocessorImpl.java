@@ -621,12 +621,17 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		while (scanner.hasNextLine()) {
 			line = scanner.nextLine();
 
-			final Cobol85Line parsedLine = parseCobol85Line(line, formats);
+			// clean line from certain ASCII chars
+			final int substituteChar = 0x1A;
+			final String cleanedLine = line.replace((char) substituteChar, ' ');
+
+			// parse line
+			final Cobol85Line parsedLine = parseCobol85Line(cleanedLine, formats);
 			final String normalizedLine;
 
 			if (parsedLine == null) {
 				LOG.warn("unknown line format: {}", line);
-				normalizedLine = line;
+				normalizedLine = cleanedLine;
 			} else {
 				normalizedLine = normalizeLine(parsedLine, isFirstLine);
 			}

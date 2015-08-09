@@ -1198,7 +1198,7 @@ goToStatement :
 ifStatement :
 	IF condition THEN? (statement* | NEXT SENTENCE)
 	(
-		ELSE (statement+ | NEXT SENTENCE)
+		ELSE (statement* | NEXT SENTENCE)
 	)?
 	END_IF?
 ;
@@ -2518,7 +2518,7 @@ SLASHCHAR : '/';
 
 
 // literals
-NONNUMERICLITERAL : STRINGLITERAL | HEXNUMBER;
+NONNUMERICLITERAL : STRINGLITERAL | DBCSLITERAL | HEXNUMBER;
 
 fragment HEXNUMBER : 
 	X '"' [0-9A-F]+ '"' 
@@ -2530,13 +2530,18 @@ fragment STRINGLITERAL :
 	| '\'' (~['\n\r] | '\'\'' | '"')* '\''
 ;
 
+fragment DBCSLITERAL : 
+	[GN] '"' (~["\n\r] | '""' | '\'')* '"' 
+	| [GN] '\'' (~['\n\r] | '\'\'' | '"')* '\''
+;
+
 LEVEL_NUMBER_66 : '66';
 LEVEL_NUMBER_77 : '77';
 LEVEL_NUMBER_88 : '88';
 
 INTEGERLITERAL : (PLUSCHAR | MINUSCHAR)? [0-9]+;
 
-NUMERICLITERAL : (PLUSCHAR | MINUSCHAR)? [0-9]* (DOT | COMMACHAR) [0-9]+;
+NUMERICLITERAL : (PLUSCHAR | MINUSCHAR)? [0-9]* (DOT | COMMACHAR) [0-9]+ (('e' | 'E') (PLUSCHAR | MINUSCHAR)? [0-9]+)?;
 
 IDENTIFIER : [a-zA-Z0-9]+ ([-_]+ [a-zA-Z0-9]+)*;
 
