@@ -39,6 +39,10 @@
 *
 * Change log:
 *
+* v1.0
+*	- fixes
+*	- compiler options
+*
 * v0.9 Initial revision
 */
 

@@ -22,6 +22,10 @@
 *
 * Change log:
 *
+* v1.0
+*	- EXEC SQL
+*	- EXEC CICS
+*
 * v0.9 Initial revision
 */
 
