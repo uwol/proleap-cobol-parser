@@ -431,7 +431,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	protected final Cobol85Format[] defaultFormats = new Cobol85Format[] { Cobol85FormatEnum.FIXED,
 			Cobol85FormatEnum.VARIABLE, Cobol85FormatEnum.TANDEM };
 
-	protected final String[] extensions = new String[] { "", "CPY", "COB", "CBL" };
+	protected final String[] extensions = new String[] { "", "CPY", "COB", "CBL", "cpy", "cob", "cbl" };
 
 	protected final String[] parsingTriggers = new String[] { "copy", "exec sql", "exec cics", "replace" };
 
