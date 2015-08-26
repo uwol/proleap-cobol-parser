@@ -31,13 +31,15 @@ import org.apache.logging.log4j.Logger;
 
 public class TestGenerator {
 
+	private final static String[] directoriesExcluded = new String[] { "cics" };
+
+	private final static String[] directoriesNonRepo = new String[] { "nist" };
+
 	private final static String[] extensions = new String[] { "cbl", "cob", "jcl", "txt", "" };
 
 	private final static File inputDirectory = new File("src/test/resources/org/cobol85");
 
 	private final static Logger LOG = LogManager.getLogger(TestGenerator.class);
-
-	private final static String[] nonRepoTestDirectories = new String[] { "cics", "nist" };
 
 	private final static File outputDirectory = new File("src/test/java/org/cobol85");
 
@@ -106,11 +108,12 @@ public class TestGenerator {
 			for (final File inputDirectoryFile : inputDirectory.listFiles()) {
 				// if the file is a Cobol85 relevant file
 				if (isCobolFile(inputDirectoryFile)) {
-					final boolean isNonRepoTest = isNonRepoTest(inputDirectoryFile);
+					final File parentDirectory = inputDirectoryFile.getParentFile();
+					final boolean isNonRepoTest = isDirectoryNonRepo(parentDirectory);
 					generateTestClass(inputDirectoryFile, outputDirectory, packageName, isNonRepoTest);
 				}
-				// else, if the file is a directory
-				else if (inputDirectoryFile.isDirectory()) {
+				// else, if the file is a relevant directory
+				else if (inputDirectoryFile.isDirectory() && !isDirectoryExcluded(inputDirectoryFile)) {
 					final File subInputDirectory = inputDirectoryFile;
 					final String subInputDirectoryName = subInputDirectory.getName();
 
@@ -137,9 +140,14 @@ public class TestGenerator {
 		return inputFile.isFile() && Arrays.asList(extensions).contains(extension);
 	}
 
-	protected static boolean isNonRepoTest(final File inputFile) {
-		final String directoryName = inputFile.getParentFile().getName();
-		return Arrays.asList(nonRepoTestDirectories).contains(directoryName);
+	protected static boolean isDirectoryExcluded(final File directory) {
+		final String directoryName = directory.getName();
+		return Arrays.asList(directoriesExcluded).contains(directoryName);
+	}
+
+	protected static boolean isDirectoryNonRepo(final File directory) {
+		final String directoryName = directory.getName();
+		return Arrays.asList(directoriesNonRepo).contains(directoryName);
 	}
 
 	public static void main(final String[] args) throws IOException {
