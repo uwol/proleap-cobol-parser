@@ -43,10 +43,10 @@ public class TestGenerator {
 		return Character.toUpperCase(str.charAt(0)) + str.substring(1);
 	}
 
-	public static void generateTestClass(final File vb6InputFile, final File outputDirectory, final String packageName)
-			throws IOException {
-		if (vb6InputFile.isFile() && !vb6InputFile.isHidden()) {
-			final String inputFilename = firstToUpper(FilenameUtils.removeExtension(vb6InputFile.getName()));
+	public static void generateTestClass(final File cobol85InputFile, final File outputDirectory,
+			final String packageName) throws IOException {
+		if (cobol85InputFile.isFile() && !cobol85InputFile.isHidden()) {
+			final String inputFilename = firstToUpper(FilenameUtils.removeExtension(cobol85InputFile.getName()));
 
 			final File outputFile = new File(outputDirectory + "/" + inputFilename + "Test.java");
 
@@ -55,7 +55,7 @@ public class TestGenerator {
 
 			final PrintWriter pWriter = new PrintWriter(new FileWriter(outputFile));
 
-			final String vb6InputFileName = vb6InputFile.getPath().replace("\\", "/");
+			final String cobol85InputFileName = cobol85InputFile.getPath().replace("\\", "/");
 
 			pWriter.write("package " + packageName + ";\n");
 			pWriter.write("\n");
@@ -72,7 +72,7 @@ public class TestGenerator {
 			pWriter.write("	public void test() throws Exception {\n");
 			pWriter.write("		Cobol85GrammarContextFactory.configureDefaultApplicationContext();\n");
 			pWriter.write("\n");
-			pWriter.write("		final File inputFile = new File(\"" + vb6InputFileName + "\");\n");
+			pWriter.write("		final File inputFile = new File(\"" + cobol85InputFileName + "\");\n");
 			pWriter.write("		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();\n");
 			pWriter.write("		runner.parseFile(inputFile, null);\n");
 			pWriter.write("	}\n");
