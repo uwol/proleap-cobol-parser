@@ -37,6 +37,8 @@ public class TestGenerator {
 
 	private final static Logger LOG = LogManager.getLogger(TestGenerator.class);
 
+	private final static String[] nonRepoTestDirectories = new String[] { "cics", "nist" };
+
 	private final static File outputDirectory = new File("src/test/java/org/cobol85");
 
 	public static String firstToUpper(final String str) {
@@ -44,7 +46,7 @@ public class TestGenerator {
 	}
 
 	public static void generateTestClass(final File cobol85InputFile, final File outputDirectory,
-			final String packageName) throws IOException {
+			final String packageName, final boolean isNonRepoTest) throws IOException {
 		if (cobol85InputFile.isFile() && !cobol85InputFile.isHidden()) {
 			final String inputFilename = firstToUpper(FilenameUtils.removeExtension(cobol85InputFile.getName()));
 
@@ -55,6 +57,7 @@ public class TestGenerator {
 
 			final PrintWriter pWriter = new PrintWriter(new FileWriter(outputFile));
 
+			final String defaultDirectoryName = "src/test/resources/org/cobol85/";
 			final String cobol85InputFileName = cobol85InputFile.getPath().replace("\\", "/");
 
 			pWriter.write("package " + packageName + ";\n");
@@ -72,7 +75,18 @@ public class TestGenerator {
 			pWriter.write("	public void test() throws Exception {\n");
 			pWriter.write("		Cobol85GrammarContextFactory.configureDefaultApplicationContext();\n");
 			pWriter.write("\n");
-			pWriter.write("		final File inputFile = new File(\"" + cobol85InputFileName + "\");\n");
+
+			if (isNonRepoTest) {
+				final String shortenedCobol85InputFileName = cobol85InputFileName.replace(defaultDirectoryName, "");
+
+				pWriter.write("		final String testDirectoryString = System.getProperty(\"testDirectory\", \""
+						+ defaultDirectoryName + "\");\n");
+				pWriter.write("		final File inputFile = new File(testDirectoryString, \""
+						+ shortenedCobol85InputFileName + "\");\n");
+			} else {
+				pWriter.write("		final File inputFile = new File(\"" + cobol85InputFileName + "\");\n");
+			}
+
 			pWriter.write("		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();\n");
 			pWriter.write("		runner.parseFile(inputFile, null);\n");
 			pWriter.write("	}\n");
@@ -92,7 +106,8 @@ public class TestGenerator {
 			for (final File inputDirectoryFile : inputDirectory.listFiles()) {
 				// if the file is a Cobol85 relevant file
 				if (isCobolFile(inputDirectoryFile)) {
-					generateTestClass(inputDirectoryFile, outputDirectory, packageName);
+					final boolean isNonRepoTest = isNonRepoTest(inputDirectoryFile);
+					generateTestClass(inputDirectoryFile, outputDirectory, packageName, isNonRepoTest);
 				}
 				// else, if the file is a directory
 				else if (inputDirectoryFile.isDirectory()) {
@@ -120,6 +135,11 @@ public class TestGenerator {
 	protected static boolean isCobolFile(final File inputFile) {
 		final String extension = FilenameUtils.getExtension(inputFile.getName()).toLowerCase();
 		return inputFile.isFile() && Arrays.asList(extensions).contains(extension);
+	}
+
+	protected static boolean isNonRepoTest(final File inputFile) {
+		final String directoryName = inputFile.getParentFile().getName();
+		return Arrays.asList(nonRepoTestDirectories).contains(directoryName);
 	}
 
 	public static void main(final String[] args) throws IOException {
