@@ -428,10 +428,10 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected final static String NEWLINE = "\n";
 
+	protected final String[] copyFileExtensions = new String[] { "", "CPY", "cpy", "COB", "cob", "CBL", "cbl" };
+
 	protected final Cobol85Format[] defaultFormats = new Cobol85Format[] { Cobol85FormatEnum.FIXED,
 			Cobol85FormatEnum.VARIABLE, Cobol85FormatEnum.TANDEM };
-
-	protected final String[] extensions = new String[] { "", "CPY", "cpy", "COB", "cob", "CBL", "cbl" };
 
 	protected final String[] parsingTriggers = new String[] { "copy", "exec sql", "exec cics", "replace" };
 
@@ -517,7 +517,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	protected File identifyCopyFile(final String filename, final File libDirectory) {
 		File copyFile = null;
 
-		for (final String extension : extensions) {
+		for (final String extension : copyFileExtensions) {
 			final String filenameWithExtension;
 
 			if (extension.isEmpty()) {

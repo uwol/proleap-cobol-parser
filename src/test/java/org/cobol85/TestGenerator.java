@@ -31,11 +31,11 @@ import org.apache.logging.log4j.Logger;
 
 public class TestGenerator {
 
+	private final static String[] cobolFileExtensions = new String[] { "cbl", "cob", "jcl", "txt", "" };
+
 	private final static String[] directoriesExcluded = new String[] { "cics" };
 
 	private final static String[] directoriesNonRepo = new String[] { "nist" };
-
-	private final static String[] extensions = new String[] { "cbl", "cob", "jcl", "txt", "" };
 
 	private final static File inputDirectory = new File("src/test/resources/org/cobol85");
 
@@ -137,7 +137,7 @@ public class TestGenerator {
 
 	protected static boolean isCobolFile(final File inputFile) {
 		final String extension = FilenameUtils.getExtension(inputFile.getName()).toLowerCase();
-		return inputFile.isFile() && Arrays.asList(extensions).contains(extension);
+		return inputFile.isFile() && Arrays.asList(cobolFileExtensions).contains(extension);
 	}
 
 	protected static boolean isDirectoryExcluded(final File directory) {

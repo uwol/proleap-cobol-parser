@@ -21,9 +21,11 @@ package org.cobol85.runner.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.cobol85.Cobol85Lexer;
@@ -38,7 +40,14 @@ import org.cobol85.runner.Cobol85ParseTestRunner;
  */
 public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 
+	private final static String[] cobolFileExtensions = new String[] { "cbl", "cob", "jcl", "txt", "" };
+
 	private final static Logger LOG = LogManager.getLogger(Cobol85ParseTestRunnerImpl.class);
+
+	protected static boolean isCobolFile(final File inputFile) {
+		final String extension = FilenameUtils.getExtension(inputFile.getName()).toLowerCase();
+		return inputFile.isFile() && Arrays.asList(cobolFileExtensions).contains(extension);
+	}
 
 	protected void doParse(final String preProcessedInput) {
 		// run the lexer
@@ -60,7 +69,7 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 	public void parseDirectory(final File inputDirectory, final Cobol85FormatEnum[] formats) throws IOException {
 		if (inputDirectory.isDirectory() && !inputDirectory.isHidden()) {
 			for (final File inputFile : inputDirectory.listFiles()) {
-				if (inputFile.isFile() && !inputFile.isHidden()) {
+				if (inputFile.isFile() && !inputFile.isHidden() && isCobolFile(inputFile)) {
 					parseFile(inputFile, formats);
 				}
 			}
