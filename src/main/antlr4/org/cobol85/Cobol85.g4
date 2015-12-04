@@ -2016,7 +2016,11 @@ obsoletePictureStringClause :
 
 // literal ----------------------------------
 
-cobolWord : IDENTIFIER;
+cobolWord : 
+	IDENTIFIER
+	| COBOL
+	| PROGRAM
+;
 
 literal : NONNUMERICLITERAL | numericLiteral | booleanLiteral | figurativeConstant;
 
