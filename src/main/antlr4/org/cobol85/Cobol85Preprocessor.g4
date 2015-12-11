@@ -46,7 +46,7 @@ startRule : (
 )* EOF;
 
 
-// exec cics statemen
+// exec cics statement
 
 execCicsStatement :
 	EXEC CICS charData END_EXEC
