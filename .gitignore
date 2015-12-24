@@ -17,6 +17,8 @@ Thumbs.db
 bin/
 build/
 lib/
+src/test/java/org/cobol85/examples/
 src/test/resources/org/cobol85/cics
+src/test/resources/org/cobol85/examples/
 src/test/resources/org/cobol85/nist
 target/

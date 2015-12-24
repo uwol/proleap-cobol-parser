@@ -616,7 +616,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		final StringBuffer outputBuffer = new StringBuffer();
 
 		String line = null;
-		boolean isFirstLine = true;
+		int lineNumber = 0;
 
 		while (scanner.hasNextLine()) {
 			line = scanner.nextLine();
@@ -635,15 +635,16 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 				// if line could not be parsed
 				if (parsedLine == null) {
-					LOG.warn("unknown line format: {}", line);
+					LOG.warn("unknown line format in line {}: {}", lineNumber + 1, line);
 					normalizedLine = cleanedLine;
 				} else {
+					final boolean isFirstLine = lineNumber == 0;
 					normalizedLine = normalizeLine(parsedLine, isFirstLine);
 				}
 			}
 
 			outputBuffer.append(normalizedLine);
-			isFirstLine = false;
+			lineNumber++;
 		}
 
 		scanner.close();

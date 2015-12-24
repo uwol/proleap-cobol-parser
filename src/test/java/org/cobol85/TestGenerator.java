@@ -55,47 +55,49 @@ public class TestGenerator {
 			final File outputFile = new File(outputDirectory + "/" + inputFilename + "Test.java");
 
 			LOG.info("Creating {}.", outputFile);
-			outputFile.createNewFile();
+			final boolean createdNewFile = outputFile.createNewFile();
 
-			final PrintWriter pWriter = new PrintWriter(new FileWriter(outputFile));
+			if (createdNewFile) {
+				final PrintWriter pWriter = new PrintWriter(new FileWriter(outputFile));
 
-			final String defaultDirectoryName = "src/test/resources/org/cobol85/";
-			final String cobol85InputFileName = cobol85InputFile.getPath().replace("\\", "/");
+				final String defaultDirectoryName = "src/test/resources/org/cobol85/";
+				final String cobol85InputFileName = cobol85InputFile.getPath().replace("\\", "/");
 
-			pWriter.write("package " + packageName + ";\n");
-			pWriter.write("\n");
-			pWriter.write("import java.io.File;\n");
-			pWriter.write("\n");
-			pWriter.write("import org.junit.Test;\n");
-			pWriter.write("import org.cobol85.applicationcontext.Cobol85GrammarContextFactory;\n");
-			pWriter.write("import org.cobol85.runner.Cobol85ParseTestRunner;\n");
-			pWriter.write("import org.cobol85.runner.impl.Cobol85ParseTestRunnerImpl;\n");
-			pWriter.write("\n");
-			pWriter.write("public class " + inputFilename + "Test {\n");
-			pWriter.write("\n");
-			pWriter.write("	@Test\n");
-			pWriter.write("	public void test() throws Exception {\n");
-			pWriter.write("		Cobol85GrammarContextFactory.configureDefaultApplicationContext();\n");
-			pWriter.write("\n");
+				pWriter.write("package " + packageName + ";\n");
+				pWriter.write("\n");
+				pWriter.write("import java.io.File;\n");
+				pWriter.write("\n");
+				pWriter.write("import org.junit.Test;\n");
+				pWriter.write("import org.cobol85.applicationcontext.Cobol85GrammarContextFactory;\n");
+				pWriter.write("import org.cobol85.runner.Cobol85ParseTestRunner;\n");
+				pWriter.write("import org.cobol85.runner.impl.Cobol85ParseTestRunnerImpl;\n");
+				pWriter.write("\n");
+				pWriter.write("public class " + inputFilename + "Test {\n");
+				pWriter.write("\n");
+				pWriter.write("	@Test\n");
+				pWriter.write("	public void test() throws Exception {\n");
+				pWriter.write("		Cobol85GrammarContextFactory.configureDefaultApplicationContext();\n");
+				pWriter.write("\n");
 
-			if (isNonRepoTest) {
-				final String shortenedCobol85InputFileName = cobol85InputFileName.replace(defaultDirectoryName, "");
+				if (isNonRepoTest) {
+					final String shortenedCobol85InputFileName = cobol85InputFileName.replace(defaultDirectoryName, "");
 
-				pWriter.write("		final String testDirectoryString = System.getProperty(\"testDirectory\", \""
-						+ defaultDirectoryName + "\");\n");
-				pWriter.write("		final File inputFile = new File(testDirectoryString, \""
-						+ shortenedCobol85InputFileName + "\");\n");
-			} else {
-				pWriter.write("		final File inputFile = new File(\"" + cobol85InputFileName + "\");\n");
+					pWriter.write("		final String testDirectoryString = System.getProperty(\"testDirectory\", \""
+							+ defaultDirectoryName + "\");\n");
+					pWriter.write("		final File inputFile = new File(testDirectoryString, \""
+							+ shortenedCobol85InputFileName + "\");\n");
+				} else {
+					pWriter.write("		final File inputFile = new File(\"" + cobol85InputFileName + "\");\n");
+				}
+
+				pWriter.write("		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();\n");
+				pWriter.write("		runner.parseFile(inputFile, null);\n");
+				pWriter.write("	}\n");
+				pWriter.write("}");
+
+				pWriter.flush();
+				pWriter.close();
 			}
-
-			pWriter.write("		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();\n");
-			pWriter.write("		runner.parseFile(inputFile, null);\n");
-			pWriter.write("	}\n");
-			pWriter.write("}");
-
-			pWriter.flush();
-			pWriter.close();
 		}
 	}
 

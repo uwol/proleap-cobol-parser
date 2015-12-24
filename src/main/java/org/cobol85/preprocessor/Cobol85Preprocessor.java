@@ -55,7 +55,7 @@ public interface Cobol85Preprocessor {
 		 * 2-5: area A<br />
 		 * 6-132: area B<br />
 		 */
-		TANDEM("()([ABCdD\\-/* ])(.+)()"),
+		TANDEM("()([ABCdD\\-/* ])(.*)()"),
 
 		/**
 		 * Variable format.<br />
@@ -65,7 +65,7 @@ public interface Cobol85Preprocessor {
 		 * 8-12: area A<br />
 		 * 13-*: area B<br />
 		 */
-		VARIABLE("(?:(.{6})(?:([ABCdD\\-/* ])(.*)())?)?");
+		VARIABLE("(.{6})(?:([ABCdD\\-/* ])(.*)())?");
 
 		private final String regex;
 
