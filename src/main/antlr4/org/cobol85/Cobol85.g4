@@ -1013,7 +1013,7 @@ alterStatement :
 callStatement :
 	CALL (identifier | literal)
 	(
-		USING (callByReferenceStatement | callByContentStatement)+
+		USING (callByReferenceStatement | callByValueStatement | callByContentStatement)+
 	)?
 	(ON? OVERFLOW statements)?
 	onExceptionClause?
@@ -1023,6 +1023,10 @@ callStatement :
 
 callByReferenceStatement :
 	(BY? REFERENCE)? (identifier | ADDRESS OF identifier | fileName)+ 
+;
+
+callByValueStatement :
+	BY? VALUE identifier+ 
 ;
 
 callByContentStatement :
@@ -1906,7 +1910,7 @@ procedureName :
 ;
 
 programName :
-	cobolWord
+	cobolWord | NONNUMERICLITERAL
 ;
 
 qualifiedDataName :
