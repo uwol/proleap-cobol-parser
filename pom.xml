@@ -6,7 +6,7 @@
 	<description>Cobol 85 Grammar for ANTLR4</description>
 	<groupId>org.antlr-grammars</groupId>
 	<artifactId>cobol85grammar</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<packaging>jar</packaging>
 
 	<licenses>

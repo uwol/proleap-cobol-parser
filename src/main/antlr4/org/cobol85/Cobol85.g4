@@ -39,6 +39,11 @@
 *
 * Change log:
 *
+* v1.1
+*	- DFHRESP and DFHVALUE
+*	- CALL BY VALUE
+*	- REMARKS paragraph
+*
 * v1.0
 *	- fixes
 *	- compiler options
