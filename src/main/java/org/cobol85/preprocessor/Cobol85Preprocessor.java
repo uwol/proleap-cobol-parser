@@ -26,6 +26,8 @@ public interface Cobol85Preprocessor {
 
 	public interface Cobol85Format {
 
+		String indicatorField = "([ABCdD\\-/* ])";
+
 		String getRegex();
 	}
 
@@ -34,7 +36,12 @@ public interface Cobol85Preprocessor {
 		/**
 		 * Custom layout 1.
 		 */
-		CUSTOM_1("(\\s*[0-9]+)(?:.{7}([ABCdD\\-/* ])(.{0,65})(.*)?)?"),
+		CUSTOM_1("(\\s*[0-9]+)(?:.{7}" + indicatorField + "(.{0,65})(.*)?)?"),
+
+		/**
+		 * Format for handling irregular/defect lines.
+		 */
+		DEFECT("(\\s{7,})" + indicatorField + "([\\*]+)()"),
 
 		/**
 		 * Fixed format, standard ANSI / IBM reference. Each line exactly 80
@@ -46,7 +53,7 @@ public interface Cobol85Preprocessor {
 		 * 13-72: area B<br />
 		 * 73-80: comments<br />
 		 */
-		FIXED("(.{6})([ABCdD\\-/* ])(.{65})(.{8})"),
+		FIXED("(.{6})" + indicatorField + "(.{65})(.{8})"),
 
 		/**
 		 * HP Tandem format.<br />
@@ -55,7 +62,7 @@ public interface Cobol85Preprocessor {
 		 * 2-5: area A<br />
 		 * 6-132: area B<br />
 		 */
-		TANDEM("()([ABCdD\\-/* ])(.*)()"),
+		TANDEM("()" + indicatorField + "(.*)()"),
 
 		/**
 		 * Variable format.<br />
@@ -65,7 +72,7 @@ public interface Cobol85Preprocessor {
 		 * 8-12: area A<br />
 		 * 13-*: area B<br />
 		 */
-		VARIABLE("(.{6})(?:([ABCdD\\-/* ])(.*)())?");
+		VARIABLE("(.{6})(?:" + indicatorField + "(.*)())?");
 
 		private final String regex;
 

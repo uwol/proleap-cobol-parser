@@ -49,14 +49,14 @@ startRule : (
 // exec cics statement
 
 execCicsStatement :
-	EXEC CICS charData END_EXEC
+	EXEC CICS charData END_EXEC DOT?
 ;
 
 
 // exec sql statement
 
 execSqlStatement :
-	EXEC SQL charData END_EXEC
+	EXEC SQL charData END_EXEC DOT?
 ;
 
 
