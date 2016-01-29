@@ -209,11 +209,11 @@ objectComputerClause :
 ;
 
 memorySizeClause :
-	MEMORY SIZE? integerLiteral (WORDS | CHARACTERS | MODULES)?
+	MEMORY SIZE? (integerLiteral | cobolWord) (WORDS | CHARACTERS | MODULES)?
 ;
 
 diskSizeClause :
-	DISK SIZE? IS? integerLiteral (WORDS | MODULES)?
+	DISK SIZE? IS? (integerLiteral | cobolWord) (WORDS | MODULES)?
 ;
 
 collatingSequenceClause :
