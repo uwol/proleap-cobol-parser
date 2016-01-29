@@ -1323,7 +1323,7 @@ moveStatement :
 ;
 
 moveToStatement :
-	(identifier | literal) TO identifier+
+	(identifier | literal | keyword) TO identifier+
 ;
 
 moveCorrespondingToStatement :
@@ -1737,7 +1737,7 @@ power :
 ;
 
 basis :
-	(identifier | literal | LPARENCHAR arithmeticExpression RPARENCHAR)
+	(identifier | literal | keyword | LPARENCHAR arithmeticExpression RPARENCHAR)
 ;
 
 commentEntry :
