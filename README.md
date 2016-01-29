@@ -35,3 +35,8 @@ Build process:
 Release process:
 
 * Milestones are published in the [ANTLR grammars repo](https://github.com/antlr/grammars-v4).
+
+
+VM Args
+
+* For parsing large Cobol source code files, following VM args have to be set: -Xmx2048m -XX:MaxPermSize=256m
