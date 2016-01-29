@@ -1683,12 +1683,13 @@ useProcedureClause :
 ;
 
 useProcedureDebugClause :
-	FOR? DEBUGGING ON? (
+	FOR? DEBUGGING ON? 
+	(
 		ALL PROCEDURES
-		| ALL REFERENCES? OF identifier
-		| procedureName+ 
-		| fileName+  
-	) 
+		| ALL REFERENCES? OF? identifier
+		| procedureName 
+		| fileName
+	)+
 ;
 
 // write statement

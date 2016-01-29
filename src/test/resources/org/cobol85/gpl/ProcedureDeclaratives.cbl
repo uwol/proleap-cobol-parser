@@ -1,0 +1,10 @@
+000100 Identification Division.
+000200 Program-ID. 
+000300  HELLOWORLD.
+000400 Procedure Division.
+000500 DECLARATIVES.
+000600 TEST-1 SECTION. 
+000700     USE FOR DEBUGGING ON  ALL REFERENCES OF KEY-1
+000800                           ALL               ID-2.
+000900   Display "Hello world".
+000100 END DECLARATIVES.  
