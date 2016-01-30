@@ -1,6 +1,6 @@
 000100 Identification Division.
 000200 Program-ID. 
-000300  HELLOWORLD.
+000300  IFTEST.
 000400 Procedure Division.
 000500   IF LINE-COUNTER EQUAL TO ZERO
 000600     Display "Hello world"
@@ -9,3 +9,7 @@
 000500   IF LINE-COUNTER = ZERO
 000600     Display "Hello world"
 000700   END-IF.
+000800
+000900   IF LINE-COUNTER = ZERO OR 1
+001000     Display "Hello world"
+001100   END-IF.

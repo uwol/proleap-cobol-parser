@@ -1,0 +1,11 @@
+000000 Identification Division.
+000000   Program-ID.
+000000     IFELSETEST.
+000000 Procedure Division.
+000000
+000000 IF Obj-Name NOT = SPACE
+000000   SET ADDRESS OF PointerA
+000000       TO PointerB
+000000 ELSE
+000000   INITIALIZE Test1
+000000 END-IF.
