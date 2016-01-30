@@ -35,7 +35,7 @@ public class TestGenerator {
 
 	private final static String[] directoriesExcluded = new String[] { "cics" };
 
-	private final static String[] directoriesNonRepo = new String[] { "nist" };
+	private final static String[] directoriesNonRepo = new String[] {};
 
 	private final static File inputDirectory = new File("src/test/resources/org/cobol85");
 

@@ -27,10 +27,8 @@ Build process:
 
 * The build process is based on Maven.
 * The test suite executes tests against NIST, CICS and some GPLed Cobol test files.
-  * Due to license reasons, NIST and CICS Cobol test files are not included in this repo. 
-  * However, the NIST test files can be found in the [Koopa repo](https://github.com/goblindegook/Koopa/tree/master/testsuite/cobol85).
-  * After downloading those NIST test files, they have to be made available to the test suite via a system property: -DtestDirectory=/some/directory/
-  
+* NIST test files come from [Koopa repo](https://github.com/goblindegook/Koopa/tree/master/testsuite/cobol85).
+
 
 Release process:
 
@@ -39,4 +37,5 @@ Release process:
 
 VM Args
 
-* For parsing large Cobol source code files, following VM args have to be set: -Xmx2048m -XX:MaxPermSize=256m
+* For parsing large Cobol source code files,  VM args have to be set: -Xmx2048m -XX:MaxPermSize=256m
+* Intellij Plugin for ANTLR 4 has to be provided with those VM args in file idea.vmoptions.
