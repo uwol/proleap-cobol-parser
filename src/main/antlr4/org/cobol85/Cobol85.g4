@@ -588,7 +588,7 @@ dataOccursClause :
 ;
 
 dataPictureClause :
-	(PICTURE | PIC)? IS? pictureString
+	(PICTURE | PIC) IS? pictureString
 ;
 
 pictureString :
