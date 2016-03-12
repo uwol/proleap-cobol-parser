@@ -608,28 +608,27 @@ pictureString :
 ;
 
 pictureChars :
-	DOLLARCHAR 
-	| IDENTIFIER 
-	| integerLiteral 
-	| pictureCharsKeyword 
-	| NUMERICLITERAL 
-	| picturePunctuation 
-	| ASTERISKCHAR 
-	| DOUBLEASTERISKCHAR 
-	| LPARENCHAR 
-	| RPARENCHAR 
-	| PLUSCHAR 
-	| MINUSCHAR 
-	| LESSTHANCHAR 
+	DOLLARCHAR
+	| IDENTIFIER
+	| integerLiteral
+	| pictureCharsKeyword
+	| NUMERICLITERAL
+	| SLASHCHAR
+	| COMMACHAR
+	| DOT
+	| COLONCHAR
+	| ASTERISKCHAR
+	| DOUBLEASTERISKCHAR
+	| LPARENCHAR
+	| RPARENCHAR
+	| PLUSCHAR
+	| MINUSCHAR
+	| LESSTHANCHAR
 	| MORETHANCHAR
 ;
 
 pictureCardinality :
 	LPARENCHAR integerLiteral RPARENCHAR
-;
-
-picturePunctuation :
-	SLASHCHAR | COMMACHAR | DOT | COLONCHAR
 ;
 
 dataExternalClause :
@@ -2117,12 +2116,12 @@ connective :
 ;
 
 figurativeConstant :
-	ALL literal 
-	| HIGH_VALUE | HIGH_VALUES 
-	| LOW_VALUE | LOW_VALUES 
-	| NULL | NULLS 
-	| QUOTE | QUOTES 
-	| SPACE | SPACES 
+	ALL literal
+	| HIGH_VALUE | HIGH_VALUES
+	| LOW_VALUE | LOW_VALUES
+	| NULL | NULLS
+	| QUOTE | QUOTES
+	| SPACE | SPACES
 	| ZERO | ZEROS | ZEROES
 ;
 
