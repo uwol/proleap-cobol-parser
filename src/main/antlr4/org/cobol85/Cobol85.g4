@@ -546,24 +546,36 @@ reportClause :
 ;
 
 dataDescriptionEntry :
-	INTEGERLITERAL (dataName | FILLER)? dataDescriptionEntryClause* DOT
-	| LEVEL_NUMBER_66 dataName renamesClause DOT
-	| LEVEL_NUMBER_77 dataDescName dataDescriptionEntryClause* DOT
-	| LEVEL_NUMBER_88 conditionName conditionValueClause DOT
+	dataDescriptionEntryFormat1
+	| dataDescriptionEntryFormat2
+	| dataDescriptionEntryFormat3
 ;
 
-dataDescriptionEntryClause :
-	dataPictureClause
-	| dataValueClause
-	| dataUsageClause
-	| dataRedefinesClause
-	| dataExternalClause
-	| dataGlobalClause
-	| dataSignClause
-	| dataOccursClause
-	| dataSynchronizedClause
-	| dataJustifiedClause
-	| dataBlankWhenZeroClause
+dataDescriptionEntryFormat1 :
+	(INTEGERLITERAL | LEVEL_NUMBER_77)
+	(dataName | FILLER)?
+	dataExternalClause?
+	dataGlobalClause?
+	dataRedefinesClause?
+	(
+		dataPictureClause
+		| dataValueClause
+		| dataUsageClause
+		| dataOccursClause
+		| dataSignClause
+		| dataSynchronizedClause
+		| dataJustifiedClause
+		| dataBlankWhenZeroClause
+	)*
+	DOT
+;
+
+dataDescriptionEntryFormat2 :
+	LEVEL_NUMBER_66 dataName renamesClause DOT
+;
+
+dataDescriptionEntryFormat3 :
+	LEVEL_NUMBER_88 conditionName dataValueClause DOT
 ;
 
 dataRedefinesClause :
@@ -596,7 +608,20 @@ pictureString :
 ;
 
 pictureChars :
-	DOLLARCHAR | IDENTIFIER | integerLiteral | pictureCharsKeyword | NUMERICLITERAL | picturePunctuation | ASTERISKCHAR | DOUBLEASTERISKCHAR | LPARENCHAR | RPARENCHAR | PLUSCHAR | MINUSCHAR | LESSTHANCHAR | MORETHANCHAR
+	DOLLARCHAR 
+	| IDENTIFIER 
+	| integerLiteral 
+	| pictureCharsKeyword 
+	| NUMERICLITERAL 
+	| picturePunctuation 
+	| ASTERISKCHAR 
+	| DOUBLEASTERISKCHAR 
+	| LPARENCHAR 
+	| RPARENCHAR 
+	| PLUSCHAR 
+	| MINUSCHAR 
+	| LESSTHANCHAR 
+	| MORETHANCHAR
 ;
 
 pictureCardinality :
@@ -657,10 +682,6 @@ dataValueClause :
 			(THROUGH | THRU) literal
 		)?
 	)+
-;
-
-conditionValueClause :
-	dataValueClause
 ;
 
 renamesClause :
