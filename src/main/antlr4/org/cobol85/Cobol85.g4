@@ -39,6 +39,13 @@
 *
 * Change log:
 *
+* v1.3
+*	- data description fixes
+*	- picture string fixes
+*
+* v1.2
+*	- fixes
+*
 * v1.1
 *	- DFHRESP and DFHVALUE
 *	- CALL BY VALUE
