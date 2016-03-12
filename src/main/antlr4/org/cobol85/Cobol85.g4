@@ -75,7 +75,7 @@ programUnit :
 ;
 
 endProgramStatement :
-	END PROGRAM programName DOT
+	END PROGRAM programName DOT_FS
 ;
 
 // --- compiler options --------------------------------------------------------------------
@@ -104,7 +104,7 @@ compilerSubOption :
 // --- identification division --------------------------------------------------------------------
 
 identificationDivision :
-	(IDENTIFICATION | ID) DIVISION DOT
+	(IDENTIFICATION | ID) DIVISION DOT_FS
 	programIdParagraph
 	identificationDivisionBody*
 ;
@@ -121,49 +121,49 @@ identificationDivisionBody :
 // - program id paragraph ----------------------------------
 
 programIdParagraph :
-	PROGRAM_ID DOT programName (IS? (COMMON | INITIAL | LIBRARY | DEFINITION) PROGRAM?)? DOT
+	PROGRAM_ID DOT_FS programName (IS? (COMMON | INITIAL | LIBRARY | DEFINITION) PROGRAM?)? DOT_FS
 ;
 
 // - author paragraph ----------------------------------
 
 authorParagraph :
-	AUTHOR DOT commentEntry?
+	AUTHOR DOT_FS commentEntry?
 ;
 
 // - installation paragraph ----------------------------------
 
 installationParagraph :
-	INSTALLATION DOT commentEntry?
+	INSTALLATION DOT_FS commentEntry?
 ;
 
 // - date written paragraph ----------------------------------
 
 dateWrittenParagraph :
-	DATE_WRITTEN DOT commentEntry?
+	DATE_WRITTEN DOT_FS commentEntry?
 ;
 
 // - date compiled paragraph ----------------------------------
 
 dateCompiledParagraph :
-	DATE_COMPILED DOT commentEntry?
+	DATE_COMPILED DOT_FS commentEntry?
 ;
 
 // - security paragraph ----------------------------------
 
 securityParagraph :
-	SECURITY DOT commentEntry?
+	SECURITY DOT_FS commentEntry?
 ;
 
 // - remarks paragraph ----------------------------------
 
 remarksParagraph :
-	REMARKS DOT commentEntry?
+	REMARKS DOT_FS commentEntry?
 ;
 
 // --- environment division --------------------------------------------------------------------
 
 environmentDivision :
-	ENVIRONMENT DIVISION DOT
+	ENVIRONMENT DIVISION DOT_FS
 	environmentDivisionBody*
 ;
 
@@ -176,7 +176,7 @@ environmentDivisionBody :
 // -- configuration section ----------------------------------
 
 configurationSection :
-	CONFIGURATION SECTION DOT
+	CONFIGURATION SECTION DOT_FS
 	configurationSectionParagraph*
 ;
 
@@ -190,14 +190,14 @@ configurationSectionParagraph :
 // - source computer paragraph ----------------------------------
 
 sourceComputerParagraph :
-	SOURCE_COMPUTER DOT computerName (WITH? DEBUGGING MODE)? DOT
+	SOURCE_COMPUTER DOT_FS computerName (WITH? DEBUGGING MODE)? DOT_FS
 ;
 
 // - object computer paragraph ----------------------------------
 
 objectComputerParagraph :
-	OBJECT_COMPUTER DOT
-	computerName objectComputerClause* DOT
+	OBJECT_COMPUTER DOT_FS
+	computerName objectComputerClause* DOT_FS
 ;
 
 objectComputerClause :
@@ -231,8 +231,8 @@ characterSetClause :
 // - special names paragraph ----------------------------------
 
 specialNamesParagraph :
-	SPECIAL_NAMES DOT
-	(specialNameClause+ DOT)?
+	SPECIAL_NAMES DOT_FS
+	(specialNameClause+ DOT_FS)?
 ;
 
 specialNameClause :
@@ -305,7 +305,7 @@ specialNamesStatusPhrase :
 // -- input output section ----------------------------------
 
 inputOutputSection :
-	INPUT_OUTPUT SECTION DOT
+	INPUT_OUTPUT SECTION DOT_FS
 	inputOutputSectionParagraph*
 ;
 
@@ -319,7 +319,7 @@ inputOutputSectionParagraph :
 // - file control paragraph ----------------------------------
 
 fileControlParagraph :
-	FILE_CONTROL (DOT? fileControlEntry)+ DOT
+	FILE_CONTROL (DOT_FS? fileControlEntry)+ DOT_FS
 ;
 
 fileControlEntry :
@@ -400,9 +400,9 @@ relativeKeyClause :
 // - io control paragraph ----------------------------------
 
 ioControlParagraph :
-	I_O_CONTROL DOT
-	(fileName DOT)?
-	(ioControlClause (DOT? ioControlClause)* DOT)?
+	I_O_CONTROL DOT_FS
+	(fileName DOT_FS)?
+	(ioControlClause (DOT_FS? ioControlClause)* DOT_FS)?
 ;
 
 ioControlClause :
@@ -447,7 +447,7 @@ commitmentControlClause :
 // --- data division --------------------------------------------------------------------
 
 dataDivision :
-	DATA DIVISION DOT
+	DATA DIVISION DOT_FS
 	dataDivisionBody*
 ;
 
@@ -463,12 +463,12 @@ dataDivisionBody :
 // -- file section ----------------------------------
 
 fileSection :
-	FILE SECTION DOT
+	FILE SECTION DOT_FS
 	(fileAndSortDescriptionEntry dataDescriptionEntry*)*
 ;
 
 fileAndSortDescriptionEntry :
-	(FD | SD) fileName (DOT? fileAndSortDescriptionEntryClause)* DOT
+	(FD | SD) fileName (DOT_FS? fileAndSortDescriptionEntryClause)* DOT_FS
 ;
 
 fileAndSortDescriptionEntryClause :
@@ -567,15 +567,15 @@ dataDescriptionEntryFormat1 :
 		| dataJustifiedClause
 		| dataBlankWhenZeroClause
 	)*
-	DOT
+	DOT_FS
 ;
 
 dataDescriptionEntryFormat2 :
-	LEVEL_NUMBER_66 dataName renamesClause DOT
+	LEVEL_NUMBER_66 dataName renamesClause DOT_FS
 ;
 
 dataDescriptionEntryFormat3 :
-	LEVEL_NUMBER_88 conditionName dataValueClause DOT
+	LEVEL_NUMBER_88 conditionName dataValueClause DOT_FS
 ;
 
 dataRedefinesClause :
@@ -693,21 +693,21 @@ renamesClause :
 // -- working storage section ----------------------------------
 
 workingStorageSection :
-	WORKING_STORAGE SECTION DOT
+	WORKING_STORAGE SECTION DOT_FS
 	dataDescriptionEntry*
 ;
 
 // -- linkage section ----------------------------------
 
 linkageSection :
-	LINKAGE SECTION DOT
+	LINKAGE SECTION DOT_FS
 	dataDescriptionEntry*
 ;
 
 // -- communication section ----------------------------------
 
 communicationSection :
-	COMMUNICATION SECTION DOT
+	COMMUNICATION SECTION DOT_FS
 	(communicationDescriptionEntry | dataDescriptionEntry)*
 ;
 
@@ -735,7 +735,7 @@ communicationDescriptionEntryFormat1 :
 		)
 		| dataDescName
 	)*
-	DOT
+	DOT_FS
 ;
 
 communicationDescriptionEntryFormat2 :
@@ -748,7 +748,7 @@ communicationDescriptionEntryFormat2 :
 		| ERROR KEY IS? dataDescName
 		| SYMBOLIC? DESTINATION IS? dataDescName
 	)*
-	DOT
+	DOT_FS
 ;
 
 communicationDescriptionEntryFormat3 :
@@ -764,19 +764,19 @@ communicationDescriptionEntryFormat3 :
 		)
 		| dataDescName+
 	)*
-	DOT
+	DOT_FS
 ;
 
 // -- screen section ----------------------------------
 
 screenSection :
-	SCREEN SECTION DOT
+	SCREEN SECTION DOT_FS
 ;
 
 // -- report section ----------------------------------
 
 reportSection :
-	REPORT SECTION DOT
+	REPORT SECTION DOT_FS
 	(
 		reportDescriptionEntry reportGroupDescriptionEntry+
 	)*
@@ -792,7 +792,7 @@ reportDescriptionEntry :
 		(LAST DETAIL integerLiteral)?
 		(FOOTING integerLiteral)?
 	)?
-	DOT
+	DOT_FS
 ;
 
 reportGroupDescriptionEntry :
@@ -832,7 +832,7 @@ reportGroupDescriptionEntryFormat1 :
 	(
 		USAGE IS? (DISPLAY | DISPLAY_1)
 	)?
-	DOT
+	DOT_FS
 ;
 
 reportGroupDescriptionEntryFormat2 :
@@ -848,7 +848,7 @@ reportGroupDescriptionEntryFormat2 :
 	(
 		USAGE IS? (DISPLAY | DISPLAY_1)	
 	)
-	DOT
+	DOT_FS
 ;
 
 reportGroupDescriptionEntryFormat3 :
@@ -877,25 +877,25 @@ reportGroupDescriptionEntryFormat3 :
 		)
 		| (GROUP INDICATE?)
 	)*
-	DOT
+	DOT_FS
 ;
 
 // --- procedure division --------------------------------------------------------------------
 
 procedureDivision :
-	PROCEDURE DIVISION (USING dataName+)? (GIVING dataName)? DOT
+	PROCEDURE DIVISION (USING dataName+)? (GIVING dataName)? DOT_FS
 	procedureDeclaratives?
 	procedureDivisionBody
 ;
 
 procedureDeclaratives :
-	DECLARATIVES DOT
+	DECLARATIVES DOT_FS
 	(
-		procedureSectionHeader DOT
-		useStatement DOT
+		procedureSectionHeader DOT_FS
+		useStatement DOT_FS
 		paragraphs
 	)+
-	END DECLARATIVES DOT
+	END DECLARATIVES DOT_FS
 ;
 
 procedureDivisionBody :
@@ -909,7 +909,7 @@ procedureSectionHeader :
 // -- procedure section ----------------------------------
 
 procedureSection :
-	procedureSectionHeader DOT paragraphs
+	procedureSectionHeader DOT_FS paragraphs
 ;
 
 paragraphs :
@@ -917,7 +917,7 @@ paragraphs :
 ;
 
 paragraph :
-	paragraphName DOT
+	paragraphName DOT_FS
 	(
 		exitStatement
 		| alteredGoTo
@@ -926,7 +926,7 @@ paragraph :
 ;
 
 sentence :
-	statements DOT
+	statements DOT_FS
 ;
 
 statements :
@@ -1041,7 +1041,7 @@ addCorrespondingStatement :
 // altered go to statement
 
 alteredGoTo :
-	GO TO? DOT
+	GO TO? DOT_FS
 ;
 
 // alter statement
@@ -1788,6 +1788,7 @@ commentEntryText :
 	DOLLARCHAR |
 	DOUBLEQUOTE |
 	DOT |
+	DOT_FS |
 	EQUALCHAR |
 	LESSTHANCHAR |
 	LESSTHANOREQUAL |
@@ -2644,6 +2645,8 @@ COMMACHAR : ',';
 COMMENTTAG : '>*';
 DOLLARCHAR : '$';
 DOUBLEQUOTE : '"';
+// period full stop
+DOT_FS : '.' ('\r' | '\n' | '\f' | '\t' | ' ')+ | '.' EOF;
 DOT : '.';
 EQUALCHAR : '=';
 LESSTHANCHAR : '<';
