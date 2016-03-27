@@ -45,6 +45,24 @@ final org.cobol85.Cobol85Parser parser = new org.cobol85.Cobol85Parser(tokens);
 final org.cobol85.Cobol85Parser.StartRuleContext ctx = parser.startRule();
 ```
 
+```java
+/*
+* traverse the abstract syntax tree (AST) with an ANTLR visitor
+*/
+final org.cobol85.Cobol85BaseVisitor<Boolean> visitor = new org.cobol85.Cobol85BaseVisitor<Boolean>() {
+	/*
+	 * exemplary callback function for identification division
+	 */
+	@Override
+	public Boolean visitIdentificationDivision(
+			final org.cobol85.Cobol85Parser.IdentificationDivisionContext ctx) {
+		return visitChildren(ctx);
+	}
+};
+
+visitor.visit(ctx);
+```
+
 
 VM Args:
 
