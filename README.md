@@ -42,7 +42,7 @@ final org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.C
 * parser
 */
 final org.cobol85.Cobol85Parser parser = new org.cobol85.Cobol85Parser(tokens);
-parser.startRule();
+final org.cobol85.Cobol85Parser.StartRuleContext ctx = parser.startRule();
 ```
 
 
