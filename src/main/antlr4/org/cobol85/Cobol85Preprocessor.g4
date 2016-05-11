@@ -79,7 +79,7 @@ replacingPhrase :
 replaceArea : 
 	replaceByStatement
 	(copyStatement | charData)*
-	replaceOffStatement
+	replaceOffStatement 
 ;
 
 replaceByStatement :
@@ -87,7 +87,7 @@ replaceByStatement :
 ;
 
 replaceOffStatement :
-	REPLACE OFF DOT
+	(REPLACE OFF)? DOT //AC20160509 
 ;
 
 
