@@ -11,10 +11,8 @@ public class Esempio2 {
 		org.cobol85.applicationcontext.Cobol85GrammarContextFactory.configureDefaultApplicationContext();
 		
 		//20160501 AC
-		
 		//String fname="d:\\docs\\coboldocs\\TEST1.COB"; //"test/resources/org/cobol85/gpl/HelloWorldVar.cbl";
 		String fname="src/test/resources/org/cobol85/gpl/Replace_bug.cbl";
-		
 		
 		final java.io.File inputFile = new java.io.File(fname);
 		final java.io.File libDirectory = inputFile.getParentFile();

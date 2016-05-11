@@ -50,7 +50,7 @@ import org.cobol85.Cobol85PreprocessorParser.StartRuleContext;
 import org.cobol85.preprocessor.Cobol85Preprocessor;
 import org.codehaus.plexus.util.StringUtils;
 
-import edu.emory.mathcs.backport.java.util.Arrays;
+import java.util.Arrays;
 
 public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
