@@ -11,9 +11,11 @@ package org.cobol85.preprocessor.impl;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +49,8 @@ import org.cobol85.Cobol85PreprocessorParser.ReplacingPhraseContext;
 import org.cobol85.Cobol85PreprocessorParser.StartRuleContext;
 import org.cobol85.preprocessor.Cobol85Preprocessor;
 import org.codehaus.plexus.util.StringUtils;
+
+import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
@@ -97,11 +101,11 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		 * replaced by which replacements.
 		 */
 		private class PreprocessingContext {
-
+			
 			/**
 			 * A mapping from a replaceable to a replacement.
 			 */
-			private class ReplacementMapping {
+			private class ReplacementMapping implements Comparable<ReplacementMapping> {
 
 				private ReplaceableContext replaceable;
 
@@ -200,6 +204,12 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 				public String toString() {
 					return replaceable.getText() + " -> " + replacement.getText();
 				}
+
+				@Override
+				public int compareTo(ReplacementMapping o) {
+					//AC 20160509
+					return o.replaceable.getText().length()-this.replaceable.getText().length();
+				}
 			}
 
 			private ReplacementMapping[] currentReplaceableReplacements;
@@ -212,6 +222,10 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 			public void replace() {
 				if (currentReplaceableReplacements != null) {
+					
+					//AC 20160509
+					Arrays.sort(currentReplaceableReplacements);
+					
 					for (final ReplacementMapping replaceableReplacement : currentReplaceableReplacements) {
 						final String currentOutput = outputBuffer.toString();
 						final String replacedOutput = replaceableReplacement.replace(currentOutput);
@@ -698,6 +712,14 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	@Override
 	public String process(final String input, final File libDirectory, final Cobol85Format[] formats) {
 		final String normalizedInput = normalizeLines(input, formats);
+		
+		//20160508 AC
+		try(  PrintWriter out = new PrintWriter( "src\\main\\java\\my\\test\\normalized_input.cbl" )  ){
+		    out.println( normalizedInput );
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		final boolean requiresProcessorExecution = requiresParsing(normalizedInput);
 		final String result;
@@ -710,6 +732,14 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 		LOG.debug("Processed input:\n\n{}\n\n", result);
 
+		//20160508 AC
+		try(  PrintWriter out = new PrintWriter( "src\\main\\java\\my\\test\\processed_input.cbl" )  ){
+		    out.println( result );
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 
