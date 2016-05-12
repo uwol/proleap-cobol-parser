@@ -316,6 +316,17 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			push();
 		}
 
+		//AC 20160512
+		@Override
+		public void enterControlSpacingStatement(@NotNull Cobol85PreprocessorParser.ControlSpacingStatementContext ctx){
+			push();
+		};
+		//AC 20160512
+		@Override
+		public void exitControlSpacingStatement(@NotNull Cobol85PreprocessorParser.ControlSpacingStatementContext ctx){
+			pop();
+		};
+
 		@Override
 		public void exitCopyStatement(@NotNull final Cobol85PreprocessorParser.CopyStatementContext ctx) {
 			// throw away COPY terminals
@@ -714,7 +725,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		final String normalizedInput = normalizeLines(input, formats);
 		
 		//20160508 AC
-		try(  PrintWriter out = new PrintWriter( "src\\main\\java\\my\\test\\normalized_input.cbl" )  ){
+		try(  PrintWriter out = new PrintWriter( libDirectory.getAbsolutePath()+"/normalized_input.cbl" )  ){
 		    out.println( normalizedInput );
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -733,7 +744,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		LOG.debug("Processed input:\n\n{}\n\n", result);
 
 		//20160508 AC
-		try(  PrintWriter out = new PrintWriter( "src\\main\\java\\my\\test\\processed_input.cbl" )  ){
+		try(  PrintWriter out = new PrintWriter( libDirectory.getAbsolutePath()+"/processed_input.cbl" )  ){
 		    out.println( result );
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

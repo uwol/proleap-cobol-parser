@@ -1133,7 +1133,7 @@ disableStatement :
 // display statement
 
 displayStatement :
-	DISPLAY (identifier | literal)+
+	DISPLAY (identifier | literal | DEBUG_NAME)+  //AC20160521 DEBUG_NAME
 	(UPON (mnemonicName | environmentName))?
 	(WITH? NO ADVANCING)?
 ;

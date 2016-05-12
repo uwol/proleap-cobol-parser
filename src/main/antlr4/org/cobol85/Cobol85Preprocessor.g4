@@ -40,8 +40,11 @@ startRule : (
 	| replaceOffStatement
 	| replaceArea 
 	| charData
+	| controlSpacingStatement //AC 20160512
 )* EOF;
 
+controlSpacingStatement:     //AC 20160512
+    SKIP1 | SKIP2 | SKIP3 | EJECT;
 
 // exec cics statement
 
@@ -161,7 +164,10 @@ ON : O N;
 REPLACE : R E P L A C E;
 REPLACING : R E P L A C I N G;
 SQL : S Q L;
-
+SKIP1: S K I P '1';//AC 20160512
+SKIP2: S K I P '2';//AC 20160512
+SKIP3: S K I P '3';//AC 20160512
+EJECT: E J E C T;  //AC 20160512
 
 // symbols
 COMMENTTAG : '>*';
