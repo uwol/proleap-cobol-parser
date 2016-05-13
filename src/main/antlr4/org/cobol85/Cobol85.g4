@@ -1753,8 +1753,13 @@ notOnExceptionClause :
 
 // arithmetic expression ----------------------------------
 
-arithmeticExpression :
-	timesDiv ((PLUSCHAR | MINUSCHAR) timesDiv)*
+//arithmeticExpression :
+//	timesDiv ((PLUSCHAR | MINUSCHAR) timesDiv)*
+//;
+
+arithmeticExpression :  
+    LPARENCHAR literal (OR literal)+ RPARENCHAR // AC20160513 x EQ (12 OR 13)
+	|timesDiv ((PLUSCHAR | MINUSCHAR) timesDiv)*
 ;
 
 timesDiv :
