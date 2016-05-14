@@ -67,6 +67,7 @@ copyStatement :
 	(NEWLINE* directoryPhrase)?
 	(NEWLINE* familyPhrase)?
 	(NEWLINE* replacingPhrase)?
+	(SUPPRESS)? // AC 20160514 COPY SUPPRESS
 	DOT
 ;
 
@@ -168,6 +169,7 @@ SKIP1: S K I P '1';//AC 20160512
 SKIP2: S K I P '2';//AC 20160512
 SKIP3: S K I P '3';//AC 20160512
 EJECT: E J E C T;  //AC 20160512
+SUPPRESS: S U P P R E S S; // AC 20160514 COPY SUPPRESS
 
 // symbols
 COMMENTTAG : '>*';

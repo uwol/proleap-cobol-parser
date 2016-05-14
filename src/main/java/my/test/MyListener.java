@@ -8,7 +8,8 @@ import org.cobol85.Cobol85Parser;
 
 public class MyListener extends Cobol85BaseListener {
 	
-	private int iflevel=0;
+	public int iflevel=0;
+	public OutputReport out=new OutputReport();
 	private String last_cond="";
 	
 	private String myGetText(ParserRuleContext ctx) {
@@ -36,17 +37,17 @@ public class MyListener extends Cobol85BaseListener {
 		//System.out.println("exit display");
 		
 		String line=myGetText(ctx);
-	    System.out.println("original line:"+line);
+	    //System.out.println("original line:"+line);
 		
 		if(iflevel>0){
-			System.out.println("\nDISPLAY dentro if (livello "+iflevel+" condizione "+last_cond+")");
-			
-			System.out.println("  "+ctx.getText());
+			this.out.display_inside_if++;
+			//System.out.println("\nDISPLAY dentro if (livello "+iflevel+" condizione "+last_cond+")");
+			//System.out.println("  "+ctx.getText());
 		} else {
-			System.out.println("\nDISPLAY fuori if");
-			System.out.println("  "+ctx.getText());
+			this.out.display_outside_if++;
+			//System.out.println("\nDISPLAY fuori if");
+			//System.out.println("  "+ctx.getText());
 		}
 	}
-
 
 }
