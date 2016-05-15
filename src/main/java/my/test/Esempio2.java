@@ -1,7 +1,9 @@
 package my.test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -20,16 +22,24 @@ public class Esempio2 {
 	}
 	
 	public static void parseDirectory(final File inputDirectory) throws IOException {
+		StringBuffer outb=new StringBuffer();
+		outb.append(OutputReport.getHead());
 		if (inputDirectory.isDirectory() && !inputDirectory.isHidden()) {
 			for (final File inputFile : inputDirectory.listFiles()) {
 				if (inputFile.isFile() && !inputFile.isHidden() && isCobolFile(inputFile)) {
-					parseFile(inputFile);
+					outb.append(parseFile(inputFile));
 				}
 			}
 		}
+		try(  PrintWriter out = new PrintWriter( inputDirectory.getAbsolutePath()+"/report.csv" )  ){
+		    out.println( outb.toString() );
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	private static void parseFile(File inputFile) throws IOException {
+	private static String parseFile(File inputFile) throws IOException {
 		final java.io.File libDirectory = inputFile.getParentFile();
 		/*
 		 * COBOL preprocessor
@@ -54,22 +64,19 @@ public class Esempio2 {
 		parser.removeErrorListeners();
 		parser.addErrorListener(new myThrowingErrorListener());
 		
-		final org.cobol85.Cobol85Parser.StartRuleContext ctx = parser.startRule();
-		/*
-		 * traverse the abstract syntax tree (AST) with an ANTLR visitor
-		 */
-        ParseTreeWalker walker = new ParseTreeWalker();
         MyListener listener=new MyListener();
-        try {
-        	listener.out.normalizedinput=preProcessedInput;
-        	listener.out.filename=inputFile.getName();
+        listener.out.normalizedinput=preProcessedInput;
+    	listener.out.filename=inputFile.getName();
+    	try {
+	   		final org.cobol85.Cobol85Parser.StartRuleContext ctx = parser.startRule();
+	   		// * traverse the abstract syntax tree (AST) with an ANTLR visitor
+	        ParseTreeWalker walker = new ParseTreeWalker();
         	walker.walk(listener, ctx);
-        } catch (RuntimeException e) {
+        } catch (Exception  e) {
         	listener.out.ErrorMessage=e.getMessage();
         }
         
-        //TODO tracciare le eccezioni e dump dell'if etc.
-        System.out.println(listener.out);
+        return listener.out.toString();
         
 	}
 
@@ -85,13 +92,13 @@ public class Esempio2 {
 		org.cobol85.applicationcontext.Cobol85GrammarContextFactory.configureDefaultApplicationContext();
 	}
 	
-	public static void main(String[] args)  {
+	public static void main(String[] args) throws IOException  {
 		init();
-		String fname="D:\\docs\\cobolDocs\\testdir";
-		fname+="\\ZGEGRI00.cob";
+		String fname="D:\\docs\\cobolDocs\\source";
+		//fname+="\\bigtest.cob";
 		final java.io.File inputDir = new java.io.File(fname);
-		//parseDirectory(inputDir);
-		parseFile(inputDir);
+		parseDirectory(inputDir);
+		//parseFile(inputDir);
 	}
 
 }

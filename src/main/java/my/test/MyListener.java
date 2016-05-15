@@ -45,8 +45,8 @@ public class MyListener extends Cobol85BaseListener {
 			//System.out.println("  "+ctx.getText());
 		} else {
 			this.out.display_outside_if++;
-			System.out.println("\nDISPLAY fuori if");
-			System.out.println("  "+ctx.getText());
+			//System.out.println("\nDISPLAY fuori if");
+			//System.out.println("  "+ctx.getText());
 		}
 	}
 
