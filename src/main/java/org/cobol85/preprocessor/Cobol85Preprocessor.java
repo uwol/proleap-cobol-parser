@@ -113,7 +113,8 @@ public interface Cobol85Preprocessor {
 
 	Cobol85Line parseCobol85Line(String line, Cobol85SourceFormat[] formats);
 
-	String process(File inputFile, File libDirectory, Cobol85SourceFormat[] formats) throws IOException;
+	String process(File inputFile, File libDirectory, Cobol85Dialect dialect, Cobol85SourceFormat[] formats)
+			throws IOException;
 
-	String process(String input, File libDirectory, Cobol85SourceFormat[] formats);
+	String process(String input, File libDirectory, Cobol85Dialect dialect, Cobol85SourceFormat[] formats);
 }

@@ -71,7 +71,7 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 
 		// preprocess input stream
 		final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor().process(inputFile,
-				libDirectory, formats);
+				libDirectory, null, formats);
 
 		LOG.info("Parsing file {}.", inputFile.getName());
 
@@ -79,10 +79,11 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 	}
 
 	@Override
-	public void parseString(final String inputString, final File libDirectory, final Cobol85SourceFormatEnum[] formats) {
+	public void parseString(final String inputString, final File libDirectory,
+			final Cobol85SourceFormatEnum[] formats) {
 		// preprocess input stream
 		final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor()
-				.process(inputString, libDirectory, formats);
+				.process(inputString, libDirectory, null, formats);
 
 		LOG.info("Parsing string.");
 

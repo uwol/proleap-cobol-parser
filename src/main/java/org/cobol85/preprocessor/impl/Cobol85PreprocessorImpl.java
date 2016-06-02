@@ -250,15 +250,18 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 		private final Stack<PreprocessingContext> contexts = new Stack<PreprocessingContext>();
 
+		private final Cobol85Dialect dialect;
+
 		private final Cobol85SourceFormat[] formats;
 
 		private final File libDirectory;
 
 		private final BufferedTokenStream tokens;
 
-		public Cobol85PreprocessingListenerImpl(final File libDirectory, final Cobol85SourceFormat[] formats,
-				final BufferedTokenStream tokens) {
+		public Cobol85PreprocessingListenerImpl(final File libDirectory, final Cobol85Dialect dialect,
+				final Cobol85SourceFormat[] formats, final BufferedTokenStream tokens) {
 			this.libDirectory = libDirectory;
+			this.dialect = dialect;
 			this.formats = formats;
 			this.tokens = tokens;
 
@@ -323,7 +326,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			 * copy the copy file
 			 */
 			final String copyFileIdentifier = ctx.copySource().getText();
-			final String fileContent = getCopyFileContent(copyFileIdentifier, libDirectory, formats);
+			final String fileContent = getCopyFileContent(copyFileIdentifier, libDirectory, dialect, formats);
 
 			if (fileContent != null) {
 				context().write(fileContent + NEWLINE);
@@ -436,7 +439,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return formats != null ? formats : defaultFormats;
 	}
 
-	protected String getCopyFileContent(final String filename, final File libDirectory,
+	protected String getCopyFileContent(final String filename, final File libDirectory, final Cobol85Dialect dialect,
 			final Cobol85SourceFormat[] formats) {
 		final File copyFile = identifyCopyFile(filename, libDirectory);
 		String result;
@@ -447,7 +450,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			result = null;
 		} else {
 			try {
-				result = process(copyFile, libDirectory, formats);
+				result = process(copyFile, libDirectory, dialect, formats);
 			} catch (final IOException e) {
 				result = null;
 				LOG.warn(e.getMessage());
@@ -675,8 +678,8 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	}
 
 	@Override
-	public String process(final File inputFile, final File libDirectory, final Cobol85SourceFormat[] formats)
-			throws IOException {
+	public String process(final File inputFile, final File libDirectory, final Cobol85Dialect dialect,
+			final Cobol85SourceFormat[] formats) throws IOException {
 		LOG.info("Preprocessing file {}.", inputFile.getName());
 
 		final InputStream inputStream = new FileInputStream(inputFile);
@@ -692,19 +695,20 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 		bufferedInputStreamReader.close();
 
-		final String result = process(outputBuffer.toString(), libDirectory, formats);
+		final String result = process(outputBuffer.toString(), libDirectory, dialect, formats);
 		return result;
 	}
 
 	@Override
-	public String process(final String input, final File libDirectory, final Cobol85SourceFormat[] formats) {
+	public String process(final String input, final File libDirectory, final Cobol85Dialect dialect,
+			final Cobol85SourceFormat[] formats) {
 		final String normalizedInput = normalizeLines(input, formats);
 
 		final boolean requiresProcessorExecution = requiresParsing(normalizedInput);
 		final String result;
 
 		if (requiresProcessorExecution) {
-			result = processWithParser(normalizedInput, libDirectory, formats);
+			result = processWithParser(normalizedInput, libDirectory, dialect, formats);
 		} else {
 			result = normalizedInput;
 		}
@@ -714,7 +718,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return result;
 	}
 
-	protected String processWithParser(final String program, final File libDirectory,
+	protected String processWithParser(final String program, final File libDirectory, final Cobol85Dialect dialect,
 			final Cobol85SourceFormat[] formats) {
 		// run the lexer
 		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(new ANTLRInputStream(program));
@@ -734,7 +738,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 		// analyze contained copy books
 		final Cobol85SourceFormat[] effectiveFormats = determineFormats(formats);
-		final Cobol85PreprocessingListenerImpl listener = new Cobol85PreprocessingListenerImpl(libDirectory,
+		final Cobol85PreprocessingListenerImpl listener = new Cobol85PreprocessingListenerImpl(libDirectory, dialect,
 				effectiveFormats, tokens);
 		final ParseTreeWalker walker = new ParseTreeWalker();
 
