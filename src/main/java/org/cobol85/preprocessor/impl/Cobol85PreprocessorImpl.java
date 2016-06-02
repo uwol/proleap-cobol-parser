@@ -250,13 +250,13 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 		private final Stack<PreprocessingContext> contexts = new Stack<PreprocessingContext>();
 
-		private final Cobol85Format[] formats;
+		private final Cobol85SourceFormat[] formats;
 
 		private final File libDirectory;
 
 		private final BufferedTokenStream tokens;
 
-		public Cobol85PreprocessingListenerImpl(final File libDirectory, final Cobol85Format[] formats,
+		public Cobol85PreprocessingListenerImpl(final File libDirectory, final Cobol85SourceFormat[] formats,
 				final BufferedTokenStream tokens) {
 			this.libDirectory = libDirectory;
 			this.formats = formats;
@@ -419,24 +419,25 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected final String[] copyFileExtensions = new String[] { "", "CPY", "cpy", "COB", "cob", "CBL", "cbl" };
 
-	protected final Cobol85Format[] defaultFormats = new Cobol85Format[] { Cobol85FormatEnum.DEFECT,
-			Cobol85FormatEnum.FIXED, Cobol85FormatEnum.VARIABLE, Cobol85FormatEnum.TANDEM };
+	protected final Cobol85SourceFormat[] defaultFormats = new Cobol85SourceFormat[] { Cobol85SourceFormatEnum.DEFECT,
+			Cobol85SourceFormatEnum.FIXED, Cobol85SourceFormatEnum.VARIABLE, Cobol85SourceFormatEnum.TANDEM };
 
 	protected final String[] parsingTriggers = new String[] { "copy", "exec sql", "exec cics", "replace" };
 
-	protected Map<Cobol85Format, Pattern> patterns = new HashMap<Cobol85Format, Pattern>();
+	protected Map<Cobol85SourceFormat, Pattern> patterns = new HashMap<Cobol85SourceFormat, Pattern>();
 
-	protected void assurePatternForFormat(final Cobol85Format format) {
+	protected void assurePatternForFormat(final Cobol85SourceFormat format) {
 		if (patterns.get(format) == null) {
 			patterns.put(format, Pattern.compile(format.getRegex()));
 		}
 	}
 
-	protected Cobol85Format[] determineFormats(final Cobol85Format[] formats) {
+	protected Cobol85SourceFormat[] determineFormats(final Cobol85SourceFormat[] formats) {
 		return formats != null ? formats : defaultFormats;
 	}
 
-	protected String getCopyFileContent(final String filename, final File libDirectory, final Cobol85Format[] formats) {
+	protected String getCopyFileContent(final String filename, final File libDirectory,
+			final Cobol85SourceFormat[] formats) {
 		final File copyFile = identifyCopyFile(filename, libDirectory);
 		String result;
 
@@ -600,7 +601,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return result;
 	}
 
-	protected String normalizeLines(final String input, final Cobol85Format[] formats) {
+	protected String normalizeLines(final String input, final Cobol85SourceFormat[] formats) {
 		final Scanner scanner = new Scanner(input);
 		final StringBuffer outputBuffer = new StringBuffer();
 
@@ -643,12 +644,12 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	}
 
 	@Override
-	public Cobol85Line parseCobol85Line(final String line, final Cobol85Format[] formats) {
+	public Cobol85Line parseCobol85Line(final String line, final Cobol85SourceFormat[] formats) {
 		Cobol85Line result = null;
 
-		final Cobol85Format[] effectiveFormats = determineFormats(formats);
+		final Cobol85SourceFormat[] effectiveFormats = determineFormats(formats);
 
-		for (final Cobol85Format format : effectiveFormats) {
+		for (final Cobol85SourceFormat format : effectiveFormats) {
 			assurePatternForFormat(format);
 
 			final Pattern pattern = patterns.get(format);
@@ -674,7 +675,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	}
 
 	@Override
-	public String process(final File inputFile, final File libDirectory, final Cobol85Format[] formats)
+	public String process(final File inputFile, final File libDirectory, final Cobol85SourceFormat[] formats)
 			throws IOException {
 		LOG.info("Preprocessing file {}.", inputFile.getName());
 
@@ -696,7 +697,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	}
 
 	@Override
-	public String process(final String input, final File libDirectory, final Cobol85Format[] formats) {
+	public String process(final String input, final File libDirectory, final Cobol85SourceFormat[] formats) {
 		final String normalizedInput = normalizeLines(input, formats);
 
 		final boolean requiresProcessorExecution = requiresParsing(normalizedInput);
@@ -713,7 +714,8 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return result;
 	}
 
-	protected String processWithParser(final String program, final File libDirectory, final Cobol85Format[] formats) {
+	protected String processWithParser(final String program, final File libDirectory,
+			final Cobol85SourceFormat[] formats) {
 		// run the lexer
 		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(new ANTLRInputStream(program));
 
@@ -731,7 +733,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		final StartRuleContext startRule = parser.startRule();
 
 		// analyze contained copy books
-		final Cobol85Format[] effectiveFormats = determineFormats(formats);
+		final Cobol85SourceFormat[] effectiveFormats = determineFormats(formats);
 		final Cobol85PreprocessingListenerImpl listener = new Cobol85PreprocessingListenerImpl(libDirectory,
 				effectiveFormats, tokens);
 		final ParseTreeWalker walker = new ParseTreeWalker();

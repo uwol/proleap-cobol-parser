@@ -13,17 +13,51 @@ import java.io.IOException;
 
 public interface Cobol85Preprocessor {
 
-	public interface Cobol85Format {
+	public enum Cobol85Dialect {
+		ANSI85, MF, OSVS
+	}
+
+	/**
+	 * Representation of a Cobol 85 line.
+	 */
+	public class Cobol85Line {
+
+		public String comment;
+
+		public String contentArea;
+
+		public char indicatorArea;
+
+		public Cobol85SourceFormat lineFormat;
+
+		public String sequenceArea;
+
+		public Cobol85Line(final String sequenceArea, final char indicatorArea, final String contentArea,
+				final String comment, final Cobol85SourceFormat lineFormat) {
+			this.sequenceArea = sequenceArea;
+			this.indicatorArea = indicatorArea;
+			this.contentArea = contentArea;
+			this.comment = comment;
+			this.lineFormat = lineFormat;
+		}
+
+		@Override
+		public String toString() {
+			return sequenceArea + indicatorArea + contentArea + comment + " [" + lineFormat + "]";
+		}
+	}
+
+	public interface Cobol85SourceFormat {
 
 		String indicatorField = "([ABCdD\\-/* ])";
 
 		String getRegex();
 	}
 
-	public enum Cobol85FormatEnum implements Cobol85Format {
+	public enum Cobol85SourceFormatEnum implements Cobol85SourceFormat {
 
 		/**
-		 * Custom layout 1.
+		 * Custom format 1.
 		 */
 		CUSTOM_1("(\\s*[0-9]+)(?:.{7}" + indicatorField + "(.{0,65})(.*)?)?"),
 
@@ -65,7 +99,7 @@ public interface Cobol85Preprocessor {
 
 		private final String regex;
 
-		Cobol85FormatEnum(final String regex) {
+		Cobol85SourceFormatEnum(final String regex) {
 			this.regex = regex;
 		}
 
@@ -75,41 +109,11 @@ public interface Cobol85Preprocessor {
 		}
 	}
 
-	/**
-	 * Representation of a Cobol 85 line.
-	 */
-	public class Cobol85Line {
-
-		public String comment;
-
-		public String contentArea;
-
-		public char indicatorArea;
-
-		public Cobol85Format lineFormat;
-
-		public String sequenceArea;
-
-		public Cobol85Line(final String sequenceArea, final char indicatorArea, final String contentArea,
-				final String comment, final Cobol85Format lineFormat) {
-			this.sequenceArea = sequenceArea;
-			this.indicatorArea = indicatorArea;
-			this.contentArea = contentArea;
-			this.comment = comment;
-			this.lineFormat = lineFormat;
-		}
-
-		@Override
-		public String toString() {
-			return sequenceArea + indicatorArea + contentArea + comment + " [" + lineFormat + "]";
-		}
-	}
-
 	String normalizeLine(Cobol85Line line, boolean isFirstLine);
 
-	Cobol85Line parseCobol85Line(String line, Cobol85Format[] formats);
+	Cobol85Line parseCobol85Line(String line, Cobol85SourceFormat[] formats);
 
-	String process(File inputFile, File libDirectory, Cobol85Format[] formats) throws IOException;
+	String process(File inputFile, File libDirectory, Cobol85SourceFormat[] formats) throws IOException;
 
-	String process(String input, File libDirectory, Cobol85Format[] formats);
+	String process(String input, File libDirectory, Cobol85SourceFormat[] formats);
 }

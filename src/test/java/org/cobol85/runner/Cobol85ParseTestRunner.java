@@ -11,13 +11,13 @@ package org.cobol85.runner;
 import java.io.File;
 import java.io.IOException;
 
-import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85FormatEnum;
+import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum;
 
 public interface Cobol85ParseTestRunner {
 
-	void parseDirectory(File inputDirectory, final Cobol85FormatEnum[] formats) throws IOException;
+	void parseDirectory(File inputDirectory, final Cobol85SourceFormatEnum[] formats) throws IOException;
 
-	void parseFile(File inputFile, Cobol85FormatEnum[] formats) throws IOException;
+	void parseFile(File inputFile, Cobol85SourceFormatEnum[] formats) throws IOException;
 
-	void parseString(String inputString, File libDirectory, Cobol85FormatEnum[] formats);
+	void parseString(String inputString, File libDirectory, Cobol85SourceFormatEnum[] formats);
 }
