@@ -781,11 +781,11 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	}
 
 	@Override
-	public String process(final File inputFile, final File libDirectory, final Cobol85Dialect dialect,
+	public String process(final File cobolFile, final File libDirectory, final Cobol85Dialect dialect,
 			final Cobol85SourceFormat[] formats) throws IOException {
-		LOG.info("Preprocessing file {}.", inputFile.getName());
+		LOG.info("Preprocessing file {}.", cobolFile.getName());
 
-		final InputStream inputStream = new FileInputStream(inputFile);
+		final InputStream inputStream = new FileInputStream(cobolFile);
 		final InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 		final BufferedReader bufferedInputStreamReader = new BufferedReader(inputStreamReader);
 		final StringBuffer outputBuffer = new StringBuffer();
@@ -803,16 +803,16 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	}
 
 	@Override
-	public String process(final String input, final File libDirectory, final Cobol85Dialect dialect,
+	public String process(final String cobolSourceCode, final File libDirectory, final Cobol85Dialect dialect,
 			final Cobol85SourceFormat[] formats) {
 		final Cobol85LinesProcessor cleanLinesProcessor = new Cobol85CleanerPreprocessorImpl();
-		final String cleanedInput = cleanLinesProcessor.processLines(input, dialect, formats);
+		final String cleanedCobolSourceCode = cleanLinesProcessor.processLines(cobolSourceCode, dialect, formats);
 
 		final Cobol85LinesProcessor normalizeLinesProcessor = new Cobol85NormalizerPreprocessorImpl();
-		final String normalizedInput = normalizeLinesProcessor.processLines(cleanedInput, dialect, formats);
+		final String normalizedCobolSourceCode = normalizeLinesProcessor.processLines(cleanedCobolSourceCode, dialect, formats);
 
 		final Cobol85LinesProcessor parseLinesProcessor = new Cobol85ParserPreprocessorImpl(libDirectory);
-		final String result = parseLinesProcessor.processLines(normalizedInput, dialect, formats);
+		final String result = parseLinesProcessor.processLines(normalizedCobolSourceCode, dialect, formats);
 
 		LOG.debug("Processed input:\n\n{}\n\n", result);
 

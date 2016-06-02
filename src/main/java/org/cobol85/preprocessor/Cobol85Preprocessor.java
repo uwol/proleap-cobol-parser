@@ -109,8 +109,8 @@ public interface Cobol85Preprocessor {
 		}
 	}
 
-	String process(File inputFile, File libDirectory, Cobol85Dialect dialect, Cobol85SourceFormat[] formats)
+	String process(File cobolFile, File libDirectory, Cobol85Dialect dialect, Cobol85SourceFormat[] formats)
 			throws IOException;
 
-	String process(String input, File libDirectory, Cobol85Dialect dialect, Cobol85SourceFormat[] formats);
+	String process(String cobolSourceCode, File libDirectory, Cobol85Dialect dialect, Cobol85SourceFormat[] formats);
 }
