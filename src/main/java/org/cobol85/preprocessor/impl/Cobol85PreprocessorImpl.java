@@ -50,11 +50,60 @@ import org.codehaus.plexus.util.StringUtils;
 
 public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
+	protected abstract class AbstractCobol85Preprocessor implements Cobol85LinesProcessor {
+
+		public abstract String processLine(final String input, int lineNumber, final Cobol85Dialect dialect,
+				final Cobol85SourceFormat[] formats);
+
+		@Override
+		public String processLines(final String input, final Cobol85Dialect dialect,
+				final Cobol85SourceFormat[] formats) {
+			final Scanner scanner = new Scanner(input);
+			final StringBuffer outputBuffer = new StringBuffer();
+
+			String line = null;
+			int lineNumber = 0;
+
+			while (scanner.hasNextLine()) {
+				line = scanner.nextLine();
+				final String processedLine = processLine(line, lineNumber, dialect, formats);
+				outputBuffer.append(processedLine);
+				lineNumber++;
+			}
+
+			scanner.close();
+
+			final String result = outputBuffer.toString();
+			return result;
+		}
+	}
+
+	protected class Cobol85CleanerPreprocessorImpl extends AbstractCobol85Preprocessor {
+
+		@Override
+		public String processLine(final String line, final int lineNumber, final Cobol85Dialect dialect,
+				final Cobol85SourceFormat[] formats) {
+			// clean line from certain ASCII chars
+			final int substituteChar = 0x1A;
+			final String cleanedLine = line.replace((char) substituteChar, ' ');
+			final String result;
+
+			// if line is empty
+			if (cleanedLine.trim().isEmpty()) {
+				result = "";
+			} else {
+				result = cleanedLine + NEWLINE;
+			}
+
+			return result;
+		}
+	}
+
 	/**
 	 * ANTLR listener, which collects visible as well as hidden tokens for a
 	 * given parse tree in a string buffer.
 	 */
-	protected class Cobol85HiddenTokenCollectorImpl extends Cobol85PreprocessorBaseListener {
+	protected class Cobol85HiddenTokenCollectorListenerImpl extends Cobol85PreprocessorBaseListener {
 
 		boolean firstTerminal = true;
 
@@ -62,7 +111,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 		private final BufferedTokenStream tokens;
 
-		public Cobol85HiddenTokenCollectorImpl(final BufferedTokenStream tokens) {
+		public Cobol85HiddenTokenCollectorListenerImpl(final BufferedTokenStream tokens) {
 			this.tokens = tokens;
 		}
 
@@ -86,11 +135,232 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		}
 	}
 
+	protected interface Cobol85LinesProcessor {
+
+		public String processLines(String input, final Cobol85Dialect dialect, final Cobol85SourceFormat[] formats);
+	}
+
+	protected class Cobol85NormalizerPreprocessorImpl extends AbstractCobol85Preprocessor {
+
+		protected final static String COMMENT_TAG = ">*";
+
+		protected String handleTrailingComma(final String contentArea) {
+			final String result;
+
+			/*
+			 * repair trimmed whitespace after comma separator
+			 */
+			if (contentArea.isEmpty()) {
+				result = contentArea;
+			} else {
+				final char lastCharAtTrimmedLineArea = contentArea.charAt(contentArea.length() - 1);
+
+				if (lastCharAtTrimmedLineArea == ',' || lastCharAtTrimmedLineArea == ';') {
+					result = contentArea + " ";
+				} else {
+					result = contentArea;
+				}
+			}
+
+			return result;
+		}
+
+		/**
+		 * Normalizes the sequence and indicator area to NEWLINE and whitespace.
+		 */
+		protected String normalizeLineBreakAndSequenceArea(final Cobol85Line line, final boolean isFirstLine) {
+			// newline
+			final String newLine = isFirstLine ? "" : NEWLINE;
+
+			// sequence area
+			final String sequenceAreaPlaceholder = StringUtils.leftPad("", line.sequenceArea.length());
+
+			final String result = newLine + sequenceAreaPlaceholder;
+			return result;
+		}
+
+		protected Cobol85Line parseCobol85Line(final String line, final Cobol85SourceFormat[] formats) {
+			Cobol85Line result = null;
+
+			final Cobol85SourceFormat[] effectiveFormats = determineFormats(formats);
+
+			for (final Cobol85SourceFormat format : effectiveFormats) {
+				assurePatternForFormat(format);
+
+				final Pattern pattern = patterns.get(format);
+				final Matcher matcher = pattern.matcher(line);
+
+				if (matcher.matches()) {
+					final String sequenceAreaGroup = matcher.group(1);
+					final String indicatorAreaGroup = matcher.group(2);
+					final String contentAreaGroup = matcher.group(3);
+					final String commentAreaGroup = matcher.group(4);
+
+					final String sequenceArea = sequenceAreaGroup != null ? sequenceAreaGroup : "";
+					final char indicatorArea = indicatorAreaGroup != null ? indicatorAreaGroup.charAt(0) : ' ';
+					final String contentArea = contentAreaGroup != null ? contentAreaGroup : "";
+					final String commentArea = commentAreaGroup != null ? commentAreaGroup : "";
+
+					result = new Cobol85Line(sequenceArea, indicatorArea, contentArea, commentArea, format);
+					break;
+				}
+			}
+
+			return result;
+		}
+
+		/**
+		 * Normalizes a line by stripping the sequence number and line
+		 * indicator, and interpreting the line indicator.
+		 */
+		protected String processLine(final Cobol85Line line, final boolean isFirstLine) {
+			final String result;
+
+			// determine line prefix
+			final String linePrefix = normalizeLineBreakAndSequenceArea(line, isFirstLine);
+
+			// trim trailing whitespace
+			final String trimmedTrailWsContentArea = line.contentArea.replaceAll("\\s+$", "");
+
+			// handle trailing comma
+			final String handledContentArea = handleTrailingComma(trimmedTrailWsContentArea);
+
+			/*
+			 * switch on line indicator
+			 */
+			switch (line.indicatorArea) {
+			// debugging line
+			case 'd':
+			case 'D':
+				result = linePrefix + ' ' + handledContentArea;
+				break;
+			// continuation line
+			case '-':
+				final String trimmedContentArea = handledContentArea.trim();
+				final char firstCharOfContentArea = trimmedContentArea.charAt(0);
+
+				switch (firstCharOfContentArea) {
+				case '\"':
+				case '\'':
+					result = trimmedContentArea.substring(1);
+					break;
+				default:
+					result = trimmedContentArea;
+					break;
+				}
+				break;
+			// comment line
+			case '*':
+			case '/':
+				result = linePrefix + COMMENT_TAG + " " + handledContentArea;
+				break;
+			case ' ':
+			default:
+				result = linePrefix + ' ' + handledContentArea;
+				break;
+			}
+
+			return result;
+		}
+
+		@Override
+		public String processLine(final String line, final int lineNumber, final Cobol85Dialect dialect,
+				final Cobol85SourceFormat[] formats) {
+			// parse line
+			final Cobol85Line parsedLine = parseCobol85Line(line, formats);
+			final String result;
+
+			// if line could not be parsed
+			if (parsedLine == null) {
+				LOG.warn("unknown line format in line {}: {}", lineNumber + 1, line);
+				result = line;
+			} else {
+				final boolean isFirstLine = lineNumber == 0;
+				result = processLine(parsedLine, isFirstLine);
+			}
+
+			return result;
+		}
+
+	}
+
+	protected class Cobol85ParserPreprocessorImpl implements Cobol85LinesProcessor {
+
+		protected final File libDirectory;
+
+		protected final String[] parsingTriggers = new String[] { "copy", "exec sql", "exec cics", "replace" };
+
+		public Cobol85ParserPreprocessorImpl(final File libDirectory) {
+			this.libDirectory = libDirectory;
+		}
+
+		@Override
+		public String processLines(final String input, final Cobol85Dialect dialect,
+				final Cobol85SourceFormat[] formats) {
+			final boolean requiresProcessorExecution = requiresParsing(input);
+			final String result;
+
+			if (requiresProcessorExecution) {
+				result = processWithParser(input, libDirectory, dialect, formats);
+			} else {
+				result = input;
+			}
+
+			return result;
+		}
+
+		protected String processWithParser(final String program, final File libDirectory, final Cobol85Dialect dialect,
+				final Cobol85SourceFormat[] formats) {
+			// run the lexer
+			final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(new ANTLRInputStream(program));
+
+			// get a list of matched tokens
+			final CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+			// pass the tokens to the parser
+			final Cobol85PreprocessorParser parser = new Cobol85PreprocessorParser(tokens);
+
+			// register an error listener, so that preprocessing stops on errors
+			parser.removeErrorListeners();
+			parser.addErrorListener(new ThrowingErrorListener());
+
+			// specify our entry point
+			final StartRuleContext startRule = parser.startRule();
+
+			// analyze contained copy books
+			final Cobol85SourceFormat[] effectiveFormats = determineFormats(formats);
+			final Cobol85ParserPreprocessorListenerImpl listener = new Cobol85ParserPreprocessorListenerImpl(
+					libDirectory, dialect, effectiveFormats, tokens);
+			final ParseTreeWalker walker = new ParseTreeWalker();
+
+			walker.walk(listener, startRule);
+
+			final String result = listener.context().read();
+			return result;
+		}
+
+		protected boolean requiresParsing(final String input) {
+			final String inputLowerCase = input.toLowerCase();
+			boolean result = false;
+
+			for (final String trigger : parsingTriggers) {
+				final boolean containsTrigger = inputLowerCase.contains(trigger);
+
+				if (containsTrigger) {
+					result = true;
+					break;
+				}
+			}
+
+			return result;
+		}
+	}
+
 	/**
 	 * ANTLR visitor, which preprocesses a given COBOL program by executing COPY
 	 * and REPLACE statemenets.
 	 */
-	protected class Cobol85PreprocessingListenerImpl extends Cobol85PreprocessorBaseListener {
+	protected class Cobol85ParserPreprocessorListenerImpl extends Cobol85PreprocessorBaseListener {
 
 		/**
 		 * A replacement context that defines, which replaceables should be
@@ -258,7 +528,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 		private final BufferedTokenStream tokens;
 
-		public Cobol85PreprocessingListenerImpl(final File libDirectory, final Cobol85Dialect dialect,
+		public Cobol85ParserPreprocessorListenerImpl(final File libDirectory, final Cobol85Dialect dialect,
 				final Cobol85SourceFormat[] formats, final BufferedTokenStream tokens) {
 			this.libDirectory = libDirectory;
 			this.dialect = dialect;
@@ -414,8 +684,6 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		}
 	}
 
-	protected final static String COMMENT_TAG = ">*";
-
 	private final static Logger LOG = LogManager.getLogger(Cobol85PreprocessorImpl.class);
 
 	protected final static String NEWLINE = "\n";
@@ -424,8 +692,6 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected final Cobol85SourceFormat[] defaultFormats = new Cobol85SourceFormat[] { Cobol85SourceFormatEnum.DEFECT,
 			Cobol85SourceFormatEnum.FIXED, Cobol85SourceFormatEnum.VARIABLE, Cobol85SourceFormatEnum.TANDEM };
-
-	protected final String[] parsingTriggers = new String[] { "copy", "exec sql", "exec cics", "replace" };
 
 	protected Map<Cobol85SourceFormat, Pattern> patterns = new HashMap<Cobol85SourceFormat, Pattern>();
 
@@ -475,33 +741,12 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	}
 
 	protected String getTextIncludingHiddenTokens(final ParseTree ctx, final BufferedTokenStream tokens) {
-		final Cobol85HiddenTokenCollectorImpl listener = new Cobol85HiddenTokenCollectorImpl(tokens);
+		final Cobol85HiddenTokenCollectorListenerImpl listener = new Cobol85HiddenTokenCollectorListenerImpl(tokens);
 		final ParseTreeWalker walker = new ParseTreeWalker();
 
 		walker.walk(listener, ctx);
 
 		return listener.read();
-	}
-
-	protected String handleTrailingComma(final String contentArea) {
-		final String result;
-
-		/*
-		 * repair trimmed whitespace after comma separator
-		 */
-		if (contentArea.isEmpty()) {
-			result = contentArea;
-		} else {
-			final char lastCharAtTrimmedLineArea = contentArea.charAt(contentArea.length() - 1);
-
-			if (lastCharAtTrimmedLineArea == ',' || lastCharAtTrimmedLineArea == ';') {
-				result = contentArea + " ";
-			} else {
-				result = contentArea;
-			}
-		}
-
-		return result;
 	}
 
 	/**
@@ -535,148 +780,6 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		return Token.EOF == node.getSymbol().getType();
 	}
 
-	/**
-	 * Normalizes a line by stripping the sequence number and line indicator,
-	 * and interpreting the line indicator.
-	 */
-	@Override
-	public String normalizeLine(final Cobol85Line line, final boolean isFirstLine) {
-		final String result;
-
-		// determine line prefix
-		final String linePrefix = normalizeLineBreakAndSequenceArea(line, isFirstLine);
-
-		// trim trailing whitespace
-		final String trimmedTrailWsContentArea = line.contentArea.replaceAll("\\s+$", "");
-
-		// handle trailing comma
-		final String handledContentArea = handleTrailingComma(trimmedTrailWsContentArea);
-
-		/*
-		 * switch on line indicator
-		 */
-		switch (line.indicatorArea) {
-		// debugging line
-		case 'd':
-		case 'D':
-			result = linePrefix + ' ' + handledContentArea;
-			break;
-		// continuation line
-		case '-':
-			final String trimmedContentArea = handledContentArea.trim();
-			final char firstCharOfContentArea = trimmedContentArea.charAt(0);
-
-			switch (firstCharOfContentArea) {
-			case '\"':
-			case '\'':
-				result = trimmedContentArea.substring(1);
-				break;
-			default:
-				result = trimmedContentArea;
-				break;
-			}
-			break;
-		// comment line
-		case '*':
-		case '/':
-			result = linePrefix + COMMENT_TAG + " " + handledContentArea;
-			break;
-		case ' ':
-		default:
-			result = linePrefix + ' ' + handledContentArea;
-			break;
-		}
-
-		return result;
-	}
-
-	/**
-	 * Normalizes the sequence and indicator area to NEWLINE and whitespace.
-	 */
-	protected String normalizeLineBreakAndSequenceArea(final Cobol85Line line, final boolean isFirstLine) {
-		// newline
-		final String newLine = isFirstLine ? "" : NEWLINE;
-
-		// sequence area
-		final String sequenceAreaPlaceholder = StringUtils.leftPad("", line.sequenceArea.length());
-
-		final String result = newLine + sequenceAreaPlaceholder;
-		return result;
-	}
-
-	protected String normalizeLines(final String input, final Cobol85SourceFormat[] formats) {
-		final Scanner scanner = new Scanner(input);
-		final StringBuffer outputBuffer = new StringBuffer();
-
-		String line = null;
-		int lineNumber = 0;
-
-		while (scanner.hasNextLine()) {
-			line = scanner.nextLine();
-
-			// clean line from certain ASCII chars
-			final int substituteChar = 0x1A;
-			final String cleanedLine = line.replace((char) substituteChar, ' ');
-			final String normalizedLine;
-
-			// if line is empty
-			if (cleanedLine.trim().isEmpty()) {
-				normalizedLine = cleanedLine;
-			} else {
-				// parse line
-				final Cobol85Line parsedLine = parseCobol85Line(cleanedLine, formats);
-
-				// if line could not be parsed
-				if (parsedLine == null) {
-					LOG.warn("unknown line format in line {}: {}", lineNumber + 1, line);
-					normalizedLine = cleanedLine;
-				} else {
-					final boolean isFirstLine = lineNumber == 0;
-					normalizedLine = normalizeLine(parsedLine, isFirstLine);
-				}
-			}
-
-			outputBuffer.append(normalizedLine);
-			lineNumber++;
-		}
-
-		scanner.close();
-
-		final String result = outputBuffer.toString();
-		return result;
-	}
-
-	@Override
-	public Cobol85Line parseCobol85Line(final String line, final Cobol85SourceFormat[] formats) {
-		Cobol85Line result = null;
-
-		final Cobol85SourceFormat[] effectiveFormats = determineFormats(formats);
-
-		for (final Cobol85SourceFormat format : effectiveFormats) {
-			assurePatternForFormat(format);
-
-			final Pattern pattern = patterns.get(format);
-			final Matcher matcher = pattern.matcher(line);
-
-			if (matcher.matches()) {
-				final String sequenceAreaGroup = matcher.group(1);
-				final String indicatorAreaGroup = matcher.group(2);
-				final String contentAreaGroup = matcher.group(3);
-				final String commentAreaGroup = matcher.group(4);
-
-				final String sequenceArea = sequenceAreaGroup != null ? sequenceAreaGroup : "";
-				final char indicatorArea = indicatorAreaGroup != null ? indicatorAreaGroup.charAt(0) : ' ';
-				final String contentArea = contentAreaGroup != null ? contentAreaGroup : "";
-				final String commentArea = commentAreaGroup != null ? commentAreaGroup : "";
-
-				result = new Cobol85Line(sequenceArea, indicatorArea, contentArea, commentArea, format);
-				break;
-			}
-		}
-
-		return result;
-	}
-
 	@Override
 	public String process(final File inputFile, final File libDirectory, final Cobol85Dialect dialect,
 			final Cobol85SourceFormat[] formats) throws IOException {
@@ -702,64 +805,16 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	@Override
 	public String process(final String input, final File libDirectory, final Cobol85Dialect dialect,
 			final Cobol85SourceFormat[] formats) {
-		final String normalizedInput = normalizeLines(input, formats);
+		final Cobol85LinesProcessor cleanLinesProcessor = new Cobol85CleanerPreprocessorImpl();
+		final String cleanedInput = cleanLinesProcessor.processLines(input, dialect, formats);
 
-		final boolean requiresProcessorExecution = requiresParsing(normalizedInput);
-		final String result;
+		final Cobol85LinesProcessor normalizeLinesProcessor = new Cobol85NormalizerPreprocessorImpl();
+		final String normalizedInput = normalizeLinesProcessor.processLines(cleanedInput, dialect, formats);
 
-		if (requiresProcessorExecution) {
-			result = processWithParser(normalizedInput, libDirectory, dialect, formats);
-		} else {
-			result = normalizedInput;
-		}
+		final Cobol85LinesProcessor parseLinesProcessor = new Cobol85ParserPreprocessorImpl(libDirectory);
+		final String result = parseLinesProcessor.processLines(normalizedInput, dialect, formats);
 
 		LOG.debug("Processed input:\n\n{}\n\n", result);
-
-		return result;
-	}
-
-	protected String processWithParser(final String program, final File libDirectory, final Cobol85Dialect dialect,
-			final Cobol85SourceFormat[] formats) {
-		// run the lexer
-		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(new ANTLRInputStream(program));
-
-		// get a list of matched tokens
-		final CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-		// pass the tokens to the parser
-		final Cobol85PreprocessorParser parser = new Cobol85PreprocessorParser(tokens);
-
-		// register an error listener, so that preprocessing stops on errors
-		parser.removeErrorListeners();
-		parser.addErrorListener(new ThrowingErrorListener());
-
-		// specify our entry point
-		final StartRuleContext startRule = parser.startRule();
-
-		// analyze contained copy books
-		final Cobol85SourceFormat[] effectiveFormats = determineFormats(formats);
-		final Cobol85PreprocessingListenerImpl listener = new Cobol85PreprocessingListenerImpl(libDirectory, dialect,
-				effectiveFormats, tokens);
-		final ParseTreeWalker walker = new ParseTreeWalker();
-
-		walker.walk(listener, startRule);
-
-		final String result = listener.context().read();
-		return result;
-	}
-
-	protected boolean requiresParsing(final String input) {
-		final String inputLowerCase = input.toLowerCase();
-		boolean result = false;
-
-		for (final String trigger : parsingTriggers) {
-			final boolean containsTrigger = inputLowerCase.contains(trigger);
-
-			if (containsTrigger) {
-				result = true;
-				break;
-			}
-		}
 
 		return result;
 	}

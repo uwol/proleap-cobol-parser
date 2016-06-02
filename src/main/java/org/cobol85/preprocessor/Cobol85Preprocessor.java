@@ -109,10 +109,6 @@ public interface Cobol85Preprocessor {
 		}
 	}
 
-	String normalizeLine(Cobol85Line line, boolean isFirstLine);
-
-	Cobol85Line parseCobol85Line(String line, Cobol85SourceFormat[] formats);
-
 	String process(File inputFile, File libDirectory, Cobol85Dialect dialect, Cobol85SourceFormat[] formats)
 			throws IOException;
 
