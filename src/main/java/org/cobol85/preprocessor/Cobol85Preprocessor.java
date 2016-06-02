@@ -10,6 +10,7 @@ package org.cobol85.preprocessor;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 public interface Cobol85Preprocessor {
 
@@ -51,20 +52,12 @@ public interface Cobol85Preprocessor {
 
 		String indicatorField = "([ABCdD\\-/* ])";
 
+		Pattern getPattern();
+
 		String getRegex();
 	}
 
 	public enum Cobol85SourceFormatEnum implements Cobol85SourceFormat {
-
-		/**
-		 * Custom format 1.
-		 */
-		CUSTOM_1("(\\s*[0-9]+)(?:.{7}" + indicatorField + "(.{0,65})(.*)?)?"),
-
-		/**
-		 * Format for handling irregular/defect lines.
-		 */
-		DEFECT("(\\s{7,})" + indicatorField + "([\\*]+)()"),
 
 		/**
 		 * Fixed format, standard ANSI / IBM reference. Each line exactly 80
@@ -76,7 +69,7 @@ public interface Cobol85Preprocessor {
 		 * 13-72: area B<br />
 		 * 73-80: comments<br />
 		 */
-		FIXED("(.{6})" + indicatorField + "(.{65})(.{8})"),
+		FIXED("(.{6})" + indicatorField + "(.{65})(.{8,})"),
 
 		/**
 		 * HP Tandem format.<br />
@@ -97,10 +90,18 @@ public interface Cobol85Preprocessor {
 		 */
 		VARIABLE("(.{6})(?:" + indicatorField + "(.*)())?");
 
+		private final Pattern pattern;
+
 		private final String regex;
 
 		Cobol85SourceFormatEnum(final String regex) {
 			this.regex = regex;
+			pattern = Pattern.compile(regex);
+		}
+
+		@Override
+		public Pattern getPattern() {
+			return pattern;
 		}
 
 		@Override
@@ -109,8 +110,8 @@ public interface Cobol85Preprocessor {
 		}
 	}
 
-	String process(File cobolFile, File libDirectory, Cobol85Dialect dialect, Cobol85SourceFormat[] formats)
+	String process(File cobolFile, File libDirectory, Cobol85Dialect dialect, Cobol85SourceFormat format)
 			throws IOException;
 
-	String process(String cobolSourceCode, File libDirectory, Cobol85Dialect dialect, Cobol85SourceFormat[] formats);
+	String process(String cobolSourceCode, File libDirectory, Cobol85Dialect dialect, Cobol85SourceFormat format);
 }

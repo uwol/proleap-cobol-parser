@@ -16,6 +16,6 @@ public class PictureGreedyTest {
 
 		final File inputFile = new File("src/test/resources/org/cobol85/gpl/PictureGreedy.cbl");
 		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();
-		runner.parseFile(inputFile, new Cobol85SourceFormatEnum[] { Cobol85SourceFormatEnum.TANDEM });
+		runner.parseFile(inputFile, Cobol85SourceFormatEnum.VARIABLE);
 	}
 }

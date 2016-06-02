@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.junit.Test;
 import org.cobol85.applicationcontext.Cobol85GrammarContextFactory;
+import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum;
 import org.cobol85.runner.Cobol85ParseTestRunner;
 import org.cobol85.runner.impl.Cobol85ParseTestRunnerImpl;
 
@@ -15,6 +16,6 @@ public class NC214MTest {
 
 		final File inputFile = new File("src/test/resources/org/cobol85/nist/NC214M.CBL");
 		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();
-		runner.parseFile(inputFile, null);
+		runner.parseFile(inputFile, Cobol85SourceFormatEnum.FIXED);
 	}
 }

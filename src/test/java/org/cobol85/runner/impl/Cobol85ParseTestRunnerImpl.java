@@ -55,23 +55,23 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 	}
 
 	@Override
-	public void parseDirectory(final File inputDirectory, final Cobol85SourceFormatEnum[] formats) throws IOException {
+	public void parseDirectory(final File inputDirectory, final Cobol85SourceFormatEnum format) throws IOException {
 		if (inputDirectory.isDirectory() && !inputDirectory.isHidden()) {
 			for (final File inputFile : inputDirectory.listFiles()) {
 				if (inputFile.isFile() && !inputFile.isHidden() && isCobolFile(inputFile)) {
-					parseFile(inputFile, formats);
+					parseFile(inputFile, format);
 				}
 			}
 		}
 	}
 
 	@Override
-	public void parseFile(final File inputFile, final Cobol85SourceFormatEnum[] formats) throws IOException {
+	public void parseFile(final File inputFile, final Cobol85SourceFormatEnum format) throws IOException {
 		final File libDirectory = inputFile.getParentFile();
 
 		// preprocess input stream
 		final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor().process(inputFile,
-				libDirectory, null, formats);
+				libDirectory, null, format);
 
 		LOG.info("Parsing file {}.", inputFile.getName());
 
@@ -79,11 +79,10 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 	}
 
 	@Override
-	public void parseString(final String inputString, final File libDirectory,
-			final Cobol85SourceFormatEnum[] formats) {
+	public void parseString(final String inputString, final File libDirectory, final Cobol85SourceFormatEnum format) {
 		// preprocess input stream
 		final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor()
-				.process(inputString, libDirectory, null, formats);
+				.process(inputString, libDirectory, null, format);
 
 		LOG.info("Parsing string.");
 

@@ -56,10 +56,11 @@ public class TestGenerator {
 				pWriter.write("\n");
 				pWriter.write("import java.io.File;\n");
 				pWriter.write("\n");
-				pWriter.write("import org.junit.Test;\n");
 				pWriter.write("import org.cobol85.applicationcontext.Cobol85GrammarContextFactory;\n");
+				pWriter.write("import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum;\n");
 				pWriter.write("import org.cobol85.runner.Cobol85ParseTestRunner;\n");
 				pWriter.write("import org.cobol85.runner.impl.Cobol85ParseTestRunnerImpl;\n");
+				pWriter.write("import org.junit.Test;\n");
 				pWriter.write("\n");
 				pWriter.write("public class " + inputFilename + "Test {\n");
 				pWriter.write("\n");
@@ -80,7 +81,7 @@ public class TestGenerator {
 				}
 
 				pWriter.write("		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();\n");
-				pWriter.write("		runner.parseFile(inputFile, null);\n");
+				pWriter.write("		runner.parseFile(inputFile, Cobol85SourceFormatEnum.FIXED);\n");
 				pWriter.write("	}\n");
 				pWriter.write("}");
 

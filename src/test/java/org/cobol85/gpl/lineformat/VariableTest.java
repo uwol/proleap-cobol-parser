@@ -11,20 +11,11 @@ import org.junit.Test;
 public class VariableTest {
 
 	@Test
-	public void testDefinedFormat() throws Exception {
+	public void test() throws Exception {
 		Cobol85GrammarContextFactory.configureDefaultApplicationContext();
 
 		final File inputFile = new File("src/test/resources/org/cobol85/gpl/lineformat/Variable.cbl");
 		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();
-		runner.parseFile(inputFile, new Cobol85SourceFormatEnum[] { Cobol85SourceFormatEnum.VARIABLE });
-	}
-
-	@Test
-	public void testFlexibleFormat() throws Exception {
-		Cobol85GrammarContextFactory.configureDefaultApplicationContext();
-
-		final File inputFile = new File("src/test/resources/org/cobol85/gpl/lineformat/Variable.cbl");
-		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();
-		runner.parseFile(inputFile, null);
+		runner.parseFile(inputFile, Cobol85SourceFormatEnum.VARIABLE);
 	}
 }

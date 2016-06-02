@@ -15,9 +15,9 @@ import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum;
 
 public interface Cobol85ParseTestRunner {
 
-	void parseDirectory(File inputDirectory, final Cobol85SourceFormatEnum[] formats) throws IOException;
+	void parseDirectory(File inputDirectory, final Cobol85SourceFormatEnum format) throws IOException;
 
-	void parseFile(File inputFile, Cobol85SourceFormatEnum[] formats) throws IOException;
+	void parseFile(File inputFile, Cobol85SourceFormatEnum format) throws IOException;
 
-	void parseString(String inputString, File libDirectory, Cobol85SourceFormatEnum[] formats);
+	void parseString(String inputString, File libDirectory, Cobol85SourceFormatEnum format);
 }
