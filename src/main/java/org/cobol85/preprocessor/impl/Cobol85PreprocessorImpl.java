@@ -48,7 +48,7 @@ import org.codehaus.plexus.util.StringUtils;
 
 public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
-	protected abstract class AbstractCobol85LinesPreprocessor implements Cobol85LinesProcessor {
+	protected abstract class AbstractCobol85LinesPreprocessor implements Cobol85SubPreprocessor {
 
 		public abstract String processLine(final String input, int lineNumber, final Cobol85Dialect dialect,
 				final Cobol85SourceFormat format);
@@ -130,11 +130,6 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 			firstTerminal = false;
 		}
-	}
-
-	protected interface Cobol85LinesProcessor {
-
-		public String processLines(String input, final Cobol85Dialect dialect, final Cobol85SourceFormat formats);
 	}
 
 	protected class Cobol85NormalizerPreprocessorImpl extends AbstractCobol85LinesPreprocessor {
@@ -251,7 +246,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	}
 
-	protected class Cobol85ParserPreprocessorImpl implements Cobol85LinesProcessor {
+	protected class Cobol85ParserPreprocessorImpl implements Cobol85SubPreprocessor {
 
 		protected final File libDirectory;
 
@@ -624,6 +619,11 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		}
 	}
 
+	protected interface Cobol85SubPreprocessor {
+
+		public String processLines(String input, final Cobol85Dialect dialect, final Cobol85SourceFormat formats);
+	}
+
 	protected class ThrowingErrorListener extends BaseErrorListener {
 
 		@Override
@@ -779,15 +779,13 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	@Override
 	public String process(final String cobolSourceCode, final File libDirectory, final Cobol85Dialect dialect,
 			final Cobol85SourceFormat format) {
-		final Cobol85LinesProcessor cleanLinesProcessor = new Cobol85CleanerPreprocessorImpl();
-		final String cleanedCobolSourceCode = cleanLinesProcessor.processLines(cobolSourceCode, dialect, format);
+		final Cobol85SubPreprocessor cleanLinesPreprocessor = new Cobol85CleanerPreprocessorImpl();
+		final Cobol85SubPreprocessor normalizeLinesPreprocessor = new Cobol85NormalizerPreprocessorImpl();
+		final Cobol85SubPreprocessor parseLinesPreprocessor = new Cobol85ParserPreprocessorImpl(libDirectory);
 
-		final Cobol85LinesProcessor normalizeLinesProcessor = new Cobol85NormalizerPreprocessorImpl();
-		final String normalizedCobolSourceCode = normalizeLinesProcessor.processLines(cleanedCobolSourceCode, dialect,
-				format);
-
-		final Cobol85LinesProcessor parseLinesProcessor = new Cobol85ParserPreprocessorImpl(libDirectory);
-		final String result = parseLinesProcessor.processLines(normalizedCobolSourceCode, dialect, format);
+		final String cleanedCode = cleanLinesPreprocessor.processLines(cobolSourceCode, dialect, format);
+		final String normalizedCode = normalizeLinesPreprocessor.processLines(cleanedCode, dialect, format);
+		final String result = parseLinesPreprocessor.processLines(normalizedCode, dialect, format);
 
 		LOG.debug("Processed input:\n\n{}\n\n", result);
 
