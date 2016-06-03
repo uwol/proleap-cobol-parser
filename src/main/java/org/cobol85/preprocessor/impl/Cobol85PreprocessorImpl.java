@@ -48,22 +48,22 @@ import org.codehaus.plexus.util.StringUtils;
 
 public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
-	protected abstract class AbstractCobol85LinesPreprocessor implements Cobol85SubPreprocessor {
+	protected abstract class AbstractCobol85LinesSubPreprocessor implements Cobol85SubPreprocessor {
 
-		public abstract String processLine(final String input, int lineNumber, final Cobol85Dialect dialect,
+		public abstract String processLine(final String line, int lineNumber, final Cobol85Dialect dialect,
 				final Cobol85SourceFormat format);
 
 		@Override
-		public String processLines(final String input, final Cobol85Dialect dialect, final Cobol85SourceFormat format) {
-			final Scanner scanner = new Scanner(input);
+		public String processLines(final String line, final Cobol85Dialect dialect, final Cobol85SourceFormat format) {
+			final Scanner scanner = new Scanner(line);
 			final StringBuffer outputBuffer = new StringBuffer();
 
-			String line = null;
+			String currentLine = null;
 			int lineNumber = 0;
 
 			while (scanner.hasNextLine()) {
-				line = scanner.nextLine();
-				final String processedLine = processLine(line, lineNumber, dialect, format);
+				currentLine = scanner.nextLine();
+				final String processedLine = processLine(currentLine, lineNumber, dialect, format);
 				outputBuffer.append(processedLine);
 				lineNumber++;
 			}
@@ -75,7 +75,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		}
 	}
 
-	protected class Cobol85CleanerPreprocessorImpl extends AbstractCobol85LinesPreprocessor {
+	protected class Cobol85CleanLinesSubPreprocessorImpl extends AbstractCobol85LinesSubPreprocessor {
 
 		@Override
 		public String processLine(final String line, final int lineNumber, final Cobol85Dialect dialect,
@@ -132,7 +132,67 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		}
 	}
 
-	protected class Cobol85NormalizerPreprocessorImpl extends AbstractCobol85LinesPreprocessor {
+	protected class Cobol85MarkCommentEntriesSubPreprocessorImpl extends AbstractCobol85LinesSubPreprocessor {
+
+		protected final static String COMMENT_ENTRY_TAG = ">*";
+
+		protected boolean foundCommentEntryTrigger = false;
+
+		protected boolean inCommentEntry = false;
+
+		protected final String[] triggers = new String[] { "author", "installation", "date-written", "date-compiled",
+				"security", "remarks" };
+
+		protected boolean beginsWithTrigger(final Cobol85Line parsedLine, final String[] triggers) {
+			final String contentAreaLowerCase = new String(parsedLine.contentAreaA + parsedLine.contentAreaB)
+					.toLowerCase();
+
+			boolean result = false;
+
+			for (final String trigger : triggers) {
+				final boolean containsTrigger = contentAreaLowerCase.startsWith(trigger);
+
+				if (containsTrigger) {
+					result = true;
+					break;
+				}
+			}
+
+			return result;
+		}
+
+		@Override
+		public String processLine(final String line, final int lineNumber, final Cobol85Dialect dialect,
+				final Cobol85SourceFormat format) {
+			final String result;
+
+			if (!Cobol85SourceFormatEnum.FIXED.equals(format)) {
+				result = line + NEWLINE;
+			} else {
+				final Cobol85Line parsedLine = parseCobol85Line(line, format);
+
+				if (foundCommentEntryTrigger || inCommentEntry) {
+					inCommentEntry = parsedLine.contentAreaA.trim().isEmpty()
+							|| parsedLine.indicatorArea == charAsterisk || parsedLine.indicatorArea == charSlash;
+
+					if (inCommentEntry) {
+						result = parsedLine.sequenceArea + charAsterisk + parsedLine.contentAreaA
+								+ parsedLine.contentAreaB + parsedLine.comment + NEWLINE;
+					} else {
+						result = line + NEWLINE;
+					}
+				} else {
+					result = line + NEWLINE;
+				}
+
+				foundCommentEntryTrigger = beginsWithTrigger(parsedLine, triggers);
+			}
+
+			return result;
+		}
+	}
+
+	protected class Cobol85NormalizeLinesSubPreprocessorImpl extends AbstractCobol85LinesSubPreprocessor {
 
 		protected final static String COMMENT_TAG = ">*";
 
@@ -181,8 +241,11 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			// determine line prefix
 			final String linePrefix = normalizeLineBreakAndSequenceArea(line, isFirstLine);
 
+			// join content areas A and B
+			final String joinedContentArea = line.contentAreaA + line.contentAreaB;
+
 			// trim trailing whitespace
-			final String trimmedTrailWsContentArea = line.contentArea.replaceAll("\\s+$", "");
+			final String trimmedTrailWsContentArea = joinedContentArea.replaceAll("\\s+$", "");
 
 			// handle trailing comma
 			final String handledContentArea = handleTrailingComma(trimmedTrailWsContentArea);
@@ -192,12 +255,12 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			 */
 			switch (line.indicatorArea) {
 			// debugging line
-			case 'd':
-			case 'D':
+			case chard:
+			case charD:
 				result = linePrefix + ' ' + handledContentArea;
 				break;
 			// continuation line
-			case '-':
+			case charMinus:
 				final String trimmedContentArea = handledContentArea.trim();
 				final char firstCharOfContentArea = trimmedContentArea.charAt(0);
 
@@ -212,8 +275,8 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 				}
 				break;
 			// comment line
-			case '*':
-			case '/':
+			case charAsterisk:
+			case charSlash:
 				result = linePrefix + COMMENT_TAG + " " + handledContentArea;
 				break;
 			case ' ':
@@ -228,44 +291,48 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		@Override
 		public String processLine(final String line, final int lineNumber, final Cobol85Dialect dialect,
 				final Cobol85SourceFormat format) {
-			// parse line
 			final Cobol85Line parsedLine = parseCobol85Line(line, format);
-			final String result;
-
-			// if line could not be parsed
-			if (parsedLine == null) {
-				LOG.warn("unknown line format in line {}: {}", lineNumber + 1, line);
-				result = line;
-			} else {
-				final boolean isFirstLine = lineNumber == 0;
-				result = processLine(parsedLine, isFirstLine);
-			}
-
+			final boolean isFirstLine = lineNumber == 0;
+			final String result = processLine(parsedLine, isFirstLine);
 			return result;
 		}
-
 	}
 
-	protected class Cobol85ParserPreprocessorImpl implements Cobol85SubPreprocessor {
+	protected class Cobol85ParseLinesSubPreprocessorImpl implements Cobol85SubPreprocessor {
 
 		protected final File libDirectory;
 
 		protected final String[] triggers = new String[] { "copy", "exec sql", "exec cics", "replace" };
 
-		public Cobol85ParserPreprocessorImpl(final File libDirectory) {
+		public Cobol85ParseLinesSubPreprocessorImpl(final File libDirectory) {
 			this.libDirectory = libDirectory;
 		}
 
+		protected boolean containsTrigger(final String line, final String[] triggers) {
+			final String lineLowerCase = line.toLowerCase();
+			boolean result = false;
+
+			for (final String trigger : triggers) {
+				final boolean containsTrigger = lineLowerCase.contains(trigger);
+
+				if (containsTrigger) {
+					result = true;
+					break;
+				}
+			}
+
+			return result;
+		}
+
 		@Override
-		public String processLines(final String input, final Cobol85Dialect dialect,
-				final Cobol85SourceFormat formats) {
-			final boolean requiresProcessorExecution = containsTrigger(input, triggers);
+		public String processLines(final String line, final Cobol85Dialect dialect, final Cobol85SourceFormat formats) {
+			final boolean requiresProcessorExecution = containsTrigger(line, triggers);
 			final String result;
 
 			if (requiresProcessorExecution) {
-				result = processWithParser(input, libDirectory, dialect, formats);
+				result = processWithParser(line, libDirectory, dialect, formats);
 			} else {
-				result = input;
+				result = line;
 			}
 
 			return result;
@@ -621,7 +688,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected interface Cobol85SubPreprocessor {
 
-		public String processLines(String input, final Cobol85Dialect dialect, final Cobol85SourceFormat formats);
+		public String processLines(String line, final Cobol85Dialect dialect, final Cobol85SourceFormat formats);
 	}
 
 	protected class ThrowingErrorListener extends BaseErrorListener {
@@ -638,23 +705,17 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 	protected final static String NEWLINE = "\n";
 
+	protected final char charAsterisk = '*';
+
+	protected final char chard = 'd';
+
+	protected final char charD = 'D';
+
+	protected final char charMinus = '-';
+
+	protected final char charSlash = '/';
+
 	protected final String[] copyFileExtensions = new String[] { "", "CPY", "cpy", "COB", "cob", "CBL", "cbl" };
-
-	protected boolean containsTrigger(final String input, final String[] triggers) {
-		final String inputLowerCase = input.toLowerCase();
-		boolean result = false;
-
-		for (final String trigger : triggers) {
-			final boolean containsTrigger = inputLowerCase.contains(trigger);
-
-			if (containsTrigger) {
-				result = true;
-				break;
-			}
-		}
-
-		return result;
-	}
 
 	protected String getCopyFileContent(final String filename, final File libDirectory, final Cobol85Dialect dialect,
 			final Cobol85SourceFormat format) {
@@ -740,15 +801,17 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		if (matcher.matches()) {
 			final String sequenceAreaGroup = matcher.group(1);
 			final String indicatorAreaGroup = matcher.group(2);
-			final String contentAreaGroup = matcher.group(3);
-			final String commentAreaGroup = matcher.group(4);
+			final String contentAreaAGroup = matcher.group(3);
+			final String contentAreaBGroup = matcher.group(4);
+			final String commentAreaGroup = matcher.group(5);
 
 			final String sequenceArea = sequenceAreaGroup != null ? sequenceAreaGroup : "";
 			final char indicatorArea = indicatorAreaGroup != null ? indicatorAreaGroup.charAt(0) : ' ';
-			final String contentArea = contentAreaGroup != null ? contentAreaGroup : "";
+			final String contentAreaA = contentAreaAGroup != null ? contentAreaAGroup : "";
+			final String contentAreaB = contentAreaBGroup != null ? contentAreaBGroup : "";
 			final String commentArea = commentAreaGroup != null ? commentAreaGroup : "";
 
-			result = new Cobol85Line(sequenceArea, indicatorArea, contentArea, commentArea, format);
+			result = new Cobol85Line(sequenceArea, indicatorArea, contentAreaA, contentAreaB, commentArea, format);
 		}
 
 		return result;
@@ -779,12 +842,14 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 	@Override
 	public String process(final String cobolSourceCode, final File libDirectory, final Cobol85Dialect dialect,
 			final Cobol85SourceFormat format) {
-		final Cobol85SubPreprocessor cleanLinesPreprocessor = new Cobol85CleanerPreprocessorImpl();
-		final Cobol85SubPreprocessor normalizeLinesPreprocessor = new Cobol85NormalizerPreprocessorImpl();
-		final Cobol85SubPreprocessor parseLinesPreprocessor = new Cobol85ParserPreprocessorImpl(libDirectory);
+		final Cobol85SubPreprocessor cleanLinesPreprocessor = new Cobol85CleanLinesSubPreprocessorImpl();
+		final Cobol85SubPreprocessor stripCommentEntriesPreprocessor = new Cobol85MarkCommentEntriesSubPreprocessorImpl();
+		final Cobol85SubPreprocessor normalizeLinesPreprocessor = new Cobol85NormalizeLinesSubPreprocessorImpl();
+		final Cobol85SubPreprocessor parseLinesPreprocessor = new Cobol85ParseLinesSubPreprocessorImpl(libDirectory);
 
 		final String cleanedCode = cleanLinesPreprocessor.processLines(cobolSourceCode, dialect, format);
-		final String normalizedCode = normalizeLinesPreprocessor.processLines(cleanedCode, dialect, format);
+		final String strippedCode = stripCommentEntriesPreprocessor.processLines(cleanedCode, dialect, format);
+		final String normalizedCode = normalizeLinesPreprocessor.processLines(strippedCode, dialect, format);
 		final String result = parseLinesPreprocessor.processLines(normalizedCode, dialect, format);
 
 		LOG.debug("Processed input:\n\n{}\n\n", result);

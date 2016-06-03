@@ -2,7 +2,7 @@ package org.cobol85.preprocessor.impl;
 
 import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85Line;
 import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum;
-import org.cobol85.preprocessor.impl.Cobol85PreprocessorImpl.AbstractCobol85LinesPreprocessor;
+import org.cobol85.preprocessor.impl.Cobol85PreprocessorImpl.AbstractCobol85LinesSubPreprocessor;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ public class Cobol85NormalizerPreprocessorImplTest {
 	@Test
 	public void testNormalizeLine_VARIABLE() throws Exception {
 		final Cobol85PreprocessorImpl preprocessor = new Cobol85PreprocessorImpl();
-		final AbstractCobol85LinesPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizerPreprocessorImpl();
+		final AbstractCobol85LinesSubPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456 ABC .";
 
@@ -23,7 +23,7 @@ public class Cobol85NormalizerPreprocessorImplTest {
 	@Test
 	public void testNormalizeLine_VARIABLE_continuation() throws Exception {
 		final Cobol85PreprocessorImpl preprocessor = new Cobol85PreprocessorImpl();
-		final AbstractCobol85LinesPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizerPreprocessorImpl();
+		final AbstractCobol85LinesSubPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456-***";
 		final String normalizeLine = linesPreprocessor.processLines(line, null, Cobol85SourceFormatEnum.VARIABLE);
@@ -34,7 +34,7 @@ public class Cobol85NormalizerPreprocessorImplTest {
 	@Test
 	public void testNormalizeLine_VARIABLE_continuation_leadingQuote() throws Exception {
 		final Cobol85PreprocessorImpl preprocessor = new Cobol85PreprocessorImpl();
-		final AbstractCobol85LinesPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizerPreprocessorImpl();
+		final AbstractCobol85LinesSubPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456-\"***";
 		final String normalizeLine = linesPreprocessor.processLines(line, null, Cobol85SourceFormatEnum.VARIABLE);
@@ -45,7 +45,7 @@ public class Cobol85NormalizerPreprocessorImplTest {
 	@Test
 	public void testNormalizeLine_VARIABLE_continuation_leadingQuoteAndSpace() throws Exception {
 		final Cobol85PreprocessorImpl preprocessor = new Cobol85PreprocessorImpl();
-		final AbstractCobol85LinesPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizerPreprocessorImpl();
+		final AbstractCobol85LinesSubPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456-\"  ***";
 		final String normalizeLine = linesPreprocessor.processLines(line, null, Cobol85SourceFormatEnum.VARIABLE);
@@ -56,7 +56,7 @@ public class Cobol85NormalizerPreprocessorImplTest {
 	@Test
 	public void testNormalizeLine_VARIABLE_continuation_leadingSpace() throws Exception {
 		final Cobol85PreprocessorImpl preprocessor = new Cobol85PreprocessorImpl();
-		final AbstractCobol85LinesPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizerPreprocessorImpl();
+		final AbstractCobol85LinesSubPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456-  ***";
 		final String normalizeLine = linesPreprocessor.processLines(line, null, Cobol85SourceFormatEnum.VARIABLE);
@@ -67,7 +67,7 @@ public class Cobol85NormalizerPreprocessorImplTest {
 	@Test
 	public void testNormalizeLine_VARIABLE_leadingSpace() throws Exception {
 		final Cobol85PreprocessorImpl preprocessor = new Cobol85PreprocessorImpl();
-		final AbstractCobol85LinesPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizerPreprocessorImpl();
+		final AbstractCobol85LinesSubPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456   ABC .";
 		final String normalizeLine = linesPreprocessor.processLines(line, null, Cobol85SourceFormatEnum.VARIABLE);
@@ -78,7 +78,7 @@ public class Cobol85NormalizerPreprocessorImplTest {
 	@Test
 	public void testNormalizeLine_VARIABLE_trailingComma() throws Exception {
 		final Cobol85PreprocessorImpl preprocessor = new Cobol85PreprocessorImpl();
-		final AbstractCobol85LinesPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizerPreprocessorImpl();
+		final AbstractCobol85LinesSubPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456 ABC ,";
 		final String normalizeLine = linesPreprocessor.processLines(line, null, Cobol85SourceFormatEnum.VARIABLE);
@@ -89,7 +89,7 @@ public class Cobol85NormalizerPreprocessorImplTest {
 	@Test
 	public void testNormalizeLine_VARIABLE_trailingSemicolon() throws Exception {
 		final Cobol85PreprocessorImpl preprocessor = new Cobol85PreprocessorImpl();
-		final AbstractCobol85LinesPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizerPreprocessorImpl();
+		final AbstractCobol85LinesSubPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456 ABC ;";
 		final String normalizeLine = linesPreprocessor.processLines(line, null, Cobol85SourceFormatEnum.VARIABLE);
@@ -100,7 +100,7 @@ public class Cobol85NormalizerPreprocessorImplTest {
 	@Test
 	public void testNormalizeLine_VARIABLE_trailingWhitspace() throws Exception {
 		final Cobol85PreprocessorImpl preprocessor = new Cobol85PreprocessorImpl();
-		final AbstractCobol85LinesPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizerPreprocessorImpl();
+		final AbstractCobol85LinesSubPreprocessor linesPreprocessor = preprocessor.new Cobol85NormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456 ABC .  ";
 		final String normalizeLine = linesPreprocessor.processLines(line, null, Cobol85SourceFormatEnum.VARIABLE);
@@ -118,8 +118,9 @@ public class Cobol85NormalizerPreprocessorImplTest {
 		Assert.assertEquals(Cobol85SourceFormatEnum.FIXED, parseCobol85Line.lineFormat);
 		Assert.assertEquals("000100", parseCobol85Line.sequenceArea);
 		Assert.assertEquals(' ', parseCobol85Line.indicatorArea);
-		Assert.assertEquals("Identification Division.                                         ",
-				parseCobol85Line.contentArea);
+		Assert.assertEquals("Iden", parseCobol85Line.contentAreaA);
+		Assert.assertEquals("tification Division.                                         ",
+				parseCobol85Line.contentAreaB);
 		Assert.assertEquals("1234.6-8", parseCobol85Line.comment);
 	}
 
@@ -143,8 +144,9 @@ public class Cobol85NormalizerPreprocessorImplTest {
 		Assert.assertEquals(Cobol85SourceFormatEnum.FIXED, parseCobol85Line.lineFormat);
 		Assert.assertEquals("000200", parseCobol85Line.sequenceArea);
 		Assert.assertEquals(' ', parseCobol85Line.indicatorArea);
-		Assert.assertEquals("Program-ID.                                                      ",
-				parseCobol85Line.contentArea);
+		Assert.assertEquals("Prog", parseCobol85Line.contentAreaA);
+		Assert.assertEquals("ram-ID.                                                      ",
+				parseCobol85Line.contentAreaB);
 		Assert.assertEquals("12345678", parseCobol85Line.comment);
 	}
 
@@ -158,8 +160,9 @@ public class Cobol85NormalizerPreprocessorImplTest {
 		Assert.assertEquals(Cobol85SourceFormatEnum.FIXED, parseCobol85Line.lineFormat);
 		Assert.assertEquals("000100", parseCobol85Line.sequenceArea);
 		Assert.assertEquals(' ', parseCobol85Line.indicatorArea);
-		Assert.assertEquals("Identification Division.                                         ",
-				parseCobol85Line.contentArea);
+		Assert.assertEquals("Iden", parseCobol85Line.contentAreaA);
+		Assert.assertEquals("tification Division.                                         ",
+				parseCobol85Line.contentAreaB);
 		Assert.assertEquals("12345678", parseCobol85Line.comment);
 	}
 
@@ -193,7 +196,8 @@ public class Cobol85NormalizerPreprocessorImplTest {
 		Assert.assertEquals(Cobol85SourceFormatEnum.TANDEM, parseCobol85Line.lineFormat);
 		Assert.assertEquals("", parseCobol85Line.sequenceArea);
 		Assert.assertEquals(' ', parseCobol85Line.indicatorArea);
-		Assert.assertEquals("Procedure Division. ", parseCobol85Line.contentArea);
+		Assert.assertEquals("Proc", parseCobol85Line.contentAreaA);
+		Assert.assertEquals("edure Division. ", parseCobol85Line.contentAreaB);
 		Assert.assertEquals("", parseCobol85Line.comment);
 	}
 
@@ -207,7 +211,8 @@ public class Cobol85NormalizerPreprocessorImplTest {
 		Assert.assertEquals(Cobol85SourceFormatEnum.TANDEM, parseCobol85Line.lineFormat);
 		Assert.assertEquals("", parseCobol85Line.sequenceArea);
 		Assert.assertEquals(' ', parseCobol85Line.indicatorArea);
-		Assert.assertEquals("Identification Division.", parseCobol85Line.contentArea);
+		Assert.assertEquals("Iden", parseCobol85Line.contentAreaA);
+		Assert.assertEquals("tification Division.", parseCobol85Line.contentAreaB);
 		Assert.assertEquals("", parseCobol85Line.comment);
 	}
 
@@ -221,7 +226,8 @@ public class Cobol85NormalizerPreprocessorImplTest {
 		Assert.assertEquals(Cobol85SourceFormatEnum.VARIABLE, parseCobol85Line.lineFormat);
 		Assert.assertEquals("000100", parseCobol85Line.sequenceArea);
 		Assert.assertEquals(' ', parseCobol85Line.indicatorArea);
-		Assert.assertEquals("Identification Division.", parseCobol85Line.contentArea);
+		Assert.assertEquals("Iden", parseCobol85Line.contentAreaA);
+		Assert.assertEquals("tification Division.", parseCobol85Line.contentAreaB);
 		Assert.assertEquals("", parseCobol85Line.comment);
 	}
 }

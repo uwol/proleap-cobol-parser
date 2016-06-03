@@ -25,7 +25,9 @@ public interface Cobol85Preprocessor {
 
 		public String comment;
 
-		public String contentArea;
+		public String contentAreaA;
+
+		public String contentAreaB;
 
 		public char indicatorArea;
 
@@ -33,18 +35,19 @@ public interface Cobol85Preprocessor {
 
 		public String sequenceArea;
 
-		public Cobol85Line(final String sequenceArea, final char indicatorArea, final String contentArea,
-				final String comment, final Cobol85SourceFormat lineFormat) {
+		public Cobol85Line(final String sequenceArea, final char indicatorArea, final String contentAreaA,
+				final String contentAreaB, final String comment, final Cobol85SourceFormat lineFormat) {
 			this.sequenceArea = sequenceArea;
 			this.indicatorArea = indicatorArea;
-			this.contentArea = contentArea;
+			this.contentAreaA = contentAreaA;
+			this.contentAreaB = contentAreaB;
 			this.comment = comment;
 			this.lineFormat = lineFormat;
 		}
 
 		@Override
 		public String toString() {
-			return sequenceArea + indicatorArea + contentArea + comment + " [" + lineFormat + "]";
+			return sequenceArea + indicatorArea + contentAreaA + contentAreaB + comment + " [" + lineFormat + "]";
 		}
 	}
 
@@ -69,7 +72,7 @@ public interface Cobol85Preprocessor {
 		 * 13-72: area B<br />
 		 * 73-80: comments<br />
 		 */
-		FIXED("(.{6})" + indicatorField + "(.{65})(.{8,})"),
+		FIXED("(.{6})" + indicatorField + "(.{4})(.{61})(.{8,})"),
 
 		/**
 		 * HP Tandem format.<br />
@@ -78,7 +81,7 @@ public interface Cobol85Preprocessor {
 		 * 2-5: area A<br />
 		 * 6-132: area B<br />
 		 */
-		TANDEM("()" + indicatorField + "(.*)()"),
+		TANDEM("()" + indicatorField + "(.{0,4})(.*)()"),
 
 		/**
 		 * Variable format.<br />
@@ -88,7 +91,7 @@ public interface Cobol85Preprocessor {
 		 * 8-12: area A<br />
 		 * 13-*: area B<br />
 		 */
-		VARIABLE("(.{6})(?:" + indicatorField + "(.*)())?");
+		VARIABLE("(.{6})(?:" + indicatorField + "(.{0,4})(.*)())?");
 
 		private final Pattern pattern;
 
