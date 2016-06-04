@@ -15,6 +15,8 @@ Characteristics:
 2. To be used in conjunction with the provided preprocessor, which executes 
    COPY and REPLACE statements.
 
+3. Comment entries are converted to comments.
+
 
 Execution:
 
@@ -28,8 +30,8 @@ final java.io.File libDirectory = inputFile.getParentFile();
 * COBOL preprocessor
 */
 // if automatic detection of COBOL line format fails, it has to be set here
-final org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum[] formats = null;
-final String preProcessedInput = org.cobol85.applicationcontext.Cobol85GrammarContext.getInstance().getCobol85Preprocessor().process(inputFile, libDirectory, formats);
+final org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum format = org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum.FIXED;
+final String preProcessedInput = org.cobol85.applicationcontext.Cobol85GrammarContext.getInstance().getCobol85Preprocessor().process(inputFile, libDirectory, null, format);
 
 /*
 * lexer
@@ -68,13 +70,6 @@ VM Args:
 
 * For parsing large Cobol source code files,  VM args have to be set: -Xmx2048m -XX:MaxPermSize=256m
 * Intellij Plugin for ANTLR 4 has to be provided with those VM args in file idea.vmoptions.
-
-
-Known limitations (work under progress):
-
-1. Picture strings are parsed as (groups of) terminal symbols.
-
-2. Comments are skipped.
 
 
 Build process:

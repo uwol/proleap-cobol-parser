@@ -125,37 +125,37 @@ programIdParagraph :
 // - author paragraph ----------------------------------
 
 authorParagraph :
-	AUTHOR DOT_FS commentEntry?
+	AUTHOR DOT_FS
 ;
 
 // - installation paragraph ----------------------------------
 
 installationParagraph :
-	INSTALLATION DOT_FS commentEntry?
+	INSTALLATION DOT_FS
 ;
 
 // - date written paragraph ----------------------------------
 
 dateWrittenParagraph :
-	DATE_WRITTEN DOT_FS commentEntry?
+	DATE_WRITTEN DOT_FS
 ;
 
 // - date compiled paragraph ----------------------------------
 
 dateCompiledParagraph :
-	DATE_COMPILED DOT_FS commentEntry?
+	DATE_COMPILED DOT_FS
 ;
 
 // - security paragraph ----------------------------------
 
 securityParagraph :
-	SECURITY DOT_FS commentEntry?
+	SECURITY DOT_FS
 ;
 
 // - remarks paragraph ----------------------------------
 
 remarksParagraph :
-	REMARKS DOT_FS commentEntry?
+	REMARKS DOT_FS
 ;
 
 // --- environment division --------------------------------------------------------------------
@@ -223,7 +223,7 @@ segmentLimitClause :
 ;
 
 characterSetClause :
-	CHARACTER SET commentEntry?
+	CHARACTER SET DOT_FS
 ;
 
 // - special names paragraph ----------------------------------
@@ -1769,37 +1769,6 @@ basis :
 	(identifier | literal | basisKeyword | LPARENCHAR arithmeticExpression RPARENCHAR)
 ;
 
-commentEntry :
-	(
-		commentEntryText | commentEntryAmbiguousKeyword
-	)+
-;
-
-commentEntryText :
-	literal |
-	cobolWord |
-	AMPCHAR |
-	ASTERISKCHAR |
-	COLONCHAR |
-	COMMACHAR |
-	COMMENTTAG |
-	DOLLARCHAR |
-	DOUBLEQUOTE |
-	DOT |
-	DOT_FS |
-	EQUALCHAR |
-	LESSTHANCHAR |
-	LESSTHANOREQUAL |
-	LPARENCHAR |
-	MINUSCHAR |
-	MORETHANCHAR |
-	MORETHANOREQUAL |
-	PLUSCHAR |
-	RPARENCHAR |
-	SINGLEQUOTE |
-	SLASHCHAR
-;
-
 
 // logical expressions ----------------------------------
 
@@ -2081,10 +2050,6 @@ cicsDfhRespKeyword :
 
 cicsDfhValueKeyword :
 	otherKeyword
-;
-
-commentEntryAmbiguousKeyword :
-	connective | divisionKeyword | figurativeConstant | otherKeyword | sectionKeyword | specialRegister
 ;
 
 moveToKeyword :

@@ -16,6 +16,6 @@ public class QuotesInCommentEntryTest {
 
 		final File inputFile = new File("src/test/resources/org/cobol85/gpl/QuotesInCommentEntry.cbl");
 		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();
-		runner.parseFile(inputFile, Cobol85SourceFormatEnum.VARIABLE);
+		runner.parseFile(inputFile, Cobol85SourceFormatEnum.FIXED);
 	}
 }
