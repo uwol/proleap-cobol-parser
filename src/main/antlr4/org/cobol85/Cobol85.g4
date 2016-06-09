@@ -1852,6 +1852,80 @@ abbreviationLeaf :
 	| LPARENCHAR arithmeticExpression abbreviationRest RPARENCHAR
 ;
 
+// identifier ----------------------------------
+
+identifier :
+	qualifiedDataName
+	| tableCall
+	| functionCall
+	| specialRegister
+;
+
+// array access
+tableCall :
+	qualifiedDataName (LPARENCHAR subscript RPARENCHAR)* (LPARENCHAR characterPosition COLONCHAR length? RPARENCHAR)?
+;
+
+functionCall :
+	FUNCTION functionName (LPARENCHAR argument RPARENCHAR)* (LPARENCHAR characterPosition COLONCHAR length? RPARENCHAR)?
+;
+
+length :
+	arithmeticExpression
+;
+
+characterPosition :
+	arithmeticExpression
+;
+
+subscript :
+	(
+		integerLiteral
+		| qualifiedDataName integerLiteral?
+		| indexName integerLiteral?
+		| arithmeticExpression
+		| ALL
+	)+
+;
+
+argument :
+	(
+		literal
+		| identifier
+		| qualifiedDataName integerLiteral?
+		| indexName integerLiteral?
+		| arithmeticExpression
+	)+
+;
+
+// qualified data name ----------------------------------
+
+qualifiedDataName :
+	qualifiedDataNameFormat1
+	| qualifiedDataNameFormat2
+	| qualifiedDataNameFormat3
+	| qualifiedDataNameFormat4
+;
+
+qualifiedDataNameFormat1 :
+	(dataName | conditionName)
+	(
+		((IN | OF) (dataName | tableCall))+ ((IN | OF) fileName)?
+		| (IN | OF) fileName
+	)?
+;
+
+qualifiedDataNameFormat2 :
+	paragraphName (IN | OF) sectionName
+;
+
+qualifiedDataNameFormat3 :
+	textName (IN | OF) libraryName
+;
+
+qualifiedDataNameFormat4 :
+	LINAGE_COUNTER (IN | OF) fileName
+;
 
 // names ----------------------------------
 
@@ -1936,15 +2010,6 @@ programName :
 	cobolWord | NONNUMERICLITERAL
 ;
 
-qualifiedDataName :
-	(dataName | conditionName)
-	(
-		((IN | OF) (dataName | tableCall))+
-		| (IN | OF) fileName
-	)?
-	| specialRegister
-;
-
 recordName :
 	qualifiedDataName
 ;
@@ -1969,55 +2034,8 @@ symbolicCharacter :
 	cobolWord
 ;
 
-
-// identifier ----------------------------------
-
-identifier :
-	qualifiedDataName
-	| tableCall
-	| functionCall
-	| linageCounterCall
-;
-
-// array access
-tableCall :
-	qualifiedDataName (LPARENCHAR subscript RPARENCHAR)* (LPARENCHAR characterPosition COLONCHAR length? RPARENCHAR)?
-;
-
-functionCall :
-	FUNCTION functionName (LPARENCHAR argument RPARENCHAR)* (LPARENCHAR characterPosition COLONCHAR length? RPARENCHAR)?
-;
-
-linageCounterCall :
-	LINAGE_COUNTER ((IN | OF) fileName)?
-;
-
-length :
-	arithmeticExpression
-;
-
-characterPosition :
-	arithmeticExpression
-;
-
-subscript :
-	(
-		integerLiteral
-		| qualifiedDataName integerLiteral?
-		| indexName integerLiteral?
-		| arithmeticExpression
-		| ALL
-	)+
-;
-
-argument :
-	(
-		literal
-		| identifier
-		| qualifiedDataName integerLiteral?
-		| indexName integerLiteral?
-		| arithmeticExpression
-	)+
+textName :
+	cobolWord
 ;
 
 // literal ----------------------------------
@@ -2093,7 +2111,7 @@ figurativeConstant :
 ;
 
 specialRegister :
-	ADDRESS OF dataName
+	ADDRESS OF identifier
 	| DATE | DAY | DAY_OF_WEEK | DEBUG_ITEM
 	| LENGTH OF identifier | LINAGE_COUNTER | LINE_COUNTER
 	| PAGE_COUNTER
