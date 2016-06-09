@@ -492,18 +492,23 @@ globalClause :
 ;
 
 blockContainsClause :
-	BLOCK CONTAINS? (integerLiteral TO)? integerLiteral (RECORDS | CHARACTERS)?
+	BLOCK CONTAINS? (integerLiteral TO)? integerLiteral (RECORDS | CHARACTERS?)
 ;
 
 recordContainsClause :
-	RECORD CONTAINS?
-	(
-		(integerLiteral TO)? integerLiteral CHARACTERS?
-		|
-		IS? VARYING IN? SIZE?
-		(FROM? integerLiteral (TO integerLiteral)? CHARACTERS?)?
-		(DEPENDING ON? qualifiedDataName)?
-	)
+	RECORD (recordContainsClauseFormat1 | recordContainsClauseFormat2 | recordContainsClauseFormat3)
+;
+
+recordContainsClauseFormat1 :
+	CONTAINS? integerLiteral CHARACTERS?
+;
+
+recordContainsClauseFormat2 :
+	IS? VARYING IN? SIZE? (FROM? integerLiteral (TO integerLiteral)? CHARACTERS?)? (DEPENDING ON? qualifiedDataName)?
+;
+
+recordContainsClauseFormat3 :
+	CONTAINS? integerLiteral TO integerLiteral CHARACTERS?
 ;
 
 labelRecordsClause :
