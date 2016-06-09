@@ -1937,11 +1937,12 @@ programName :
 ;
 
 qualifiedDataName :
-	dataName
-	((IN | OF) (dataName | tableCall))*
-	((IN | OF) fileName)?
-	|
-	specialRegister
+	(dataName | conditionName)
+	(
+		((IN | OF) (dataName | tableCall))+
+		| (IN | OF) fileName
+	)?
+	| specialRegister
 ;
 
 recordName :
