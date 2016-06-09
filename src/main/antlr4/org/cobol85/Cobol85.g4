@@ -1099,9 +1099,17 @@ dataWithLowerBoundsClause :
 // --- procedure division --------------------------------------------------------------------
 
 procedureDivision :
-	PROCEDURE DIVISION (USING dataName+)? (GIVING dataName)? DOT_FS
+	PROCEDURE DIVISION procedureDivisionUsingClause? procedureDivisionGivingClause? DOT_FS
 	procedureDeclaratives?
 	procedureDivisionBody
+;
+
+procedureDivisionUsingClause :
+	USING (dataName | fileName | STRING dataName | INTEGER dataName)+
+;
+
+procedureDivisionGivingClause :
+	GIVING dataName
 ;
 
 procedureDeclaratives :
@@ -1114,18 +1122,19 @@ procedureDeclaratives :
 	END DECLARATIVES DOT_FS
 ;
 
-procedureDivisionBody :
-	paragraphs procedureSection*
-;
-
 procedureSectionHeader :
 	sectionName SECTION integerLiteral?
+;
+
+procedureDivisionBody :
+	paragraphs procedureSection*
 ;
 
 // -- procedure section ----------------------------------
 
 procedureSection :
-	procedureSectionHeader DOT_FS paragraphs
+	procedureSectionHeader DOT_FS
+	paragraphs
 ;
 
 paragraphs :
