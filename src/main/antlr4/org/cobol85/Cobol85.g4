@@ -757,6 +757,7 @@ dataDescriptionEntryFormat1 :
 		| dataUsingClause
 		| dataValueClause
 		| dataUsageClause
+		| dataReceivedByClause
 		| dataOccursClause
 		| dataSignClause
 		| dataSynchronizedClause
@@ -770,23 +771,35 @@ dataDescriptionEntryFormat1 :
 ;
 
 dataDescriptionEntryFormat2 :
-	LEVEL_NUMBER_66 dataName renamesClause DOT_FS
+	LEVEL_NUMBER_66 dataName dataRenamesClause DOT_FS
 ;
 
 dataDescriptionEntryFormat3 :
 	LEVEL_NUMBER_88 conditionName dataValueClause DOT_FS
 ;
 
-dataRedefinesClause :
-	REDEFINES dataName
-;
-
-dataIntegerStringClause :
-	INTEGER | STRING
+dataAlignedClause :
+	ALIGNED
 ;
 
 dataBlankWhenZeroClause :
 	BLANK WHEN? (ZERO | ZEROS | ZEROES)
+;
+
+dataCommonOwnLocalClause :
+	COMMON | OWN | LOCAL
+;
+
+dataExternalClause :
+	IS? EXTERNAL (BY literal)?
+;
+
+dataGlobalClause :
+	IS? GLOBAL
+;
+
+dataIntegerStringClause :
+	INTEGER | STRING
 ;
 
 dataJustifiedClause :
@@ -834,40 +847,47 @@ pictureCharsKeyword :
 	SP
 ;
 
-dataCommonOwnLocalClause :
-	COMMON | OWN | LOCAL
+pictureCardinality :
+	LPARENCHAR integerLiteral RPARENCHAR
+;
+
+dataReceivedByClause :
+	RECEIVED? BY? (CONTENT | REFERENCE | REF)
+;
+
+dataRecordAreaClause :
+	RECORD AREA
+;
+
+dataRedefinesClause :
+	REDEFINES dataName
+;
+
+dataRenamesClause :
+	RENAMES qualifiedDataName
+	(
+		(THROUGH | THRU) qualifiedDataName
+	)?
+;
+
+dataSignClause :
+	(SIGN IS?)? (LEADING | TRAILING) (SEPARATE CHARACTER?)?
+;
+
+dataSynchronizedClause :
+	(SYNCHRONIZED | SYNC) (LEFT | RIGHT)?
+;
+
+dataThreadLocalClause :
+	IS? THREAD_LOCAL
 ;
 
 dataTypeClause :
 	TYPE IS? (SHORT_DATE | LONG_DATE | NUMERIC_DATE | NUMERIC_TIME | LONG_TIME)
 ;
 
-dataUsingClause :
-	USING
-	(
-		CONVENTION OF? (cobolWord | dataName)
-		| LANGUAGE OF? (cobolWord | dataName)
-	)
-;
-
-pictureCardinality :
-	LPARENCHAR integerLiteral RPARENCHAR
-;
-
-dataExternalClause :
-	IS? EXTERNAL (BY literal)?
-;
-
-dataGlobalClause :
-	IS? GLOBAL
-;
-
 dataTypeDefClause :
 	IS? TYPEDEF
-;
-
-dataThreadLocalClause :
-	IS? THREAD_LOCAL
 ;
 
 dataUsageClause :
@@ -904,17 +924,14 @@ dataUsageClause :
 		| REAL
 		| TASK
 	)
+;
+
+dataUsingClause :
+	USING
 	(
-		RECEIVED? BY? (CONTENT | REFERENCE | REF)
-	)?
-;
-
-dataSignClause :
-	(SIGN IS?)? (LEADING | TRAILING) (SEPARATE CHARACTER?)?
-;
-
-dataSynchronizedClause :
-	(SYNCHRONIZED | SYNC) (LEFT | RIGHT)?
+		CONVENTION OF? (cobolWord | dataName)
+		| LANGUAGE OF? (cobolWord | dataName)
+	)
 ;
 
 dataValueClause :
@@ -929,21 +946,6 @@ dataValueClause :
 
 dataWithLowerBoundsClause :
 	WITH? LOWER BOUNDS
-;
-
-dataAlignedClause :
-	ALIGNED
-;
-
-dataRecordAreaClause :
-	RECORD AREA
-;
-
-renamesClause :
-	RENAMES qualifiedDataName
-	(
-		(THROUGH | THRU) qualifiedDataName
-	)?
 ;
 
 // --- procedure division --------------------------------------------------------------------
