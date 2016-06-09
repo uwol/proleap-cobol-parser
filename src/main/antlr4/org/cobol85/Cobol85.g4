@@ -446,16 +446,16 @@ commitmentControlClause :
 
 dataDivision :
 	DATA DIVISION DOT_FS
-	dataDivisionBody*
+	dataDivisionBody
 ;
 
 dataDivisionBody :
-	fileSection
-	| workingStorageSection
-	| linkageSection
-	| communicationSection
-	| screenSection
-	| reportSection
+	fileSection?
+	workingStorageSection?
+	linkageSection?
+	communicationSection?
+	screenSection?
+	reportSection?
 ;
 
 // -- file section ----------------------------------
