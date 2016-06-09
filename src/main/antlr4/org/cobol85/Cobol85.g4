@@ -543,151 +543,6 @@ reportClause :
 	(REPORT IS? | REPORTS ARE?) reportName+
 ;
 
-dataDescriptionEntry :
-	dataDescriptionEntryFormat1
-	| dataDescriptionEntryFormat2
-	| dataDescriptionEntryFormat3
-;
-
-dataDescriptionEntryFormat1 :
-	(INTEGERLITERAL | LEVEL_NUMBER_77)
-	(dataName | FILLER)?
-	dataExternalClause?
-	dataGlobalClause?
-	dataRedefinesClause?
-	(
-		dataPictureClause
-		| dataValueClause
-		| dataUsageClause
-		| dataOccursClause
-		| dataSignClause
-		| dataSynchronizedClause
-		| dataJustifiedClause
-		| dataBlankWhenZeroClause
-	)*
-	DOT_FS
-;
-
-dataDescriptionEntryFormat2 :
-	LEVEL_NUMBER_66 dataName renamesClause DOT_FS
-;
-
-dataDescriptionEntryFormat3 :
-	LEVEL_NUMBER_88 conditionName dataValueClause DOT_FS
-;
-
-dataRedefinesClause :
-	REDEFINES dataName
-;
-
-dataBlankWhenZeroClause :
-	BLANK WHEN? (ZERO | ZEROS | ZEROES)
-;
-
-dataJustifiedClause :
-	(JUSTIFIED | JUST) RIGHT?
-;
-
-dataOccursClause :
-	OCCURS (integerLiteral TO)? integerLiteral TIMES?
-	(DEPENDING ON? qualifiedDataName)?
-	(
-		(ASCENDING | DESCENDING) KEY? IS? qualifiedDataName+
-	)*
-	(INDEXED BY? indexName+)?
-;
-
-dataPictureClause :
-	(PICTURE | PIC) IS? pictureString
-;
-
-pictureString :
-	(pictureChars+ pictureCardinality?)+
-;
-
-pictureChars :
-	DOLLARCHAR
-	| IDENTIFIER
-	| integerLiteral
-	| pictureCharsKeyword
-	| NUMERICLITERAL
-	| SLASHCHAR
-	| COMMACHAR
-	| DOT
-	| COLONCHAR
-	| ASTERISKCHAR
-	| DOUBLEASTERISKCHAR
-	| LPARENCHAR
-	| RPARENCHAR
-	| PLUSCHAR
-	| MINUSCHAR
-	| LESSTHANCHAR
-	| MORETHANCHAR
-;
-
-pictureCardinality :
-	LPARENCHAR integerLiteral RPARENCHAR
-;
-
-dataExternalClause :
-	IS? EXTERNAL
-;
-
-dataGlobalClause :
-	IS? GLOBAL
-;
-
-dataUsageClause :
-	(USAGE IS?)?
-	(
-		BINARY (TRUNCATED | EXTENDED)?
-		| COMP
-		| COMP_1
-		| COMP_2
-		| COMP_3
-		| COMP_4
-		| COMPUTATIONAL
-		| COMPUTATIONAL_1
-		| COMPUTATIONAL_2
-		| COMPUTATIONAL_3
-		| COMPUTATIONAL_4
-		| DATE
-		| DISPLAY
-		| DISPLAY_1
-		| FUNCTION_POINTER
-		| INDEX
-		| NATIONAL
-		| PACKED_DECIMAL
-		| POINTER
-		| PROCEDURE_POINTER
-	)
-;
-
-dataSignClause :
-	(SIGN IS?)? (LEADING | TRAILING) (SEPARATE CHARACTER?)?
-;
-
-dataSynchronizedClause :
-	(SYNCHRONIZED | SYNC) (LEFT | RIGHT)?
-;
-
-dataValueClause :
-	(VALUE IS? | VALUES ARE?)?
-	(
-		(literal | cobolWord)
-		(
-			(THROUGH | THRU) literal
-		)?
-	)+
-;
-
-renamesClause :
-	RENAMES qualifiedDataName
-	(
-		(THROUGH | THRU) qualifiedDataName
-	)?
-;
-
 // -- working storage section ----------------------------------
 
 workingStorageSection :
@@ -876,6 +731,153 @@ reportGroupDescriptionEntryFormat3 :
 		| (GROUP INDICATE?)
 	)*
 	DOT_FS
+;
+
+// data description entry ----------------------------------
+
+dataDescriptionEntry :
+	dataDescriptionEntryFormat1
+	| dataDescriptionEntryFormat2
+	| dataDescriptionEntryFormat3
+;
+
+dataDescriptionEntryFormat1 :
+	(INTEGERLITERAL | LEVEL_NUMBER_77)
+	(dataName | FILLER)?
+	dataExternalClause?
+	dataGlobalClause?
+	dataRedefinesClause?
+	(
+		dataPictureClause
+		| dataValueClause
+		| dataUsageClause
+		| dataOccursClause
+		| dataSignClause
+		| dataSynchronizedClause
+		| dataJustifiedClause
+		| dataBlankWhenZeroClause
+	)*
+	DOT_FS
+;
+
+dataDescriptionEntryFormat2 :
+	LEVEL_NUMBER_66 dataName renamesClause DOT_FS
+;
+
+dataDescriptionEntryFormat3 :
+	LEVEL_NUMBER_88 conditionName dataValueClause DOT_FS
+;
+
+dataRedefinesClause :
+	REDEFINES dataName
+;
+
+dataBlankWhenZeroClause :
+	BLANK WHEN? (ZERO | ZEROS | ZEROES)
+;
+
+dataJustifiedClause :
+	(JUSTIFIED | JUST) RIGHT?
+;
+
+dataOccursClause :
+	OCCURS (integerLiteral TO)? integerLiteral TIMES?
+	(DEPENDING ON? qualifiedDataName)?
+	(
+		(ASCENDING | DESCENDING) KEY? IS? qualifiedDataName+
+	)*
+	(INDEXED BY? indexName+)?
+;
+
+dataPictureClause :
+	(PICTURE | PIC) IS? pictureString
+;
+
+pictureString :
+	(pictureChars+ pictureCardinality?)+
+;
+
+pictureChars :
+	DOLLARCHAR
+	| IDENTIFIER
+	| integerLiteral
+	| pictureCharsKeyword
+	| NUMERICLITERAL
+	| SLASHCHAR
+	| COMMACHAR
+	| DOT
+	| COLONCHAR
+	| ASTERISKCHAR
+	| DOUBLEASTERISKCHAR
+	| LPARENCHAR
+	| RPARENCHAR
+	| PLUSCHAR
+	| MINUSCHAR
+	| LESSTHANCHAR
+	| MORETHANCHAR
+;
+
+pictureCardinality :
+	LPARENCHAR integerLiteral RPARENCHAR
+;
+
+dataExternalClause :
+	IS? EXTERNAL
+;
+
+dataGlobalClause :
+	IS? GLOBAL
+;
+
+dataUsageClause :
+	(USAGE IS?)?
+	(
+		BINARY (TRUNCATED | EXTENDED)?
+		| COMP
+		| COMP_1
+		| COMP_2
+		| COMP_3
+		| COMP_4
+		| COMPUTATIONAL
+		| COMPUTATIONAL_1
+		| COMPUTATIONAL_2
+		| COMPUTATIONAL_3
+		| COMPUTATIONAL_4
+		| DATE
+		| DISPLAY
+		| DISPLAY_1
+		| FUNCTION_POINTER
+		| INDEX
+		| NATIONAL
+		| PACKED_DECIMAL
+		| POINTER
+		| PROCEDURE_POINTER
+	)
+;
+
+dataSignClause :
+	(SIGN IS?)? (LEADING | TRAILING) (SEPARATE CHARACTER?)?
+;
+
+dataSynchronizedClause :
+	(SYNCHRONIZED | SYNC) (LEFT | RIGHT)?
+;
+
+dataValueClause :
+	(VALUE IS? | VALUES ARE?)?
+	(
+		(literal | cobolWord)
+		(
+			(THROUGH | THRU) literal
+		)?
+	)+
+;
+
+renamesClause :
+	RENAMES qualifiedDataName
+	(
+		(THROUGH | THRU) qualifiedDataName
+	)?
 ;
 
 // --- procedure division --------------------------------------------------------------------
