@@ -1863,18 +1863,22 @@ identifier :
 
 // array access
 tableCall :
-	qualifiedDataName (LPARENCHAR subscript RPARENCHAR)* (LPARENCHAR characterPosition COLONCHAR length? RPARENCHAR)?
+	qualifiedDataName (LPARENCHAR subscript RPARENCHAR)* referenceModifier?
 ;
 
 functionCall :
-	FUNCTION functionName (LPARENCHAR argument RPARENCHAR)* (LPARENCHAR characterPosition COLONCHAR length? RPARENCHAR)?
+	FUNCTION functionName (LPARENCHAR argument RPARENCHAR)* referenceModifier?
 ;
 
-length :
-	arithmeticExpression
+referenceModifier :
+	LPARENCHAR characterPosition COLONCHAR length? RPARENCHAR
 ;
 
 characterPosition :
+	arithmeticExpression
+;
+
+length :
 	arithmeticExpression
 ;
 
