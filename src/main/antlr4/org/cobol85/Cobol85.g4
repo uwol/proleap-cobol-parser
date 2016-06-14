@@ -1828,19 +1828,15 @@ sendAdvancingPhrase :
 // set statement
 
 setStatement :
-	setToStatement
-	| setUpDownByStatement
+	SET (setToStatement	| setUpDownByStatement)
 ;
 
 setToStatement :
-	SET
-	(
-		identifier+ TO (identifier | ON | OFF | literal)
-	)+
+	(identifier+ TO (identifier | ON | OFF | literal))+
 ;
 
 setUpDownByStatement :
-	SET identifier+ (UP | DOWN) BY? (identifier | literal)
+	identifier+ (UP BY | DOWN BY) (identifier | literal)
 ;
 
 // sort statement
@@ -1849,9 +1845,19 @@ sortStatement :
 	SORT fileName
 	(ON? (ASCENDING | DESCENDING) KEY? qualifiedDataName+)+
 	(WITH? DUPLICATES IN? ORDER?)?
-	(COLLATING? SEQUENCE IS? alphabetName)?
-	(USING fileName+ | INPUT PROCEDURE IS? procedureName ((THROUGH | THRU) procedureName)?)
-	(GIVING fileName+ | OUTPUT PROCEDURE IS? procedureName ((THROUGH | THRU) procedureName)?)
+	(
+		COLLATING? SEQUENCE IS? alphabetName+
+		(FOR? ALPHANUMERIC IS? alphabetName)?
+		(FOR? NATIONAL IS? alphabetName)?
+	)?
+	(
+		USING fileName+ 
+		| INPUT PROCEDURE IS? procedureName ((THROUGH | THRU) procedureName)?
+	)
+	(
+		GIVING (fileName (LOCK | SAVE | NO REWIND | CRUNCH | RELEASE | WITH REMOVE CRUNCH)?)+
+		| OUTPUT PROCEDURE IS? procedureName ((THROUGH | THRU) procedureName)?
+	)
 ;
 
 // start statement
@@ -1913,7 +1919,7 @@ subtractFromStatement :
 ;
 
 subtractFromGivingStatement :
-	(identifier | literal)+ FROM (identifier | literal) ROUNDED? GIVING (identifier ROUNDED?)+
+	(identifier | literal)+ FROM (identifier | literal) GIVING (identifier ROUNDED?)+
 ;
 
 subtractCorrespondingStatement :
@@ -1931,11 +1937,14 @@ terminateStatement :
 unstringStatement :
 	UNSTRING qualifiedDataName
 	(
-		DELIMITED BY? ALL? (identifier | literal) (OR ALL? (identifier | literal))*
+		DELIMITED BY? ALL? (identifier | literal)
+		(OR ALL? (identifier | literal))*
 	)?
 	INTO
 	(
-		identifier (DELIMITER IN? identifier)? (COUNT IN? identifier)?
+		identifier
+		(DELIMITER IN? identifier)?
+		(COUNT IN? identifier)?
 	)+
 	(WITH? POINTER qualifiedDataName)?
 	(TALLYING IN? qualifiedDataName)?
