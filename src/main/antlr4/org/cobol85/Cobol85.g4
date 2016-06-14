@@ -1284,6 +1284,7 @@ callStatement :
 	(
 		USING (callByReferenceStatement | callByValueStatement | callByContentStatement)+
 	)?
+	(GIVING identifier)?
 	(ON? OVERFLOW statements)?
 	onExceptionClause?
 	notOnExceptionClause?
@@ -1291,7 +1292,7 @@ callStatement :
 ;
 
 callByReferenceStatement :
-	(BY? REFERENCE)? (identifier | ADDRESS OF identifier | fileName | otherKeyword)+
+	(BY? REFERENCE)? (identifier | ADDRESS OF identifier | fileName | INTEGER identifier | STRING identifier)+
 ;
 
 callByValueStatement :
