@@ -1174,7 +1174,6 @@ statement :
 	| enableStatement
 	| entryStatement
 	| evaluateStatement
-	| exitProgramStatement
 	| exitStatement
 	| generateStatement
 	| gobackStatement
@@ -1325,7 +1324,7 @@ closeReelUnitStatement :
 ;
 
 closeRelativeStatement :
-	(WITH? (NO REWIND | LOCK))?
+	WITH? (NO REWIND | LOCK)
 ;
 
 closePortFileIOStatement :
@@ -1344,9 +1343,8 @@ closePortFileIOStatement :
 
 computeStatement :
 	COMPUTE (identifier ROUNDED?)+
-	(EQUALCHAR | EQUAL)
-	arithmeticExpression
-	(ON? SIZE ERROR statements)?
+	(EQUALCHAR | EQUAL) arithmeticExpression
+	(ON SIZE ERROR statements)?
 	(NOT ON? SIZE ERROR statements)?
 	END_COMPUTE?
 ;
@@ -1451,16 +1449,18 @@ evaluatePhrase :
 	)?
 ;
 
-// exit program statement
-
-exitProgramStatement :
-	EXIT PROGRAM
-;
-
 // exit statement
 
 exitStatement :
+	exitStatementFormat1 | exitStatementFormat2
+;
+
+exitStatementFormat1 :
 	EXIT
+;
+
+exitStatementFormat2 :
+	EXIT PROGRAM
 ;
 
 // generate statement
@@ -1478,11 +1478,15 @@ gobackStatement :
 // goto statement
 
 goToStatement :
-	GO TO?
-	(
-		procedureName+ (DEPENDING ON? identifier)?
-		| MORE_LABELS
-	)
+	GO TO? (goToStatementSimple | goToDependingOnStatement)
+;
+
+goToStatementSimple :
+	procedureName
+;
+
+goToDependingOnStatement :
+	procedureName+ (DEPENDING ON? identifier)? | MORE_LABELS
 ;
 
 // if statement
