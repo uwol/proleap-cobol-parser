@@ -30,6 +30,10 @@
 *
 * Change log:
 *
+* v1.4
+*	- improved handling of comment entries
+*   - stronger specification conformance
+*
 * v1.3
 *	- data description fixes
 *	- picture string fixes
@@ -46,7 +50,8 @@
 *	- fixes
 *	- compiler options
 *
-* v0.9 Initial revision
+* v0.9
+*   - initial revision
 */
 
 grammar Cobol85;

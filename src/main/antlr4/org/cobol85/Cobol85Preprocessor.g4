@@ -13,6 +13,9 @@
 *
 * Change log:
 *
+* v1.4
+*   - control spacing statements
+*
 * v1.2
 *	- fixes
 *
