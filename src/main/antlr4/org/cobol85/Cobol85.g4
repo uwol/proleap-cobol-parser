@@ -1209,13 +1209,11 @@ statement :
 // accept statement
 
 acceptStatement :
-	acceptFromDate
-	| acceptFromMnemonic
-	| acceptMessageCount
+	ACCEPT identifier (acceptFromDate | acceptFromMnemonic | acceptMessageCount)?
 ;
 
 acceptFromDate :
-	ACCEPT identifier FROM
+	FROM
 	(
 		DATE YYYYMMDD?
 		| DAY YYYYDDD?
@@ -1231,11 +1229,11 @@ acceptFromDate :
 ;
 
 acceptFromMnemonic :
-	ACCEPT identifier (FROM mnemonicName)?
+	FROM mnemonicName
 ;
 
 acceptMessageCount :
-	ACCEPT identifier MESSAGE? COUNT
+	MESSAGE? COUNT
 ;
 
 // add statement
@@ -1452,15 +1450,7 @@ evaluatePhrase :
 // exit statement
 
 exitStatement :
-	exitStatementFormat1 | exitStatementFormat2
-;
-
-exitStatementFormat1 :
-	EXIT
-;
-
-exitStatementFormat2 :
-	EXIT PROGRAM
+	EXIT PROGRAM?
 ;
 
 // generate statement
@@ -1614,6 +1604,7 @@ moveCorrespondingToStatement :
 // multiply statement
 
 multiplyStatement :
+	MULTIPLY (identifier | literal) BY
 	(
 		multiplyRegular
 		| multiplyGiving
@@ -1624,11 +1615,11 @@ multiplyStatement :
 ;
 
 multiplyRegular :
-	MULTIPLY (identifier | literal) BY (identifier ROUNDED?)+
+	(identifier ROUNDED?)+
 ;
 
 multiplyGiving :
-	MULTIPLY (identifier | literal) BY (identifier | literal)
+	(identifier | literal)
 	GIVING (identifier ROUNDED?)+
 ;
 
@@ -1663,22 +1654,19 @@ openExtendStatement :
 // perform statement
 
 performStatement :
-	performInlineStatement
-	| performProcedureStatement
+	PERFORM (performInlineStatement | performProcedureStatement)
 ;
 
 performInlineStatement :
-	PERFORM performType? statement+ END_PERFORM
+	performType? statement+ END_PERFORM
 ;
 
 performProcedureStatement :
-	PERFORM procedureName ((THROUGH | THRU) procedureName)? performType?
+	procedureName ((THROUGH | THRU) procedureName)? performType?
 ;
 
 performType :
-	performTimes
-	| performUntil
-	| performVarying
+	performTimes | performUntil | performVarying
 ;
 
 performTimes :
@@ -1796,11 +1784,11 @@ searchStatement :
 // send statement
 
 sendStatement :
-	sendStatementSync | sendStatementAsync
+	SEND (sendStatementSync | sendStatementAsync)
 ;
 
 sendStatementSync :
-	SEND (identifier | literal) (FROM identifier)?
+	(identifier | literal) (FROM identifier)?
 	(
 		WITH (identifier | EGI | EMI | ESI)
 	)?
@@ -1811,7 +1799,7 @@ sendStatementSync :
 ;
 
 sendStatementAsync :
-	SEND TO (TOP | BOTTOM) identifier
+	TO (TOP | BOTTOM) identifier
 	onExceptionClause?
 	notOnExceptionClause?
 ;
@@ -1956,20 +1944,17 @@ unstringStatement :
 // use statement
 
 useStatement :
-	USE (
-		useProcedureClause
-		| useProcedureDebugClause
-	)
+	USE (useProcedureClause	| useProcedureDebugClause)
 ;
 
 useProcedureClause :
-		GLOBAL? AFTER STANDARD?
-		(
-			(EXCEPTION | ERROR)
-			| (BEGINNING | ENDING)? (FILE | REEL | UNIT)? LABEL
-		)
-		PROCEDURE ON? (fileName+ | INPUT | OUTPUT | I_O | EXTEND)
-		(GIVING dataName+)?
+	GLOBAL? AFTER STANDARD?
+	(
+		(EXCEPTION | ERROR)
+		| (BEGINNING | ENDING)? (FILE | REEL | UNIT)? LABEL
+	)
+	PROCEDURE ON? (fileName+ | INPUT | OUTPUT | I_O | EXTEND)
+	(GIVING dataName+)?
 ;
 
 useProcedureDebugClause :
