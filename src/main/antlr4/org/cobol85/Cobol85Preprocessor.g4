@@ -40,6 +40,7 @@ startRule : (
 	| replaceOffStatement
 	| replaceArea 
 	| charData
+	| controlSpacingStatement
 )* EOF;
 
 
@@ -64,6 +65,7 @@ copyStatement :
 	(NEWLINE* directoryPhrase)?
 	(NEWLINE* familyPhrase)?
 	(NEWLINE* replacingPhrase)?
+	SUPPRESS?
 	DOT
 ;
 
@@ -79,7 +81,7 @@ replacingPhrase :
 replaceArea : 
 	replaceByStatement
 	(copyStatement | charData)*
-	replaceOffStatement
+	replaceOffStatement?
 ;
 
 replaceByStatement :
@@ -109,6 +111,10 @@ replaceable : literal | cobolWord | pseudoText | charDataLine;
 
 replacement : literal | cobolWord | pseudoText | charDataLine;
 
+
+controlSpacingStatement :
+	SKIP1 | SKIP2 | SKIP3 | EJECT
+;
 
 // literal ----------------------------------
 
@@ -152,6 +158,7 @@ charDataKeyword :
 BY : B Y;
 CICS : C I C S;
 COPY : C O P Y;
+EJECT : E J E C T;
 END_EXEC : E N D '-' E X E C; 
 EXEC : E X E C;
 IN : I N;
@@ -161,6 +168,10 @@ ON : O N;
 REPLACE : R E P L A C E;
 REPLACING : R E P L A C I N G;
 SQL : S Q L;
+SKIP1 : S K I P '1';
+SKIP2 : S K I P '2';
+SKIP3 : S K I P '3';
+SUPPRESS : S U P P R E S S;
 
 
 // symbols

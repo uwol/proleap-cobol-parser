@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
@@ -441,11 +442,16 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			/**
 			 * A mapping from a replaceable to a replacement.
 			 */
-			private class ReplacementMapping {
+			private class ReplacementMapping implements Comparable<ReplacementMapping> {
 
 				private ReplaceableContext replaceable;
 
 				private ReplacementContext replacement;
+
+				@Override
+				public int compareTo(final ReplacementMapping o) {
+					return o.replaceable.getText().length() - replaceable.getText().length();
+				}
 
 				private String extractPseudoText(final PseudoTextContext pseudoTextCtx) {
 					final String pseudoText = getTextIncludingHiddenTokens(pseudoTextCtx, tokens).trim();
@@ -552,6 +558,8 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 
 			public void replace() {
 				if (currentReplaceableReplacements != null) {
+					Arrays.sort(currentReplaceableReplacements);
+
 					for (final ReplacementMapping replaceableReplacement : currentReplaceableReplacements) {
 						final String currentOutput = outputBuffer.toString();
 						final String replacedOutput = replaceableReplacement.replace(currentOutput);
@@ -613,10 +621,16 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		}
 
 		@Override
+		public void enterControlSpacingStatement(
+				@NotNull final Cobol85PreprocessorParser.ControlSpacingStatementContext ctx) {
+			push();
+		}
+
+		@Override
 		public void enterCopyStatement(@NotNull final Cobol85PreprocessorParser.CopyStatementContext ctx) {
 			// push a new context for COPY terminals
 			push();
-		};
+		}
 
 		@Override
 		public void enterExecCicsStatement(final org.cobol85.Cobol85PreprocessorParser.ExecCicsStatementContext ctx) {
@@ -643,6 +657,13 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 		@Override
 		public void enterReplaceOffStatement(@NotNull final Cobol85PreprocessorParser.ReplaceOffStatementContext ctx) {
 			push();
+		}
+
+		@Override
+		public void exitControlSpacingStatement(
+				@NotNull final Cobol85PreprocessorParser.ControlSpacingStatementContext ctx) {
+			// throw away control spacing statement
+			pop();
 		}
 
 		@Override
@@ -677,7 +698,7 @@ public class Cobol85PreprocessorImpl implements Cobol85Preprocessor {
 			pop();
 
 			context().write(content);
-		}
+		};
 
 		@Override
 		public void exitExecCicsStatement(final org.cobol85.Cobol85PreprocessorParser.ExecCicsStatementContext ctx) {

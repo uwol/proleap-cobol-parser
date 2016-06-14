@@ -1373,7 +1373,7 @@ disableStatement :
 // display statement
 
 displayStatement :
-	DISPLAY (identifier | literal)+
+	DISPLAY (identifier | literal | otherKeyword)+
 	(UPON (mnemonicName | environmentName))?
 	(WITH? NO ADVANCING)?
 ;
@@ -2064,6 +2064,7 @@ conditionNameReference :
 
 relationCondition :
 	arithmeticExpression (relationalOperator arithmeticExpression | signCondition)
+	| arithmeticExpression relationalOperator LPARENCHAR (arithmeticExpression (OR arithmeticExpression)+) RPARENCHAR
 ;
 
 signCondition :
