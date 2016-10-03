@@ -1,0 +1,1 @@
+(startRule (compilationUnit (programUnit (identificationDivision Identification Division . (programIdParagraph Program-ID . (programName (cobolWord HELLOWORLD)) .)) (procedureDivision Procedure Division . (procedureDivisionBody (paragraphs (sentence (statements (statement (displayStatement Display (literal "Hello World") (otherKeyword STOP) (otherKeyword RUN)))) .)))))) <EOF>)

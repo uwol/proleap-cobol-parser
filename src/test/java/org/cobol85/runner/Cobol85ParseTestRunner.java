@@ -19,5 +19,4 @@ public interface Cobol85ParseTestRunner {
 
 	void parseFile(File inputFile, Cobol85SourceFormatEnum format) throws IOException;
 
-	void parseString(String inputString, File libDirectory, Cobol85SourceFormatEnum format);
 }
