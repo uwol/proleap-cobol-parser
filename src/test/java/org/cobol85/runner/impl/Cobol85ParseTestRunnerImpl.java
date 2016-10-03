@@ -39,7 +39,6 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 	}
 
 	protected void doParse(final String preProcessedInput) {
-		// run the lexer
 		final Cobol85Lexer lexer = new Cobol85Lexer(new ANTLRInputStream(preProcessedInput));
 
 		lexer.removeErrorListeners();
@@ -68,8 +67,6 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 	@Override
 	public void parseFile(final File inputFile, final Cobol85SourceFormatEnum format) throws IOException {
 		final File libDirectory = inputFile.getParentFile();
-
-		// preprocess input stream
 		final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor().process(inputFile,
 				libDirectory, null, format);
 
@@ -80,11 +77,10 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 
 	@Override
 	public void parseString(final String inputString, final File libDirectory, final Cobol85SourceFormatEnum format) {
-		// preprocess input stream
 		final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor()
 				.process(inputString, libDirectory, null, format);
 
-		LOG.info("Parsing string.");
+		LOG.info("Parsing preprocessed COBOL code.");
 
 		doParse(preProcessedInput);
 	}
