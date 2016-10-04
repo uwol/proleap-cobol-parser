@@ -1,1 +1,19 @@
-(startRule (compilationUnit (programUnit (identificationDivision Identification Division . (programIdParagraph Program-ID . (programName (cobolWord HELLOWORLD)) .) (identificationDivisionBody (authorParagraph Author .))) (procedureDivision Procedure Division . (procedureDivisionBody (paragraphs (sentence (statements (statement (displayStatement Display (literal "Hello world") (otherKeyword STOP) (otherKeyword RUN)))) .)))))) <EOF>)
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision Identification Division .\n        
+				(programIdParagraph Program-ID .\n            
+					(programName 
+						(cobolWord HELLOWORLD)) .\n       ) 
+				(identificationDivisionBody 
+					(authorParagraph Author .\n      ))) 
+			(procedureDivision Procedure Division .\n            
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statements 
+								(statement 
+									(displayStatement Display 
+										(literal "Hello world") 
+										(otherKeyword STOP) 
+										(otherKeyword RUN)))) .)))))) <EOF>)

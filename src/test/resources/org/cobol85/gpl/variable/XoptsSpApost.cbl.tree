@@ -1,1 +1,17 @@
-(startRule (compilationUnit (programUnit (compilerOptions PROCESS (compilerOption XOPTS ( (compilerSubOption SP) (compilerSubOption APOST))) PROCESS (compilerOption NOSEQ) (compilerOption LIB) (compilerOption OPTIMIZE ( FULL)) (compilerOption ARITH ( EXTEND))) (identificationDivision Identification Division . (programIdParagraph Program-ID . (programName (cobolWord Opts)) .)) (procedureDivision Procedure Division . (procedureDivisionBody paragraphs)))) <EOF>)
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(compilerOptions PROCESS 
+				(compilerOption XOPTS ( 
+					(compilerSubOption SP) 
+					(compilerSubOption APOST) )) PROCESS 
+				(compilerOption NOSEQ) 
+				(compilerOption LIB) 
+				(compilerOption OPTIMIZE ( FULL )) 
+				(compilerOption ARITH ( EXTEND ))) 
+			(identificationDivision Identification Division .\n        
+				(programIdParagraph Program-ID .\n         
+					(programName 
+						(cobolWord Opts)) .\n       )) 
+			(procedureDivision Procedure Division . 
+				(procedureDivisionBody paragraphs)))) <EOF>)

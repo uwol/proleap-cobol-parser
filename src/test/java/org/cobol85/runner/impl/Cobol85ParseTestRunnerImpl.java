@@ -55,8 +55,9 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 
 			final String inputFileTree = Trees.toStringTree(startRule, parser);
 			final String cleanedInputFileTree = org.cobol85.util.StringUtils.cleanFileTree(inputFileTree);
+			final String cleanedTreeFileData = org.cobol85.util.StringUtils.cleanFileTree(treeFileData);
 
-			assertEquals(treeFileData, cleanedInputFileTree);
+			assertEquals(cleanedTreeFileData, cleanedInputFileTree);
 		} else {
 			LOG.info("Ignoring empty parse tree file {}.", treeFile.getName());
 		}

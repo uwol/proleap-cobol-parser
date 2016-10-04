@@ -1,1 +1,31 @@
-(startRule (compilationUnit (programUnit (identificationDivision Identification Division . (programIdParagraph Program-ID . (programName (cobolWord ExecSql)) .)) (dataDivision Data Division . (dataDivisionBody (workingStorageSection Working-Storage Section . (dataDescriptionEntry (dataDescriptionEntryFormat1 01 (dataName (cobolWord userid)) (dataPictureClause pic (pictureString (pictureChars x) (pictureChars () (pictureChars (integerLiteral 8)) (pictureChars)))) .))))) (procedureDivision Procedure Division . (procedureDivisionBody (paragraphs (sentence (statements (statement (displayStatement Display (literal "Hello world") (otherKeyword STOP) (otherKeyword RUN)))) .)))))) <EOF>)
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision Identification Division .\n        
+				(programIdParagraph Program-ID .  
+					(programName 
+						(cobolWord ExecSql)) .\n       )) 
+			(dataDivision Data Division .\n        
+				(dataDivisionBody 
+					(workingStorageSection Working-Storage Section .\n\n        
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 01 
+								(dataName 
+									(cobolWord userid)) 
+								(dataPictureClause pic 
+									(pictureString 
+										(pictureChars x) 
+										(pictureChars () 
+										(pictureChars 
+											(integerLiteral 8)) 
+										(pictureChars )))) .\n\n       ))))) 
+			(procedureDivision Procedure Division .\n\n         
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statements 
+								(statement 
+									(displayStatement Display 
+										(literal "Hello world") 
+										(otherKeyword STOP) 
+										(otherKeyword RUN)))) .)))))) <EOF>)

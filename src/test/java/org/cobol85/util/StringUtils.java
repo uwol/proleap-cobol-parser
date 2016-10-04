@@ -3,14 +3,16 @@ package org.cobol85.util;
 public class StringUtils {
 
 	/**
-	 * To be removed, as soon as the COBOL grammar does not require NEWLINEs and
-	 * WS anymore
+	 * To be removed, as soon as the grammar does not require NEWLINEs and WS
+	 * anymore
 	 */
 	@Deprecated
-	public static String cleanFileTree(final String inputFileTree) {
-		final String inputFileTreeNoNewline = inputFileTree.replace("\\r", "").replace("\\n", "");
-		final String inputFileTreeNoWhitespace = inputFileTreeNoNewline.replaceAll("[ ]+", " ").replace(" )", ")");
-		final String result = inputFileTreeNoWhitespace;
+	public static String cleanFileTree(final String input) {
+		final String inputNoEscapedNewline = input.replace("\\r", "").replace("\\n", "");
+
+		final String inputNoNewline = inputNoEscapedNewline.replace("\r", "").replace("\n", "");
+		final String inputReducedWhitespace = inputNoNewline.replaceAll("[\\s]+", " ").replaceAll("[\\s]+\\)", ")");
+		final String result = inputReducedWhitespace;
 		return result;
 	}
 }

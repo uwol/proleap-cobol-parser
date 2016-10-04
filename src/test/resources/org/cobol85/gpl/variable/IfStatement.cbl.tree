@@ -1,1 +1,108 @@
-(startRule (compilationUnit (programUnit (identificationDivision Identification Division . (programIdParagraph Program-ID . (programName (cobolWord IFTEST)) .)) (procedureDivision Procedure Division . (procedureDivisionBody (paragraphs (sentence (statements (statement (ifStatement IF (condition (combinableCondition (simpleCondition (relationCondition (arithmeticExpression (timesDiv (power (basis (identifier (specialRegister LINE-COUNTER)))))) (relationalOperator EQUAL TO) (arithmeticExpression (timesDiv (power (basis (literal (numericLiteral ZERO)))))))))) (statement (displayStatement Display (literal "Hello world") (otherKeyword END-IF)))))) .) (sentence (statements (statement (ifStatement IF (condition (combinableCondition (simpleCondition (relationCondition (arithmeticExpression (timesDiv (power (basis (identifier (specialRegister LINE-COUNTER)))))) (relationalOperator =) (arithmeticExpression (timesDiv (power (basis (literal (numericLiteral ZERO)))))))))) (statement (displayStatement Display (literal "Hello world") (otherKeyword END-IF)))))) .) (sentence (statements (statement (ifStatement IF (condition (combinableCondition (simpleCondition (relationCondition (arithmeticExpression (timesDiv (power (basis (identifier (specialRegister LINE-COUNTER)))))) (relationalOperator =) (arithmeticExpression (timesDiv (power (basis (literal (numericLiteral ZERO))))))))) OR (abbreviationRest (abbreviationLeaf (arithmeticExpression (timesDiv (power (basis (literal (numericLiteral (integerLiteral 1)))))))) (abbreviationLeaf (arithmeticExpression (timesDiv (power (basis (otherKeyword Display)))))) (abbreviationLeaf (arithmeticExpression (timesDiv (power (basis (literal "Hello world")))))) (abbreviationLeaf (arithmeticExpression (timesDiv (power (basis (otherKeyword END-IF))))))))))) .)))))) <EOF>)
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision Identification Division .\n        
+				(programIdParagraph Program-ID .\n         
+					(programName 
+						(cobolWord IFTEST)) .\n       )) 
+			(procedureDivision Procedure Division .\n          
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statements 
+								(statement 
+									(ifStatement IF 
+										(condition 
+											(combinableCondition 
+												(simpleCondition 
+													(relationCondition 
+														(arithmeticExpression 
+															(timesDiv 
+																(power 
+																	(basis 
+																		(identifier 
+																			(specialRegister LINE-COUNTER)))))) 
+														(relationalOperator EQUAL TO) 
+														(arithmeticExpression 
+															(timesDiv 
+																(power 
+																	(basis 
+																		(literal 
+																			(numericLiteral ZERO)))))))))) 
+										(statement 
+											(displayStatement Display 
+												(literal "Hello world") 
+												(otherKeyword END-IF)))))) .\n       \n         ) 
+						(sentence 
+							(statements 
+								(statement 
+									(ifStatement IF 
+										(condition 
+											(combinableCondition 
+												(simpleCondition 
+													(relationCondition 
+														(arithmeticExpression 
+															(timesDiv 
+																(power 
+																	(basis 
+																		(identifier 
+																			(specialRegister LINE-COUNTER)))))) 
+														(relationalOperator =) 
+														(arithmeticExpression 
+															(timesDiv 
+																(power 
+																	(basis 
+																		(literal 
+																			(numericLiteral ZERO)))))))))) 
+										(statement 
+											(displayStatement Display 
+												(literal "Hello world") 
+												(otherKeyword END-IF)))))) .\n       \n         ) 
+						(sentence 
+							(statements 
+								(statement 
+									(ifStatement IF 
+										(condition 
+											(combinableCondition 
+												(simpleCondition 
+													(relationCondition 
+														(arithmeticExpression 
+															(timesDiv 
+																(power 
+																	(basis 
+																		(identifier 
+																			(specialRegister LINE-COUNTER)))))) 
+														(relationalOperator =) 
+														(arithmeticExpression 
+															(timesDiv 
+																(power 
+																	(basis 
+																		(literal 
+																			(numericLiteral ZERO))))))))) OR 
+											(abbreviationRest 
+												(abbreviationLeaf 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(literal 
+																		(numericLiteral 
+																			(integerLiteral 1)))))))) 
+												(abbreviationLeaf 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(otherKeyword Display)))))) 
+												(abbreviationLeaf 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(literal "Hello world")))))) 
+												(abbreviationLeaf 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(otherKeyword END-IF))))))))))) .)))))) <EOF>)

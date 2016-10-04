@@ -1,1 +1,29 @@
-(startRule (compilationUnit (programUnit (identificationDivision IDENTIFICATION DIVISION . (programIdParagraph PROGRAM-ID . (programName (cobolWord SECURITYTEST)) .) (identificationDivisionBody (securityParagraph SECURITY .))) (dataDivision DATA DIVISION . (dataDivisionBody (workingStorageSection WORKING-STORAGE SECTION . (dataDescriptionEntry (dataDescriptionEntryFormat1 01 (dataName (cobolWord LEVEL1)) .)) (dataDescriptionEntry (dataDescriptionEntryFormat1 02 (dataName (cobolWord LEVEL2)) (dataPictureClause PIC (pictureString (pictureChars X) (pictureChars () (pictureChars (integerLiteral 52)) (pictureChars)))) (dataValueClause VALUE IS (literal "COPY, TEST.")) .))))))) <EOF>)
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision IDENTIFICATION DIVISION .\n        
+				(programIdParagraph PROGRAM-ID .\n            
+					(programName 
+						(cobolWord SECURITYTEST)) .\n       ) 
+				(identificationDivisionBody 
+					(securityParagraph SECURITY .\n      ))) 
+			(dataDivision DATA DIVISION .\n        
+				(dataDivisionBody 
+					(workingStorageSection WORKING-STORAGE SECTION .\n        
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 01 
+								(dataName 
+									(cobolWord LEVEL1)) .\n           )) 
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 02 
+								(dataName 
+									(cobolWord LEVEL2)) 
+								(dataPictureClause PIC 
+									(pictureString 
+										(pictureChars X) 
+										(pictureChars () 
+										(pictureChars 
+											(integerLiteral 52)) 
+										(pictureChars )))) 
+								(dataValueClause VALUE IS 
+									(literal "COPY, TEST.")) .))))))) <EOF>)

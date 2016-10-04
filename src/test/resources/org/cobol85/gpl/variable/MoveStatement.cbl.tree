@@ -1,1 +1,21 @@
-(startRule (compilationUnit (programUnit (identificationDivision Identification Division . (programIdParagraph Program-ID . (programName (cobolWord HELLOWORLD)) .)) (procedureDivision Procedure Division . (procedureDivisionBody (paragraphs (sentence (statements (statement (moveStatement MOVE (moveToStatement (literal "Test") TO (identifier (qualifiedDataName (qualifiedDataNameFormat1 (dataName (cobolWord TESTVAR))))))))) .)))))) <EOF>)
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision Identification Division .\n        
+				(programIdParagraph Program-ID .\n         
+					(programName 
+						(cobolWord HELLOWORLD)) .\n       )) 
+			(procedureDivision Procedure Division .\n          
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statements 
+								(statement 
+									(moveStatement MOVE 
+										(moveToStatement 
+											(literal "Test") TO 
+											(identifier 
+												(qualifiedDataName 
+													(qualifiedDataNameFormat1 
+														(dataName 
+															(cobolWord TESTVAR))))))))) .)))))) <EOF>)

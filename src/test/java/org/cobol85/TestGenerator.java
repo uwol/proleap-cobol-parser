@@ -16,7 +16,6 @@ import java.util.Arrays;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.tree.Trees;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,6 +24,7 @@ import org.cobol85.applicationcontext.Cobol85GrammarContext;
 import org.cobol85.applicationcontext.Cobol85GrammarContextFactory;
 import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85SourceFormat;
 import org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum;
+import org.cobol85.util.TreeUtils;
 
 public class TestGenerator {
 
@@ -141,12 +141,11 @@ public class TestGenerator {
 			final CommonTokenStream tokens = new CommonTokenStream(lexer);
 			final Cobol85Parser parser = new Cobol85Parser(tokens);
 			final StartRuleContext startRule = parser.startRule();
-			final String inputFileTree = Trees.toStringTree(startRule, parser);
-			final String cleanedInputFileTree = org.cobol85.util.StringUtils.cleanFileTree(inputFileTree);
+			final String inputFileTree = TreeUtils.toStringTree(startRule, parser);
 
 			final PrintWriter pWriter = new PrintWriter(new FileWriter(outputFile));
 
-			pWriter.write(cleanedInputFileTree);
+			pWriter.write(inputFileTree);
 			pWriter.flush();
 			pWriter.close();
 		}

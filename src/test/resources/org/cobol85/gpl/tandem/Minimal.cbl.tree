@@ -1,0 +1,41 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision IDENTIFICATION DIVISION .\n  
+				(programIdParagraph PROGRAM-ID .  
+					(programName 
+						(cobolWord CM101M)) .\n )) 
+			(dataDivision DATA DIVISION .\n  
+				(dataDivisionBody 
+					(workingStorageSection WORKING-STORAGE SECTION .\n  
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 01 
+								(dataName 
+									(cobolWord COUNTER)) 
+								(dataPictureClause PIC 
+									(pictureString 
+										(pictureChars 
+											(integerLiteral 9)) 
+										(pictureChars () 
+										(pictureChars 
+											(integerLiteral 8)) 
+										(pictureChars )))) .\n ))))) 
+			(procedureDivision PROCEDURE DIVISION .\n  
+				(procedureDivisionBody 
+					(paragraphs 
+						(paragraph 
+							(paragraphName 
+								(cobolWord INIT)) .\n      
+							(sentence 
+								(statements 
+									(statement 
+										(addStatement ADD 
+											(addToStatement 
+												(literal 
+													(numericLiteral 
+														(integerLiteral 1))) TO 
+												(identifier 
+													(qualifiedDataName 
+														(qualifiedDataNameFormat1 
+															(dataName 
+																(cobolWord COUNTER))))))))) .))))))) <EOF>)
