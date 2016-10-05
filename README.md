@@ -72,7 +72,6 @@ final java.io.File libDirectory = inputFile.getParentFile();
 /*
 * COBOL preprocessor
 */
-// if automatic detection of COBOL line format fails, it has to be set here
 final org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum format = org.cobol85.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum.FIXED;
 final String preProcessedInput = org.cobol85.applicationcontext.Cobol85GrammarContext.getInstance().getCobol85Preprocessor().process(inputFile, libDirectory, null, format);
 
