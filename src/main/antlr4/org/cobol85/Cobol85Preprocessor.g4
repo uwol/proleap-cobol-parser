@@ -31,10 +31,6 @@
 
 grammar Cobol85Preprocessor;
 
-options
-{
-	language = Java;
-}
 
 startRule : (
 	copyStatement

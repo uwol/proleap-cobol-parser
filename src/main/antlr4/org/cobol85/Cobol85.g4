@@ -56,10 +56,6 @@
 
 grammar Cobol85;
 
-options
-{
-	language = Java;
-}
 
 startRule : compilationUnit EOF;
 
