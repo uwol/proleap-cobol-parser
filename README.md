@@ -3,6 +3,8 @@ cobol85grammar
 
 Cobol 85 Grammar for ANTLR4
 
+<a href="https://travis-ci.org/uwol/cobol85grammar"><img src="https://api.travis-ci.org/uwol/cobol85grammar.png"></a>
+
 This is an approximate grammar for Cobol 85. It is akin but neither 
 copied from nor identical to Cobol.jj, Cobol.kg and VS COBOL II grammars.
 Passes NIST test suite.
@@ -129,7 +131,12 @@ Release process
 * Milestones are published in the [ANTLR grammars repo](https://github.com/antlr/grammars-v4).
 
 
-Travis status
--------------
+License
+-------
 
-* <a href="https://travis-ci.org/uwol/cobol85grammar"><img src="https://api.travis-ci.org/uwol/cobol85grammar.png"></a>
+Licensed under the BSD 3-Clause License. See LICENSE for details.
+
+### And finally...
+
+Patches accepted, or create an issue! 
+I'd love, if you could send me a note in which context you're using the grammar. Thank you!
