@@ -19,6 +19,45 @@ Characteristics
 3. Comment entries are converted to comments.
 
 
+Example
+-------
+
+### Input: COBOL 85 code
+
+```
+ Identification Division.
+ Program-ID. 
+  HELLOWORLD.
+ Procedure Division.
+  Display "Hello world"
+  STOP RUN.
+```
+
+### Output: abstract syntax tree (AST)
+
+```
+(startRule
+	(compilationUnit
+		(programUnit
+			(identificationDivision Identification Division .
+				(programIdParagraph Program-ID .
+					(programName
+						(cobolWord HELLOWORLD)) . ))
+			(procedureDivision Procedure Division .
+				(procedureDivisionBody
+					(paragraphs
+						(sentence
+							(statements
+								(statement
+									(displayStatement Display
+										(literal "Hello world")))) .)
+						(sentence
+							(statements
+								(statement
+									(stopStatement STOP RUN))) .)))))) <EOF>)
+```
+
+
 Execution
 ---------
 
