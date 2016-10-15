@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<name>cobol85grammar</name>
 	<description>Cobol 85 Grammar for ANTLR4</description>
-	<groupId>org.antlr-grammars</groupId>
+	<groupId>io.github.uwol</groupId>
 	<artifactId>cobol85grammar</artifactId>
 	<version>1.4.0</version>
 	<packaging>jar</packaging>
