@@ -63,13 +63,13 @@ Execution
 ```java
 io.proleap.cobol.applicationcontext.Cobol85GrammarContextFactory.configureDefaultApplicationContext();
 
-final java.io.File inputFile = new java.io.File("src/test/resources/org/cobol85/gpl/HelloWorldVar.cbl");
+final java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/variable/HelloWorldVar.cbl");
 final java.io.File libDirectory = inputFile.getParentFile();
 
 /*
 * COBOL preprocessor
 */
-final io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum format = io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum.FIXED;
+final io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum format = io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum.VARIABLE;
 final String preProcessedInput = io.proleap.cobol.applicationcontext.Cobol85GrammarContext.getInstance().getCobol85Preprocessor().process(inputFile, libDirectory, null, format);
 
 /*
