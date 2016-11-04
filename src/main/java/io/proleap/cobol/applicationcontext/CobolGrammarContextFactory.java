@@ -8,12 +8,13 @@
 
 package io.proleap.cobol.applicationcontext;
 
-import io.proleap.cobol.preprocessor.impl.Cobol85PreprocessorImpl;
+import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 
-public class Cobol85GrammarContextFactory {
+public class CobolGrammarContextFactory {
 
 	public static void configureDefaultApplicationContext() {
-		Cobol85GrammarContext.getInstance().reset();
-		Cobol85GrammarContext.getInstance().setCobol85Preprocessor(new Cobol85PreprocessorImpl());
+		CobolGrammarContext.getInstance().reset();
+
+		CobolGrammarContext.getInstance().setCobolPreprocessor(new CobolPreprocessorImpl());
 	}
 }

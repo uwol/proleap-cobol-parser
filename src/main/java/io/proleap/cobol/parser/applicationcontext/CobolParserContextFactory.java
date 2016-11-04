@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.parser.applicationcontext;
 
-import io.proleap.cobol.applicationcontext.Cobol85GrammarContextFactory;
+import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;
 import io.proleap.cobol.parser.antlr.impl.ASTTraverserImpl;
 import io.proleap.cobol.parser.antlr.impl.NameResolverImpl;
 import io.proleap.cobol.parser.registry.impl.SemanticGraphElementRegistryImpl;
@@ -17,7 +17,7 @@ import io.proleap.cobol.parser.runner.impl.CobolParserRunnerImpl;
 public class CobolParserContextFactory {
 
 	public static void configureDefaultApplicationContext() {
-		Cobol85GrammarContextFactory.configureDefaultApplicationContext();
+		CobolGrammarContextFactory.configureDefaultApplicationContext();
 
 		CobolParserContext.getInstance().reset();
 

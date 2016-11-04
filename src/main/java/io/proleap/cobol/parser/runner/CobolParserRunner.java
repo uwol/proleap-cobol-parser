@@ -12,14 +12,14 @@ import java.io.File;
 import java.io.IOException;
 
 import io.proleap.cobol.parser.metamodel.Program;
-import io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85Dialect;
-import io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
 
 public interface CobolParserRunner {
 
-	Program analyzeDirectory(File inputDirectory, Cobol85Dialect dialect, Cobol85SourceFormat format)
+	Program analyzeDirectory(File inputDirectory, CobolDialect dialect, CobolSourceFormat format)
 			throws IOException;
 
-	Program analyzeFile(File inputFile, Cobol85Dialect dialect, Cobol85SourceFormat format) throws IOException;
+	Program analyzeFile(File inputFile, CobolDialect dialect, CobolSourceFormat format) throws IOException;
 
 }

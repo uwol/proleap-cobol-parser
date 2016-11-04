@@ -11,12 +11,12 @@ package io.proleap.cobol.runner;
 import java.io.File;
 import java.io.IOException;
 
-import io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public interface Cobol85ParseTestRunner {
+public interface CobolParseTestRunner {
 
-	void parseDirectory(File inputDirectory, final Cobol85SourceFormatEnum format) throws IOException;
+	void parseDirectory(File inputDirectory, final CobolSourceFormatEnum format) throws IOException;
 
-	void parseFile(File inputFile, Cobol85SourceFormatEnum format) throws IOException;
+	void parseFile(File inputFile, CobolSourceFormatEnum format) throws IOException;
 
 }

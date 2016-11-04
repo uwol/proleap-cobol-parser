@@ -21,7 +21,7 @@ import org.apache.logging.log4j.Logger;
 import io.proleap.cobol.Cobol85Lexer;
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
-import io.proleap.cobol.applicationcontext.Cobol85GrammarContext;
+import io.proleap.cobol.applicationcontext.CobolGrammarContext;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.impl.ProgramImpl;
@@ -30,8 +30,8 @@ import io.proleap.cobol.parser.visitor.ParserVisitor;
 import io.proleap.cobol.parser.visitor.impl.CobolDeclarationVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolExpressionVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolProgramUnitVisitorImpl;
-import io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85Dialect;
-import io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
 
 public class CobolParserRunnerImpl implements CobolParserRunner {
 
@@ -60,8 +60,8 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	@Override
-	public Program analyzeDirectory(final File inputDirectory, final Cobol85Dialect dialect,
-			final Cobol85SourceFormat format) throws IOException {
+	public Program analyzeDirectory(final File inputDirectory, final CobolDialect dialect,
+			final CobolSourceFormat format) throws IOException {
 		final Program program = new ProgramImpl();
 
 		/*
@@ -86,7 +86,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	@Override
-	public Program analyzeFile(final File inputFile, final Cobol85Dialect dialect, final Cobol85SourceFormat format)
+	public Program analyzeFile(final File inputFile, final CobolDialect dialect, final CobolSourceFormat format)
 			throws IOException {
 		final Program program = new ProgramImpl();
 
@@ -109,13 +109,13 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		return inputFile.isFile() && !inputFile.isHidden() && isCobolFile(inputFile);
 	}
 
-	protected void parseFile(final File inputFile, final Program program, final Cobol85Dialect dialect,
-			final Cobol85SourceFormat format) throws IOException {
+	protected void parseFile(final File inputFile, final Program program, final CobolDialect dialect,
+			final CobolSourceFormat format) throws IOException {
 		if (isRelevant(inputFile)) {
 			final File libDirectory = inputFile.getParentFile();
 
 			// preprocess input stream
-			final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor()
+			final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor()
 					.process(inputFile, libDirectory, dialect, format);
 
 			LOG.info("Parsing file {}.", inputFile.getName());

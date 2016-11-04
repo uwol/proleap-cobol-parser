@@ -27,18 +27,18 @@ import io.proleap.cobol.Cobol85Lexer;
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
 import io.proleap.cobol.ThrowingErrorListener;
-import io.proleap.cobol.applicationcontext.Cobol85GrammarContext;
-import io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum;
-import io.proleap.cobol.runner.Cobol85ParseTestRunner;
+import io.proleap.cobol.applicationcontext.CobolGrammarContext;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.runner.CobolParseTestRunner;
 
 /**
  * Cobol 85 parse runner for JUnit tests.
  */
-public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
+public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 
 	private final static String[] cobolFileExtensions = new String[] { "cbl", "cob", "jcl", "txt", "" };
 
-	private final static Logger LOG = LogManager.getLogger(Cobol85ParseTestRunnerImpl.class);
+	private final static Logger LOG = LogManager.getLogger(CobolParseTestRunnerImpl.class);
 
 	public final static String TREE_SUFFIX = ".tree";
 
@@ -85,7 +85,7 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 	}
 
 	@Override
-	public void parseDirectory(final File inputDirectory, final Cobol85SourceFormatEnum format) throws IOException {
+	public void parseDirectory(final File inputDirectory, final CobolSourceFormatEnum format) throws IOException {
 		if (inputDirectory.isDirectory() && !inputDirectory.isHidden()) {
 			for (final File inputFile : inputDirectory.listFiles()) {
 				if (inputFile.isFile() && !inputFile.isHidden() && isCobolFile(inputFile)) {
@@ -96,9 +96,9 @@ public class Cobol85ParseTestRunnerImpl implements Cobol85ParseTestRunner {
 	}
 
 	@Override
-	public void parseFile(final File inputFile, final Cobol85SourceFormatEnum format) throws IOException {
+	public void parseFile(final File inputFile, final CobolSourceFormatEnum format) throws IOException {
 		final File libDirectory = inputFile.getParentFile();
-		final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor().process(inputFile,
+		final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile,
 				libDirectory, null, format);
 
 		LOG.info("Parsing file {}.", inputFile.getName());

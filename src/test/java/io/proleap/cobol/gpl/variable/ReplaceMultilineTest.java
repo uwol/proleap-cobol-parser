@@ -2,20 +2,20 @@ package io.proleap.cobol.gpl.variable;
 
 import java.io.File;
 
-import io.proleap.cobol.applicationcontext.Cobol85GrammarContextFactory;
-import io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum;
-import io.proleap.cobol.runner.Cobol85ParseTestRunner;
-import io.proleap.cobol.runner.impl.Cobol85ParseTestRunnerImpl;
+import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.runner.CobolParseTestRunner;
+import io.proleap.cobol.runner.impl.CobolParseTestRunnerImpl;
 import org.junit.Test;
 
 public class ReplaceMultilineTest {
 
 	@Test
 	public void test() throws Exception {
-		Cobol85GrammarContextFactory.configureDefaultApplicationContext();
+		CobolGrammarContextFactory.configureDefaultApplicationContext();
 
 		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/variable/ReplaceMultiline.cbl");
-		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();
-		runner.parseFile(inputFile, Cobol85SourceFormatEnum.VARIABLE);
+		final CobolParseTestRunner runner = new CobolParseTestRunnerImpl();
+		runner.parseFile(inputFile, CobolSourceFormatEnum.VARIABLE);
 	}
 }

@@ -61,7 +61,7 @@ Execution
 ---------
 
 ```java
-io.proleap.cobol.applicationcontext.Cobol85GrammarContextFactory.configureDefaultApplicationContext();
+io.proleap.cobol.applicationcontext.CobolGrammarContextFactory.configureDefaultApplicationContext();
 
 final java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/variable/HelloWorldVar.cbl");
 final java.io.File libDirectory = inputFile.getParentFile();
@@ -69,8 +69,8 @@ final java.io.File libDirectory = inputFile.getParentFile();
 /*
 * COBOL preprocessor
 */
-final io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum format = io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum.VARIABLE;
-final String preProcessedInput = io.proleap.cobol.applicationcontext.Cobol85GrammarContext.getInstance().getCobol85Preprocessor().process(inputFile, libDirectory, null, format);
+final io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.VARIABLE;
+final String preProcessedInput = io.proleap.cobol.applicationcontext.CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile, libDirectory, null, format);
 
 /*
 * lexer

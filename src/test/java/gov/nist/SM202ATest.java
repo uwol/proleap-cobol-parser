@@ -2,21 +2,20 @@ package gov.nist;
 
 import java.io.File;
 
+import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.runner.CobolParseTestRunner;
+import io.proleap.cobol.runner.impl.CobolParseTestRunnerImpl;
 import org.junit.Test;
-
-import io.proleap.cobol.applicationcontext.Cobol85GrammarContextFactory;
-import io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum;
-import io.proleap.cobol.runner.Cobol85ParseTestRunner;
-import io.proleap.cobol.runner.impl.Cobol85ParseTestRunnerImpl;
 
 public class SM202ATest {
 
 	@Test
 	public void test() throws Exception {
-		Cobol85GrammarContextFactory.configureDefaultApplicationContext();
+		CobolGrammarContextFactory.configureDefaultApplicationContext();
 
 		final File inputFile = new File("src/test/resources/gov/nist/SM202A.CBL");
-		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();
-		runner.parseFile(inputFile, Cobol85SourceFormatEnum.FIXED);
+		final CobolParseTestRunner runner = new CobolParseTestRunnerImpl();
+		runner.parseFile(inputFile, CobolSourceFormatEnum.FIXED);
 	}
 }

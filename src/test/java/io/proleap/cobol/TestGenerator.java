@@ -22,10 +22,10 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.util.Strings;
 
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
-import io.proleap.cobol.applicationcontext.Cobol85GrammarContext;
-import io.proleap.cobol.applicationcontext.Cobol85GrammarContextFactory;
-import io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormat;
-import io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum;
+import io.proleap.cobol.applicationcontext.CobolGrammarContext;
+import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.util.TreeUtils;
 
 public class TestGenerator {
@@ -50,10 +50,10 @@ public class TestGenerator {
 		return Character.toUpperCase(str.charAt(0)) + str.substring(1);
 	}
 
-	public static void generateTestClass(final File cobol85InputFile, final File outputDirectory,
+	public static void generateTestClass(final File cobolInputFile, final File outputDirectory,
 			final String packageName) throws IOException {
-		final File parentDirectory = cobol85InputFile.getParentFile();
-		final String inputFilename = getInputFilename(cobol85InputFile);
+		final File parentDirectory = cobolInputFile.getParentFile();
+		final String inputFilename = getInputFilename(cobolInputFile);
 		final File outputFile = new File(outputDirectory + "/" + inputFilename + OUTPUT_FILE_SUFFIX + JAVA_EXTENSION);
 
 		LOG.info("Creating unit test {}.", outputFile);
@@ -61,28 +61,28 @@ public class TestGenerator {
 
 		if (createdNewFile) {
 			final PrintWriter pWriter = new PrintWriter(new FileWriter(outputFile));
-			final String cobol85InputFileName = cobol85InputFile.getPath().replace("\\", "/");
-			final Cobol85SourceFormat format = getCobol85SourceFormat(parentDirectory);
+			final String cobolInputFileName = cobolInputFile.getPath().replace("\\", "/");
+			final CobolSourceFormat format = getCobolSourceFormat(parentDirectory);
 
 			pWriter.write("package " + packageName + ";\n");
 			pWriter.write("\n");
 			pWriter.write("import java.io.File;\n");
 			pWriter.write("\n");
-			pWriter.write("import io.proleap.cobol.applicationcontext.Cobol85GrammarContextFactory;\n");
-			pWriter.write("import io.proleap.cobol.preprocessor.Cobol85Preprocessor.Cobol85SourceFormatEnum;\n");
-			pWriter.write("import io.proleap.cobol.runner.Cobol85ParseTestRunner;\n");
-			pWriter.write("import io.proleap.cobol.runner.impl.Cobol85ParseTestRunnerImpl;\n");
+			pWriter.write("import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;\n");
+			pWriter.write("import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;\n");
+			pWriter.write("import io.proleap.cobol.runner.CobolParseTestRunner;\n");
+			pWriter.write("import io.proleap.cobol.runner.impl.CobolParseTestRunnerImpl;\n");
 			pWriter.write("import org.junit.Test;\n");
 			pWriter.write("\n");
 			pWriter.write("public class " + inputFilename + "Test {\n");
 			pWriter.write("\n");
 			pWriter.write("	@Test\n");
 			pWriter.write("	public void test() throws Exception {\n");
-			pWriter.write("		Cobol85GrammarContextFactory.configureDefaultApplicationContext();\n");
+			pWriter.write("		CobolGrammarContextFactory.configureDefaultApplicationContext();\n");
 			pWriter.write("\n");
-			pWriter.write("		final File inputFile = new File(\"" + cobol85InputFileName + "\");\n");
-			pWriter.write("		final Cobol85ParseTestRunner runner = new Cobol85ParseTestRunnerImpl();\n");
-			pWriter.write("		runner.parseFile(inputFile, Cobol85SourceFormatEnum." + format + ");\n");
+			pWriter.write("		final File inputFile = new File(\"" + cobolInputFileName + "\");\n");
+			pWriter.write("		final CobolParseTestRunner runner = new CobolParseTestRunnerImpl();\n");
+			pWriter.write("		runner.parseFile(inputFile, CobolSourceFormatEnum." + format + ");\n");
 			pWriter.write("	}\n");
 			pWriter.write("}");
 
@@ -98,7 +98,7 @@ public class TestGenerator {
 		if (inputDirectory.isDirectory()) {
 			// for each of the files in the directory
 			for (final File inputDirectoryFile : inputDirectory.listFiles()) {
-				// if the file is a Cobol85 relevant file
+				// if the file is a Cobol relevant file
 				if (inputDirectoryFile.isFile() && !inputDirectoryFile.isHidden() && isCobolFile(inputDirectoryFile)) {
 					generateTestClass(inputDirectoryFile, outputDirectory, packageName);
 					generateTreeFile(inputDirectoryFile, inputDirectory);
@@ -127,18 +127,18 @@ public class TestGenerator {
 		}
 	}
 
-	public static void generateTreeFile(final File cobol85InputFile, final File outputDirectory) throws IOException {
-		final File outputFile = new File(outputDirectory + "/" + cobol85InputFile.getName() + TREE_EXTENSION);
+	public static void generateTreeFile(final File cobolInputFile, final File outputDirectory) throws IOException {
+		final File outputFile = new File(outputDirectory + "/" + cobolInputFile.getName() + TREE_EXTENSION);
 
 		LOG.info("Creating tree file {}.", outputFile);
 		final boolean createdNewFile = outputFile.createNewFile();
 
 		if (createdNewFile) {
-			final File parentDirectory = cobol85InputFile.getParentFile();
-			final Cobol85SourceFormat format = getCobol85SourceFormat(parentDirectory);
+			final File parentDirectory = cobolInputFile.getParentFile();
+			final CobolSourceFormat format = getCobolSourceFormat(parentDirectory);
 
-			final String preProcessedInput = Cobol85GrammarContext.getInstance().getCobol85Preprocessor()
-					.process(cobol85InputFile, parentDirectory, null, format);
+			final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor()
+					.process(cobolInputFile, parentDirectory, null, format);
 
 			final Cobol85Lexer lexer = new Cobol85Lexer(new ANTLRInputStream(preProcessedInput));
 			final CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -154,22 +154,22 @@ public class TestGenerator {
 		}
 	}
 
-	protected static Cobol85SourceFormat getCobol85SourceFormat(final File directory) {
+	protected static CobolSourceFormat getCobolSourceFormat(final File directory) {
 		final String parentDirectoryName = directory.getName();
-		final Cobol85SourceFormat result;
+		final CobolSourceFormat result;
 
 		switch (parentDirectoryName) {
 		case "fixed":
-			result = Cobol85SourceFormatEnum.FIXED;
+			result = CobolSourceFormatEnum.FIXED;
 			break;
 		case "tandem":
-			result = Cobol85SourceFormatEnum.TANDEM;
+			result = CobolSourceFormatEnum.TANDEM;
 			break;
 		case "variable":
-			result = Cobol85SourceFormatEnum.VARIABLE;
+			result = CobolSourceFormatEnum.VARIABLE;
 			break;
 		default:
-			result = Cobol85SourceFormatEnum.FIXED;
+			result = CobolSourceFormatEnum.FIXED;
 		}
 
 		return result;
@@ -191,7 +191,7 @@ public class TestGenerator {
 	}
 
 	public static void main(final String[] args) throws IOException {
-		Cobol85GrammarContextFactory.configureDefaultApplicationContext();
+		CobolGrammarContextFactory.configureDefaultApplicationContext();
 
 		generateTestClasses(INPUT_DIRECTORY, OUTPUT_DIRECTORY, "");
 	}
