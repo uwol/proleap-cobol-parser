@@ -3,5 +3,5 @@
  Program-ID.                                                      
   HELLOWORLD.                                                     
  Procedure Division.                                                              
-  Display "Hello world"                                           
+  Display "Hello world".                                           
   STOP RUN.                                                       
