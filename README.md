@@ -1,11 +1,11 @@
 cobol85grammar
 ==================================================
 
-Cobol 85 Grammar for ANTLR4
+Cobol 85 Grammar and Parser for ANTLR4
 
 <a href="https://travis-ci.org/uwol/cobol85grammar"><img src="https://api.travis-ci.org/uwol/cobol85grammar.png"></a>
 
-This is an approximate grammar for Cobol 85. It is akin but neither
+This is an approximate grammar and parser for Cobol 85. It is akin but neither
 copied from nor identical to Cobol.jj, Cobol.kg and VS COBOL II grammars.
 
 
