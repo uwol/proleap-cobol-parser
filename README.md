@@ -60,6 +60,8 @@ Example
 Execution
 ---------
 
+### Abstract Syntax Tree Parsing
+
 ```java
 io.proleap.cobol.applicationcontext.CobolGrammarContextFactory.configureDefaultApplicationContext();
 
@@ -80,7 +82,7 @@ final io.proleap.cobol.Cobol85Lexer lexer = new io.proleap.cobol.Cobol85Lexer(an
 final org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.CommonTokenStream(lexer);
 
 /*
-* parser
+* AST parser
 */
 final io.proleap.cobol.Cobol85Parser parser = new io.proleap.cobol.Cobol85Parser(tokens);
 final io.proleap.cobol.Cobol85Parser.StartRuleContext ctx = parser.startRule();
@@ -102,6 +104,16 @@ final io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobo
 };
 
 visitor.visit(ctx);
+```
+
+### Abstract Semantic Graph Parsing
+
+
+```java
+io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
+
+final io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null, format);
+Collection<io.proleap.cobol.parser.metamodel.CopyBook> copyBooks = program.getCopyBooks();
 ```
 
 
