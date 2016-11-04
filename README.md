@@ -1,12 +1,17 @@
-cobol85grammar
-==================================================
-
-Cobol 85 Grammar and Parser for ANTLR4
+ANTLR4-based grammar and parser for Cobol 85
+============================================
 
 <a href="https://travis-ci.org/uwol/cobol85grammar"><img src="https://api.travis-ci.org/uwol/cobol85grammar.png"></a>
 
-This is an approximate grammar and parser for Cobol 85. It is akin but neither
-copied from nor identical to Cobol.jj, Cobol.kg and VS COBOL II grammars.
+This is an approximate grammar and parser for Cobol 85, which generates an 
+Abstract Syntax Tree (AST) and Abstract Semantic Graph (ASG) for COBOL 85 code.
+
+The AST represents plain COBOL source code in a syntax tree structure. 
+The ASG is generated from the AST by a semantic analysis and provides data and control 
+flow information (e. g. variable access).
+
+The grammar is akin but neither copied from nor identical to the Cobol.jj, 
+Cobol.kg and VS COBOL II grammars.
 
 
 Characteristics
@@ -60,7 +65,7 @@ Example
 Execution
 ---------
 
-### Abstract Syntax Tree Parsing
+### Abstract Syntax Tree (AST) parsing
 
 ```java
 io.proleap.cobol.applicationcontext.CobolGrammarContextFactory.configureDefaultApplicationContext();
@@ -69,7 +74,7 @@ final java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/c
 final java.io.File libDirectory = inputFile.getParentFile();
 
 /*
-* COBOL preprocessor
+* preprocessor
 */
 final io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.VARIABLE;
 final String preProcessedInput = io.proleap.cobol.applicationcontext.CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile, libDirectory, null, format);
@@ -82,38 +87,39 @@ final io.proleap.cobol.Cobol85Lexer lexer = new io.proleap.cobol.Cobol85Lexer(an
 final org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.CommonTokenStream(lexer);
 
 /*
-* AST parser
+* parser
 */
 final io.proleap.cobol.Cobol85Parser parser = new io.proleap.cobol.Cobol85Parser(tokens);
 final io.proleap.cobol.Cobol85Parser.StartRuleContext ctx = parser.startRule();
 ```
 
-```java
-/*
-* traverse the abstract syntax tree (AST) with an ANTLR visitor
-*/
-final io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>() {
-	/*
-	 * exemplary callback function for identification division
-	 */
-	@Override
-	public Boolean visitIdentificationDivision(
-			final io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext ctx) {
-		return visitChildren(ctx);
-	}
-};
-
-visitor.visit(ctx);
-```
-
-### Abstract Semantic Graph Parsing
+### Abstract Semantic Graph (ASG) parsing
 
 
 ```java
 io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
 
+final java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/variable/HelloWorldVar.cbl");
+final io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.VARIABLE;
 final io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null, format);
-Collection<io.proleap.cobol.parser.metamodel.CopyBook> copyBooks = program.getCopyBooks();
+
+/*
+ * traverse the AST with an ANTLR visitor
+ */
+final io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>() {
+  /*
+   * exemplary callback function for IDENTIFICATION DIVISION
+   */
+  @Override
+  public Boolean visitIdentificationDivision(final io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext ctx) {
+    final io.proleap.cobol.parser.metamodel.IdentificationDivision asgElement = (io.proleap.cobol.parser.metamodel.IdentificationDivision) io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getSemanticGraphElementRegistry().getSemanticGraphElement(ctx);
+    return visitChildren(ctx);
+  }
+};
+
+for (final io.proleap.cobol.parser.metamodel.CopyBook copyBook : program.getCopyBooks()) {
+  visitor.visit(copyBook.getCtx());
+}
 ```
 
 
