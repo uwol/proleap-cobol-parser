@@ -8,8 +8,7 @@
 
 package io.proleap.cobol.parser.metamodel.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
-
+import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
 import io.proleap.cobol.parser.metamodel.CobolScope;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.IdentificationDivision;
@@ -17,10 +16,15 @@ import io.proleap.cobol.parser.metamodel.ProgramIdParagraph;
 
 public class IdentificationDivisionImpl extends CobolScopedElementImpl implements IdentificationDivision {
 
+	protected final IdentificationDivisionContext ctx;
+
 	protected ProgramIdParagraph programIdParagraph;
 
-	public IdentificationDivisionImpl(final CopyBook copyBook, final CobolScope superScope, final ParseTree ctx) {
+	public IdentificationDivisionImpl(final CopyBook copyBook, final CobolScope superScope,
+			final IdentificationDivisionContext ctx) {
 		super(copyBook, superScope, ctx);
+
+		this.ctx = ctx;
 	}
 
 	@Override

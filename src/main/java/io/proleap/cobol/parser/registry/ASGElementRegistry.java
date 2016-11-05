@@ -14,7 +14,7 @@ import io.proleap.cobol.parser.metamodel.ASGElement;
 
 public interface ASGElementRegistry {
 
-	void addSemanticGraphElement(ASGElement asgElement);
+	void addASGElement(ASGElement asgElement);
 
 	ASGElement getASGElement(ParseTree ctx);
 

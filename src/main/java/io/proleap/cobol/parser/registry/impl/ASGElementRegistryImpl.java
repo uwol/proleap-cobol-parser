@@ -21,7 +21,7 @@ public class ASGElementRegistryImpl implements ASGElementRegistry {
 	final protected Map<ParseTree, ASGElement> asgElements = new HashMap<ParseTree, ASGElement>();
 
 	@Override
-	public void addSemanticGraphElement(final ASGElement asgElement) {
+	public void addASGElement(final ASGElement asgElement) {
 		assert asgElement != null;
 
 		final ParseTree ctx = asgElement.getCtx();

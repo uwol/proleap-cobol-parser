@@ -25,7 +25,7 @@ public class CobolExpressionVisitorImpl extends AbstractCobolParserVisitorImpl {
 
 	@Override
 	public Boolean visitDisplayStatement(@NotNull final Cobol85Parser.DisplayStatementContext ctx) {
-		final CobolScope scope = findCobol85Scope(ctx);
+		final CobolScope scope = findScope(ctx);
 
 		scope.addDisplayStatement(ctx);
 
@@ -34,7 +34,7 @@ public class CobolExpressionVisitorImpl extends AbstractCobolParserVisitorImpl {
 
 	@Override
 	public Boolean visitStopStatement(@NotNull final Cobol85Parser.StopStatementContext ctx) {
-		final CobolScope scope = findCobol85Scope(ctx);
+		final CobolScope scope = findScope(ctx);
 
 		scope.addStopStatement(ctx);
 

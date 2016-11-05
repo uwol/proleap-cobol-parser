@@ -8,21 +8,23 @@
 
 package io.proleap.cobol.parser.metamodel.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
-
+import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolScope;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.ProgramIdParagraph;
 
 public class ProgramIdParagraphImpl extends CobolScopedElementImpl implements ProgramIdParagraph {
 
+	protected final ProgramIdParagraphContext ctx;
+
 	protected String name;
 
 	public ProgramIdParagraphImpl(final String name, final CopyBook copyBook, final CobolScope superScope,
-			final ParseTree ctx) {
+			final ProgramIdParagraphContext ctx) {
 		super(copyBook, superScope, ctx);
 
 		this.name = name;
+		this.ctx = ctx;
 	}
 
 	@Override

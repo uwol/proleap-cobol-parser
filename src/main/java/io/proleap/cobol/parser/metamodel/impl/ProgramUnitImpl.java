@@ -8,8 +8,7 @@
 
 package io.proleap.cobol.parser.metamodel.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
-
+import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
 import io.proleap.cobol.parser.metamodel.CobolScope;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.IdentificationDivision;
@@ -18,12 +17,16 @@ import io.proleap.cobol.parser.metamodel.ProgramUnit;
 
 public class ProgramUnitImpl extends CobolScopeImpl implements ProgramUnit {
 
+	protected final ProgramUnitContext ctx;
+
 	protected IdentificationDivision identificationDivision;
 
 	protected ProcedureDivision procedureDivision;
 
-	public ProgramUnitImpl(final CopyBook copyBook, final CobolScope superScope, final ParseTree ctx) {
+	public ProgramUnitImpl(final CopyBook copyBook, final CobolScope superScope, final ProgramUnitContext ctx) {
 		super(copyBook, superScope, ctx);
+
+		this.ctx = ctx;
 	}
 
 	@Override

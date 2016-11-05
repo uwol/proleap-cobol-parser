@@ -43,7 +43,7 @@ public class CopyBookImpl extends CobolScopeImpl implements CopyBook {
 
 	@Override
 	public ProgramUnit addProgramUnit(final ProgramUnitContext ctx) {
-		ProgramUnit result = (ProgramUnit) getSemanticGraphElement(ctx);
+		ProgramUnit result = (ProgramUnit) getASGElement(ctx);
 
 		if (result == null) {
 			result = new ProgramUnitImpl(this, this, ctx);

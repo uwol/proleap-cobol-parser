@@ -46,7 +46,7 @@ Example
 			(identificationDivision Identification Division .
 				(programIdParagraph Program-ID .
 					(programName
-						(cobolWord HELLOWORLD)) . ))
+						(cobolWord HELLOWORLD)) .))
 			(procedureDivision Procedure Division .
 				(procedureDivisionBody
 					(paragraphs
@@ -91,30 +91,40 @@ final org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.C
 */
 final io.proleap.cobol.Cobol85Parser parser = new io.proleap.cobol.Cobol85Parser(tokens);
 final io.proleap.cobol.Cobol85Parser.StartRuleContext ctx = parser.startRule();
+
+/*
+* traverse AST with ANTLR visitor
+*/
+final io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>();
+visitor.visit(ctx);
 ```
 
 ### Abstract Semantic Graph (ASG) parsing
-
 
 ```java
 io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
 
 final java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/variable/HelloWorldVar.cbl");
+
+/*
+* semantic analysis
+*/
 final io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.VARIABLE;
 final io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null, format);
 
+/*
+* traverse AST with ANTLR visitor; exemplary callback function for IDENTIFICATION DIVISION
+*/
 final io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>() {
-  // exemplary callback function for IDENTIFICATION DIVISION
   @Override
   public Boolean visitIdentificationDivision(final io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext ctx) {
-    final io.proleap.cobol.parser.metamodel.IdentificationDivision asgElement = (io.proleap.cobol.parser.metamodel.IdentificationDivision) io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
+    final io.proleap.cobol.parser.metamodel.IdentificationDivision iDiv = (io.proleap.cobol.parser.metamodel.IdentificationDivision) io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
 
     return visitChildren(ctx);
   }
 };
 
 for (final io.proleap.cobol.parser.metamodel.CopyBook copyBook : program.getCopyBooks()) {
-  // traverse AST with ANTLR visitor
   visitor.visit(copyBook.getCtx());
 }
 ```

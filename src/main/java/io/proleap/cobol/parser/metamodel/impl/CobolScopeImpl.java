@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
+import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
@@ -27,6 +28,7 @@ import io.proleap.cobol.parser.metamodel.CobolScopedElement;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.IdentificationDivision;
+import io.proleap.cobol.parser.metamodel.LineLabel;
 import io.proleap.cobol.parser.metamodel.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.ProgramIdParagraph;
 import io.proleap.cobol.parser.metamodel.StopStatement;
@@ -43,7 +45,7 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 
 	@Override
 	public DisplayStatement addDisplayStatement(final DisplayStatementContext ctx) {
-		DisplayStatement result = (DisplayStatement) getSemanticGraphElement(ctx);
+		DisplayStatement result = (DisplayStatement) getASGElement(ctx);
 
 		if (result == null) {
 			result = new DisplayStatementImpl(copyBook, this, ctx);
@@ -56,7 +58,7 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 
 	@Override
 	public IdentificationDivision addIdentificationDivision(final IdentificationDivisionContext ctx) {
-		IdentificationDivision result = (IdentificationDivision) getSemanticGraphElement(ctx);
+		IdentificationDivision result = (IdentificationDivision) getASGElement(ctx);
 
 		if (result == null) {
 			result = new IdentificationDivisionImpl(copyBook, this, ctx);
@@ -72,8 +74,22 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 	}
 
 	@Override
+	public LineLabel addLineLabel(final ParagraphNameContext ctx) {
+		LineLabel result = (LineLabel) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new LineLabelImpl(name, copyBook, this, ctx);
+
+			storeScopedElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public ProcedureDivision addProcedureDivision(final ProcedureDivisionContext ctx) {
-		ProcedureDivision result = (ProcedureDivision) getSemanticGraphElement(ctx);
+		ProcedureDivision result = (ProcedureDivision) getASGElement(ctx);
 
 		if (result == null) {
 			result = new ProcedureDivisionImpl(copyBook, this, ctx);
@@ -86,7 +102,7 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 
 	@Override
 	public ProgramIdParagraph addProgramIdParagraph(final ProgramIdParagraphContext ctx) {
-		ProgramIdParagraph result = (ProgramIdParagraph) getSemanticGraphElement(ctx);
+		ProgramIdParagraph result = (ProgramIdParagraph) getASGElement(ctx);
 
 		if (result == null) {
 			final String name = determineName(ctx);
@@ -101,7 +117,7 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 
 	@Override
 	public StopStatement addStopStatement(final StopStatementContext ctx) {
-		StopStatement result = (StopStatement) getSemanticGraphElement(ctx);
+		StopStatement result = (StopStatement) getASGElement(ctx);
 
 		if (result == null) {
 			result = new StopStatementImpl(copyBook, this, ctx);
@@ -116,7 +132,7 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 		return CobolParserContext.getInstance().getNameResolver().determineName(ctx);
 	}
 
-	protected ASGElement getSemanticGraphElement(final ParseTree ctx) {
+	protected ASGElement getASGElement(final ParseTree ctx) {
 		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
 		return result;
 	}
@@ -125,7 +141,7 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 		assert asgElement != null;
 		assert asgElement.getCtx() != null;
 
-		CobolParserContext.getInstance().getASGElementRegistry().addSemanticGraphElement(asgElement);
+		CobolParserContext.getInstance().getASGElementRegistry().addASGElement(asgElement);
 	}
 
 	protected void storeScopedElement(final CobolScopedElement scopedElement) {

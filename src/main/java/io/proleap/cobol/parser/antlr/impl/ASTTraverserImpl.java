@@ -94,13 +94,13 @@ public class ASTTraverserImpl implements ASTTraverser {
 	}
 
 	@Override
-	public ASGElement findParentSemanticGraphElement(final ParseTree from,
+	public ASGElement findParentASGElement(final ParseTree from,
 			final ASGElementRegistry asgElementRegistry) {
 		return findParent(ASGElement.class, from, asgElementRegistry);
 	}
 
 	@Override
-	public List<ASGElement> findSemanticGraphElementChildren(final ParseTree from,
+	public List<ASGElement> findASGElementChildren(final ParseTree from,
 			final ASGElementRegistry asgElementRegistry) {
 		return findChildren(ASGElement.class, from, asgElementRegistry);
 	}

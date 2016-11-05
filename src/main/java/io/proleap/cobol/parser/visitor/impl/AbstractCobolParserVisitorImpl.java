@@ -12,9 +12,9 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.Cobol85BaseVisitor;
 import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
+import io.proleap.cobol.parser.metamodel.ASGElement;
 import io.proleap.cobol.parser.metamodel.CobolScope;
 import io.proleap.cobol.parser.metamodel.CopyBook;
-import io.proleap.cobol.parser.metamodel.ASGElement;
 import io.proleap.cobol.parser.registry.ASGElementRegistry;
 import io.proleap.cobol.parser.visitor.ParserVisitor;
 
@@ -26,16 +26,13 @@ public abstract class AbstractCobolParserVisitorImpl extends Cobol85BaseVisitor<
 		this.copyBook = copyBook;
 	}
 
-	protected CobolScope findCobol85Scope(final ParseTree ctx) {
-		final ASGElementRegistry registry = CobolParserContext.getInstance()
-				.getASGElementRegistry();
+	protected CobolScope findScope(final ParseTree ctx) {
+		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
 		return CobolParserContext.getInstance().getAstTraverser().findParent(CobolScope.class, ctx, registry);
 	}
 
-	protected ASGElement getSemanticGraphElement(final ParseTree ctx) {
-		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry()
-				.getASGElement(ctx);
+	protected ASGElement getASGElement(final ParseTree ctx) {
+		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
 		return result;
 	}
-
 }

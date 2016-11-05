@@ -11,6 +11,7 @@ package io.proleap.cobol.parser.visitor.impl;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import io.proleap.cobol.Cobol85Parser;
+import io.proleap.cobol.parser.metamodel.CobolScope;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 
 /**
@@ -25,6 +26,15 @@ public class CobolDeclarationVisitorImpl extends AbstractCobolParserVisitorImpl 
 	@Override
 	public Boolean visitIdentificationDivision(@NotNull final Cobol85Parser.IdentificationDivisionContext ctx) {
 		copyBook.addIdentificationDivision(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitParagraphName(@NotNull final Cobol85Parser.ParagraphNameContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addLineLabel(ctx);
 
 		return visitChildren(ctx);
 	}

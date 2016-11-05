@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel;
 
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
+import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
@@ -19,6 +20,8 @@ public interface CobolScope extends CobolScopedElement {
 	DisplayStatement addDisplayStatement(DisplayStatementContext ctx);
 
 	IdentificationDivision addIdentificationDivision(IdentificationDivisionContext ctx);
+
+	LineLabel addLineLabel(ParagraphNameContext ctx);
 
 	ProcedureDivision addProcedureDivision(ProcedureDivisionContext ctx);
 
