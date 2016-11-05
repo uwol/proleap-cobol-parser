@@ -31,10 +31,19 @@ public class CobolDeclarationVisitorImpl extends AbstractCobolParserVisitorImpl 
 	}
 
 	@Override
+	public Boolean visitParagraph(@NotNull final Cobol85Parser.ParagraphContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addParagraph(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitParagraphName(@NotNull final Cobol85Parser.ParagraphNameContext ctx) {
 		final CobolScope scope = findScope(ctx);
 
-		scope.addLineLabel(ctx);
+		scope.addParagraphName(ctx);
 
 		return visitChildren(ctx);
 	}

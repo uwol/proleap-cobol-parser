@@ -9,7 +9,9 @@
 package io.proleap.cobol.parser.metamodel.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.logging.log4j.LogManager;
@@ -17,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
+import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
@@ -28,7 +31,8 @@ import io.proleap.cobol.parser.metamodel.CobolScopedElement;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.IdentificationDivision;
-import io.proleap.cobol.parser.metamodel.LineLabel;
+import io.proleap.cobol.parser.metamodel.Paragraph;
+import io.proleap.cobol.parser.metamodel.ParagraphName;
 import io.proleap.cobol.parser.metamodel.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.ProgramIdParagraph;
 import io.proleap.cobol.parser.metamodel.StopStatement;
@@ -36,6 +40,8 @@ import io.proleap.cobol.parser.metamodel.StopStatement;
 public abstract class CobolScopeImpl extends CobolScopedElementImpl implements CobolScope {
 
 	private final static Logger LOG = LogManager.getLogger(CobolScopeImpl.class);
+
+	protected Map<String, Paragraph> paragraphs = new HashMap<String, Paragraph>();
 
 	protected final List<CobolScopedElement> scopedElements = new ArrayList<CobolScopedElement>();
 
@@ -74,12 +80,30 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 	}
 
 	@Override
-	public LineLabel addLineLabel(final ParagraphNameContext ctx) {
-		LineLabel result = (LineLabel) getASGElement(ctx);
+	public Paragraph addParagraph(final ParagraphContext ctx) {
+		Paragraph result = (Paragraph) getASGElement(ctx);
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new LineLabelImpl(name, copyBook, this, ctx);
+			result = new ParagraphImpl(name, copyBook, this, ctx);
+
+			storeScopedElement(result);
+			paragraphs.put(name, result);
+
+			final ParagraphName paragraphName = addParagraphName(ctx.paragraphName());
+			result.addParagraphName(paragraphName);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ParagraphName addParagraphName(final ParagraphNameContext ctx) {
+		ParagraphName result = (ParagraphName) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new ParagraphNameImpl(name, copyBook, this, ctx);
 
 			storeScopedElement(result);
 		}
@@ -135,6 +159,11 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 	protected ASGElement getASGElement(final ParseTree ctx) {
 		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
 		return result;
+	}
+
+	@Override
+	public Paragraph getParagraph(final String name) {
+		return paragraphs.get(name);
 	}
 
 	protected void registerASGElement(final ASGElement asgElement) {

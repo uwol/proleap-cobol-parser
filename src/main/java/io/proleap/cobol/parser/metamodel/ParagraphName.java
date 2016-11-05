@@ -8,6 +8,6 @@
 
 package io.proleap.cobol.parser.metamodel;
 
-public interface LineLabel extends CobolScopedElement, Declaration {
+public interface ParagraphName extends CobolScopedElement, Declaration {
 
 }

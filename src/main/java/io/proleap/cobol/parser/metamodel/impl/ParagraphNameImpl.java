@@ -11,15 +11,15 @@ package io.proleap.cobol.parser.metamodel.impl;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.parser.metamodel.CobolScope;
 import io.proleap.cobol.parser.metamodel.CopyBook;
-import io.proleap.cobol.parser.metamodel.LineLabel;
+import io.proleap.cobol.parser.metamodel.ParagraphName;
 
-public class LineLabelImpl extends CobolScopedElementImpl implements LineLabel {
+public class ParagraphNameImpl extends CobolScopedElementImpl implements ParagraphName {
 
 	protected final ParagraphNameContext ctx;
 
 	protected final String name;
 
-	public LineLabelImpl(final String name, final CopyBook copyBook, final CobolScope superScope,
+	public ParagraphNameImpl(final String name, final CopyBook copyBook, final CobolScope superScope,
 			final ParagraphNameContext ctx) {
 		super(copyBook, superScope, ctx);
 
