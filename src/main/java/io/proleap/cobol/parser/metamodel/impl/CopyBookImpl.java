@@ -37,7 +37,7 @@ public class CopyBookImpl extends CobolScopeImpl implements CopyBook {
 		this.ctx = ctx;
 		copyBook = this;
 
-		registerSemanticGraphElement(this);
+		registerASGElement(this);
 		program.registerCopyBook(this);
 	}
 

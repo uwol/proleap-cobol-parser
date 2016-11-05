@@ -121,7 +121,7 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 		return result;
 	}
 
-	protected void registerSemanticGraphElement(final ASGElement asgElement) {
+	protected void registerASGElement(final ASGElement asgElement) {
 		assert asgElement != null;
 		assert asgElement.getCtx() != null;
 
@@ -132,7 +132,7 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 		assert scopedElement != null;
 		assert scopedElement.getCtx() != null;
 
-		registerSemanticGraphElement(scopedElement);
+		registerASGElement(scopedElement);
 
 		scopedElements.add(scopedElement);
 	}

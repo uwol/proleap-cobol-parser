@@ -29,7 +29,7 @@ import io.proleap.cobol.parser.runner.CobolParserRunner;
 import io.proleap.cobol.parser.visitor.ParserVisitor;
 import io.proleap.cobol.parser.visitor.impl.CobolDeclarationVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolExpressionVisitorImpl;
-import io.proleap.cobol.parser.visitor.impl.CobolProgramUnitVisitorImpl;
+import io.proleap.cobol.parser.visitor.impl.CobolUnitVisitorImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
 
@@ -125,9 +125,9 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			final String copyBookName = getCopyBookName(inputFile);
 
 			// analyze contained copy books
-			final ParserVisitor visitor = new CobolProgramUnitVisitorImpl(program, copyBookName);
+			final ParserVisitor visitor = new CobolUnitVisitorImpl(program, copyBookName);
 
-			LOG.info("Collecting types in file {}.", inputFile.getName());
+			LOG.info("Collecting units in file {}.", inputFile.getName());
 			visitor.visit(ctx);
 		} else {
 			LOG.info("Ignoring file {}.", inputFile.getName());
