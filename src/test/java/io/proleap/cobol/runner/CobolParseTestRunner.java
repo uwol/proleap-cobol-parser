@@ -15,7 +15,7 @@ import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public interface CobolParseTestRunner {
 
-	void parseDirectory(File inputDirectory, final CobolSourceFormatEnum format) throws IOException;
+	void parseDirectory(File inputDirectory, CobolSourceFormatEnum format) throws IOException;
 
 	void parseFile(File inputFile, CobolSourceFormatEnum format) throws IOException;
 

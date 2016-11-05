@@ -15,21 +15,20 @@ import java.util.List;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.parser.antlr.ASTTraverser;
-import io.proleap.cobol.parser.metamodel.SemanticGraphElement;
-import io.proleap.cobol.parser.registry.SemanticGraphElementRegistry;
+import io.proleap.cobol.parser.metamodel.ASGElement;
+import io.proleap.cobol.parser.registry.ASGElementRegistry;
 
 public class ASTTraverserImpl implements ASTTraverser {
 
 	@Override
-	public <T extends SemanticGraphElement> Collection<T> findAncestors(
-			final Class<? extends SemanticGraphElement> type, final ParseTree from,
-			final SemanticGraphElementRegistry semanticGraphElementRegistry) {
+	public <T extends ASGElement> Collection<T> findAncestors(final Class<? extends ASGElement> type,
+			final ParseTree from, final ASGElementRegistry asgElementRegistry) {
 		ParseTree currentCtx = from;
 
 		final Collection<T> result = new ArrayList<T>();
 
 		while (currentCtx != null) {
-			final T parent = findParent(type, currentCtx, semanticGraphElementRegistry);
+			final T parent = findParent(type, currentCtx, asgElementRegistry);
 
 			if (parent != null) {
 				currentCtx = parent.getCtx();
@@ -44,17 +43,16 @@ public class ASTTraverserImpl implements ASTTraverser {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T extends SemanticGraphElement> List<T> findChildren(final Class<? extends SemanticGraphElement> type,
-			final ParseTree ctx, final SemanticGraphElementRegistry semanticGraphElementRegistry) {
+	public <T extends ASGElement> List<T> findChildren(final Class<? extends ASGElement> type, final ParseTree ctx,
+			final ASGElementRegistry asgElementRegistry) {
 		final List<ParseTree> children = findChildren(ctx);
 		final List<T> result = new ArrayList<T>();
 
 		for (final ParseTree currentChild : children) {
-			final SemanticGraphElement semanticGraphElement = semanticGraphElementRegistry
-					.getSemanticGraphElement(currentChild);
+			final ASGElement asgElement = asgElementRegistry.getASGElement(currentChild);
 
-			if (semanticGraphElement != null && type.isAssignableFrom(semanticGraphElement.getClass())) {
-				result.add((T) semanticGraphElement);
+			if (asgElement != null && type.isAssignableFrom(asgElement.getClass())) {
+				result.add((T) asgElement);
 			}
 		}
 
@@ -76,8 +74,8 @@ public class ASTTraverserImpl implements ASTTraverser {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T extends SemanticGraphElement> T findParent(final Class<? extends SemanticGraphElement> type,
-			final ParseTree from, final SemanticGraphElementRegistry semanticGraphElementRegistry) {
+	public <T extends ASGElement> T findParent(final Class<? extends ASGElement> type, final ParseTree from,
+			final ASGElementRegistry asgElementRegistry) {
 		T result = null;
 
 		ParseTree currentCtx = from;
@@ -85,11 +83,10 @@ public class ASTTraverserImpl implements ASTTraverser {
 		while (result == null && currentCtx != null) {
 			currentCtx = currentCtx.getParent();
 
-			final SemanticGraphElement semanticGraphElement = semanticGraphElementRegistry
-					.getSemanticGraphElement(currentCtx);
+			final ASGElement asgElement = asgElementRegistry.getASGElement(currentCtx);
 
-			if (semanticGraphElement != null && type.isAssignableFrom(semanticGraphElement.getClass())) {
-				result = (T) semanticGraphElement;
+			if (asgElement != null && type.isAssignableFrom(asgElement.getClass())) {
+				result = (T) asgElement;
 			}
 		}
 
@@ -97,14 +94,14 @@ public class ASTTraverserImpl implements ASTTraverser {
 	}
 
 	@Override
-	public SemanticGraphElement findParentSemanticGraphElement(final ParseTree from,
-			final SemanticGraphElementRegistry semanticGraphElementRegistry) {
-		return findParent(SemanticGraphElement.class, from, semanticGraphElementRegistry);
+	public ASGElement findParentSemanticGraphElement(final ParseTree from,
+			final ASGElementRegistry asgElementRegistry) {
+		return findParent(ASGElement.class, from, asgElementRegistry);
 	}
 
 	@Override
-	public List<SemanticGraphElement> findSemanticGraphElementChildren(final ParseTree from,
-			final SemanticGraphElementRegistry semanticGraphElementRegistry) {
-		return findChildren(SemanticGraphElement.class, from, semanticGraphElementRegistry);
+	public List<ASGElement> findSemanticGraphElementChildren(final ParseTree from,
+			final ASGElementRegistry asgElementRegistry) {
+		return findChildren(ASGElement.class, from, asgElementRegistry);
 	}
 }

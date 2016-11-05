@@ -103,21 +103,18 @@ final java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/c
 final io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.VARIABLE;
 final io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null, format);
 
-/*
- * traverse the AST with an ANTLR visitor
- */
 final io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>() {
-  /*
-   * exemplary callback function for IDENTIFICATION DIVISION
-   */
+  // exemplary callback function for IDENTIFICATION DIVISION
   @Override
   public Boolean visitIdentificationDivision(final io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext ctx) {
-    final io.proleap.cobol.parser.metamodel.IdentificationDivision asgElement = (io.proleap.cobol.parser.metamodel.IdentificationDivision) io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getSemanticGraphElementRegistry().getSemanticGraphElement(ctx);
+    final io.proleap.cobol.parser.metamodel.IdentificationDivision asgElement = (io.proleap.cobol.parser.metamodel.IdentificationDivision) io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
+
     return visitChildren(ctx);
   }
 };
 
 for (final io.proleap.cobol.parser.metamodel.CopyBook copyBook : program.getCopyBooks()) {
+  // traverse AST with ANTLR visitor
   visitor.visit(copyBook.getCtx());
 }
 ```

@@ -10,12 +10,12 @@ package io.proleap.cobol.parser.registry;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.SemanticGraphElement;
+import io.proleap.cobol.parser.metamodel.ASGElement;
 
-public interface SemanticGraphElementRegistry {
+public interface ASGElementRegistry {
 
-	void addSemanticGraphElement(SemanticGraphElement semanticGraphElement);
+	void addSemanticGraphElement(ASGElement asgElement);
 
-	SemanticGraphElement getSemanticGraphElement(ParseTree ctx);
+	ASGElement getASGElement(ParseTree ctx);
 
 }

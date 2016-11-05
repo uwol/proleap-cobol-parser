@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.parser.metamodel;
 
-public interface CobolScopedElement extends SemanticGraphElement {
+public interface CobolScopedElement extends ASGElement {
 
 	CopyBook getCopyBook();
 }

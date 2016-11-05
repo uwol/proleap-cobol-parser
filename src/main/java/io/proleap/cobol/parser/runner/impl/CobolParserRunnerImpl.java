@@ -38,15 +38,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	protected final static Logger LOG = LogManager.getLogger(CobolParserRunnerImpl.class);
 
 	protected void analyze(final Program program) {
-
-		/*
-		 * analyze declarations
-		 */
 		analyzeDeclarations(program);
-
-		/*
-		 * analyze expressions
-		 */
 		analyzeExpressions(program);
 	}
 
@@ -64,9 +56,6 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			final CobolSourceFormat format) throws IOException {
 		final Program program = new ProgramImpl();
 
-		/*
-		 * parse
-		 */
 		for (final File inputFile : inputDirectory.listFiles()) {
 			parseFile(inputFile, program, dialect, format);
 		}
@@ -115,8 +104,8 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			final File libDirectory = inputFile.getParentFile();
 
 			// preprocess input stream
-			final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor()
-					.process(inputFile, libDirectory, dialect, format);
+			final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile,
+					libDirectory, dialect, format);
 
 			LOG.info("Parsing file {}.", inputFile.getName());
 

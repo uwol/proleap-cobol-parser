@@ -14,7 +14,7 @@ import io.proleap.cobol.parser.metamodel.CobolScope;
 import io.proleap.cobol.parser.metamodel.CobolScopedElement;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 
-public abstract class CobolScopedElementImpl extends SemanticGraphElementImpl implements CobolScopedElement {
+public abstract class CobolScopedElementImpl extends ASGElementImpl implements CobolScopedElement {
 
 	protected CopyBook copyBook;
 

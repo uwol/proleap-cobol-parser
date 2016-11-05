@@ -15,11 +15,11 @@ import org.antlr.v4.runtime.tree.ParseTree;
 /**
  * an element of the ASG that corresponds to an element in the AST.
  */
-public interface SemanticGraphElement extends ModelElement {
+public interface ASGElement extends ModelElement {
 
-	Collection<SemanticGraphElement> getChildren();
+	Collection<ASGElement> getChildren();
 
 	ParseTree getCtx();
 
-	SemanticGraphElement getParent();
+	ASGElement getParent();
 }

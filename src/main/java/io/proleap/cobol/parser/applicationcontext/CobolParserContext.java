@@ -10,7 +10,7 @@ package io.proleap.cobol.parser.applicationcontext;
 
 import io.proleap.cobol.parser.antlr.ASTTraverser;
 import io.proleap.cobol.parser.antlr.NameResolver;
-import io.proleap.cobol.parser.registry.SemanticGraphElementRegistry;
+import io.proleap.cobol.parser.registry.ASGElementRegistry;
 import io.proleap.cobol.parser.runner.CobolParserRunner;
 
 public class CobolParserContext {
@@ -25,16 +25,20 @@ public class CobolParserContext {
 		return instance;
 	}
 
+	protected ASGElementRegistry asgElementRegistry;
+
 	protected ASTTraverser astTraverser;
 
 	protected NameResolver nameResolver;
 
 	protected CobolParserRunner parserRunner;
 
-	protected SemanticGraphElementRegistry semanticGraphElementRegistry;
-
 	private CobolParserContext() {
 		super();
+	}
+
+	public ASGElementRegistry getASGElementRegistry() {
+		return asgElementRegistry;
 	}
 
 	public ASTTraverser getAstTraverser() {
@@ -49,12 +53,12 @@ public class CobolParserContext {
 		return parserRunner;
 	}
 
-	public SemanticGraphElementRegistry getSemanticGraphElementRegistry() {
-		return semanticGraphElementRegistry;
-	}
-
 	public void reset() {
 		instance = null;
+	}
+
+	public void setASGElementRegistry(final ASGElementRegistry asgElementRegistry) {
+		this.asgElementRegistry = asgElementRegistry;
 	}
 
 	public void setAstTraverser(final ASTTraverser astTraverser) {
@@ -67,10 +71,6 @@ public class CobolParserContext {
 
 	public void setParserRunner(final CobolParserRunner parserRunner) {
 		this.parserRunner = parserRunner;
-	}
-
-	public void setSemanticGraphElementRegistry(final SemanticGraphElementRegistry semanticGraphElementRegistry) {
-		this.semanticGraphElementRegistry = semanticGraphElementRegistry;
 	}
 
 }
