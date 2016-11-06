@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
 import io.proleap.cobol.parser.antlr.NameResolver;
@@ -47,10 +48,24 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((ParagraphContext) ctx);
 		} else if (ctx instanceof ParagraphNameContext) {
 			result = determineName((ParagraphNameContext) ctx);
+		} else if (ctx instanceof ProcedureNameContext) {
+			result = determineName((ProcedureNameContext) ctx);
 		} else if (ctx instanceof ProgramIdParagraphContext) {
 			result = determineName((ProgramIdParagraphContext) ctx);
 		} else if (ctx instanceof ProgramNameContext) {
 			result = determineName((ProgramNameContext) ctx);
+		} else {
+			result = null;
+		}
+
+		return result;
+	}
+
+	public String determineName(final ProcedureNameContext ctx) {
+		final String result;
+
+		if (ctx != null) {
+			result = ctx.getText();
 		} else {
 			result = null;
 		}

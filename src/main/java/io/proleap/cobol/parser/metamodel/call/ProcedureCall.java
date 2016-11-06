@@ -6,11 +6,11 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel;
+package io.proleap.cobol.parser.metamodel.call;
 
-public interface CobolScopedElement extends ASGElement {
+import io.proleap.cobol.parser.metamodel.Paragraph;
 
-	CopyBook getCopyBook();
+public interface ProcedureCall extends Call {
 
-	CobolScope getSuperScope();
+	Paragraph getParagraph();
 }

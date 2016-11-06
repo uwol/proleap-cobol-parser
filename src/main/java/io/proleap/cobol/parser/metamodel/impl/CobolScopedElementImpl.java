@@ -18,15 +18,23 @@ public abstract class CobolScopedElementImpl extends ASGElementImpl implements C
 
 	protected CopyBook copyBook;
 
+	protected final CobolScope superScope;
+
 	public CobolScopedElementImpl(final CopyBook copyBook, final CobolScope superScope, final ParseTree ctx) {
 		super(ctx);
 
 		this.copyBook = copyBook;
+		this.superScope = superScope;
 	}
 
 	@Override
 	public CopyBook getCopyBook() {
 		return copyBook;
+	}
+
+	@Override
+	public CobolScope getSuperScope() {
+		return superScope;
 	}
 
 }

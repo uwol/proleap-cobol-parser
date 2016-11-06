@@ -33,6 +33,24 @@ public class CobolExpressionVisitorImpl extends AbstractCobolParserVisitorImpl {
 	}
 
 	@Override
+	public Boolean visitPerformProcedureStatement(@NotNull final Cobol85Parser.PerformProcedureStatementContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addPerformProcedureStatement(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitPerformStatement(@NotNull final Cobol85Parser.PerformStatementContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addPerformStatement(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitStopStatement(@NotNull final Cobol85Parser.StopStatementContext ctx) {
 		final CobolScope scope = findScope(ctx);
 

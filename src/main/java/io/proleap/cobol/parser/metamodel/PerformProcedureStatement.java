@@ -8,9 +8,15 @@
 
 package io.proleap.cobol.parser.metamodel;
 
-public interface CobolScopedElement extends ASGElement {
+import java.util.List;
 
-	CopyBook getCopyBook();
+import io.proleap.cobol.parser.metamodel.call.Call;
 
-	CobolScope getSuperScope();
+public interface PerformProcedureStatement extends CobolScopedElement {
+
+	void addCall(Call call);
+
+	void addCalls(List<Call> calls);
+
+	List<Call> getCalls();
 }

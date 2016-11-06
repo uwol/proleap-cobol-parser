@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.parser.metamodel;
 
-public interface CobolScopedElement extends ASGElement {
+public interface PerformStatement extends CobolScopedElement {
 
-	CopyBook getCopyBook();
+	PerformProcedureStatement getPerformProcedureStatement();
 
-	CobolScope getSuperScope();
+	void setPerformProcedureStatement(PerformProcedureStatement performProcedureStatement);
 }

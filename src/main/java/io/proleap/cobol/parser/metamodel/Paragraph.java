@@ -8,9 +8,17 @@
 
 package io.proleap.cobol.parser.metamodel;
 
-public interface Paragraph extends CobolScope, Declaration {
+import java.util.List;
+
+import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
+
+public interface Paragraph extends CobolScopedElement, Declaration {
 
 	void addParagraphName(ParagraphName paragraphName);
 
+	void addProcedureCall(ProcedureCall procedureCall);
+
 	ParagraphName getParagraphName();
+
+	List<ProcedureCall> getProcedureCalls();
 }

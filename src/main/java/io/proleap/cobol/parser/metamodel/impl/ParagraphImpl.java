@@ -8,19 +8,25 @@
 
 package io.proleap.cobol.parser.metamodel.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolScope;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Paragraph;
 import io.proleap.cobol.parser.metamodel.ParagraphName;
+import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
 
-public class ParagraphImpl extends CobolScopeImpl implements Paragraph {
+public class ParagraphImpl extends CobolScopedElementImpl implements Paragraph {
 
 	protected final ParagraphContext ctx;
 
 	protected final String name;
 
 	protected ParagraphName paragraphName;
+
+	protected final List<ProcedureCall> procedureCalls = new ArrayList<ProcedureCall>();
 
 	public ParagraphImpl(final String name, final CopyBook copyBook, final CobolScope superScope,
 			final ParagraphContext ctx) {
@@ -36,6 +42,11 @@ public class ParagraphImpl extends CobolScopeImpl implements Paragraph {
 	}
 
 	@Override
+	public void addProcedureCall(final ProcedureCall procedureCall) {
+		procedureCalls.add(procedureCall);
+	}
+
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -43,6 +54,11 @@ public class ParagraphImpl extends CobolScopeImpl implements Paragraph {
 	@Override
 	public ParagraphName getParagraphName() {
 		return paragraphName;
+	}
+
+	@Override
+	public List<ProcedureCall> getProcedureCalls() {
+		return procedureCalls;
 	}
 
 	@Override
