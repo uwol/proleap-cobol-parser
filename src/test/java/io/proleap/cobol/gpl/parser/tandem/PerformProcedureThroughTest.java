@@ -1,4 +1,4 @@
-package io.proleap.cobol.parser.tandem;
+package io.proleap.cobol.gpl.parser.tandem;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
