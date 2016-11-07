@@ -20,6 +20,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
@@ -51,10 +52,14 @@ import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
 import io.proleap.cobol.parser.metamodel.call.impl.ProcedureCallImpl;
 import io.proleap.cobol.parser.metamodel.call.impl.UndefinedCallImpl;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntryImpl;
 
 public abstract class CobolScopeImpl extends CobolScopedElementImpl implements CobolScope {
 
 	private final static Logger LOG = LogManager.getLogger(CobolScopeImpl.class);
+
+	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesByName = new HashMap<String, DataDescriptionEntry>();
 
 	protected List<Paragraph> paragraphs = new ArrayList<Paragraph>();
 
@@ -121,6 +126,22 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 
 				associateProcedureCallWithParagraph(procedureCall, paragraph);
 			}
+		}
+
+		return result;
+	}
+
+	@Override
+	public DataDescriptionEntry addDataDescriptionEntry(final DataDescriptionEntryFormat1Context ctx) {
+		DataDescriptionEntry result = (DataDescriptionEntry) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new DataDescriptionEntryImpl(name, copyBook, this, ctx);
+
+			dataDescriptionEntriesByName.put(name, result);
+
+			storeScopedElement(result);
 		}
 
 		return result;
@@ -291,6 +312,11 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 	protected ASGElement getASGElement(final ParseTree ctx) {
 		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
 		return result;
+	}
+
+	@Override
+	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
+		return dataDescriptionEntriesByName.get(name);
 	}
 
 	/**

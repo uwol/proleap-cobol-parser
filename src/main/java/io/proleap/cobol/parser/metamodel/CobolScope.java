@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
@@ -21,10 +22,13 @@ import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 
 public interface CobolScope extends CobolScopedElement {
 
 	Call addCall(ProcedureNameContext ctx);
+
+	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat1Context ctx);
 
 	DisplayStatement addDisplayStatement(DisplayStatementContext ctx);
 
@@ -43,6 +47,8 @@ public interface CobolScope extends CobolScopedElement {
 	ProgramIdParagraph addProgramIdParagraph(ProgramIdParagraphContext ctx);
 
 	StopStatement addStopStatement(StopStatementContext ctx);
+
+	DataDescriptionEntry getDataDescriptionEntry(String name);
 
 	Paragraph getParagraph(String name);
 
