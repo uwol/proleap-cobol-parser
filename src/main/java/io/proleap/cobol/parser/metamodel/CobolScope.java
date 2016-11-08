@@ -13,6 +13,10 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
+import io.proleap.cobol.Cobol85Parser.IdentifierContext;
+import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
+import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
@@ -23,8 +27,11 @@ import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface CobolScope extends CobolScopedElement {
+
+	Call addCall(IdentifierContext ctx);
 
 	Call addCall(ProcedureNameContext ctx);
 
@@ -33,6 +40,10 @@ public interface CobolScope extends CobolScopedElement {
 	DisplayStatement addDisplayStatement(DisplayStatementContext ctx);
 
 	IdentificationDivision addIdentificationDivision(IdentificationDivisionContext ctx);
+
+	Literal addLiteral(LiteralContext ctx);
+
+	MoveToStatement addMoveToStatement(MoveToStatementContext ctx);
 
 	Paragraph addParagraph(ParagraphContext ctx);
 
@@ -47,6 +58,8 @@ public interface CobolScope extends CobolScopedElement {
 	ProgramIdParagraph addProgramIdParagraph(ProgramIdParagraphContext ctx);
 
 	StopStatement addStopStatement(StopStatementContext ctx);
+
+	ValueStmt addValueStmt(MoveToStatementSendingAreaContext ctx);
 
 	DataDescriptionEntry getDataDescriptionEntry(String name);
 

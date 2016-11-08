@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.parser.metamodel.impl;
 
+import static io.proleap.cobol.parser.util.CastUtils.castDataDescriptionEntry;
 import static io.proleap.cobol.parser.util.CastUtils.castParagraph;
 
 import java.util.ArrayList;
@@ -23,6 +24,10 @@ import org.apache.logging.log4j.Logger;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
+import io.proleap.cobol.Cobol85Parser.IdentifierContext;
+import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
+import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
@@ -39,7 +44,9 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Declaration;
 import io.proleap.cobol.parser.metamodel.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.IdentificationDivision;
+import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.ModelElement;
+import io.proleap.cobol.parser.metamodel.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.NamedElement;
 import io.proleap.cobol.parser.metamodel.Paragraph;
 import io.proleap.cobol.parser.metamodel.ParagraphName;
@@ -49,11 +56,19 @@ import io.proleap.cobol.parser.metamodel.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.ProgramIdParagraph;
 import io.proleap.cobol.parser.metamodel.StopStatement;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
+import io.proleap.cobol.parser.metamodel.call.impl.DataDescriptionEntryCallImpl;
 import io.proleap.cobol.parser.metamodel.call.impl.ProcedureCallImpl;
 import io.proleap.cobol.parser.metamodel.call.impl.UndefinedCallImpl;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntryImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.impl.CallValueStmtImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.impl.ValueStmtDelegateImpl;
 
 public abstract class CobolScopeImpl extends CobolScopedElementImpl implements CobolScope {
 
@@ -74,6 +89,35 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 	}
 
 	@Override
+	public Call addCall(final IdentifierContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			final List<ModelElement> referencedProgramElements = getElements(name);
+			final DataDescriptionEntry dataDescriptionEntry = castDataDescriptionEntry(referencedProgramElements);
+
+			/*
+			 * create call model element
+			 */
+			if (dataDescriptionEntry != null) {
+				final DataDescriptionEntryCall dataDescriptionEntryCall = new DataDescriptionEntryCallImpl(name,
+						dataDescriptionEntry, copyBook, this, ctx);
+
+				associateDataDescriptionEntryCallWithDataDescriptionEntry(dataDescriptionEntryCall,
+						dataDescriptionEntry);
+
+				result = dataDescriptionEntryCall;
+			} else {
+				LOG.warn("call to unknown element {}", name);
+				result = new UndefinedCallImpl(name, copyBook, this, ctx);
+			}
+		}
+
+		return result;
+	}
+
+	@Override
 	public Call addCall(final ProcedureNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
@@ -84,7 +128,6 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 			 * determine referenced element, i. e. variable or procedure
 			 */
 			final List<ModelElement> referencedProgramElements = getElements(name);
-
 			final Paragraph paragraph = castParagraph(referencedProgramElements);
 
 			if (paragraph != null) {
@@ -139,9 +182,8 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 			final String name = determineName(ctx);
 			result = new DataDescriptionEntryImpl(name, copyBook, this, ctx);
 
-			dataDescriptionEntriesByName.put(name, result);
-
 			storeScopedElement(result);
+			dataDescriptionEntriesByName.put(name, result);
 		}
 
 		return result;
@@ -173,6 +215,46 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 		// program id paragraph
 		final ProgramIdParagraph programIdParagraph = addProgramIdParagraph(ctx.programIdParagraph());
 		result.setProgramIdParagraph(programIdParagraph);
+
+		return result;
+	}
+
+	@Override
+	public Literal addLiteral(final LiteralContext ctx) {
+		Literal result = (Literal) getASGElement(ctx);
+
+		if (result == null) {
+			final String value = ctx.getText();
+
+			result = new LiteralImpl(value, copyBook, this, ctx);
+			storeScopedElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public MoveToStatement addMoveToStatement(final MoveToStatementContext ctx) {
+		MoveToStatement result = (MoveToStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new MoveToStatementImpl(copyBook, this, ctx);
+
+			final MoveToStatementSendingAreaContext moveToStatementSendingArea = ctx.moveToStatementSendingArea();
+			final List<IdentifierContext> identifierCtxs = ctx.identifier();
+
+			// sending area value statement
+			final ValueStmt sendingAreaValueStmt = addValueStmt(moveToStatementSendingArea);
+			result.setSendingAreaValueStmt(sendingAreaValueStmt);
+
+			// receiving area calls
+			for (final IdentifierContext identifierCtx : identifierCtxs) {
+				final Call receivingAreaCall = addCall(identifierCtx);
+				result.addReceivingAreaCall(receivingAreaCall);
+			}
+
+			storeScopedElement(result);
+		}
 
 		return result;
 	}
@@ -301,8 +383,65 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 		return result;
 	}
 
+	public ValueStmt addValueStmt(final LiteralContext ctx) {
+		ValueStmt result = (ValueStmt) getASGElement(ctx);
+
+		if (result == null) {
+			result = new LiteralValueStmtImpl(copyBook, this, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ValueStmt addValueStmt(final MoveToStatementSendingAreaContext ctx) {
+		ValueStmt result = (ValueStmt) getASGElement(ctx);
+
+		if (result == null) {
+			/*
+			 * then the delegated value stmt
+			 */
+			final ValueStmt delegatedValueStmt;
+
+			if (ctx.identifier() != null) {
+				delegatedValueStmt = createCallValueStmt(ctx.identifier());
+			} else if (ctx.literal() != null) {
+				delegatedValueStmt = createLiteralValueStmt(ctx.literal());
+			} else {
+				LOG.warn("unknown value stmt {}.", ctx);
+				delegatedValueStmt = null;
+			}
+
+			result = new ValueStmtDelegateImpl(delegatedValueStmt, copyBook, this, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected void associateDataDescriptionEntryCallWithDataDescriptionEntry(
+			final DataDescriptionEntryCall dataDescriptionEntryCall, final DataDescriptionEntry dataDescriptionEntry) {
+		dataDescriptionEntry.addDataDescriptionEntryCall(dataDescriptionEntryCall);
+	}
+
 	protected void associateProcedureCallWithParagraph(final ProcedureCall procedureCall, final Paragraph paragraph) {
 		paragraph.addProcedureCall(procedureCall);
+	}
+
+	protected CallValueStmt createCallValueStmt(final IdentifierContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, copyBook, this, ctx);
+		return result;
+	}
+
+	protected LiteralValueStmt createLiteralValueStmt(final LiteralContext ctx) {
+		final Literal literal = addLiteral(ctx);
+		final LiteralValueStmt result = new LiteralValueStmtImpl(copyBook, this, ctx);
+		result.setLiteral(literal);
+		return result;
 	}
 
 	protected String determineName(final ParseTree ctx) {

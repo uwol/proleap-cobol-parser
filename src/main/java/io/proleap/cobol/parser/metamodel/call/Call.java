@@ -14,8 +14,10 @@ import io.proleap.cobol.parser.metamodel.NamedElement;
 public interface Call extends CobolScopedElement, NamedElement {
 
 	public enum CallType {
-		ProcedureCall, UndefinedCall;
+		DataDescriptionsEntryCall, ProcedureCall, UndefinedCall, VariableCall;
 	}
 
 	CallType getCallType();
+
+	Call unwrap();
 }

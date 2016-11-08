@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
+import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
@@ -38,6 +39,18 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final DataNameContext ctx) {
+		final String result;
+
+		if (ctx != null) {
+			result = ctx.getText();
+		} else {
+			result = null;
+		}
+
+		return result;
+	}
+
+	public String determineName(final IdentifierContext ctx) {
 		final String result;
 
 		if (ctx != null) {
@@ -74,6 +87,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((DataDescriptionEntryFormat1Context) ctx);
 		} else if (ctx instanceof DataNameContext) {
 			result = determineName((DataNameContext) ctx);
+		} else if (ctx instanceof IdentifierContext) {
+			result = determineName((IdentifierContext) ctx);
 		} else if (ctx instanceof ParagraphContext) {
 			result = determineName((ParagraphContext) ctx);
 		} else if (ctx instanceof ParagraphNameContext) {

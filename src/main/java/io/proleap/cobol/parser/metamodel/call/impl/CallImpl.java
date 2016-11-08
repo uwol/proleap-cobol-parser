@@ -34,4 +34,9 @@ public abstract class CallImpl extends CobolScopedElementImpl implements Call {
 	public String toString() {
 		return "name=[" + name + "]";
 	}
+
+	@Override
+	public Call unwrap() {
+		return this;
+	}
 }

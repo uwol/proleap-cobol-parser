@@ -12,8 +12,30 @@ import java.util.Collection;
 
 import io.proleap.cobol.parser.metamodel.ModelElement;
 import io.proleap.cobol.parser.metamodel.Paragraph;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 
 public class CastUtils {
+
+	public static DataDescriptionEntry castDataDescriptionEntry(final Collection<ModelElement> elements) {
+		DataDescriptionEntry result = null;
+
+		if (elements != null) {
+			for (final ModelElement element : elements) {
+				final DataDescriptionEntry dataDescriptionEntry = castDataDescriptionEntry(element);
+
+				if (dataDescriptionEntry != null) {
+					result = dataDescriptionEntry;
+					break;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public static DataDescriptionEntry castDataDescriptionEntry(final ModelElement element) {
+		return element != null && element instanceof DataDescriptionEntry ? (DataDescriptionEntry) element : null;
+	}
 
 	public static Paragraph castParagraph(final Collection<ModelElement> elements) {
 		Paragraph result = null;

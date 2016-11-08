@@ -1595,7 +1595,11 @@ moveStatement :
 ;
 
 moveToStatement :
-	(identifier | literal | otherKeyword) TO identifier+
+	moveToStatementSendingArea TO identifier+
+;
+
+moveToStatementSendingArea :
+	identifier | literal | otherKeyword
 ;
 
 moveCorrespondingToStatement :
