@@ -22,6 +22,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
@@ -62,7 +64,12 @@ import io.proleap.cobol.parser.metamodel.call.impl.DataDescriptionEntryCallImpl;
 import io.proleap.cobol.parser.metamodel.call.impl.ProcedureCallImpl;
 import io.proleap.cobol.parser.metamodel.call.impl.UndefinedCallImpl;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
-import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntryImpl;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry1;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry2;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry3;
+import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntry1Impl;
+import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntry2Impl;
+import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntry3Impl;
 import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
@@ -176,11 +183,41 @@ public abstract class CobolScopeImpl extends CobolScopedElementImpl implements C
 
 	@Override
 	public DataDescriptionEntry addDataDescriptionEntry(final DataDescriptionEntryFormat1Context ctx) {
-		DataDescriptionEntry result = (DataDescriptionEntry) getASGElement(ctx);
+		DataDescriptionEntry1 result = (DataDescriptionEntry1) getASGElement(ctx);
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new DataDescriptionEntryImpl(name, copyBook, this, ctx);
+			result = new DataDescriptionEntry1Impl(name, copyBook, this, ctx);
+
+			storeScopedElement(result);
+			dataDescriptionEntriesByName.put(name, result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public DataDescriptionEntry addDataDescriptionEntry(final DataDescriptionEntryFormat2Context ctx) {
+		DataDescriptionEntry2 result = (DataDescriptionEntry2) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new DataDescriptionEntry2Impl(name, copyBook, this, ctx);
+
+			storeScopedElement(result);
+			dataDescriptionEntriesByName.put(name, result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public DataDescriptionEntry addDataDescriptionEntry(final DataDescriptionEntryFormat3Context ctx) {
+		DataDescriptionEntry3 result = (DataDescriptionEntry3) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new DataDescriptionEntry3Impl(name, copyBook, this, ctx);
 
 			storeScopedElement(result);
 			dataDescriptionEntriesByName.put(name, result);

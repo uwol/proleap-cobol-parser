@@ -11,6 +11,8 @@ package io.proleap.cobol.parser.metamodel;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
@@ -36,6 +38,10 @@ public interface CobolScope extends CobolScopedElement {
 	Call addCall(ProcedureNameContext ctx);
 
 	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat1Context ctx);
+
+	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat2Context ctx);
+
+	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat3Context ctx);
 
 	DisplayStatement addDisplayStatement(DisplayStatementContext ctx);
 

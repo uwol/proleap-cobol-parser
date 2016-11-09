@@ -12,7 +12,10 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.ConditionNameContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
@@ -26,11 +29,47 @@ public class NameResolverImpl implements NameResolver {
 
 	private final static Logger LOG = LogManager.getLogger(NameResolverImpl.class);
 
+	public String determineName(final ConditionNameContext ctx) {
+		final String result;
+
+		if (ctx != null) {
+			result = ctx.getText();
+		} else {
+			result = null;
+		}
+
+		return result;
+	}
+
 	public String determineName(final DataDescriptionEntryFormat1Context ctx) {
 		final String result;
 
 		if (ctx != null) {
 			result = determineName(ctx.dataName());
+		} else {
+			result = null;
+		}
+
+		return result;
+	}
+
+	public String determineName(final DataDescriptionEntryFormat2Context ctx) {
+		final String result;
+
+		if (ctx != null) {
+			result = determineName(ctx.dataName());
+		} else {
+			result = null;
+		}
+
+		return result;
+	}
+
+	public String determineName(final DataDescriptionEntryFormat3Context ctx) {
+		final String result;
+
+		if (ctx != null) {
+			result = determineName(ctx.conditionName());
 		} else {
 			result = null;
 		}
@@ -83,8 +122,14 @@ public class NameResolverImpl implements NameResolver {
 	public String determineName(final ParseTree ctx) {
 		final String result;
 
-		if (ctx instanceof DataDescriptionEntryFormat1Context) {
+		if (ctx instanceof ConditionNameContext) {
+			result = determineName((ConditionNameContext) ctx);
+		} else if (ctx instanceof DataDescriptionEntryFormat1Context) {
 			result = determineName((DataDescriptionEntryFormat1Context) ctx);
+		} else if (ctx instanceof DataDescriptionEntryFormat2Context) {
+			result = determineName((DataDescriptionEntryFormat2Context) ctx);
+		} else if (ctx instanceof DataDescriptionEntryFormat3Context) {
+			result = determineName((DataDescriptionEntryFormat3Context) ctx);
 		} else if (ctx instanceof DataNameContext) {
 			result = determineName((DataNameContext) ctx);
 		} else if (ctx instanceof IdentifierContext) {
