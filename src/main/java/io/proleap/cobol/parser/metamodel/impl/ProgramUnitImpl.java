@@ -11,14 +11,17 @@ package io.proleap.cobol.parser.metamodel.impl;
 import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
 import io.proleap.cobol.parser.metamodel.CobolScope;
 import io.proleap.cobol.parser.metamodel.CopyBook;
-import io.proleap.cobol.parser.metamodel.EnvironmentDivision;
-import io.proleap.cobol.parser.metamodel.IdentificationDivision;
-import io.proleap.cobol.parser.metamodel.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.data.DataDivision;
+import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
+import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
+import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 
 public class ProgramUnitImpl extends CobolScopeImpl implements ProgramUnit {
 
 	protected final ProgramUnitContext ctx;
+
+	protected DataDivision dataDivision;
 
 	protected EnvironmentDivision environmentDivision;
 
@@ -30,6 +33,11 @@ public class ProgramUnitImpl extends CobolScopeImpl implements ProgramUnit {
 		super(copyBook, superScope, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public DataDivision getDataDivision() {
+		return dataDivision;
 	}
 
 	@Override
@@ -45,6 +53,11 @@ public class ProgramUnitImpl extends CobolScopeImpl implements ProgramUnit {
 	@Override
 	public ProcedureDivision getProcedureDivision() {
 		return procedureDivision;
+	}
+
+	@Override
+	public void setDataDivision(final DataDivision dataDivision) {
+		this.dataDivision = dataDivision;
 	}
 
 	@Override

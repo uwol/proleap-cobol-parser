@@ -15,6 +15,8 @@ import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
+import io.proleap.cobol.Cobol85Parser.DataDivisionBodyContext;
+import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
 import io.proleap.cobol.Cobol85Parser.DateCompiledParagraphContext;
 import io.proleap.cobol.Cobol85Parser.DateWrittenParagraphContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
@@ -39,6 +41,26 @@ import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.DataDivision;
+import io.proleap.cobol.parser.metamodel.data.DataDivisionBody;
+import io.proleap.cobol.parser.metamodel.environment.ConfigurationSection;
+import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
+import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
+import io.proleap.cobol.parser.metamodel.environment.SourceComputerParagraph;
+import io.proleap.cobol.parser.metamodel.identification.AuthorParagraph;
+import io.proleap.cobol.parser.metamodel.identification.DateCompiledParagraph;
+import io.proleap.cobol.parser.metamodel.identification.DateWrittenParagraph;
+import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
+import io.proleap.cobol.parser.metamodel.identification.InstallationParagraph;
+import io.proleap.cobol.parser.metamodel.identification.ProgramIdParagraph;
+import io.proleap.cobol.parser.metamodel.identification.RemarksParagraph;
+import io.proleap.cobol.parser.metamodel.identification.SecurityParagraph;
+import io.proleap.cobol.parser.metamodel.procedure.DisplayStatement;
+import io.proleap.cobol.parser.metamodel.procedure.MoveToStatement;
+import io.proleap.cobol.parser.metamodel.procedure.PerformProcedureStatement;
+import io.proleap.cobol.parser.metamodel.procedure.PerformStatement;
+import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.parser.metamodel.procedure.StopStatement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface CobolScope extends CobolScopedElement {
@@ -56,6 +78,10 @@ public interface CobolScope extends CobolScopedElement {
 	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat2Context ctx);
 
 	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat3Context ctx);
+
+	DataDivision addDataDivision(DataDivisionContext ctx);
+
+	DataDivisionBody addDataDivisionBody(DataDivisionBodyContext ctx);
 
 	DateCompiledParagraph addDateCompiledParagraph(DateCompiledParagraphContext ctx);
 

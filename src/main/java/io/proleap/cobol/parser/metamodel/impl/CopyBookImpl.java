@@ -14,11 +14,12 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.CompilationUnitContext;
 import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
 import io.proleap.cobol.parser.metamodel.CopyBook;
-import io.proleap.cobol.parser.metamodel.EnvironmentDivision;
-import io.proleap.cobol.parser.metamodel.IdentificationDivision;
-import io.proleap.cobol.parser.metamodel.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.data.DataDivision;
+import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
+import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
+import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 
 public class CopyBookImpl extends CobolScopeImpl implements CopyBook {
 
@@ -61,6 +62,12 @@ public class CopyBookImpl extends CobolScopeImpl implements CopyBook {
 			if (ctx.environmentDivision() != null) {
 				final EnvironmentDivision environmentDivision = addEnvironmentDivision(ctx.environmentDivision());
 				result.setEnvironmentDivision(environmentDivision);
+			}
+
+			// data division
+			if (ctx.dataDivision() != null) {
+				final DataDivision dataDivision = addDataDivision(ctx.dataDivision());
+				result.setDataDivision(dataDivision);
 			}
 
 			// procedure division

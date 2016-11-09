@@ -72,6 +72,22 @@ public class CobolDeclarationVisitorImpl extends AbstractCobolParserVisitorImpl 
 	}
 
 	@Override
+	public Boolean visitDataDivision(@NotNull final Cobol85Parser.DataDivisionContext ctx) {
+		copyBook.addDataDivision(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitDataDivisionBody(@NotNull final Cobol85Parser.DataDivisionBodyContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addDataDivisionBody(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitDateCompiledParagraph(@NotNull final Cobol85Parser.DateCompiledParagraphContext ctx) {
 		final CobolScope scope = findScope(ctx);
 
