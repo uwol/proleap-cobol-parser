@@ -17,9 +17,9 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 /**
  * Visitor for analyzing expressions in the AST.
  */
-public class CobolExpressionVisitorImpl extends AbstractCobolParserVisitorImpl {
+public class CobolProcedureExpressionVisitorImpl extends AbstractCobolParserVisitorImpl {
 
-	public CobolExpressionVisitorImpl(final CopyBook copyBook) {
+	public CobolProcedureExpressionVisitorImpl(final CopyBook copyBook) {
 		super(copyBook);
 	}
 

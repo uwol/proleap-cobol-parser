@@ -27,8 +27,12 @@ import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.impl.ProgramImpl;
 import io.proleap.cobol.parser.runner.CobolParserRunner;
 import io.proleap.cobol.parser.visitor.ParserVisitor;
-import io.proleap.cobol.parser.visitor.impl.CobolDeclarationVisitorImpl;
-import io.proleap.cobol.parser.visitor.impl.CobolExpressionVisitorImpl;
+import io.proleap.cobol.parser.visitor.impl.CobolDataDivisionVisitorImpl;
+import io.proleap.cobol.parser.visitor.impl.CobolEnvironmentDivisionVisitorImpl;
+import io.proleap.cobol.parser.visitor.impl.CobolIdentificationDivisionVisitorImpl;
+import io.proleap.cobol.parser.visitor.impl.CobolProcedureDivisionVisitorImpl;
+import io.proleap.cobol.parser.visitor.impl.CobolProcedureExpressionVisitorImpl;
+import io.proleap.cobol.parser.visitor.impl.CobolProgramUnitVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolUnitVisitorImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
@@ -38,15 +42,21 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	protected final static Logger LOG = LogManager.getLogger(CobolParserRunnerImpl.class);
 
 	protected void analyze(final Program program) {
-		analyzeDeclarations(program);
-		analyzeExpressions(program);
+		analyzeProgramUnits(program);
+
+		analyzeIdentificationDivisions(program);
+		analyzeEnvironmentDivisions(program);
+		analyzeDataDivisions(program);
+		analyzeProcedureDivisions(program);
+
+		analyzeProcedureExpressions(program);
 	}
 
-	protected void analyzeDeclarations(final Program program) {
+	protected void analyzeDataDivisions(final Program program) {
 		for (final CopyBook copyBook : program.getCopyBooks()) {
-			final ParserVisitor visitor = new CobolDeclarationVisitorImpl(copyBook);
+			final ParserVisitor visitor = new CobolDataDivisionVisitorImpl(copyBook);
 
-			LOG.info("Analyzing declaration of copy book {}.", copyBook.getName());
+			LOG.info("Analyzing data divisions of copy book {}.", copyBook.getName());
 			visitor.visit(copyBook.getCtx());
 		}
 	}
@@ -65,11 +75,11 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		return program;
 	}
 
-	protected void analyzeExpressions(final Program program) {
+	protected void analyzeEnvironmentDivisions(final Program program) {
 		for (final CopyBook copyBook : program.getCopyBooks()) {
-			final ParserVisitor visitor = new CobolExpressionVisitorImpl(copyBook);
+			final ParserVisitor visitor = new CobolEnvironmentDivisionVisitorImpl(copyBook);
 
-			LOG.info("Analyzing expressions of copy book {}.", copyBook.getName());
+			LOG.info("Analyzing environment divisions of copy book {}.", copyBook.getName());
 			visitor.visit(copyBook.getCtx());
 		}
 	}
@@ -83,6 +93,42 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		analyze(program);
 
 		return program;
+	}
+
+	protected void analyzeIdentificationDivisions(final Program program) {
+		for (final CopyBook copyBook : program.getCopyBooks()) {
+			final ParserVisitor visitor = new CobolIdentificationDivisionVisitorImpl(copyBook);
+
+			LOG.info("Analyzing identification divisions of copy book {}.", copyBook.getName());
+			visitor.visit(copyBook.getCtx());
+		}
+	}
+
+	protected void analyzeProcedureDivisions(final Program program) {
+		for (final CopyBook copyBook : program.getCopyBooks()) {
+			final ParserVisitor visitor = new CobolProcedureDivisionVisitorImpl(copyBook);
+
+			LOG.info("Analyzing procedure divisions of copy book {}.", copyBook.getName());
+			visitor.visit(copyBook.getCtx());
+		}
+	}
+
+	protected void analyzeProcedureExpressions(final Program program) {
+		for (final CopyBook copyBook : program.getCopyBooks()) {
+			final ParserVisitor visitor = new CobolProcedureExpressionVisitorImpl(copyBook);
+
+			LOG.info("Analyzing expressions of copy book {}.", copyBook.getName());
+			visitor.visit(copyBook.getCtx());
+		}
+	}
+
+	protected void analyzeProgramUnits(final Program program) {
+		for (final CopyBook copyBook : program.getCopyBooks()) {
+			final ParserVisitor visitor = new CobolProgramUnitVisitorImpl(copyBook);
+
+			LOG.info("Analyzing program units of copy book {}.", copyBook.getName());
+			visitor.visit(copyBook.getCtx());
+		}
 	}
 
 	protected String getCopyBookName(final File inputFile) {
