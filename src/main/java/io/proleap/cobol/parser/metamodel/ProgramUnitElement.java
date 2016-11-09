@@ -8,9 +8,7 @@
 
 package io.proleap.cobol.parser.metamodel;
 
-public interface CobolScopedElement extends ASGElement {
+public interface ProgramUnitElement extends CompilationUnitElement {
 
-	CopyBook getCopyBook();
-
-	CobolScope getSuperScope();
+	ProgramUnit getProgramUnit();
 }

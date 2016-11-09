@@ -15,12 +15,12 @@ import java.util.Map;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 
-public class ProgramImpl extends CobolScopeImpl implements Program {
+public class ProgramImpl extends ASGElementImpl implements Program {
 
 	protected final Map<String, CopyBook> copyBooks = new LinkedHashMap<String, CopyBook>();
 
 	public ProgramImpl() {
-		super(null, null, null);
+		super(null);
 	}
 
 	@Override

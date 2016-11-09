@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure;
 
 import java.util.List;
 
-import io.proleap.cobol.parser.metamodel.CobolScopedElement;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.call.Call;
 
-public interface PerformProcedureStatement extends CobolScopedElement {
+public interface PerformProcedureStatement extends CobolDivisionElement {
 
 	void addCall(Call call);
 

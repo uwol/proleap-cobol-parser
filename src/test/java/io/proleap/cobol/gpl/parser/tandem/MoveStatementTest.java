@@ -16,6 +16,7 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class MoveStatementTest extends CobolTestSupport {
@@ -35,9 +36,10 @@ public class MoveStatementTest extends CobolTestSupport {
 		final CopyBook copyBook = program.getCopyBook("MoveStatement");
 		final List<ProgramUnit> programUnits = copyBook.getProgramUnits();
 		final ProgramUnit programUnit = programUnits.get(0);
+		final DataDivision dataDivision = programUnit.getDataDivision();
 
 		{
-			final DataDescriptionEntry dataDescriptionEntry1 = programUnit.getDataDescriptionEntry("SOME-TEXT");
+			final DataDescriptionEntry dataDescriptionEntry1 = dataDivision.getDataDescriptionEntry("SOME-TEXT");
 
 			assertNotNull(dataDescriptionEntry1);
 			assertFalse(dataDescriptionEntry1.getDataDescriptionEntryCalls().isEmpty());
@@ -45,7 +47,7 @@ public class MoveStatementTest extends CobolTestSupport {
 		}
 
 		{
-			final DataDescriptionEntry dataDescriptionEntry2 = programUnit.getDataDescriptionEntry("SOME-NUMBER");
+			final DataDescriptionEntry dataDescriptionEntry2 = dataDivision.getDataDescriptionEntry("SOME-NUMBER");
 
 			assertNotNull(dataDescriptionEntry2);
 			assertFalse(dataDescriptionEntry2.getDataDescriptionEntryCalls().isEmpty());
@@ -53,7 +55,7 @@ public class MoveStatementTest extends CobolTestSupport {
 		}
 
 		{
-			final DataDescriptionEntry dataDescriptionEntry3 = programUnit.getDataDescriptionEntry("SOME-TEXT2");
+			final DataDescriptionEntry dataDescriptionEntry3 = dataDivision.getDataDescriptionEntry("SOME-TEXT2");
 
 			assertNotNull(dataDescriptionEntry3);
 			assertFalse(dataDescriptionEntry3.getDataDescriptionEntryCalls().isEmpty());

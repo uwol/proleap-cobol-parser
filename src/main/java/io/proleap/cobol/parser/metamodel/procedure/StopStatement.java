@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.procedure;
 
-import io.proleap.cobol.parser.metamodel.CobolScopedElement;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface StopStatement extends CobolScopedElement {
+public interface StopStatement extends CobolDivisionElement {
 
 }

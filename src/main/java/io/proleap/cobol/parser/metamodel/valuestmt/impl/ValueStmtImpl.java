@@ -13,19 +13,19 @@ import java.util.List;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
-import io.proleap.cobol.parser.metamodel.impl.CobolScopedElementImpl;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public abstract class ValueStmtImpl extends CobolScopedElementImpl implements ValueStmt {
+public abstract class ValueStmtImpl extends CobolDivisionElementImpl implements ValueStmt {
 
 	protected final ParseTree ctx;
 
 	protected final List<ValueStmt> subValueStmts = new ArrayList<ValueStmt>();
 
-	public ValueStmtImpl(final CopyBook copyBook, final CobolScope superScope, final ParseTree ctx) {
-		super(copyBook, superScope, ctx);
+	public ValueStmtImpl(final ProgramUnit programUnit, final CobolDivision scope, final ParseTree ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

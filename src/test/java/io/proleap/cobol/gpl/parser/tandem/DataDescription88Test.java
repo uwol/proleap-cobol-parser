@@ -14,6 +14,7 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class DataDescription88Test extends CobolTestSupport {
@@ -33,8 +34,9 @@ public class DataDescription88Test extends CobolTestSupport {
 		final CopyBook copyBook = program.getCopyBook("DataDescription88");
 		final List<ProgramUnit> programUnits = copyBook.getProgramUnits();
 		final ProgramUnit programUnit = programUnits.get(0);
+		final DataDivision dataDivision = programUnit.getDataDivision();
 
-		final DataDescriptionEntry dataDescriptionEntry1 = programUnit.getDataDescriptionEntry("GENDER");
+		final DataDescriptionEntry dataDescriptionEntry1 = dataDivision.getDataDescriptionEntry("GENDER");
 
 		assertNotNull(dataDescriptionEntry1);
 	}

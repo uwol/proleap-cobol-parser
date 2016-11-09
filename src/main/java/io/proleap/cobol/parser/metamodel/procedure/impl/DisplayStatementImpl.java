@@ -9,18 +9,18 @@
 package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
-import io.proleap.cobol.parser.metamodel.impl.CobolScopedElementImpl;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.DisplayStatement;
 
-public class DisplayStatementImpl extends CobolScopedElementImpl implements DisplayStatement {
+public class DisplayStatementImpl extends CobolDivisionElementImpl implements DisplayStatement {
 
 	protected final DisplayStatementContext ctx;
 
-	public DisplayStatementImpl(final CopyBook copyBook, final CobolScope superScope,
+	public DisplayStatementImpl(final ProgramUnit programUnit, final CobolDivision scope,
 			final DisplayStatementContext ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

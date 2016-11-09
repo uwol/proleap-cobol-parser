@@ -9,17 +9,17 @@
 package io.proleap.cobol.parser.metamodel.identification.impl;
 
 import io.proleap.cobol.Cobol85Parser.SecurityParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.SecurityParagraph;
 
 public class SecurityParagraphImpl extends IdentificationDivisionBodyImpl implements SecurityParagraph {
 
 	protected final SecurityParagraphContext ctx;
 
-	public SecurityParagraphImpl(final CopyBook copyBook, final CobolScope superScope,
+	public SecurityParagraphImpl(final ProgramUnit programUnit, final CobolDivision scope,
 			final SecurityParagraphContext ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.parser.metamodel.call;
 
-import io.proleap.cobol.parser.metamodel.Paragraph;
+import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
 
 public interface ProcedureCall extends Call {
 

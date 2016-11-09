@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.impl.CobolScopedElementImpl;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public class MoveToStatementImpl extends CobolScopedElementImpl implements MoveToStatement {
+public class MoveToStatementImpl extends CobolDivisionElementImpl implements MoveToStatement {
 
 	protected final MoveToStatementContext ctx;
 
@@ -27,8 +27,9 @@ public class MoveToStatementImpl extends CobolScopedElementImpl implements MoveT
 
 	protected ValueStmt sendingAreaValueStmt;
 
-	public MoveToStatementImpl(final CopyBook copyBook, final CobolScope superScope, final MoveToStatementContext ctx) {
-		super(copyBook, superScope, ctx);
+	public MoveToStatementImpl(final ProgramUnit programUnit, final CobolDivision scope,
+			final MoveToStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

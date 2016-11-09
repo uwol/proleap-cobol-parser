@@ -10,7 +10,7 @@ package io.proleap.cobol.parser.metamodel;
 
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 
-public interface Literal extends CobolScopedElement {
+public interface Literal extends CobolDivisionElement {
 
 	@Override
 	LiteralContext getCtx();

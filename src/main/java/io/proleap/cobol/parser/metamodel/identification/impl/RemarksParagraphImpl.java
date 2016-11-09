@@ -9,17 +9,17 @@
 package io.proleap.cobol.parser.metamodel.identification.impl;
 
 import io.proleap.cobol.Cobol85Parser.RemarksParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.RemarksParagraph;
 
 public class RemarksParagraphImpl extends IdentificationDivisionBodyImpl implements RemarksParagraph {
 
 	protected final RemarksParagraphContext ctx;
 
-	public RemarksParagraphImpl(final CopyBook copyBook, final CobolScope superScope,
+	public RemarksParagraphImpl(final ProgramUnit programUnit, final CobolDivision scope,
 			final RemarksParagraphContext ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

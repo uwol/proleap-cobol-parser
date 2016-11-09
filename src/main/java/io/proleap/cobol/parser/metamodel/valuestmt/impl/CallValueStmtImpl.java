@@ -10,8 +10,8 @@ package io.proleap.cobol.parser.metamodel.valuestmt.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 
@@ -19,9 +19,9 @@ public class CallValueStmtImpl extends ValueStmtImpl implements CallValueStmt {
 
 	protected Call call;
 
-	public CallValueStmtImpl(final Call call, final CopyBook copyBook, final CobolScope superScope,
+	public CallValueStmtImpl(final Call call, final ProgramUnit programUnit, final CobolDivision scope,
 			final ParseTree ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.call = call;
 	}

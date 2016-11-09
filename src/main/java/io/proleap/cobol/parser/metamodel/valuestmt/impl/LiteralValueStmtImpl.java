@@ -9,17 +9,18 @@
 package io.proleap.cobol.parser.metamodel.valuestmt.impl;
 
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.Literal;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
 
 public class LiteralValueStmtImpl extends ValueStmtImpl implements LiteralValueStmt {
 
 	protected Literal literal;
 
-	public LiteralValueStmtImpl(final CopyBook copyBook, final CobolScope superScope, final LiteralContext ctx) {
-		super(copyBook, superScope, ctx);
+	public LiteralValueStmtImpl(final ProgramUnit programUnit, final CobolDivision scope,
+			final LiteralContext ctx) {
+		super(programUnit, scope, ctx);
 	}
 
 	@Override

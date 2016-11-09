@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.parser.metamodel.identification;
 
-import io.proleap.cobol.parser.metamodel.CobolScopedElement;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.NamedElement;
 
-public interface ProgramIdParagraph extends CobolScopedElement, NamedElement {
+public interface ProgramIdParagraph extends CobolDivisionElement, NamedElement {
 
 }

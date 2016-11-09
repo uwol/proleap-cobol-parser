@@ -9,84 +9,83 @@
 package io.proleap.cobol.parser.visitor.impl;
 
 import org.antlr.v4.runtime.misc.NotNull;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.Cobol85Parser;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
+import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
+import io.proleap.cobol.parser.registry.ASGElementRegistry;
 
 /**
  * Visitor for analyzing declarations in the AST.
  */
 public class CobolIdentificationDivisionVisitorImpl extends AbstractCobolParserVisitorImpl {
 
-	public CobolIdentificationDivisionVisitorImpl(final CopyBook copyBook) {
-		super(copyBook);
+	protected IdentificationDivision findIdentificationDivision(final ParseTree ctx) {
+		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
+		return CobolParserContext.getInstance().getAstTraverser().findParent(IdentificationDivision.class, ctx,
+				registry);
 	}
 
 	@Override
 	public Boolean visitAuthorParagraph(@NotNull final Cobol85Parser.AuthorParagraphContext ctx) {
-		final CobolScope scope = findScope(ctx);
+		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
-		scope.addAuthorParagraph(ctx);
+		identificationDivision.addAuthorParagraph(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitDateCompiledParagraph(@NotNull final Cobol85Parser.DateCompiledParagraphContext ctx) {
-		final CobolScope scope = findScope(ctx);
+		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
-		scope.addDateCompiledParagraph(ctx);
+		identificationDivision.addDateCompiledParagraph(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitDateWrittenParagraph(@NotNull final Cobol85Parser.DateWrittenParagraphContext ctx) {
-		final CobolScope scope = findScope(ctx);
+		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
-		scope.addDateWrittenParagraph(ctx);
-
-		return visitChildren(ctx);
-	}
-
-	@Override
-	public Boolean visitIdentificationDivision(@NotNull final Cobol85Parser.IdentificationDivisionContext ctx) {
-		copyBook.addIdentificationDivision(ctx);
+		identificationDivision.addDateWrittenParagraph(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitInstallationParagraph(@NotNull final Cobol85Parser.InstallationParagraphContext ctx) {
-		final CobolScope scope = findScope(ctx);
+		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
-		scope.addInstallationParagraph(ctx);
+		identificationDivision.addInstallationParagraph(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitProgramIdParagraph(@NotNull final Cobol85Parser.ProgramIdParagraphContext ctx) {
-		copyBook.addProgramIdParagraph(ctx);
+		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
+
+		identificationDivision.addProgramIdParagraph(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitRemarksParagraph(@NotNull final Cobol85Parser.RemarksParagraphContext ctx) {
-		final CobolScope scope = findScope(ctx);
+		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
-		scope.addRemarksParagraph(ctx);
+		identificationDivision.addRemarksParagraph(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitSecurityParagraph(@NotNull final Cobol85Parser.SecurityParagraphContext ctx) {
-		final CobolScope scope = findScope(ctx);
+		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
-		scope.addSecurityParagraph(ctx);
+		identificationDivision.addSecurityParagraph(ctx);
 
 		return visitChildren(ctx);
 	}

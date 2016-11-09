@@ -11,8 +11,8 @@ package io.proleap.cobol.parser.metamodel.environment.impl;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.ConfigurationSection;
 import io.proleap.cobol.parser.metamodel.environment.ConfigurationSectionParagraph;
 
@@ -22,9 +22,9 @@ public class ConfigurationSectionImpl extends EnvironmentDivisionBodyImpl implem
 
 	protected final ConfigurationSectionContext ctx;
 
-	public ConfigurationSectionImpl(final CopyBook copyBook, final CobolScope superScope,
+	public ConfigurationSectionImpl(final ProgramUnit programUnit, final CobolDivision scope,
 			final ConfigurationSectionContext ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

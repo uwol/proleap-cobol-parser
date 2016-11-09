@@ -6,13 +6,15 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel;
+package io.proleap.cobol.parser.metamodel.procedure;
 
 import java.util.List;
 
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.Declaration;
 import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
 
-public interface Paragraph extends CobolScopedElement, Declaration {
+public interface Paragraph extends CobolDivisionElement, Declaration {
 
 	void addParagraphName(ParagraphName paragraphName);
 

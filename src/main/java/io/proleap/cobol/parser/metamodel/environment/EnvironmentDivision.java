@@ -10,11 +10,20 @@ package io.proleap.cobol.parser.metamodel.environment;
 
 import java.util.List;
 
-import io.proleap.cobol.parser.metamodel.CobolScopedElement;
+import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
+import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
 
-public interface EnvironmentDivision extends CobolScopedElement {
+public interface EnvironmentDivision extends CobolDivision {
+
+	ConfigurationSection addConfigurationSection(ConfigurationSectionContext ctx);
 
 	void addEnvironmentDivisionBody(EnvironmentDivisionBody environmentDivisionBody);
+
+	ObjectComputerParagraph addObjectComputerParagraph(ObjectComputerParagraphContext ctx);
+
+	SourceComputerParagraph addSourceComputerParagraph(SourceComputerParagraphContext ctx);
 
 	List<EnvironmentDivisionBody> getEnvironmentDivisionBodies();
 

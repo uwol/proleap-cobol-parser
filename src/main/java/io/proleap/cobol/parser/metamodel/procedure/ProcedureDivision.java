@@ -8,8 +8,35 @@
 
 package io.proleap.cobol.parser.metamodel.procedure;
 
-import io.proleap.cobol.parser.metamodel.CobolScopedElement;
+import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
+import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
+import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
+import io.proleap.cobol.Cobol85Parser.ParagraphContext;
+import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
+import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
+import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
+import io.proleap.cobol.Cobol85Parser.StopStatementContext;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface ProcedureDivision extends CobolScopedElement {
+public interface ProcedureDivision extends CobolDivision {
+
+	DisplayStatement addDisplayStatement(DisplayStatementContext ctx);
+
+	MoveToStatement addMoveToStatement(MoveToStatementContext ctx);
+
+	Paragraph addParagraph(ParagraphContext ctx);
+
+	ParagraphName addParagraphName(ParagraphNameContext ctx);
+
+	PerformProcedureStatement addPerformProcedureStatement(PerformProcedureStatementContext ctx);
+
+	PerformStatement addPerformStatement(PerformStatementContext ctx);
+
+	StopStatement addStopStatement(StopStatementContext ctx);
+
+	ValueStmt addValueStmt(MoveToStatementSendingAreaContext ctx);
+
+	Paragraph getParagraph(String name);
 
 }

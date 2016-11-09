@@ -10,17 +10,18 @@ package io.proleap.cobol.parser.metamodel.call.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.impl.CobolScopedElementImpl;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public abstract class CallImpl extends CobolScopedElementImpl implements Call {
+public abstract class CallImpl extends CobolDivisionElementImpl implements Call {
 
 	protected final String name;
 
-	public CallImpl(final String name, final CopyBook copyBook, final CobolScope superScope, final ParseTree ctx) {
-		super(copyBook, superScope, ctx);
+	public CallImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
+			final ParseTree ctx) {
+		super(programUnit, scope, ctx);
 
 		this.name = name;
 	}

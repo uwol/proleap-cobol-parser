@@ -9,19 +9,19 @@
 package io.proleap.cobol.parser.metamodel.impl;
 
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.Literal;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 
-public class LiteralImpl extends CobolScopedElementImpl implements Literal {
+public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 
 	protected final LiteralContext ctx;
 
 	protected final String value;
 
-	public LiteralImpl(final String value, final CopyBook copyBook, final CobolScope superScope,
+	public LiteralImpl(final String value, final ProgramUnit programUnit, final CobolDivision scope,
 			final LiteralContext ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 		this.value = value;

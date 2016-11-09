@@ -9,17 +9,17 @@
 package io.proleap.cobol.parser.metamodel.identification.impl;
 
 import io.proleap.cobol.Cobol85Parser.DateCompiledParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.DateCompiledParagraph;
 
 public class DateCompiledParagraphImpl extends IdentificationDivisionBodyImpl implements DateCompiledParagraph {
 
 	protected final DateCompiledParagraphContext ctx;
 
-	public DateCompiledParagraphImpl(final CopyBook copyBook, final CobolScope superScope,
+	public DateCompiledParagraphImpl(final ProgramUnit programUnit, final CobolDivision scope,
 			final DateCompiledParagraphContext ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

@@ -9,17 +9,17 @@
 package io.proleap.cobol.parser.metamodel.identification.impl;
 
 import io.proleap.cobol.Cobol85Parser.InstallationParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.InstallationParagraph;
 
 public class InstallationParagraphImpl extends IdentificationDivisionBodyImpl implements InstallationParagraph {
 
 	protected final InstallationParagraphContext ctx;
 
-	public InstallationParagraphImpl(final CopyBook copyBook, final CobolScope superScope,
+	public InstallationParagraphImpl(final ProgramUnit programUnit, final CobolDivision scope,
 			final InstallationParagraphContext ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

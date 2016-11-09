@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.environment;
 
-import io.proleap.cobol.parser.metamodel.CobolScopedElement;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface ConfigurationSectionParagraph extends CobolScopedElement {
+public interface ConfigurationSectionParagraph extends CobolDivisionElement {
 
 }

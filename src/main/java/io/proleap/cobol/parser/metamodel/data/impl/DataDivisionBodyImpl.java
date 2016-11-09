@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.data.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDivisionBody;
-import io.proleap.cobol.parser.metamodel.impl.CobolScopedElementImpl;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class DataDivisionBodyImpl extends CobolScopedElementImpl implements DataDivisionBody {
+public class DataDivisionBodyImpl extends CobolDivisionElementImpl implements DataDivisionBody {
 
-	public DataDivisionBodyImpl(final CopyBook copyBook, final CobolScope superScope, final ParseTree ctx) {
-		super(copyBook, superScope, ctx);
+	public DataDivisionBodyImpl(final ProgramUnit programUnit, final CobolDivision scope, final ParseTree ctx) {
+		super(programUnit, scope, ctx);
 	}
 
 }

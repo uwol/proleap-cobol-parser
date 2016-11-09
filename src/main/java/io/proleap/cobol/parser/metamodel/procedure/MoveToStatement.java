@@ -8,11 +8,11 @@
 
 package io.proleap.cobol.parser.metamodel.procedure;
 
-import io.proleap.cobol.parser.metamodel.CobolScopedElement;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface MoveToStatement extends CobolScopedElement {
+public interface MoveToStatement extends CobolDivisionElement {
 
 	void addReceivingAreaCall(Call receivingAreaCall);
 

@@ -9,16 +9,17 @@
 package io.proleap.cobol.parser.metamodel.identification.impl;
 
 import io.proleap.cobol.Cobol85Parser.AuthorParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.AuthorParagraph;
 
 public class AuthorParagraphImpl extends IdentificationDivisionBodyImpl implements AuthorParagraph {
 
 	protected final AuthorParagraphContext ctx;
 
-	public AuthorParagraphImpl(final CopyBook copyBook, final CobolScope superScope, final AuthorParagraphContext ctx) {
-		super(copyBook, superScope, ctx);
+	public AuthorParagraphImpl(final ProgramUnit programUnit, final CobolDivision scope,
+			final AuthorParagraphContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

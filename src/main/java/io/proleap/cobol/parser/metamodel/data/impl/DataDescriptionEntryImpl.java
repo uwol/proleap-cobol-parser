@@ -13,21 +13,21 @@ import java.util.List;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
-import io.proleap.cobol.parser.metamodel.impl.CobolScopedElementImpl;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public abstract class DataDescriptionEntryImpl extends CobolScopedElementImpl implements DataDescriptionEntry {
+public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl implements DataDescriptionEntry {
 
 	protected final List<DataDescriptionEntryCall> dataDescriptionEntryCalls = new ArrayList<DataDescriptionEntryCall>();
 
 	protected final String name;
 
-	public DataDescriptionEntryImpl(final String name, final CopyBook copyBook, final CobolScope superScope,
+	public DataDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
 			final ParseTree ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.name = name;
 	}

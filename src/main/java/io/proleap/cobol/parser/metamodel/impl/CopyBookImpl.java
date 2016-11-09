@@ -16,12 +16,8 @@ import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.data.DataDivision;
-import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
-import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
-import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 
-public class CopyBookImpl extends CobolScopeImpl implements CopyBook {
+public class CopyBookImpl extends CompilationUnitElementImpl implements CopyBook {
 
 	protected CompilationUnitContext ctx;
 
@@ -32,12 +28,11 @@ public class CopyBookImpl extends CobolScopeImpl implements CopyBook {
 	protected final List<ProgramUnit> programUnits = new ArrayList<ProgramUnit>();
 
 	public CopyBookImpl(final String name, final Program program, final CompilationUnitContext ctx) {
-		super(null, program, ctx);
+		super(ctx);
 
 		this.name = name;
 		this.program = program;
 		this.ctx = ctx;
-		copyBook = this;
 
 		registerASGElement(this);
 		program.registerCopyBook(this);
@@ -48,32 +43,27 @@ public class CopyBookImpl extends CobolScopeImpl implements CopyBook {
 		ProgramUnit result = (ProgramUnit) getASGElement(ctx);
 
 		if (result == null) {
-			result = new ProgramUnitImpl(this, this, ctx);
+			result = new ProgramUnitImpl(this, ctx);
 
-			storeScopedElement(result);
+			registerASGElement(result);
 			programUnits.add(result);
 
 			// identification division
-			final IdentificationDivision identificationDivision = addIdentificationDivision(
-					ctx.identificationDivision());
-			result.setIdentificationDivision(identificationDivision);
+			result.addIdentificationDivision(ctx.identificationDivision());
 
 			// environment division
 			if (ctx.environmentDivision() != null) {
-				final EnvironmentDivision environmentDivision = addEnvironmentDivision(ctx.environmentDivision());
-				result.setEnvironmentDivision(environmentDivision);
+				result.addEnvironmentDivision(ctx.environmentDivision());
 			}
 
 			// data division
 			if (ctx.dataDivision() != null) {
-				final DataDivision dataDivision = addDataDivision(ctx.dataDivision());
-				result.setDataDivision(dataDivision);
+				result.addDataDivision(ctx.dataDivision());
 			}
 
 			// procedure division
 			if (ctx.procedureDivision() != null) {
-				final ProcedureDivision procedureDivision = addProcedureDivision(ctx.procedureDivision());
-				result.setProcedureDivision(procedureDivision);
+				result.addProcedureDivision(ctx.procedureDivision());
 			}
 		}
 

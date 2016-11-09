@@ -6,22 +6,23 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.impl;
+package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
-import io.proleap.cobol.parser.metamodel.ParagraphName;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.ParagraphName;
 
-public class ParagraphNameImpl extends CobolScopedElementImpl implements ParagraphName {
+public class ParagraphNameImpl extends CobolDivisionElementImpl implements ParagraphName {
 
 	protected final ParagraphNameContext ctx;
 
 	protected final String name;
 
-	public ParagraphNameImpl(final String name, final CopyBook copyBook, final CobolScope superScope,
+	public ParagraphNameImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
 			final ParagraphNameContext ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.name = name;
 		this.ctx = ctx;

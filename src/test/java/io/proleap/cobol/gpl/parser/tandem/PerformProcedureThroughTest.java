@@ -14,9 +14,10 @@ import org.junit.Test;
 import io.proleap.cobol.CobolTestSupport;
 import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.CopyBook;
-import io.proleap.cobol.parser.metamodel.Paragraph;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
+import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class PerformProcedureThroughTest extends CobolTestSupport {
@@ -37,24 +38,26 @@ public class PerformProcedureThroughTest extends CobolTestSupport {
 		final CopyBook copyBook = program.getCopyBook("PERFORMPROCEDURETHROUGH");
 		final List<ProgramUnit> programUnits = copyBook.getProgramUnits();
 		final ProgramUnit programUnit = programUnits.get(0);
-		final Paragraph paragraphProc1 = programUnit.getParagraph("PROC1");
+		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+
+		final Paragraph paragraphProc1 = procedureDivision.getParagraph("PROC1");
 
 		assertNotNull(paragraphProc1);
 		assertTrue(paragraphProc1.getProcedureCalls().isEmpty());
 
-		final Paragraph paragraphProc2 = programUnit.getParagraph("PROC2");
+		final Paragraph paragraphProc2 = procedureDivision.getParagraph("PROC2");
 
 		assertNotNull(paragraphProc2);
 		assertFalse(paragraphProc2.getProcedureCalls().isEmpty());
 		assertEquals(1, paragraphProc2.getProcedureCalls().size());
 
-		final Paragraph paragraphProc3 = programUnit.getParagraph("PROC3");
+		final Paragraph paragraphProc3 = procedureDivision.getParagraph("PROC3");
 
 		assertNotNull(paragraphProc3);
 		assertFalse(paragraphProc3.getProcedureCalls().isEmpty());
 		assertEquals(2, paragraphProc3.getProcedureCalls().size());
 
-		final Paragraph paragraphProc4 = programUnit.getParagraph("PROC4");
+		final Paragraph paragraphProc4 = procedureDivision.getParagraph("PROC4");
 
 		assertNotNull(paragraphProc4);
 		assertFalse(paragraphProc4.getProcedureCalls().isEmpty());

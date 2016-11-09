@@ -10,7 +10,7 @@ package io.proleap.cobol.parser.metamodel;
 
 import java.util.Collection;
 
-public interface Program extends CobolScope {
+public interface Program extends ASGElement {
 
 	CopyBook getCopyBook(String name);
 

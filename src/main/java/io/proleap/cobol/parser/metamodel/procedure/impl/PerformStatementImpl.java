@@ -9,21 +9,21 @@
 package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
-import io.proleap.cobol.parser.metamodel.impl.CobolScopedElementImpl;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.PerformProcedureStatement;
 import io.proleap.cobol.parser.metamodel.procedure.PerformStatement;
 
-public class PerformStatementImpl extends CobolScopedElementImpl implements PerformStatement {
+public class PerformStatementImpl extends CobolDivisionElementImpl implements PerformStatement {
 
 	protected final PerformStatementContext ctx;
 
 	protected PerformProcedureStatement performProcedureStatement;
 
-	public PerformStatementImpl(final CopyBook copyBook, final CobolScope superScope,
+	public PerformStatementImpl(final ProgramUnit programUnit, final CobolDivision scope,
 			final PerformStatementContext ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

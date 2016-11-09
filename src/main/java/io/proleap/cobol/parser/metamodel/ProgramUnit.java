@@ -8,12 +8,26 @@
 
 package io.proleap.cobol.parser.metamodel;
 
+import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
+import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
+import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 
-public interface ProgramUnit extends CobolScope {
+public interface ProgramUnit extends CompilationUnitElement {
+
+	DataDivision addDataDivision(DataDivisionContext ctx);
+
+	EnvironmentDivision addEnvironmentDivision(EnvironmentDivisionContext ctx);
+
+	IdentificationDivision addIdentificationDivision(IdentificationDivisionContext ctx);
+
+	ProcedureDivision addProcedureDivision(ProcedureDivisionContext ctx);
+
+	CopyBook getCopyBook();
 
 	DataDivision getDataDivision();
 
@@ -23,11 +37,4 @@ public interface ProgramUnit extends CobolScope {
 
 	ProcedureDivision getProcedureDivision();
 
-	void setDataDivision(DataDivision dataDivision);
-
-	void setEnvironmentDivision(EnvironmentDivision environmentDivision);
-
-	void setIdentificationDivision(IdentificationDivision identificationDivision);
-
-	void setProcedureDivision(ProcedureDivision procedureDivision);
 }

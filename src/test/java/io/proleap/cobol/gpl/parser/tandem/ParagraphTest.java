@@ -11,9 +11,10 @@ import org.junit.Test;
 import io.proleap.cobol.CobolTestSupport;
 import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.CopyBook;
-import io.proleap.cobol.parser.metamodel.Paragraph;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
+import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class ParagraphTest extends CobolTestSupport {
@@ -33,7 +34,9 @@ public class ParagraphTest extends CobolTestSupport {
 		final CopyBook copyBook = program.getCopyBook("PARAGRAPH");
 		final List<ProgramUnit> programUnits = copyBook.getProgramUnits();
 		final ProgramUnit programUnit = programUnits.get(0);
-		final Paragraph paragraph = programUnit.getParagraph("INIT");
+		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+
+		final Paragraph paragraph = procedureDivision.getParagraph("INIT");
 
 		assertNotNull(paragraph);
 	}

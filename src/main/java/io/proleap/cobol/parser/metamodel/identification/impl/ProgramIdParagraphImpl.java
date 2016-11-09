@@ -9,20 +9,20 @@
 package io.proleap.cobol.parser.metamodel.identification.impl;
 
 import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.ProgramIdParagraph;
-import io.proleap.cobol.parser.metamodel.impl.CobolScopedElementImpl;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class ProgramIdParagraphImpl extends CobolScopedElementImpl implements ProgramIdParagraph {
+public class ProgramIdParagraphImpl extends CobolDivisionElementImpl implements ProgramIdParagraph {
 
 	protected final ProgramIdParagraphContext ctx;
 
 	protected String name;
 
-	public ProgramIdParagraphImpl(final String name, final CopyBook copyBook, final CobolScope superScope,
+	public ProgramIdParagraphImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
 			final ProgramIdParagraphContext ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.name = name;
 		this.ctx = ctx;

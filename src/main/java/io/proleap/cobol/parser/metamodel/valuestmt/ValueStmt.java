@@ -10,9 +10,9 @@ package io.proleap.cobol.parser.metamodel.valuestmt;
 
 import java.util.List;
 
-import io.proleap.cobol.parser.metamodel.CobolScopedElement;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface ValueStmt extends CobolScopedElement {
+public interface ValueStmt extends CobolDivisionElement {
 
 	void addSubValueStmt(ValueStmt subValueStmt);
 

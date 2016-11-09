@@ -12,21 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.impl.CobolScopedElementImpl;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.PerformProcedureStatement;
 
-public class PerformProcedureStatementImpl extends CobolScopedElementImpl implements PerformProcedureStatement {
+public class PerformProcedureStatementImpl extends CobolDivisionElementImpl implements PerformProcedureStatement {
 
 	protected final List<Call> calls = new ArrayList<Call>();
 
 	protected final PerformProcedureStatementContext ctx;
 
-	public PerformProcedureStatementImpl(final CopyBook copyBook, final CobolScope superScope,
+	public PerformProcedureStatementImpl(final ProgramUnit programUnit, final CobolDivision scope,
 			final PerformProcedureStatementContext ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

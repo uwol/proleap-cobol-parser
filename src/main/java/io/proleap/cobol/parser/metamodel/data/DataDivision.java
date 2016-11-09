@@ -8,9 +8,23 @@
 
 package io.proleap.cobol.parser.metamodel.data;
 
-import io.proleap.cobol.parser.metamodel.CobolScopedElement;
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
+import io.proleap.cobol.Cobol85Parser.DataDivisionBodyContext;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
 
-public interface DataDivision extends CobolScopedElement {
+public interface DataDivision extends CobolDivision {
+
+	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat1Context ctx);
+
+	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat2Context ctx);
+
+	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat3Context ctx);
+
+	DataDivisionBody addDataDivisionBody(DataDivisionBodyContext ctx);
+
+	DataDescriptionEntry getDataDescriptionEntry(String name);
 
 	DataDivisionBody getDataDivisionBody();
 

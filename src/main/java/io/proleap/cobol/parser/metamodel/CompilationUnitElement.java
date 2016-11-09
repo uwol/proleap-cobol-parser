@@ -6,10 +6,8 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.environment;
+package io.proleap.cobol.parser.metamodel;
 
-import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-
-public interface EnvironmentDivisionBody extends CobolDivisionElement {
+public interface CompilationUnitElement extends ASGElement {
 
 }

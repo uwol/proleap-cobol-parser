@@ -17,22 +17,20 @@ import io.proleap.cobol.parser.metamodel.impl.CopyBookImpl;
 /**
  * Visitor for collecting units in the AST.
  */
-public class CobolUnitVisitorImpl extends AbstractCobolParserVisitorImpl {
+public class CobolCompilationUnitVisitorImpl extends AbstractCobolParserVisitorImpl {
 
 	protected final String copyBookName;
 
 	protected final Program program;
 
-	public CobolUnitVisitorImpl(final Program program, final String copyBookName) {
-		super(null);
-
+	public CobolCompilationUnitVisitorImpl(final Program program, final String copyBookName) {
 		this.program = program;
 		this.copyBookName = copyBookName;
 	}
 
 	@Override
 	public Boolean visitCompilationUnit(@NotNull final Cobol85Parser.CompilationUnitContext ctx) {
-		copyBook = new CopyBookImpl(copyBookName, program, ctx);
+		new CopyBookImpl(copyBookName, program, ctx);
 
 		return visitChildren(ctx);
 	}

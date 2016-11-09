@@ -10,11 +10,11 @@ package io.proleap.cobol.parser.metamodel.data;
 
 import java.util.List;
 
-import io.proleap.cobol.parser.metamodel.CobolScopedElement;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.Declaration;
 import io.proleap.cobol.parser.metamodel.call.DataDescriptionEntryCall;
 
-public interface DataDescriptionEntry extends CobolScopedElement, Declaration {
+public interface DataDescriptionEntry extends CobolDivisionElement, Declaration {
 
 	void addDataDescriptionEntryCall(DataDescriptionEntryCall dataDescriptionEntryCall);
 

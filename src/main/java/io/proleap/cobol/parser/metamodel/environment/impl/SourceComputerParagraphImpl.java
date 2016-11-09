@@ -9,8 +9,8 @@
 package io.proleap.cobol.parser.metamodel.environment.impl;
 
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.SourceComputerParagraph;
 
 public class SourceComputerParagraphImpl extends ConfigurationSectionParagraphImpl implements SourceComputerParagraph {
@@ -19,9 +19,9 @@ public class SourceComputerParagraphImpl extends ConfigurationSectionParagraphIm
 
 	protected String name;
 
-	public SourceComputerParagraphImpl(final String name, final CopyBook copyBook, final CobolScope superScope,
+	public SourceComputerParagraphImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
 			final SourceComputerParagraphContext ctx) {
-		super(copyBook, superScope, ctx);
+		super(programUnit, scope, ctx);
 
 		this.name = name;
 		this.ctx = ctx;

@@ -9,17 +9,17 @@
 package io.proleap.cobol.parser.metamodel.data.impl;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
-import io.proleap.cobol.parser.metamodel.CobolScope;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry2;
 
 public class DataDescriptionEntry2Impl extends DataDescriptionEntryImpl implements DataDescriptionEntry2 {
 
 	protected final DataDescriptionEntryFormat2Context ctx;
 
-	public DataDescriptionEntry2Impl(final String name, final CopyBook copyBook, final CobolScope superScope,
+	public DataDescriptionEntry2Impl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
 			final DataDescriptionEntryFormat2Context ctx) {
-		super(name, copyBook, superScope, ctx);
+		super(name, programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

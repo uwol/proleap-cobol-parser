@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.parser.metamodel.procedure;
 
-import io.proleap.cobol.parser.metamodel.CobolScopedElement;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface PerformStatement extends CobolScopedElement {
+public interface PerformStatement extends CobolDivisionElement {
 
 	PerformProcedureStatement getPerformProcedureStatement();
 

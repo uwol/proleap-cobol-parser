@@ -27,13 +27,13 @@ import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.impl.ProgramImpl;
 import io.proleap.cobol.parser.runner.CobolParserRunner;
 import io.proleap.cobol.parser.visitor.ParserVisitor;
+import io.proleap.cobol.parser.visitor.impl.CobolCompilationUnitVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolDataDivisionVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolEnvironmentDivisionVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolIdentificationDivisionVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolProcedureDivisionVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolProcedureExpressionVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolProgramUnitVisitorImpl;
-import io.proleap.cobol.parser.visitor.impl.CobolUnitVisitorImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
 
@@ -54,7 +54,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	protected void analyzeDataDivisions(final Program program) {
 		for (final CopyBook copyBook : program.getCopyBooks()) {
-			final ParserVisitor visitor = new CobolDataDivisionVisitorImpl(copyBook);
+			final ParserVisitor visitor = new CobolDataDivisionVisitorImpl();
 
 			LOG.info("Analyzing data divisions of copy book {}.", copyBook.getName());
 			visitor.visit(copyBook.getCtx());
@@ -77,7 +77,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	protected void analyzeEnvironmentDivisions(final Program program) {
 		for (final CopyBook copyBook : program.getCopyBooks()) {
-			final ParserVisitor visitor = new CobolEnvironmentDivisionVisitorImpl(copyBook);
+			final ParserVisitor visitor = new CobolEnvironmentDivisionVisitorImpl();
 
 			LOG.info("Analyzing environment divisions of copy book {}.", copyBook.getName());
 			visitor.visit(copyBook.getCtx());
@@ -97,7 +97,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	protected void analyzeIdentificationDivisions(final Program program) {
 		for (final CopyBook copyBook : program.getCopyBooks()) {
-			final ParserVisitor visitor = new CobolIdentificationDivisionVisitorImpl(copyBook);
+			final ParserVisitor visitor = new CobolIdentificationDivisionVisitorImpl();
 
 			LOG.info("Analyzing identification divisions of copy book {}.", copyBook.getName());
 			visitor.visit(copyBook.getCtx());
@@ -106,7 +106,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	protected void analyzeProcedureDivisions(final Program program) {
 		for (final CopyBook copyBook : program.getCopyBooks()) {
-			final ParserVisitor visitor = new CobolProcedureDivisionVisitorImpl(copyBook);
+			final ParserVisitor visitor = new CobolProcedureDivisionVisitorImpl();
 
 			LOG.info("Analyzing procedure divisions of copy book {}.", copyBook.getName());
 			visitor.visit(copyBook.getCtx());
@@ -115,7 +115,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	protected void analyzeProcedureExpressions(final Program program) {
 		for (final CopyBook copyBook : program.getCopyBooks()) {
-			final ParserVisitor visitor = new CobolProcedureExpressionVisitorImpl(copyBook);
+			final ParserVisitor visitor = new CobolProcedureExpressionVisitorImpl();
 
 			LOG.info("Analyzing expressions of copy book {}.", copyBook.getName());
 			visitor.visit(copyBook.getCtx());
@@ -171,7 +171,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			final String copyBookName = getCopyBookName(inputFile);
 
 			// analyze contained copy books
-			final ParserVisitor visitor = new CobolUnitVisitorImpl(program, copyBookName);
+			final ParserVisitor visitor = new CobolCompilationUnitVisitorImpl(program, copyBookName);
 
 			LOG.info("Collecting units in file {}.", inputFile.getName());
 			visitor.visit(ctx);

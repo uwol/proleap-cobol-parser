@@ -8,16 +8,37 @@
 
 package io.proleap.cobol.parser.metamodel.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import io.proleap.cobol.Cobol85Parser.DataDivisionBodyContext;
+import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
+import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionBodyContext;
+import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
+import io.proleap.cobol.Cobol85Parser.IdentificationDivisionBodyContext;
+import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
-import io.proleap.cobol.parser.metamodel.CobolScope;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
+import io.proleap.cobol.parser.metamodel.data.DataDivisionBody;
+import io.proleap.cobol.parser.metamodel.data.impl.DataDivisionImpl;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
+import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivisionBody;
+import io.proleap.cobol.parser.metamodel.environment.impl.EnvironmentDivisionImpl;
 import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
+import io.proleap.cobol.parser.metamodel.identification.IdentificationDivisionBody;
+import io.proleap.cobol.parser.metamodel.identification.ProgramIdParagraph;
+import io.proleap.cobol.parser.metamodel.identification.impl.IdentificationDivisionImpl;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.parser.metamodel.procedure.impl.ProcedureDivisionImpl;
 
-public class ProgramUnitImpl extends CobolScopeImpl implements ProgramUnit {
+public class ProgramUnitImpl extends CompilationUnitElementImpl implements ProgramUnit {
+
+	private final static Logger LOG = LogManager.getLogger(ProgramUnitImpl.class);
+
+	protected final CopyBook copyBook;
 
 	protected final ProgramUnitContext ctx;
 
@@ -29,10 +50,124 @@ public class ProgramUnitImpl extends CobolScopeImpl implements ProgramUnit {
 
 	protected ProcedureDivision procedureDivision;
 
-	public ProgramUnitImpl(final CopyBook copyBook, final CobolScope superScope, final ProgramUnitContext ctx) {
-		super(copyBook, superScope, ctx);
+	public ProgramUnitImpl(final CopyBook copyBook, final ProgramUnitContext ctx) {
+		super(ctx);
 
 		this.ctx = ctx;
+		this.copyBook = copyBook;
+	}
+
+	@Override
+	public DataDivision addDataDivision(final DataDivisionContext ctx) {
+		DataDivision result = (DataDivision) getASGElement(ctx);
+
+		if (result == null) {
+			result = new DataDivisionImpl(this, ctx);
+
+			final DataDivisionBodyContext dataDivisionBodyContext = ctx.dataDivisionBody();
+			final DataDivisionBody dataDivisionBody = result.addDataDivisionBody(dataDivisionBodyContext);
+			result.setDataDivisionBody(dataDivisionBody);
+
+			registerASGElement(result);
+			dataDivision = result;
+		}
+
+		return result;
+	}
+
+	@Override
+	public EnvironmentDivision addEnvironmentDivision(final EnvironmentDivisionContext ctx) {
+		EnvironmentDivision result = (EnvironmentDivision) getASGElement(ctx);
+
+		if (result == null) {
+			result = new EnvironmentDivisionImpl(this, ctx);
+
+			for (final EnvironmentDivisionBodyContext environmentDivisionBodyContext : ctx.environmentDivisionBody()) {
+				final EnvironmentDivisionBody environmentDivisionBody;
+
+				if (environmentDivisionBodyContext.configurationSection() != null) {
+					environmentDivisionBody = result
+							.addConfigurationSection(environmentDivisionBodyContext.configurationSection());
+				} else {
+					LOG.warn("unknown environment division body {}", environmentDivisionBodyContext);
+					environmentDivisionBody = null;
+				}
+
+				result.addEnvironmentDivisionBody(environmentDivisionBody);
+			}
+
+			registerASGElement(result);
+			environmentDivision = result;
+		}
+
+		return result;
+	}
+
+	@Override
+	public IdentificationDivision addIdentificationDivision(final IdentificationDivisionContext ctx) {
+		IdentificationDivision result = (IdentificationDivision) getASGElement(ctx);
+
+		if (result == null) {
+			result = new IdentificationDivisionImpl(this, ctx);
+
+			// program id paragraph
+			final ProgramIdParagraph programIdParagraph = result.addProgramIdParagraph(ctx.programIdParagraph());
+			result.setProgramIdParagraph(programIdParagraph);
+
+			for (final IdentificationDivisionBodyContext identificationDivisionBodyContext : ctx
+					.identificationDivisionBody()) {
+				final IdentificationDivisionBody identificationDivisionBody;
+
+				if (identificationDivisionBodyContext.authorParagraph() != null) {
+					identificationDivisionBody = result
+							.addAuthorParagraph(identificationDivisionBodyContext.authorParagraph());
+				} else if (identificationDivisionBodyContext.installationParagraph() != null) {
+					identificationDivisionBody = result
+							.addInstallationParagraph(identificationDivisionBodyContext.installationParagraph());
+				} else if (identificationDivisionBodyContext.dateWrittenParagraph() != null) {
+					identificationDivisionBody = result
+							.addDateWrittenParagraph(identificationDivisionBodyContext.dateWrittenParagraph());
+				} else if (identificationDivisionBodyContext.dateCompiledParagraph() != null) {
+					identificationDivisionBody = result
+							.addDateCompiledParagraph(identificationDivisionBodyContext.dateCompiledParagraph());
+				} else if (identificationDivisionBodyContext.securityParagraph() != null) {
+					identificationDivisionBody = result
+							.addSecurityParagraph(identificationDivisionBodyContext.securityParagraph());
+				} else if (identificationDivisionBodyContext.remarksParagraph() != null) {
+					identificationDivisionBody = result
+							.addRemarksParagraph(identificationDivisionBodyContext.remarksParagraph());
+				} else {
+					LOG.warn("unknown identification division body {}", identificationDivisionBodyContext);
+					identificationDivisionBody = null;
+				}
+
+				result.addIdentificationDivisionBody(identificationDivisionBody);
+			}
+
+			registerASGElement(result);
+			identificationDivision = result;
+		}
+
+		return result;
+	}
+
+	@Override
+	public ProcedureDivision addProcedureDivision(final ProcedureDivisionContext ctx) {
+		ProcedureDivision result = (ProcedureDivision) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ProcedureDivisionImpl(this, ctx);
+
+			registerASGElement(result);
+			procedureDivision = result;
+		}
+
+		return result;
+	}
+
+	@Override
+	public CopyBook getCopyBook() {
+		return copyBook;
 	}
 
 	@Override
@@ -53,26 +188,6 @@ public class ProgramUnitImpl extends CobolScopeImpl implements ProgramUnit {
 	@Override
 	public ProcedureDivision getProcedureDivision() {
 		return procedureDivision;
-	}
-
-	@Override
-	public void setDataDivision(final DataDivision dataDivision) {
-		this.dataDivision = dataDivision;
-	}
-
-	@Override
-	public void setEnvironmentDivision(final EnvironmentDivision environmentDivision) {
-		this.environmentDivision = environmentDivision;
-	}
-
-	@Override
-	public void setIdentificationDivision(final IdentificationDivision identificationDivision) {
-		this.identificationDivision = identificationDivision;
-	}
-
-	@Override
-	public void setProcedureDivision(final ProcedureDivision procedureDivision) {
-		this.procedureDivision = procedureDivision;
 	}
 
 }

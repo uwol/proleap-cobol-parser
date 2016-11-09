@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.parser.metamodel.call;
 
-import io.proleap.cobol.parser.metamodel.CobolScopedElement;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.NamedElement;
 
-public interface Call extends CobolScopedElement, NamedElement {
+public interface Call extends CobolDivisionElement, NamedElement {
 
 	public enum CallType {
 		DataDescriptionsEntryCall, ProcedureCall, UndefinedCall, VariableCall;
