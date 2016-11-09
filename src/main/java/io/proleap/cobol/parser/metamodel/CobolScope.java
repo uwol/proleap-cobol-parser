@@ -10,15 +10,22 @@ package io.proleap.cobol.parser.metamodel;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.AuthorParagraphContext;
+import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
+import io.proleap.cobol.Cobol85Parser.DateCompiledParagraphContext;
+import io.proleap.cobol.Cobol85Parser.DateWrittenParagraphContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
+import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
+import io.proleap.cobol.Cobol85Parser.InstallationParagraphContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
+import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
@@ -26,6 +33,9 @@ import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
+import io.proleap.cobol.Cobol85Parser.RemarksParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SecurityParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
@@ -33,9 +43,13 @@ import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface CobolScope extends CobolScopedElement {
 
+	AuthorParagraph addAuthorParagraph(AuthorParagraphContext ctx);
+
 	Call addCall(IdentifierContext ctx);
 
 	Call addCall(ProcedureNameContext ctx);
+
+	ConfigurationSection addConfigurationSection(ConfigurationSectionContext ctx);
 
 	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat1Context ctx);
 
@@ -43,13 +57,23 @@ public interface CobolScope extends CobolScopedElement {
 
 	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat3Context ctx);
 
+	DateCompiledParagraph addDateCompiledParagraph(DateCompiledParagraphContext ctx);
+
+	DateWrittenParagraph addDateWrittenParagraph(DateWrittenParagraphContext ctx);
+
 	DisplayStatement addDisplayStatement(DisplayStatementContext ctx);
 
+	EnvironmentDivision addEnvironmentDivision(EnvironmentDivisionContext ctx);
+
 	IdentificationDivision addIdentificationDivision(IdentificationDivisionContext ctx);
+
+	InstallationParagraph addInstallationParagraph(InstallationParagraphContext ctx);
 
 	Literal addLiteral(LiteralContext ctx);
 
 	MoveToStatement addMoveToStatement(MoveToStatementContext ctx);
+
+	ObjectComputerParagraph addObjectComputerParagraph(ObjectComputerParagraphContext ctx);
 
 	Paragraph addParagraph(ParagraphContext ctx);
 
@@ -62,6 +86,12 @@ public interface CobolScope extends CobolScopedElement {
 	ProcedureDivision addProcedureDivision(ProcedureDivisionContext ctx);
 
 	ProgramIdParagraph addProgramIdParagraph(ProgramIdParagraphContext ctx);
+
+	RemarksParagraph addRemarksParagraph(RemarksParagraphContext ctx);
+
+	SecurityParagraph addSecurityParagraph(SecurityParagraphContext ctx);
+
+	SourceComputerParagraph addSourceComputerParagraph(SourceComputerParagraphContext ctx);
 
 	StopStatement addStopStatement(StopStatementContext ctx);
 

@@ -8,7 +8,13 @@
 
 package io.proleap.cobol.parser.metamodel;
 
+import java.util.List;
+
 public interface IdentificationDivision extends CobolScopedElement {
+
+	void addIdentificationDivisionBody(IdentificationDivisionBody identificationDivisionBody);
+
+	List<IdentificationDivisionBody> getIdentificationDivisionBodies();
 
 	ProgramIdParagraph getProgramIdParagraph();
 

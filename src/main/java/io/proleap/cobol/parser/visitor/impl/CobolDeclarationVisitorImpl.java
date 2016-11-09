@@ -24,6 +24,24 @@ public class CobolDeclarationVisitorImpl extends AbstractCobolParserVisitorImpl 
 	}
 
 	@Override
+	public Boolean visitAuthorParagraph(@NotNull final Cobol85Parser.AuthorParagraphContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addAuthorParagraph(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitConfigurationSection(@NotNull final Cobol85Parser.ConfigurationSectionContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addConfigurationSection(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitDataDescriptionEntryFormat1(
 			@NotNull final Cobol85Parser.DataDescriptionEntryFormat1Context ctx) {
 		final CobolScope scope = findScope(ctx);
@@ -54,8 +72,51 @@ public class CobolDeclarationVisitorImpl extends AbstractCobolParserVisitorImpl 
 	}
 
 	@Override
+	public Boolean visitDateCompiledParagraph(@NotNull final Cobol85Parser.DateCompiledParagraphContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addDateCompiledParagraph(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitDateWrittenParagraph(@NotNull final Cobol85Parser.DateWrittenParagraphContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addDateWrittenParagraph(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitEnvironmentDivision(@NotNull final Cobol85Parser.EnvironmentDivisionContext ctx) {
+		copyBook.addEnvironmentDivision(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitIdentificationDivision(@NotNull final Cobol85Parser.IdentificationDivisionContext ctx) {
 		copyBook.addIdentificationDivision(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitInstallationParagraph(@NotNull final Cobol85Parser.InstallationParagraphContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addInstallationParagraph(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitObjectComputerParagraph(@NotNull final Cobol85Parser.ObjectComputerParagraphContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addObjectComputerParagraph(ctx);
 
 		return visitChildren(ctx);
 	}
@@ -95,6 +156,33 @@ public class CobolDeclarationVisitorImpl extends AbstractCobolParserVisitorImpl 
 	@Override
 	public Boolean visitProgramUnit(@NotNull final Cobol85Parser.ProgramUnitContext ctx) {
 		copyBook.addProgramUnit(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitRemarksParagraph(@NotNull final Cobol85Parser.RemarksParagraphContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addRemarksParagraph(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitSecurityParagraph(@NotNull final Cobol85Parser.SecurityParagraphContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addSecurityParagraph(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitSourceComputerParagraph(@NotNull final Cobol85Parser.SourceComputerParagraphContext ctx) {
+		final CobolScope scope = findScope(ctx);
+
+		scope.addSourceComputerParagraph(ctx);
 
 		return visitChildren(ctx);
 	}

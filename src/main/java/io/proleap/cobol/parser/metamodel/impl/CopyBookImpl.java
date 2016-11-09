@@ -14,6 +14,7 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.CompilationUnitContext;
 import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
 import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.IdentificationDivision;
 import io.proleap.cobol.parser.metamodel.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.Program;
@@ -50,16 +51,23 @@ public class CopyBookImpl extends CobolScopeImpl implements CopyBook {
 
 			storeScopedElement(result);
 			programUnits.add(result);
-		}
 
-		// identification division
-		final IdentificationDivision identificationDivision = addIdentificationDivision(ctx.identificationDivision());
-		result.setIdentificationDivision(identificationDivision);
+			// identification division
+			final IdentificationDivision identificationDivision = addIdentificationDivision(
+					ctx.identificationDivision());
+			result.setIdentificationDivision(identificationDivision);
 
-		// procedure division
-		if (ctx.procedureDivision() != null) {
-			final ProcedureDivision procedureDivision = addProcedureDivision(ctx.procedureDivision());
-			result.setProcedureDivision(procedureDivision);
+			// environment division
+			if (ctx.environmentDivision() != null) {
+				final EnvironmentDivision environmentDivision = addEnvironmentDivision(ctx.environmentDivision());
+				result.setEnvironmentDivision(environmentDivision);
+			}
+
+			// procedure division
+			if (ctx.procedureDivision() != null) {
+				final ProcedureDivision procedureDivision = addProcedureDivision(ctx.procedureDivision());
+				result.setProcedureDivision(procedureDivision);
+			}
 		}
 
 		return result;

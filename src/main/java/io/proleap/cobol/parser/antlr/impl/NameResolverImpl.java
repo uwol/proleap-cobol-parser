@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.ComputerNameContext;
 import io.proleap.cobol.Cobol85Parser.ConditionNameContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
@@ -29,75 +30,38 @@ public class NameResolverImpl implements NameResolver {
 
 	private final static Logger LOG = LogManager.getLogger(NameResolverImpl.class);
 
+	public String determineName(final ComputerNameContext ctx) {
+		final String result = ctx != null ? ctx.getText() : null;
+		return result;
+	}
+
 	public String determineName(final ConditionNameContext ctx) {
-		final String result;
-
-		if (ctx != null) {
-			result = ctx.getText();
-		} else {
-			result = null;
-		}
-
+		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}
 
 	public String determineName(final DataDescriptionEntryFormat1Context ctx) {
-		final String result;
-
-		if (ctx != null) {
-			result = determineName(ctx.dataName());
-		} else {
-			result = null;
-		}
-
+		final String result = ctx != null ? determineName(ctx.dataName()) : null;
 		return result;
 	}
 
 	public String determineName(final DataDescriptionEntryFormat2Context ctx) {
-		final String result;
-
-		if (ctx != null) {
-			result = determineName(ctx.dataName());
-		} else {
-			result = null;
-		}
-
+		final String result = ctx != null ? determineName(ctx.dataName()) : null;
 		return result;
 	}
 
 	public String determineName(final DataDescriptionEntryFormat3Context ctx) {
-		final String result;
-
-		if (ctx != null) {
-			result = determineName(ctx.conditionName());
-		} else {
-			result = null;
-		}
-
+		final String result = ctx != null ? determineName(ctx.conditionName()) : null;
 		return result;
 	}
 
 	public String determineName(final DataNameContext ctx) {
-		final String result;
-
-		if (ctx != null) {
-			result = ctx.getText();
-		} else {
-			result = null;
-		}
-
+		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}
 
 	public String determineName(final IdentifierContext ctx) {
-		final String result;
-
-		if (ctx != null) {
-			result = ctx.getText();
-		} else {
-			result = null;
-		}
-
+		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}
 
@@ -107,14 +71,7 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final ParagraphNameContext ctx) {
-		final String result;
-
-		if (ctx != null) {
-			result = ctx.getText();
-		} else {
-			result = null;
-		}
-
+		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}
 
@@ -122,7 +79,9 @@ public class NameResolverImpl implements NameResolver {
 	public String determineName(final ParseTree ctx) {
 		final String result;
 
-		if (ctx instanceof ConditionNameContext) {
+		if (ctx instanceof ComputerNameContext) {
+			result = determineName((ComputerNameContext) ctx);
+		} else if (ctx instanceof ConditionNameContext) {
 			result = determineName((ConditionNameContext) ctx);
 		} else if (ctx instanceof DataDescriptionEntryFormat1Context) {
 			result = determineName((DataDescriptionEntryFormat1Context) ctx);
@@ -152,14 +111,7 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final ProcedureNameContext ctx) {
-		final String result;
-
-		if (ctx != null) {
-			result = ctx.getText();
-		} else {
-			result = null;
-		}
-
+		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}
 
@@ -169,14 +121,7 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final ProgramNameContext ctx) {
-		final String result;
-
-		if (ctx != null) {
-			result = ctx.getText();
-		} else {
-			result = null;
-		}
-
+		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}
 }
