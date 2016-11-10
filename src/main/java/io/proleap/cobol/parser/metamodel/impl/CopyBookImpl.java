@@ -81,6 +81,19 @@ public class CopyBookImpl extends CompilationUnitElementImpl implements CopyBook
 	}
 
 	@Override
+	public ProgramUnit getProgramUnit() {
+		final ProgramUnit result;
+
+		if (programUnits.isEmpty()) {
+			result = null;
+		} else {
+			result = programUnits.get(0);
+		}
+
+		return result;
+	}
+
+	@Override
 	public List<ProgramUnit> getProgramUnits() {
 		return programUnits;
 	}

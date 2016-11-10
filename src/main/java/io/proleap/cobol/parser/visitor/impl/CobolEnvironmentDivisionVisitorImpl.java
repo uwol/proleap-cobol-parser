@@ -81,6 +81,15 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
+	public Boolean visitSelectClause(@NotNull final Cobol85Parser.SelectClauseContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addSelectClause(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitSourceComputerParagraph(@NotNull final Cobol85Parser.SourceComputerParagraphContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 

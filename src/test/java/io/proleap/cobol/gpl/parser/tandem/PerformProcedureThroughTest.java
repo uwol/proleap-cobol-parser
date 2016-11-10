@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -36,8 +35,7 @@ public class PerformProcedureThroughTest extends CobolTestSupport {
 				CobolSourceFormatEnum.TANDEM);
 
 		final CopyBook copyBook = program.getCopyBook("PERFORMPROCEDURETHROUGH");
-		final List<ProgramUnit> programUnits = copyBook.getProgramUnits();
-		final ProgramUnit programUnit = programUnits.get(0);
+		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 
 		final Paragraph paragraphProc1 = procedureDivision.getParagraph("PROC1");

@@ -3,7 +3,6 @@ package io.proleap.cobol.gpl.parser.tandem;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,8 +31,7 @@ public class DataDescription01Test extends CobolTestSupport {
 				CobolSourceFormatEnum.TANDEM);
 
 		final CopyBook copyBook = program.getCopyBook("DataDescription01");
-		final List<ProgramUnit> programUnits = copyBook.getProgramUnits();
-		final ProgramUnit programUnit = programUnits.get(0);
+		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 
 		final DataDescriptionEntry dataDescriptionEntry1 = dataDivision.getDataDescriptionEntry("ITEMS");

@@ -8,7 +8,10 @@
 
 package io.proleap.cobol.parser.metamodel.environment.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +25,7 @@ import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionParagraphContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.ConfigurationSection;
@@ -34,6 +38,7 @@ import io.proleap.cobol.parser.metamodel.environment.InputOutputSection;
 import io.proleap.cobol.parser.metamodel.environment.InputOutputSectionParagraph;
 import io.proleap.cobol.parser.metamodel.environment.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
+import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.environment.SourceComputerParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
 
@@ -43,7 +48,9 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 	protected final EnvironmentDivisionContext ctx;
 
-	protected List<EnvironmentDivisionBody> environmentDivisionBodies;
+	protected List<EnvironmentDivisionBody> environmentDivisionBodies = new ArrayList<EnvironmentDivisionBody>();
+
+	protected Map<String, FileControlEntry> fileControlEntriesByName = new HashMap<String, FileControlEntry>();
 
 	public EnvironmentDivisionImpl(final ProgramUnit programUnit, final EnvironmentDivisionContext ctx) {
 		super(programUnit, ctx);
@@ -92,9 +99,14 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 		FileControlEntry result = (FileControlEntry) getASGElement(ctx);
 
 		if (result == null) {
+			final String name = determineName(ctx);
 			result = new FileControlEntryImpl(programUnit, this, ctx);
 
+			final SelectClause selectClause = addSelectClause(ctx.selectClause());
+			result.setSelectClause(selectClause);
+
 			registerASGElement(result);
+			fileControlEntriesByName.put(name, result);
 		}
 
 		return result;
@@ -178,6 +190,20 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 	}
 
 	@Override
+	public SelectClause addSelectClause(final SelectClauseContext ctx) {
+		SelectClause result = (SelectClause) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new SelectClauseImpl(name, programUnit, this, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public SourceComputerParagraph addSourceComputerParagraph(final SourceComputerParagraphContext ctx) {
 		SourceComputerParagraph result = (SourceComputerParagraph) getASGElement(ctx);
 
@@ -194,5 +220,10 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 	@Override
 	public List<EnvironmentDivisionBody> getEnvironmentDivisionBodies() {
 		return environmentDivisionBodies;
+	}
+
+	@Override
+	public FileControlEntry getFileControlEntry(final String name) {
+		return fileControlEntriesByName.get(name);
 	}
 }

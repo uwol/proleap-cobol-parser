@@ -8,34 +8,34 @@
 
 package io.proleap.cobol.parser.metamodel.environment.impl;
 
-import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
+import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class FileControlEntryImpl extends CobolDivisionElementImpl implements FileControlEntry {
+public class SelectClauseImpl extends CobolDivisionElementImpl implements SelectClause {
 
-	protected final FileControlEntryContext ctx;
+	protected final SelectClauseContext ctx;
 
-	protected SelectClause selectClause;
+	protected final String name;
 
-	public FileControlEntryImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final FileControlEntryContext ctx) {
+	public SelectClauseImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
+			final SelectClauseContext ctx) {
 		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
+		this.name = name;
 	}
 
 	@Override
-	public SelectClause getSelectClause() {
-		return selectClause;
+	public String getName() {
+		return name;
 	}
 
 	@Override
-	public void setSelectClause(final SelectClause selectClause) {
-		this.selectClause = selectClause;
+	public String toString() {
+		return "name=[" + name + "]";
 	}
 
 }

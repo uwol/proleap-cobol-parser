@@ -9,10 +9,8 @@
 package io.proleap.cobol.parser.metamodel.environment;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.NamedElement;
 
-public interface FileControlEntry extends CobolDivisionElement {
+public interface SelectClause extends CobolDivisionElement, NamedElement {
 
-	SelectClause getSelectClause();
-
-	void setSelectClause(SelectClause selectClause);
 }

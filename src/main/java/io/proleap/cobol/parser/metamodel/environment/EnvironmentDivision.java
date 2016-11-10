@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 
@@ -35,8 +36,12 @@ public interface EnvironmentDivision extends CobolDivision {
 
 	ObjectComputerParagraph addObjectComputerParagraph(ObjectComputerParagraphContext ctx);
 
+	SelectClause addSelectClause(SelectClauseContext ctx);
+
 	SourceComputerParagraph addSourceComputerParagraph(SourceComputerParagraphContext ctx);
 
 	List<EnvironmentDivisionBody> getEnvironmentDivisionBodies();
+
+	FileControlEntry getFileControlEntry(String name);
 
 }

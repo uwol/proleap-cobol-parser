@@ -18,6 +18,8 @@ import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
+import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
+import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
@@ -25,6 +27,7 @@ import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
+import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.parser.antlr.NameResolver;
 
@@ -58,6 +61,16 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final DataNameContext ctx) {
+		final String result = ctx != null ? ctx.getText() : null;
+		return result;
+	}
+
+	public String determineName(final FileControlEntryContext ctx) {
+		final String result = ctx != null ? determineName(ctx.selectClause()) : null;
+		return result;
+	}
+
+	public String determineName(final FileNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}
@@ -98,6 +111,10 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((DataDescriptionEntryFormat3Context) ctx);
 		} else if (ctx instanceof DataNameContext) {
 			result = determineName((DataNameContext) ctx);
+		} else if (ctx instanceof FileControlEntryContext) {
+			result = determineName((FileControlEntryContext) ctx);
+		} else if (ctx instanceof FileNameContext) {
+			result = determineName((FileNameContext) ctx);
 		} else if (ctx instanceof IdentifierContext) {
 			result = determineName((IdentifierContext) ctx);
 		} else if (ctx instanceof ObjectComputerParagraphContext) {
@@ -112,6 +129,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((ProgramIdParagraphContext) ctx);
 		} else if (ctx instanceof ProgramNameContext) {
 			result = determineName((ProgramNameContext) ctx);
+		} else if (ctx instanceof SelectClauseContext) {
+			result = determineName((SelectClauseContext) ctx);
 		} else if (ctx instanceof SourceComputerParagraphContext) {
 			result = determineName((SourceComputerParagraphContext) ctx);
 		} else {
@@ -133,6 +152,11 @@ public class NameResolverImpl implements NameResolver {
 
 	public String determineName(final ProgramNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;
+		return result;
+	}
+
+	public String determineName(final SelectClauseContext ctx) {
+		final String result = ctx != null ? determineName(ctx.fileName()) : null;
 		return result;
 	}
 

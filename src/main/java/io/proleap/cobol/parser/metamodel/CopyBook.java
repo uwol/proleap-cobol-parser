@@ -16,5 +16,7 @@ public interface CopyBook extends CompilationUnitElement, NamedElement {
 
 	ProgramUnit addProgramUnit(ProgramUnitContext ctx);
 
+	ProgramUnit getProgramUnit();
+
 	List<ProgramUnit> getProgramUnits();
 }

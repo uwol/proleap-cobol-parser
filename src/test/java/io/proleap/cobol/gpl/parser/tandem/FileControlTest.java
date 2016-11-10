@@ -12,11 +12,11 @@ import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
-import io.proleap.cobol.parser.metamodel.data.DataDivision;
+import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
+import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class DataDescription88Test extends CobolTestSupport {
+public class FileControlTest extends CobolTestSupport {
 
 	@Override
 	@Before
@@ -26,16 +26,16 @@ public class DataDescription88Test extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/tandem/DataDescription88.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/tandem/FileControl.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 
-		final CopyBook copyBook = program.getCopyBook("DataDescription88");
+		final CopyBook copyBook = program.getCopyBook("FileControl");
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
-		final DataDivision dataDivision = programUnit.getDataDivision();
+		final EnvironmentDivision environmentDivision = programUnit.getEnvironmentDivision();
 
-		final DataDescriptionEntry dataDescriptionEntry1 = dataDivision.getDataDescriptionEntry("GENDER");
+		final FileControlEntry fileControlEntry = environmentDivision.getFileControlEntry("TEACHER");
 
-		assertNotNull(dataDescriptionEntry1);
+		assertNotNull(fileControlEntry);
 	}
 }
