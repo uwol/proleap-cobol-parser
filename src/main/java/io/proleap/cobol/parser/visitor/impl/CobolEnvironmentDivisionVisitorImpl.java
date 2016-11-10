@@ -36,6 +36,15 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
+	public Boolean visitFileControlEntry(@NotNull final Cobol85Parser.FileControlEntryContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addFileControlEntry(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitFileControlParagraph(@NotNull final Cobol85Parser.FileControlParagraphContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 

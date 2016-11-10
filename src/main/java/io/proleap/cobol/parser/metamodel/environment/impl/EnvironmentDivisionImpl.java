@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionParagraphContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
+import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionParagraphContext;
@@ -27,6 +28,7 @@ import io.proleap.cobol.parser.metamodel.environment.ConfigurationSection;
 import io.proleap.cobol.parser.metamodel.environment.ConfigurationSectionParagraph;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivisionBody;
+import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.FileControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.InputOutputSection;
 import io.proleap.cobol.parser.metamodel.environment.InputOutputSectionParagraph;
@@ -86,11 +88,30 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 	}
 
 	@Override
+	public FileControlEntry addFileControlEntry(final FileControlEntryContext ctx) {
+		FileControlEntry result = (FileControlEntry) getASGElement(ctx);
+
+		if (result == null) {
+			result = new FileControlEntryImpl(programUnit, this, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public FileControlParagraph addFileControlParagraph(final FileControlParagraphContext ctx) {
 		FileControlParagraph result = (FileControlParagraph) getASGElement(ctx);
 
 		if (result == null) {
 			result = new FileControlParagraphImpl(programUnit, this, ctx);
+
+			for (final FileControlEntryContext fileControlEntryContext : ctx.fileControlEntry()) {
+				final FileControlEntry fileControlEntry = addFileControlEntry(fileControlEntryContext);
+
+				result.addFileControlEntry(fileControlEntry);
+			}
 
 			registerASGElement(result);
 		}
