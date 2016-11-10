@@ -88,6 +88,9 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 				if (environmentDivisionBodyContext.configurationSection() != null) {
 					environmentDivisionBody = result
 							.addConfigurationSection(environmentDivisionBodyContext.configurationSection());
+				} else if (environmentDivisionBodyContext.inputOutputSection() != null) {
+					environmentDivisionBody = result
+							.addInputOutputSection(environmentDivisionBodyContext.inputOutputSection());
 				} else {
 					LOG.warn("unknown environment division body {}", environmentDivisionBodyContext);
 					environmentDivisionBody = null;

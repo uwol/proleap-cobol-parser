@@ -16,6 +16,10 @@ import org.apache.logging.log4j.Logger;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionParagraphContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
+import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
+import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
+import io.proleap.cobol.Cobol85Parser.InputOutputSectionParagraphContext;
+import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -23,6 +27,10 @@ import io.proleap.cobol.parser.metamodel.environment.ConfigurationSection;
 import io.proleap.cobol.parser.metamodel.environment.ConfigurationSectionParagraph;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivisionBody;
+import io.proleap.cobol.parser.metamodel.environment.FileControlParagraph;
+import io.proleap.cobol.parser.metamodel.environment.InputOutputSection;
+import io.proleap.cobol.parser.metamodel.environment.InputOutputSectionParagraph;
+import io.proleap.cobol.parser.metamodel.environment.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
 import io.proleap.cobol.parser.metamodel.environment.SourceComputerParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
@@ -75,6 +83,63 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 	@Override
 	public void addEnvironmentDivisionBody(final EnvironmentDivisionBody environmentDivisionBody) {
 		environmentDivisionBodies.add(environmentDivisionBody);
+	}
+
+	@Override
+	public FileControlParagraph addFileControlParagraph(final FileControlParagraphContext ctx) {
+		FileControlParagraph result = (FileControlParagraph) getASGElement(ctx);
+
+		if (result == null) {
+			result = new FileControlParagraphImpl(programUnit, this, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public InputOutputSection addInputOutputSection(final InputOutputSectionContext ctx) {
+		InputOutputSection result = (InputOutputSection) getASGElement(ctx);
+
+		if (result == null) {
+			result = new InputOutputSectionImpl(programUnit, this, ctx);
+
+			for (final InputOutputSectionParagraphContext inputOutputSectionParagraphContext : ctx
+					.inputOutputSectionParagraph()) {
+				final InputOutputSectionParagraph inputOutputSectionParagraph;
+
+				if (inputOutputSectionParagraphContext.fileControlParagraph() != null) {
+					inputOutputSectionParagraph = addFileControlParagraph(
+							inputOutputSectionParagraphContext.fileControlParagraph());
+				} else if (inputOutputSectionParagraphContext.ioControlParagraph() != null) {
+					inputOutputSectionParagraph = addIoControlParagraph(
+							inputOutputSectionParagraphContext.ioControlParagraph());
+				} else {
+					LOG.warn("unknown input output section paragraph {}", inputOutputSectionParagraphContext);
+					inputOutputSectionParagraph = null;
+				}
+
+				result.addInputOutputSectionParagraph(inputOutputSectionParagraph);
+			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public IoControlParagraph addIoControlParagraph(final IoControlParagraphContext ctx) {
+		IoControlParagraph result = (IoControlParagraph) getASGElement(ctx);
+
+		if (result == null) {
+			result = new IoControlParagraphImpl(programUnit, this, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override

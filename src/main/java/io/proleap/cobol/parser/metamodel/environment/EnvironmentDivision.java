@@ -11,6 +11,9 @@ package io.proleap.cobol.parser.metamodel.environment;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
+import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
+import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
+import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
@@ -20,6 +23,12 @@ public interface EnvironmentDivision extends CobolDivision {
 	ConfigurationSection addConfigurationSection(ConfigurationSectionContext ctx);
 
 	void addEnvironmentDivisionBody(EnvironmentDivisionBody environmentDivisionBody);
+
+	FileControlParagraph addFileControlParagraph(FileControlParagraphContext ctx);
+
+	InputOutputSection addInputOutputSection(InputOutputSectionContext ctx);
+
+	IoControlParagraph addIoControlParagraph(IoControlParagraphContext ctx);
 
 	ObjectComputerParagraph addObjectComputerParagraph(ObjectComputerParagraphContext ctx);
 
