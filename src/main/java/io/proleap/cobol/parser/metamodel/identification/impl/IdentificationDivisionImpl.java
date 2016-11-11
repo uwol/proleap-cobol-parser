@@ -29,6 +29,7 @@ import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
 import io.proleap.cobol.parser.metamodel.identification.IdentificationDivisionBody;
 import io.proleap.cobol.parser.metamodel.identification.InstallationParagraph;
 import io.proleap.cobol.parser.metamodel.identification.ProgramIdParagraph;
+import io.proleap.cobol.parser.metamodel.identification.ProgramIdParagraph.Attribute;
 import io.proleap.cobol.parser.metamodel.identification.RemarksParagraph;
 import io.proleap.cobol.parser.metamodel.identification.SecurityParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
@@ -114,6 +115,22 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 			final String name = determineName(ctx);
 
 			result = new ProgramIdParagraphImpl(name, programUnit, this, ctx);
+
+			final Attribute attribute;
+
+			if (ctx.COMMON() != null) {
+				attribute = Attribute.Common;
+			} else if (ctx.INITIAL() != null) {
+				attribute = Attribute.Initial;
+			} else if (ctx.LIBRARY() != null) {
+				attribute = Attribute.Library;
+			} else if (ctx.DEFINITION() != null) {
+				attribute = Attribute.Definition;
+			} else {
+				attribute = null;
+			}
+
+			result.setAttribute(attribute);
 
 			registerASGElement(result);
 		}

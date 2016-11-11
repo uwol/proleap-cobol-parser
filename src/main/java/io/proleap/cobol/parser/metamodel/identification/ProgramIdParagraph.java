@@ -13,4 +13,11 @@ import io.proleap.cobol.parser.metamodel.NamedElement;
 
 public interface ProgramIdParagraph extends CobolDivisionElement, NamedElement {
 
+	enum Attribute {
+		Common, Definition, Initial, Library
+	}
+
+	Attribute getAttribute();
+
+	void setAttribute(Attribute attribute);
 }

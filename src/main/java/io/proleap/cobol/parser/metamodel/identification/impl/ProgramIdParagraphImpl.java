@@ -16,6 +16,8 @@ import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 public class ProgramIdParagraphImpl extends CobolDivisionElementImpl implements ProgramIdParagraph {
 
+	protected Attribute attribute;
+
 	protected final ProgramIdParagraphContext ctx;
 
 	protected String name;
@@ -29,8 +31,18 @@ public class ProgramIdParagraphImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
+	public Attribute getAttribute() {
+		return attribute;
+	}
+
+	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public void setAttribute(final Attribute attribute) {
+		this.attribute = attribute;
 	}
 
 }
