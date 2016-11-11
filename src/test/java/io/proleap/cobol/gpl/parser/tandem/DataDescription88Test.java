@@ -15,7 +15,6 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryCondition;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -37,31 +36,31 @@ public class DataDescription88Test extends CobolTestSupport {
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 
+		assertEquals(3, dataDivision.getDataDescriptionEntries().size());
+		assertEquals(1, dataDivision.getRootDataDescriptionEntries().size());
+
 		final DataDescriptionEntry dataDescriptionEntryGender = dataDivision.getDataDescriptionEntry("GENDER");
 
 		assertNotNull(dataDescriptionEntryGender);
 		assertEquals("GENDER", dataDescriptionEntryGender.getName());
+		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryGender.getType());
 		assertEquals(new Integer(1), dataDescriptionEntryGender.getLevelNumber());
 		assertNull(dataDescriptionEntryGender.getDataDescriptionEntryGroup());
 
 		final DataDescriptionEntry dataDescriptionEntryMale = dataDivision.getDataDescriptionEntry("MALE");
-		final DataDescriptionEntryCondition dataDescriptionEntryConditionMale = dataDivision
-				.getDataDescriptionEntryCondition("MALE");
 
 		assertNotNull(dataDescriptionEntryMale);
 		assertEquals("MALE", dataDescriptionEntryMale.getName());
+		assertEquals(DataDescriptionEntry.Type.Condition, dataDescriptionEntryMale.getType());
 		assertEquals(new Integer(88), dataDescriptionEntryMale.getLevelNumber());
-		assertEquals(dataDescriptionEntryMale, dataDescriptionEntryConditionMale);
-		assertEquals(dataDescriptionEntryGender, dataDescriptionEntryConditionMale.getDataDescriptionEntryGroup());
+		assertEquals(dataDescriptionEntryGender, dataDescriptionEntryMale.getDataDescriptionEntryGroup());
 
 		final DataDescriptionEntry dataDescriptionEntryFemale = dataDivision.getDataDescriptionEntry("FEMALE");
-		final DataDescriptionEntryCondition dataDescriptionEntryConditionFemale = dataDivision
-				.getDataDescriptionEntryCondition("FEMALE");
 
 		assertNotNull(dataDescriptionEntryFemale);
 		assertEquals("FEMALE", dataDescriptionEntryFemale.getName());
+		assertEquals(DataDescriptionEntry.Type.Condition, dataDescriptionEntryFemale.getType());
 		assertEquals(new Integer(88), dataDescriptionEntryFemale.getLevelNumber());
-		assertEquals(dataDescriptionEntryFemale, dataDescriptionEntryConditionFemale);
-		assertEquals(dataDescriptionEntryGender, dataDescriptionEntryConditionFemale.getDataDescriptionEntryGroup());
+		assertEquals(dataDescriptionEntryGender, dataDescriptionEntryFemale.getDataDescriptionEntryGroup());
 	}
 }

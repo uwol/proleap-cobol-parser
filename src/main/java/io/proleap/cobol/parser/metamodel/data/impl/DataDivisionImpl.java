@@ -48,18 +48,6 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesByName = new HashMap<String, DataDescriptionEntry>();
 
-	protected List<DataDescriptionEntryCondition> dataDescriptionEntryConditions = new ArrayList<DataDescriptionEntryCondition>();
-
-	protected Map<String, DataDescriptionEntryCondition> dataDescriptionEntryConditionsByName = new HashMap<String, DataDescriptionEntryCondition>();
-
-	protected List<DataDescriptionEntryGroup> dataDescriptionEntryGroups = new ArrayList<DataDescriptionEntryGroup>();
-
-	protected Map<String, DataDescriptionEntryGroup> dataDescriptionEntryGroupsByName = new HashMap<String, DataDescriptionEntryGroup>();
-
-	protected List<DataDescriptionEntryRename> dataDescriptionEntryRenames = new ArrayList<DataDescriptionEntryRename>();
-
-	protected Map<String, DataDescriptionEntryRename> dataDescriptionEntryRenamesByName = new HashMap<String, DataDescriptionEntryRename>();
-
 	protected DataDivisionBody dataDivisionBody;
 
 	protected List<FileDescriptionEntry> fileDescriptionEntries = new ArrayList<FileDescriptionEntry>();
@@ -81,15 +69,12 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			final String name = determineName(ctx);
 			result = new DataDescriptionEntryConditionImpl(name, programUnit, this, ctx);
 
-			result.setLevelNumber(88);
+			result.setLevelNumber(DataDescriptionEntry.LEVEL_NUMBER_CONDITION);
 
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
 			dataDescriptionEntriesByName.put(name, result);
-
-			dataDescriptionEntryConditions.add(result);
-			dataDescriptionEntryConditionsByName.put(name, result);
 		}
 
 		return result;
@@ -106,7 +91,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			final Integer levelNumber;
 
 			if (ctx.LEVEL_NUMBER_77() != null) {
-				levelNumber = 77;
+				levelNumber = DataDescriptionEntry.LEVEL_NUMBER_SCALAR;
 			} else if (ctx.INTEGERLITERAL() != null) {
 				levelNumber = StringUtils.parseInteger(ctx.INTEGERLITERAL().getText());
 			} else {
@@ -119,9 +104,6 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 			dataDescriptionEntries.add(result);
 			dataDescriptionEntriesByName.put(name, result);
-
-			dataDescriptionEntryGroups.add(result);
-			dataDescriptionEntryGroupsByName.put(name, result);
 		}
 
 		return result;
@@ -135,15 +117,12 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			final String name = determineName(ctx);
 			result = new DataDescriptionEntryRenameImpl(name, programUnit, this, ctx);
 
-			result.setLevelNumber(66);
+			result.setLevelNumber(DataDescriptionEntry.LEVEL_NUMBER_RENAME);
 
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
 			dataDescriptionEntriesByName.put(name, result);
-
-			dataDescriptionEntryRenames.add(result);
-			dataDescriptionEntryRenamesByName.put(name, result);
 		}
 
 		return result;
@@ -285,36 +264,6 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	}
 
 	@Override
-	public DataDescriptionEntryCondition getDataDescriptionEntryCondition(final String name) {
-		return dataDescriptionEntryConditionsByName.get(name);
-	}
-
-	@Override
-	public List<DataDescriptionEntryCondition> getDataDescriptionEntryConditions() {
-		return dataDescriptionEntryConditions;
-	}
-
-	@Override
-	public DataDescriptionEntryGroup getDataDescriptionEntryGroup(final String name) {
-		return dataDescriptionEntryGroupsByName.get(name);
-	}
-
-	@Override
-	public List<DataDescriptionEntryGroup> getDataDescriptionEntryGroups() {
-		return dataDescriptionEntryGroups;
-	}
-
-	@Override
-	public DataDescriptionEntryRename getDataDescriptionEntryRename(final String name) {
-		return dataDescriptionEntryRenamesByName.get(name);
-	}
-
-	@Override
-	public List<DataDescriptionEntryRename> getDataDescriptionEntryRenames() {
-		return dataDescriptionEntryRenames;
-	}
-
-	@Override
 	public DataDivisionBody getDataDivisionBody() {
 		return dataDivisionBody;
 	}
@@ -329,12 +278,27 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		return fileDescriptionEntriesByName.get(name);
 	}
 
+	@Override
+	public List<DataDescriptionEntry> getRootDataDescriptionEntries() {
+		final List<DataDescriptionEntry> result = new ArrayList<DataDescriptionEntry>();
+
+		for (final DataDescriptionEntry dataDescriptionEntry : dataDescriptionEntries) {
+
+			if (dataDescriptionEntry.getDataDescriptionEntryGroup() == null) {
+				result.add(dataDescriptionEntry);
+			}
+		}
+
+		return result;
+	}
+
 	protected void groupDataDescriptionEntry(final DataDescriptionEntryGroup lastDataDescriptionEntryGroup,
 			final DataDescriptionEntry dataDescriptionEntry) {
 		final Integer lastLevelNumber = lastDataDescriptionEntryGroup.getLevelNumber();
 		final Integer levelNumber = dataDescriptionEntry.getLevelNumber();
 
-		if (LEVEL_NUMBER_SCALAR == levelNumber || LEVEL_NUMBER_RENAME == levelNumber) {
+		if (DataDescriptionEntry.LEVEL_NUMBER_SCALAR == levelNumber
+				|| DataDescriptionEntry.LEVEL_NUMBER_RENAME == levelNumber) {
 		} else if (levelNumber > lastLevelNumber) {
 			lastDataDescriptionEntryGroup.addDataDescriptionEntry(dataDescriptionEntry);
 			dataDescriptionEntry.setDataDescriptionEntryGroup(lastDataDescriptionEntryGroup);

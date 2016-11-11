@@ -38,8 +38,12 @@ public class FileControlReadTest extends CobolTestSupport {
 
 		final CopyBook copyBook = program.getCopyBook("FileControlRead");
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
-		final DataDivision dataDivision = programUnit.getDataDivision();
+
 		final EnvironmentDivision environmentDivision = programUnit.getEnvironmentDivision();
+		final DataDivision dataDivision = programUnit.getDataDivision();
+
+		assertEquals(7, dataDivision.getDataDescriptionEntries().size());
+		assertEquals(3, dataDivision.getRootDataDescriptionEntries().size());
 
 		/*
 		 * file control
@@ -87,29 +91,29 @@ public class FileControlReadTest extends CobolTestSupport {
 		 * working storage section
 		 */
 		{
-			final DataDescriptionEntryGroup dataDescriptionEntryWsPerson = dataDivision
-					.getDataDescriptionEntryGroup("WS-PERSON");
+			final DataDescriptionEntryGroup dataDescriptionEntryWsPerson = (DataDescriptionEntryGroup) dataDivision
+					.getDataDescriptionEntry("WS-PERSON");
 			assertNotNull(dataDescriptionEntryWsPerson);
 			assertEquals("WS-PERSON", dataDescriptionEntryWsPerson.getName());
 			assertEquals(new Integer(1), dataDescriptionEntryWsPerson.getLevelNumber());
 			assertNull(dataDescriptionEntryWsPerson.getDataDescriptionEntryGroup());
 
-			final DataDescriptionEntryGroup dataDescriptionEntryWsPersonId = dataDivision
-					.getDataDescriptionEntryGroup("WS-PERSON-ID");
+			final DataDescriptionEntry dataDescriptionEntryWsPersonId = dataDivision
+					.getDataDescriptionEntry("WS-PERSON-ID");
 			assertNotNull(dataDescriptionEntryWsPersonId);
 			assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
 			assertEquals(new Integer(5), dataDescriptionEntryWsPersonId.getLevelNumber());
 			assertEquals(dataDescriptionEntryWsPerson, dataDescriptionEntryWsPersonId.getDataDescriptionEntryGroup());
 
-			final DataDescriptionEntryGroup dataDescriptionEntryWsPersonName = dataDivision
-					.getDataDescriptionEntryGroup("WS-NAME");
+			final DataDescriptionEntry dataDescriptionEntryWsPersonName = dataDivision
+					.getDataDescriptionEntry("WS-NAME");
 			assertNotNull(dataDescriptionEntryWsPersonName);
 			assertEquals("WS-NAME", dataDescriptionEntryWsPersonName.getName());
 			assertEquals(new Integer(5), dataDescriptionEntryWsPersonName.getLevelNumber());
 			assertEquals(dataDescriptionEntryWsPerson, dataDescriptionEntryWsPersonName.getDataDescriptionEntryGroup());
 
-			final DataDescriptionEntryGroup dataDescriptionEntryWsEof = dataDivision
-					.getDataDescriptionEntryGroup("WS-EOF");
+			final DataDescriptionEntryGroup dataDescriptionEntryWsEof = (DataDescriptionEntryGroup) dataDivision
+					.getDataDescriptionEntry("WS-EOF");
 			assertNotNull(dataDescriptionEntryWsEof);
 			assertEquals("WS-EOF", dataDescriptionEntryWsEof.getName());
 			assertEquals(new Integer(1), dataDescriptionEntryWsEof.getLevelNumber());

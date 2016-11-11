@@ -24,4 +24,9 @@ public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl imp
 		this.ctx = ctx;
 	}
 
+	@Override
+	public Type getType() {
+		return Type.Rename;
+	}
+
 }

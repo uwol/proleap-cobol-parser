@@ -15,7 +15,6 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -37,25 +36,28 @@ public class DataDescription01Test extends CobolTestSupport {
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 
+		assertEquals(3, dataDivision.getDataDescriptionEntries().size());
+		assertEquals(1, dataDivision.getRootDataDescriptionEntries().size());
+
 		final DataDescriptionEntry dataDescriptionEntryItems = dataDivision.getDataDescriptionEntry("ITEMS");
-		final DataDescriptionEntryGroup dataDescriptionEntryGroupItems = dataDivision
-				.getDataDescriptionEntryGroup("ITEMS");
 
 		assertNotNull(dataDescriptionEntryItems);
 		assertEquals("ITEMS", dataDescriptionEntryItems.getName());
+		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItems.getType());
 		assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
-		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryGroupItems);
 		assertNull(dataDescriptionEntryItems.getDataDescriptionEntryGroup());
 
 		final DataDescriptionEntry dataDescriptionEntryItem1 = dataDivision.getDataDescriptionEntry("ITEM1");
 		assertNotNull(dataDescriptionEntryItem1);
 		assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
+		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem1.getType());
 		assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
 		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem1.getDataDescriptionEntryGroup());
 
 		final DataDescriptionEntry dataDescriptionEntryItem2 = dataDivision.getDataDescriptionEntry("ITEM2");
 		assertNotNull(dataDescriptionEntryItem2);
 		assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
+		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem2.getType());
 		assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
 		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem2.getDataDescriptionEntryGroup());
 	}

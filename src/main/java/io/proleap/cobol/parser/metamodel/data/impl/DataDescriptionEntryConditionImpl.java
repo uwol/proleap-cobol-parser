@@ -13,15 +13,21 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryCondition;
 
-public class DataDescriptionEntryConditionImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryCondition {
+public class DataDescriptionEntryConditionImpl extends DataDescriptionEntryImpl
+		implements DataDescriptionEntryCondition {
 
 	protected final DataDescriptionEntryFormat3Context ctx;
 
-	public DataDescriptionEntryConditionImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
-			final DataDescriptionEntryFormat3Context ctx) {
+	public DataDescriptionEntryConditionImpl(final String name, final ProgramUnit programUnit,
+			final CobolDivision scope, final DataDescriptionEntryFormat3Context ctx) {
 		super(name, programUnit, scope, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public Type getType() {
+		return Type.Condition;
 	}
 
 }

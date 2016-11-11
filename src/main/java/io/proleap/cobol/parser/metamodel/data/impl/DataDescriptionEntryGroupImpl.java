@@ -52,4 +52,17 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 		return dataDescriptionEntriesByName.get(name);
 	}
 
+	@Override
+	public Type getType() {
+		final Type result;
+
+		if (DataDescriptionEntry.LEVEL_NUMBER_SCALAR == levelNumber) {
+			result = Type.Scalar;
+		} else {
+			result = Type.Group;
+		}
+
+		return result;
+	}
+
 }

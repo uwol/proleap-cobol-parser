@@ -16,6 +16,16 @@ import io.proleap.cobol.parser.metamodel.call.DataDescriptionEntryCall;
 
 public interface DataDescriptionEntry extends CobolDivisionElement, Declaration {
 
+	enum Type {
+		Condition, Group, Rename, Scalar
+	}
+
+	static final int LEVEL_NUMBER_CONDITION = 88;
+
+	static final int LEVEL_NUMBER_RENAME = 66;
+
+	static final int LEVEL_NUMBER_SCALAR = 77;
+
 	void addDataDescriptionEntryCall(DataDescriptionEntryCall dataDescriptionEntryCall);
 
 	List<DataDescriptionEntryCall> getDataDescriptionEntryCalls();
@@ -23,6 +33,8 @@ public interface DataDescriptionEntry extends CobolDivisionElement, Declaration 
 	DataDescriptionEntryGroup getDataDescriptionEntryGroup();
 
 	Integer getLevelNumber();
+
+	Type getType();
 
 	void setDataDescriptionEntryGroup(DataDescriptionEntryGroup dataDescriptionEntryGroup);
 
