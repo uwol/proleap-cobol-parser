@@ -22,8 +22,10 @@ import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.DataDivisionBodyContext;
 import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
+import io.proleap.cobol.Cobol85Parser.DataPictureClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
+import io.proleap.cobol.Cobol85Parser.PictureStringContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
@@ -99,6 +101,12 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			}
 
 			result.setLevelNumber(levelNumber);
+
+			if (!ctx.dataPictureClause().isEmpty()) {
+				final DataPictureClauseContext dataPictureClauseContext = ctx.dataPictureClause().get(0);
+				final PictureStringContext pictureString = dataPictureClauseContext.pictureString();
+				result.setPictureString(pictureString.getText());
+			}
 
 			registerASGElement(result);
 

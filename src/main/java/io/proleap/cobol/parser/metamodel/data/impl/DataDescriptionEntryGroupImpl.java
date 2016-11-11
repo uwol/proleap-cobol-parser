@@ -27,6 +27,8 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 
 	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesByName = new HashMap<String, DataDescriptionEntry>();
 
+	protected String pictureString;
+
 	public DataDescriptionEntryGroupImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
 			final DataDescriptionEntryFormat1Context ctx) {
 		super(name, programUnit, scope, ctx);
@@ -53,6 +55,11 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
+	public String getPictureString() {
+		return pictureString;
+	}
+
+	@Override
 	public Type getType() {
 		final Type result;
 
@@ -63,6 +70,11 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 		}
 
 		return result;
+	}
+
+	@Override
+	public void setPictureString(final String pictureString) {
+		this.pictureString = pictureString;
 	}
 
 }

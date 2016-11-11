@@ -18,4 +18,8 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 
 	DataDescriptionEntry getDataDescriptionEntry(String name);
 
+	String getPictureString();
+
+	void setPictureString(String pictureString);
+
 }
