@@ -21,6 +21,12 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 
 public interface DataDivision extends CobolDivision {
 
+	static final int LEVEL_NUMBER_RENAME = 66;
+
+	static final int LEVEL_NUMBER_SCALAR = 77;
+
+	static final int LINE_NUMBER_CONDITION = 88;
+
 	DataDescriptionEntryCondition addDataDescriptionEntryCondition(DataDescriptionEntryFormat3Context ctx);
 
 	DataDescriptionEntryGroup addDataDescriptionEntryGroup(DataDescriptionEntryFormat1Context ctx);

@@ -12,12 +12,10 @@ import java.util.List;
 
 public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 
-	void addDataDescriptionEntryGroup(DataDescriptionEntryGroup dataDescriptionEntryGroup);
+	void addDataDescriptionEntry(DataDescriptionEntry dataDescriptionEntry);
 
-	List<DataDescriptionEntryGroup> getDataDescriptionEntryGroups();
+	List<DataDescriptionEntry> getDataDescriptionEntries();
 
-	DataDescriptionEntryGroup getParentDataDescriptionEntryGroup();
-
-	void setParentDataDescriptionEntryGroup(DataDescriptionEntryGroup dataDescriptionEntryGroup);
+	DataDescriptionEntry getDataDescriptionEntry(String name);
 
 }

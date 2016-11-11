@@ -181,12 +181,18 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			final String name = determineName(ctx);
 			result = new FileDescriptionEntryImpl(name, programUnit, this, ctx);
 
+			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
+
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
 				final DataDescriptionEntry dataDescriptionEntry = createDataDescriptionEntry(
-						dataDescriptionEntryContext);
+						lastDataDescriptionEntryGroup, dataDescriptionEntryContext);
 
 				if (dataDescriptionEntry != null) {
 					result.addDataDescriptionEntry(dataDescriptionEntry);
+				}
+
+				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
+					lastDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
 				}
 			}
 
@@ -224,12 +230,18 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		if (result == null) {
 			result = new WorkingStorageSectionImpl(programUnit, this, ctx);
 
+			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
+
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
 				final DataDescriptionEntry dataDescriptionEntry = createDataDescriptionEntry(
-						dataDescriptionEntryContext);
+						lastDataDescriptionEntryGroup, dataDescriptionEntryContext);
 
 				if (dataDescriptionEntry != null) {
 					result.addDataDescriptionEntry(dataDescriptionEntry);
+				}
+
+				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
+					lastDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
 				}
 			}
 
@@ -240,6 +252,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	}
 
 	protected DataDescriptionEntry createDataDescriptionEntry(
+			final DataDescriptionEntryGroup lastDataDescriptionEntryGroup,
 			final DataDescriptionEntryContext dataDescriptionEntryContext) {
 		final DataDescriptionEntry result;
 
@@ -252,6 +265,10 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		} else {
 			LOG.warn("unknown data description entry {}", dataDescriptionEntryContext);
 			result = null;
+		}
+
+		if (lastDataDescriptionEntryGroup != null && result != null) {
+			groupDataDescriptionEntry(lastDataDescriptionEntryGroup, result);
 		}
 
 		return result;
@@ -310,6 +327,25 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	@Override
 	public FileDescriptionEntry getFileDescriptionEntry(final String name) {
 		return fileDescriptionEntriesByName.get(name);
+	}
+
+	protected void groupDataDescriptionEntry(final DataDescriptionEntryGroup lastDataDescriptionEntryGroup,
+			final DataDescriptionEntry dataDescriptionEntry) {
+		final Integer lastLevelNumber = lastDataDescriptionEntryGroup.getLevelNumber();
+		final Integer levelNumber = dataDescriptionEntry.getLevelNumber();
+
+		if (LEVEL_NUMBER_SCALAR == levelNumber || LEVEL_NUMBER_RENAME == levelNumber) {
+		} else if (levelNumber > lastLevelNumber) {
+			lastDataDescriptionEntryGroup.addDataDescriptionEntry(dataDescriptionEntry);
+			dataDescriptionEntry.setDataDescriptionEntryGroup(lastDataDescriptionEntryGroup);
+		} else {
+			final DataDescriptionEntryGroup lastSuperDataDescriptionEntryGroup = lastDataDescriptionEntryGroup
+					.getDataDescriptionEntryGroup();
+
+			if (lastSuperDataDescriptionEntryGroup != null) {
+				groupDataDescriptionEntry(lastSuperDataDescriptionEntryGroup, dataDescriptionEntry);
+			}
+		}
 	}
 
 	@Override

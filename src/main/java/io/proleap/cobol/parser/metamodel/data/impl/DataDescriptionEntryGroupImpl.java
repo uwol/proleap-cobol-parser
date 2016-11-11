@@ -9,20 +9,23 @@
 package io.proleap.cobol.parser.metamodel.data.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
 
 public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryGroup {
 
 	protected final DataDescriptionEntryFormat1Context ctx;
 
-	protected List<DataDescriptionEntryGroup> dataDescriptionEntryGroups = new ArrayList<DataDescriptionEntryGroup>();
+	protected List<DataDescriptionEntry> dataDescriptionEntries = new ArrayList<DataDescriptionEntry>();
 
-	protected DataDescriptionEntryGroup parentDataDescriptionEntryGroup;
+	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesByName = new HashMap<String, DataDescriptionEntry>();
 
 	public DataDescriptionEntryGroupImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
 			final DataDescriptionEntryFormat1Context ctx) {
@@ -32,23 +35,21 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
-	public void addDataDescriptionEntryGroup(final DataDescriptionEntryGroup dataDescriptionEntryGroup) {
-		dataDescriptionEntryGroups.add(dataDescriptionEntryGroup);
+	public void addDataDescriptionEntry(final DataDescriptionEntry dataDescriptionEntry) {
+		final String name = dataDescriptionEntry.getName();
+
+		dataDescriptionEntries.add(dataDescriptionEntry);
+		dataDescriptionEntriesByName.put(name, dataDescriptionEntry);
 	}
 
 	@Override
-	public List<DataDescriptionEntryGroup> getDataDescriptionEntryGroups() {
-		return dataDescriptionEntryGroups;
+	public List<DataDescriptionEntry> getDataDescriptionEntries() {
+		return dataDescriptionEntries;
 	}
 
 	@Override
-	public DataDescriptionEntryGroup getParentDataDescriptionEntryGroup() {
-		return parentDataDescriptionEntryGroup;
-	}
-
-	@Override
-	public void setParentDataDescriptionEntryGroup(final DataDescriptionEntryGroup dataDescriptionEntry) {
-		parentDataDescriptionEntryGroup = dataDescriptionEntry;
+	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
+		return dataDescriptionEntriesByName.get(name);
 	}
 
 }

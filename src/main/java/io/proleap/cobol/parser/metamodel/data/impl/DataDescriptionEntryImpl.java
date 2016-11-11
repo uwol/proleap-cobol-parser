@@ -17,11 +17,14 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl implements DataDescriptionEntry {
 
 	protected final List<DataDescriptionEntryCall> dataDescriptionEntryCalls = new ArrayList<DataDescriptionEntryCall>();
+
+	protected DataDescriptionEntryGroup dataDescriptionEntryGroup;
 
 	protected Integer levelNumber;
 
@@ -45,6 +48,11 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	}
 
 	@Override
+	public DataDescriptionEntryGroup getDataDescriptionEntryGroup() {
+		return dataDescriptionEntryGroup;
+	}
+
+	@Override
 	public Integer getLevelNumber() {
 		return levelNumber;
 	}
@@ -52,6 +60,11 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public void setDataDescriptionEntryGroup(final DataDescriptionEntryGroup dataDescriptionEntryGroup) {
+		this.dataDescriptionEntryGroup = dataDescriptionEntryGroup;
 	}
 
 	@Override
@@ -63,5 +76,4 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	public String toString() {
 		return "name=[" + name + "]";
 	}
-
 }

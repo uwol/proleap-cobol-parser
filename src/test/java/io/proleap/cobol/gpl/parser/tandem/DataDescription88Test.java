@@ -2,6 +2,7 @@ package io.proleap.cobol.gpl.parser.tandem;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.io.File;
 
@@ -41,6 +42,7 @@ public class DataDescription88Test extends CobolTestSupport {
 		assertNotNull(dataDescriptionEntryGender);
 		assertEquals("GENDER", dataDescriptionEntryGender.getName());
 		assertEquals(new Integer(1), dataDescriptionEntryGender.getLevelNumber());
+		assertNull(dataDescriptionEntryGender.getDataDescriptionEntryGroup());
 
 		final DataDescriptionEntry dataDescriptionEntryMale = dataDivision.getDataDescriptionEntry("MALE");
 		final DataDescriptionEntryCondition dataDescriptionEntryConditionMale = dataDivision
@@ -50,6 +52,7 @@ public class DataDescription88Test extends CobolTestSupport {
 		assertEquals("MALE", dataDescriptionEntryMale.getName());
 		assertEquals(new Integer(88), dataDescriptionEntryMale.getLevelNumber());
 		assertEquals(dataDescriptionEntryMale, dataDescriptionEntryConditionMale);
+		assertEquals(dataDescriptionEntryGender, dataDescriptionEntryConditionMale.getDataDescriptionEntryGroup());
 
 		final DataDescriptionEntry dataDescriptionEntryFemale = dataDivision.getDataDescriptionEntry("FEMALE");
 		final DataDescriptionEntryCondition dataDescriptionEntryConditionFemale = dataDivision
@@ -59,5 +62,6 @@ public class DataDescription88Test extends CobolTestSupport {
 		assertEquals("FEMALE", dataDescriptionEntryFemale.getName());
 		assertEquals(new Integer(88), dataDescriptionEntryFemale.getLevelNumber());
 		assertEquals(dataDescriptionEntryFemale, dataDescriptionEntryConditionFemale);
+		assertEquals(dataDescriptionEntryGender, dataDescriptionEntryConditionFemale.getDataDescriptionEntryGroup());
 	}
 }

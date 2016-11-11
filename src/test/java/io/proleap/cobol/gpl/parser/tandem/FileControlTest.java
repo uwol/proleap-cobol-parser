@@ -35,7 +35,6 @@ public class FileControlTest extends CobolTestSupport {
 		final EnvironmentDivision environmentDivision = programUnit.getEnvironmentDivision();
 
 		final FileControlEntry fileControlEntry = environmentDivision.getFileControlEntry("TEACHER");
-
 		assertNotNull(fileControlEntry);
 	}
 }
