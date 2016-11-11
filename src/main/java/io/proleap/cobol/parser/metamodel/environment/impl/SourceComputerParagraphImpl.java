@@ -17,6 +17,8 @@ public class SourceComputerParagraphImpl extends ConfigurationSectionParagraphIm
 
 	protected final SourceComputerParagraphContext ctx;
 
+	protected boolean debuggingMode;
+
 	protected String name;
 
 	public SourceComputerParagraphImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
@@ -30,6 +32,16 @@ public class SourceComputerParagraphImpl extends ConfigurationSectionParagraphIm
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public boolean isDebuggingMode() {
+		return debuggingMode;
+	}
+
+	@Override
+	public void setDebuggingMode(final boolean debuggingMode) {
+		this.debuggingMode = debuggingMode;
 	}
 
 }

@@ -12,4 +12,7 @@ import io.proleap.cobol.parser.metamodel.NamedElement;
 
 public interface SourceComputerParagraph extends ConfigurationSectionParagraph, NamedElement {
 
+	boolean isDebuggingMode();
+
+	void setDebuggingMode(boolean debuggingMode);
 }

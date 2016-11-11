@@ -215,6 +215,10 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 			final String name = determineName(ctx);
 			result = new SourceComputerParagraphImpl(name, programUnit, this, ctx);
 
+			if (ctx.DEBUGGING() != null) {
+				result.setDebuggingMode(true);
+			}
+
 			registerASGElement(result);
 		}
 
