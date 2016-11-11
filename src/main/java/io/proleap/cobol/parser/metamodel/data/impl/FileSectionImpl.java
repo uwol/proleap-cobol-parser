@@ -14,14 +14,14 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.FileSection;
 
 public class FileSectionImpl extends DataDivisionBodyImpl implements FileSection {
 
 	protected final FileSectionContext ctx;
 
-	protected List<DataDescriptionEntry> dataDescriptionEntries = new ArrayList<DataDescriptionEntry>();
+	protected List<FileDescriptionEntry> fileDescriptionEntries = new ArrayList<FileDescriptionEntry>();
 
 	public FileSectionImpl(final ProgramUnit programUnit, final CobolDivision scope, final FileSectionContext ctx) {
 		super(programUnit, scope, ctx);
@@ -30,13 +30,13 @@ public class FileSectionImpl extends DataDivisionBodyImpl implements FileSection
 	}
 
 	@Override
-	public void addDataDescriptionEntry(final DataDescriptionEntry dataDescriptionEntry) {
-		dataDescriptionEntries.add(dataDescriptionEntry);
+	public void addFileDescriptionEntry(final FileDescriptionEntry fileDescriptionEntry) {
+		fileDescriptionEntries.add(fileDescriptionEntry);
 	}
 
 	@Override
-	public List<DataDescriptionEntry> getDataDescriptionEntries() {
-		return dataDescriptionEntries;
+	public List<FileDescriptionEntry> getFileDescriptionEntries() {
+		return fileDescriptionEntries;
 	}
 
 }

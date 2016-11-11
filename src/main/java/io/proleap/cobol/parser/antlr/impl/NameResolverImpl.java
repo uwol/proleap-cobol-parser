@@ -19,6 +19,7 @@ import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
 import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
+import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
@@ -70,6 +71,11 @@ public class NameResolverImpl implements NameResolver {
 		return result;
 	}
 
+	public String determineName(final FileDescriptionEntryContext ctx) {
+		final String result = ctx != null ? determineName(ctx.fileName()) : null;
+		return result;
+	}
+
 	public String determineName(final FileNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;
 		return result;
@@ -113,6 +119,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((DataNameContext) ctx);
 		} else if (ctx instanceof FileControlEntryContext) {
 			result = determineName((FileControlEntryContext) ctx);
+		} else if (ctx instanceof FileDescriptionEntryContext) {
+			result = determineName((FileDescriptionEntryContext) ctx);
 		} else if (ctx instanceof FileNameContext) {
 			result = determineName((FileNameContext) ctx);
 		} else if (ctx instanceof IdentifierContext) {

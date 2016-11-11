@@ -507,14 +507,16 @@ dataDivisionBody :
 
 fileSection :
 	FILE SECTION DOT_FS
-	(fileAndSortDescriptionEntry dataDescriptionEntry*)*
+	fileDescriptionEntry*
 ;
 
-fileAndSortDescriptionEntry :
-	(FD | SD) fileName (DOT_FS? fileAndSortDescriptionEntryClause)* DOT_FS
+fileDescriptionEntry :
+	(FD | SD) fileName
+	(DOT_FS? fileDescriptionEntryClause)* DOT_FS
+	dataDescriptionEntry*
 ;
 
-fileAndSortDescriptionEntryClause :
+fileDescriptionEntryClause :
 	externalClause
 	| globalClause
 	| blockContainsClause

@@ -22,6 +22,7 @@ import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.DataDivisionBodyContext;
 import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
+import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -31,6 +32,7 @@ import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry2;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry3;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.DataDivisionBody;
+import io.proleap.cobol.parser.metamodel.data.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.FileSection;
 import io.proleap.cobol.parser.metamodel.data.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
@@ -46,6 +48,10 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesByName = new HashMap<String, DataDescriptionEntry>();
 
 	protected DataDivisionBody dataDivisionBody;
+
+	protected List<FileDescriptionEntry> fileDescriptionEntries = new ArrayList<FileDescriptionEntry>();
+
+	protected Map<String, FileDescriptionEntry> fileDescriptionEntriesByName = new HashMap<String, FileDescriptionEntry>();
 
 	public DataDivisionImpl(final ProgramUnit programUnit, final DataDivisionContext ctx) {
 		super(programUnit, ctx);
@@ -129,16 +135,38 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	}
 
 	@Override
+	public FileDescriptionEntry addFileDescriptionEntry(final FileDescriptionEntryContext ctx) {
+		FileDescriptionEntry result = (FileDescriptionEntry) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new FileDescriptionEntryImpl(name, programUnit, this, ctx);
+
+			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
+				final DataDescriptionEntry dataDescriptionEntry = createDataDesccriptionEntry(
+						dataDescriptionEntryContext);
+				result.addDataDescriptionEntry(dataDescriptionEntry);
+			}
+
+			fileDescriptionEntries.add(result);
+			fileDescriptionEntriesByName.put(name, result);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public FileSection addFileSection(final FileSectionContext ctx) {
 		FileSection result = (FileSection) getASGElement(ctx);
 
 		if (result == null) {
 			result = new FileSectionImpl(programUnit, this, ctx);
 
-			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
-				final DataDescriptionEntry dataDescriptionEntry = createDataDesccriptionEntry(
-						dataDescriptionEntryContext);
-				result.addDataDescriptionEntry(dataDescriptionEntry);
+			for (final FileDescriptionEntryContext fileDescriptionEntryContext : ctx.fileDescriptionEntry()) {
+				final FileDescriptionEntry fileDescriptionEntry = addFileDescriptionEntry(fileDescriptionEntryContext);
+				result.addFileDescriptionEntry(fileDescriptionEntry);
 			}
 
 			registerASGElement(result);
@@ -197,6 +225,16 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	@Override
 	public DataDivisionBody getDataDivisionBody() {
 		return dataDivisionBody;
+	}
+
+	@Override
+	public List<FileDescriptionEntry> getFileDescriptionEntries() {
+		return fileDescriptionEntries;
+	}
+
+	@Override
+	public FileDescriptionEntry getFileDescriptionEntry(final String name) {
+		return fileDescriptionEntriesByName.get(name);
 	}
 
 	@Override
