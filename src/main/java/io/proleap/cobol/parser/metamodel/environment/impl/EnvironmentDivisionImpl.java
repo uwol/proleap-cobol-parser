@@ -102,7 +102,7 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new FileControlEntryImpl(programUnit, this, ctx);
+			result = new FileControlEntryImpl(name, programUnit, this, ctx);
 
 			final SelectClause selectClause = addSelectClause(ctx.selectClause());
 			result.setSelectClause(selectClause);

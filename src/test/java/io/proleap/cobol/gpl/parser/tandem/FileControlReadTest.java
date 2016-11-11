@@ -42,32 +42,59 @@ public class FileControlReadTest extends CobolTestSupport {
 		/*
 		 * file control
 		 */
-		final FileControlEntry fileControlEntry = environmentDivision.getFileControlEntry("PERSON");
-		assertNotNull(fileControlEntry);
+		{
+			final FileControlEntry fileControlEntry = environmentDivision.getFileControlEntry("PERSON");
+			assertNotNull(fileControlEntry);
+			assertEquals("PERSON", fileControlEntry.getName());
+		}
 
 		/*
 		 * file section, file description
 		 */
-		final FileDescriptionEntry fileDescriptionEntry = dataDivision.getFileDescriptionEntry("PERSON");
-		assertNotNull(fileDescriptionEntry);
+		{
+			final FileDescriptionEntry fileDescriptionEntry = dataDivision.getFileDescriptionEntry("PERSON");
+			assertNotNull(fileDescriptionEntry);
 
-		final DataDescriptionEntry dataDescriptionEntryPersonFileLocal = fileDescriptionEntry
-				.getDataDescriptionEntry("PERSON-FILE");
-		assertNotNull(dataDescriptionEntryPersonFileLocal);
+			final DataDescriptionEntry dataDescriptionEntryPersonFileLocal = fileDescriptionEntry
+					.getDataDescriptionEntry("PERSON-FILE");
+			assertNotNull(dataDescriptionEntryPersonFileLocal);
+			assertEquals("PERSON-FILE", dataDescriptionEntryPersonFileLocal.getName());
 
-		final DataDescriptionEntry dataDescriptionEntryPersonFileGlobal = dataDivision
-				.getDataDescriptionEntry("PERSON-FILE");
-		assertNotNull(dataDescriptionEntryPersonFileGlobal);
+			final DataDescriptionEntry dataDescriptionEntryPersonFileGlobal = dataDivision
+					.getDataDescriptionEntry("PERSON-FILE");
+			assertNotNull(dataDescriptionEntryPersonFileGlobal);
+			assertEquals(dataDescriptionEntryPersonFileLocal, dataDescriptionEntryPersonFileGlobal);
 
-		assertEquals(dataDescriptionEntryPersonFileLocal, dataDescriptionEntryPersonFileGlobal);
+			final DataDescriptionEntry dataDescriptionEntryPersonId = fileDescriptionEntry
+					.getDataDescriptionEntry("PERSON-ID");
+			assertNotNull(dataDescriptionEntryPersonId);
+			assertEquals("PERSON-ID", dataDescriptionEntryPersonId.getName());
+
+			final DataDescriptionEntry dataDescriptionEntryName = fileDescriptionEntry.getDataDescriptionEntry("NAME");
+			assertNotNull(dataDescriptionEntryName);
+			assertEquals("NAME", dataDescriptionEntryName.getName());
+		}
 
 		/*
 		 * working storage section
 		 */
-		final DataDescriptionEntry dataDescriptionEntryWsPerson = dataDivision.getDataDescriptionEntry("WS-PERSON");
-		assertNotNull(dataDescriptionEntryWsPerson);
+		{
+			final DataDescriptionEntry dataDescriptionEntryWsPerson = dataDivision.getDataDescriptionEntry("WS-PERSON");
+			assertNotNull(dataDescriptionEntryWsPerson);
 
-		final DataDescriptionEntry dataDescriptionEntryWsEof = dataDivision.getDataDescriptionEntry("WS-EOF");
-		assertNotNull(dataDescriptionEntryWsEof);
+			final DataDescriptionEntry dataDescriptionEntryWsPersonId = dataDivision
+					.getDataDescriptionEntry("WS-PERSON-ID");
+			assertNotNull(dataDescriptionEntryWsPersonId);
+			assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
+
+			final DataDescriptionEntry dataDescriptionEntryWsPersonName = dataDivision
+					.getDataDescriptionEntry("WS-NAME");
+			assertNotNull(dataDescriptionEntryWsPersonName);
+			assertEquals("WS-NAME", dataDescriptionEntryWsPersonName.getName());
+
+			final DataDescriptionEntry dataDescriptionEntryWsEof = dataDivision.getDataDescriptionEntry("WS-EOF");
+			assertNotNull(dataDescriptionEntryWsEof);
+			assertEquals("WS-EOF", dataDescriptionEntryWsEof.getName());
+		}
 	}
 }

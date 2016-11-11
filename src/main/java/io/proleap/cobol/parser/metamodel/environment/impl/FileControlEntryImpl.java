@@ -19,13 +19,21 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 
 	protected final FileControlEntryContext ctx;
 
+	protected final String name;
+
 	protected SelectClause selectClause;
 
-	public FileControlEntryImpl(final ProgramUnit programUnit, final CobolDivision scope,
+	public FileControlEntryImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
 			final FileControlEntryContext ctx) {
 		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
+		this.name = name;
+	}
+
+	@Override
+	public String getName() {
+		return name;
 	}
 
 	@Override
