@@ -1,4 +1,4 @@
-package io.proleap.cobol.gpl.parser.tandem;
+package io.proleap.cobol.gpl.parser.procedure;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -26,7 +26,7 @@ public class ParagraphTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/tandem/Paragraph.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/procedure/Paragraph.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 

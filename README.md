@@ -70,32 +70,32 @@ Execution
 ```java
 io.proleap.cobol.applicationcontext.CobolGrammarContextFactory.configureDefaultApplicationContext();
 
-final java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/variable/HelloWorldVar.cbl");
-final java.io.File libDirectory = inputFile.getParentFile();
+java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/HelloWorld.cbl");
+java.io.File libDirectory = inputFile.getParentFile();
 
 /*
 * preprocessor
 */
-final io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.VARIABLE;
-final String preProcessedInput = io.proleap.cobol.applicationcontext.CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile, libDirectory, null, format);
+io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
+String preProcessedInput = io.proleap.cobol.applicationcontext.CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile, libDirectory, null, format);
 
 /*
 * lexer
 */
-final org.antlr.v4.runtime.ANTLRInputStream antlrInputStream = new org.antlr.v4.runtime.ANTLRInputStream(preProcessedInput);
-final io.proleap.cobol.Cobol85Lexer lexer = new io.proleap.cobol.Cobol85Lexer(antlrInputStream);
-final org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.CommonTokenStream(lexer);
+org.antlr.v4.runtime.ANTLRInputStream antlrInputStream = new org.antlr.v4.runtime.ANTLRInputStream(preProcessedInput);
+io.proleap.cobol.Cobol85Lexer lexer = new io.proleap.cobol.Cobol85Lexer(antlrInputStream);
+org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.CommonTokenStream(lexer);
 
 /*
 * parser
 */
-final io.proleap.cobol.Cobol85Parser parser = new io.proleap.cobol.Cobol85Parser(tokens);
-final io.proleap.cobol.Cobol85Parser.StartRuleContext ctx = parser.startRule();
+io.proleap.cobol.Cobol85Parser parser = new io.proleap.cobol.Cobol85Parser(tokens);
+io.proleap.cobol.Cobol85Parser.StartRuleContext ctx = parser.startRule();
 
 /*
 * traverse AST with ANTLR visitor
 */
-final io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>();
+io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>();
 visitor.visit(ctx);
 ```
 
@@ -104,29 +104,18 @@ visitor.visit(ctx);
 ```java
 io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
 
-final java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/variable/HelloWorldVar.cbl");
+java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/parser/HelloWorld.cbl");
 
 /*
 * semantic analysis
 */
-final io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.VARIABLE;
-final io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null, format);
+io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
+io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null, format);
 
-/*
-* traverse AST with ANTLR visitor; exemplary callback function for IDENTIFICATION DIVISION
-*/
-final io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>() {
-  @Override
-  public Boolean visitIdentificationDivision(final io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext ctx) {
-    final io.proleap.cobol.parser.metamodel.IdentificationDivision iDiv = (io.proleap.cobol.parser.metamodel.IdentificationDivision) io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
-
-    return visitChildren(ctx);
-  }
-};
-
-for (final io.proleap.cobol.parser.metamodel.CopyBook copyBook : program.getCopyBooks()) {
-  visitor.visit(copyBook.getCtx());
-}
+io.proleap.cobol.parser.metamodel.CopyBook copyBook = program.getCopyBook("HelloWorld");
+io.proleap.cobol.parser.metamodel.ProgramUnit programUnit = copyBook.getProgramUnit();
+io.proleap.cobol.parser.metamodel.data.DataDivision dataDivision = programUnit.getDataDivision();
+io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry dataDescriptionEntry = dataDivision.getDataDescriptionEntry("ITEMS");
 ```
 
 

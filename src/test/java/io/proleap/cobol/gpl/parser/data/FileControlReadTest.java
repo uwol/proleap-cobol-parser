@@ -1,4 +1,4 @@
-package io.proleap.cobol.gpl.parser.tandem;
+package io.proleap.cobol.gpl.parser.data;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -32,7 +32,7 @@ public class FileControlReadTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/tandem/FileControlRead.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/data/FileControlRead.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 

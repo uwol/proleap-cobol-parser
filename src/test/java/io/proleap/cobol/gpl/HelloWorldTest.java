@@ -1,12 +1,13 @@
-package io.proleap.cobol.gpl.tandem;
+package io.proleap.cobol.gpl;
 
 import java.io.File;
+
+import org.junit.Test;
 
 import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.runner.CobolParseTestRunner;
 import io.proleap.cobol.runner.impl.CobolParseTestRunnerImpl;
-import org.junit.Test;
 
 public class HelloWorldTest {
 
@@ -14,7 +15,7 @@ public class HelloWorldTest {
 	public void test() throws Exception {
 		CobolGrammarContextFactory.configureDefaultApplicationContext();
 
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/tandem/HelloWorld.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/HelloWorld.cbl");
 		final CobolParseTestRunner runner = new CobolParseTestRunnerImpl();
 		runner.parseFile(inputFile, CobolSourceFormatEnum.TANDEM);
 	}

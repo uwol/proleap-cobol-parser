@@ -1,4 +1,4 @@
-package io.proleap.cobol.gpl.parser.tandem;
+package io.proleap.cobol.gpl.parser.data;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -28,7 +28,7 @@ public class DataDescription77Test extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/tandem/DataDescription77.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/data/DataDescription77.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 

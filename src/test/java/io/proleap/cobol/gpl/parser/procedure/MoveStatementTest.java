@@ -1,4 +1,4 @@
-package io.proleap.cobol.gpl.parser.tandem;
+package io.proleap.cobol.gpl.parser.procedure;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -28,7 +28,7 @@ public class MoveStatementTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/tandem/MoveStatement.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/procedure/MoveStatement.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 

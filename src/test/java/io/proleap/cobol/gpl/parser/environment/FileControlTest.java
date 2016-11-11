@@ -1,4 +1,4 @@
-package io.proleap.cobol.gpl.parser.tandem;
+package io.proleap.cobol.gpl.parser.environment;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -26,7 +26,7 @@ public class FileControlTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/tandem/FileControl.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/environment/FileControl.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 
