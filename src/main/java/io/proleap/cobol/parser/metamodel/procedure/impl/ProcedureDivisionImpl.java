@@ -267,4 +267,9 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 	public Paragraph getParagraph(final String name) {
 		return paragraphsByName.get(name);
 	}
+
+	@Override
+	public List<Paragraph> getParagraphs() {
+		return paragraphs;
+	}
 }

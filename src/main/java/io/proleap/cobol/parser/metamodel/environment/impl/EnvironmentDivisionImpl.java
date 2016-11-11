@@ -50,6 +50,8 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 	protected List<EnvironmentDivisionBody> environmentDivisionBodies = new ArrayList<EnvironmentDivisionBody>();
 
+	protected List<FileControlEntry> fileControlEntries = new ArrayList<FileControlEntry>();
+
 	protected Map<String, FileControlEntry> fileControlEntriesByName = new HashMap<String, FileControlEntry>();
 
 	public EnvironmentDivisionImpl(final ProgramUnit programUnit, final EnvironmentDivisionContext ctx) {
@@ -106,6 +108,8 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 			result.setSelectClause(selectClause);
 
 			registerASGElement(result);
+
+			fileControlEntries.add(result);
 			fileControlEntriesByName.put(name, result);
 		}
 
@@ -220,6 +224,11 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 	@Override
 	public List<EnvironmentDivisionBody> getEnvironmentDivisionBodies() {
 		return environmentDivisionBodies;
+	}
+
+	@Override
+	public List<FileControlEntry> getFileControlEntries() {
+		return fileControlEntries;
 	}
 
 	@Override

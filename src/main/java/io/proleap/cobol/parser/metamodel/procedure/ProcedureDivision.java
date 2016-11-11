@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.procedure;
 
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
@@ -38,5 +40,7 @@ public interface ProcedureDivision extends CobolDivision {
 	ValueStmt addValueStmt(MoveToStatementSendingAreaContext ctx);
 
 	Paragraph getParagraph(String name);
+
+	List<Paragraph> getParagraphs();
 
 }

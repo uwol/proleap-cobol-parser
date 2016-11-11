@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.data;
 
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
@@ -23,6 +25,8 @@ public interface DataDivision extends CobolDivision {
 	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat3Context ctx);
 
 	DataDivisionBody addDataDivisionBody(DataDivisionBodyContext ctx);
+
+	List<DataDescriptionEntry> getDataDescriptionEntries();
 
 	DataDescriptionEntry getDataDescriptionEntry(String name);
 

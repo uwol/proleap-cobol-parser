@@ -8,7 +8,9 @@
 
 package io.proleap.cobol.parser.metamodel.data.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
@@ -34,6 +36,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 	protected final DataDivisionContext ctx;
 
+	protected List<DataDescriptionEntry> dataDescriptionEntries = new ArrayList<DataDescriptionEntry>();
+
 	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesByName = new HashMap<String, DataDescriptionEntry>();
 
 	protected DataDivisionBody dataDivisionBody;
@@ -53,6 +57,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			result = new DataDescriptionEntry1Impl(name, programUnit, this, ctx);
 
 			registerASGElement(result);
+
+			dataDescriptionEntries.add(result);
 			dataDescriptionEntriesByName.put(name, result);
 		}
 
@@ -68,6 +74,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			result = new DataDescriptionEntry2Impl(name, programUnit, this, ctx);
 
 			registerASGElement(result);
+
+			dataDescriptionEntries.add(result);
 			dataDescriptionEntriesByName.put(name, result);
 		}
 
@@ -83,6 +91,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			result = new DataDescriptionEntry3Impl(name, programUnit, this, ctx);
 
 			registerASGElement(result);
+
+			dataDescriptionEntries.add(result);
 			dataDescriptionEntriesByName.put(name, result);
 		}
 
@@ -100,6 +110,11 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		}
 
 		return result;
+	}
+
+	@Override
+	public List<DataDescriptionEntry> getDataDescriptionEntries() {
+		return dataDescriptionEntries;
 	}
 
 	@Override

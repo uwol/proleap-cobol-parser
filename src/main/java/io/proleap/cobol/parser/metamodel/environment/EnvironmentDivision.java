@@ -42,6 +42,8 @@ public interface EnvironmentDivision extends CobolDivision {
 
 	List<EnvironmentDivisionBody> getEnvironmentDivisionBodies();
 
+	List<FileControlEntry> getFileControlEntries();
+
 	FileControlEntry getFileControlEntry(String name);
 
 }
