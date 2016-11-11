@@ -1,5 +1,6 @@
 package io.proleap.cobol.gpl.parser.tandem;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
@@ -34,8 +35,19 @@ public class DataDescription88Test extends CobolTestSupport {
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 
-		final DataDescriptionEntry dataDescriptionEntry1 = dataDivision.getDataDescriptionEntry("GENDER");
+		final DataDescriptionEntry dataDescriptionEntryGender = dataDivision.getDataDescriptionEntry("GENDER");
+		assertNotNull(dataDescriptionEntryGender);
+		assertEquals("GENDER", dataDescriptionEntryGender.getName());
+		assertEquals(new Integer(1), dataDescriptionEntryGender.getLevelNumber());
 
-		assertNotNull(dataDescriptionEntry1);
+		final DataDescriptionEntry dataDescriptionEntryMale = dataDivision.getDataDescriptionEntry("MALE");
+		assertNotNull(dataDescriptionEntryMale);
+		assertEquals("MALE", dataDescriptionEntryMale.getName());
+		assertEquals(new Integer(88), dataDescriptionEntryMale.getLevelNumber());
+
+		final DataDescriptionEntry dataDescriptionEntryFemale = dataDivision.getDataDescriptionEntry("FEMALE");
+		assertNotNull(dataDescriptionEntryFemale);
+		assertEquals("FEMALE", dataDescriptionEntryFemale.getName());
+		assertEquals(new Integer(88), dataDescriptionEntryFemale.getLevelNumber());
 	}
 }

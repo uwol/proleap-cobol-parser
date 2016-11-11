@@ -8,6 +8,16 @@
 
 package io.proleap.cobol.parser.metamodel.data;
 
+import java.util.List;
+
 public interface DataDescriptionEntry1 extends DataDescriptionEntry {
+
+	void addGroupedDataDescriptionEntry(DataDescriptionEntry1 dataDescriptionEntry);
+
+	DataDescriptionEntry1 getGroupDataDescriptionEntry();
+
+	List<DataDescriptionEntry1> getGroupedDataDescriptionEntries();
+
+	void setGroupDataDescriptionEntry(DataDescriptionEntry1 dataDescriptionEntry);
 
 }

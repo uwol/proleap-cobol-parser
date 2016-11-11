@@ -1,5 +1,6 @@
 package io.proleap.cobol.gpl.parser.tandem;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
@@ -34,12 +35,34 @@ public class DataDescription66Test extends CobolTestSupport {
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 
-		final DataDescriptionEntry dataDescriptionEntry1 = dataDivision.getDataDescriptionEntry("ITEMS");
+		final DataDescriptionEntry dataDescriptionEntryItems = dataDivision.getDataDescriptionEntry("ITEMS");
+		assertNotNull(dataDescriptionEntryItems);
+		assertEquals("ITEMS", dataDescriptionEntryItems.getName());
+		assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
 
-		assertNotNull(dataDescriptionEntry1);
+		final DataDescriptionEntry dataDescriptionEntryItem1 = dataDivision.getDataDescriptionEntry("ITEM1");
+		assertNotNull(dataDescriptionEntryItem1);
+		assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
+		assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
 
-		final DataDescriptionEntry dataDescriptionEntry2 = dataDivision.getDataDescriptionEntry("ITEMZ");
+		final DataDescriptionEntry dataDescriptionEntryItem2 = dataDivision.getDataDescriptionEntry("ITEM2");
+		assertNotNull(dataDescriptionEntryItem2);
+		assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
+		assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
 
-		assertNotNull(dataDescriptionEntry2);
+		final DataDescriptionEntry dataDescriptionEntryItem3 = dataDivision.getDataDescriptionEntry("ITEM3");
+		assertNotNull(dataDescriptionEntryItem3);
+		assertEquals("ITEM3", dataDescriptionEntryItem3.getName());
+		assertEquals(new Integer(2), dataDescriptionEntryItem3.getLevelNumber());
+
+		final DataDescriptionEntry dataDescriptionEntryItem4 = dataDivision.getDataDescriptionEntry("ITEM4");
+		assertNotNull(dataDescriptionEntryItem4);
+		assertEquals("ITEM4", dataDescriptionEntryItem4.getName());
+		assertEquals(new Integer(2), dataDescriptionEntryItem4.getLevelNumber());
+
+		final DataDescriptionEntry dataDescriptionEntryItemz = dataDivision.getDataDescriptionEntry("ITEMZ");
+		assertNotNull(dataDescriptionEntryItemz);
+		assertEquals("ITEMZ", dataDescriptionEntryItemz.getName());
+		assertEquals(new Integer(66), dataDescriptionEntryItemz.getLevelNumber());
 	}
 }

@@ -3,5 +3,5 @@
  ENVIRONMENT DIVISION.
     INPUT-OUTPUT SECTION.
        FILE-CONTROL.
-       SELECT TEACHER 
-       ASSIGN TO 'teacher.txt'.   
+       SELECT TEACHER
+       ASSIGN TO 'teacher.txt'.

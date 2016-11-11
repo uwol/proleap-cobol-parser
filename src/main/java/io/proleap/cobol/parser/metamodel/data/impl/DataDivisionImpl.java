@@ -36,6 +36,7 @@ import io.proleap.cobol.parser.metamodel.data.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.FileSection;
 import io.proleap.cobol.parser.metamodel.data.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
+import io.proleap.cobol.parser.util.StringUtils;
 
 public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision {
 
@@ -67,6 +68,18 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			final String name = determineName(ctx);
 			result = new DataDescriptionEntry1Impl(name, programUnit, this, ctx);
 
+			final Integer levelNumber;
+
+			if (ctx.LEVEL_NUMBER_77() != null) {
+				levelNumber = 77;
+			} else if (ctx.INTEGERLITERAL() != null) {
+				levelNumber = StringUtils.parseInteger(ctx.INTEGERLITERAL().getText());
+			} else {
+				levelNumber = null;
+			}
+
+			result.setLevelNumber(levelNumber);
+
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
@@ -84,6 +97,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			final String name = determineName(ctx);
 			result = new DataDescriptionEntry2Impl(name, programUnit, this, ctx);
 
+			result.setLevelNumber(66);
+
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
@@ -100,6 +115,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		if (result == null) {
 			final String name = determineName(ctx);
 			result = new DataDescriptionEntry3Impl(name, programUnit, this, ctx);
+
+			result.setLevelNumber(88);
 
 			registerASGElement(result);
 

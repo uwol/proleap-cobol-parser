@@ -59,6 +59,7 @@ public class FileControlReadTest extends CobolTestSupport {
 					.getDataDescriptionEntry("PERSON-FILE");
 			assertNotNull(dataDescriptionEntryPersonFileLocal);
 			assertEquals("PERSON-FILE", dataDescriptionEntryPersonFileLocal.getName());
+			assertEquals(new Integer(1), dataDescriptionEntryPersonFileLocal.getLevelNumber());
 
 			final DataDescriptionEntry dataDescriptionEntryPersonFileGlobal = dataDivision
 					.getDataDescriptionEntry("PERSON-FILE");
@@ -69,10 +70,12 @@ public class FileControlReadTest extends CobolTestSupport {
 					.getDataDescriptionEntry("PERSON-ID");
 			assertNotNull(dataDescriptionEntryPersonId);
 			assertEquals("PERSON-ID", dataDescriptionEntryPersonId.getName());
+			assertEquals(new Integer(5), dataDescriptionEntryPersonId.getLevelNumber());
 
 			final DataDescriptionEntry dataDescriptionEntryName = fileDescriptionEntry.getDataDescriptionEntry("NAME");
 			assertNotNull(dataDescriptionEntryName);
 			assertEquals("NAME", dataDescriptionEntryName.getName());
+			assertEquals(new Integer(5), dataDescriptionEntryName.getLevelNumber());
 		}
 
 		/*
@@ -81,20 +84,25 @@ public class FileControlReadTest extends CobolTestSupport {
 		{
 			final DataDescriptionEntry dataDescriptionEntryWsPerson = dataDivision.getDataDescriptionEntry("WS-PERSON");
 			assertNotNull(dataDescriptionEntryWsPerson);
+			assertEquals("WS-PERSON", dataDescriptionEntryWsPerson.getName());
+			assertEquals(new Integer(1), dataDescriptionEntryWsPerson.getLevelNumber());
 
 			final DataDescriptionEntry dataDescriptionEntryWsPersonId = dataDivision
 					.getDataDescriptionEntry("WS-PERSON-ID");
 			assertNotNull(dataDescriptionEntryWsPersonId);
 			assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
+			assertEquals(new Integer(5), dataDescriptionEntryWsPersonId.getLevelNumber());
 
 			final DataDescriptionEntry dataDescriptionEntryWsPersonName = dataDivision
 					.getDataDescriptionEntry("WS-NAME");
 			assertNotNull(dataDescriptionEntryWsPersonName);
 			assertEquals("WS-NAME", dataDescriptionEntryWsPersonName.getName());
+			assertEquals(new Integer(5), dataDescriptionEntryWsPersonName.getLevelNumber());
 
 			final DataDescriptionEntry dataDescriptionEntryWsEof = dataDivision.getDataDescriptionEntry("WS-EOF");
 			assertNotNull(dataDescriptionEntryWsEof);
 			assertEquals("WS-EOF", dataDescriptionEntryWsEof.getName());
+			assertEquals(new Integer(1), dataDescriptionEntryWsEof.getLevelNumber());
 		}
 	}
 }

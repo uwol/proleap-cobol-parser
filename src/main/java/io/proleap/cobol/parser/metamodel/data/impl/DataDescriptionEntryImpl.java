@@ -23,6 +23,8 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 
 	protected final List<DataDescriptionEntryCall> dataDescriptionEntryCalls = new ArrayList<DataDescriptionEntryCall>();
 
+	protected Integer levelNumber;
+
 	protected final String name;
 
 	public DataDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
@@ -43,8 +45,18 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	}
 
 	@Override
+	public Integer getLevelNumber() {
+		return levelNumber;
+	}
+
+	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public void setLevelNumber(final Integer levelNumber) {
+		this.levelNumber = levelNumber;
 	}
 
 	@Override
