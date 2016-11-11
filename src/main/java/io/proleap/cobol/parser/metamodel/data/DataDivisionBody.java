@@ -12,4 +12,12 @@ import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface DataDivisionBody extends CobolDivisionElement {
 
+	FileSection getFileSection();
+
+	WorkingStorageSection getWorkingStorageSection();
+
+	void setFileSection(FileSection fileSection);
+
+	void setWorkingStorageSection(WorkingStorageSection workingStorageSection);
+
 }

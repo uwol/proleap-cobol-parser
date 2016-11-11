@@ -14,6 +14,8 @@ import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.DataDivisionBodyContext;
+import io.proleap.cobol.Cobol85Parser.FileSectionContext;
+import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 
 public interface DataDivision extends CobolDivision {
@@ -25,6 +27,10 @@ public interface DataDivision extends CobolDivision {
 	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat3Context ctx);
 
 	DataDivisionBody addDataDivisionBody(DataDivisionBodyContext ctx);
+
+	FileSection addFileSection(FileSectionContext ctx);
+
+	WorkingStorageSection addWorkingStorageSection(WorkingStorageSectionContext ctx);
 
 	List<DataDescriptionEntry> getDataDescriptionEntries();
 

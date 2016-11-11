@@ -16,11 +16,14 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.DataDivisionBodyContext;
 import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
+import io.proleap.cobol.Cobol85Parser.FileSectionContext;
+import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry1;
@@ -28,6 +31,8 @@ import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry2;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry3;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.DataDivisionBody;
+import io.proleap.cobol.parser.metamodel.data.FileSection;
+import io.proleap.cobol.parser.metamodel.data.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
 
 public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision {
@@ -106,7 +111,74 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		if (result == null) {
 			result = new DataDivisionBodyImpl(programUnit, this, ctx);
 
+			if (ctx.fileSection() != null) {
+				final FileSection fileSection = addFileSection(ctx.fileSection());
+				result.setFileSection(fileSection);
+			}
+
+			if (ctx.workingStorageSection() != null) {
+				final WorkingStorageSection workingStorageSection = addWorkingStorageSection(
+						ctx.workingStorageSection());
+				result.setWorkingStorageSection(workingStorageSection);
+			}
+
 			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public FileSection addFileSection(final FileSectionContext ctx) {
+		FileSection result = (FileSection) getASGElement(ctx);
+
+		if (result == null) {
+			result = new FileSectionImpl(programUnit, this, ctx);
+
+			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
+				final DataDescriptionEntry dataDescriptionEntry = createDataDesccriptionEntry(
+						dataDescriptionEntryContext);
+				result.addDataDescriptionEntry(dataDescriptionEntry);
+			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public WorkingStorageSection addWorkingStorageSection(final WorkingStorageSectionContext ctx) {
+		WorkingStorageSection result = (WorkingStorageSection) getASGElement(ctx);
+
+		if (result == null) {
+			result = new WorkingStorageSectionImpl(programUnit, this, ctx);
+
+			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
+				final DataDescriptionEntry dataDescriptionEntry = createDataDesccriptionEntry(
+						dataDescriptionEntryContext);
+				result.addDataDescriptionEntry(dataDescriptionEntry);
+			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected DataDescriptionEntry createDataDesccriptionEntry(
+			final DataDescriptionEntryContext dataDescriptionEntryContext) {
+		final DataDescriptionEntry result;
+
+		if (dataDescriptionEntryContext.dataDescriptionEntryFormat1() != null) {
+			result = addDataDescriptionEntry(dataDescriptionEntryContext.dataDescriptionEntryFormat1());
+		} else if (dataDescriptionEntryContext.dataDescriptionEntryFormat2() != null) {
+			result = addDataDescriptionEntry(dataDescriptionEntryContext.dataDescriptionEntryFormat2());
+		} else if (dataDescriptionEntryContext.dataDescriptionEntryFormat3() != null) {
+			result = addDataDescriptionEntry(dataDescriptionEntryContext.dataDescriptionEntryFormat3());
+		} else {
+			LOG.warn("unknown data description entry {}", dataDescriptionEntryContext);
+			result = null;
 		}
 
 		return result;
