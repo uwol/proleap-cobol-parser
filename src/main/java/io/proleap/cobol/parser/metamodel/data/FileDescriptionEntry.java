@@ -18,4 +18,6 @@ public interface FileDescriptionEntry extends DataDivisionBody, Declaration {
 
 	List<DataDescriptionEntry> getDataDescriptionEntries();
 
+	DataDescriptionEntry getDataDescriptionEntry(String name);
+
 }

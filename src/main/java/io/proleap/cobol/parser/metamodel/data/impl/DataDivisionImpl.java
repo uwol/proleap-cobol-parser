@@ -143,9 +143,12 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			result = new FileDescriptionEntryImpl(name, programUnit, this, ctx);
 
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
-				final DataDescriptionEntry dataDescriptionEntry = createDataDesccriptionEntry(
+				final DataDescriptionEntry dataDescriptionEntry = createDataDescriptionEntry(
 						dataDescriptionEntryContext);
-				result.addDataDescriptionEntry(dataDescriptionEntry);
+
+				if (dataDescriptionEntry != null) {
+					result.addDataDescriptionEntry(dataDescriptionEntry);
+				}
 			}
 
 			fileDescriptionEntries.add(result);
@@ -183,9 +186,12 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			result = new WorkingStorageSectionImpl(programUnit, this, ctx);
 
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
-				final DataDescriptionEntry dataDescriptionEntry = createDataDesccriptionEntry(
+				final DataDescriptionEntry dataDescriptionEntry = createDataDescriptionEntry(
 						dataDescriptionEntryContext);
-				result.addDataDescriptionEntry(dataDescriptionEntry);
+
+				if (dataDescriptionEntry != null) {
+					result.addDataDescriptionEntry(dataDescriptionEntry);
+				}
 			}
 
 			registerASGElement(result);
@@ -194,7 +200,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		return result;
 	}
 
-	protected DataDescriptionEntry createDataDesccriptionEntry(
+	protected DataDescriptionEntry createDataDescriptionEntry(
 			final DataDescriptionEntryContext dataDescriptionEntryContext) {
 		final DataDescriptionEntry result;
 

@@ -1,5 +1,6 @@
 package io.proleap.cobol.gpl.parser.tandem;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
@@ -50,8 +51,15 @@ public class FileControlReadTest extends CobolTestSupport {
 		final FileDescriptionEntry fileDescriptionEntry = dataDivision.getFileDescriptionEntry("PERSON");
 		assertNotNull(fileDescriptionEntry);
 
-		final DataDescriptionEntry dataDescriptionEntryPersonFile = dataDivision.getDataDescriptionEntry("PERSON-FILE");
-		assertNotNull(dataDescriptionEntryPersonFile);
+		final DataDescriptionEntry dataDescriptionEntryPersonFileLocal = fileDescriptionEntry
+				.getDataDescriptionEntry("PERSON-FILE");
+		assertNotNull(dataDescriptionEntryPersonFileLocal);
+
+		final DataDescriptionEntry dataDescriptionEntryPersonFileGlobal = dataDivision
+				.getDataDescriptionEntry("PERSON-FILE");
+		assertNotNull(dataDescriptionEntryPersonFileGlobal);
+
+		assertEquals(dataDescriptionEntryPersonFileLocal, dataDescriptionEntryPersonFileGlobal);
 
 		/*
 		 * working storage section

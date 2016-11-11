@@ -9,7 +9,9 @@
 package io.proleap.cobol.parser.metamodel.data.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
@@ -23,6 +25,8 @@ public class FileDescriptionEntryImpl extends DataDivisionBodyImpl implements Fi
 
 	protected List<DataDescriptionEntry> dataDescriptionEntries = new ArrayList<DataDescriptionEntry>();
 
+	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesByName = new HashMap<String, DataDescriptionEntry>();
+
 	protected final String name;
 
 	public FileDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
@@ -35,12 +39,20 @@ public class FileDescriptionEntryImpl extends DataDivisionBodyImpl implements Fi
 
 	@Override
 	public void addDataDescriptionEntry(final DataDescriptionEntry dataDescriptionEntry) {
+		final String name = dataDescriptionEntry.getName();
+
 		dataDescriptionEntries.add(dataDescriptionEntry);
+		dataDescriptionEntriesByName.put(name, dataDescriptionEntry);
 	}
 
 	@Override
 	public List<DataDescriptionEntry> getDataDescriptionEntries() {
 		return dataDescriptionEntries;
+	}
+
+	@Override
+	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
+		return dataDescriptionEntriesByName.get(name);
 	}
 
 	@Override
