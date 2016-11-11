@@ -65,6 +65,25 @@ Example
 Execution
 ---------
 
+### Abstract Semantic Graph (ASG) parsing
+
+```java
+io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
+
+java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/parser/HelloWorld.cbl");
+
+/*
+* semantic analysis
+*/
+io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
+io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null, format);
+
+io.proleap.cobol.parser.metamodel.CopyBook copyBook = program.getCopyBook("HelloWorld");
+io.proleap.cobol.parser.metamodel.ProgramUnit programUnit = copyBook.getProgramUnit();
+io.proleap.cobol.parser.metamodel.data.DataDivision dataDivision = programUnit.getDataDivision();
+io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry dataDescriptionEntry = dataDivision.getDataDescriptionEntry("ITEMS");
+```
+
 ### Abstract Syntax Tree (AST) parsing
 
 ```java
@@ -97,25 +116,6 @@ io.proleap.cobol.Cobol85Parser.StartRuleContext ctx = parser.startRule();
 */
 io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>();
 visitor.visit(ctx);
-```
-
-### Abstract Semantic Graph (ASG) parsing
-
-```java
-io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
-
-java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/parser/HelloWorld.cbl");
-
-/*
-* semantic analysis
-*/
-io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
-io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null, format);
-
-io.proleap.cobol.parser.metamodel.CopyBook copyBook = program.getCopyBook("HelloWorld");
-io.proleap.cobol.parser.metamodel.ProgramUnit programUnit = copyBook.getProgramUnit();
-io.proleap.cobol.parser.metamodel.data.DataDivision dataDivision = programUnit.getDataDivision();
-io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry dataDescriptionEntry = dataDivision.getDataDescriptionEntry("ITEMS");
 ```
 
 
