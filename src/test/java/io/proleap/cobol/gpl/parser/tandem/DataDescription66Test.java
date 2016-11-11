@@ -14,6 +14,8 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryRename;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -36,9 +38,13 @@ public class DataDescription66Test extends CobolTestSupport {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 
 		final DataDescriptionEntry dataDescriptionEntryItems = dataDivision.getDataDescriptionEntry("ITEMS");
+		final DataDescriptionEntryGroup dataDescriptionEntryGroupItems = dataDivision
+				.getDataDescriptionEntryGroup("ITEMS");
+
 		assertNotNull(dataDescriptionEntryItems);
 		assertEquals("ITEMS", dataDescriptionEntryItems.getName());
 		assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
+		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryGroupItems);
 
 		final DataDescriptionEntry dataDescriptionEntryItem1 = dataDivision.getDataDescriptionEntry("ITEM1");
 		assertNotNull(dataDescriptionEntryItem1);
@@ -61,8 +67,12 @@ public class DataDescription66Test extends CobolTestSupport {
 		assertEquals(new Integer(2), dataDescriptionEntryItem4.getLevelNumber());
 
 		final DataDescriptionEntry dataDescriptionEntryItemz = dataDivision.getDataDescriptionEntry("ITEMZ");
+		final DataDescriptionEntryRename dataDescriptionEntryRenameItemz = dataDivision
+				.getDataDescriptionEntryRename("ITEMZ");
+
 		assertNotNull(dataDescriptionEntryItemz);
 		assertEquals("ITEMZ", dataDescriptionEntryItemz.getName());
 		assertEquals(new Integer(66), dataDescriptionEntryItemz.getLevelNumber());
+		assertEquals(dataDescriptionEntryItemz, dataDescriptionEntryRenameItemz);
 	}
 }

@@ -14,6 +14,7 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -36,13 +37,21 @@ public class DataDescription77Test extends CobolTestSupport {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 
 		final DataDescriptionEntry dataDescriptionEntrySomeText = dataDivision.getDataDescriptionEntry("SOME-TEXT");
+		final DataDescriptionEntryGroup dataDescriptionEntryGroupSomeText = dataDivision
+				.getDataDescriptionEntryGroup("SOME-TEXT");
+
 		assertNotNull(dataDescriptionEntrySomeText);
 		assertEquals("SOME-TEXT", dataDescriptionEntrySomeText.getName());
 		assertEquals(new Integer(77), dataDescriptionEntrySomeText.getLevelNumber());
+		assertEquals(dataDescriptionEntrySomeText, dataDescriptionEntryGroupSomeText);
 
 		final DataDescriptionEntry dataDescriptionEntrySomeNumber = dataDivision.getDataDescriptionEntry("SOME-NUMBER");
+		final DataDescriptionEntryGroup dataDescriptionEntryGroupSomeNumber = dataDivision
+				.getDataDescriptionEntryGroup("SOME-NUMBER");
+
 		assertNotNull(dataDescriptionEntrySomeNumber);
 		assertEquals("SOME-NUMBER", dataDescriptionEntrySomeNumber.getName());
 		assertEquals(new Integer(77), dataDescriptionEntrySomeNumber.getLevelNumber());
+		assertEquals(dataDescriptionEntrySomeNumber, dataDescriptionEntryGroupSomeNumber);
 	}
 }

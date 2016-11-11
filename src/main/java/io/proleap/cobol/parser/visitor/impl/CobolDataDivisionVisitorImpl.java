@@ -31,7 +31,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 			@NotNull final Cobol85Parser.DataDescriptionEntryFormat1Context ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
-		dataDivision.addDataDescriptionEntry(ctx);
+		dataDivision.addDataDescriptionEntryGroup(ctx);
 
 		return visitChildren(ctx);
 	}
@@ -41,7 +41,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 			@NotNull final Cobol85Parser.DataDescriptionEntryFormat2Context ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
-		dataDivision.addDataDescriptionEntry(ctx);
+		dataDivision.addDataDescriptionEntryRename(ctx);
 
 		return visitChildren(ctx);
 	}
@@ -51,7 +51,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 			@NotNull final Cobol85Parser.DataDescriptionEntryFormat3Context ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
-		dataDivision.addDataDescriptionEntry(ctx);
+		dataDivision.addDataDescriptionEntryCondition(ctx);
 
 		return visitChildren(ctx);
 	}

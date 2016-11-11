@@ -14,6 +14,7 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -36,9 +37,13 @@ public class DataDescription01Test extends CobolTestSupport {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 
 		final DataDescriptionEntry dataDescriptionEntryItems = dataDivision.getDataDescriptionEntry("ITEMS");
+		final DataDescriptionEntryGroup dataDescriptionEntryGroupItems = dataDivision
+				.getDataDescriptionEntryGroup("ITEMS");
+
 		assertNotNull(dataDescriptionEntryItems);
 		assertEquals("ITEMS", dataDescriptionEntryItems.getName());
 		assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
+		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryGroupItems);
 
 		final DataDescriptionEntry dataDescriptionEntryItem1 = dataDivision.getDataDescriptionEntry("ITEM1");
 		assertNotNull(dataDescriptionEntryItem1);

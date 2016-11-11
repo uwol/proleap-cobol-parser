@@ -11,13 +11,13 @@ package io.proleap.cobol.parser.metamodel.data.impl;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry2;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryRename;
 
-public class DataDescriptionEntry2Impl extends DataDescriptionEntryImpl implements DataDescriptionEntry2 {
+public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryRename {
 
 	protected final DataDescriptionEntryFormat2Context ctx;
 
-	public DataDescriptionEntry2Impl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
+	public DataDescriptionEntryRenameImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
 			final DataDescriptionEntryFormat2Context ctx) {
 		super(name, programUnit, scope, ctx);
 

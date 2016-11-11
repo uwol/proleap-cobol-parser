@@ -8,6 +8,6 @@
 
 package io.proleap.cobol.parser.metamodel.data;
 
-public interface DataDescriptionEntry2 extends DataDescriptionEntry {
+public interface DataDescriptionEntryRename extends DataDescriptionEntry {
 
 }

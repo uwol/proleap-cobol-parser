@@ -21,11 +21,11 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 
 public interface DataDivision extends CobolDivision {
 
-	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat1Context ctx);
+	DataDescriptionEntryCondition addDataDescriptionEntryCondition(DataDescriptionEntryFormat3Context ctx);
 
-	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat2Context ctx);
+	DataDescriptionEntryGroup addDataDescriptionEntryGroup(DataDescriptionEntryFormat1Context ctx);
 
-	DataDescriptionEntry addDataDescriptionEntry(DataDescriptionEntryFormat3Context ctx);
+	DataDescriptionEntryRename addDataDescriptionEntryRename(DataDescriptionEntryFormat2Context ctx);
 
 	DataDivisionBody addDataDivisionBody(DataDivisionBodyContext ctx);
 
@@ -38,6 +38,18 @@ public interface DataDivision extends CobolDivision {
 	List<DataDescriptionEntry> getDataDescriptionEntries();
 
 	DataDescriptionEntry getDataDescriptionEntry(String name);
+
+	DataDescriptionEntryCondition getDataDescriptionEntryCondition(String name);
+
+	List<DataDescriptionEntryCondition> getDataDescriptionEntryConditions();
+
+	DataDescriptionEntryGroup getDataDescriptionEntryGroup(String name);
+
+	List<DataDescriptionEntryGroup> getDataDescriptionEntryGroups();
+
+	DataDescriptionEntryRename getDataDescriptionEntryRename(String name);
+
+	List<DataDescriptionEntryRename> getDataDescriptionEntryRenames();
 
 	DataDivisionBody getDataDivisionBody();
 

@@ -27,9 +27,9 @@ import io.proleap.cobol.Cobol85Parser.FileSectionContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry1;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry2;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry3;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryCondition;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryRename;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.DataDivisionBody;
 import io.proleap.cobol.parser.metamodel.data.FileDescriptionEntry;
@@ -48,6 +48,18 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesByName = new HashMap<String, DataDescriptionEntry>();
 
+	protected List<DataDescriptionEntryCondition> dataDescriptionEntryConditions = new ArrayList<DataDescriptionEntryCondition>();
+
+	protected Map<String, DataDescriptionEntryCondition> dataDescriptionEntryConditionsByName = new HashMap<String, DataDescriptionEntryCondition>();
+
+	protected List<DataDescriptionEntryGroup> dataDescriptionEntryGroups = new ArrayList<DataDescriptionEntryGroup>();
+
+	protected Map<String, DataDescriptionEntryGroup> dataDescriptionEntryGroupsByName = new HashMap<String, DataDescriptionEntryGroup>();
+
+	protected List<DataDescriptionEntryRename> dataDescriptionEntryRenames = new ArrayList<DataDescriptionEntryRename>();
+
+	protected Map<String, DataDescriptionEntryRename> dataDescriptionEntryRenamesByName = new HashMap<String, DataDescriptionEntryRename>();
+
 	protected DataDivisionBody dataDivisionBody;
 
 	protected List<FileDescriptionEntry> fileDescriptionEntries = new ArrayList<FileDescriptionEntry>();
@@ -61,12 +73,35 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	}
 
 	@Override
-	public DataDescriptionEntry addDataDescriptionEntry(final DataDescriptionEntryFormat1Context ctx) {
-		DataDescriptionEntry1 result = (DataDescriptionEntry1) getASGElement(ctx);
+	public DataDescriptionEntryCondition addDataDescriptionEntryCondition(
+			final DataDescriptionEntryFormat3Context ctx) {
+		DataDescriptionEntryCondition result = (DataDescriptionEntryCondition) getASGElement(ctx);
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new DataDescriptionEntry1Impl(name, programUnit, this, ctx);
+			result = new DataDescriptionEntryConditionImpl(name, programUnit, this, ctx);
+
+			result.setLevelNumber(88);
+
+			registerASGElement(result);
+
+			dataDescriptionEntries.add(result);
+			dataDescriptionEntriesByName.put(name, result);
+
+			dataDescriptionEntryConditions.add(result);
+			dataDescriptionEntryConditionsByName.put(name, result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public DataDescriptionEntryGroup addDataDescriptionEntryGroup(final DataDescriptionEntryFormat1Context ctx) {
+		DataDescriptionEntryGroup result = (DataDescriptionEntryGroup) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new DataDescriptionEntryGroupImpl(name, programUnit, this, ctx);
 
 			final Integer levelNumber;
 
@@ -84,18 +119,21 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 			dataDescriptionEntries.add(result);
 			dataDescriptionEntriesByName.put(name, result);
+
+			dataDescriptionEntryGroups.add(result);
+			dataDescriptionEntryGroupsByName.put(name, result);
 		}
 
 		return result;
 	}
 
 	@Override
-	public DataDescriptionEntry addDataDescriptionEntry(final DataDescriptionEntryFormat2Context ctx) {
-		DataDescriptionEntry2 result = (DataDescriptionEntry2) getASGElement(ctx);
+	public DataDescriptionEntryRename addDataDescriptionEntryRename(final DataDescriptionEntryFormat2Context ctx) {
+		DataDescriptionEntryRename result = (DataDescriptionEntryRename) getASGElement(ctx);
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new DataDescriptionEntry2Impl(name, programUnit, this, ctx);
+			result = new DataDescriptionEntryRenameImpl(name, programUnit, this, ctx);
 
 			result.setLevelNumber(66);
 
@@ -103,25 +141,9 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 			dataDescriptionEntries.add(result);
 			dataDescriptionEntriesByName.put(name, result);
-		}
 
-		return result;
-	}
-
-	@Override
-	public DataDescriptionEntry addDataDescriptionEntry(final DataDescriptionEntryFormat3Context ctx) {
-		DataDescriptionEntry3 result = (DataDescriptionEntry3) getASGElement(ctx);
-
-		if (result == null) {
-			final String name = determineName(ctx);
-			result = new DataDescriptionEntry3Impl(name, programUnit, this, ctx);
-
-			result.setLevelNumber(88);
-
-			registerASGElement(result);
-
-			dataDescriptionEntries.add(result);
-			dataDescriptionEntriesByName.put(name, result);
+			dataDescriptionEntryRenames.add(result);
+			dataDescriptionEntryRenamesByName.put(name, result);
 		}
 
 		return result;
@@ -222,11 +244,11 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		final DataDescriptionEntry result;
 
 		if (dataDescriptionEntryContext.dataDescriptionEntryFormat1() != null) {
-			result = addDataDescriptionEntry(dataDescriptionEntryContext.dataDescriptionEntryFormat1());
+			result = addDataDescriptionEntryGroup(dataDescriptionEntryContext.dataDescriptionEntryFormat1());
 		} else if (dataDescriptionEntryContext.dataDescriptionEntryFormat2() != null) {
-			result = addDataDescriptionEntry(dataDescriptionEntryContext.dataDescriptionEntryFormat2());
+			result = addDataDescriptionEntryRename(dataDescriptionEntryContext.dataDescriptionEntryFormat2());
 		} else if (dataDescriptionEntryContext.dataDescriptionEntryFormat3() != null) {
-			result = addDataDescriptionEntry(dataDescriptionEntryContext.dataDescriptionEntryFormat3());
+			result = addDataDescriptionEntryCondition(dataDescriptionEntryContext.dataDescriptionEntryFormat3());
 		} else {
 			LOG.warn("unknown data description entry {}", dataDescriptionEntryContext);
 			result = null;
@@ -243,6 +265,36 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	@Override
 	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
 		return dataDescriptionEntriesByName.get(name);
+	}
+
+	@Override
+	public DataDescriptionEntryCondition getDataDescriptionEntryCondition(final String name) {
+		return dataDescriptionEntryConditionsByName.get(name);
+	}
+
+	@Override
+	public List<DataDescriptionEntryCondition> getDataDescriptionEntryConditions() {
+		return dataDescriptionEntryConditions;
+	}
+
+	@Override
+	public DataDescriptionEntryGroup getDataDescriptionEntryGroup(final String name) {
+		return dataDescriptionEntryGroupsByName.get(name);
+	}
+
+	@Override
+	public List<DataDescriptionEntryGroup> getDataDescriptionEntryGroups() {
+		return dataDescriptionEntryGroups;
+	}
+
+	@Override
+	public DataDescriptionEntryRename getDataDescriptionEntryRename(final String name) {
+		return dataDescriptionEntryRenamesByName.get(name);
+	}
+
+	@Override
+	public List<DataDescriptionEntryRename> getDataDescriptionEntryRenames() {
+		return dataDescriptionEntryRenames;
 	}
 
 	@Override

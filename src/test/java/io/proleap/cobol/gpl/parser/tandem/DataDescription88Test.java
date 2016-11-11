@@ -14,6 +14,7 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryCondition;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -36,18 +37,27 @@ public class DataDescription88Test extends CobolTestSupport {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 
 		final DataDescriptionEntry dataDescriptionEntryGender = dataDivision.getDataDescriptionEntry("GENDER");
+
 		assertNotNull(dataDescriptionEntryGender);
 		assertEquals("GENDER", dataDescriptionEntryGender.getName());
 		assertEquals(new Integer(1), dataDescriptionEntryGender.getLevelNumber());
 
 		final DataDescriptionEntry dataDescriptionEntryMale = dataDivision.getDataDescriptionEntry("MALE");
+		final DataDescriptionEntryCondition dataDescriptionEntryConditionMale = dataDivision
+				.getDataDescriptionEntryCondition("MALE");
+
 		assertNotNull(dataDescriptionEntryMale);
 		assertEquals("MALE", dataDescriptionEntryMale.getName());
 		assertEquals(new Integer(88), dataDescriptionEntryMale.getLevelNumber());
+		assertEquals(dataDescriptionEntryMale, dataDescriptionEntryConditionMale);
 
 		final DataDescriptionEntry dataDescriptionEntryFemale = dataDivision.getDataDescriptionEntry("FEMALE");
+		final DataDescriptionEntryCondition dataDescriptionEntryConditionFemale = dataDivision
+				.getDataDescriptionEntryCondition("FEMALE");
+
 		assertNotNull(dataDescriptionEntryFemale);
 		assertEquals("FEMALE", dataDescriptionEntryFemale.getName());
 		assertEquals(new Integer(88), dataDescriptionEntryFemale.getLevelNumber());
+		assertEquals(dataDescriptionEntryFemale, dataDescriptionEntryConditionFemale);
 	}
 }
