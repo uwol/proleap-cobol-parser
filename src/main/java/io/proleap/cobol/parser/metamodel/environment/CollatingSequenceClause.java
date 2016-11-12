@@ -8,8 +8,21 @@
 
 package io.proleap.cobol.parser.metamodel.environment;
 
+import java.util.List;
+
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface CollatingSequenceClause extends CobolDivisionElement {
 
+	void addAlphabetName(String alphabetName);
+
+	List<String> getAlphabetNames();
+
+	String getAlphaNumeric();
+
+	String getNational();
+
+	void setAlphaNumeric(String alphanumeric);
+
+	void setNational(String national);
 }

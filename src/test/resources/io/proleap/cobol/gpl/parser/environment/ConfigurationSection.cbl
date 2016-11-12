@@ -6,5 +6,8 @@
        OBJECT-COMPUTER. ZYX 
            MEMORY 8192 CHARACTERS
            DISK 4096 WORDS
+           COLLATING SEQUENCE Special-Sequence1 Special-Sequence2 
+               ALPHANUMERIC Special-Sequence-Alpha 
+               NATIONAL Special-Sequence-National
            SEGMENT-LIMIT 128.
            

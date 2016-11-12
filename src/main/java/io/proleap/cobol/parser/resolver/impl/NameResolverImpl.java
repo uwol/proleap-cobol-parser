@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
 import io.proleap.cobol.Cobol85Parser.ComputerNameContext;
 import io.proleap.cobol.Cobol85Parser.ConditionNameContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
@@ -35,6 +36,11 @@ import io.proleap.cobol.parser.resolver.NameResolver;
 public class NameResolverImpl implements NameResolver {
 
 	private final static Logger LOG = LogManager.getLogger(NameResolverImpl.class);
+
+	public String determineName(final AlphabetNameContext ctx) {
+		final String result = ctx != null ? ctx.getText() : null;
+		return result;
+	}
 
 	public String determineName(final ComputerNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;
@@ -105,7 +111,9 @@ public class NameResolverImpl implements NameResolver {
 	public String determineName(final ParseTree ctx) {
 		final String result;
 
-		if (ctx instanceof ComputerNameContext) {
+		if (ctx instanceof AlphabetNameContext) {
+			result = determineName((AlphabetNameContext) ctx);
+		} else if (ctx instanceof ComputerNameContext) {
 			result = determineName((ComputerNameContext) ctx);
 		} else if (ctx instanceof ConditionNameContext) {
 			result = determineName((ConditionNameContext) ctx);

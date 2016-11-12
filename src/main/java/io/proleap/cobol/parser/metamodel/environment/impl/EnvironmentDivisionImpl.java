@@ -16,6 +16,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
 import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
@@ -96,6 +97,21 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 		if (result == null) {
 			result = new CollatingSequenceClauseImpl(programUnit, this, ctx);
+
+			for (final AlphabetNameContext alphabetNameContext : ctx.alphabetName()) {
+				final String alphabetName = determineName(alphabetNameContext);
+				result.addAlphabetName(alphabetName);
+			}
+
+			if (ctx.collatingSequenceClauseAlphanumeric() != null) {
+				final String alphanumeric = determineName(ctx.collatingSequenceClauseAlphanumeric().alphabetName());
+				result.setAlphaNumeric(alphanumeric);
+			}
+
+			if (ctx.collatingSequenceClauseNational() != null) {
+				final String national = determineName(ctx.collatingSequenceClauseNational().alphabetName());
+				result.setNational(national);
+			}
 
 			registerASGElement(result);
 		}

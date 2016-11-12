@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.environment.CollatingSequenceClause;
 import io.proleap.cobol.parser.metamodel.environment.ConfigurationSection;
 import io.proleap.cobol.parser.metamodel.environment.DiskSizeClause;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
@@ -58,6 +60,14 @@ public class ConfigurationSectionTest extends CobolTestSupport {
 		final IntegerLiteralValueStmt diskSizeValueStmt = (IntegerLiteralValueStmt) diskSizeClause.getValueStmt();
 		assertEquals(new Integer(4096), diskSizeValueStmt.getValue().getValue());
 		assertEquals(DiskSizeClause.Unit.Words, diskSizeClause.getUnit());
+
+		final CollatingSequenceClause collatingSequenceClause = objectComputerParagraph.getCollatingSequenceClause();
+		final List<String> alphabetNames = collatingSequenceClause.getAlphabetNames();
+		assertEquals(2, alphabetNames.size());
+		assertEquals("Special-Sequence1", alphabetNames.get(0));
+		assertEquals("Special-Sequence2", alphabetNames.get(1));
+		assertEquals("Special-Sequence-Alpha", collatingSequenceClause.getAlphaNumeric());
+		assertEquals("Special-Sequence-National", collatingSequenceClause.getNational());
 
 		final SegmentLimitClause segmentLimitClause = objectComputerParagraph.getSegmentLimitClause();
 		final IntegerLiteral segmentLimitIntegerLiteral = segmentLimitClause.getIntegerLiteral();

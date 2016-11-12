@@ -220,8 +220,16 @@ diskSizeClause :
 collatingSequenceClause :
 	PROGRAM? COLLATING? SEQUENCE 
 	(IS? alphabetName+)
-	(FOR? ALPHANUMERIC IS? alphabetName)?
-	(FOR? NATIONAL IS? alphabetName)?
+	collatingSequenceClauseAlphanumeric?
+	collatingSequenceClauseNational?
+;
+
+collatingSequenceClauseAlphanumeric :
+	FOR? ALPHANUMERIC IS? alphabetName
+;
+
+collatingSequenceClauseNational :
+	FOR? NATIONAL IS? alphabetName
 ;
 
 segmentLimitClause :
