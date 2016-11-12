@@ -210,7 +210,7 @@ $ mvn clean install
 <dependency>
   <groupId>io.github.uwol</groupId>
   <artifactId>cobol85grammar</artifactId>
-  <version>1.4.0</version>
+  <version>1.5.0</version>
 </dependency>
 ```
 

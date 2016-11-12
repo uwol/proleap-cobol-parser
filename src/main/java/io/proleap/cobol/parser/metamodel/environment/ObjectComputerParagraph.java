@@ -12,4 +12,23 @@ import io.proleap.cobol.parser.metamodel.NamedElement;
 
 public interface ObjectComputerParagraph extends ConfigurationSectionParagraph, NamedElement {
 
+	CharacterSetClause getCharacterSetClause();
+
+	CollatingSequenceClause getCollatingSequenceClause();
+
+	DiskSizeClause getDiskSizeClause();
+
+	MemorySizeClause getMemorySizeClause();
+
+	SegmentLimitClause getSegmentLimitClause();
+
+	void setCharacterSetClause(CharacterSetClause characterSetClause);
+
+	void setCollatingSequenceClause(CollatingSequenceClause collatingSequenceClause);
+
+	void setDiskSizeClause(DiskSizeClause diskSizeClause);
+
+	void setMemorySizeClause(MemorySizeClause memorySizeClause);
+
+	void setSegmentLimitClause(SegmentLimitClause segmentLimitClause);
 }

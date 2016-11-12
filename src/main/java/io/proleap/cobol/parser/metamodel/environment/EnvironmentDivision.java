@@ -10,19 +10,30 @@ package io.proleap.cobol.parser.metamodel.environment;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
+import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
+import io.proleap.cobol.Cobol85Parser.DiskSizeClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
+import io.proleap.cobol.Cobol85Parser.MemorySizeClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 
 public interface EnvironmentDivision extends CobolDivision {
 
+	CharacterSetClause addCharacterSetClause(CharacterSetClauseContext ctx);
+
+	CollatingSequenceClause addCollatingSequenceClause(CollatingSequenceClauseContext ctx);
+
 	ConfigurationSection addConfigurationSection(ConfigurationSectionContext ctx);
+
+	DiskSizeClause addDiskSizeClause(DiskSizeClauseContext ctx);
 
 	void addEnvironmentDivisionBody(EnvironmentDivisionBody environmentDivisionBody);
 
@@ -34,7 +45,11 @@ public interface EnvironmentDivision extends CobolDivision {
 
 	IoControlParagraph addIoControlParagraph(IoControlParagraphContext ctx);
 
+	MemorySizeClause addMemorySizeClause(MemorySizeClauseContext ctx);
+
 	ObjectComputerParagraph addObjectComputerParagraph(ObjectComputerParagraphContext ctx);
+
+	SegmentLimitClause addSegmentLimitClause(SegmentLimitClauseContext ctx);
 
 	SelectClause addSelectClause(SelectClauseContext ctx);
 

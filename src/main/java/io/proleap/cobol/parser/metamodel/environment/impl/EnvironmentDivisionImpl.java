@@ -16,20 +16,29 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
+import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionParagraphContext;
+import io.proleap.cobol.Cobol85Parser.DiskSizeClauseContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
 import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionParagraphContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
+import io.proleap.cobol.Cobol85Parser.MemorySizeClauseContext;
+import io.proleap.cobol.Cobol85Parser.ObjectComputerClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.environment.CharacterSetClause;
+import io.proleap.cobol.parser.metamodel.environment.CollatingSequenceClause;
 import io.proleap.cobol.parser.metamodel.environment.ConfigurationSection;
 import io.proleap.cobol.parser.metamodel.environment.ConfigurationSectionParagraph;
+import io.proleap.cobol.parser.metamodel.environment.DiskSizeClause;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivisionBody;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
@@ -37,7 +46,10 @@ import io.proleap.cobol.parser.metamodel.environment.FileControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.InputOutputSection;
 import io.proleap.cobol.parser.metamodel.environment.InputOutputSectionParagraph;
 import io.proleap.cobol.parser.metamodel.environment.IoControlParagraph;
+import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause;
+import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause.Unit;
 import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
+import io.proleap.cobol.parser.metamodel.environment.SegmentLimitClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.environment.SourceComputerParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
@@ -58,6 +70,32 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public CharacterSetClause addCharacterSetClause(final CharacterSetClauseContext ctx) {
+		CharacterSetClause result = (CharacterSetClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new CharacterSetClauseImpl(programUnit, this, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public CollatingSequenceClause addCollatingSequenceClause(final CollatingSequenceClauseContext ctx) {
+		CollatingSequenceClause result = (CollatingSequenceClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new CollatingSequenceClauseImpl(programUnit, this, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -84,6 +122,19 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 				result.addConfigurationSectionParagraph(configurationSectionParagraph);
 			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public DiskSizeClause addDiskSizeClause(final DiskSizeClauseContext ctx) {
+		DiskSizeClause result = (DiskSizeClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new DiskSizeClauseImpl(programUnit, this, ctx);
 
 			registerASGElement(result);
 		}
@@ -180,12 +231,83 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 	}
 
 	@Override
+	public MemorySizeClause addMemorySizeClause(final MemorySizeClauseContext ctx) {
+		MemorySizeClause result = (MemorySizeClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new MemorySizeClauseImpl(programUnit, this, ctx);
+
+			final Unit unit;
+
+			if (ctx.WORDS() != null) {
+				unit = Unit.Words;
+			} else if (ctx.CHARACTERS() != null) {
+				unit = Unit.Characters;
+			} else if (ctx.MODULES() != null) {
+				unit = Unit.Modules;
+			} else {
+				unit = null;
+			}
+
+			result.setUnit(unit);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public ObjectComputerParagraph addObjectComputerParagraph(final ObjectComputerParagraphContext ctx) {
 		ObjectComputerParagraph result = (ObjectComputerParagraph) getASGElement(ctx);
 
 		if (result == null) {
 			final String name = determineName(ctx);
 			result = new ObjectComputerParagraphImpl(name, programUnit, this, ctx);
+
+			for (final ObjectComputerClauseContext objectComputerClause : ctx.objectComputerClause()) {
+				if (objectComputerClause.memorySizeClause() != null) {
+					final MemorySizeClause memorySizeClause = addMemorySizeClause(
+							objectComputerClause.memorySizeClause());
+					result.setMemorySizeClause(memorySizeClause);
+				}
+
+				if (objectComputerClause.diskSizeClause() != null) {
+					final DiskSizeClause diskSizeClause = addDiskSizeClause(objectComputerClause.diskSizeClause());
+					result.setDiskSizeClause(diskSizeClause);
+				}
+
+				if (objectComputerClause.collatingSequenceClause() != null) {
+					final CollatingSequenceClause collatingSequenceClause = addCollatingSequenceClause(
+							objectComputerClause.collatingSequenceClause());
+					result.setCollatingSequenceClause(collatingSequenceClause);
+				}
+
+				if (objectComputerClause.segmentLimitClause() != null) {
+					final SegmentLimitClause segmentLimitClause = addSegmentLimitClause(
+							objectComputerClause.segmentLimitClause());
+					result.setSegmentLimitClause(segmentLimitClause);
+				}
+
+				if (objectComputerClause.characterSetClause() != null) {
+					final CharacterSetClause characterSetClause = addCharacterSetClause(
+							objectComputerClause.characterSetClause());
+					result.setCharacterSetClause(characterSetClause);
+				}
+			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public SegmentLimitClause addSegmentLimitClause(final SegmentLimitClauseContext ctx) {
+		SegmentLimitClause result = (SegmentLimitClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SegmentLimitClauseImpl(programUnit, this, ctx);
 
 			registerASGElement(result);
 		}

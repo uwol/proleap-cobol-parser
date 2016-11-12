@@ -28,10 +28,37 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
+	public Boolean visitCharacterSetClause(@NotNull final Cobol85Parser.CharacterSetClauseContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addCharacterSetClause(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitCollatingSequenceClause(@NotNull final Cobol85Parser.CollatingSequenceClauseContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addCollatingSequenceClause(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitConfigurationSection(@NotNull final Cobol85Parser.ConfigurationSectionContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 
 		environmentDivision.addConfigurationSection(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitDiskSizeClause(@NotNull final Cobol85Parser.DiskSizeClauseContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addDiskSizeClause(ctx);
 
 		return visitChildren(ctx);
 	}
@@ -73,10 +100,28 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
+	public Boolean visitMemorySizeClause(@NotNull final Cobol85Parser.MemorySizeClauseContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addMemorySizeClause(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitObjectComputerParagraph(@NotNull final Cobol85Parser.ObjectComputerParagraphContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 
 		environmentDivision.addObjectComputerParagraph(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitSegmentLimitClause(@NotNull final Cobol85Parser.SegmentLimitClauseContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addSegmentLimitClause(ctx);
 
 		return visitChildren(ctx);
 	}
