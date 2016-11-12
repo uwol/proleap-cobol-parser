@@ -23,6 +23,7 @@ import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 
 public interface EnvironmentDivision extends CobolDivision {
@@ -34,8 +35,6 @@ public interface EnvironmentDivision extends CobolDivision {
 	ConfigurationSection addConfigurationSection(ConfigurationSectionContext ctx);
 
 	DiskSizeClause addDiskSizeClause(DiskSizeClauseContext ctx);
-
-	void addEnvironmentDivisionBody(EnvironmentDivisionBody environmentDivisionBody);
 
 	FileControlEntry addFileControlEntry(FileControlEntryContext ctx);
 
@@ -55,10 +54,16 @@ public interface EnvironmentDivision extends CobolDivision {
 
 	SourceComputerParagraph addSourceComputerParagraph(SourceComputerParagraphContext ctx);
 
-	List<EnvironmentDivisionBody> getEnvironmentDivisionBodies();
+	SpecialNamesParagraph addSpecialNamesParagraph(SpecialNamesParagraphContext ctx);
+
+	ConfigurationSection getConfigurationSection();
 
 	List<FileControlEntry> getFileControlEntries();
 
 	FileControlEntry getFileControlEntry(String name);
+
+	InputOutputSection getInputOutputSection();
+
+	SpecialNamesParagraph getSpecialNamesParagraph();
 
 }

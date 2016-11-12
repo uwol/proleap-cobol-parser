@@ -25,7 +25,6 @@ import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.DataDivisionBody;
 import io.proleap.cobol.parser.metamodel.data.impl.DataDivisionImpl;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
-import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivisionBody;
 import io.proleap.cobol.parser.metamodel.environment.impl.EnvironmentDivisionImpl;
 import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
 import io.proleap.cobol.parser.metamodel.identification.IdentificationDivisionBody;
@@ -83,20 +82,15 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 			result = new EnvironmentDivisionImpl(this, ctx);
 
 			for (final EnvironmentDivisionBodyContext environmentDivisionBodyContext : ctx.environmentDivisionBody()) {
-				final EnvironmentDivisionBody environmentDivisionBody;
-
 				if (environmentDivisionBodyContext.configurationSection() != null) {
-					environmentDivisionBody = result
-							.addConfigurationSection(environmentDivisionBodyContext.configurationSection());
+					result.addConfigurationSection(environmentDivisionBodyContext.configurationSection());
+				} else if (environmentDivisionBodyContext.specialNamesParagraph() != null) {
+					result.addSpecialNamesParagraph(environmentDivisionBodyContext.specialNamesParagraph());
 				} else if (environmentDivisionBodyContext.inputOutputSection() != null) {
-					environmentDivisionBody = result
-							.addInputOutputSection(environmentDivisionBodyContext.inputOutputSection());
+					result.addInputOutputSection(environmentDivisionBodyContext.inputOutputSection());
 				} else {
 					LOG.warn("unknown environment division body {}", environmentDivisionBodyContext);
-					environmentDivisionBody = null;
 				}
-
-				result.addEnvironmentDivisionBody(environmentDivisionBody);
 			}
 
 			registerASGElement(result);

@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.environment.impl;
 
 import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.SegmentLimitClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -18,11 +19,23 @@ public class SegmentLimitClauseImpl extends CobolDivisionElementImpl implements 
 
 	protected final SegmentLimitClauseContext ctx;
 
+	protected IntegerLiteral integerLiteral;
+
 	public SegmentLimitClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
 			final SegmentLimitClauseContext ctx) {
 		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public IntegerLiteral getIntegerLiteral() {
+		return integerLiteral;
+	}
+
+	@Override
+	public void setIntegerLiteral(final IntegerLiteral integerLiteral) {
+		this.integerLiteral = integerLiteral;
 	}
 
 }

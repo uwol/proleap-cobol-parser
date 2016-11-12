@@ -8,12 +8,14 @@
 
 package io.proleap.cobol.parser.metamodel.environment;
 
-import java.util.List;
-
 public interface ConfigurationSection extends EnvironmentDivisionBody {
 
-	void addConfigurationSectionParagraph(ConfigurationSectionParagraph configurationSectionParagraph);
+	ObjectComputerParagraph getObjectComputerParagraph();
 
-	List<ConfigurationSectionParagraph> getConfigurationSectionParagraphs();
+	SourceComputerParagraph getSourceComputerParagraph();
+
+	void setObjectComputerParagraph(ObjectComputerParagraph objectComputerParagraph);
+
+	void setSourceComputerParagraph(SourceComputerParagraph sourceComputerParagraph);
 
 }

@@ -13,12 +13,15 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class MemorySizeClauseImpl extends CobolDivisionElementImpl implements MemorySizeClause {
 
 	protected final MemorySizeClauseContext ctx;
 
 	protected Unit unit;
+
+	protected ValueStmt valueStmt;
 
 	public MemorySizeClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
 			final MemorySizeClauseContext ctx) {
@@ -33,8 +36,18 @@ public class MemorySizeClauseImpl extends CobolDivisionElementImpl implements Me
 	}
 
 	@Override
+	public ValueStmt getValueStmt() {
+		return valueStmt;
+	}
+
+	@Override
 	public void setUnit(final Unit unit) {
 		this.unit = unit;
+	}
+
+	@Override
+	public void setValueStmt(final ValueStmt valueStmt) {
+		this.valueStmt = valueStmt;
 	}
 
 }

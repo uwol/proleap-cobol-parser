@@ -9,6 +9,7 @@
 package io.proleap.cobol.parser.metamodel.environment;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface MemorySizeClause extends CobolDivisionElement {
 
@@ -18,5 +19,9 @@ public interface MemorySizeClause extends CobolDivisionElement {
 
 	Unit getUnit();
 
+	ValueStmt getValueStmt();
+
 	void setUnit(Unit unit);
+
+	void setValueStmt(ValueStmt valueStmt);
 }

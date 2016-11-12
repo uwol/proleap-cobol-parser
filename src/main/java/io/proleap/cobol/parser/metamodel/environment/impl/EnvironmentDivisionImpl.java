@@ -33,38 +33,43 @@ import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
+import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.CharacterSetClause;
 import io.proleap.cobol.parser.metamodel.environment.CollatingSequenceClause;
 import io.proleap.cobol.parser.metamodel.environment.ConfigurationSection;
-import io.proleap.cobol.parser.metamodel.environment.ConfigurationSectionParagraph;
 import io.proleap.cobol.parser.metamodel.environment.DiskSizeClause;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
-import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivisionBody;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.FileControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.InputOutputSection;
 import io.proleap.cobol.parser.metamodel.environment.InputOutputSectionParagraph;
 import io.proleap.cobol.parser.metamodel.environment.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause;
-import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause.Unit;
 import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
 import io.proleap.cobol.parser.metamodel.environment.SegmentLimitClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.environment.SourceComputerParagraph;
+import io.proleap.cobol.parser.metamodel.environment.SpecialNamesParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class EnvironmentDivisionImpl extends CobolDivisionImpl implements EnvironmentDivision {
 
 	private final static Logger LOG = LogManager.getLogger(EnvironmentDivisionImpl.class);
 
-	protected final EnvironmentDivisionContext ctx;
+	protected ConfigurationSection configurationSection;
 
-	protected List<EnvironmentDivisionBody> environmentDivisionBodies = new ArrayList<EnvironmentDivisionBody>();
+	protected final EnvironmentDivisionContext ctx;
 
 	protected List<FileControlEntry> fileControlEntries = new ArrayList<FileControlEntry>();
 
 	protected Map<String, FileControlEntry> fileControlEntriesByName = new HashMap<String, FileControlEntry>();
+
+	protected InputOutputSection inputOutputSection;
+
+	protected SpecialNamesParagraph specialNamesParagraph;
 
 	public EnvironmentDivisionImpl(final ProgramUnit programUnit, final EnvironmentDivisionContext ctx) {
 		super(programUnit, ctx);
@@ -107,21 +112,20 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 			for (final ConfigurationSectionParagraphContext configurationSectionParagraphContext : ctx
 					.configurationSectionParagraph()) {
-				final ConfigurationSectionParagraph configurationSectionParagraph;
-
 				if (configurationSectionParagraphContext.sourceComputerParagraph() != null) {
-					configurationSectionParagraph = addSourceComputerParagraph(
+					final SourceComputerParagraph sourceComputerParagraph = addSourceComputerParagraph(
 							configurationSectionParagraphContext.sourceComputerParagraph());
+					result.setSourceComputerParagraph(sourceComputerParagraph);
 				} else if (configurationSectionParagraphContext.objectComputerParagraph() != null) {
-					configurationSectionParagraph = addObjectComputerParagraph(
+					final ObjectComputerParagraph objectComputerParagraph = addObjectComputerParagraph(
 							configurationSectionParagraphContext.objectComputerParagraph());
+					result.setObjectComputerParagraph(objectComputerParagraph);
 				} else {
 					LOG.warn("unknown configuration section paragraph {}", configurationSectionParagraphContext);
-					configurationSectionParagraph = null;
 				}
-
-				result.addConfigurationSectionParagraph(configurationSectionParagraph);
 			}
+
+			configurationSection = result;
 
 			registerASGElement(result);
 		}
@@ -136,15 +140,41 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 		if (result == null) {
 			result = new DiskSizeClauseImpl(programUnit, this, ctx);
 
+			/*
+			 * size value stmt
+			 */
+			final ValueStmt valueStmt;
+
+			if (ctx.integerLiteral() != null) {
+				valueStmt = createIntegerLiteralValueStmt(ctx.integerLiteral());
+			} else if (ctx.cobolWord() != null) {
+				valueStmt = createCallValueStmt(ctx.cobolWord());
+			} else {
+				LOG.warn("unknown value stmt {}.", ctx);
+				valueStmt = null;
+			}
+
+			result.setValueStmt(valueStmt);
+
+			/*
+			 * size unit
+			 */
+			final DiskSizeClause.Unit unit;
+
+			if (ctx.WORDS() != null) {
+				unit = DiskSizeClause.Unit.Words;
+			} else if (ctx.MODULES() != null) {
+				unit = DiskSizeClause.Unit.Modules;
+			} else {
+				unit = null;
+			}
+
+			result.setUnit(unit);
+
 			registerASGElement(result);
 		}
 
 		return result;
-	}
-
-	@Override
-	public void addEnvironmentDivisionBody(final EnvironmentDivisionBody environmentDivisionBody) {
-		environmentDivisionBodies.add(environmentDivisionBody);
 	}
 
 	@Override
@@ -211,6 +241,8 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 				result.addInputOutputSectionParagraph(inputOutputSectionParagraph);
 			}
 
+			inputOutputSection = result;
+
 			registerASGElement(result);
 		}
 
@@ -237,14 +269,33 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 		if (result == null) {
 			result = new MemorySizeClauseImpl(programUnit, this, ctx);
 
-			final Unit unit;
+			/*
+			 * size value stmt
+			 */
+			final ValueStmt valueStmt;
+
+			if (ctx.integerLiteral() != null) {
+				valueStmt = createIntegerLiteralValueStmt(ctx.integerLiteral());
+			} else if (ctx.cobolWord() != null) {
+				valueStmt = createCallValueStmt(ctx.cobolWord());
+			} else {
+				LOG.warn("unknown value stmt {}.", ctx);
+				valueStmt = null;
+			}
+
+			result.setValueStmt(valueStmt);
+
+			/*
+			 * size unit
+			 */
+			final MemorySizeClause.Unit unit;
 
 			if (ctx.WORDS() != null) {
-				unit = Unit.Words;
+				unit = MemorySizeClause.Unit.Words;
 			} else if (ctx.CHARACTERS() != null) {
-				unit = Unit.Characters;
+				unit = MemorySizeClause.Unit.Characters;
 			} else if (ctx.MODULES() != null) {
-				unit = Unit.Modules;
+				unit = MemorySizeClause.Unit.Modules;
 			} else {
 				unit = null;
 			}
@@ -309,6 +360,9 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 		if (result == null) {
 			result = new SegmentLimitClauseImpl(programUnit, this, ctx);
 
+			final IntegerLiteral integerLiteral = addIntegerLiteral(ctx.integerLiteral());
+			result.setIntegerLiteral(integerLiteral);
+
 			registerASGElement(result);
 		}
 
@@ -348,8 +402,23 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 	}
 
 	@Override
-	public List<EnvironmentDivisionBody> getEnvironmentDivisionBodies() {
-		return environmentDivisionBodies;
+	public SpecialNamesParagraph addSpecialNamesParagraph(final SpecialNamesParagraphContext ctx) {
+		SpecialNamesParagraph result = (SpecialNamesParagraph) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SpecialNamesParagraphImpl(programUnit, this, ctx);
+
+			specialNamesParagraph = result;
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ConfigurationSection getConfigurationSection() {
+		return configurationSection;
 	}
 
 	@Override
@@ -361,4 +430,15 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 	public FileControlEntry getFileControlEntry(final String name) {
 		return fileControlEntriesByName.get(name);
 	}
+
+	@Override
+	public InputOutputSection getInputOutputSection() {
+		return inputOutputSection;
+	}
+
+	@Override
+	public SpecialNamesParagraph getSpecialNamesParagraph() {
+		return specialNamesParagraph;
+	}
+
 }

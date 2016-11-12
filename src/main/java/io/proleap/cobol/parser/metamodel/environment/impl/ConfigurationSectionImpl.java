@@ -8,19 +8,20 @@
 
 package io.proleap.cobol.parser.metamodel.environment.impl;
 
-import java.util.List;
-
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.ConfigurationSection;
-import io.proleap.cobol.parser.metamodel.environment.ConfigurationSectionParagraph;
+import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
+import io.proleap.cobol.parser.metamodel.environment.SourceComputerParagraph;
 
 public class ConfigurationSectionImpl extends EnvironmentDivisionBodyImpl implements ConfigurationSection {
 
-	protected List<ConfigurationSectionParagraph> configurationSectionParagraphs;
-
 	protected final ConfigurationSectionContext ctx;
+
+	protected ObjectComputerParagraph objectComputerParagraph;
+
+	protected SourceComputerParagraph sourceComputerParagraph;
 
 	public ConfigurationSectionImpl(final ProgramUnit programUnit, final CobolDivision scope,
 			final ConfigurationSectionContext ctx) {
@@ -30,13 +31,23 @@ public class ConfigurationSectionImpl extends EnvironmentDivisionBodyImpl implem
 	}
 
 	@Override
-	public void addConfigurationSectionParagraph(final ConfigurationSectionParagraph configurationSectionParagraph) {
-		configurationSectionParagraphs.add(configurationSectionParagraph);
+	public ObjectComputerParagraph getObjectComputerParagraph() {
+		return objectComputerParagraph;
 	}
 
 	@Override
-	public List<ConfigurationSectionParagraph> getConfigurationSectionParagraphs() {
-		return configurationSectionParagraphs;
+	public SourceComputerParagraph getSourceComputerParagraph() {
+		return sourceComputerParagraph;
+	}
+
+	@Override
+	public void setObjectComputerParagraph(final ObjectComputerParagraph objectComputerParagraph) {
+		this.objectComputerParagraph = objectComputerParagraph;
+	}
+
+	@Override
+	public void setSourceComputerParagraph(final SourceComputerParagraph sourceComputerParagraph) {
+		this.sourceComputerParagraph = sourceComputerParagraph;
 	}
 
 }

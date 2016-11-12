@@ -144,4 +144,13 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 		return visitChildren(ctx);
 	}
 
+	@Override
+	public Boolean visitSpecialNamesParagraph(@NotNull final Cobol85Parser.SpecialNamesParagraphContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addSpecialNamesParagraph(ctx);
+
+		return visitChildren(ctx);
+	}
+
 }

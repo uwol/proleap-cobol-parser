@@ -9,7 +9,11 @@
 package io.proleap.cobol.parser.metamodel.environment;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 
 public interface SegmentLimitClause extends CobolDivisionElement {
 
+	IntegerLiteral getIntegerLiteral();
+
+	void setIntegerLiteral(IntegerLiteral integerLiteral);
 }

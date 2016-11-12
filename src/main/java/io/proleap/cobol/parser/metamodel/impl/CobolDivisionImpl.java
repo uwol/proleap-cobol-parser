@@ -12,10 +12,13 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.CobolWordContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
+import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
@@ -27,9 +30,12 @@ import io.proleap.cobol.parser.metamodel.call.impl.UndefinedCallImpl;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
 import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.CallValueStmtImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.impl.IntegerLiteralValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
+import io.proleap.cobol.parser.util.StringUtils;
 
 public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implements CobolDivision {
 
@@ -37,6 +43,18 @@ public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implement
 
 	public CobolDivisionImpl(final ProgramUnit programUnit, final ParseTree ctx) {
 		super(programUnit, ctx);
+	}
+
+	@Override
+	public Call addCall(final CobolWordContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, this, ctx);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -93,6 +111,20 @@ public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implement
 	}
 
 	@Override
+	public IntegerLiteral addIntegerLiteral(final IntegerLiteralContext ctx) {
+		IntegerLiteral result = (IntegerLiteral) getASGElement(ctx);
+
+		if (result == null) {
+			final Integer value = StringUtils.parseInteger(ctx.getText());
+			result = new IntegerLiteralImpl(value, programUnit, this, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public Literal addLiteral(final LiteralContext ctx) {
 		Literal result = (Literal) getASGElement(ctx);
 
@@ -115,9 +147,22 @@ public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implement
 		paragraph.addProcedureCall(procedureCall);
 	}
 
+	protected CallValueStmt createCallValueStmt(final CobolWordContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, this, ctx);
+		return result;
+	}
+
 	protected CallValueStmt createCallValueStmt(final IdentifierContext ctx) {
 		final Call delegatedCall = addCall(ctx);
 		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, this, ctx);
+		return result;
+	}
+
+	protected IntegerLiteralValueStmt createIntegerLiteralValueStmt(final IntegerLiteralContext ctx) {
+		final IntegerLiteral integerLiteral = addIntegerLiteral(ctx);
+		final IntegerLiteralValueStmt result = new IntegerLiteralValueStmtImpl(programUnit, this, ctx);
+		result.setIntegerLiteral(integerLiteral);
 		return result;
 	}
 
