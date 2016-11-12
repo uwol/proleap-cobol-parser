@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.environment.impl;
 
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -20,9 +22,9 @@ public class InputOutputSectionImpl extends CobolDivisionElementImpl implements 
 
 	protected final InputOutputSectionContext ctx;
 
-	protected FileControlParagraph fileControlParagraph;
+	protected List<FileControlParagraph> fileControlParagraphs;
 
-	protected IoControlParagraph ioControlParagraph;
+	protected List<IoControlParagraph> ioControlParagraphs;
 
 	public InputOutputSectionImpl(final ProgramUnit programUnit, final CobolDivision scope,
 			final InputOutputSectionContext ctx) {
@@ -32,23 +34,23 @@ public class InputOutputSectionImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
-	public FileControlParagraph getFileControlParagraph() {
-		return fileControlParagraph;
+	public void addFileControlParagraph(final FileControlParagraph fileControlParagraph) {
+		fileControlParagraphs.add(fileControlParagraph);
 	}
 
 	@Override
-	public IoControlParagraph getIoControlParagraph() {
-		return ioControlParagraph;
+	public void addIoControlParagraph(final IoControlParagraph ioControlParagraph) {
+		ioControlParagraphs.add(ioControlParagraph);
 	}
 
 	@Override
-	public void setFileControlParagraph(final FileControlParagraph fileControlParagraph) {
-		this.fileControlParagraph = fileControlParagraph;
+	public List<FileControlParagraph> getFileControlParagraphs() {
+		return fileControlParagraphs;
 	}
 
 	@Override
-	public void setIoControlParagraph(final IoControlParagraph ioControlParagraph) {
-		this.ioControlParagraph = ioControlParagraph;
+	public List<IoControlParagraph> getIoControlParagraphs() {
+		return ioControlParagraphs;
 	}
 
 }

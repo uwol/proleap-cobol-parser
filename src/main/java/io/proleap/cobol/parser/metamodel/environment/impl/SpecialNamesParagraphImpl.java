@@ -14,6 +14,7 @@ import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.SpecialNamesParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
+// FIXME: add specialNameClauses
 public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implements SpecialNamesParagraph {
 
 	protected final SpecialNamesParagraphContext ctx;

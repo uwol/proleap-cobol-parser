@@ -243,11 +243,11 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 				if (inputOutputSectionParagraphContext.fileControlParagraph() != null) {
 					final FileControlParagraph fileControlParagraph = addFileControlParagraph(
 							inputOutputSectionParagraphContext.fileControlParagraph());
-					result.setFileControlParagraph(fileControlParagraph);
+					result.addFileControlParagraph(fileControlParagraph);
 				} else if (inputOutputSectionParagraphContext.ioControlParagraph() != null) {
 					final IoControlParagraph ioControlParagraph = addIoControlParagraph(
 							inputOutputSectionParagraphContext.ioControlParagraph());
-					result.setIoControlParagraph(ioControlParagraph);
+					result.addIoControlParagraph(ioControlParagraph);
 				} else {
 					LOG.warn("unknown input output section paragraph {}", inputOutputSectionParagraphContext);
 				}

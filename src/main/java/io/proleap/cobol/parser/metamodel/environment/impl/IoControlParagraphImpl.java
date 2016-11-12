@@ -14,6 +14,7 @@ import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
+//FIXME: add ioControlClauses
 public class IoControlParagraphImpl extends CobolDivisionElementImpl implements IoControlParagraph {
 
 	protected final IoControlParagraphContext ctx;

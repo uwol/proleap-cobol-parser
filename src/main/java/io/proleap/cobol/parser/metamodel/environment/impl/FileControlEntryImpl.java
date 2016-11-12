@@ -15,6 +15,7 @@ import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
+//FIXME: add fileControlClauses
 public class FileControlEntryImpl extends CobolDivisionElementImpl implements FileControlEntry {
 
 	protected final FileControlEntryContext ctx;
