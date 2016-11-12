@@ -15,6 +15,7 @@ import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.registry.ASGElementRegistry;
+import io.proleap.cobol.parser.util.ANTLRUtils;
 
 /**
  * Visitor for analyzing declarations in the AST.
@@ -23,7 +24,7 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 
 	protected EnvironmentDivision findEnvironmentDivision(final ParseTree ctx) {
 		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
-		return CobolParserContext.getInstance().getAstTraverser().findParent(EnvironmentDivision.class, ctx, registry);
+		return ANTLRUtils.findParent(EnvironmentDivision.class, ctx, registry);
 	}
 
 	@Override

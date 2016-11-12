@@ -9,9 +9,8 @@
 package io.proleap.cobol.parser.applicationcontext;
 
 import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;
-import io.proleap.cobol.parser.antlr.impl.ASTTraverserImpl;
-import io.proleap.cobol.parser.antlr.impl.NameResolverImpl;
 import io.proleap.cobol.parser.registry.impl.ASGElementRegistryImpl;
+import io.proleap.cobol.parser.resolver.impl.NameResolverImpl;
 import io.proleap.cobol.parser.runner.impl.CobolParserRunnerImpl;
 
 public class CobolParserContextFactory {
@@ -22,7 +21,6 @@ public class CobolParserContextFactory {
 		CobolParserContext.getInstance().reset();
 
 		CobolParserContext.getInstance().setASGElementRegistry(new ASGElementRegistryImpl());
-		CobolParserContext.getInstance().setAstTraverser(new ASTTraverserImpl());
 		CobolParserContext.getInstance().setNameResolver(new NameResolverImpl());
 		CobolParserContext.getInstance().setParserRunner(new CobolParserRunnerImpl());
 	}

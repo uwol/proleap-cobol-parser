@@ -16,18 +16,19 @@ import io.proleap.cobol.parser.metamodel.ASGElement;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.registry.ASGElementRegistry;
+import io.proleap.cobol.parser.util.ANTLRUtils;
 import io.proleap.cobol.parser.visitor.ParserVisitor;
 
 public abstract class AbstractCobolParserVisitorImpl extends Cobol85BaseVisitor<Boolean> implements ParserVisitor {
 
 	protected CopyBook findCopyBook(final ParseTree ctx) {
 		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
-		return CobolParserContext.getInstance().getAstTraverser().findParent(CopyBook.class, ctx, registry);
+		return ANTLRUtils.findParent(CopyBook.class, ctx, registry);
 	}
 
 	protected ProgramUnit findProgramUnit(final ParseTree ctx) {
 		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
-		return CobolParserContext.getInstance().getAstTraverser().findParent(ProgramUnit.class, ctx, registry);
+		return ANTLRUtils.findParent(ProgramUnit.class, ctx, registry);
 	}
 
 	protected ASGElement getASGElement(final ParseTree ctx) {

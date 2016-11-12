@@ -8,9 +8,8 @@
 
 package io.proleap.cobol.parser.applicationcontext;
 
-import io.proleap.cobol.parser.antlr.ASTTraverser;
-import io.proleap.cobol.parser.antlr.NameResolver;
 import io.proleap.cobol.parser.registry.ASGElementRegistry;
+import io.proleap.cobol.parser.resolver.NameResolver;
 import io.proleap.cobol.parser.runner.CobolParserRunner;
 
 public class CobolParserContext {
@@ -27,8 +26,6 @@ public class CobolParserContext {
 
 	protected ASGElementRegistry asgElementRegistry;
 
-	protected ASTTraverser astTraverser;
-
 	protected NameResolver nameResolver;
 
 	protected CobolParserRunner parserRunner;
@@ -39,10 +36,6 @@ public class CobolParserContext {
 
 	public ASGElementRegistry getASGElementRegistry() {
 		return asgElementRegistry;
-	}
-
-	public ASTTraverser getAstTraverser() {
-		return astTraverser;
 	}
 
 	public NameResolver getNameResolver() {
@@ -59,10 +52,6 @@ public class CobolParserContext {
 
 	public void setASGElementRegistry(final ASGElementRegistry asgElementRegistry) {
 		this.asgElementRegistry = asgElementRegistry;
-	}
-
-	public void setAstTraverser(final ASTTraverser astTraverser) {
-		this.astTraverser = astTraverser;
 	}
 
 	public void setNameResolver(final NameResolver nameResolver) {

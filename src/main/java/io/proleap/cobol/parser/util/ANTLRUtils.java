@@ -6,7 +6,7 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.antlr.impl;
+package io.proleap.cobol.parser.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,14 +14,12 @@ import java.util.List;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.antlr.ASTTraverser;
 import io.proleap.cobol.parser.metamodel.ASGElement;
 import io.proleap.cobol.parser.registry.ASGElementRegistry;
 
-public class ASTTraverserImpl implements ASTTraverser {
+public class ANTLRUtils {
 
-	@Override
-	public <T extends ASGElement> Collection<T> findAncestors(final Class<? extends ASGElement> type,
+	public static <T extends ASGElement> Collection<T> findAncestors(final Class<? extends ASGElement> type,
 			final ParseTree from, final ASGElementRegistry asgElementRegistry) {
 		ParseTree currentCtx = from;
 
@@ -41,10 +39,14 @@ public class ASTTraverserImpl implements ASTTraverser {
 		return result;
 	}
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public <T extends ASGElement> List<T> findChildren(final Class<? extends ASGElement> type, final ParseTree ctx,
+	public static List<ASGElement> findASGElementChildren(final ParseTree from,
 			final ASGElementRegistry asgElementRegistry) {
+		return findChildren(ASGElement.class, from, asgElementRegistry);
+	}
+
+	@SuppressWarnings("unchecked")
+	public static <T extends ASGElement> List<T> findChildren(final Class<? extends ASGElement> type,
+			final ParseTree ctx, final ASGElementRegistry asgElementRegistry) {
 		final List<ParseTree> children = findChildren(ctx);
 		final List<T> result = new ArrayList<T>();
 
@@ -59,8 +61,7 @@ public class ASTTraverserImpl implements ASTTraverser {
 		return result;
 	}
 
-	@Override
-	public List<ParseTree> findChildren(final ParseTree ctx) {
+	public static List<ParseTree> findChildren(final ParseTree ctx) {
 		final List<ParseTree> result = new ArrayList<ParseTree>();
 		final int n = ctx.getChildCount();
 
@@ -72,9 +73,8 @@ public class ASTTraverserImpl implements ASTTraverser {
 		return result;
 	}
 
-	@Override
 	@SuppressWarnings("unchecked")
-	public <T extends ASGElement> T findParent(final Class<? extends ASGElement> type, final ParseTree from,
+	public static <T extends ASGElement> T findParent(final Class<? extends ASGElement> type, final ParseTree from,
 			final ASGElementRegistry asgElementRegistry) {
 		T result = null;
 
@@ -93,15 +93,7 @@ public class ASTTraverserImpl implements ASTTraverser {
 		return result;
 	}
 
-	@Override
-	public ASGElement findParentASGElement(final ParseTree from,
-			final ASGElementRegistry asgElementRegistry) {
+	public static ASGElement findParentASGElement(final ParseTree from, final ASGElementRegistry asgElementRegistry) {
 		return findParent(ASGElement.class, from, asgElementRegistry);
-	}
-
-	@Override
-	public List<ASGElement> findASGElementChildren(final ParseTree from,
-			final ASGElementRegistry asgElementRegistry) {
-		return findChildren(ASGElement.class, from, asgElementRegistry);
 	}
 }

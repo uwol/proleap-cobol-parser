@@ -15,6 +15,7 @@ import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
 import io.proleap.cobol.parser.registry.ASGElementRegistry;
+import io.proleap.cobol.parser.util.ANTLRUtils;
 
 /**
  * Visitor for analyzing declarations in the AST.
@@ -23,8 +24,7 @@ public class CobolIdentificationDivisionVisitorImpl extends AbstractCobolParserV
 
 	protected IdentificationDivision findIdentificationDivision(final ParseTree ctx) {
 		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
-		return CobolParserContext.getInstance().getAstTraverser().findParent(IdentificationDivision.class, ctx,
-				registry);
+		return ANTLRUtils.findParent(IdentificationDivision.class, ctx, registry);
 	}
 
 	@Override

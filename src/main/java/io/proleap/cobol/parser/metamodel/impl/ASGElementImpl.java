@@ -16,6 +16,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.ASGElement;
 import io.proleap.cobol.parser.registry.ASGElementRegistry;
+import io.proleap.cobol.parser.util.ANTLRUtils;
 
 /**
  * http://en.wikipedia.org/wiki/Abstract_semantic_graph
@@ -31,8 +32,7 @@ public abstract class ASGElementImpl implements ASGElement {
 	@Override
 	public Collection<ASGElement> getChildren() {
 		final ASGElementRegistry asgElementRegistry = CobolParserContext.getInstance().getASGElementRegistry();
-		final List<ASGElement> result = CobolParserContext.getInstance().getAstTraverser()
-				.findASGElementChildren(ctx, asgElementRegistry);
+		final List<ASGElement> result = ANTLRUtils.findASGElementChildren(ctx, asgElementRegistry);
 		return result;
 	}
 
@@ -44,8 +44,7 @@ public abstract class ASGElementImpl implements ASGElement {
 	@Override
 	public ASGElement getParent() {
 		final ASGElementRegistry asgElementRegistry = CobolParserContext.getInstance().getASGElementRegistry();
-		final ASGElement result = CobolParserContext.getInstance().getAstTraverser().findParentASGElement(ctx,
-				asgElementRegistry);
+		final ASGElement result = ANTLRUtils.findParentASGElement(ctx, asgElementRegistry);
 		return result;
 	}
 

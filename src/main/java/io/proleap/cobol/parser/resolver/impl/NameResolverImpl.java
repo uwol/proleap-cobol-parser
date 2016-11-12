@@ -6,7 +6,7 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.antlr.impl;
+package io.proleap.cobol.parser.resolver.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.logging.log4j.LogManager;
@@ -30,7 +30,7 @@ import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
-import io.proleap.cobol.parser.antlr.NameResolver;
+import io.proleap.cobol.parser.resolver.NameResolver;
 
 public class NameResolverImpl implements NameResolver {
 
