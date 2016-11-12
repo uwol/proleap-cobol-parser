@@ -45,7 +45,6 @@ import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.FileControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.InputOutputSection;
-import io.proleap.cobol.parser.metamodel.environment.InputOutputSectionParagraph;
 import io.proleap.cobol.parser.metamodel.environment.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause;
 import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
@@ -241,20 +240,17 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 			for (final InputOutputSectionParagraphContext inputOutputSectionParagraphContext : ctx
 					.inputOutputSectionParagraph()) {
-				final InputOutputSectionParagraph inputOutputSectionParagraph;
-
 				if (inputOutputSectionParagraphContext.fileControlParagraph() != null) {
-					inputOutputSectionParagraph = addFileControlParagraph(
+					final FileControlParagraph fileControlParagraph = addFileControlParagraph(
 							inputOutputSectionParagraphContext.fileControlParagraph());
+					result.setFileControlParagraph(fileControlParagraph);
 				} else if (inputOutputSectionParagraphContext.ioControlParagraph() != null) {
-					inputOutputSectionParagraph = addIoControlParagraph(
+					final IoControlParagraph ioControlParagraph = addIoControlParagraph(
 							inputOutputSectionParagraphContext.ioControlParagraph());
+					result.setIoControlParagraph(ioControlParagraph);
 				} else {
 					LOG.warn("unknown input output section paragraph {}", inputOutputSectionParagraphContext);
-					inputOutputSectionParagraph = null;
 				}
-
-				result.addInputOutputSectionParagraph(inputOutputSectionParagraph);
 			}
 
 			inputOutputSection = result;

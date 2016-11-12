@@ -12,8 +12,9 @@ import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.SpecialNamesParagraph;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class SpecialNamesParagraphImpl extends EnvironmentDivisionBodyImpl implements SpecialNamesParagraph {
+public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implements SpecialNamesParagraph {
 
 	protected final SpecialNamesParagraphContext ctx;
 

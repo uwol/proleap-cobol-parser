@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.identification;
 
-public interface DateCompiledParagraph extends IdentificationDivisionBody {
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+
+public interface DateCompiledParagraph extends CobolDivisionElement {
 
 }

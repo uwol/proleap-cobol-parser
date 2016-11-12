@@ -14,8 +14,9 @@ import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.ConfigurationSection;
 import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
 import io.proleap.cobol.parser.metamodel.environment.SourceComputerParagraph;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class ConfigurationSectionImpl extends EnvironmentDivisionBodyImpl implements ConfigurationSection {
+public class ConfigurationSectionImpl extends CobolDivisionElementImpl implements ConfigurationSection {
 
 	protected final ConfigurationSectionContext ctx;
 

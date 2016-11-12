@@ -8,12 +8,16 @@
 
 package io.proleap.cobol.parser.metamodel.environment;
 
-import java.util.List;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface InputOutputSection extends EnvironmentDivisionBody {
+public interface InputOutputSection extends CobolDivisionElement {
 
-	void addInputOutputSectionParagraph(InputOutputSectionParagraph inputOutputSectionParagraph);
+	FileControlParagraph getFileControlParagraph();
 
-	List<InputOutputSectionParagraph> getInputOutputSectionParagraphs();
+	IoControlParagraph getIoControlParagraph();
+
+	void setFileControlParagraph(FileControlParagraph fileControlParagraph);
+
+	void setIoControlParagraph(IoControlParagraph ioControlParagraph);
 
 }

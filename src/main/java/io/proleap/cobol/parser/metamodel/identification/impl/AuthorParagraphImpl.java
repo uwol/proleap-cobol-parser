@@ -12,8 +12,9 @@ import io.proleap.cobol.Cobol85Parser.AuthorParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.AuthorParagraph;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class AuthorParagraphImpl extends IdentificationDivisionBodyImpl implements AuthorParagraph {
+public class AuthorParagraphImpl extends CobolDivisionElementImpl implements AuthorParagraph {
 
 	protected final AuthorParagraphContext ctx;
 

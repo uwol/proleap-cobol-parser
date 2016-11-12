@@ -27,8 +27,6 @@ import io.proleap.cobol.parser.metamodel.data.impl.DataDivisionImpl;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.impl.EnvironmentDivisionImpl;
 import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
-import io.proleap.cobol.parser.metamodel.identification.IdentificationDivisionBody;
-import io.proleap.cobol.parser.metamodel.identification.ProgramIdParagraph;
 import io.proleap.cobol.parser.metamodel.identification.impl.IdentificationDivisionImpl;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.procedure.impl.ProcedureDivisionImpl;
@@ -107,38 +105,25 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 		if (result == null) {
 			result = new IdentificationDivisionImpl(this, ctx);
 
-			// program id paragraph
-			final ProgramIdParagraph programIdParagraph = result.addProgramIdParagraph(ctx.programIdParagraph());
-			result.setProgramIdParagraph(programIdParagraph);
+			result.addProgramIdParagraph(ctx.programIdParagraph());
 
 			for (final IdentificationDivisionBodyContext identificationDivisionBodyContext : ctx
 					.identificationDivisionBody()) {
-				final IdentificationDivisionBody identificationDivisionBody;
-
 				if (identificationDivisionBodyContext.authorParagraph() != null) {
-					identificationDivisionBody = result
-							.addAuthorParagraph(identificationDivisionBodyContext.authorParagraph());
+					result.addAuthorParagraph(identificationDivisionBodyContext.authorParagraph());
 				} else if (identificationDivisionBodyContext.installationParagraph() != null) {
-					identificationDivisionBody = result
-							.addInstallationParagraph(identificationDivisionBodyContext.installationParagraph());
+					result.addInstallationParagraph(identificationDivisionBodyContext.installationParagraph());
 				} else if (identificationDivisionBodyContext.dateWrittenParagraph() != null) {
-					identificationDivisionBody = result
-							.addDateWrittenParagraph(identificationDivisionBodyContext.dateWrittenParagraph());
+					result.addDateWrittenParagraph(identificationDivisionBodyContext.dateWrittenParagraph());
 				} else if (identificationDivisionBodyContext.dateCompiledParagraph() != null) {
-					identificationDivisionBody = result
-							.addDateCompiledParagraph(identificationDivisionBodyContext.dateCompiledParagraph());
+					result.addDateCompiledParagraph(identificationDivisionBodyContext.dateCompiledParagraph());
 				} else if (identificationDivisionBodyContext.securityParagraph() != null) {
-					identificationDivisionBody = result
-							.addSecurityParagraph(identificationDivisionBodyContext.securityParagraph());
+					result.addSecurityParagraph(identificationDivisionBodyContext.securityParagraph());
 				} else if (identificationDivisionBodyContext.remarksParagraph() != null) {
-					identificationDivisionBody = result
-							.addRemarksParagraph(identificationDivisionBodyContext.remarksParagraph());
+					result.addRemarksParagraph(identificationDivisionBodyContext.remarksParagraph());
 				} else {
 					LOG.warn("unknown identification division body {}", identificationDivisionBodyContext);
-					identificationDivisionBody = null;
 				}
-
-				result.addIdentificationDivisionBody(identificationDivisionBody);
 			}
 
 			registerASGElement(result);

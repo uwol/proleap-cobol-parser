@@ -8,9 +8,10 @@
 
 package io.proleap.cobol.parser.metamodel.environment;
 
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.NamedElement;
 
-public interface ObjectComputerParagraph extends ConfigurationSectionParagraph, NamedElement {
+public interface ObjectComputerParagraph extends CobolDivisionElement, NamedElement {
 
 	CharacterSetClause getCharacterSetClause();
 

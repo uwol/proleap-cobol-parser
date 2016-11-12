@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.identification;
 
-public interface InstallationParagraph extends IdentificationDivisionBody {
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+
+public interface InstallationParagraph extends CobolDivisionElement {
 
 }

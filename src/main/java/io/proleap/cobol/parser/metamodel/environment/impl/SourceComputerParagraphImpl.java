@@ -12,8 +12,9 @@ import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.SourceComputerParagraph;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class SourceComputerParagraphImpl extends ConfigurationSectionParagraphImpl implements SourceComputerParagraph {
+public class SourceComputerParagraphImpl extends CobolDivisionElementImpl implements SourceComputerParagraph {
 
 	protected final SourceComputerParagraphContext ctx;
 

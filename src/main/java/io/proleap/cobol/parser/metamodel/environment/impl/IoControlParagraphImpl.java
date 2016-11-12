@@ -12,8 +12,9 @@ import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.IoControlParagraph;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class IoControlParagraphImpl extends InputOutputSectionParagraphImpl implements IoControlParagraph {
+public class IoControlParagraphImpl extends CobolDivisionElementImpl implements IoControlParagraph {
 
 	protected final IoControlParagraphContext ctx;
 

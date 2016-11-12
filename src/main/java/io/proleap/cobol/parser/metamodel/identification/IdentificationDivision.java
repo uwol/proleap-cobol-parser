@@ -8,8 +8,6 @@
 
 package io.proleap.cobol.parser.metamodel.identification;
 
-import java.util.List;
-
 import io.proleap.cobol.Cobol85Parser.AuthorParagraphContext;
 import io.proleap.cobol.Cobol85Parser.DateCompiledParagraphContext;
 import io.proleap.cobol.Cobol85Parser.DateWrittenParagraphContext;
@@ -27,8 +25,6 @@ public interface IdentificationDivision extends CobolDivision {
 
 	DateWrittenParagraph addDateWrittenParagraph(DateWrittenParagraphContext ctx);
 
-	void addIdentificationDivisionBody(IdentificationDivisionBody identificationDivisionBody);
-
 	InstallationParagraph addInstallationParagraph(InstallationParagraphContext ctx);
 
 	ProgramIdParagraph addProgramIdParagraph(ProgramIdParagraphContext ctx);
@@ -37,10 +33,18 @@ public interface IdentificationDivision extends CobolDivision {
 
 	SecurityParagraph addSecurityParagraph(SecurityParagraphContext ctx);
 
-	List<IdentificationDivisionBody> getIdentificationDivisionBodies();
+	AuthorParagraph getAuthorParagraph();
+
+	DateCompiledParagraph getDateCompiledParagraph();
+
+	DateWrittenParagraph getDateWrittenParagraph();
+
+	InstallationParagraph getInstallationParagraph();
 
 	ProgramIdParagraph getProgramIdParagraph();
 
-	void setProgramIdParagraph(ProgramIdParagraph programIdParagraph);
+	RemarksParagraph getRemarksParagraph();
+
+	SecurityParagraph getSecurityParagraph();
 
 }

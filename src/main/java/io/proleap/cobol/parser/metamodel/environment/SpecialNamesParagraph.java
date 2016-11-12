@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.environment;
 
-public interface SpecialNamesParagraph extends EnvironmentDivisionBody {
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+
+public interface SpecialNamesParagraph extends CobolDivisionElement {
 
 }

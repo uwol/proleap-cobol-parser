@@ -16,8 +16,9 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.FileControlParagraph;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class FileControlParagraphImpl extends InputOutputSectionParagraphImpl implements FileControlParagraph {
+public class FileControlParagraphImpl extends CobolDivisionElementImpl implements FileControlParagraph {
 
 	protected final FileControlParagraphContext ctx;
 

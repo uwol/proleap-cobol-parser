@@ -8,7 +8,9 @@
 
 package io.proleap.cobol.parser.metamodel.environment;
 
-public interface ConfigurationSection extends EnvironmentDivisionBody {
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+
+public interface ConfigurationSection extends CobolDivisionElement {
 
 	ObjectComputerParagraph getObjectComputerParagraph();
 

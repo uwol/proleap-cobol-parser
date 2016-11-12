@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.environment;
 
-public interface IoControlParagraph extends InputOutputSectionParagraph {
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+
+public interface IoControlParagraph extends CobolDivisionElement {
 
 }

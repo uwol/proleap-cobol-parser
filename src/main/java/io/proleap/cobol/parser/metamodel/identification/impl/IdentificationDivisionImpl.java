@@ -8,8 +8,6 @@
 
 package io.proleap.cobol.parser.metamodel.identification.impl;
 
-import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,7 +24,6 @@ import io.proleap.cobol.parser.metamodel.identification.AuthorParagraph;
 import io.proleap.cobol.parser.metamodel.identification.DateCompiledParagraph;
 import io.proleap.cobol.parser.metamodel.identification.DateWrittenParagraph;
 import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
-import io.proleap.cobol.parser.metamodel.identification.IdentificationDivisionBody;
 import io.proleap.cobol.parser.metamodel.identification.InstallationParagraph;
 import io.proleap.cobol.parser.metamodel.identification.ProgramIdParagraph;
 import io.proleap.cobol.parser.metamodel.identification.ProgramIdParagraph.Attribute;
@@ -38,11 +35,21 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 
 	private final static Logger LOG = LogManager.getLogger(IdentificationDivisionImpl.class);
 
+	protected AuthorParagraph authorParagraph;
+
 	protected final IdentificationDivisionContext ctx;
 
-	protected List<IdentificationDivisionBody> identificationDivisionBodies;
+	protected DateCompiledParagraph dateCompiledParagraph;
+
+	protected DateWrittenParagraph dateWrittenParagraph;
+
+	protected InstallationParagraph installationParagraph;
 
 	protected ProgramIdParagraph programIdParagraph;
+
+	protected RemarksParagraph remarksParagraph;
+
+	protected SecurityParagraph securityParagraph;
 
 	public IdentificationDivisionImpl(final ProgramUnit programUnit, final IdentificationDivisionContext ctx) {
 		super(programUnit, ctx);
@@ -57,6 +64,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new AuthorParagraphImpl(programUnit, this, ctx);
 
+			authorParagraph = result;
 			registerASGElement(result);
 		}
 
@@ -70,6 +78,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new DateCompiledParagraphImpl(programUnit, this, ctx);
 
+			dateCompiledParagraph = result;
 			registerASGElement(result);
 		}
 
@@ -83,15 +92,11 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new DateWrittenParagraphImpl(programUnit, this, ctx);
 
+			dateWrittenParagraph = result;
 			registerASGElement(result);
 		}
 
 		return result;
-	}
-
-	@Override
-	public void addIdentificationDivisionBody(final IdentificationDivisionBody identificationDivisionBody) {
-		identificationDivisionBodies.add(identificationDivisionBody);
 	}
 
 	@Override
@@ -101,6 +106,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new InstallationParagraphImpl(programUnit, this, ctx);
 
+			installationParagraph = result;
 			registerASGElement(result);
 		}
 
@@ -132,6 +138,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 
 			result.setAttribute(attribute);
 
+			programIdParagraph = result;
 			registerASGElement(result);
 		}
 
@@ -145,6 +152,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new RemarksParagraphImpl(programUnit, this, ctx);
 
+			remarksParagraph = result;
 			registerASGElement(result);
 		}
 
@@ -158,6 +166,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new SecurityParagraphImpl(programUnit, this, ctx);
 
+			securityParagraph = result;
 			registerASGElement(result);
 		}
 
@@ -165,8 +174,23 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 	}
 
 	@Override
-	public List<IdentificationDivisionBody> getIdentificationDivisionBodies() {
-		return identificationDivisionBodies;
+	public AuthorParagraph getAuthorParagraph() {
+		return authorParagraph;
+	}
+
+	@Override
+	public DateCompiledParagraph getDateCompiledParagraph() {
+		return dateCompiledParagraph;
+	}
+
+	@Override
+	public DateWrittenParagraph getDateWrittenParagraph() {
+		return dateWrittenParagraph;
+	}
+
+	@Override
+	public InstallationParagraph getInstallationParagraph() {
+		return installationParagraph;
 	}
 
 	@Override
@@ -175,8 +199,13 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 	}
 
 	@Override
-	public void setProgramIdParagraph(final ProgramIdParagraph programIdParagraph) {
-		this.programIdParagraph = programIdParagraph;
+	public RemarksParagraph getRemarksParagraph() {
+		return remarksParagraph;
+	}
+
+	@Override
+	public SecurityParagraph getSecurityParagraph() {
+		return securityParagraph;
 	}
 
 }

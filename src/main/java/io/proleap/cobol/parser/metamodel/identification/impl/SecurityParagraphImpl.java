@@ -12,8 +12,9 @@ import io.proleap.cobol.Cobol85Parser.SecurityParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.SecurityParagraph;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class SecurityParagraphImpl extends IdentificationDivisionBodyImpl implements SecurityParagraph {
+public class SecurityParagraphImpl extends CobolDivisionElementImpl implements SecurityParagraph {
 
 	protected final SecurityParagraphContext ctx;
 

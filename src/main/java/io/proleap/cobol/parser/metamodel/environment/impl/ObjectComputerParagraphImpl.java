@@ -17,8 +17,9 @@ import io.proleap.cobol.parser.metamodel.environment.DiskSizeClause;
 import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause;
 import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
 import io.proleap.cobol.parser.metamodel.environment.SegmentLimitClause;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class ObjectComputerParagraphImpl extends ConfigurationSectionParagraphImpl implements ObjectComputerParagraph {
+public class ObjectComputerParagraphImpl extends CobolDivisionElementImpl implements ObjectComputerParagraph {
 
 	protected CharacterSetClause characterSetClause;
 

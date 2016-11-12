@@ -12,8 +12,9 @@ import io.proleap.cobol.Cobol85Parser.DateWrittenParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.DateWrittenParagraph;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class DateWrittenParagraphImpl extends IdentificationDivisionBodyImpl implements DateWrittenParagraph {
+public class DateWrittenParagraphImpl extends CobolDivisionElementImpl implements DateWrittenParagraph {
 
 	protected final DateWrittenParagraphContext ctx;
 
