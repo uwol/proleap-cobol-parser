@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
+import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
 import io.proleap.cobol.Cobol85Parser.ComputerNameContext;
 import io.proleap.cobol.Cobol85Parser.ConditionNameContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
@@ -38,6 +39,11 @@ public class NameResolverImpl implements NameResolver {
 	private final static Logger LOG = LogManager.getLogger(NameResolverImpl.class);
 
 	public String determineName(final AlphabetNameContext ctx) {
+		final String result = ctx != null ? ctx.getText() : null;
+		return result;
+	}
+
+	public String determineName(final AssignmentNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}
@@ -113,6 +119,8 @@ public class NameResolverImpl implements NameResolver {
 
 		if (ctx instanceof AlphabetNameContext) {
 			result = determineName((AlphabetNameContext) ctx);
+		} else if (ctx instanceof AssignmentNameContext) {
+			result = determineName((AssignmentNameContext) ctx);
 		} else if (ctx instanceof ComputerNameContext) {
 			result = determineName((ComputerNameContext) ctx);
 		} else if (ctx instanceof ConditionNameContext) {

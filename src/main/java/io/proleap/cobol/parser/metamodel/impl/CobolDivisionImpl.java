@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
 import io.proleap.cobol.Cobol85Parser.CobolWordContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
@@ -43,6 +44,18 @@ public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implement
 
 	public CobolDivisionImpl(final ProgramUnit programUnit, final ParseTree ctx) {
 		super(programUnit, ctx);
+	}
+
+	@Override
+	public Call addCall(final AssignmentNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, this, ctx);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -145,6 +158,12 @@ public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implement
 
 	protected void associateProcedureCallWithParagraph(final ProcedureCall procedureCall, final Paragraph paragraph) {
 		paragraph.addProcedureCall(procedureCall);
+	}
+
+	protected CallValueStmt createCallValueStmt(final AssignmentNameContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, this, ctx);
+		return result;
 	}
 
 	protected CallValueStmt createCallValueStmt(final CobolWordContext ctx) {

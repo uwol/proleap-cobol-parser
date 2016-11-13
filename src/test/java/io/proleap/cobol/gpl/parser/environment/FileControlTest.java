@@ -1,5 +1,6 @@
 package io.proleap.cobol.gpl.parser.environment;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
@@ -12,8 +13,11 @@ import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
+import io.proleap.cobol.parser.metamodel.environment.SelectClause;
+import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class FileControlTest extends CobolTestSupport {
@@ -36,5 +40,15 @@ public class FileControlTest extends CobolTestSupport {
 
 		final FileControlEntry fileControlEntry = environmentDivision.getFileControlEntry("TEACHER");
 		assertNotNull(fileControlEntry);
+
+		final SelectClause selectClause = fileControlEntry.getSelectClause();
+		assertNotNull(selectClause);
+		assertEquals("TEACHER", selectClause.getName());
+
+		final AssignClause assignClause = fileControlEntry.getAssignClause();
+		assertNotNull(assignClause);
+
+		final LiteralValueStmt valueStmt = (LiteralValueStmt) assignClause.getValueStmt();
+		assertEquals("'teacher.txt'", valueStmt.getValue());
 	}
 }

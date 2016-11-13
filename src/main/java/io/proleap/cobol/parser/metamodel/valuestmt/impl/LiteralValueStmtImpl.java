@@ -18,8 +18,7 @@ public class LiteralValueStmtImpl extends ValueStmtImpl implements LiteralValueS
 
 	protected Literal literal;
 
-	public LiteralValueStmtImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final LiteralContext ctx) {
+	public LiteralValueStmtImpl(final ProgramUnit programUnit, final CobolDivision scope, final LiteralContext ctx) {
 		super(programUnit, scope, ctx);
 	}
 
@@ -29,8 +28,9 @@ public class LiteralValueStmtImpl extends ValueStmtImpl implements LiteralValueS
 	}
 
 	@Override
-	public Literal getValue() {
-		return literal;
+	public String getValue() {
+		final String result = literal != null ? literal.getValue() : null;
+		return result;
 	}
 
 	@Override

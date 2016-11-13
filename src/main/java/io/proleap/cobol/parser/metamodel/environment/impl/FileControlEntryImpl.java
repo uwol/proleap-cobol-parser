@@ -11,12 +11,15 @@ package io.proleap.cobol.parser.metamodel.environment.impl;
 import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 //FIXME: add fileControlClauses
 public class FileControlEntryImpl extends CobolDivisionElementImpl implements FileControlEntry {
+
+	protected AssignClause assignClause;
 
 	protected final FileControlEntryContext ctx;
 
@@ -33,6 +36,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	}
 
 	@Override
+	public AssignClause getAssignClause() {
+		return assignClause;
+	}
+
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -40,6 +48,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	@Override
 	public SelectClause getSelectClause() {
 		return selectClause;
+	}
+
+	@Override
+	public void setAssignClause(final AssignClause assignClause) {
+		this.assignClause = assignClause;
 	}
 
 	@Override

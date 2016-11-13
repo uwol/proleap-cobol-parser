@@ -17,12 +17,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
+import io.proleap.cobol.Cobol85Parser.AssignClauseContext;
 import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionParagraphContext;
 import io.proleap.cobol.Cobol85Parser.DiskSizeClauseContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
+import io.proleap.cobol.Cobol85Parser.FileControlClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
@@ -37,6 +39,7 @@ import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.CharacterSetClause;
 import io.proleap.cobol.parser.metamodel.environment.CollatingSequenceClause;
 import io.proleap.cobol.parser.metamodel.environment.ConfigurationSection;
@@ -75,6 +78,32 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public AssignClause addAssignClause(final AssignClauseContext ctx) {
+		AssignClause result = (AssignClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new AssignClauseImpl(programUnit, this, ctx);
+
+			final ValueStmt valueStmt;
+
+			if (ctx.assignmentName() != null) {
+				valueStmt = createCallValueStmt(ctx.assignmentName());
+			} else if (ctx.literal() != null) {
+				valueStmt = createLiteralValueStmt(ctx.literal());
+			} else {
+				LOG.warn("unknown value stmt {}.", ctx);
+				valueStmt = null;
+			}
+
+			result.setValueStmt(valueStmt);
+
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -202,6 +231,13 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 			final SelectClause selectClause = addSelectClause(ctx.selectClause());
 			result.setSelectClause(selectClause);
+
+			for (final FileControlClauseContext fileControlClause : ctx.fileControlClause()) {
+				if (fileControlClause.assignClause() != null) {
+					final AssignClause assignClause = addAssignClause(fileControlClause.assignClause());
+					result.setAssignClause(assignClause);
+				}
+			}
 
 			registerASGElement(result);
 

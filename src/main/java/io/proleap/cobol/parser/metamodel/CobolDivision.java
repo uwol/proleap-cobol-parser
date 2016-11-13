@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.parser.metamodel;
 
+import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
 import io.proleap.cobol.Cobol85Parser.CobolWordContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
@@ -16,6 +17,8 @@ import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface CobolDivision extends ProgramUnitElement {
+
+	Call addCall(AssignmentNameContext ctx);
 
 	Call addCall(CobolWordContext ctx);
 
