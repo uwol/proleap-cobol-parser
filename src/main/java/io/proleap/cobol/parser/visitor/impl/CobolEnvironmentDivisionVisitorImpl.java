@@ -145,6 +145,15 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
+	public Boolean visitRecordDelimiterClause(@NotNull final Cobol85Parser.RecordDelimiterClauseContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addRecordDelimiterClause(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitReserveClause(@NotNull final Cobol85Parser.ReserveClauseContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 

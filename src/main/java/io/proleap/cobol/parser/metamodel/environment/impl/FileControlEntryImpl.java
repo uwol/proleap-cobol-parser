@@ -15,6 +15,7 @@ import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
 import io.proleap.cobol.parser.metamodel.environment.PaddingCharacterClause;
+import io.proleap.cobol.parser.metamodel.environment.RecordDelimiterClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -31,6 +32,8 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	protected OrganizationClause organizationClause;
 
 	protected PaddingCharacterClause paddingCharacterClause;
+
+	protected RecordDelimiterClause recordDelimiterClause;
 
 	protected ReserveClause reserveClause;
 
@@ -65,6 +68,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	}
 
 	@Override
+	public RecordDelimiterClause getRecordDelimiterClause() {
+		return recordDelimiterClause;
+	}
+
+	@Override
 	public ReserveClause getReserveClause() {
 		return reserveClause;
 	}
@@ -87,6 +95,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	@Override
 	public void setPaddingCharacterClause(final PaddingCharacterClause paddingCharacterClause) {
 		this.paddingCharacterClause = paddingCharacterClause;
+	}
+
+	@Override
+	public void setRecordDelimiterClause(final RecordDelimiterClause recordDelimiterClause) {
+		this.recordDelimiterClause = recordDelimiterClause;
 	}
 
 	@Override

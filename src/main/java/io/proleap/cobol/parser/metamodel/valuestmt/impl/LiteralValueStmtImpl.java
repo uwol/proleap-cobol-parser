@@ -40,6 +40,6 @@ public class LiteralValueStmtImpl extends ValueStmtImpl implements LiteralValueS
 
 	@Override
 	public String toString() {
-		return literal.toString();
+		return literal != null ? literal.toString() : null;
 	}
 }

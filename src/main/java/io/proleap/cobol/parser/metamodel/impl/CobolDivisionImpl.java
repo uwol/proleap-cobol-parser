@@ -9,6 +9,7 @@
 package io.proleap.cobol.parser.metamodel.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.TerminalNode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,9 +35,11 @@ import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
 import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.TerminalValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.CallValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.IntegerLiteralValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.impl.TerminalValueStmtImpl;
 import io.proleap.cobol.parser.util.StringUtils;
 
 public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implements CobolDivision {
@@ -208,6 +211,11 @@ public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implement
 		final Literal literal = addLiteral(ctx);
 		final LiteralValueStmt result = new LiteralValueStmtImpl(programUnit, this, ctx);
 		result.setLiteral(literal);
+		return result;
+	}
+
+	protected TerminalValueStmt createTerminalValueStmt(final TerminalNode ctx) {
+		final TerminalValueStmt result = new TerminalValueStmtImpl(programUnit, this, ctx);
 		return result;
 	}
 

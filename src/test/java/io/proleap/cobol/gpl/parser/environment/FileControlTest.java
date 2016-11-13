@@ -18,10 +18,12 @@ import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
 import io.proleap.cobol.parser.metamodel.environment.PaddingCharacterClause;
+import io.proleap.cobol.parser.metamodel.environment.RecordDelimiterClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.TerminalValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class FileControlTest extends CobolTestSupport {
@@ -78,6 +80,14 @@ public class FileControlTest extends CobolTestSupport {
 
 			final LiteralValueStmt valueStmt = (LiteralValueStmt) paddingCharacterClause.getValueStmt();
 			assertEquals("'-'", valueStmt.getValue());
+		}
+
+		{
+			final RecordDelimiterClause recordDelimiterClause = fileControlEntry.getRecordDelimiterClause();
+			assertNotNull(recordDelimiterClause);
+
+			final TerminalValueStmt valueStmt = (TerminalValueStmt) recordDelimiterClause.getValueStmt();
+			assertEquals("IMPLICIT", valueStmt.getValue());
 		}
 	}
 }

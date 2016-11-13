@@ -35,6 +35,7 @@ import io.proleap.cobol.Cobol85Parser.ObjectComputerClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.OrganizationClauseContext;
 import io.proleap.cobol.Cobol85Parser.PaddingCharacterClauseContext;
+import io.proleap.cobol.Cobol85Parser.RecordDelimiterClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
 import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
@@ -56,6 +57,7 @@ import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause;
 import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
 import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
 import io.proleap.cobol.parser.metamodel.environment.PaddingCharacterClause;
+import io.proleap.cobol.parser.metamodel.environment.RecordDelimiterClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SegmentLimitClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
@@ -260,6 +262,12 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 					final PaddingCharacterClause paddingCharacterClause = addPaddingCharacterClause(
 							fileControlClause.paddingCharacterClause());
 					result.setPaddingCharacterClause(paddingCharacterClause);
+				}
+
+				if (fileControlClause.recordDelimiterClause() != null) {
+					final RecordDelimiterClause recordDelimiterClause = addRecordDelimiterClause(
+							fileControlClause.recordDelimiterClause());
+					result.setRecordDelimiterClause(recordDelimiterClause);
 				}
 			}
 
@@ -487,6 +495,34 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 				valueStmt = createCallValueStmt(ctx.qualifiedDataName());
 			} else if (ctx.literal() != null) {
 				valueStmt = createLiteralValueStmt(ctx.literal());
+			} else {
+				LOG.warn("unknown value stmt {}.", ctx);
+				valueStmt = null;
+			}
+
+			result.setValueStmt(valueStmt);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public RecordDelimiterClause addRecordDelimiterClause(final RecordDelimiterClauseContext ctx) {
+		RecordDelimiterClause result = (RecordDelimiterClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new RecordDelimiterClauseImpl(programUnit, this, ctx);
+
+			final ValueStmt valueStmt;
+
+			if (ctx.assignmentName() != null) {
+				valueStmt = createCallValueStmt(ctx.assignmentName());
+			} else if (ctx.STANDARD_1() != null) {
+				valueStmt = createTerminalValueStmt(ctx.STANDARD_1());
+			} else if (ctx.IMPLICIT() != null) {
+				valueStmt = createTerminalValueStmt(ctx.IMPLICIT());
 			} else {
 				LOG.warn("unknown value stmt {}.", ctx);
 				valueStmt = null;
