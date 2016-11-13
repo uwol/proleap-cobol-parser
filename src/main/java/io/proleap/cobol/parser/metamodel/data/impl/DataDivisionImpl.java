@@ -40,6 +40,7 @@ import io.proleap.cobol.parser.metamodel.data.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
 import io.proleap.cobol.parser.util.StringUtils;
 
+//FIXME: add sections
 public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision {
 
 	private final static Logger LOG = LogManager.getLogger(DataDivisionImpl.class);

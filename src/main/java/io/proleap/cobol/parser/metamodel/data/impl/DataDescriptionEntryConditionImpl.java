@@ -13,6 +13,7 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryCondition;
 
+//FIXME: add clauses
 public class DataDescriptionEntryConditionImpl extends DataDescriptionEntryImpl
 		implements DataDescriptionEntryCondition {
 

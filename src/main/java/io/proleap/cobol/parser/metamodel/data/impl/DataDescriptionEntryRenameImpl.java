@@ -13,6 +13,7 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryRename;
 
+//FIXME: add clauses
 public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryRename {
 
 	protected final DataDescriptionEntryFormat2Context ctx;

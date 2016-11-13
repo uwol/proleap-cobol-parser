@@ -17,6 +17,7 @@ import io.proleap.cobol.parser.metamodel.data.FileSection;
 import io.proleap.cobol.parser.metamodel.data.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
+//FIXME: remove
 public class DataDivisionBodyImpl extends CobolDivisionElementImpl implements DataDivisionBody {
 
 	protected FileSection fileSection;
