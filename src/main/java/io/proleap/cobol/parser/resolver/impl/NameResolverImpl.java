@@ -30,6 +30,7 @@ import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
+import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.parser.resolver.NameResolver;
@@ -153,6 +154,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((ProgramIdParagraphContext) ctx);
 		} else if (ctx instanceof ProgramNameContext) {
 			result = determineName((ProgramNameContext) ctx);
+		} else if (ctx instanceof QualifiedDataNameContext) {
+			result = determineName((QualifiedDataNameContext) ctx);
 		} else if (ctx instanceof SelectClauseContext) {
 			result = determineName((SelectClauseContext) ctx);
 		} else if (ctx instanceof SourceComputerParagraphContext) {
@@ -175,6 +178,11 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final ProgramNameContext ctx) {
+		final String result = ctx != null ? ctx.getText() : null;
+		return result;
+	}
+
+	public String determineName(final QualifiedDataNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}

@@ -34,6 +34,7 @@ import io.proleap.cobol.Cobol85Parser.MemorySizeClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.OrganizationClauseContext;
+import io.proleap.cobol.Cobol85Parser.PaddingCharacterClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
 import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
@@ -54,6 +55,7 @@ import io.proleap.cobol.parser.metamodel.environment.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause;
 import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
 import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
+import io.proleap.cobol.parser.metamodel.environment.PaddingCharacterClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SegmentLimitClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
@@ -252,6 +254,12 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 					final OrganizationClause organizationClause = addOrganizationClause(
 							fileControlClause.organizationClause());
 					result.setOrganizationClause(organizationClause);
+				}
+
+				if (fileControlClause.paddingCharacterClause() != null) {
+					final PaddingCharacterClause paddingCharacterClause = addPaddingCharacterClause(
+							fileControlClause.paddingCharacterClause());
+					result.setPaddingCharacterClause(paddingCharacterClause);
 				}
 			}
 
@@ -459,6 +467,32 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 			}
 
 			result.setMode(mode);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public PaddingCharacterClause addPaddingCharacterClause(final PaddingCharacterClauseContext ctx) {
+		PaddingCharacterClause result = (PaddingCharacterClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new PaddingCharacterClauseImpl(programUnit, this, ctx);
+
+			final ValueStmt valueStmt;
+
+			if (ctx.qualifiedDataName() != null) {
+				valueStmt = createCallValueStmt(ctx.qualifiedDataName());
+			} else if (ctx.literal() != null) {
+				valueStmt = createLiteralValueStmt(ctx.literal());
+			} else {
+				LOG.warn("unknown value stmt {}.", ctx);
+				valueStmt = null;
+			}
+
+			result.setValueStmt(valueStmt);
 
 			registerASGElement(result);
 		}

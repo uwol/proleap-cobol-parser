@@ -17,6 +17,7 @@ import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
+import io.proleap.cobol.parser.metamodel.environment.PaddingCharacterClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
@@ -69,6 +70,14 @@ public class FileControlTest extends CobolTestSupport {
 			assertNotNull(organizationClause);
 			assertEquals(OrganizationClause.Type.Record, organizationClause.getType());
 			assertEquals(OrganizationClause.Mode.Indexed, organizationClause.getMode());
+		}
+
+		{
+			final PaddingCharacterClause paddingCharacterClause = fileControlEntry.getPaddingCharacterClause();
+			assertNotNull(paddingCharacterClause);
+
+			final LiteralValueStmt valueStmt = (LiteralValueStmt) paddingCharacterClause.getValueStmt();
+			assertEquals("'-'", valueStmt.getValue());
 		}
 	}
 }

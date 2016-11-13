@@ -17,6 +17,8 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 
 	OrganizationClause getOrganizationClause();
 
+	PaddingCharacterClause getPaddingCharacterClause();
+
 	ReserveClause getReserveClause();
 
 	SelectClause getSelectClause();
@@ -24,6 +26,8 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 	void setAssignClause(AssignClause assignClause);
 
 	void setOrganizationClause(OrganizationClause organizationClause);
+
+	void setPaddingCharacterClause(PaddingCharacterClause paddingCharacterClause);
 
 	void setReserveClause(ReserveClause reserveClause);
 

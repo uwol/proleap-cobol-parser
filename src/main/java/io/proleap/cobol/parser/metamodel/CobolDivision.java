@@ -14,6 +14,7 @@ import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
+import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface CobolDivision extends ProgramUnitElement {
@@ -25,6 +26,8 @@ public interface CobolDivision extends ProgramUnitElement {
 	Call addCall(IdentifierContext ctx);
 
 	Call addCall(ProcedureNameContext ctx);
+
+	Call addCall(QualifiedDataNameContext ctx);
 
 	IntegerLiteral addIntegerLiteral(IntegerLiteralContext ctx);
 

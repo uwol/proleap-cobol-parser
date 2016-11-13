@@ -6,4 +6,5 @@
        SELECT TEACHER
        ASSIGN TO 'teacher.txt'
        ORGANIZATION IS RECORD INDEXED
+       PADDING CHARACTER IS '-'
        RESERVE 10.

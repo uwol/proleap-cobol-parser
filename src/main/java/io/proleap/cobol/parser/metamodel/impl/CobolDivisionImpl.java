@@ -18,6 +18,7 @@ import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
+import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.Literal;
@@ -124,6 +125,18 @@ public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implement
 	}
 
 	@Override
+	public Call addCall(final QualifiedDataNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, this, ctx);
+		}
+
+		return result;
+	}
+
+	@Override
 	public IntegerLiteral addIntegerLiteral(final IntegerLiteralContext ctx) {
 		IntegerLiteral result = (IntegerLiteral) getASGElement(ctx);
 
@@ -173,6 +186,12 @@ public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implement
 	}
 
 	protected CallValueStmt createCallValueStmt(final IdentifierContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, this, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final QualifiedDataNameContext ctx) {
 		final Call delegatedCall = addCall(ctx);
 		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, this, ctx);
 		return result;
