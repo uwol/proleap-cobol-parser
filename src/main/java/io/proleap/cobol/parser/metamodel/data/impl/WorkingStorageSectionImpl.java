@@ -16,8 +16,9 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.WorkingStorageSection;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class WorkingStorageSectionImpl extends DataDivisionBodyImpl implements WorkingStorageSection {
+public class WorkingStorageSectionImpl extends CobolDivisionElementImpl implements WorkingStorageSection {
 
 	protected final WorkingStorageSectionContext ctx;
 

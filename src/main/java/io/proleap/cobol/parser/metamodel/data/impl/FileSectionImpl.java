@@ -16,8 +16,9 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.FileSection;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class FileSectionImpl extends DataDivisionBodyImpl implements FileSection {
+public class FileSectionImpl extends CobolDivisionElementImpl implements FileSection {
 
 	protected final FileSectionContext ctx;
 

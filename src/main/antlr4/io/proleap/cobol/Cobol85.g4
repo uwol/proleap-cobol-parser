@@ -26,32 +26,6 @@
 * 1. Picture strings are parsed as (groups of) terminal symbols.
 *
 * 2. Comments are skipped.
-*
-*
-* Change log:
-*
-* v1.4
-*	- improved handling of comment entries
-*   - stronger specification conformance
-*
-* v1.3
-*	- data description fixes
-*	- picture string fixes
-*
-* v1.2
-*	- fixes
-*
-* v1.1
-*	- DFHRESP and DFHVALUE
-*	- CALL BY VALUE
-*	- REMARKS paragraph
-*
-* v1.0
-*	- fixes
-*	- compiler options
-*
-* v0.9
-*   - initial revision
 */
 
 grammar Cobol85;

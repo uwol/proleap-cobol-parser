@@ -22,7 +22,6 @@ import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
-import io.proleap.cobol.parser.metamodel.data.DataDivisionBody;
 import io.proleap.cobol.parser.metamodel.data.impl.DataDivisionImpl;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.impl.EnvironmentDivisionImpl;
@@ -62,8 +61,14 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 			result = new DataDivisionImpl(this, ctx);
 
 			final DataDivisionBodyContext dataDivisionBodyContext = ctx.dataDivisionBody();
-			final DataDivisionBody dataDivisionBody = result.addDataDivisionBody(dataDivisionBodyContext);
-			result.setDataDivisionBody(dataDivisionBody);
+
+			if (dataDivisionBodyContext.fileSection() != null) {
+				result.addFileSection(dataDivisionBodyContext.fileSection());
+			}
+
+			if (dataDivisionBodyContext.workingStorageSection() != null) {
+				result.addWorkingStorageSection(dataDivisionBodyContext.workingStorageSection());
+			}
 
 			registerASGElement(result);
 			dataDivision = result;

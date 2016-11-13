@@ -10,9 +10,10 @@ package io.proleap.cobol.parser.metamodel.data;
 
 import java.util.List;
 
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.Declaration;
 
-public interface FileDescriptionEntry extends DataDivisionBody, Declaration {
+public interface FileDescriptionEntry extends CobolDivisionElement, Declaration {
 
 	void addDataDescriptionEntry(DataDescriptionEntry dataDescriptionEntry);
 

@@ -13,7 +13,6 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
-import io.proleap.cobol.Cobol85Parser.DataDivisionBodyContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
@@ -27,8 +26,6 @@ public interface DataDivision extends CobolDivision {
 
 	DataDescriptionEntryRename addDataDescriptionEntryRename(DataDescriptionEntryFormat2Context ctx);
 
-	DataDivisionBody addDataDivisionBody(DataDivisionBodyContext ctx);
-
 	FileDescriptionEntry addFileDescriptionEntry(FileDescriptionEntryContext ctx);
 
 	FileSection addFileSection(FileSectionContext ctx);
@@ -39,14 +36,14 @@ public interface DataDivision extends CobolDivision {
 
 	DataDescriptionEntry getDataDescriptionEntry(String name);
 
-	DataDivisionBody getDataDivisionBody();
-
 	List<FileDescriptionEntry> getFileDescriptionEntries();
 
 	FileDescriptionEntry getFileDescriptionEntry(String name);
 
+	FileSection getFileSection();
+
 	List<DataDescriptionEntry> getRootDataDescriptionEntries();
 
-	void setDataDivisionBody(DataDivisionBody dataDivisionBody);
+	WorkingStorageSection getWorkingStorageSection();
 
 }
