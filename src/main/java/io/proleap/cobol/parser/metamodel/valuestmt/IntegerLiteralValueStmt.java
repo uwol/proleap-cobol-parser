@@ -14,7 +14,7 @@ public interface IntegerLiteralValueStmt extends ValueStmt {
 
 	IntegerLiteral getLiteral();
 
-	IntegerLiteral getValue();
+	Integer getValue();
 
 	void setIntegerLiteral(IntegerLiteral integerLiteral);
 }

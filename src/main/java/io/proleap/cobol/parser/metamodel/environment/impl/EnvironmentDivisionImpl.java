@@ -33,6 +33,7 @@ import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.MemorySizeClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
 import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
@@ -51,11 +52,13 @@ import io.proleap.cobol.parser.metamodel.environment.InputOutputSection;
 import io.proleap.cobol.parser.metamodel.environment.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause;
 import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
+import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SegmentLimitClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.environment.SourceComputerParagraph;
 import io.proleap.cobol.parser.metamodel.environment.SpecialNamesParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class EnvironmentDivisionImpl extends CobolDivisionImpl implements EnvironmentDivision {
@@ -237,6 +240,11 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 					final AssignClause assignClause = addAssignClause(fileControlClause.assignClause());
 					result.setAssignClause(assignClause);
 				}
+
+				if (fileControlClause.reserveClause() != null) {
+					final ReserveClause reserveClause = addReserveClause(fileControlClause.reserveClause());
+					result.setReserveClause(reserveClause);
+				}
 			}
 
 			registerASGElement(result);
@@ -393,6 +401,25 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 							objectComputerClause.characterSetClause());
 					result.setCharacterSetClause(characterSetClause);
 				}
+			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ReserveClause addReserveClause(final ReserveClauseContext ctx) {
+		ReserveClause result = (ReserveClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ReserveClauseImpl(programUnit, this, ctx);
+
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteralValueStmt integerLiteralValueStmt = createIntegerLiteralValueStmt(
+						ctx.integerLiteral());
+				result.setValueStmt(integerLiteralValueStmt);
 			}
 
 			registerASGElement(result);

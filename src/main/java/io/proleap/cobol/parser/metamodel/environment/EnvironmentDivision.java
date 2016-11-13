@@ -21,6 +21,7 @@ import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.MemorySizeClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
 import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
@@ -50,6 +51,8 @@ public interface EnvironmentDivision extends CobolDivision {
 	MemorySizeClause addMemorySizeClause(MemorySizeClauseContext ctx);
 
 	ObjectComputerParagraph addObjectComputerParagraph(ObjectComputerParagraphContext ctx);
+
+	ReserveClause addReserveClause(ReserveClauseContext ctx);
 
 	SegmentLimitClause addSegmentLimitClause(SegmentLimitClauseContext ctx);
 

@@ -29,8 +29,9 @@ public class IntegerLiteralValueStmtImpl extends ValueStmtImpl implements Intege
 	}
 
 	@Override
-	public IntegerLiteral getValue() {
-		return integerLiteral;
+	public Integer getValue() {
+		final Integer result = integerLiteral != null ? integerLiteral.getValue() : null;
+		return result;
 	}
 
 	@Override

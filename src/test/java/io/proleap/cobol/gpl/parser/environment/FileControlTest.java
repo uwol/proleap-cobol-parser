@@ -16,7 +16,9 @@ import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
+import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
+import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -45,10 +47,20 @@ public class FileControlTest extends CobolTestSupport {
 		assertNotNull(selectClause);
 		assertEquals("TEACHER", selectClause.getName());
 
-		final AssignClause assignClause = fileControlEntry.getAssignClause();
-		assertNotNull(assignClause);
+		{
+			final AssignClause assignClause = fileControlEntry.getAssignClause();
+			assertNotNull(assignClause);
 
-		final LiteralValueStmt valueStmt = (LiteralValueStmt) assignClause.getValueStmt();
-		assertEquals("'teacher.txt'", valueStmt.getValue());
+			final LiteralValueStmt valueStmt = (LiteralValueStmt) assignClause.getValueStmt();
+			assertEquals("'teacher.txt'", valueStmt.getValue());
+		}
+
+		{
+			final ReserveClause reserveClause = fileControlEntry.getReserveClause();
+			assertNotNull(reserveClause);
+
+			final IntegerLiteralValueStmt valueStmt = reserveClause.getValueStmt();
+			assertEquals(new Integer(10), valueStmt.getValue());
+		}
 	}
 }

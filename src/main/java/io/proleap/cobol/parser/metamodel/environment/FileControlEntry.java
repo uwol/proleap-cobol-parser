@@ -15,9 +15,14 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 
 	AssignClause getAssignClause();
 
+	ReserveClause getReserveClause();
+
 	SelectClause getSelectClause();
 
 	void setAssignClause(AssignClause assignClause);
 
+	void setReserveClause(ReserveClause reserveClause);
+
 	void setSelectClause(SelectClause selectClause);
+
 }

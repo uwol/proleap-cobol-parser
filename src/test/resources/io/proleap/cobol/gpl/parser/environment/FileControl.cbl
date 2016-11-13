@@ -4,4 +4,5 @@
     INPUT-OUTPUT SECTION.
        FILE-CONTROL.
        SELECT TEACHER
-       ASSIGN TO 'teacher.txt'.
+       ASSIGN TO 'teacher.txt'
+       RESERVE 10.
