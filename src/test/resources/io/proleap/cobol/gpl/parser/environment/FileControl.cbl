@@ -5,4 +5,5 @@
        FILE-CONTROL.
        SELECT TEACHER
        ASSIGN TO 'teacher.txt'
+       ORGANIZATION IS RECORD INDEXED
        RESERVE 10.

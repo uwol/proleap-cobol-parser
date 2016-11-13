@@ -127,6 +127,15 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
+	public Boolean visitOrganizationClause(@NotNull final Cobol85Parser.OrganizationClauseContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addOrganizationClause(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitReserveClause(@NotNull final Cobol85Parser.ReserveClauseContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 

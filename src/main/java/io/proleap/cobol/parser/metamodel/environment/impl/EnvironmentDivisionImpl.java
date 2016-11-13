@@ -33,6 +33,7 @@ import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.MemorySizeClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.OrganizationClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
 import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
@@ -52,6 +53,7 @@ import io.proleap.cobol.parser.metamodel.environment.InputOutputSection;
 import io.proleap.cobol.parser.metamodel.environment.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause;
 import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
+import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SegmentLimitClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
@@ -245,6 +247,12 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 					final ReserveClause reserveClause = addReserveClause(fileControlClause.reserveClause());
 					result.setReserveClause(reserveClause);
 				}
+
+				if (fileControlClause.organizationClause() != null) {
+					final OrganizationClause organizationClause = addOrganizationClause(
+							fileControlClause.organizationClause());
+					result.setOrganizationClause(organizationClause);
+				}
 			}
 
 			registerASGElement(result);
@@ -402,6 +410,55 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 					result.setCharacterSetClause(characterSetClause);
 				}
 			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public OrganizationClause addOrganizationClause(final OrganizationClauseContext ctx) {
+		OrganizationClause result = (OrganizationClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new OrganizationClauseImpl(programUnit, this, ctx);
+
+			/*
+			 * type
+			 */
+			final OrganizationClause.Type type;
+
+			if (ctx.LINE() != null) {
+				type = OrganizationClause.Type.Line;
+			} else if (ctx.RECORD() != null && ctx.BINARY() != null) {
+				type = OrganizationClause.Type.RecordBinary;
+			} else if (ctx.BINARY() != null) {
+				type = OrganizationClause.Type.Binary;
+			} else if (ctx.RECORD() != null) {
+				type = OrganizationClause.Type.Record;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
+
+			/*
+			 * mode
+			 */
+			final OrganizationClause.Mode mode;
+
+			if (ctx.SEQUENTIAL() != null) {
+				mode = OrganizationClause.Mode.Sequential;
+			} else if (ctx.RELATIVE() != null) {
+				mode = OrganizationClause.Mode.Relative;
+			} else if (ctx.INDEXED() != null) {
+				mode = OrganizationClause.Mode.Indexed;
+			} else {
+				mode = null;
+			}
+
+			result.setMode(mode);
 
 			registerASGElement(result);
 		}

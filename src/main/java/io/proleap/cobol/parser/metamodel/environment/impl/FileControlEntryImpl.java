@@ -13,6 +13,7 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
+import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -25,6 +26,8 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	protected final FileControlEntryContext ctx;
 
 	protected final String name;
+
+	protected OrganizationClause organizationClause;
 
 	protected ReserveClause reserveClause;
 
@@ -49,6 +52,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	}
 
 	@Override
+	public OrganizationClause getOrganizationClause() {
+		return organizationClause;
+	}
+
+	@Override
 	public ReserveClause getReserveClause() {
 		return reserveClause;
 	}
@@ -61,6 +69,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	@Override
 	public void setAssignClause(final AssignClause assignClause) {
 		this.assignClause = assignClause;
+	}
+
+	@Override
+	public void setOrganizationClause(final OrganizationClause organizationClause) {
+		this.organizationClause = organizationClause;
 	}
 
 	@Override

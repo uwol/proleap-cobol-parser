@@ -16,6 +16,7 @@ import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
+import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
@@ -61,6 +62,13 @@ public class FileControlTest extends CobolTestSupport {
 
 			final IntegerLiteralValueStmt valueStmt = reserveClause.getValueStmt();
 			assertEquals(new Integer(10), valueStmt.getValue());
+		}
+
+		{
+			final OrganizationClause organizationClause = fileControlEntry.getOrganizationClause();
+			assertNotNull(organizationClause);
+			assertEquals(OrganizationClause.Type.Record, organizationClause.getType());
+			assertEquals(OrganizationClause.Mode.Indexed, organizationClause.getMode());
 		}
 	}
 }
