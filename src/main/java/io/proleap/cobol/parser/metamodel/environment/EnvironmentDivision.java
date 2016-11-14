@@ -36,6 +36,31 @@ import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.environment.configuration.ConfigurationSection;
+import io.proleap.cobol.parser.metamodel.environment.configuration.object.CharacterSetClause;
+import io.proleap.cobol.parser.metamodel.environment.configuration.object.CollatingSequenceClause;
+import io.proleap.cobol.parser.metamodel.environment.configuration.object.DiskSizeClause;
+import io.proleap.cobol.parser.metamodel.environment.configuration.object.MemorySizeClause;
+import io.proleap.cobol.parser.metamodel.environment.configuration.object.ObjectComputerParagraph;
+import io.proleap.cobol.parser.metamodel.environment.configuration.object.SegmentLimitClause;
+import io.proleap.cobol.parser.metamodel.environment.configuration.source.SourceComputerParagraph;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.InputOutputSection;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AccessModeClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AlternateRecordKeyClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AssignClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileStatusClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.OrganizationClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.PaddingCharacterClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.PasswordClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.RecordDelimiterClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.RecordKeyClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.RelativeKeyClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.ReserveClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.SelectClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.IoControlParagraph;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
 
 public interface EnvironmentDivision extends CobolDivision {
 

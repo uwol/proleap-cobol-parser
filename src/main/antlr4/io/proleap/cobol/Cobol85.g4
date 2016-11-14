@@ -390,13 +390,7 @@ recordDelimiterClause :
 ;
 
 accessModeClause :
-	ACCESS MODE? IS?
-	(
-		SEQUENTIAL
-		| RANDOM
-		| DYNAMIC
-		| EXCLUSIVE
-	)
+	ACCESS MODE? IS? (SEQUENTIAL | RANDOM | DYNAMIC | EXCLUSIVE)
 ;
 
 recordKeyClause :

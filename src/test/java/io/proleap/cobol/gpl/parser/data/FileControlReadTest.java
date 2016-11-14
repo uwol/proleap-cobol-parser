@@ -19,7 +19,7 @@ import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
-import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class FileControlReadTest extends CobolTestSupport {
