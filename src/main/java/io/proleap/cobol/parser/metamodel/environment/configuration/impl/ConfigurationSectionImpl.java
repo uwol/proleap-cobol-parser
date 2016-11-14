@@ -9,10 +9,15 @@
 package io.proleap.cobol.parser.metamodel.environment.configuration.impl;
 
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
+import io.proleap.cobol.Cobol85Parser.ObjectComputerClauseContext;
+import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.configuration.ConfigurationSection;
 import io.proleap.cobol.parser.metamodel.environment.configuration.object.ObjectComputerParagraph;
+import io.proleap.cobol.parser.metamodel.environment.configuration.object.impl.ObjectComputerParagraphImpl;
 import io.proleap.cobol.parser.metamodel.environment.configuration.source.SourceComputerParagraph;
+import io.proleap.cobol.parser.metamodel.environment.configuration.source.impl.SourceComputerParagraphImpl;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 public class ConfigurationSectionImpl extends CobolDivisionElementImpl implements ConfigurationSection {
@@ -30,6 +35,62 @@ public class ConfigurationSectionImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
+	public ObjectComputerParagraph addObjectComputerParagraph(final ObjectComputerParagraphContext ctx) {
+		ObjectComputerParagraph result = (ObjectComputerParagraph) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new ObjectComputerParagraphImpl(name, programUnit, ctx);
+
+			for (final ObjectComputerClauseContext objectComputerClause : ctx.objectComputerClause()) {
+				if (objectComputerClause.memorySizeClause() != null) {
+					result.addMemorySizeClause(objectComputerClause.memorySizeClause());
+				}
+
+				if (objectComputerClause.diskSizeClause() != null) {
+					result.addDiskSizeClause(objectComputerClause.diskSizeClause());
+				}
+
+				if (objectComputerClause.collatingSequenceClause() != null) {
+					result.addCollatingSequenceClause(objectComputerClause.collatingSequenceClause());
+				}
+
+				if (objectComputerClause.segmentLimitClause() != null) {
+					result.addSegmentLimitClause(objectComputerClause.segmentLimitClause());
+				}
+
+				if (objectComputerClause.characterSetClause() != null) {
+					result.addCharacterSetClause(objectComputerClause.characterSetClause());
+				}
+			}
+
+			objectComputerParagraph = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public SourceComputerParagraph addSourceComputerParagraph(final SourceComputerParagraphContext ctx) {
+		SourceComputerParagraph result = (SourceComputerParagraph) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new SourceComputerParagraphImpl(name, programUnit, ctx);
+
+			if (ctx.DEBUGGING() != null) {
+				result.setDebuggingMode(true);
+			}
+
+			sourceComputerParagraph = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public ObjectComputerParagraph getObjectComputerParagraph() {
 		return objectComputerParagraph;
 	}
@@ -37,16 +98,6 @@ public class ConfigurationSectionImpl extends CobolDivisionElementImpl implement
 	@Override
 	public SourceComputerParagraph getSourceComputerParagraph() {
 		return sourceComputerParagraph;
-	}
-
-	@Override
-	public void setObjectComputerParagraph(final ObjectComputerParagraph objectComputerParagraph) {
-		this.objectComputerParagraph = objectComputerParagraph;
-	}
-
-	@Override
-	public void setSourceComputerParagraph(final SourceComputerParagraph sourceComputerParagraph) {
-		this.sourceComputerParagraph = sourceComputerParagraph;
 	}
 
 }

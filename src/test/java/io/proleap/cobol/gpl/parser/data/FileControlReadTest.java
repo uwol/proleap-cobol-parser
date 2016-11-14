@@ -49,7 +49,8 @@ public class FileControlReadTest extends CobolTestSupport {
 		 * file control
 		 */
 		{
-			final FileControlEntry fileControlEntry = environmentDivision.getFileControlEntry("PERSON");
+			final FileControlEntry fileControlEntry = environmentDivision.getInputOutputSection()
+					.getFileControlParagraph().getFileControlEntry("PERSON");
 			assertNotNull(fileControlEntry);
 			assertEquals("PERSON", fileControlEntry.getName());
 		}

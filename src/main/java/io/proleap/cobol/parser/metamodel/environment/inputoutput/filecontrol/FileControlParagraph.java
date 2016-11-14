@@ -10,11 +10,14 @@ package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface FileControlParagraph extends CobolDivisionElement {
 
-	void addFileControlEntry(FileControlEntry fileControlEntry);
+	FileControlEntry addFileControlEntry(FileControlEntryContext ctx);
 
 	List<FileControlEntry> getFileControlEntries();
+
+	FileControlEntry getFileControlEntry(String name);
 }

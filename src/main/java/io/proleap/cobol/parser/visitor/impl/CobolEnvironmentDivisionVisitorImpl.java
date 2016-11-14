@@ -37,55 +37,10 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
-	public Boolean visitFileControlEntry(@NotNull final Cobol85Parser.FileControlEntryContext ctx) {
-		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
-
-		environmentDivision.addFileControlEntry(ctx);
-
-		return visitChildren(ctx);
-	}
-
-	@Override
-	public Boolean visitFileControlParagraph(@NotNull final Cobol85Parser.FileControlParagraphContext ctx) {
-		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
-
-		environmentDivision.addFileControlParagraph(ctx);
-
-		return visitChildren(ctx);
-	}
-
-	@Override
 	public Boolean visitInputOutputSection(@NotNull final Cobol85Parser.InputOutputSectionContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 
 		environmentDivision.addInputOutputSection(ctx);
-
-		return visitChildren(ctx);
-	}
-
-	@Override
-	public Boolean visitIoControlParagraph(@NotNull final Cobol85Parser.IoControlParagraphContext ctx) {
-		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
-
-		environmentDivision.addIoControlParagraph(ctx);
-
-		return visitChildren(ctx);
-	}
-
-	@Override
-	public Boolean visitObjectComputerParagraph(@NotNull final Cobol85Parser.ObjectComputerParagraphContext ctx) {
-		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
-
-		environmentDivision.addObjectComputerParagraph(ctx);
-
-		return visitChildren(ctx);
-	}
-
-	@Override
-	public Boolean visitSourceComputerParagraph(@NotNull final Cobol85Parser.SourceComputerParagraphContext ctx) {
-		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
-
-		environmentDivision.addSourceComputerParagraph(ctx);
 
 		return visitChildren(ctx);
 	}

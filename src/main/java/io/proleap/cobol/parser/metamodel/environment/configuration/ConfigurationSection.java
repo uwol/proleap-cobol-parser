@@ -8,18 +8,20 @@
 
 package io.proleap.cobol.parser.metamodel.environment.configuration;
 
+import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.environment.configuration.object.ObjectComputerParagraph;
 import io.proleap.cobol.parser.metamodel.environment.configuration.source.SourceComputerParagraph;
 
 public interface ConfigurationSection extends CobolDivisionElement {
 
+	ObjectComputerParagraph addObjectComputerParagraph(ObjectComputerParagraphContext ctx);
+
+	SourceComputerParagraph addSourceComputerParagraph(SourceComputerParagraphContext ctx);
+
 	ObjectComputerParagraph getObjectComputerParagraph();
 
 	SourceComputerParagraph getSourceComputerParagraph();
-
-	void setObjectComputerParagraph(ObjectComputerParagraph objectComputerParagraph);
-
-	void setSourceComputerParagraph(SourceComputerParagraph sourceComputerParagraph);
 
 }

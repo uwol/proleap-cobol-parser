@@ -48,7 +48,8 @@ public class FileControlTest extends CobolTestSupport {
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final EnvironmentDivision environmentDivision = programUnit.getEnvironmentDivision();
 
-		final FileControlEntry fileControlEntry = environmentDivision.getFileControlEntry("TEACHER");
+		final FileControlEntry fileControlEntry = environmentDivision.getInputOutputSection().getFileControlParagraph()
+				.getFileControlEntry("TEACHER");
 		assertNotNull(fileControlEntry);
 
 		final SelectClause selectClause = fileControlEntry.getSelectClause();
