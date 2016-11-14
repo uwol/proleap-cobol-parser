@@ -9,7 +9,12 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface CommitmentControlClause extends CobolDivisionElement {
+
+	ValueStmt getFileNameValueStmt();
+
+	void setFileNameValueStmt(ValueStmt fileNameValueStmt);
 
 }

@@ -8,22 +8,17 @@
 
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol;
 
-import java.util.List;
-
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface SameClause extends CobolDivisionElement {
+public interface MultipleFilePositionClause extends CobolDivisionElement {
 
-	enum Form {
-		Record, Sort, SortMerge
-	}
+	ValueStmt getFileNameValueStmt();
 
-	void addFileNameValueStmt(ValueStmt fileNameValueStmt);
+	IntegerLiteralValueStmt getIntegerLiteralValueStmt();
 
-	List<ValueStmt> getFileNameValueStmts();
+	void setFileNameValueStmt(ValueStmt fileNameValueStmt);
 
-	Form getForm();
-
-	void setForm(Form form);
+	void setIntegerLiteralValueStmt(IntegerLiteralValueStmt integerLiteralValueStmt);
 }

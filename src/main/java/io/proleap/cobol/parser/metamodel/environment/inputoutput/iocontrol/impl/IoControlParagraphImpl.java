@@ -8,9 +8,14 @@
 
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.CommitmentControlClauseContext;
+import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.MultipleFileClauseContext;
+import io.proleap.cobol.Cobol85Parser.MultipleFilePositionClauseContext;
 import io.proleap.cobol.Cobol85Parser.RerunClauseContext;
 import io.proleap.cobol.Cobol85Parser.SameClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -34,7 +39,7 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 
 	protected RerunClause rerunClause;
 
-	protected SameClause sameClause;
+	protected List<SameClause> sameClauses = new ArrayList<SameClause>();
 
 	public IoControlParagraphImpl(final ProgramUnit programUnit, final IoControlParagraphContext ctx) {
 		super(programUnit, ctx);
@@ -44,22 +49,93 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 
 	@Override
 	public CommitmentControlClause addCommitmentControlClause(final CommitmentControlClauseContext ctx) {
-		return null;
+		CommitmentControlClause result = (CommitmentControlClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new CommitmentControlClauseImpl(programUnit, ctx);
+
+			if (ctx.fileName() != null) {
+				final ValueStmt fileNameValueStmt = createCallValueStmt(ctx.fileName());
+				result.setFileNameValueStmt(fileNameValueStmt);
+			}
+
+			commitmentControlClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
 	public MultipleFileClause addMultipleFileClause(final MultipleFileClauseContext ctx) {
-		return null;
+		MultipleFileClause result = (MultipleFileClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new MultipleFileClauseImpl(programUnit, ctx);
+
+			for (final MultipleFilePositionClauseContext multipleFilePositionClauseContext : ctx
+					.multipleFilePositionClause()) {
+				result.addMultipleFilePositionClause(multipleFilePositionClauseContext);
+			}
+
+			multipleFileClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
 	public RerunClause addRerunClause(final RerunClauseContext ctx) {
-		return null;
+		RerunClause result = (RerunClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new RerunClauseImpl(programUnit, ctx);
+
+			rerunClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
 	public SameClause addSameClause(final SameClauseContext ctx) {
-		return null;
+		SameClause result = (SameClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SameClauseImpl(programUnit, ctx);
+
+			/*
+			 * form
+			 */
+			final SameClause.Form form;
+
+			if (ctx.RECORD() != null) {
+				form = SameClause.Form.Record;
+			} else if (ctx.SORT() != null) {
+				form = SameClause.Form.Sort;
+			} else if (ctx.SORT_MERGE() != null) {
+				form = SameClause.Form.SortMerge;
+			} else {
+				form = null;
+			}
+
+			result.setForm(form);
+
+			/*
+			 * file names
+			 */
+			for (final FileNameContext fileNameContext : ctx.fileName()) {
+				final ValueStmt fileNameValueStmt = createCallValueStmt(fileNameContext);
+				result.addFileNameValueStmt(fileNameValueStmt);
+			}
+
+			sameClauses.add(result);
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -83,8 +159,8 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
-	public SameClause getSameClause() {
-		return sameClause;
+	public List<SameClause> getSameClauses() {
+		return sameClauses;
 	}
 
 	@Override

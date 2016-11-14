@@ -453,7 +453,11 @@ sameClause :
 ;
 
 multipleFileClause :
-	MULTIPLE FILE TAPE? CONTAINS? (fileName POSITION? integerLiteral?)+
+	MULTIPLE FILE TAPE? CONTAINS? multipleFilePositionClause+
+;
+
+multipleFilePositionClause : 
+	fileName (POSITION integerLiteral)?
 ;
 
 commitmentControlClause :
