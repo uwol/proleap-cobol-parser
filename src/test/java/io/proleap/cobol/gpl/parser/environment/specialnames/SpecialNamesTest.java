@@ -15,8 +15,11 @@ import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ChannelClause;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClause;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClauseThrough;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.OdtClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class SpecialNamesTest extends CobolTestSupport {
@@ -50,6 +53,35 @@ public class SpecialNamesTest extends CobolTestSupport {
 			final OdtClause odtClause = specialNamesParagraph.getOdtClause();
 			assertNotNull(odtClause);
 			assertEquals("SOMEMNEMONIC", odtClause.getMnemonicName().getValue());
+		}
+
+		{
+			final ClassClause classClause = specialNamesParagraph.getClassClause();
+			assertNotNull(classClause);
+			assertNotNull(classClause.getClassNameValueStmt());
+			assertEquals(ClassClause.Type.National, classClause.getType());
+
+			assertEquals(2, classClause.getClassClauseThroughs().size());
+
+			{
+				final ClassClauseThrough clauseThrough1 = classClause.getClassClauseThroughs().get(0);
+
+				final ValueStmt from1 = clauseThrough1.getFrom();
+				assertNotNull(from1);
+
+				final ValueStmt to1 = clauseThrough1.getTo();
+				assertNotNull(to1);
+			}
+
+			{
+				final ClassClauseThrough clauseThrough2 = classClause.getClassClauseThroughs().get(1);
+
+				final ValueStmt from2 = clauseThrough2.getFrom();
+				assertNotNull(from2);
+
+				final ValueStmt to2 = clauseThrough2.getTo();
+				assertNotNull(to2);
+			}
 		}
 	}
 }

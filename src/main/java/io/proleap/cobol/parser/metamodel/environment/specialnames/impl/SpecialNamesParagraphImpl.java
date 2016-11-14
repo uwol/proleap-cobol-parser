@@ -9,19 +9,25 @@
 package io.proleap.cobol.parser.metamodel.environment.specialnames.impl;
 
 import io.proleap.cobol.Cobol85Parser.ChannelClauseContext;
+import io.proleap.cobol.Cobol85Parser.ClassClauseContext;
+import io.proleap.cobol.Cobol85Parser.ClassClauseThroughContext;
 import io.proleap.cobol.Cobol85Parser.OdtClauseContext;
 import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.MnemonicName;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ChannelClause;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.OdtClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implements SpecialNamesParagraph {
 
 	protected ChannelClause channelClause;
+
+	protected ClassClause classClause;
 
 	protected final SpecialNamesParagraphContext ctx;
 
@@ -54,6 +60,48 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 	}
 
 	@Override
+	public ClassClause addClassClause(final ClassClauseContext ctx) {
+		ClassClause result = (ClassClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ClassClauseImpl(programUnit, ctx);
+
+			/*
+			 * class name
+			 */
+			final ValueStmt classNameValueStmt = createCallValueStmt(ctx.className());
+			result.setClassNameValueStmt(classNameValueStmt);
+
+			/*
+			 * type
+			 */
+			final ClassClause.Type type;
+
+			if (ctx.ALPHANUMERIC() != null) {
+				type = ClassClause.Type.AlphaNumeric;
+			} else if (ctx.NATIONAL() != null) {
+				type = ClassClause.Type.National;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
+
+			/*
+			 * class through
+			 */
+			for (final ClassClauseThroughContext classClauseThroughContext : ctx.classClauseThrough()) {
+				result.addClassClauseThrough(classClauseThroughContext);
+			}
+
+			classClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public OdtClause addOdtClause(final OdtClauseContext ctx) {
 		OdtClause result = (OdtClause) getASGElement(ctx);
 
@@ -73,6 +121,11 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 	@Override
 	public ChannelClause getChannelClause() {
 		return channelClause;
+	}
+
+	@Override
+	public ClassClause getClassClause() {
+		return classClause;
 	}
 
 	@Override

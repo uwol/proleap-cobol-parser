@@ -273,9 +273,19 @@ classClause :
 		FOR? (ALPHANUMERIC | NATIONAL)
 	)?
 	IS?
-	(
-		(identifier | literal) ((THROUGH | THRU) (identifier | literal))?
-	)+
+	classClauseThrough+
+;
+
+classClauseThrough : 
+	classClauseFrom ((THROUGH | THRU) classClauseTo)?
+;
+
+classClauseFrom :
+	identifier | literal
+;
+
+classClauseTo :
+	identifier | literal
 ;
 
 currencySignClause :
@@ -318,10 +328,12 @@ symbolicCharactersClause :
 	(FOR? 
 		(ALPHANUMERIC | NATIONAL)
 	)? 
-	(
-		symbolicCharacter+ (IS | ARE)? integerLiteral+
-	)+
+	symbolicCharacters+
 	(IN alphabetName)?
+;
+
+symbolicCharacters :
+	symbolicCharacter+ (IS | ARE)? integerLiteral+
 ;
 
 // -- input output section ----------------------------------

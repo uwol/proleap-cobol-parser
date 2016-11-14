@@ -104,7 +104,9 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 			result = new SpecialNamesParagraphImpl(programUnit, ctx);
 
 			for (final SpecialNameClauseContext specialNameClauseContext : ctx.specialNameClause()) {
-				if (specialNameClauseContext.channelClause() != null) {
+				if (specialNameClauseContext.classClause() != null) {
+					result.addClassClause(specialNameClauseContext.classClause());
+				} else if (specialNameClauseContext.channelClause() != null) {
 					result.addChannelClause(specialNameClauseContext.channelClause());
 				} else if (specialNameClauseContext.odtClause() != null) {
 					result.addOdtClause(specialNameClauseContext.odtClause());
