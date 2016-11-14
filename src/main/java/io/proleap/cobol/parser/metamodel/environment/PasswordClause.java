@@ -6,17 +6,14 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.valuestmt;
-
-import java.util.List;
+package io.proleap.cobol.parser.metamodel.environment;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface ValueStmt extends CobolDivisionElement {
+public interface PasswordClause extends CobolDivisionElement {
 
-	void addSubValueStmt(ValueStmt subValueStmt);
+	ValueStmt getValueStmt();
 
-	List<ValueStmt> getSubValueStmts();
-
-	Object getValue();
+	void setValueStmt(ValueStmt valueStmt);
 }

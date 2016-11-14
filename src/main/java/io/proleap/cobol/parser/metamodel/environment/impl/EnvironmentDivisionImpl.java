@@ -18,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.AccessModeClauseContext;
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
+import io.proleap.cobol.Cobol85Parser.AlternateRecordKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.AssignClauseContext;
 import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
@@ -36,7 +37,9 @@ import io.proleap.cobol.Cobol85Parser.ObjectComputerClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.OrganizationClauseContext;
 import io.proleap.cobol.Cobol85Parser.PaddingCharacterClauseContext;
+import io.proleap.cobol.Cobol85Parser.PasswordClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordDelimiterClauseContext;
+import io.proleap.cobol.Cobol85Parser.RecordKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
 import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
@@ -45,6 +48,7 @@ import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.AccessModeClause;
+import io.proleap.cobol.parser.metamodel.environment.AlternateRecordKeyClause;
 import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.CharacterSetClause;
 import io.proleap.cobol.parser.metamodel.environment.CollatingSequenceClause;
@@ -59,7 +63,9 @@ import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause;
 import io.proleap.cobol.parser.metamodel.environment.ObjectComputerParagraph;
 import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
 import io.proleap.cobol.parser.metamodel.environment.PaddingCharacterClause;
+import io.proleap.cobol.parser.metamodel.environment.PasswordClause;
 import io.proleap.cobol.parser.metamodel.environment.RecordDelimiterClause;
+import io.proleap.cobol.parser.metamodel.environment.RecordKeyClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SegmentLimitClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
@@ -91,6 +97,7 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 		this.ctx = ctx;
 	}
 
+	@Override
 	public AccessModeClause addAccessModeClause(final AccessModeClauseContext ctx) {
 		AccessModeClause result = (AccessModeClause) getASGElement(ctx);
 
@@ -113,6 +120,27 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 			}
 
 			result.setMode(mode);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public AlternateRecordKeyClause addAlternateRecordKeyClause(final AlternateRecordKeyClauseContext ctx) {
+		AlternateRecordKeyClause result = (AlternateRecordKeyClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new AlternateRecordKeyClauseImpl(programUnit, this, ctx);
+
+			final ValueStmt valueStmt = createCallValueStmt(ctx.qualifiedDataName());
+			result.setValueStmt(valueStmt);
+
+			if (ctx.passwordClause() != null) {
+				final PasswordClause passwordClause = addPasswordClause(ctx.passwordClause());
+				result.setPasswordClause(passwordClause);
+			}
 
 			registerASGElement(result);
 		}
@@ -304,6 +332,22 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 				if (fileControlClause.accessModeClause() != null) {
 					final AccessModeClause accessModeClause = addAccessModeClause(fileControlClause.accessModeClause());
 					result.setAccessModeClause(accessModeClause);
+				}
+
+				if (fileControlClause.recordKeyClause() != null) {
+					final RecordKeyClause recordKeyClause = addRecordKeyClause(fileControlClause.recordKeyClause());
+					result.setRecordKeyClause(recordKeyClause);
+				}
+
+				if (fileControlClause.alternateRecordKeyClause() != null) {
+					final AlternateRecordKeyClause alternateRecordKeyClause = addAlternateRecordKeyClause(
+							fileControlClause.alternateRecordKeyClause());
+					result.setAlternateRecordKeyClause(alternateRecordKeyClause);
+				}
+
+				if (fileControlClause.passwordClause() != null) {
+					final PasswordClause passwordClause = addPasswordClause(fileControlClause.passwordClause());
+					result.setPasswordClause(passwordClause);
 				}
 			}
 
@@ -545,6 +589,22 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 	}
 
 	@Override
+	public PasswordClause addPasswordClause(final PasswordClauseContext ctx) {
+		PasswordClause result = (PasswordClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new PasswordClauseImpl(programUnit, this, ctx);
+
+			final ValueStmt valueStmt = createCallValueStmt(ctx.dataName());
+			result.setValueStmt(valueStmt);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public RecordDelimiterClause addRecordDelimiterClause(final RecordDelimiterClauseContext ctx) {
 		RecordDelimiterClause result = (RecordDelimiterClause) getASGElement(ctx);
 
@@ -565,6 +625,27 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 			}
 
 			result.setValueStmt(valueStmt);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public RecordKeyClause addRecordKeyClause(final RecordKeyClauseContext ctx) {
+		RecordKeyClause result = (RecordKeyClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new RecordKeyClauseImpl(programUnit, this, ctx);
+
+			final ValueStmt valueStmt = createCallValueStmt(ctx.qualifiedDataName());
+			result.setValueStmt(valueStmt);
+
+			if (ctx.passwordClause() != null) {
+				final PasswordClause passwordClause = addPasswordClause(ctx.passwordClause());
+				result.setPasswordClause(passwordClause);
+			}
 
 			registerASGElement(result);
 		}

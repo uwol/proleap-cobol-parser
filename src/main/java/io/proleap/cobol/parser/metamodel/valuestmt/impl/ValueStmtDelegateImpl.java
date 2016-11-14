@@ -18,11 +18,16 @@ public class ValueStmtDelegateImpl extends ValueStmtImpl implements ValueStmt {
 
 	protected final ValueStmt delegate;
 
-	public ValueStmtDelegateImpl(final ValueStmt delegate, final ProgramUnit programUnit,
-			final CobolDivision scope, final ParseTree ctx) {
+	public ValueStmtDelegateImpl(final ValueStmt delegate, final ProgramUnit programUnit, final CobolDivision scope,
+			final ParseTree ctx) {
 		super(programUnit, scope, ctx);
 
 		this.delegate = delegate;
+	}
+
+	@Override
+	public Object getValue() {
+		return null;
 	}
 
 	@Override

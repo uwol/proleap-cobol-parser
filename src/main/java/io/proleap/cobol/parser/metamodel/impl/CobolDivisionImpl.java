@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
 import io.proleap.cobol.Cobol85Parser.CobolWordContext;
+import io.proleap.cobol.Cobol85Parser.DataNameContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
@@ -64,6 +65,18 @@ public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implement
 
 	@Override
 	public Call addCall(final CobolWordContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, this, ctx);
+		}
+
+		return result;
+	}
+
+	@Override
+	public Call addCall(final DataNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -183,6 +196,12 @@ public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implement
 	}
 
 	protected CallValueStmt createCallValueStmt(final CobolWordContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, this, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final DataNameContext ctx) {
 		final Call delegatedCall = addCall(ctx);
 		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, this, ctx);
 		return result;

@@ -15,13 +15,19 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 
 	AccessModeClause getAccessModeClause();
 
+	AlternateRecordKeyClause getAlternateRecordKeyClause();
+
 	AssignClause getAssignClause();
 
 	OrganizationClause getOrganizationClause();
 
 	PaddingCharacterClause getPaddingCharacterClause();
 
+	PasswordClause getPasswordClause();
+
 	RecordDelimiterClause getRecordDelimiterClause();
+
+	RecordKeyClause getRecordKeyClause();
 
 	ReserveClause getReserveClause();
 
@@ -29,13 +35,19 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 
 	void setAccessModeClause(AccessModeClause accessModeClause);
 
+	void setAlternateRecordKeyClause(AlternateRecordKeyClause alternateRecordKeyClause);
+
 	void setAssignClause(AssignClause assignClause);
 
 	void setOrganizationClause(OrganizationClause organizationClause);
 
 	void setPaddingCharacterClause(PaddingCharacterClause paddingCharacterClause);
 
+	void setPasswordClause(PasswordClause passwordClause);
+
 	void setRecordDelimiterClause(RecordDelimiterClause recordDelimiterClause);
+
+	void setRecordKeyClause(RecordKeyClause recordKeyClause);
 
 	void setReserveClause(ReserveClause reserveClause);
 

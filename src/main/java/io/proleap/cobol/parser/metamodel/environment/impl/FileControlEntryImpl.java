@@ -12,11 +12,14 @@ import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.AccessModeClause;
+import io.proleap.cobol.parser.metamodel.environment.AlternateRecordKeyClause;
 import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
 import io.proleap.cobol.parser.metamodel.environment.PaddingCharacterClause;
+import io.proleap.cobol.parser.metamodel.environment.PasswordClause;
 import io.proleap.cobol.parser.metamodel.environment.RecordDelimiterClause;
+import io.proleap.cobol.parser.metamodel.environment.RecordKeyClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -25,6 +28,8 @@ import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 public class FileControlEntryImpl extends CobolDivisionElementImpl implements FileControlEntry {
 
 	protected AccessModeClause accessModeClause;
+
+	protected AlternateRecordKeyClause alternateRecordKeyClause;
 
 	protected AssignClause assignClause;
 
@@ -36,7 +41,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 
 	protected PaddingCharacterClause paddingCharacterClause;
 
+	protected PasswordClause passwordClause;
+
 	protected RecordDelimiterClause recordDelimiterClause;
+
+	protected RecordKeyClause recordKeyClause;
 
 	protected ReserveClause reserveClause;
 
@@ -53,6 +62,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	@Override
 	public AccessModeClause getAccessModeClause() {
 		return accessModeClause;
+	}
+
+	@Override
+	public AlternateRecordKeyClause getAlternateRecordKeyClause() {
+		return alternateRecordKeyClause;
 	}
 
 	@Override
@@ -76,8 +90,18 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	}
 
 	@Override
+	public PasswordClause getPasswordClause() {
+		return passwordClause;
+	}
+
+	@Override
 	public RecordDelimiterClause getRecordDelimiterClause() {
 		return recordDelimiterClause;
+	}
+
+	@Override
+	public RecordKeyClause getRecordKeyClause() {
+		return recordKeyClause;
 	}
 
 	@Override
@@ -96,6 +120,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	}
 
 	@Override
+	public void setAlternateRecordKeyClause(final AlternateRecordKeyClause alternateRecordKeyClause) {
+		this.alternateRecordKeyClause = alternateRecordKeyClause;
+	}
+
+	@Override
 	public void setAssignClause(final AssignClause assignClause) {
 		this.assignClause = assignClause;
 	}
@@ -111,8 +140,18 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	}
 
 	@Override
+	public void setPasswordClause(final PasswordClause passwordClause) {
+		this.passwordClause = passwordClause;
+	}
+
+	@Override
 	public void setRecordDelimiterClause(final RecordDelimiterClause recordDelimiterClause) {
 		this.recordDelimiterClause = recordDelimiterClause;
+	}
+
+	@Override
+	public void setRecordKeyClause(final RecordKeyClause recordKeyClause) {
+		this.recordKeyClause = recordKeyClause;
 	}
 
 	@Override

@@ -14,17 +14,17 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.AccessModeClause;
+import io.proleap.cobol.parser.metamodel.environment.AlternateRecordKeyClause;
 import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
 import io.proleap.cobol.parser.metamodel.environment.PaddingCharacterClause;
+import io.proleap.cobol.parser.metamodel.environment.PasswordClause;
 import io.proleap.cobol.parser.metamodel.environment.RecordDelimiterClause;
+import io.proleap.cobol.parser.metamodel.environment.RecordKeyClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
-import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
-import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
-import io.proleap.cobol.parser.metamodel.valuestmt.TerminalValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class FileControlTest extends CobolTestSupport {
@@ -55,17 +55,13 @@ public class FileControlTest extends CobolTestSupport {
 		{
 			final AssignClause assignClause = fileControlEntry.getAssignClause();
 			assertNotNull(assignClause);
-
-			final LiteralValueStmt valueStmt = (LiteralValueStmt) assignClause.getValueStmt();
-			assertEquals("'teacher.txt'", valueStmt.getValue());
+			assertEquals("'teacher.txt'", assignClause.getValueStmt().getValue());
 		}
 
 		{
 			final ReserveClause reserveClause = fileControlEntry.getReserveClause();
 			assertNotNull(reserveClause);
-
-			final IntegerLiteralValueStmt valueStmt = reserveClause.getValueStmt();
-			assertEquals(new Integer(10), valueStmt.getValue());
+			assertEquals(new Integer(10), reserveClause.getValueStmt().getValue());
 		}
 
 		{
@@ -78,23 +74,45 @@ public class FileControlTest extends CobolTestSupport {
 		{
 			final PaddingCharacterClause paddingCharacterClause = fileControlEntry.getPaddingCharacterClause();
 			assertNotNull(paddingCharacterClause);
-
-			final LiteralValueStmt valueStmt = (LiteralValueStmt) paddingCharacterClause.getValueStmt();
-			assertEquals("'-'", valueStmt.getValue());
+			assertEquals("'-'", paddingCharacterClause.getValueStmt().getValue());
 		}
 
 		{
 			final RecordDelimiterClause recordDelimiterClause = fileControlEntry.getRecordDelimiterClause();
 			assertNotNull(recordDelimiterClause);
-
-			final TerminalValueStmt valueStmt = (TerminalValueStmt) recordDelimiterClause.getValueStmt();
-			assertEquals("IMPLICIT", valueStmt.getValue());
+			assertEquals("IMPLICIT", recordDelimiterClause.getValueStmt().getValue());
 		}
 
 		{
 			final AccessModeClause accessModeClause = fileControlEntry.getAccessModeClause();
 			assertNotNull(accessModeClause);
 			assertEquals(AccessModeClause.Mode.Dynamic, accessModeClause.getMode());
+		}
+
+		{
+			final RecordKeyClause recordKeyClause = fileControlEntry.getRecordKeyClause();
+			assertNotNull(recordKeyClause);
+			assertNotNull(recordKeyClause.getValueStmt());
+
+			final PasswordClause passwordClause = recordKeyClause.getPasswordClause();
+			assertNotNull(passwordClause);
+			assertNotNull(passwordClause.getValueStmt());
+		}
+
+		{
+			final AlternateRecordKeyClause alternateRecordKeyClause = fileControlEntry.getAlternateRecordKeyClause();
+			assertNotNull(alternateRecordKeyClause);
+			assertNotNull(alternateRecordKeyClause.getValueStmt());
+
+			final PasswordClause passwordClause = alternateRecordKeyClause.getPasswordClause();
+			assertNotNull(passwordClause);
+			assertNotNull(passwordClause.getValueStmt());
+		}
+
+		{
+			final PasswordClause passwordClause = fileControlEntry.getPasswordClause();
+			assertNotNull(passwordClause);
+			assertNotNull(passwordClause.getValueStmt());
 		}
 	}
 }

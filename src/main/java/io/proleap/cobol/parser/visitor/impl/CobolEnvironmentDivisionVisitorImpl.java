@@ -37,6 +37,15 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
+	public Boolean visitAlternateRecordKeyClause(@NotNull final Cobol85Parser.AlternateRecordKeyClauseContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addAlternateRecordKeyClause(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitAssignClause(@NotNull final Cobol85Parser.AssignClauseContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 
@@ -154,10 +163,28 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
+	public Boolean visitPasswordClause(@NotNull final Cobol85Parser.PasswordClauseContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addPasswordClause(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitRecordDelimiterClause(@NotNull final Cobol85Parser.RecordDelimiterClauseContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 
 		environmentDivision.addRecordDelimiterClause(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitRecordKeyClause(@NotNull final Cobol85Parser.RecordKeyClauseContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addRecordKeyClause(ctx);
 
 		return visitChildren(ctx);
 	}

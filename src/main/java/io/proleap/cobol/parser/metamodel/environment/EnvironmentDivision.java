@@ -11,6 +11,7 @@ package io.proleap.cobol.parser.metamodel.environment;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.AccessModeClauseContext;
+import io.proleap.cobol.Cobol85Parser.AlternateRecordKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.AssignClauseContext;
 import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
@@ -24,7 +25,9 @@ import io.proleap.cobol.Cobol85Parser.MemorySizeClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.OrganizationClauseContext;
 import io.proleap.cobol.Cobol85Parser.PaddingCharacterClauseContext;
+import io.proleap.cobol.Cobol85Parser.PasswordClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordDelimiterClauseContext;
+import io.proleap.cobol.Cobol85Parser.RecordKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
 import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
@@ -35,6 +38,8 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 public interface EnvironmentDivision extends CobolDivision {
 
 	AccessModeClause addAccessModeClause(AccessModeClauseContext ctx);
+
+	AlternateRecordKeyClause addAlternateRecordKeyClause(AlternateRecordKeyClauseContext ctx);
 
 	AssignClause addAssignClause(AssignClauseContext ctx);
 
@@ -62,7 +67,11 @@ public interface EnvironmentDivision extends CobolDivision {
 
 	PaddingCharacterClause addPaddingCharacterClause(PaddingCharacterClauseContext ctx);
 
+	PasswordClause addPasswordClause(PasswordClauseContext ctx);
+
 	RecordDelimiterClause addRecordDelimiterClause(RecordDelimiterClauseContext ctx);
+
+	RecordKeyClause addRecordKeyClause(RecordKeyClauseContext ctx);
 
 	ReserveClause addReserveClause(ReserveClauseContext ctx);
 
