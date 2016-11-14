@@ -15,6 +15,7 @@ import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
 import io.proleap.cobol.Cobol85Parser.LinkageSectionContext;
+import io.proleap.cobol.Cobol85Parser.ScreenSectionContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
@@ -26,6 +27,8 @@ import io.proleap.cobol.parser.metamodel.data.file.FileSection;
 import io.proleap.cobol.parser.metamodel.data.file.impl.FileSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.linkage.LinkageSection;
 import io.proleap.cobol.parser.metamodel.data.linkage.impl.LinkageSectionImpl;
+import io.proleap.cobol.parser.metamodel.data.screen.ScreenSection;
+import io.proleap.cobol.parser.metamodel.data.screen.impl.ScreenSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.impl.WorkingStorageSectionImpl;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
@@ -40,6 +43,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	protected FileSection fileSection;
 
 	protected LinkageSection linkageSection;
+
+	protected ScreenSection screenSection;
 
 	protected WorkingStorageSection workingStorageSection;
 
@@ -111,6 +116,20 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	}
 
 	@Override
+	public ScreenSection addScreenSection(final ScreenSectionContext ctx) {
+		ScreenSection result = (ScreenSection) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ScreenSectionImpl(programUnit, ctx);
+
+			screenSection = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public WorkingStorageSection addWorkingStorageSection(final WorkingStorageSectionContext ctx) {
 		WorkingStorageSection result = (WorkingStorageSection) getASGElement(ctx);
 
@@ -148,6 +167,11 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	@Override
 	public LinkageSection getLinkageSection() {
 		return linkageSection;
+	}
+
+	@Override
+	public ScreenSection getScreenSection() {
+		return screenSection;
 	}
 
 	@Override
