@@ -15,6 +15,7 @@ import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.Cobol85Parser.MnemonicNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.parser.metamodel.call.Call;
@@ -38,6 +39,8 @@ public interface ProgramUnitElement extends CompilationUnitElement {
 	IntegerLiteral addIntegerLiteral(IntegerLiteralContext ctx);
 
 	Literal addLiteral(LiteralContext ctx);
+
+	MnemonicName addMnemonicName(MnemonicNameContext ctx);
 
 	ProgramUnit getProgramUnit();
 }

@@ -8,13 +8,18 @@
 
 package io.proleap.cobol.parser.metamodel.environment.specialnames.impl;
 
+import io.proleap.cobol.Cobol85Parser.ChannelClauseContext;
 import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
+import io.proleap.cobol.parser.metamodel.IntegerLiteral;
+import io.proleap.cobol.parser.metamodel.MnemonicName;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.ChannelClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-// FIXME: add specialNameClauses
 public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implements SpecialNamesParagraph {
+
+	protected ChannelClause channelClause;
 
 	protected final SpecialNamesParagraphContext ctx;
 
@@ -22,6 +27,31 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public ChannelClause addChannelClause(final ChannelClauseContext ctx) {
+		ChannelClause result = (ChannelClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ChannelClauseImpl(programUnit, ctx);
+
+			final IntegerLiteral integerLiteral = addIntegerLiteral(ctx.integerLiteral());
+			result.setIntegerLiteral(integerLiteral);
+
+			final MnemonicName mnemonicName = addMnemonicName(ctx.mnemonicName());
+			result.setMnemonicName(mnemonicName);
+
+			channelClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ChannelClause getChannelClause() {
+		return channelClause;
 	}
 
 }

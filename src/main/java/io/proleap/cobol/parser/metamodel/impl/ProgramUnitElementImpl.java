@@ -20,10 +20,12 @@ import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.Cobol85Parser.MnemonicNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.Literal;
+import io.proleap.cobol.parser.metamodel.MnemonicName;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.ProgramUnitElement;
 import io.proleap.cobol.parser.metamodel.call.Call;
@@ -190,6 +192,20 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (result == null) {
 			final String value = ctx.getText();
 			result = new LiteralImpl(value, programUnit, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public MnemonicName addMnemonicName(final MnemonicNameContext ctx) {
+		MnemonicName result = (MnemonicName) getASGElement(ctx);
+
+		if (result == null) {
+			final String value = ctx.getText();
+			result = new MnemonicNameImpl(value, programUnit, ctx);
 
 			registerASGElement(result);
 		}

@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.ConfigurationSectionParagraphContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SpecialNameClauseContext;
 import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
@@ -101,6 +102,14 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 		if (result == null) {
 			result = new SpecialNamesParagraphImpl(programUnit, ctx);
+
+			for (final SpecialNameClauseContext specialNameClauseContext : ctx.specialNameClause()) {
+				if (specialNameClauseContext.channelClause() != null) {
+					result.addChannelClause(specialNameClauseContext.channelClause());
+				} else {
+					LOG.warn("unknown special name clause {}", specialNameClauseContext);
+				}
+			}
 
 			specialNamesParagraph = result;
 			registerASGElement(result);

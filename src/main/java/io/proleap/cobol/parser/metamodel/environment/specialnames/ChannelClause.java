@@ -8,12 +8,18 @@
 
 package io.proleap.cobol.parser.metamodel.environment.specialnames;
 
-import io.proleap.cobol.Cobol85Parser.ChannelClauseContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.IntegerLiteral;
+import io.proleap.cobol.parser.metamodel.MnemonicName;
 
-public interface SpecialNamesParagraph extends CobolDivisionElement {
+public interface ChannelClause extends CobolDivisionElement {
 
-	ChannelClause addChannelClause(ChannelClauseContext ctx);
+	IntegerLiteral getIntegerLiteral();
 
-	ChannelClause getChannelClause();
+	MnemonicName getMnemonicName();
+
+	void setIntegerLiteral(IntegerLiteral integerLiteral);
+
+	void setMnemonicName(MnemonicName mnemonicName);
+
 }
