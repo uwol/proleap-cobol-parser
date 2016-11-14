@@ -62,6 +62,10 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 
 			final DataDivisionBodyContext dataDivisionBodyContext = ctx.dataDivisionBody();
 
+			if (dataDivisionBodyContext.dataBaseSection() != null) {
+				result.addDataBaseSection(dataDivisionBodyContext.dataBaseSection());
+			}
+
 			if (dataDivisionBodyContext.fileSection() != null) {
 				result.addFileSection(dataDivisionBodyContext.fileSection());
 			}

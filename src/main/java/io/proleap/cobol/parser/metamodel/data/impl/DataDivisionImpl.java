@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.data.impl;
 
+import io.proleap.cobol.Cobol85Parser.DataBaseSectionContext;
+import io.proleap.cobol.Cobol85Parser.DataBaseSectionEntryContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
@@ -17,6 +19,8 @@ import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
+import io.proleap.cobol.parser.metamodel.data.database.DataBaseSection;
+import io.proleap.cobol.parser.metamodel.data.database.impl.DataBaseSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.file.FileSection;
 import io.proleap.cobol.parser.metamodel.data.file.impl.FileSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
@@ -28,6 +32,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 	protected final DataDivisionContext ctx;
 
+	protected DataBaseSection dataBaseSection;
+
 	protected FileSection fileSection;
 
 	protected WorkingStorageSection workingStorageSection;
@@ -36,6 +42,24 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public DataBaseSection addDataBaseSection(final DataBaseSectionContext ctx) {
+		DataBaseSection result = (DataBaseSection) getASGElement(ctx);
+
+		if (result == null) {
+			result = new DataBaseSectionImpl(programUnit, ctx);
+
+			for (final DataBaseSectionEntryContext dataBaseSectionEntryContext : ctx.dataBaseSectionEntry()) {
+				result.addDataBaseSectionEntry(dataBaseSectionEntryContext);
+			}
+
+			dataBaseSection = result;
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -79,6 +103,11 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		}
 
 		return result;
+	}
+
+	@Override
+	public DataBaseSection getDataBaseSection() {
+		return dataBaseSection;
 	}
 
 	@Override

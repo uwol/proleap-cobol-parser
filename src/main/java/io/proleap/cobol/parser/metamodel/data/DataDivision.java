@@ -8,17 +8,23 @@
 
 package io.proleap.cobol.parser.metamodel.data;
 
+import io.proleap.cobol.Cobol85Parser.DataBaseSectionContext;
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.data.database.DataBaseSection;
 import io.proleap.cobol.parser.metamodel.data.file.FileSection;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 
 public interface DataDivision extends CobolDivision {
 
+	DataBaseSection addDataBaseSection(DataBaseSectionContext ctx);
+
 	FileSection addFileSection(FileSectionContext ctx);
 
 	WorkingStorageSection addWorkingStorageSection(WorkingStorageSectionContext ctx);
+
+	DataBaseSection getDataBaseSection();
 
 	FileSection getFileSection();
 
