@@ -19,6 +19,7 @@ import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
 import io.proleap.cobol.Cobol85Parser.DiskSizeClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
+import io.proleap.cobol.Cobol85Parser.FileStatusClauseContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.MemorySizeClauseContext;
@@ -54,6 +55,8 @@ public interface EnvironmentDivision extends CobolDivision {
 	FileControlEntry addFileControlEntry(FileControlEntryContext ctx);
 
 	FileControlParagraph addFileControlParagraph(FileControlParagraphContext ctx);
+
+	FileStatusClause addFileStatusClause(FileStatusClauseContext ctx);
 
 	InputOutputSection addInputOutputSection(InputOutputSectionContext ctx);
 

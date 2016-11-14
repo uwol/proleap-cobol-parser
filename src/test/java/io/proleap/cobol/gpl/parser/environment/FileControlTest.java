@@ -18,6 +18,7 @@ import io.proleap.cobol.parser.metamodel.environment.AlternateRecordKeyClause;
 import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
+import io.proleap.cobol.parser.metamodel.environment.FileStatusClause;
 import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
 import io.proleap.cobol.parser.metamodel.environment.PaddingCharacterClause;
 import io.proleap.cobol.parser.metamodel.environment.PasswordClause;
@@ -113,6 +114,13 @@ public class FileControlTest extends CobolTestSupport {
 			final PasswordClause passwordClause = fileControlEntry.getPasswordClause();
 			assertNotNull(passwordClause);
 			assertNotNull(passwordClause.getValueStmt());
+		}
+
+		{
+			final FileStatusClause fileStatusClause = fileControlEntry.getFileStatusClause();
+			assertNotNull(fileStatusClause);
+			assertNotNull(fileStatusClause.getValueStmt());
+			assertNotNull(fileStatusClause.getValueStmt2());
 		}
 	}
 }

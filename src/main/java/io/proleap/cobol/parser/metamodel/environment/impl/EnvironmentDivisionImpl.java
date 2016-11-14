@@ -29,6 +29,7 @@ import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
 import io.proleap.cobol.Cobol85Parser.FileControlClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
+import io.proleap.cobol.Cobol85Parser.FileStatusClauseContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionParagraphContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
@@ -57,6 +58,7 @@ import io.proleap.cobol.parser.metamodel.environment.DiskSizeClause;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.FileControlParagraph;
+import io.proleap.cobol.parser.metamodel.environment.FileStatusClause;
 import io.proleap.cobol.parser.metamodel.environment.InputOutputSection;
 import io.proleap.cobol.parser.metamodel.environment.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.MemorySizeClause;
@@ -349,6 +351,11 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 					final PasswordClause passwordClause = addPasswordClause(fileControlClause.passwordClause());
 					result.setPasswordClause(passwordClause);
 				}
+
+				if (fileControlClause.fileStatusClause() != null) {
+					final FileStatusClause fileStatusClause = addFileStatusClause(fileControlClause.fileStatusClause());
+					result.setFileStatusClause(fileStatusClause);
+				}
 			}
 
 			registerASGElement(result);
@@ -371,6 +378,27 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 				final FileControlEntry fileControlEntry = addFileControlEntry(fileControlEntryContext);
 
 				result.addFileControlEntry(fileControlEntry);
+			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public FileStatusClause addFileStatusClause(final FileStatusClauseContext ctx) {
+		FileStatusClause result = (FileStatusClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new FileStatusClauseImpl(programUnit, this, ctx);
+
+			final ValueStmt valueStmt = createCallValueStmt(ctx.qualifiedDataName(0));
+			result.setValueStmt(valueStmt);
+
+			if (ctx.qualifiedDataName().size() > 1 && ctx.qualifiedDataName(1) != null) {
+				final ValueStmt valueStmt2 = createCallValueStmt(ctx.qualifiedDataName(1));
+				result.setValueStmt2(valueStmt2);
 			}
 
 			registerASGElement(result);

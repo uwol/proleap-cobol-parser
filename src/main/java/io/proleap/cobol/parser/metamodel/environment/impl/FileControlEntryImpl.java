@@ -15,6 +15,7 @@ import io.proleap.cobol.parser.metamodel.environment.AccessModeClause;
 import io.proleap.cobol.parser.metamodel.environment.AlternateRecordKeyClause;
 import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
+import io.proleap.cobol.parser.metamodel.environment.FileStatusClause;
 import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
 import io.proleap.cobol.parser.metamodel.environment.PaddingCharacterClause;
 import io.proleap.cobol.parser.metamodel.environment.PasswordClause;
@@ -34,6 +35,8 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	protected AssignClause assignClause;
 
 	protected final FileControlEntryContext ctx;
+
+	protected FileStatusClause fileStatusClause;
 
 	protected final String name;
 
@@ -72,6 +75,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	@Override
 	public AssignClause getAssignClause() {
 		return assignClause;
+	}
+
+	@Override
+	public FileStatusClause getFileStatusClause() {
+		return fileStatusClause;
 	}
 
 	@Override
@@ -127,6 +135,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	@Override
 	public void setAssignClause(final AssignClause assignClause) {
 		this.assignClause = assignClause;
+	}
+
+	@Override
+	public void setFileStatusClause(final FileStatusClause fileStatusClause) {
+		this.fileStatusClause = fileStatusClause;
 	}
 
 	@Override

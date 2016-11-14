@@ -109,6 +109,15 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
+	public Boolean visitFileStatusClause(@NotNull final Cobol85Parser.FileStatusClauseContext ctx) {
+		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
+
+		environmentDivision.addFileStatusClause(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitInputOutputSection(@NotNull final Cobol85Parser.InputOutputSectionContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 

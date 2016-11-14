@@ -19,6 +19,8 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 
 	AssignClause getAssignClause();
 
+	FileStatusClause getFileStatusClause();
+
 	OrganizationClause getOrganizationClause();
 
 	PaddingCharacterClause getPaddingCharacterClause();
@@ -38,6 +40,8 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 	void setAlternateRecordKeyClause(AlternateRecordKeyClause alternateRecordKeyClause);
 
 	void setAssignClause(AssignClause assignClause);
+
+	void setFileStatusClause(FileStatusClause fileStatusClause);
 
 	void setOrganizationClause(OrganizationClause organizationClause);
 
