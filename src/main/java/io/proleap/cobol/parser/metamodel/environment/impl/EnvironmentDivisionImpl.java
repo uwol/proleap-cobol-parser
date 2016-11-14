@@ -110,6 +110,8 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 					result.addChannelClause(specialNameClauseContext.channelClause());
 				} else if (specialNameClauseContext.currencySignClause() != null) {
 					result.addCurrencySignClause(specialNameClauseContext.currencySignClause());
+				} else if (specialNameClauseContext.decimalPointClause() != null) {
+					result.addDecimalPointClause(specialNameClauseContext.decimalPointClause());
 				} else if (specialNameClauseContext.odtClause() != null) {
 					result.addOdtClause(specialNameClauseContext.odtClause());
 				} else {
