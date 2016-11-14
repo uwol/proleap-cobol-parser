@@ -41,6 +41,7 @@ import io.proleap.cobol.Cobol85Parser.PaddingCharacterClauseContext;
 import io.proleap.cobol.Cobol85Parser.PasswordClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordDelimiterClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordKeyClauseContext;
+import io.proleap.cobol.Cobol85Parser.RelativeKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
 import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
@@ -68,6 +69,7 @@ import io.proleap.cobol.parser.metamodel.environment.PaddingCharacterClause;
 import io.proleap.cobol.parser.metamodel.environment.PasswordClause;
 import io.proleap.cobol.parser.metamodel.environment.RecordDelimiterClause;
 import io.proleap.cobol.parser.metamodel.environment.RecordKeyClause;
+import io.proleap.cobol.parser.metamodel.environment.RelativeKeyClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SegmentLimitClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
@@ -355,6 +357,12 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 				if (fileControlClause.fileStatusClause() != null) {
 					final FileStatusClause fileStatusClause = addFileStatusClause(fileControlClause.fileStatusClause());
 					result.setFileStatusClause(fileStatusClause);
+				}
+
+				if (fileControlClause.relativeKeyClause() != null) {
+					final RelativeKeyClause relativeKeyClause = addRelativeKeyClause(
+							fileControlClause.relativeKeyClause());
+					result.setRelativeKeyClause(relativeKeyClause);
 				}
 			}
 
@@ -674,6 +682,22 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 				final PasswordClause passwordClause = addPasswordClause(ctx.passwordClause());
 				result.setPasswordClause(passwordClause);
 			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public RelativeKeyClause addRelativeKeyClause(final RelativeKeyClauseContext ctx) {
+		RelativeKeyClause result = (RelativeKeyClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new RelativeKeyClauseImpl(programUnit, this, ctx);
+
+			final ValueStmt valueStmt = createCallValueStmt(ctx.qualifiedDataName());
+			result.setValueStmt(valueStmt);
 
 			registerASGElement(result);
 		}

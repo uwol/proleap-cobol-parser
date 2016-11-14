@@ -29,6 +29,7 @@ import io.proleap.cobol.Cobol85Parser.PaddingCharacterClauseContext;
 import io.proleap.cobol.Cobol85Parser.PasswordClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordDelimiterClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordKeyClauseContext;
+import io.proleap.cobol.Cobol85Parser.RelativeKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
 import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
@@ -75,6 +76,8 @@ public interface EnvironmentDivision extends CobolDivision {
 	RecordDelimiterClause addRecordDelimiterClause(RecordDelimiterClauseContext ctx);
 
 	RecordKeyClause addRecordKeyClause(RecordKeyClauseContext ctx);
+
+	RelativeKeyClause addRelativeKeyClause(RelativeKeyClauseContext ctx);
 
 	ReserveClause addReserveClause(ReserveClauseContext ctx);
 

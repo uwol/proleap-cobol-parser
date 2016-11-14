@@ -31,6 +31,8 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 
 	RecordKeyClause getRecordKeyClause();
 
+	RelativeKeyClause getRelativeKeyClause();
+
 	ReserveClause getReserveClause();
 
 	SelectClause getSelectClause();
@@ -52,6 +54,8 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 	void setRecordDelimiterClause(RecordDelimiterClause recordDelimiterClause);
 
 	void setRecordKeyClause(RecordKeyClause recordKeyClause);
+
+	void setRelativeKeyClause(RelativeKeyClause relativeKeyClause);
 
 	void setReserveClause(ReserveClause reserveClause);
 

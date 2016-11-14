@@ -24,6 +24,7 @@ import io.proleap.cobol.parser.metamodel.environment.PaddingCharacterClause;
 import io.proleap.cobol.parser.metamodel.environment.PasswordClause;
 import io.proleap.cobol.parser.metamodel.environment.RecordDelimiterClause;
 import io.proleap.cobol.parser.metamodel.environment.RecordKeyClause;
+import io.proleap.cobol.parser.metamodel.environment.RelativeKeyClause;
 import io.proleap.cobol.parser.metamodel.environment.ReserveClause;
 import io.proleap.cobol.parser.metamodel.environment.SelectClause;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -121,6 +122,12 @@ public class FileControlTest extends CobolTestSupport {
 			assertNotNull(fileStatusClause);
 			assertNotNull(fileStatusClause.getValueStmt());
 			assertNotNull(fileStatusClause.getValueStmt2());
+		}
+
+		{
+			final RelativeKeyClause relativeKeyClause = fileControlEntry.getRelativeKeyClause();
+			assertNotNull(relativeKeyClause);
+			assertNotNull(relativeKeyClause.getValueStmt());
 		}
 	}
 }
