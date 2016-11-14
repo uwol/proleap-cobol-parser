@@ -1,4 +1,4 @@
-package io.proleap.cobol.gpl.parser.environment.filecontrol;
+package io.proleap.cobol.gpl.parser.environment.inputoutput.filecontrol;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -40,7 +40,7 @@ public class FileControlTest extends CobolTestSupport {
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/gpl/parser/environment/filecontrol/FileControl.cbl");
+				"src/test/resources/io/proleap/cobol/gpl/parser/environment/inputoutput/filecontrol/FileControl.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 
