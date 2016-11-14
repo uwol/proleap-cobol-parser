@@ -13,6 +13,7 @@ import io.proleap.cobol.Cobol85Parser.ClassClauseContext;
 import io.proleap.cobol.Cobol85Parser.ClassClauseThroughContext;
 import io.proleap.cobol.Cobol85Parser.CurrencySignClauseContext;
 import io.proleap.cobol.Cobol85Parser.DecimalPointClauseContext;
+import io.proleap.cobol.Cobol85Parser.DefaultDisplaySignClauseContext;
 import io.proleap.cobol.Cobol85Parser.OdtClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReserveNetworkClauseContext;
 import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
@@ -25,6 +26,7 @@ import io.proleap.cobol.parser.metamodel.environment.specialnames.ChannelClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.CurrencySignClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.DecimalPointClause;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.DefaultDisplaySignClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.OdtClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ReserveNetworkClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
@@ -43,6 +45,8 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 	protected CurrencySignClause currencySignClause;
 
 	protected DecimalPointClause decimalPointClause;
+
+	protected DefaultDisplaySignClause defaultDisplaySignClause;
 
 	protected OdtClause odtClause;
 
@@ -155,6 +159,35 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 	}
 
 	@Override
+	public DefaultDisplaySignClause addDefaultDisplaySignClause(final DefaultDisplaySignClauseContext ctx) {
+		DefaultDisplaySignClause result = (DefaultDisplaySignClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new DefaultDisplaySignClauseImpl(programUnit, ctx);
+
+			/*
+			 * type
+			 */
+			final DefaultDisplaySignClause.Type type;
+
+			if (ctx.LEADING() != null) {
+				type = DefaultDisplaySignClause.Type.Leading;
+			} else if (ctx.TRAILING() != null) {
+				type = DefaultDisplaySignClause.Type.Trailing;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
+
+			defaultDisplaySignClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public OdtClause addOdtClause(final OdtClauseContext ctx) {
 		OdtClause result = (OdtClause) getASGElement(ctx);
 
@@ -236,6 +269,11 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 	@Override
 	public DecimalPointClause getDecimalPointClause() {
 		return decimalPointClause;
+	}
+
+	@Override
+	public DefaultDisplaySignClause getDefaultDisplaySignClause() {
+		return defaultDisplaySignClause;
 	}
 
 	@Override

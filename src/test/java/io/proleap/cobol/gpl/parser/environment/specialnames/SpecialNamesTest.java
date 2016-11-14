@@ -19,6 +19,7 @@ import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClauseThrough;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.CurrencySignClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.DecimalPointClause;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.DefaultDisplaySignClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.OdtClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ReserveNetworkClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
@@ -92,6 +93,13 @@ public class SpecialNamesTest extends CobolTestSupport {
 		{
 			final DecimalPointClause decimalPointClause = specialNamesParagraph.getDecimalPointClause();
 			assertNotNull(decimalPointClause);
+		}
+
+		{
+			final DefaultDisplaySignClause defaultDisplaySignClause = specialNamesParagraph
+					.getDefaultDisplaySignClause();
+			assertNotNull(defaultDisplaySignClause);
+			assertEquals(DefaultDisplaySignClause.Type.Trailing, defaultDisplaySignClause.getType());
 		}
 
 		{
