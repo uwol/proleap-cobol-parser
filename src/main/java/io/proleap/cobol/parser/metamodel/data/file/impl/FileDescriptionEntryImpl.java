@@ -13,6 +13,7 @@ import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntryContainerImpl;
 
+//FIXME: add file description entry clauses
 public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl implements FileDescriptionEntry {
 
 	protected final FileDescriptionEntryContext ctx;

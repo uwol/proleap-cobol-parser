@@ -36,7 +36,7 @@ import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSecti
 import io.proleap.cobol.parser.metamodel.data.workingstorage.impl.WorkingStorageSectionImpl;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
 
-//FIXME: add sections
+//FIXME: add communication section, report section, program library section
 public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision {
 
 	protected final DataDivisionContext ctx;
