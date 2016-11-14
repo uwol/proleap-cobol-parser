@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
 import io.proleap.cobol.Cobol85Parser.CobolWordContext;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
+import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
@@ -81,6 +82,18 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	@Override
 	public Call addCall(final DataNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
+	}
+
+	@Override
+	public Call addCall(final FileNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -206,6 +219,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected CallValueStmt createCallValueStmt(final DataNameContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final FileNameContext ctx) {
 		final Call delegatedCall = addCall(ctx);
 		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
 		return result;

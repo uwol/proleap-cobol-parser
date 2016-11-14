@@ -11,6 +11,7 @@ package io.proleap.cobol.parser.metamodel;
 import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
 import io.proleap.cobol.Cobol85Parser.CobolWordContext;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
+import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
@@ -25,6 +26,8 @@ public interface ProgramUnitElement extends CompilationUnitElement {
 	Call addCall(CobolWordContext ctx);
 
 	Call addCall(DataNameContext ctx);
+
+	Call addCall(FileNameContext ctx);
 
 	Call addCall(IdentifierContext ctx);
 

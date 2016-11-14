@@ -418,12 +418,12 @@ relativeKeyClause :
 ioControlParagraph :
 	I_O_CONTROL DOT_FS
 	(fileName DOT_FS)?
-	(ioControlClause (DOT_FS? ioControlClause)* DOT_FS)?
+	(ioControlClause* DOT_FS)?
 ;
 
 ioControlClause :
 	rerunClause
-	| sameAreaClause
+	| sameClause
 	| multipleFileClause
 	| commitmentControlClause
 ;
@@ -448,7 +448,7 @@ rerunEveryClock :
 	integerLiteral CLOCK_UNITS?
 ;
 
-sameAreaClause :
+sameClause :
 	SAME (RECORD | SORT | SORT_MERGE)? AREA? FOR? fileName+
 ;
 

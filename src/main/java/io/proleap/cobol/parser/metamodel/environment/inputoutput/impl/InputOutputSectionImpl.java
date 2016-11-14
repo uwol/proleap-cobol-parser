@@ -11,6 +11,7 @@ package io.proleap.cobol.parser.metamodel.environment.inputoutput.impl;
 import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
+import io.proleap.cobol.Cobol85Parser.IoControlClauseContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.InputOutputSection;
@@ -19,6 +20,7 @@ import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.imp
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.impl.IoControlParagraphImpl;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class InputOutputSectionImpl extends CobolDivisionElementImpl implements InputOutputSection {
 
@@ -58,6 +60,29 @@ public class InputOutputSectionImpl extends CobolDivisionElementImpl implements 
 
 		if (result == null) {
 			result = new IoControlParagraphImpl(programUnit, ctx);
+
+			if (ctx.fileName() != null) {
+				final ValueStmt fileNameValueStmt = createCallValueStmt(ctx.fileName());
+				result.setFileNameValueStmt(fileNameValueStmt);
+			}
+
+			for (final IoControlClauseContext ioControlClauseContext : ctx.ioControlClause()) {
+				if (ioControlClauseContext.rerunClause() != null) {
+					result.addRerunClause(ioControlClauseContext.rerunClause());
+				}
+
+				if (ioControlClauseContext.sameClause() != null) {
+					result.addSameClause(ioControlClauseContext.sameClause());
+				}
+
+				if (ioControlClauseContext.multipleFileClause() != null) {
+					result.addMultipleFileClause(ioControlClauseContext.multipleFileClause());
+				}
+
+				if (ioControlClauseContext.commitmentControlClause() != null) {
+					result.addCommitmentControlClause(ioControlClauseContext.commitmentControlClause());
+				}
+			}
 
 			ioControlParagraph = result;
 			registerASGElement(result);

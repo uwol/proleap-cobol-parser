@@ -8,8 +8,32 @@
 
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol;
 
+import io.proleap.cobol.Cobol85Parser.CommitmentControlClauseContext;
+import io.proleap.cobol.Cobol85Parser.MultipleFileClauseContext;
+import io.proleap.cobol.Cobol85Parser.RerunClauseContext;
+import io.proleap.cobol.Cobol85Parser.SameClauseContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface IoControlParagraph extends CobolDivisionElement {
 
+	CommitmentControlClause addCommitmentControlClause(CommitmentControlClauseContext ctx);
+
+	MultipleFileClause addMultipleFileClause(MultipleFileClauseContext ctx);
+
+	RerunClause addRerunClause(RerunClauseContext ctx);
+
+	SameClause addSameClause(SameClauseContext ctx);
+
+	CommitmentControlClause getCommitmentControlClause();
+
+	ValueStmt getFileNameValueStmt();
+
+	MultipleFileClause getMultipleFileClause();
+
+	RerunClause getRerunClause();
+
+	SameClause getSameClause();
+
+	void setFileNameValueStmt(ValueStmt fileNameValueStmt);
 }
