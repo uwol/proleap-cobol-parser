@@ -55,6 +55,15 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	}
 
 	@Override
+	public Boolean visitLocalStorageSection(@NotNull final Cobol85Parser.LocalStorageSectionContext ctx) {
+		final DataDivision dataDivision = findDataDivision(ctx);
+
+		dataDivision.addLocalStorageSection(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitScreenSection(@NotNull final Cobol85Parser.ScreenSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 

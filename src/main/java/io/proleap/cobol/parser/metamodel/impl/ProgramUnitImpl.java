@@ -70,6 +70,18 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 				result.addFileSection(dataDivisionBodyContext.fileSection());
 			}
 
+			if (dataDivisionBodyContext.linkageSection() != null) {
+				result.addLinkageSection(dataDivisionBodyContext.linkageSection());
+			}
+
+			if (dataDivisionBodyContext.localStorageSection() != null) {
+				result.addLocalStorageSection(dataDivisionBodyContext.localStorageSection());
+			}
+
+			if (dataDivisionBodyContext.screenSection() != null) {
+				result.addScreenSection(dataDivisionBodyContext.screenSection());
+			}
+
 			if (dataDivisionBodyContext.workingStorageSection() != null) {
 				result.addWorkingStorageSection(dataDivisionBodyContext.workingStorageSection());
 			}

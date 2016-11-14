@@ -15,6 +15,7 @@ import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
 import io.proleap.cobol.Cobol85Parser.LinkageSectionContext;
+import io.proleap.cobol.Cobol85Parser.LocalStorageSectionContext;
 import io.proleap.cobol.Cobol85Parser.ScreenSectionContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -27,6 +28,8 @@ import io.proleap.cobol.parser.metamodel.data.file.FileSection;
 import io.proleap.cobol.parser.metamodel.data.file.impl.FileSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.linkage.LinkageSection;
 import io.proleap.cobol.parser.metamodel.data.linkage.impl.LinkageSectionImpl;
+import io.proleap.cobol.parser.metamodel.data.localstorage.LocalStorageSection;
+import io.proleap.cobol.parser.metamodel.data.localstorage.impl.LocalStorageSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.screen.ScreenSection;
 import io.proleap.cobol.parser.metamodel.data.screen.impl.ScreenSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
@@ -43,6 +46,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	protected FileSection fileSection;
 
 	protected LinkageSection linkageSection;
+
+	protected LocalStorageSection localStorageSection;
 
 	protected ScreenSection screenSection;
 
@@ -116,6 +121,32 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	}
 
 	@Override
+	public LocalStorageSection addLocalStorageSection(final LocalStorageSectionContext ctx) {
+		LocalStorageSection result = (LocalStorageSection) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx.localName());
+			result = new LocalStorageSectionImpl(name, programUnit, ctx);
+
+			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
+
+			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
+				final DataDescriptionEntry dataDescriptionEntry = result
+						.createDataDescriptionEntry(lastDataDescriptionEntryGroup, dataDescriptionEntryContext);
+
+				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
+					lastDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+				}
+			}
+
+			localStorageSection = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public ScreenSection addScreenSection(final ScreenSectionContext ctx) {
 		ScreenSection result = (ScreenSection) getASGElement(ctx);
 
@@ -167,6 +198,11 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	@Override
 	public LinkageSection getLinkageSection() {
 		return linkageSection;
+	}
+
+	@Override
+	public LocalStorageSection getLocalStorageSection() {
+		return localStorageSection;
 	}
 
 	@Override
