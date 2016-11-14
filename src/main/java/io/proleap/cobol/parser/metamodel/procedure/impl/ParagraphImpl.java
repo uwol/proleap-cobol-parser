@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -29,9 +28,8 @@ public class ParagraphImpl extends CobolDivisionElementImpl implements Paragraph
 
 	protected final List<ProcedureCall> procedureCalls = new ArrayList<ProcedureCall>();
 
-	public ParagraphImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
-			final ParagraphContext ctx) {
-		super(programUnit, scope, ctx);
+	public ParagraphImpl(final String name, final ProgramUnit programUnit, final ParagraphContext ctx) {
+		super(programUnit, ctx);
 
 		this.name = name;
 		this.ctx = ctx;

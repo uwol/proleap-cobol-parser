@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.configuration.object.impl;
 
 import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.configuration.object.CharacterSetClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -18,9 +17,8 @@ public class CharacterSetClauseImpl extends CobolDivisionElementImpl implements 
 
 	protected final CharacterSetClauseContext ctx;
 
-	public CharacterSetClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final CharacterSetClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public CharacterSetClauseImpl(final ProgramUnit programUnit, final CharacterSetClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

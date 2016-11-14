@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.ParagraphName;
@@ -20,9 +19,8 @@ public class ParagraphNameImpl extends CobolDivisionElementImpl implements Parag
 
 	protected final String name;
 
-	public ParagraphNameImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
-			final ParagraphNameContext ctx) {
-		super(programUnit, scope, ctx);
+	public ParagraphNameImpl(final String name, final ProgramUnit programUnit, final ParagraphNameContext ctx) {
+		super(programUnit, ctx);
 
 		this.name = name;
 		this.ctx = ctx;

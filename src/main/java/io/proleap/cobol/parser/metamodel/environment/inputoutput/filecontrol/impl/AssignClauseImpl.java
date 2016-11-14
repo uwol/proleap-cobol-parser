@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl;
 
 import io.proleap.cobol.Cobol85Parser.AssignClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AssignClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -21,8 +20,8 @@ public class AssignClauseImpl extends CobolDivisionElementImpl implements Assign
 
 	protected ValueStmt valueStmt;
 
-	public AssignClauseImpl(final ProgramUnit programUnit, final CobolDivision scope, final AssignClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public AssignClauseImpl(final ProgramUnit programUnit, final AssignClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

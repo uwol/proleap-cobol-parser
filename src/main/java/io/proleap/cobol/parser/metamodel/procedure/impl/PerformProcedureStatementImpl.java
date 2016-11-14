@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -24,9 +23,8 @@ public class PerformProcedureStatementImpl extends CobolDivisionElementImpl impl
 
 	protected final PerformProcedureStatementContext ctx;
 
-	public PerformProcedureStatementImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final PerformProcedureStatementContext ctx) {
-		super(programUnit, scope, ctx);
+	public PerformProcedureStatementImpl(final ProgramUnit programUnit, final PerformProcedureStatementContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

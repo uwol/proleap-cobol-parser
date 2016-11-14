@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.impl;
 
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 
@@ -19,9 +18,8 @@ public class IntegerLiteralImpl extends CobolDivisionElementImpl implements Inte
 
 	protected final Integer value;
 
-	public IntegerLiteralImpl(final Integer value, final ProgramUnit programUnit, final CobolDivision scope,
-			final IntegerLiteralContext ctx) {
-		super(programUnit, scope, ctx);
+	public IntegerLiteralImpl(final Integer value, final ProgramUnit programUnit, final IntegerLiteralContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 		this.value = value;

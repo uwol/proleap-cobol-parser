@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl;
 
 import io.proleap.cobol.Cobol85Parser.FileStatusClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileStatusClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -23,9 +22,8 @@ public class FileStatusClauseImpl extends CobolDivisionElementImpl implements Fi
 
 	protected ValueStmt valueStmt2;
 
-	public FileStatusClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final FileStatusClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public FileStatusClauseImpl(final ProgramUnit programUnit, final FileStatusClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

@@ -62,7 +62,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		AuthorParagraph result = (AuthorParagraph) getASGElement(ctx);
 
 		if (result == null) {
-			result = new AuthorParagraphImpl(programUnit, this, ctx);
+			result = new AuthorParagraphImpl(programUnit, ctx);
 
 			authorParagraph = result;
 			registerASGElement(result);
@@ -76,7 +76,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		DateCompiledParagraph result = (DateCompiledParagraph) getASGElement(ctx);
 
 		if (result == null) {
-			result = new DateCompiledParagraphImpl(programUnit, this, ctx);
+			result = new DateCompiledParagraphImpl(programUnit, ctx);
 
 			dateCompiledParagraph = result;
 			registerASGElement(result);
@@ -90,7 +90,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		DateWrittenParagraph result = (DateWrittenParagraph) getASGElement(ctx);
 
 		if (result == null) {
-			result = new DateWrittenParagraphImpl(programUnit, this, ctx);
+			result = new DateWrittenParagraphImpl(programUnit, ctx);
 
 			dateWrittenParagraph = result;
 			registerASGElement(result);
@@ -104,7 +104,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		InstallationParagraph result = (InstallationParagraph) getASGElement(ctx);
 
 		if (result == null) {
-			result = new InstallationParagraphImpl(programUnit, this, ctx);
+			result = new InstallationParagraphImpl(programUnit, ctx);
 
 			installationParagraph = result;
 			registerASGElement(result);
@@ -120,7 +120,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			final String name = determineName(ctx);
 
-			result = new ProgramIdParagraphImpl(name, programUnit, this, ctx);
+			result = new ProgramIdParagraphImpl(name, programUnit, ctx);
 
 			final Attribute attribute;
 
@@ -150,7 +150,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		RemarksParagraph result = (RemarksParagraph) getASGElement(ctx);
 
 		if (result == null) {
-			result = new RemarksParagraphImpl(programUnit, this, ctx);
+			result = new RemarksParagraphImpl(programUnit, ctx);
 
 			remarksParagraph = result;
 			registerASGElement(result);
@@ -164,7 +164,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		SecurityParagraph result = (SecurityParagraph) getASGElement(ctx);
 
 		if (result == null) {
-			result = new SecurityParagraphImpl(programUnit, this, ctx);
+			result = new SecurityParagraphImpl(programUnit, ctx);
 
 			securityParagraph = result;
 			registerASGElement(result);

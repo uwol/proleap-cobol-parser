@@ -9,13 +9,43 @@
 package io.proleap.cobol.parser.metamodel.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.TerminalNode;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
-import io.proleap.cobol.parser.metamodel.ASGElement;
+import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
+import io.proleap.cobol.Cobol85Parser.CobolWordContext;
+import io.proleap.cobol.Cobol85Parser.DataNameContext;
+import io.proleap.cobol.Cobol85Parser.IdentifierContext;
+import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
+import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
+import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
+import io.proleap.cobol.parser.metamodel.IntegerLiteral;
+import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.ProgramUnitElement;
+import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.call.DataDescriptionEntryCall;
+import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
+import io.proleap.cobol.parser.metamodel.call.impl.DataDescriptionEntryCallImpl;
+import io.proleap.cobol.parser.metamodel.call.impl.ProcedureCallImpl;
+import io.proleap.cobol.parser.metamodel.call.impl.UndefinedCallImpl;
+import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
+import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.TerminalValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.impl.CallValueStmtImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.impl.IntegerLiteralValueStmtImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.impl.TerminalValueStmtImpl;
+import io.proleap.cobol.parser.util.StringUtils;
 
 public class ProgramUnitElementImpl extends CompilationUnitElementImpl implements ProgramUnitElement {
+
+	private final static Logger LOG = LogManager.getLogger(ProgramUnitElementImpl.class);
 
 	protected ProgramUnit programUnit;
 
@@ -26,13 +56,189 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	@Override
-	protected String determineName(final ParseTree ctx) {
-		return CobolParserContext.getInstance().getNameResolver().determineName(ctx);
+	public Call addCall(final AssignmentNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
 	}
 
 	@Override
-	protected ASGElement getASGElement(final ParseTree ctx) {
-		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
+	public Call addCall(final CobolWordContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
+	}
+
+	@Override
+	public Call addCall(final DataNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
+	}
+
+	@Override
+	public Call addCall(final IdentifierContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			final DataDescriptionEntry dataDescriptionEntry = programUnit.getDataDivision()
+					.getDataDescriptionEntry(name);
+
+			/*
+			 * create call model element
+			 */
+			if (dataDescriptionEntry != null) {
+				final DataDescriptionEntryCall dataDescriptionEntryCall = new DataDescriptionEntryCallImpl(name,
+						dataDescriptionEntry, programUnit, ctx);
+
+				associateDataDescriptionEntryCallWithDataDescriptionEntry(dataDescriptionEntryCall,
+						dataDescriptionEntry);
+
+				result = dataDescriptionEntryCall;
+			} else {
+				LOG.warn("call to unknown element {}", name);
+				result = new UndefinedCallImpl(name, programUnit, ctx);
+			}
+		}
+
+		return result;
+	}
+
+	@Override
+	public Call addCall(final ProcedureNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			final Paragraph paragraph = programUnit.getProcedureDivision().getParagraph(name);
+
+			if (paragraph != null) {
+				final ProcedureCall procedureCall = new ProcedureCallImpl(name, paragraph, programUnit, ctx);
+
+				associateProcedureCallWithParagraph(procedureCall, paragraph);
+
+				result = procedureCall;
+			} else {
+				result = new UndefinedCallImpl(name, programUnit, ctx);
+			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public Call addCall(final QualifiedDataNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
+	}
+
+	@Override
+	public IntegerLiteral addIntegerLiteral(final IntegerLiteralContext ctx) {
+		IntegerLiteral result = (IntegerLiteral) getASGElement(ctx);
+
+		if (result == null) {
+			final Integer value = StringUtils.parseInteger(ctx.getText());
+			result = new IntegerLiteralImpl(value, programUnit, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public Literal addLiteral(final LiteralContext ctx) {
+		Literal result = (Literal) getASGElement(ctx);
+
+		if (result == null) {
+			final String value = ctx.getText();
+			result = new LiteralImpl(value, programUnit, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected void associateDataDescriptionEntryCallWithDataDescriptionEntry(
+			final DataDescriptionEntryCall dataDescriptionEntryCall, final DataDescriptionEntry dataDescriptionEntry) {
+		dataDescriptionEntry.addDataDescriptionEntryCall(dataDescriptionEntryCall);
+	}
+
+	protected void associateProcedureCallWithParagraph(final ProcedureCall procedureCall, final Paragraph paragraph) {
+		paragraph.addProcedureCall(procedureCall);
+	}
+
+	protected CallValueStmt createCallValueStmt(final AssignmentNameContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final CobolWordContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final DataNameContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final IdentifierContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final QualifiedDataNameContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected IntegerLiteralValueStmt createIntegerLiteralValueStmt(final IntegerLiteralContext ctx) {
+		final IntegerLiteral integerLiteral = addIntegerLiteral(ctx);
+		final IntegerLiteralValueStmt result = new IntegerLiteralValueStmtImpl(programUnit, ctx);
+		result.setIntegerLiteral(integerLiteral);
+		return result;
+	}
+
+	protected LiteralValueStmt createLiteralValueStmt(final LiteralContext ctx) {
+		final Literal literal = addLiteral(ctx);
+		final LiteralValueStmt result = new LiteralValueStmtImpl(programUnit, ctx);
+		result.setLiteral(literal);
+		return result;
+	}
+
+	protected TerminalValueStmt createTerminalValueStmt(final TerminalNode ctx) {
+		final TerminalValueStmt result = new TerminalValueStmtImpl(programUnit, ctx);
 		return result;
 	}
 
@@ -41,11 +247,4 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return programUnit;
 	}
 
-	@Override
-	protected void registerASGElement(final ASGElement asgElement) {
-		assert asgElement != null;
-		assert asgElement.getCtx() != null;
-
-		CobolParserContext.getInstance().getASGElementRegistry().addASGElement(asgElement);
-	}
 }

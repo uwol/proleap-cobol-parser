@@ -13,7 +13,6 @@ import java.util.List;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
@@ -30,9 +29,8 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 
 	protected final String name;
 
-	public DataDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
-			final ParseTree ctx) {
-		super(programUnit, scope, ctx);
+	public DataDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final ParseTree ctx) {
+		super(programUnit, ctx);
 
 		this.name = name;
 	}

@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl;
 
 import io.proleap.cobol.Cobol85Parser.OrganizationClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.OrganizationClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -22,9 +21,8 @@ public class OrganizationClauseImpl extends CobolDivisionElementImpl implements 
 
 	protected Type type;
 
-	public OrganizationClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final OrganizationClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public OrganizationClauseImpl(final ProgramUnit programUnit, final OrganizationClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

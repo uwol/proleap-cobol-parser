@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl;
 
 import io.proleap.cobol.Cobol85Parser.RelativeKeyClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.RelativeKeyClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -21,9 +20,8 @@ public class RelativeKeyClauseImpl extends CobolDivisionElementImpl implements R
 
 	protected ValueStmt valueStmt;
 
-	public RelativeKeyClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final RelativeKeyClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public RelativeKeyClauseImpl(final ProgramUnit programUnit, final RelativeKeyClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

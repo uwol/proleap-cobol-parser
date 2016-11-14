@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.DisplayStatement;
@@ -18,9 +17,8 @@ public class DisplayStatementImpl extends CobolDivisionElementImpl implements Di
 
 	protected final DisplayStatementContext ctx;
 
-	public DisplayStatementImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final DisplayStatementContext ctx) {
-		super(programUnit, scope, ctx);
+	public DisplayStatementImpl(final ProgramUnit programUnit, final DisplayStatementContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

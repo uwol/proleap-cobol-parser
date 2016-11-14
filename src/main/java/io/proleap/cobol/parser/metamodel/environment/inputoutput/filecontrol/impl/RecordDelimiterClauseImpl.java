@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl;
 
 import io.proleap.cobol.Cobol85Parser.RecordDelimiterClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.RecordDelimiterClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -21,9 +20,8 @@ public class RecordDelimiterClauseImpl extends CobolDivisionElementImpl implemen
 
 	protected ValueStmt valueStmt;
 
-	public RecordDelimiterClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final RecordDelimiterClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public RecordDelimiterClauseImpl(final ProgramUnit programUnit, final RecordDelimiterClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

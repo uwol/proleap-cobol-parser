@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.configuration.object.impl;
 
 import io.proleap.cobol.Cobol85Parser.DiskSizeClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.configuration.object.DiskSizeClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -23,9 +22,8 @@ public class DiskSizeClauseImpl extends CobolDivisionElementImpl implements Disk
 
 	protected ValueStmt valueStmt;
 
-	public DiskSizeClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final DiskSizeClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public DiskSizeClauseImpl(final ProgramUnit programUnit, final DiskSizeClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

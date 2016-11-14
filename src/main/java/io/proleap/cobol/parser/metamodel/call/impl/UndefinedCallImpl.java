@@ -10,15 +10,13 @@ package io.proleap.cobol.parser.metamodel.call.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 
 public class UndefinedCallImpl extends CallImpl implements Call {
 
-	public UndefinedCallImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
-			final ParseTree ctx) {
-		super(name, programUnit, scope, ctx);
+	public UndefinedCallImpl(final String name, final ProgramUnit programUnit, final ParseTree ctx) {
+		super(name, programUnit, ctx);
 	}
 
 	@Override

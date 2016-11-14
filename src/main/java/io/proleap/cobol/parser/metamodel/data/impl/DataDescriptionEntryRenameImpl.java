@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.data.impl;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryRename;
 
@@ -18,9 +17,9 @@ public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl imp
 
 	protected final DataDescriptionEntryFormat2Context ctx;
 
-	public DataDescriptionEntryRenameImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
+	public DataDescriptionEntryRenameImpl(final String name, final ProgramUnit programUnit,
 			final DataDescriptionEntryFormat2Context ctx) {
-		super(name, programUnit, scope, ctx);
+		super(name, programUnit, ctx);
 
 		this.ctx = ctx;
 	}

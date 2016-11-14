@@ -10,7 +10,6 @@ package io.proleap.cobol.parser.metamodel.call.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
@@ -20,8 +19,8 @@ public class DataDescriptionEntryCallImpl extends CallImpl implements DataDescri
 	protected DataDescriptionEntry dataDescriptionEntry;
 
 	public DataDescriptionEntryCallImpl(final String name, final DataDescriptionEntry dataDescriptionEntry,
-			final ProgramUnit programUnit, final CobolDivision scope, final ParseTree ctx) {
-		super(name, programUnit, scope, ctx);
+			final ProgramUnit programUnit, final ParseTree ctx) {
+		super(name, programUnit, ctx);
 
 		this.dataDescriptionEntry = dataDescriptionEntry;
 	}

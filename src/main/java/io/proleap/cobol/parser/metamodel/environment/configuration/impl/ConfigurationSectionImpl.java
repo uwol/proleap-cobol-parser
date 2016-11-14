@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.configuration.impl;
 
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.configuration.ConfigurationSection;
 import io.proleap.cobol.parser.metamodel.environment.configuration.object.ObjectComputerParagraph;
@@ -24,9 +23,8 @@ public class ConfigurationSectionImpl extends CobolDivisionElementImpl implement
 
 	protected SourceComputerParagraph sourceComputerParagraph;
 
-	public ConfigurationSectionImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final ConfigurationSectionContext ctx) {
-		super(programUnit, scope, ctx);
+	public ConfigurationSectionImpl(final ProgramUnit programUnit, final ConfigurationSectionContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

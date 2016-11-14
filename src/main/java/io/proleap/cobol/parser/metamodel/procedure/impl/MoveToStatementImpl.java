@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -27,9 +26,8 @@ public class MoveToStatementImpl extends CobolDivisionElementImpl implements Mov
 
 	protected ValueStmt sendingAreaValueStmt;
 
-	public MoveToStatementImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final MoveToStatementContext ctx) {
-		super(programUnit, scope, ctx);
+	public MoveToStatementImpl(final ProgramUnit programUnit, final MoveToStatementContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

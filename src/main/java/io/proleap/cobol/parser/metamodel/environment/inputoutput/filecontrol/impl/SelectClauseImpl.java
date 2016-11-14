@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl;
 
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.SelectClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -20,9 +19,8 @@ public class SelectClauseImpl extends CobolDivisionElementImpl implements Select
 
 	protected final String name;
 
-	public SelectClauseImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
-			final SelectClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public SelectClauseImpl(final String name, final ProgramUnit programUnit, final SelectClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 		this.name = name;

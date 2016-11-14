@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl;
 
 import io.proleap.cobol.Cobol85Parser.RecordKeyClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.PasswordClause;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.RecordKeyClause;
@@ -24,9 +23,8 @@ public class RecordKeyClauseImpl extends CobolDivisionElementImpl implements Rec
 
 	protected ValueStmt valueStmt;
 
-	public RecordKeyClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final RecordKeyClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public RecordKeyClauseImpl(final ProgramUnit programUnit, final RecordKeyClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

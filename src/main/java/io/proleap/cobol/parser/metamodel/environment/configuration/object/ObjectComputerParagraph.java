@@ -8,10 +8,25 @@
 
 package io.proleap.cobol.parser.metamodel.environment.configuration.object;
 
+import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
+import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
+import io.proleap.cobol.Cobol85Parser.DiskSizeClauseContext;
+import io.proleap.cobol.Cobol85Parser.MemorySizeClauseContext;
+import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.NamedElement;
 
 public interface ObjectComputerParagraph extends CobolDivisionElement, NamedElement {
+
+	CharacterSetClause addCharacterSetClause(CharacterSetClauseContext ctx);
+
+	CollatingSequenceClause addCollatingSequenceClause(CollatingSequenceClauseContext ctx);
+
+	DiskSizeClause addDiskSizeClause(DiskSizeClauseContext ctx);
+
+	MemorySizeClause addMemorySizeClause(MemorySizeClauseContext ctx);
+
+	SegmentLimitClause addSegmentLimitClause(SegmentLimitClauseContext ctx);
 
 	CharacterSetClause getCharacterSetClause();
 
@@ -23,13 +38,4 @@ public interface ObjectComputerParagraph extends CobolDivisionElement, NamedElem
 
 	SegmentLimitClause getSegmentLimitClause();
 
-	void setCharacterSetClause(CharacterSetClause characterSetClause);
-
-	void setCollatingSequenceClause(CollatingSequenceClause collatingSequenceClause);
-
-	void setDiskSizeClause(DiskSizeClause diskSizeClause);
-
-	void setMemorySizeClause(MemorySizeClause memorySizeClause);
-
-	void setSegmentLimitClause(SegmentLimitClause segmentLimitClause);
 }

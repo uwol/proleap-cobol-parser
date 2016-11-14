@@ -10,7 +10,6 @@ package io.proleap.cobol.parser.metamodel.valuestmt.impl;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.valuestmt.TerminalValueStmt;
 
@@ -18,8 +17,8 @@ public class TerminalValueStmtImpl extends ValueStmtImpl implements TerminalValu
 
 	protected TerminalNode terminal;
 
-	public TerminalValueStmtImpl(final ProgramUnit programUnit, final CobolDivision scope, final TerminalNode ctx) {
-		super(programUnit, scope, ctx);
+	public TerminalValueStmtImpl(final ProgramUnit programUnit, final TerminalNode ctx) {
+		super(programUnit, ctx);
 
 		terminal = ctx;
 	}

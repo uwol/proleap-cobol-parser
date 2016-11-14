@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.impl;
 
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 
@@ -19,9 +18,8 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 
 	protected final String value;
 
-	public LiteralImpl(final String value, final ProgramUnit programUnit, final CobolDivision scope,
-			final LiteralContext ctx) {
-		super(programUnit, scope, ctx);
+	public LiteralImpl(final String value, final ProgramUnit programUnit, final LiteralContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 		this.value = value;

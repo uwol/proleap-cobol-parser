@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.WorkingStorageSection;
@@ -24,9 +23,8 @@ public class WorkingStorageSectionImpl extends CobolDivisionElementImpl implemen
 
 	protected List<DataDescriptionEntry> dataDescriptionEntries = new ArrayList<DataDescriptionEntry>();
 
-	public WorkingStorageSectionImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final WorkingStorageSectionContext ctx) {
-		super(programUnit, scope, ctx);
+	public WorkingStorageSectionImpl(final ProgramUnit programUnit, final WorkingStorageSectionContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

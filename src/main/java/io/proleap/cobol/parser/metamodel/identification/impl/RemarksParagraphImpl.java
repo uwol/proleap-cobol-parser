@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.identification.impl;
 
 import io.proleap.cobol.Cobol85Parser.RemarksParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.RemarksParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -18,9 +17,8 @@ public class RemarksParagraphImpl extends CobolDivisionElementImpl implements Re
 
 	protected final RemarksParagraphContext ctx;
 
-	public RemarksParagraphImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final RemarksParagraphContext ctx) {
-		super(programUnit, scope, ctx);
+	public RemarksParagraphImpl(final ProgramUnit programUnit, final RemarksParagraphContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

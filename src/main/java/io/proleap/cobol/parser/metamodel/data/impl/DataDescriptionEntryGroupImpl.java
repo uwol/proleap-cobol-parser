@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
@@ -30,9 +29,9 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 
 	protected String pictureString;
 
-	public DataDescriptionEntryGroupImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
+	public DataDescriptionEntryGroupImpl(final String name, final ProgramUnit programUnit,
 			final DataDescriptionEntryFormat1Context ctx) {
-		super(name, programUnit, scope, ctx);
+		super(name, programUnit, ctx);
 
 		this.ctx = ctx;
 	}

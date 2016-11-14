@@ -10,7 +10,6 @@ package io.proleap.cobol.parser.metamodel.call.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
 import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
@@ -20,8 +19,8 @@ public class ProcedureCallImpl extends CallImpl implements ProcedureCall {
 	protected Paragraph paragraph;
 
 	public ProcedureCallImpl(final String name, final Paragraph paragraph, final ProgramUnit programUnit,
-			final CobolDivision scope, final ParseTree ctx) {
-		super(name, programUnit, scope, ctx);
+			final ParseTree ctx) {
+		super(name, programUnit, ctx);
 
 		this.paragraph = paragraph;
 	}

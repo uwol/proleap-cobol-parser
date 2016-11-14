@@ -16,93 +16,38 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import io.proleap.cobol.Cobol85Parser.AccessModeClauseContext;
-import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
-import io.proleap.cobol.Cobol85Parser.AlternateRecordKeyClauseContext;
-import io.proleap.cobol.Cobol85Parser.AssignClauseContext;
-import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
-import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionParagraphContext;
-import io.proleap.cobol.Cobol85Parser.DiskSizeClauseContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
 import io.proleap.cobol.Cobol85Parser.FileControlClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
-import io.proleap.cobol.Cobol85Parser.FileStatusClauseContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionParagraphContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
-import io.proleap.cobol.Cobol85Parser.MemorySizeClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerClauseContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
-import io.proleap.cobol.Cobol85Parser.OrganizationClauseContext;
-import io.proleap.cobol.Cobol85Parser.PaddingCharacterClauseContext;
-import io.proleap.cobol.Cobol85Parser.PasswordClauseContext;
-import io.proleap.cobol.Cobol85Parser.RecordDelimiterClauseContext;
-import io.proleap.cobol.Cobol85Parser.RecordKeyClauseContext;
-import io.proleap.cobol.Cobol85Parser.RelativeKeyClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
-import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
-import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
-import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.configuration.ConfigurationSection;
 import io.proleap.cobol.parser.metamodel.environment.configuration.impl.ConfigurationSectionImpl;
-import io.proleap.cobol.parser.metamodel.environment.configuration.object.CharacterSetClause;
-import io.proleap.cobol.parser.metamodel.environment.configuration.object.CollatingSequenceClause;
-import io.proleap.cobol.parser.metamodel.environment.configuration.object.DiskSizeClause;
-import io.proleap.cobol.parser.metamodel.environment.configuration.object.MemorySizeClause;
 import io.proleap.cobol.parser.metamodel.environment.configuration.object.ObjectComputerParagraph;
-import io.proleap.cobol.parser.metamodel.environment.configuration.object.SegmentLimitClause;
-import io.proleap.cobol.parser.metamodel.environment.configuration.object.impl.CharacterSetClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.configuration.object.impl.CollatingSequenceClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.configuration.object.impl.DiskSizeClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.configuration.object.impl.MemorySizeClauseImpl;
 import io.proleap.cobol.parser.metamodel.environment.configuration.object.impl.ObjectComputerParagraphImpl;
-import io.proleap.cobol.parser.metamodel.environment.configuration.object.impl.SegmentLimitClauseImpl;
 import io.proleap.cobol.parser.metamodel.environment.configuration.source.SourceComputerParagraph;
 import io.proleap.cobol.parser.metamodel.environment.configuration.source.impl.SourceComputerParagraphImpl;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.InputOutputSection;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AccessModeClause;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AlternateRecordKeyClause;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileStatusClause;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.OrganizationClause;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.PaddingCharacterClause;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.PasswordClause;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.RecordDelimiterClause;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.RecordKeyClause;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.RelativeKeyClause;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.ReserveClause;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.SelectClause;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.AccessModeClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.AlternateRecordKeyClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.AssignClauseImpl;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.FileControlEntryImpl;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.FileControlParagraphImpl;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.FileStatusClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.OrganizationClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.PaddingCharacterClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.PasswordClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.RecordDelimiterClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.RecordKeyClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.RelativeKeyClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.ReserveClauseImpl;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.SelectClauseImpl;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.impl.InputOutputSectionImpl;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.impl.IoControlParagraphImpl;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.impl.SpecialNamesParagraphImpl;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class EnvironmentDivisionImpl extends CobolDivisionImpl implements EnvironmentDivision {
 
@@ -127,129 +72,11 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 	}
 
 	@Override
-	public AccessModeClause addAccessModeClause(final AccessModeClauseContext ctx) {
-		AccessModeClause result = (AccessModeClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new AccessModeClauseImpl(programUnit, this, ctx);
-
-			final AccessModeClause.Mode mode;
-
-			if (ctx.SEQUENTIAL() != null) {
-				mode = AccessModeClause.Mode.Sequential;
-			} else if (ctx.RANDOM() != null) {
-				mode = AccessModeClause.Mode.Random;
-			} else if (ctx.DYNAMIC() != null) {
-				mode = AccessModeClause.Mode.Dynamic;
-			} else if (ctx.EXCLUSIVE() != null) {
-				mode = AccessModeClause.Mode.Exclusive;
-			} else {
-				LOG.warn("unknown mode {}.", ctx);
-				mode = null;
-			}
-
-			result.setMode(mode);
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public AlternateRecordKeyClause addAlternateRecordKeyClause(final AlternateRecordKeyClauseContext ctx) {
-		AlternateRecordKeyClause result = (AlternateRecordKeyClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new AlternateRecordKeyClauseImpl(programUnit, this, ctx);
-
-			final ValueStmt valueStmt = createCallValueStmt(ctx.qualifiedDataName());
-			result.setValueStmt(valueStmt);
-
-			if (ctx.passwordClause() != null) {
-				final PasswordClause passwordClause = addPasswordClause(ctx.passwordClause());
-				result.setPasswordClause(passwordClause);
-			}
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public AssignClause addAssignClause(final AssignClauseContext ctx) {
-		AssignClause result = (AssignClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new AssignClauseImpl(programUnit, this, ctx);
-
-			final ValueStmt valueStmt;
-
-			if (ctx.assignmentName() != null) {
-				valueStmt = createCallValueStmt(ctx.assignmentName());
-			} else if (ctx.literal() != null) {
-				valueStmt = createLiteralValueStmt(ctx.literal());
-			} else {
-				LOG.warn("unknown value stmt {}.", ctx);
-				valueStmt = null;
-			}
-
-			result.setValueStmt(valueStmt);
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public CharacterSetClause addCharacterSetClause(final CharacterSetClauseContext ctx) {
-		CharacterSetClause result = (CharacterSetClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new CharacterSetClauseImpl(programUnit, this, ctx);
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public CollatingSequenceClause addCollatingSequenceClause(final CollatingSequenceClauseContext ctx) {
-		CollatingSequenceClause result = (CollatingSequenceClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new CollatingSequenceClauseImpl(programUnit, this, ctx);
-
-			for (final AlphabetNameContext alphabetNameContext : ctx.alphabetName()) {
-				final String alphabetName = determineName(alphabetNameContext);
-				result.addAlphabetName(alphabetName);
-			}
-
-			if (ctx.collatingSequenceClauseAlphanumeric() != null) {
-				final String alphanumeric = determineName(ctx.collatingSequenceClauseAlphanumeric().alphabetName());
-				result.setAlphaNumeric(alphanumeric);
-			}
-
-			if (ctx.collatingSequenceClauseNational() != null) {
-				final String national = determineName(ctx.collatingSequenceClauseNational().alphabetName());
-				result.setNational(national);
-			}
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
 	public ConfigurationSection addConfigurationSection(final ConfigurationSectionContext ctx) {
 		ConfigurationSection result = (ConfigurationSection) getASGElement(ctx);
 
 		if (result == null) {
-			result = new ConfigurationSectionImpl(programUnit, this, ctx);
+			result = new ConfigurationSectionImpl(programUnit, ctx);
 
 			for (final ConfigurationSectionParagraphContext configurationSectionParagraphContext : ctx
 					.configurationSectionParagraph()) {
@@ -275,119 +102,58 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 	}
 
 	@Override
-	public DiskSizeClause addDiskSizeClause(final DiskSizeClauseContext ctx) {
-		DiskSizeClause result = (DiskSizeClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new DiskSizeClauseImpl(programUnit, this, ctx);
-
-			/*
-			 * size value stmt
-			 */
-			final ValueStmt valueStmt;
-
-			if (ctx.integerLiteral() != null) {
-				valueStmt = createIntegerLiteralValueStmt(ctx.integerLiteral());
-			} else if (ctx.cobolWord() != null) {
-				valueStmt = createCallValueStmt(ctx.cobolWord());
-			} else {
-				LOG.warn("unknown value stmt {}.", ctx);
-				valueStmt = null;
-			}
-
-			result.setValueStmt(valueStmt);
-
-			/*
-			 * size unit
-			 */
-			final DiskSizeClause.Unit unit;
-
-			if (ctx.WORDS() != null) {
-				unit = DiskSizeClause.Unit.Words;
-			} else if (ctx.MODULES() != null) {
-				unit = DiskSizeClause.Unit.Modules;
-			} else {
-				unit = null;
-			}
-
-			result.setUnit(unit);
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
 	public FileControlEntry addFileControlEntry(final FileControlEntryContext ctx) {
 		FileControlEntry result = (FileControlEntry) getASGElement(ctx);
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new FileControlEntryImpl(name, programUnit, this, ctx);
+			result = new FileControlEntryImpl(name, programUnit, ctx);
 
-			final SelectClause selectClause = addSelectClause(ctx.selectClause());
-			result.setSelectClause(selectClause);
+			result.addSelectClause(ctx.selectClause());
 
 			for (final FileControlClauseContext fileControlClause : ctx.fileControlClause()) {
 				if (fileControlClause.assignClause() != null) {
-					final AssignClause assignClause = addAssignClause(fileControlClause.assignClause());
-					result.setAssignClause(assignClause);
+					result.addAssignClause(fileControlClause.assignClause());
 				}
 
 				if (fileControlClause.reserveClause() != null) {
-					final ReserveClause reserveClause = addReserveClause(fileControlClause.reserveClause());
-					result.setReserveClause(reserveClause);
+					result.addReserveClause(fileControlClause.reserveClause());
 				}
 
 				if (fileControlClause.organizationClause() != null) {
-					final OrganizationClause organizationClause = addOrganizationClause(
-							fileControlClause.organizationClause());
-					result.setOrganizationClause(organizationClause);
+					result.addOrganizationClause(fileControlClause.organizationClause());
 				}
 
 				if (fileControlClause.paddingCharacterClause() != null) {
-					final PaddingCharacterClause paddingCharacterClause = addPaddingCharacterClause(
-							fileControlClause.paddingCharacterClause());
-					result.setPaddingCharacterClause(paddingCharacterClause);
+					result.addPaddingCharacterClause(fileControlClause.paddingCharacterClause());
 				}
 
 				if (fileControlClause.recordDelimiterClause() != null) {
-					final RecordDelimiterClause recordDelimiterClause = addRecordDelimiterClause(
-							fileControlClause.recordDelimiterClause());
-					result.setRecordDelimiterClause(recordDelimiterClause);
+					result.addRecordDelimiterClause(fileControlClause.recordDelimiterClause());
 				}
 
 				if (fileControlClause.accessModeClause() != null) {
-					final AccessModeClause accessModeClause = addAccessModeClause(fileControlClause.accessModeClause());
-					result.setAccessModeClause(accessModeClause);
+					result.addAccessModeClause(fileControlClause.accessModeClause());
 				}
 
 				if (fileControlClause.recordKeyClause() != null) {
-					final RecordKeyClause recordKeyClause = addRecordKeyClause(fileControlClause.recordKeyClause());
-					result.setRecordKeyClause(recordKeyClause);
+					result.addRecordKeyClause(fileControlClause.recordKeyClause());
 				}
 
 				if (fileControlClause.alternateRecordKeyClause() != null) {
-					final AlternateRecordKeyClause alternateRecordKeyClause = addAlternateRecordKeyClause(
-							fileControlClause.alternateRecordKeyClause());
-					result.setAlternateRecordKeyClause(alternateRecordKeyClause);
+					result.addAlternateRecordKeyClause(fileControlClause.alternateRecordKeyClause());
 				}
 
 				if (fileControlClause.passwordClause() != null) {
-					final PasswordClause passwordClause = addPasswordClause(fileControlClause.passwordClause());
-					result.setPasswordClause(passwordClause);
+					result.addPasswordClause(fileControlClause.passwordClause());
 				}
 
 				if (fileControlClause.fileStatusClause() != null) {
-					final FileStatusClause fileStatusClause = addFileStatusClause(fileControlClause.fileStatusClause());
-					result.setFileStatusClause(fileStatusClause);
+					result.addFileStatusClause(fileControlClause.fileStatusClause());
 				}
 
 				if (fileControlClause.relativeKeyClause() != null) {
-					final RelativeKeyClause relativeKeyClause = addRelativeKeyClause(
-							fileControlClause.relativeKeyClause());
-					result.setRelativeKeyClause(relativeKeyClause);
+					result.addRelativeKeyClause(fileControlClause.relativeKeyClause());
 				}
 			}
 
@@ -405,7 +171,7 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 		FileControlParagraph result = (FileControlParagraph) getASGElement(ctx);
 
 		if (result == null) {
-			result = new FileControlParagraphImpl(programUnit, this, ctx);
+			result = new FileControlParagraphImpl(programUnit, ctx);
 
 			for (final FileControlEntryContext fileControlEntryContext : ctx.fileControlEntry()) {
 				final FileControlEntry fileControlEntry = addFileControlEntry(fileControlEntryContext);
@@ -420,32 +186,11 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 	}
 
 	@Override
-	public FileStatusClause addFileStatusClause(final FileStatusClauseContext ctx) {
-		FileStatusClause result = (FileStatusClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new FileStatusClauseImpl(programUnit, this, ctx);
-
-			final ValueStmt valueStmt = createCallValueStmt(ctx.qualifiedDataName(0));
-			result.setValueStmt(valueStmt);
-
-			if (ctx.qualifiedDataName().size() > 1 && ctx.qualifiedDataName(1) != null) {
-				final ValueStmt valueStmt2 = createCallValueStmt(ctx.qualifiedDataName(1));
-				result.setValueStmt2(valueStmt2);
-			}
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
 	public InputOutputSection addInputOutputSection(final InputOutputSectionContext ctx) {
 		InputOutputSection result = (InputOutputSection) getASGElement(ctx);
 
 		if (result == null) {
-			result = new InputOutputSectionImpl(programUnit, this, ctx);
+			result = new InputOutputSectionImpl(programUnit, ctx);
 
 			for (final InputOutputSectionParagraphContext inputOutputSectionParagraphContext : ctx
 					.inputOutputSectionParagraph()) {
@@ -475,53 +220,7 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 		IoControlParagraph result = (IoControlParagraph) getASGElement(ctx);
 
 		if (result == null) {
-			result = new IoControlParagraphImpl(programUnit, this, ctx);
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public MemorySizeClause addMemorySizeClause(final MemorySizeClauseContext ctx) {
-		MemorySizeClause result = (MemorySizeClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new MemorySizeClauseImpl(programUnit, this, ctx);
-
-			/*
-			 * size value stmt
-			 */
-			final ValueStmt valueStmt;
-
-			if (ctx.integerLiteral() != null) {
-				valueStmt = createIntegerLiteralValueStmt(ctx.integerLiteral());
-			} else if (ctx.cobolWord() != null) {
-				valueStmt = createCallValueStmt(ctx.cobolWord());
-			} else {
-				LOG.warn("unknown value stmt {}.", ctx);
-				valueStmt = null;
-			}
-
-			result.setValueStmt(valueStmt);
-
-			/*
-			 * size unit
-			 */
-			final MemorySizeClause.Unit unit;
-
-			if (ctx.WORDS() != null) {
-				unit = MemorySizeClause.Unit.Words;
-			} else if (ctx.CHARACTERS() != null) {
-				unit = MemorySizeClause.Unit.Characters;
-			} else if (ctx.MODULES() != null) {
-				unit = MemorySizeClause.Unit.Modules;
-			} else {
-				unit = null;
-			}
-
-			result.setUnit(unit);
+			result = new IoControlParagraphImpl(programUnit, ctx);
 
 			registerASGElement(result);
 		}
@@ -535,243 +234,29 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new ObjectComputerParagraphImpl(name, programUnit, this, ctx);
+			result = new ObjectComputerParagraphImpl(name, programUnit, ctx);
 
 			for (final ObjectComputerClauseContext objectComputerClause : ctx.objectComputerClause()) {
 				if (objectComputerClause.memorySizeClause() != null) {
-					final MemorySizeClause memorySizeClause = addMemorySizeClause(
-							objectComputerClause.memorySizeClause());
-					result.setMemorySizeClause(memorySizeClause);
+					result.addMemorySizeClause(objectComputerClause.memorySizeClause());
 				}
 
 				if (objectComputerClause.diskSizeClause() != null) {
-					final DiskSizeClause diskSizeClause = addDiskSizeClause(objectComputerClause.diskSizeClause());
-					result.setDiskSizeClause(diskSizeClause);
+					result.addDiskSizeClause(objectComputerClause.diskSizeClause());
 				}
 
 				if (objectComputerClause.collatingSequenceClause() != null) {
-					final CollatingSequenceClause collatingSequenceClause = addCollatingSequenceClause(
-							objectComputerClause.collatingSequenceClause());
-					result.setCollatingSequenceClause(collatingSequenceClause);
+					result.addCollatingSequenceClause(objectComputerClause.collatingSequenceClause());
 				}
 
 				if (objectComputerClause.segmentLimitClause() != null) {
-					final SegmentLimitClause segmentLimitClause = addSegmentLimitClause(
-							objectComputerClause.segmentLimitClause());
-					result.setSegmentLimitClause(segmentLimitClause);
+					result.addSegmentLimitClause(objectComputerClause.segmentLimitClause());
 				}
 
 				if (objectComputerClause.characterSetClause() != null) {
-					final CharacterSetClause characterSetClause = addCharacterSetClause(
-							objectComputerClause.characterSetClause());
-					result.setCharacterSetClause(characterSetClause);
+					result.addCharacterSetClause(objectComputerClause.characterSetClause());
 				}
 			}
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public OrganizationClause addOrganizationClause(final OrganizationClauseContext ctx) {
-		OrganizationClause result = (OrganizationClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new OrganizationClauseImpl(programUnit, this, ctx);
-
-			/*
-			 * type
-			 */
-			final OrganizationClause.Type type;
-
-			if (ctx.LINE() != null) {
-				type = OrganizationClause.Type.Line;
-			} else if (ctx.RECORD() != null && ctx.BINARY() != null) {
-				type = OrganizationClause.Type.RecordBinary;
-			} else if (ctx.BINARY() != null) {
-				type = OrganizationClause.Type.Binary;
-			} else if (ctx.RECORD() != null) {
-				type = OrganizationClause.Type.Record;
-			} else {
-				type = null;
-			}
-
-			result.setType(type);
-
-			/*
-			 * mode
-			 */
-			final OrganizationClause.Mode mode;
-
-			if (ctx.SEQUENTIAL() != null) {
-				mode = OrganizationClause.Mode.Sequential;
-			} else if (ctx.RELATIVE() != null) {
-				mode = OrganizationClause.Mode.Relative;
-			} else if (ctx.INDEXED() != null) {
-				mode = OrganizationClause.Mode.Indexed;
-			} else {
-				mode = null;
-			}
-
-			result.setMode(mode);
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public PaddingCharacterClause addPaddingCharacterClause(final PaddingCharacterClauseContext ctx) {
-		PaddingCharacterClause result = (PaddingCharacterClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new PaddingCharacterClauseImpl(programUnit, this, ctx);
-
-			final ValueStmt valueStmt;
-
-			if (ctx.qualifiedDataName() != null) {
-				valueStmt = createCallValueStmt(ctx.qualifiedDataName());
-			} else if (ctx.literal() != null) {
-				valueStmt = createLiteralValueStmt(ctx.literal());
-			} else {
-				LOG.warn("unknown value stmt {}.", ctx);
-				valueStmt = null;
-			}
-
-			result.setValueStmt(valueStmt);
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public PasswordClause addPasswordClause(final PasswordClauseContext ctx) {
-		PasswordClause result = (PasswordClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new PasswordClauseImpl(programUnit, this, ctx);
-
-			final ValueStmt valueStmt = createCallValueStmt(ctx.dataName());
-			result.setValueStmt(valueStmt);
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public RecordDelimiterClause addRecordDelimiterClause(final RecordDelimiterClauseContext ctx) {
-		RecordDelimiterClause result = (RecordDelimiterClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new RecordDelimiterClauseImpl(programUnit, this, ctx);
-
-			final ValueStmt valueStmt;
-
-			if (ctx.assignmentName() != null) {
-				valueStmt = createCallValueStmt(ctx.assignmentName());
-			} else if (ctx.STANDARD_1() != null) {
-				valueStmt = createTerminalValueStmt(ctx.STANDARD_1());
-			} else if (ctx.IMPLICIT() != null) {
-				valueStmt = createTerminalValueStmt(ctx.IMPLICIT());
-			} else {
-				LOG.warn("unknown value stmt {}.", ctx);
-				valueStmt = null;
-			}
-
-			result.setValueStmt(valueStmt);
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public RecordKeyClause addRecordKeyClause(final RecordKeyClauseContext ctx) {
-		RecordKeyClause result = (RecordKeyClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new RecordKeyClauseImpl(programUnit, this, ctx);
-
-			final ValueStmt valueStmt = createCallValueStmt(ctx.qualifiedDataName());
-			result.setValueStmt(valueStmt);
-
-			if (ctx.passwordClause() != null) {
-				final PasswordClause passwordClause = addPasswordClause(ctx.passwordClause());
-				result.setPasswordClause(passwordClause);
-			}
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public RelativeKeyClause addRelativeKeyClause(final RelativeKeyClauseContext ctx) {
-		RelativeKeyClause result = (RelativeKeyClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new RelativeKeyClauseImpl(programUnit, this, ctx);
-
-			final ValueStmt valueStmt = createCallValueStmt(ctx.qualifiedDataName());
-			result.setValueStmt(valueStmt);
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public ReserveClause addReserveClause(final ReserveClauseContext ctx) {
-		ReserveClause result = (ReserveClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new ReserveClauseImpl(programUnit, this, ctx);
-
-			if (ctx.integerLiteral() != null) {
-				final IntegerLiteralValueStmt integerLiteralValueStmt = createIntegerLiteralValueStmt(
-						ctx.integerLiteral());
-				result.setValueStmt(integerLiteralValueStmt);
-			}
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public SegmentLimitClause addSegmentLimitClause(final SegmentLimitClauseContext ctx) {
-		SegmentLimitClause result = (SegmentLimitClause) getASGElement(ctx);
-
-		if (result == null) {
-			result = new SegmentLimitClauseImpl(programUnit, this, ctx);
-
-			final IntegerLiteral integerLiteral = addIntegerLiteral(ctx.integerLiteral());
-			result.setIntegerLiteral(integerLiteral);
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public SelectClause addSelectClause(final SelectClauseContext ctx) {
-		SelectClause result = (SelectClause) getASGElement(ctx);
-
-		if (result == null) {
-			final String name = determineName(ctx);
-			result = new SelectClauseImpl(name, programUnit, this, ctx);
 
 			registerASGElement(result);
 		}
@@ -785,7 +270,7 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new SourceComputerParagraphImpl(name, programUnit, this, ctx);
+			result = new SourceComputerParagraphImpl(name, programUnit, ctx);
 
 			if (ctx.DEBUGGING() != null) {
 				result.setDebuggingMode(true);
@@ -802,7 +287,7 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 		SpecialNamesParagraph result = (SpecialNamesParagraph) getASGElement(ctx);
 
 		if (result == null) {
-			result = new SpecialNamesParagraphImpl(programUnit, this, ctx);
+			result = new SpecialNamesParagraphImpl(programUnit, ctx);
 
 			specialNamesParagraph = result;
 

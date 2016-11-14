@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl;
 
 import io.proleap.cobol.Cobol85Parser.PaddingCharacterClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.PaddingCharacterClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -21,9 +20,8 @@ public class PaddingCharacterClauseImpl extends CobolDivisionElementImpl impleme
 
 	protected ValueStmt valueStmt;
 
-	public PaddingCharacterClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final PaddingCharacterClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public PaddingCharacterClauseImpl(final ProgramUnit programUnit, final PaddingCharacterClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

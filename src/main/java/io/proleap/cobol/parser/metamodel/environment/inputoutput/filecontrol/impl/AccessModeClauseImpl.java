@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl;
 
 import io.proleap.cobol.Cobol85Parser.AccessModeClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AccessModeClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -20,9 +19,8 @@ public class AccessModeClauseImpl extends CobolDivisionElementImpl implements Ac
 
 	protected Mode mode;
 
-	public AccessModeClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final AccessModeClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public AccessModeClauseImpl(final ProgramUnit programUnit, final AccessModeClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

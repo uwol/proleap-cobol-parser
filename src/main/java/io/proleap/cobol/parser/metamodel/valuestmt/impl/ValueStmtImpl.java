@@ -13,7 +13,6 @@ import java.util.List;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
@@ -24,8 +23,8 @@ public abstract class ValueStmtImpl extends CobolDivisionElementImpl implements 
 
 	protected final List<ValueStmt> subValueStmts = new ArrayList<ValueStmt>();
 
-	public ValueStmtImpl(final ProgramUnit programUnit, final CobolDivision scope, final ParseTree ctx) {
-		super(programUnit, scope, ctx);
+	public ValueStmtImpl(final ProgramUnit programUnit, final ParseTree ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.configuration.source.impl;
 
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.configuration.source.SourceComputerParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -22,9 +21,9 @@ public class SourceComputerParagraphImpl extends CobolDivisionElementImpl implem
 
 	protected String name;
 
-	public SourceComputerParagraphImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
+	public SourceComputerParagraphImpl(final String name, final ProgramUnit programUnit,
 			final SourceComputerParagraphContext ctx) {
-		super(programUnit, scope, ctx);
+		super(programUnit, ctx);
 
 		this.name = name;
 		this.ctx = ctx;

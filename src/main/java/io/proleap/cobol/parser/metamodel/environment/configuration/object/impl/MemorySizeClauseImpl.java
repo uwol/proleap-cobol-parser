@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.configuration.object.impl;
 
 import io.proleap.cobol.Cobol85Parser.MemorySizeClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.configuration.object.MemorySizeClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -23,9 +22,8 @@ public class MemorySizeClauseImpl extends CobolDivisionElementImpl implements Me
 
 	protected ValueStmt valueStmt;
 
-	public MemorySizeClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final MemorySizeClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public MemorySizeClauseImpl(final ProgramUnit programUnit, final MemorySizeClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

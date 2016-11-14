@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.valuestmt.impl;
 
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
@@ -18,9 +17,8 @@ public class IntegerLiteralValueStmtImpl extends ValueStmtImpl implements Intege
 
 	protected IntegerLiteral integerLiteral;
 
-	public IntegerLiteralValueStmtImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final IntegerLiteralContext ctx) {
-		super(programUnit, scope, ctx);
+	public IntegerLiteralValueStmtImpl(final ProgramUnit programUnit, final IntegerLiteralContext ctx) {
+		super(programUnit, ctx);
 	}
 
 	@Override

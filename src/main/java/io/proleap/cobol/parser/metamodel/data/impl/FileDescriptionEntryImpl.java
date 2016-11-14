@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.FileDescriptionEntry;
@@ -30,9 +29,9 @@ public class FileDescriptionEntryImpl extends CobolDivisionElementImpl implement
 
 	protected final String name;
 
-	public FileDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
+	public FileDescriptionEntryImpl(final String name, final ProgramUnit programUnit,
 			final FileDescriptionEntryContext ctx) {
-		super(programUnit, scope, ctx);
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 		this.name = name;

@@ -10,7 +10,6 @@ package io.proleap.cobol.parser.metamodel.call.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -19,9 +18,8 @@ public class CallDelegateImpl extends CobolDivisionElementImpl implements Call {
 
 	protected final Call delegate;
 
-	public CallDelegateImpl(final Call delegate, final ProgramUnit programUnit, final CobolDivision scope,
-			final ParseTree ctx) {
-		super(programUnit, scope, ctx);
+	public CallDelegateImpl(final Call delegate, final ProgramUnit programUnit, final ParseTree ctx) {
+		super(programUnit, ctx);
 
 		this.delegate = delegate;
 	}

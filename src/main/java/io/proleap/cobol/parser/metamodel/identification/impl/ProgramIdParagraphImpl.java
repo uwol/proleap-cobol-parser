@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.identification.impl;
 
 import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.ProgramIdParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -22,9 +21,9 @@ public class ProgramIdParagraphImpl extends CobolDivisionElementImpl implements 
 
 	protected String name;
 
-	public ProgramIdParagraphImpl(final String name, final ProgramUnit programUnit, final CobolDivision scope,
+	public ProgramIdParagraphImpl(final String name, final ProgramUnit programUnit,
 			final ProgramIdParagraphContext ctx) {
-		super(programUnit, scope, ctx);
+		super(programUnit, ctx);
 
 		this.name = name;
 		this.ctx = ctx;

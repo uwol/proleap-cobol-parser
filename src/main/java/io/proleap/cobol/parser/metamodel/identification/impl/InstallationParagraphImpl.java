@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.identification.impl;
 
 import io.proleap.cobol.Cobol85Parser.InstallationParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.InstallationParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -18,9 +17,8 @@ public class InstallationParagraphImpl extends CobolDivisionElementImpl implemen
 
 	protected final InstallationParagraphContext ctx;
 
-	public InstallationParagraphImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final InstallationParagraphContext ctx) {
-		super(programUnit, scope, ctx);
+	public InstallationParagraphImpl(final ProgramUnit programUnit, final InstallationParagraphContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

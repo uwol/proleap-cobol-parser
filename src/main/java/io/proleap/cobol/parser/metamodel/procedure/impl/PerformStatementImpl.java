@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.PerformProcedureStatement;
@@ -21,9 +20,8 @@ public class PerformStatementImpl extends CobolDivisionElementImpl implements Pe
 
 	protected PerformProcedureStatement performProcedureStatement;
 
-	public PerformStatementImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final PerformStatementContext ctx) {
-		super(programUnit, scope, ctx);
+	public PerformStatementImpl(final ProgramUnit programUnit, final PerformStatementContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

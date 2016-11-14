@@ -78,8 +78,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			} else if (paragraphName.equals(firstCallName)) {
 				inThrough = true;
 			} else if (inThrough) {
-				final ProcedureCall procedureCall = new ProcedureCallImpl(paragraphName, paragraph, programUnit, this,
-						ctx);
+				final ProcedureCall procedureCall = new ProcedureCallImpl(paragraphName, paragraph, programUnit, ctx);
 				result.add(procedureCall);
 
 				associateProcedureCallWithParagraph(procedureCall, paragraph);
@@ -94,7 +93,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		DisplayStatement result = (DisplayStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new DisplayStatementImpl(programUnit, this, ctx);
+			result = new DisplayStatementImpl(programUnit, ctx);
 
 			registerASGElement(result);
 		}
@@ -107,7 +106,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		MoveToStatement result = (MoveToStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new MoveToStatementImpl(programUnit, this, ctx);
+			result = new MoveToStatementImpl(programUnit, ctx);
 
 			final MoveToStatementSendingAreaContext moveToStatementSendingArea = ctx.moveToStatementSendingArea();
 			final List<IdentifierContext> identifierCtxs = ctx.identifier();
@@ -134,7 +133,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new ParagraphImpl(name, programUnit, this, ctx);
+			result = new ParagraphImpl(name, programUnit, ctx);
 
 			paragraphs.add(result);
 			paragraphsByName.put(name, result);
@@ -154,7 +153,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new ParagraphNameImpl(name, programUnit, this, ctx);
+			result = new ParagraphNameImpl(name, programUnit, ctx);
 
 			registerASGElement(result);
 		}
@@ -167,7 +166,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		PerformProcedureStatement result = (PerformProcedureStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new PerformProcedureStatementImpl(programUnit, this, ctx);
+			result = new PerformProcedureStatementImpl(programUnit, ctx);
 
 			final List<ProcedureNameContext> procedureNames = ctx.procedureName();
 
@@ -197,7 +196,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		PerformStatement result = (PerformStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new PerformStatementImpl(programUnit, this, ctx);
+			result = new PerformStatementImpl(programUnit, ctx);
 
 			if (ctx.performProcedureStatement() != null) {
 				final PerformProcedureStatement performProcedureStatement = addPerformProcedureStatement(
@@ -216,7 +215,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		StopStatement result = (StopStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new StopStatementImpl(programUnit, this, ctx);
+			result = new StopStatementImpl(programUnit, ctx);
 
 			registerASGElement(result);
 		}
@@ -228,7 +227,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		ValueStmt result = (ValueStmt) getASGElement(ctx);
 
 		if (result == null) {
-			result = new LiteralValueStmtImpl(programUnit, this, ctx);
+			result = new LiteralValueStmtImpl(programUnit, ctx);
 
 			registerASGElement(result);
 		}
@@ -255,7 +254,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 				delegatedValueStmt = null;
 			}
 
-			result = new ValueStmtDelegateImpl(delegatedValueStmt, programUnit, this, ctx);
+			result = new ValueStmtDelegateImpl(delegatedValueStmt, programUnit, ctx);
 
 			registerASGElement(result);
 		}

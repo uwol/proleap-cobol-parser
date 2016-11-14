@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl;
 
 import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.ReserveClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -21,8 +20,8 @@ public class ReserveClauseImpl extends CobolDivisionElementImpl implements Reser
 
 	protected IntegerLiteralValueStmt valueStmt;
 
-	public ReserveClauseImpl(final ProgramUnit programUnit, final CobolDivision scope, final ReserveClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public ReserveClauseImpl(final ProgramUnit programUnit, final ReserveClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

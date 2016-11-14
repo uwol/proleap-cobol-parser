@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.FileSection;
@@ -24,8 +23,8 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 
 	protected List<FileDescriptionEntry> fileDescriptionEntries = new ArrayList<FileDescriptionEntry>();
 
-	public FileSectionImpl(final ProgramUnit programUnit, final CobolDivision scope, final FileSectionContext ctx) {
-		super(programUnit, scope, ctx);
+	public FileSectionImpl(final ProgramUnit programUnit, final FileSectionContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

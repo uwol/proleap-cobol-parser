@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.StopStatement;
@@ -18,9 +17,8 @@ public class StopStatementImpl extends CobolDivisionElementImpl implements StopS
 
 	protected final StopStatementContext ctx;
 
-	public StopStatementImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final StopStatementContext ctx) {
-		super(programUnit, scope, ctx);
+	public StopStatementImpl(final ProgramUnit programUnit, final StopStatementContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

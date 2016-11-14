@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.configuration.object.CollatingSequenceClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -27,9 +26,8 @@ public class CollatingSequenceClauseImpl extends CobolDivisionElementImpl implem
 
 	protected String national;
 
-	public CollatingSequenceClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final CollatingSequenceClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public CollatingSequenceClauseImpl(final ProgramUnit programUnit, final CollatingSequenceClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

@@ -9,7 +9,6 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl;
 
 import io.proleap.cobol.Cobol85Parser.PasswordClauseContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.PasswordClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -21,9 +20,8 @@ public class PasswordClauseImpl extends CobolDivisionElementImpl implements Pass
 
 	protected ValueStmt valueStmt;
 
-	public PasswordClauseImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final PasswordClauseContext ctx) {
-		super(programUnit, scope, ctx);
+	public PasswordClauseImpl(final ProgramUnit programUnit, final PasswordClauseContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

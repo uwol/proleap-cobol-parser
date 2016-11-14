@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.InputOutputSection;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
@@ -27,9 +26,8 @@ public class InputOutputSectionImpl extends CobolDivisionElementImpl implements 
 
 	protected List<IoControlParagraph> ioControlParagraphs = new ArrayList<IoControlParagraph>();
 
-	public InputOutputSectionImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final InputOutputSectionContext ctx) {
-		super(programUnit, scope, ctx);
+	public InputOutputSectionImpl(final ProgramUnit programUnit, final InputOutputSectionContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

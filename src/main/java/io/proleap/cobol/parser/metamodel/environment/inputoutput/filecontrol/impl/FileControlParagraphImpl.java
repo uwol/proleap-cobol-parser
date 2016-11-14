@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
@@ -24,9 +23,8 @@ public class FileControlParagraphImpl extends CobolDivisionElementImpl implement
 
 	protected final List<FileControlEntry> fileControlEntries = new ArrayList<FileControlEntry>();
 
-	public FileControlParagraphImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final FileControlParagraphContext ctx) {
-		super(programUnit, scope, ctx);
+	public FileControlParagraphImpl(final ProgramUnit programUnit, final FileControlParagraphContext ctx) {
+		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}

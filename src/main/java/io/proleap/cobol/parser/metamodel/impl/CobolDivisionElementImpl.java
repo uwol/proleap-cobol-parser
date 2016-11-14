@@ -10,24 +10,34 @@ package io.proleap.cobol.parser.metamodel.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
+import io.proleap.cobol.parser.metamodel.ASGElement;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 
 public abstract class CobolDivisionElementImpl extends ProgramUnitElementImpl implements CobolDivisionElement {
 
-	protected final CobolDivision scope;
-
-	public CobolDivisionElementImpl(final ProgramUnit programUnit, final CobolDivision scope,
-			final ParseTree ctx) {
+	public CobolDivisionElementImpl(final ProgramUnit programUnit, final ParseTree ctx) {
 		super(programUnit, ctx);
-
-		this.scope = scope;
 	}
 
 	@Override
-	public CobolDivision getScope() {
-		return scope;
+	protected String determineName(final ParseTree ctx) {
+		return CobolParserContext.getInstance().getNameResolver().determineName(ctx);
+	}
+
+	@Override
+	protected ASGElement getASGElement(final ParseTree ctx) {
+		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
+		return result;
+	}
+
+	@Override
+	protected void registerASGElement(final ASGElement asgElement) {
+		assert asgElement != null;
+		assert asgElement.getCtx() != null;
+
+		CobolParserContext.getInstance().getASGElementRegistry().addASGElement(asgElement);
 	}
 
 }

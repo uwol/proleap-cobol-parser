@@ -10,6 +10,4 @@ package io.proleap.cobol.parser.metamodel;
 
 public interface CobolDivisionElement extends ProgramUnitElement {
 
-	CobolDivision getScope();
-
 }

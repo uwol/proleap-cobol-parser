@@ -10,7 +10,6 @@ package io.proleap.cobol.parser.metamodel.valuestmt.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
@@ -18,9 +17,8 @@ public class ValueStmtDelegateImpl extends ValueStmtImpl implements ValueStmt {
 
 	protected final ValueStmt delegate;
 
-	public ValueStmtDelegateImpl(final ValueStmt delegate, final ProgramUnit programUnit, final CobolDivision scope,
-			final ParseTree ctx) {
-		super(programUnit, scope, ctx);
+	public ValueStmtDelegateImpl(final ValueStmt delegate, final ProgramUnit programUnit, final ParseTree ctx) {
+		super(programUnit, ctx);
 
 		this.delegate = delegate;
 	}

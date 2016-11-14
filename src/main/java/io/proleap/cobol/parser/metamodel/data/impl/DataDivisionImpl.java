@@ -70,7 +70,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new DataDescriptionEntryConditionImpl(name, programUnit, this, ctx);
+			result = new DataDescriptionEntryConditionImpl(name, programUnit, ctx);
 
 			result.setLevelNumber(DataDescriptionEntry.LEVEL_NUMBER_CONDITION);
 
@@ -89,7 +89,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new DataDescriptionEntryGroupImpl(name, programUnit, this, ctx);
+			result = new DataDescriptionEntryGroupImpl(name, programUnit, ctx);
 
 			final Integer levelNumber;
 
@@ -124,7 +124,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new DataDescriptionEntryRenameImpl(name, programUnit, this, ctx);
+			result = new DataDescriptionEntryRenameImpl(name, programUnit, ctx);
 
 			result.setLevelNumber(DataDescriptionEntry.LEVEL_NUMBER_RENAME);
 
@@ -143,7 +143,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new FileDescriptionEntryImpl(name, programUnit, this, ctx);
+			result = new FileDescriptionEntryImpl(name, programUnit, ctx);
 
 			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
 
@@ -174,7 +174,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		FileSection result = (FileSection) getASGElement(ctx);
 
 		if (result == null) {
-			result = new FileSectionImpl(programUnit, this, ctx);
+			result = new FileSectionImpl(programUnit, ctx);
 
 			for (final FileDescriptionEntryContext fileDescriptionEntryContext : ctx.fileDescriptionEntry()) {
 				final FileDescriptionEntry fileDescriptionEntry = addFileDescriptionEntry(fileDescriptionEntryContext);
@@ -192,7 +192,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		WorkingStorageSection result = (WorkingStorageSection) getASGElement(ctx);
 
 		if (result == null) {
-			result = new WorkingStorageSectionImpl(programUnit, this, ctx);
+			result = new WorkingStorageSectionImpl(programUnit, ctx);
 
 			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
 
