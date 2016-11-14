@@ -14,6 +14,7 @@ import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
+import io.proleap.cobol.Cobol85Parser.LinkageSectionContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
@@ -23,6 +24,8 @@ import io.proleap.cobol.parser.metamodel.data.database.DataBaseSection;
 import io.proleap.cobol.parser.metamodel.data.database.impl.DataBaseSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.file.FileSection;
 import io.proleap.cobol.parser.metamodel.data.file.impl.FileSectionImpl;
+import io.proleap.cobol.parser.metamodel.data.linkage.LinkageSection;
+import io.proleap.cobol.parser.metamodel.data.linkage.impl.LinkageSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.impl.WorkingStorageSectionImpl;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
@@ -35,6 +38,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	protected DataBaseSection dataBaseSection;
 
 	protected FileSection fileSection;
+
+	protected LinkageSection linkageSection;
 
 	protected WorkingStorageSection workingStorageSection;
 
@@ -81,6 +86,31 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	}
 
 	@Override
+	public LinkageSection addLinkageSection(final LinkageSectionContext ctx) {
+		LinkageSection result = (LinkageSection) getASGElement(ctx);
+
+		if (result == null) {
+			result = new LinkageSectionImpl(programUnit, ctx);
+
+			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
+
+			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
+				final DataDescriptionEntry dataDescriptionEntry = result
+						.createDataDescriptionEntry(lastDataDescriptionEntryGroup, dataDescriptionEntryContext);
+
+				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
+					lastDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+				}
+			}
+
+			linkageSection = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public WorkingStorageSection addWorkingStorageSection(final WorkingStorageSectionContext ctx) {
 		WorkingStorageSection result = (WorkingStorageSection) getASGElement(ctx);
 
@@ -113,6 +143,11 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	@Override
 	public FileSection getFileSection() {
 		return fileSection;
+	}
+
+	@Override
+	public LinkageSection getLinkageSection() {
+		return linkageSection;
 	}
 
 	@Override

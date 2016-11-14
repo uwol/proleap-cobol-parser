@@ -1,4 +1,4 @@
-package io.proleap.cobol.gpl.parser.data.workingstorage;
+package io.proleap.cobol.gpl.parser.data.linkage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,7 +16,7 @@ import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
-import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
+import io.proleap.cobol.parser.metamodel.data.linkage.LinkageSection;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class DataDescription01Test extends CobolTestSupport {
@@ -30,19 +30,19 @@ public class DataDescription01Test extends CobolTestSupport {
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/gpl/parser/data/workingstorage/DataDescription01.cbl");
+				"src/test/resources/io/proleap/cobol/gpl/parser/data/linkage/DataDescription01.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 
 		final CopyBook copyBook = program.getCopyBook("DataDescription01");
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
-		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
+		final LinkageSection linkageSection = dataDivision.getLinkageSection();
 
-		assertEquals(3, workingStorageSection.getDataDescriptionEntries().size());
-		assertEquals(1, workingStorageSection.getRootDataDescriptionEntries().size());
+		assertEquals(3, linkageSection.getDataDescriptionEntries().size());
+		assertEquals(1, linkageSection.getRootDataDescriptionEntries().size());
 
-		final DataDescriptionEntry dataDescriptionEntryItems = workingStorageSection.getDataDescriptionEntry("ITEMS");
+		final DataDescriptionEntry dataDescriptionEntryItems = linkageSection.getDataDescriptionEntry("ITEMS");
 
 		assertNotNull(dataDescriptionEntryItems);
 		assertEquals("ITEMS", dataDescriptionEntryItems.getName());
@@ -50,14 +50,14 @@ public class DataDescription01Test extends CobolTestSupport {
 		assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
 		assertNull(dataDescriptionEntryItems.getDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntryItem1 = workingStorageSection.getDataDescriptionEntry("ITEM1");
+		final DataDescriptionEntry dataDescriptionEntryItem1 = linkageSection.getDataDescriptionEntry("ITEM1");
 		assertNotNull(dataDescriptionEntryItem1);
 		assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
 		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem1.getType());
 		assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
 		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem1.getDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntryItem2 = workingStorageSection.getDataDescriptionEntry("ITEM2");
+		final DataDescriptionEntry dataDescriptionEntryItem2 = linkageSection.getDataDescriptionEntry("ITEM2");
 		assertNotNull(dataDescriptionEntryItem2);
 		assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
 		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem2.getType());
