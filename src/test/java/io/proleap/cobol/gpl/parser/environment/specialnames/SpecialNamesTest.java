@@ -22,6 +22,7 @@ import io.proleap.cobol.parser.metamodel.environment.specialnames.DecimalPointCl
 import io.proleap.cobol.parser.metamodel.environment.specialnames.OdtClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ReserveNetworkClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.SymbolicCharactersClause;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -102,6 +103,13 @@ public class SpecialNamesTest extends CobolTestSupport {
 		{
 			final ReserveNetworkClause reserveNetworkClause = specialNamesParagraph.getReserveNetworkClause();
 			assertNotNull(reserveNetworkClause);
+		}
+
+		{
+			final SymbolicCharactersClause symbolicCharactersClause = specialNamesParagraph
+					.getSymbolicCharactersClause();
+			assertNotNull(symbolicCharactersClause);
+			assertEquals(SymbolicCharactersClause.Type.National, symbolicCharactersClause.getType());
 		}
 	}
 }
