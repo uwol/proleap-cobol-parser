@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.DecimalPointClauseContext;
 import io.proleap.cobol.Cobol85Parser.OdtClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReserveNetworkClauseContext;
 import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SymbolicCharactersClauseContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.MnemonicName;
@@ -27,6 +28,7 @@ import io.proleap.cobol.parser.metamodel.environment.specialnames.DecimalPointCl
 import io.proleap.cobol.parser.metamodel.environment.specialnames.OdtClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ReserveNetworkClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.SymbolicCharactersClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
@@ -45,6 +47,8 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 	protected OdtClause odtClause;
 
 	protected ReserveNetworkClause reserveNetworkClause;
+
+	protected SymbolicCharactersClause symbolicCharactersClause;
 
 	public SpecialNamesParagraphImpl(final ProgramUnit programUnit, final SpecialNamesParagraphContext ctx) {
 		super(programUnit, ctx);
@@ -182,6 +186,39 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 	}
 
 	@Override
+	public SymbolicCharactersClause addSymbolicCharactersClause(final SymbolicCharactersClauseContext ctx) {
+		SymbolicCharactersClause result = (SymbolicCharactersClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SymbolicCharactersClauseImpl(programUnit, ctx);
+
+			/*
+			 * type
+			 */
+			final SymbolicCharactersClause.Type type;
+
+			if (ctx.ALPHANUMERIC() != null) {
+				type = SymbolicCharactersClause.Type.AlphaNumeric;
+			} else if (ctx.NATIONAL() != null) {
+				type = SymbolicCharactersClause.Type.National;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
+
+			/*
+			 * alphabet
+			 */
+
+			symbolicCharactersClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public ChannelClause getChannelClause() {
 		return channelClause;
 	}
@@ -209,6 +246,11 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 	@Override
 	public ReserveNetworkClause getReserveNetworkClause() {
 		return reserveNetworkClause;
+	}
+
+	@Override
+	public SymbolicCharactersClause getSymbolicCharactersClause() {
+		return symbolicCharactersClause;
 	}
 
 }
