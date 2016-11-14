@@ -1,4 +1,4 @@
-package io.proleap.cobol.gpl.parser.data;
+package io.proleap.cobol.gpl.parser.data.workingstorage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,6 +16,7 @@ import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
+import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class DataDescription77Test extends CobolTestSupport {
@@ -28,18 +29,21 @@ public class DataDescription77Test extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/data/DataDescription77.cbl");
+		final File inputFile = new File(
+				"src/test/resources/io/proleap/cobol/gpl/parser/data/workingstorage/DataDescription77.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 
 		final CopyBook copyBook = program.getCopyBook("DataDescription77");
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
+		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
-		assertEquals(2, dataDivision.getDataDescriptionEntries().size());
-		assertEquals(2, dataDivision.getRootDataDescriptionEntries().size());
+		assertEquals(2, workingStorageSection.getDataDescriptionEntries().size());
+		assertEquals(2, workingStorageSection.getRootDataDescriptionEntries().size());
 
-		final DataDescriptionEntry dataDescriptionEntrySomeText = dataDivision.getDataDescriptionEntry("SOME-TEXT");
+		final DataDescriptionEntry dataDescriptionEntrySomeText = workingStorageSection
+				.getDataDescriptionEntry("SOME-TEXT");
 
 		assertNotNull(dataDescriptionEntrySomeText);
 		assertEquals("SOME-TEXT", dataDescriptionEntrySomeText.getName());
@@ -47,7 +51,8 @@ public class DataDescription77Test extends CobolTestSupport {
 		assertEquals(new Integer(77), dataDescriptionEntrySomeText.getLevelNumber());
 		assertNull(dataDescriptionEntrySomeText.getDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntrySomeNumber = dataDivision.getDataDescriptionEntry("SOME-NUMBER");
+		final DataDescriptionEntry dataDescriptionEntrySomeNumber = workingStorageSection
+				.getDataDescriptionEntry("SOME-NUMBER");
 
 		assertNotNull(dataDescriptionEntrySomeNumber);
 		assertEquals("SOME-NUMBER", dataDescriptionEntrySomeNumber.getName());

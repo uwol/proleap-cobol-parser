@@ -129,7 +129,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final DataDivision dataDivision = programUnit.getDataDivision();
 
 			if (dataDivision != null) {
-				final DataDescriptionEntry dataDescriptionEntry = dataDivision.getDataDescriptionEntry(name);
+				final DataDescriptionEntry dataDescriptionEntry = dataDivision.getWorkingStorageSection()
+						.getDataDescriptionEntry(name);
 
 				/*
 				 * create call model element

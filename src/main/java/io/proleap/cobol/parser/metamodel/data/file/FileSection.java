@@ -6,16 +6,19 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.data;
+package io.proleap.cobol.parser.metamodel.data.file;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface FileSection extends CobolDivisionElement {
 
-	void addFileDescriptionEntry(FileDescriptionEntry fileDescriptionEntry);
+	FileDescriptionEntry addFileDescriptionEntry(FileDescriptionEntryContext ctx);
 
 	List<FileDescriptionEntry> getFileDescriptionEntries();
+
+	FileDescriptionEntry getFileDescriptionEntry(String name);
 
 }

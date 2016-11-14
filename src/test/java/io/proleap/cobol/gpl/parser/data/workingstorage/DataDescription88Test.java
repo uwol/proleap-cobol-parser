@@ -1,4 +1,4 @@
-package io.proleap.cobol.gpl.parser.data;
+package io.proleap.cobol.gpl.parser.data.workingstorage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,6 +16,7 @@ import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
+import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class DataDescription88Test extends CobolTestSupport {
@@ -28,18 +29,20 @@ public class DataDescription88Test extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/data/DataDescription88.cbl");
+		final File inputFile = new File(
+				"src/test/resources/io/proleap/cobol/gpl/parser/data/workingstorage/DataDescription88.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 
 		final CopyBook copyBook = program.getCopyBook("DataDescription88");
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
+		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
-		assertEquals(3, dataDivision.getDataDescriptionEntries().size());
-		assertEquals(1, dataDivision.getRootDataDescriptionEntries().size());
+		assertEquals(3, workingStorageSection.getDataDescriptionEntries().size());
+		assertEquals(1, workingStorageSection.getRootDataDescriptionEntries().size());
 
-		final DataDescriptionEntry dataDescriptionEntryGender = dataDivision.getDataDescriptionEntry("GENDER");
+		final DataDescriptionEntry dataDescriptionEntryGender = workingStorageSection.getDataDescriptionEntry("GENDER");
 
 		assertNotNull(dataDescriptionEntryGender);
 		assertEquals("GENDER", dataDescriptionEntryGender.getName());
@@ -47,7 +50,7 @@ public class DataDescription88Test extends CobolTestSupport {
 		assertEquals(new Integer(1), dataDescriptionEntryGender.getLevelNumber());
 		assertNull(dataDescriptionEntryGender.getDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntryMale = dataDivision.getDataDescriptionEntry("MALE");
+		final DataDescriptionEntry dataDescriptionEntryMale = workingStorageSection.getDataDescriptionEntry("MALE");
 
 		assertNotNull(dataDescriptionEntryMale);
 		assertEquals("MALE", dataDescriptionEntryMale.getName());
@@ -55,7 +58,7 @@ public class DataDescription88Test extends CobolTestSupport {
 		assertEquals(new Integer(88), dataDescriptionEntryMale.getLevelNumber());
 		assertEquals(dataDescriptionEntryGender, dataDescriptionEntryMale.getDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntryFemale = dataDivision.getDataDescriptionEntry("FEMALE");
+		final DataDescriptionEntry dataDescriptionEntryFemale = workingStorageSection.getDataDescriptionEntry("FEMALE");
 
 		assertNotNull(dataDescriptionEntryFemale);
 		assertEquals("FEMALE", dataDescriptionEntryFemale.getName());

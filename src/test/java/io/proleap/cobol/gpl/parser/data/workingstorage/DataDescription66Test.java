@@ -1,4 +1,4 @@
-package io.proleap.cobol.gpl.parser.data;
+package io.proleap.cobol.gpl.parser.data.workingstorage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,6 +16,7 @@ import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
+import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class DataDescription66Test extends CobolTestSupport {
@@ -28,18 +29,20 @@ public class DataDescription66Test extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/data/DataDescription66.cbl");
+		final File inputFile = new File(
+				"src/test/resources/io/proleap/cobol/gpl/parser/data/workingstorage/DataDescription66.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 
 		final CopyBook copyBook = program.getCopyBook("DataDescription66");
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
+		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
-		assertEquals(6, dataDivision.getDataDescriptionEntries().size());
-		assertEquals(2, dataDivision.getRootDataDescriptionEntries().size());
+		assertEquals(6, workingStorageSection.getDataDescriptionEntries().size());
+		assertEquals(2, workingStorageSection.getRootDataDescriptionEntries().size());
 
-		final DataDescriptionEntry dataDescriptionEntryItems = dataDivision.getDataDescriptionEntry("ITEMS");
+		final DataDescriptionEntry dataDescriptionEntryItems = workingStorageSection.getDataDescriptionEntry("ITEMS");
 
 		assertNotNull(dataDescriptionEntryItems);
 		assertEquals("ITEMS", dataDescriptionEntryItems.getName());
@@ -47,35 +50,35 @@ public class DataDescription66Test extends CobolTestSupport {
 		assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
 		assertNull(dataDescriptionEntryItems.getDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntryItem1 = dataDivision.getDataDescriptionEntry("ITEM1");
+		final DataDescriptionEntry dataDescriptionEntryItem1 = workingStorageSection.getDataDescriptionEntry("ITEM1");
 		assertNotNull(dataDescriptionEntryItem1);
 		assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
 		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem1.getType());
 		assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
 		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem1.getDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntryItem2 = dataDivision.getDataDescriptionEntry("ITEM2");
+		final DataDescriptionEntry dataDescriptionEntryItem2 = workingStorageSection.getDataDescriptionEntry("ITEM2");
 		assertNotNull(dataDescriptionEntryItem2);
 		assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
 		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem2.getType());
 		assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
 		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem2.getDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntryItem3 = dataDivision.getDataDescriptionEntry("ITEM3");
+		final DataDescriptionEntry dataDescriptionEntryItem3 = workingStorageSection.getDataDescriptionEntry("ITEM3");
 		assertNotNull(dataDescriptionEntryItem3);
 		assertEquals("ITEM3", dataDescriptionEntryItem3.getName());
 		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem3.getType());
 		assertEquals(new Integer(2), dataDescriptionEntryItem3.getLevelNumber());
 		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem3.getDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntryItem4 = dataDivision.getDataDescriptionEntry("ITEM4");
+		final DataDescriptionEntry dataDescriptionEntryItem4 = workingStorageSection.getDataDescriptionEntry("ITEM4");
 		assertNotNull(dataDescriptionEntryItem4);
 		assertEquals("ITEM4", dataDescriptionEntryItem4.getName());
 		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem4.getType());
 		assertEquals(new Integer(2), dataDescriptionEntryItem4.getLevelNumber());
 		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem4.getDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntryItemz = dataDivision.getDataDescriptionEntry("ITEMZ");
+		final DataDescriptionEntry dataDescriptionEntryItemz = workingStorageSection.getDataDescriptionEntry("ITEMZ");
 
 		assertNotNull(dataDescriptionEntryItemz);
 		assertEquals("ITEMZ", dataDescriptionEntryItemz.getName());

@@ -1,4 +1,4 @@
-package io.proleap.cobol.gpl.parser.data;
+package io.proleap.cobol.gpl.parser.data.file;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -17,8 +17,11 @@ import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
-import io.proleap.cobol.parser.metamodel.data.FileDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.file.FileSection;
+import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.InputOutputSection;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -32,7 +35,7 @@ public class FileControlReadTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/data/FileControlRead.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/data/file/FileControlRead.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 
@@ -40,17 +43,17 @@ public class FileControlReadTest extends CobolTestSupport {
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
 
 		final EnvironmentDivision environmentDivision = programUnit.getEnvironmentDivision();
+		final InputOutputSection inputOutputSection = environmentDivision.getInputOutputSection();
 		final DataDivision dataDivision = programUnit.getDataDivision();
-
-		assertEquals(7, dataDivision.getDataDescriptionEntries().size());
-		assertEquals(3, dataDivision.getRootDataDescriptionEntries().size());
+		final FileSection fileSection = dataDivision.getFileSection();
+		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
 		/*
 		 * file control
 		 */
 		{
-			final FileControlEntry fileControlEntry = environmentDivision.getInputOutputSection()
-					.getFileControlParagraph().getFileControlEntry("PERSON");
+			final FileControlEntry fileControlEntry = inputOutputSection.getFileControlParagraph()
+					.getFileControlEntry("PERSON");
 			assertNotNull(fileControlEntry);
 			assertEquals("PERSON", fileControlEntry.getName());
 		}
@@ -59,18 +62,15 @@ public class FileControlReadTest extends CobolTestSupport {
 		 * file section, file description
 		 */
 		{
-			final FileDescriptionEntry fileDescriptionEntry = dataDivision.getFileDescriptionEntry("PERSON");
+			final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("PERSON");
 			assertNotNull(fileDescriptionEntry);
 
 			final DataDescriptionEntry dataDescriptionEntryPersonFile = fileDescriptionEntry
-					.getDataDescriptionEntry("PERSON-FILE");
-			final DataDescriptionEntry dataDescriptionEntryPersonFileGlobal = dataDivision
 					.getDataDescriptionEntry("PERSON-FILE");
 			assertNotNull(dataDescriptionEntryPersonFile);
 			assertEquals("PERSON-FILE", dataDescriptionEntryPersonFile.getName());
 			assertEquals(new Integer(1), dataDescriptionEntryPersonFile.getLevelNumber());
 			assertNull(dataDescriptionEntryPersonFile.getDataDescriptionEntryGroup());
-			assertEquals(dataDescriptionEntryPersonFile, dataDescriptionEntryPersonFileGlobal);
 			assertNull(dataDescriptionEntryPersonFile.getDataDescriptionEntryGroup());
 
 			final DataDescriptionEntry dataDescriptionEntryPersonId = fileDescriptionEntry
@@ -92,28 +92,28 @@ public class FileControlReadTest extends CobolTestSupport {
 		 * working storage section
 		 */
 		{
-			final DataDescriptionEntryGroup dataDescriptionEntryWsPerson = (DataDescriptionEntryGroup) dataDivision
+			final DataDescriptionEntryGroup dataDescriptionEntryWsPerson = (DataDescriptionEntryGroup) workingStorageSection
 					.getDataDescriptionEntry("WS-PERSON");
 			assertNotNull(dataDescriptionEntryWsPerson);
 			assertEquals("WS-PERSON", dataDescriptionEntryWsPerson.getName());
 			assertEquals(new Integer(1), dataDescriptionEntryWsPerson.getLevelNumber());
 			assertNull(dataDescriptionEntryWsPerson.getDataDescriptionEntryGroup());
 
-			final DataDescriptionEntry dataDescriptionEntryWsPersonId = dataDivision
+			final DataDescriptionEntry dataDescriptionEntryWsPersonId = workingStorageSection
 					.getDataDescriptionEntry("WS-PERSON-ID");
 			assertNotNull(dataDescriptionEntryWsPersonId);
 			assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
 			assertEquals(new Integer(5), dataDescriptionEntryWsPersonId.getLevelNumber());
 			assertEquals(dataDescriptionEntryWsPerson, dataDescriptionEntryWsPersonId.getDataDescriptionEntryGroup());
 
-			final DataDescriptionEntry dataDescriptionEntryWsPersonName = dataDivision
+			final DataDescriptionEntry dataDescriptionEntryWsPersonName = workingStorageSection
 					.getDataDescriptionEntry("WS-NAME");
 			assertNotNull(dataDescriptionEntryWsPersonName);
 			assertEquals("WS-NAME", dataDescriptionEntryWsPersonName.getName());
 			assertEquals(new Integer(5), dataDescriptionEntryWsPersonName.getLevelNumber());
 			assertEquals(dataDescriptionEntryWsPerson, dataDescriptionEntryWsPersonName.getDataDescriptionEntryGroup());
 
-			final DataDescriptionEntryGroup dataDescriptionEntryWsEof = (DataDescriptionEntryGroup) dataDivision
+			final DataDescriptionEntryGroup dataDescriptionEntryWsEof = (DataDescriptionEntryGroup) workingStorageSection
 					.getDataDescriptionEntry("WS-EOF");
 			assertNotNull(dataDescriptionEntryWsEof);
 			assertEquals("WS-EOF", dataDescriptionEntryWsEof.getName());
