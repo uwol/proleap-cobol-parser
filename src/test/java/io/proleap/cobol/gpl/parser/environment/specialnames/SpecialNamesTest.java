@@ -15,6 +15,7 @@ import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ChannelClause;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.OdtClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -43,6 +44,12 @@ public class SpecialNamesTest extends CobolTestSupport {
 			assertNotNull(channelClause);
 			assertEquals(new Integer(2), channelClause.getIntegerLiteral().getValue());
 			assertEquals("SOMEMNEMONIC", channelClause.getMnemonicName().getValue());
+		}
+
+		{
+			final OdtClause odtClause = specialNamesParagraph.getOdtClause();
+			assertNotNull(odtClause);
+			assertEquals("SOMEMNEMONIC", odtClause.getMnemonicName().getValue());
 		}
 	}
 }
