@@ -13,6 +13,7 @@ import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.environment.AccessModeClause;
 import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
@@ -88,6 +89,12 @@ public class FileControlTest extends CobolTestSupport {
 
 			final TerminalValueStmt valueStmt = (TerminalValueStmt) recordDelimiterClause.getValueStmt();
 			assertEquals("IMPLICIT", valueStmt.getValue());
+		}
+
+		{
+			final AccessModeClause accessModeClause = fileControlEntry.getAccessModeClause();
+			assertNotNull(accessModeClause);
+			assertEquals(AccessModeClause.Mode.Dynamic, accessModeClause.getMode());
 		}
 	}
 }

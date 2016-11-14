@@ -16,6 +16,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.AccessModeClauseContext;
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
 import io.proleap.cobol.Cobol85Parser.AssignClauseContext;
 import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
@@ -43,6 +44,7 @@ import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.environment.AccessModeClause;
 import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.CharacterSetClause;
 import io.proleap.cobol.parser.metamodel.environment.CollatingSequenceClause;
@@ -87,6 +89,35 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	public AccessModeClause addAccessModeClause(final AccessModeClauseContext ctx) {
+		AccessModeClause result = (AccessModeClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new AccessModeClauseImpl(programUnit, this, ctx);
+
+			final AccessModeClause.Mode mode;
+
+			if (ctx.SEQUENTIAL() != null) {
+				mode = AccessModeClause.Mode.Sequential;
+			} else if (ctx.RANDOM() != null) {
+				mode = AccessModeClause.Mode.Random;
+			} else if (ctx.DYNAMIC() != null) {
+				mode = AccessModeClause.Mode.Dynamic;
+			} else if (ctx.EXCLUSIVE() != null) {
+				mode = AccessModeClause.Mode.Exclusive;
+			} else {
+				LOG.warn("unknown mode {}.", ctx);
+				mode = null;
+			}
+
+			result.setMode(mode);
+
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -268,6 +299,11 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 					final RecordDelimiterClause recordDelimiterClause = addRecordDelimiterClause(
 							fileControlClause.recordDelimiterClause());
 					result.setRecordDelimiterClause(recordDelimiterClause);
+				}
+
+				if (fileControlClause.accessModeClause() != null) {
+					final AccessModeClause accessModeClause = addAccessModeClause(fileControlClause.accessModeClause());
+					result.setAccessModeClause(accessModeClause);
 				}
 			}
 

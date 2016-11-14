@@ -13,6 +13,8 @@ import io.proleap.cobol.parser.metamodel.NamedElement;
 
 public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 
+	AccessModeClause getAccessModeClause();
+
 	AssignClause getAssignClause();
 
 	OrganizationClause getOrganizationClause();
@@ -24,6 +26,8 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 	ReserveClause getReserveClause();
 
 	SelectClause getSelectClause();
+
+	void setAccessModeClause(AccessModeClause accessModeClause);
 
 	void setAssignClause(AssignClause assignClause);
 

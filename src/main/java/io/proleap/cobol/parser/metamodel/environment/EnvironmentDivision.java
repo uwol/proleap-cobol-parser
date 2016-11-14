@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.environment;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.AccessModeClauseContext;
 import io.proleap.cobol.Cobol85Parser.AssignClauseContext;
 import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
@@ -32,6 +33,8 @@ import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 
 public interface EnvironmentDivision extends CobolDivision {
+
+	AccessModeClause addAccessModeClause(AccessModeClauseContext ctx);
 
 	AssignClause addAssignClause(AssignClauseContext ctx);
 

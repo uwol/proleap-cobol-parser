@@ -11,6 +11,7 @@ package io.proleap.cobol.parser.metamodel.environment.impl;
 import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.environment.AccessModeClause;
 import io.proleap.cobol.parser.metamodel.environment.AssignClause;
 import io.proleap.cobol.parser.metamodel.environment.FileControlEntry;
 import io.proleap.cobol.parser.metamodel.environment.OrganizationClause;
@@ -22,6 +23,8 @@ import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 //FIXME: add fileControlClauses
 public class FileControlEntryImpl extends CobolDivisionElementImpl implements FileControlEntry {
+
+	protected AccessModeClause accessModeClause;
 
 	protected AssignClause assignClause;
 
@@ -45,6 +48,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 
 		this.ctx = ctx;
 		this.name = name;
+	}
+
+	@Override
+	public AccessModeClause getAccessModeClause() {
+		return accessModeClause;
 	}
 
 	@Override
@@ -80,6 +88,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	@Override
 	public SelectClause getSelectClause() {
 		return selectClause;
+	}
+
+	@Override
+	public void setAccessModeClause(final AccessModeClause accessModeClause) {
+		this.accessModeClause = accessModeClause;
 	}
 
 	@Override
