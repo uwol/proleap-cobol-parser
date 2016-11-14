@@ -11,13 +11,16 @@ package io.proleap.cobol.parser.metamodel.environment.specialnames.impl;
 import io.proleap.cobol.Cobol85Parser.ChannelClauseContext;
 import io.proleap.cobol.Cobol85Parser.ClassClauseContext;
 import io.proleap.cobol.Cobol85Parser.ClassClauseThroughContext;
+import io.proleap.cobol.Cobol85Parser.CurrencySignClauseContext;
 import io.proleap.cobol.Cobol85Parser.OdtClauseContext;
 import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
+import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.MnemonicName;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ChannelClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClause;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.CurrencySignClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.OdtClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -30,6 +33,8 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 	protected ClassClause classClause;
 
 	protected final SpecialNamesParagraphContext ctx;
+
+	protected CurrencySignClause currencySignClause;
 
 	protected OdtClause odtClause;
 
@@ -102,6 +107,28 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 	}
 
 	@Override
+	public CurrencySignClause addCurrencySignClause(final CurrencySignClauseContext ctx) {
+		CurrencySignClause result = (CurrencySignClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new CurrencySignClauseImpl(programUnit, ctx);
+
+			final Literal currencyLiteral = addLiteral(ctx.literal(0));
+			result.setCurrencyLiteral(currencyLiteral);
+
+			if (ctx.literal().size() > 1) {
+				final Literal pictureSymbolLiteral = addLiteral(ctx.literal(1));
+				result.setPictureSymbolLiteral(pictureSymbolLiteral);
+			}
+
+			currencySignClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public OdtClause addOdtClause(final OdtClauseContext ctx) {
 		OdtClause result = (OdtClause) getASGElement(ctx);
 
@@ -126,6 +153,11 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 	@Override
 	public ClassClause getClassClause() {
 		return classClause;
+	}
+
+	@Override
+	public CurrencySignClause getCurrencySignClause() {
+		return currencySignClause;
 	}
 
 	@Override

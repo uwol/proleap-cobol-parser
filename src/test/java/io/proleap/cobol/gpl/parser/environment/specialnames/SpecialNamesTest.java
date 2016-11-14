@@ -17,6 +17,7 @@ import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ChannelClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClauseThrough;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.CurrencySignClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.OdtClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
@@ -82,6 +83,13 @@ public class SpecialNamesTest extends CobolTestSupport {
 				final ValueStmt to2 = clauseThrough2.getTo();
 				assertNotNull(to2);
 			}
+		}
+
+		{
+			final CurrencySignClause currencySignClause = specialNamesParagraph.getCurrencySignClause();
+			assertNotNull(currencySignClause);
+			assertEquals("'E'", currencySignClause.getCurrencyLiteral().getValue());
+			assertEquals("'-'", currencySignClause.getPictureSymbolLiteral().getValue());
 		}
 	}
 }
