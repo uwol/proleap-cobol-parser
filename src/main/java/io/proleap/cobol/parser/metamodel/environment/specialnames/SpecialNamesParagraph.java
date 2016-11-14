@@ -13,6 +13,7 @@ import io.proleap.cobol.Cobol85Parser.ClassClauseContext;
 import io.proleap.cobol.Cobol85Parser.CurrencySignClauseContext;
 import io.proleap.cobol.Cobol85Parser.DecimalPointClauseContext;
 import io.proleap.cobol.Cobol85Parser.OdtClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReserveNetworkClauseContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface SpecialNamesParagraph extends CobolDivisionElement {
@@ -27,6 +28,8 @@ public interface SpecialNamesParagraph extends CobolDivisionElement {
 
 	OdtClause addOdtClause(OdtClauseContext ctx);
 
+	ReserveNetworkClause addReserveNetworkClause(ReserveNetworkClauseContext ctx);
+
 	ChannelClause getChannelClause();
 
 	ClassClause getClassClause();
@@ -36,4 +39,6 @@ public interface SpecialNamesParagraph extends CobolDivisionElement {
 	DecimalPointClause getDecimalPointClause();
 
 	OdtClause getOdtClause();
+
+	ReserveNetworkClause getReserveNetworkClause();
 }

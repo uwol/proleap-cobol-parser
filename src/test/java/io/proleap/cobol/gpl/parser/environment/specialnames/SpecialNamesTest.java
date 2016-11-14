@@ -20,6 +20,7 @@ import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClauseThr
 import io.proleap.cobol.parser.metamodel.environment.specialnames.CurrencySignClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.DecimalPointClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.OdtClause;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.ReserveNetworkClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -96,6 +97,11 @@ public class SpecialNamesTest extends CobolTestSupport {
 			final OdtClause odtClause = specialNamesParagraph.getOdtClause();
 			assertNotNull(odtClause);
 			assertEquals("SOMEMNEMONIC", odtClause.getMnemonicName().getValue());
+		}
+
+		{
+			final ReserveNetworkClause reserveNetworkClause = specialNamesParagraph.getReserveNetworkClause();
+			assertNotNull(reserveNetworkClause);
 		}
 	}
 }
