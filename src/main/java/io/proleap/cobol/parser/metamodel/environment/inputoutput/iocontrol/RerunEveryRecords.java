@@ -8,14 +8,12 @@
 
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol;
 
-import java.util.List;
-
-import io.proleap.cobol.Cobol85Parser.MultipleFilePositionContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 
-public interface MultipleFileClause extends CobolDivisionElement {
+public interface RerunEveryRecords extends CobolDivisionElement {
 
-	MultipleFilePosition addMultipleFilePosition(MultipleFilePositionContext ctx);
+	IntegerLiteral getRecords();
 
-	List<MultipleFilePosition> getMultipleFilePositions();
+	void setRecords(IntegerLiteral records);
 }

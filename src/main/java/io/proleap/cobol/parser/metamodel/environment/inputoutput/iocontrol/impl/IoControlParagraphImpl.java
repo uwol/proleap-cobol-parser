@@ -11,11 +11,14 @@ package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.impl
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import io.proleap.cobol.Cobol85Parser.CommitmentControlClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.Cobol85Parser.MultipleFileClauseContext;
-import io.proleap.cobol.Cobol85Parser.MultipleFilePositionClauseContext;
+import io.proleap.cobol.Cobol85Parser.MultipleFilePositionContext;
 import io.proleap.cobol.Cobol85Parser.RerunClauseContext;
 import io.proleap.cobol.Cobol85Parser.SameClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -28,6 +31,8 @@ import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class IoControlParagraphImpl extends CobolDivisionElementImpl implements IoControlParagraph {
+
+	private final static Logger LOG = LogManager.getLogger(IoControlParagraphImpl.class);
 
 	protected CommitmentControlClause commitmentControlClause;
 
@@ -73,9 +78,8 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 		if (result == null) {
 			result = new MultipleFileClauseImpl(programUnit, ctx);
 
-			for (final MultipleFilePositionClauseContext multipleFilePositionClauseContext : ctx
-					.multipleFilePositionClause()) {
-				result.addMultipleFilePositionClause(multipleFilePositionClauseContext);
+			for (final MultipleFilePositionContext multipleFilePositionContext : ctx.multipleFilePosition()) {
+				result.addMultipleFilePosition(multipleFilePositionContext);
 			}
 
 			multipleFileClause = result;
@@ -91,6 +95,34 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 
 		if (result == null) {
 			result = new RerunClauseImpl(programUnit, ctx);
+
+			/*
+			 * on value
+			 */
+			final ValueStmt onValueStmt;
+
+			if (ctx.assignmentName() != null) {
+				onValueStmt = createCallValueStmt(ctx.assignmentName());
+			} else if (ctx.fileName() != null) {
+				onValueStmt = createCallValueStmt(ctx.fileName());
+			} else {
+				LOG.warn("unknown on value stmt {}.", ctx);
+				onValueStmt = null;
+			}
+
+			result.setOnValueStmt(onValueStmt);
+
+			if (ctx.rerunEveryRecords() != null) {
+				result.addRerunEveryRecords(ctx.rerunEveryRecords());
+			}
+
+			if (ctx.rerunEveryOf() != null) {
+				result.addRerunEveryOf(ctx.rerunEveryOf());
+			}
+
+			if (ctx.rerunEveryClock() != null) {
+				result.addRerunEveryClock(ctx.rerunEveryClock());
+			}
 
 			rerunClause = result;
 			registerASGElement(result);

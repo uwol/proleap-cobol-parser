@@ -8,8 +8,27 @@
 
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol;
 
+import io.proleap.cobol.Cobol85Parser.RerunEveryClockContext;
+import io.proleap.cobol.Cobol85Parser.RerunEveryOfContext;
+import io.proleap.cobol.Cobol85Parser.RerunEveryRecordsContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface RerunClause extends CobolDivisionElement {
 
+	RerunEveryClock addRerunEveryClock(RerunEveryClockContext ctx);
+
+	RerunEveryOf addRerunEveryOf(RerunEveryOfContext ctx);
+
+	RerunEveryRecords addRerunEveryRecords(RerunEveryRecordsContext ctx);
+
+	ValueStmt getOnValueStmt();
+
+	RerunEveryClock getRerunEveryClock();
+
+	RerunEveryOf getRerunEveryOf();
+
+	RerunEveryRecords getRerunEveryRecords();
+
+	void setOnValueStmt(ValueStmt onValueStmt);
 }

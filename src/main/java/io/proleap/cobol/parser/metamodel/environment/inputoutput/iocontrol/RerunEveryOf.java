@@ -9,16 +9,19 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface MultipleFilePositionClause extends CobolDivisionElement {
+public interface RerunEveryOf extends CobolDivisionElement {
+
+	enum Type {
+		Reel, Unit
+	}
 
 	ValueStmt getFileNameValueStmt();
 
-	IntegerLiteralValueStmt getIntegerLiteralValueStmt();
+	Type getType();
 
 	void setFileNameValueStmt(ValueStmt fileNameValueStmt);
 
-	void setIntegerLiteralValueStmt(IntegerLiteralValueStmt integerLiteralValueStmt);
+	void setType(Type type);
 }

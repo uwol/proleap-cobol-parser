@@ -8,14 +8,12 @@
 
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol;
 
-import java.util.List;
-
-import io.proleap.cobol.Cobol85Parser.MultipleFilePositionContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 
-public interface MultipleFileClause extends CobolDivisionElement {
+public interface RerunEveryClock extends CobolDivisionElement {
 
-	MultipleFilePosition addMultipleFilePosition(MultipleFilePositionContext ctx);
+	IntegerLiteral getClockUnits();
 
-	List<MultipleFilePosition> getMultipleFilePositions();
+	void setClockUnits(IntegerLiteral clockUnits);
 }

@@ -8,22 +8,22 @@
 
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.impl;
 
-import io.proleap.cobol.Cobol85Parser.MultipleFilePositionClauseContext;
+import io.proleap.cobol.Cobol85Parser.MultipleFilePositionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.MultipleFilePositionClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.MultipleFilePosition;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public class MultipleFilePositionClauseImpl extends CobolDivisionElementImpl implements MultipleFilePositionClause {
+public class MultipleFilePositionImpl extends CobolDivisionElementImpl implements MultipleFilePosition {
 
-	protected final MultipleFilePositionClauseContext ctx;
+	protected final MultipleFilePositionContext ctx;
 
 	protected ValueStmt fileNameValueStmt;
 
 	protected IntegerLiteralValueStmt integerLiteralValueStmt;
 
-	public MultipleFilePositionClauseImpl(final ProgramUnit programUnit, final MultipleFilePositionClauseContext ctx) {
+	public MultipleFilePositionImpl(final ProgramUnit programUnit, final MultipleFilePositionContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

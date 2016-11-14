@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.MultipleFileClauseContext;
-import io.proleap.cobol.Cobol85Parser.MultipleFilePositionClauseContext;
+import io.proleap.cobol.Cobol85Parser.MultipleFilePositionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.MultipleFileClause;
-import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.MultipleFilePositionClause;
+import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.MultipleFilePosition;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
@@ -24,7 +24,7 @@ public class MultipleFileClauseImpl extends CobolDivisionElementImpl implements 
 
 	protected final MultipleFileClauseContext ctx;
 
-	protected List<MultipleFilePositionClause> multipleFilePositionClauses = new ArrayList<MultipleFilePositionClause>();
+	protected List<MultipleFilePosition> multipleFilePositions = new ArrayList<MultipleFilePosition>();
 
 	public MultipleFileClauseImpl(final ProgramUnit programUnit, final MultipleFileClauseContext ctx) {
 		super(programUnit, ctx);
@@ -33,11 +33,11 @@ public class MultipleFileClauseImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
-	public MultipleFilePositionClause addMultipleFilePositionClause(final MultipleFilePositionClauseContext ctx) {
-		MultipleFilePositionClause result = (MultipleFilePositionClause) getASGElement(ctx);
+	public MultipleFilePosition addMultipleFilePosition(final MultipleFilePositionContext ctx) {
+		MultipleFilePosition result = (MultipleFilePosition) getASGElement(ctx);
 
 		if (result == null) {
-			result = new MultipleFilePositionClauseImpl(programUnit, ctx);
+			result = new MultipleFilePositionImpl(programUnit, ctx);
 
 			final ValueStmt fileNameValueStmt = createCallValueStmt(ctx.fileName());
 			result.setFileNameValueStmt(fileNameValueStmt);
@@ -48,7 +48,7 @@ public class MultipleFileClauseImpl extends CobolDivisionElementImpl implements 
 				result.setIntegerLiteralValueStmt(integerLiteralValueStmt);
 			}
 
-			multipleFilePositionClauses.add(result);
+			multipleFilePositions.add(result);
 			registerASGElement(result);
 		}
 
@@ -56,8 +56,8 @@ public class MultipleFileClauseImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
-	public List<MultipleFilePositionClause> getMultipleFilePositionClauses() {
-		return multipleFilePositionClauses;
+	public List<MultipleFilePosition> getMultipleFilePositions() {
+		return multipleFilePositions;
 	}
 
 }
