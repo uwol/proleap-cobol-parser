@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.parser.metamodel.data.workingstorage;
 
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryContainer;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryContainer;
 
 public interface WorkingStorageSection extends DataDescriptionEntryContainer {
 

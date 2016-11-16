@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.parser.metamodel.call;
 
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry;
 
 public interface DataDescriptionEntryCall extends Call {
 

@@ -6,7 +6,7 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.data.impl;
+package io.proleap.cobol.parser.metamodel.data.datadescription.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,11 +24,11 @@ import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.DataPictureClauseContext;
 import io.proleap.cobol.Cobol85Parser.PictureStringContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryCondition;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryContainer;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryRename;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryCondition;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryContainer;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryGroup;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryRename;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.util.StringUtils;
 

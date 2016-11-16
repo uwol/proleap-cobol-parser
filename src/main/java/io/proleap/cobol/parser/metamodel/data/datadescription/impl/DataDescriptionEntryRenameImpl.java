@@ -6,11 +6,11 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.data.impl;
+package io.proleap.cobol.parser.metamodel.data.datadescription.impl;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryRename;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryRename;
 
 //FIXME: add clauses
 public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryRename {

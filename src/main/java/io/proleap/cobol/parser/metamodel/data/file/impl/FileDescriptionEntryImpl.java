@@ -30,6 +30,7 @@ import io.proleap.cobol.Cobol85Parser.ValueOfClauseContext;
 import io.proleap.cobol.Cobol85Parser.ValuePairContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.data.datadescription.impl.DataDescriptionEntryContainerImpl;
 import io.proleap.cobol.parser.metamodel.data.file.BlockContainsClause;
 import io.proleap.cobol.parser.metamodel.data.file.CodeSetClause;
 import io.proleap.cobol.parser.metamodel.data.file.DataRecordsClause;
@@ -40,7 +41,6 @@ import io.proleap.cobol.parser.metamodel.data.file.RecordContainsClause;
 import io.proleap.cobol.parser.metamodel.data.file.ReportClause;
 import io.proleap.cobol.parser.metamodel.data.file.ValueOfClause;
 import io.proleap.cobol.parser.metamodel.data.file.ValueOfNameValuePair;
-import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntryContainerImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 

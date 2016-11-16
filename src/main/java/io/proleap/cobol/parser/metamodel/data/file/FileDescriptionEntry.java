@@ -17,7 +17,7 @@ import io.proleap.cobol.Cobol85Parser.RecordContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportClauseContext;
 import io.proleap.cobol.Cobol85Parser.ValueOfClauseContext;
 import io.proleap.cobol.parser.metamodel.Declaration;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryContainer;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryContainer;
 
 public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Declaration {
 

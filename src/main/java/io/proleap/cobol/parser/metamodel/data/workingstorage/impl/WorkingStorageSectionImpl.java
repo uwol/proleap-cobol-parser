@@ -10,7 +10,7 @@ package io.proleap.cobol.parser.metamodel.data.workingstorage.impl;
 
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntryContainerImpl;
+import io.proleap.cobol.parser.metamodel.data.datadescription.impl.DataDescriptionEntryContainerImpl;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 
 public class WorkingStorageSectionImpl extends DataDescriptionEntryContainerImpl implements WorkingStorageSection {

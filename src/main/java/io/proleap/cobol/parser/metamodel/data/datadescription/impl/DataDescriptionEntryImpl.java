@@ -6,7 +6,7 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.data.impl;
+package io.proleap.cobol.parser.metamodel.data.datadescription.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,8 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.DataDescriptionEntryCall;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl implements DataDescriptionEntry {

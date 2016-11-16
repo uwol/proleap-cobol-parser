@@ -10,7 +10,7 @@ package io.proleap.cobol.parser.metamodel.data.linkage.impl;
 
 import io.proleap.cobol.Cobol85Parser.LinkageSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntryContainerImpl;
+import io.proleap.cobol.parser.metamodel.data.datadescription.impl.DataDescriptionEntryContainerImpl;
 import io.proleap.cobol.parser.metamodel.data.linkage.LinkageSection;
 
 public class LinkageSectionImpl extends DataDescriptionEntryContainerImpl implements LinkageSection {

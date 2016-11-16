@@ -6,7 +6,7 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.data.impl;
+package io.proleap.cobol.parser.metamodel.data.datadescription.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,8 +15,8 @@ import java.util.Map;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryGroup;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryGroup;
 
 //FIXME: add clauses
 public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryGroup {

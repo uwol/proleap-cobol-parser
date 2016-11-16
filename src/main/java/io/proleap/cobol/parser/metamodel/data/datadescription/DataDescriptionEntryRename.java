@@ -6,8 +6,8 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.data;
+package io.proleap.cobol.parser.metamodel.data.datadescription;
 
-public interface DataDescriptionEntryCondition extends DataDescriptionEntry {
+public interface DataDescriptionEntryRename extends DataDescriptionEntry {
 
 }

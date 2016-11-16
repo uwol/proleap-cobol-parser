@@ -9,7 +9,7 @@
 package io.proleap.cobol.parser.metamodel.data.localstorage;
 
 import io.proleap.cobol.parser.metamodel.Declaration;
-import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryContainer;
+import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryContainer;
 
 public interface LocalStorageSection extends DataDescriptionEntryContainer, Declaration {
 

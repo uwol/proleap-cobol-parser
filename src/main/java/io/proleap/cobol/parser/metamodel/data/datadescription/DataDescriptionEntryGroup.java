@@ -6,7 +6,7 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.data;
+package io.proleap.cobol.parser.metamodel.data.datadescription;
 
 import java.util.List;
 
