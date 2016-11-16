@@ -19,6 +19,7 @@ import io.proleap.cobol.parser.metamodel.data.file.BlockContainsClause;
 import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.file.FileSection;
 import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
+import io.proleap.cobol.parser.metamodel.data.file.LinageClause;
 import io.proleap.cobol.parser.metamodel.data.file.RecordContainsClause;
 import io.proleap.cobol.parser.metamodel.data.file.ValueOfClause;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -78,6 +79,22 @@ public class FileDescriptionEntryTest extends CobolTestSupport {
 			assertNotNull(valueOfClause);
 			assertEquals(1, valueOfClause.getValuePairs().size());
 			assertNotNull(valueOfClause.getValuePairs().get(0));
+		}
+
+		{
+			final LinageClause linageClause = fileDescriptionEntry.getLinageClause();
+			assertNotNull(linageClause);
+
+			assertNotNull(linageClause.getNumberOfLinesValueStmt());
+			assertEquals(new Integer(30), linageClause.getNumberOfLinesValueStmt().getValue());
+
+			assertNotNull(linageClause.getFootingAtValueStmt());
+			assertEquals(new Integer(5), linageClause.getFootingAtValueStmt().getValue());
+
+			assertNotNull(linageClause.getLinesAtTopValueStmt());
+			assertEquals(new Integer(2), linageClause.getLinesAtTopValueStmt().getValue());
+
+			assertNotNull(linageClause.getLinesAtBottomValueStmt());
 		}
 	}
 }

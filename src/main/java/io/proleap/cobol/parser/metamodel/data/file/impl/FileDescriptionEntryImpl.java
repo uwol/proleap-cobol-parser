@@ -8,10 +8,18 @@
 
 package io.proleap.cobol.parser.metamodel.data.file.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.LabelRecordsClauseContext;
+import io.proleap.cobol.Cobol85Parser.LinageAtContext;
+import io.proleap.cobol.Cobol85Parser.LinageClauseContext;
+import io.proleap.cobol.Cobol85Parser.LinageFootingAtContext;
+import io.proleap.cobol.Cobol85Parser.LinageLinesAtBottomContext;
+import io.proleap.cobol.Cobol85Parser.LinageLinesAtTopContext;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseFormat2Context;
 import io.proleap.cobol.Cobol85Parser.ValueOfClauseContext;
@@ -21,6 +29,7 @@ import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.file.BlockContainsClause;
 import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
+import io.proleap.cobol.parser.metamodel.data.file.LinageClause;
 import io.proleap.cobol.parser.metamodel.data.file.RecordContainsClause;
 import io.proleap.cobol.parser.metamodel.data.file.ValueOfClause;
 import io.proleap.cobol.parser.metamodel.data.file.ValueOfNameValuePair;
@@ -29,6 +38,8 @@ import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl implements FileDescriptionEntry {
+
+	private final static Logger LOG = LogManager.getLogger(FileDescriptionEntryImpl.class);
 
 	protected BlockContainsClause blockContainsClause;
 
@@ -39,6 +50,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	protected Boolean global;
 
 	protected LabelRecordsClause labelRecordsClause;
+
+	protected LinageClause linageClause;
 
 	protected final String name;
 
@@ -130,6 +143,99 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			}
 
 			labelRecordsClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public LinageClause addLinageClause(final LinageClauseContext ctx) {
+		LinageClause result = (LinageClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new LinageClauseImpl(programUnit, ctx);
+
+			/*
+			 * number of lines
+			 */
+			final ValueStmt numberOfLinesValueStmt;
+
+			if (ctx.dataName() != null) {
+				numberOfLinesValueStmt = createCallValueStmt(ctx.dataName());
+			} else if (ctx.integerLiteral() != null) {
+				numberOfLinesValueStmt = createIntegerLiteralValueStmt(ctx.integerLiteral());
+			} else {
+				LOG.warn("unknown number of lines at {}", ctx);
+				numberOfLinesValueStmt = null;
+			}
+
+			result.setNumberOfLinesValueStmt(numberOfLinesValueStmt);
+
+			/*
+			 * linage at
+			 */
+			for (final LinageAtContext linageAtContext : ctx.linageAt()) {
+				/*
+				 * footing at
+				 */
+				if (linageAtContext.linageFootingAt() != null) {
+					final LinageFootingAtContext linageFootingAtContext = linageAtContext.linageFootingAt();
+					final ValueStmt footingAtValueStmt;
+
+					if (linageFootingAtContext.dataName() != null) {
+						footingAtValueStmt = createCallValueStmt(linageFootingAtContext.dataName());
+					} else if (linageFootingAtContext.integerLiteral() != null) {
+						footingAtValueStmt = createIntegerLiteralValueStmt(linageFootingAtContext.integerLiteral());
+					} else {
+						LOG.warn("unknown linage footing at {}", linageFootingAtContext);
+						footingAtValueStmt = null;
+					}
+
+					result.setFootingAtValueStmt(footingAtValueStmt);
+				}
+
+				/*
+				 * lines at top
+				 */
+				if (linageAtContext.linageLinesAtTop() != null) {
+					final LinageLinesAtTopContext linageLinesAtTopContext = linageAtContext.linageLinesAtTop();
+					final ValueStmt LinesAtTopValueStmt;
+
+					if (linageLinesAtTopContext.dataName() != null) {
+						LinesAtTopValueStmt = createCallValueStmt(linageLinesAtTopContext.dataName());
+					} else if (linageLinesAtTopContext.integerLiteral() != null) {
+						LinesAtTopValueStmt = createIntegerLiteralValueStmt(linageLinesAtTopContext.integerLiteral());
+					} else {
+						LOG.warn("unknown lines at top at {}", linageLinesAtTopContext);
+						LinesAtTopValueStmt = null;
+					}
+
+					result.setLinesAtTopValueStmt(LinesAtTopValueStmt);
+				}
+
+				/*
+				 * lines at bottom
+				 */
+				if (linageAtContext.linageLinesAtBottom() != null) {
+					final LinageLinesAtBottomContext linageLinesAtBottomContext = linageAtContext.linageLinesAtBottom();
+					final ValueStmt LinesAtBottomValueStmt;
+
+					if (linageLinesAtBottomContext.dataName() != null) {
+						LinesAtBottomValueStmt = createCallValueStmt(linageLinesAtBottomContext.dataName());
+					} else if (linageLinesAtBottomContext.integerLiteral() != null) {
+						LinesAtBottomValueStmt = createIntegerLiteralValueStmt(
+								linageLinesAtBottomContext.integerLiteral());
+					} else {
+						LOG.warn("unknown lines at bottom at {}", linageLinesAtBottomContext);
+						LinesAtBottomValueStmt = null;
+					}
+
+					result.setLinesAtBottomValueStmt(LinesAtBottomValueStmt);
+				}
+			}
+
+			linageClause = result;
 			registerASGElement(result);
 		}
 
@@ -243,6 +349,11 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	@Override
 	public LabelRecordsClause getLabelRecordsClause() {
 		return labelRecordsClause;
+	}
+
+	@Override
+	public LinageClause getLinageClause() {
+		return linageClause;
 	}
 
 	@Override

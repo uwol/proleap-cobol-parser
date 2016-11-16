@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
@@ -25,6 +28,8 @@ import io.proleap.cobol.parser.metamodel.data.file.FileSection;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 public class FileSectionImpl extends CobolDivisionElementImpl implements FileSection {
+
+	private final static Logger LOG = LogManager.getLogger(FileSectionImpl.class);
 
 	protected final FileSectionContext ctx;
 
@@ -73,6 +78,10 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 
 				if (fileDescriptionEntryClause.valueOfClause() != null) {
 					result.addValueOfClause(fileDescriptionEntryClause.valueOfClause());
+				}
+
+				if (fileDescriptionEntryClause.linageClause() != null) {
+					result.addLinageClause(fileDescriptionEntryClause.linageClause());
 				}
 			}
 

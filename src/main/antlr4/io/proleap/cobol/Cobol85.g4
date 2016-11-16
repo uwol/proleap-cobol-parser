@@ -575,12 +575,23 @@ dataRecordClause :
 ;
 
 linageClause :
-	LINAGE IS? (dataName | integerLiteral) LINES?
-	(
-		WITH? FOOTING AT? (dataName | integerLiteral)
-		| LINES? AT? TOP (dataName | integerLiteral)
-		| LINES? AT? BOTTOM (dataName | integerLiteral)
-	)*
+	LINAGE IS? (dataName | integerLiteral) LINES? linageAt*
+;
+
+linageAt :
+	linageFootingAt | linageLinesAtTop | linageLinesAtBottom
+;
+
+linageFootingAt :
+	WITH? FOOTING AT? (dataName | integerLiteral)
+;
+
+linageLinesAtTop :
+	LINES? AT? TOP (dataName | integerLiteral)
+;
+
+linageLinesAtBottom :
+	LINES? AT? BOTTOM (dataName | integerLiteral)
 ;
 
 recordingModeClause :
