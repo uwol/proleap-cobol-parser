@@ -14,14 +14,19 @@ import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.LabelRecordsClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseFormat2Context;
+import io.proleap.cobol.Cobol85Parser.ValueOfClauseContext;
+import io.proleap.cobol.Cobol85Parser.ValuePairContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.file.BlockContainsClause;
 import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.RecordContainsClause;
+import io.proleap.cobol.parser.metamodel.data.file.ValueOfClause;
+import io.proleap.cobol.parser.metamodel.data.file.ValueOfNameValuePair;
 import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntryContainerImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl implements FileDescriptionEntry {
 
@@ -38,6 +43,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	protected final String name;
 
 	protected RecordContainsClause recordContainsClause;
+
+	protected ValueOfClause valueOfClause;
 
 	public FileDescriptionEntryImpl(final String name, final ProgramUnit programUnit,
 			final FileDescriptionEntryContext ctx) {
@@ -196,6 +203,39 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	}
 
 	@Override
+	public ValueOfClause addValueOfClause(final ValueOfClauseContext ctx) {
+		ValueOfClause result = (ValueOfClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ValueOfClauseImpl(programUnit, ctx);
+
+			for (final ValuePairContext valuePairContext : ctx.valuePair()) {
+				final ValueStmt systemName = createCallValueStmt(valuePairContext.systemName());
+				final ValueStmt value;
+
+				if (valuePairContext.qualifiedDataName() != null) {
+					value = createCallValueStmt(valuePairContext.qualifiedDataName());
+				} else if (valuePairContext.literal() != null) {
+					value = createLiteralValueStmt(valuePairContext.literal());
+				} else {
+					value = null;
+				}
+
+				final ValueOfNameValuePair valuePair = new ValueOfNameValuePairImpl();
+				valuePair.setName(systemName);
+				valuePair.setValue(value);
+
+				result.addValuePair(valuePair);
+			}
+
+			valueOfClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public BlockContainsClause getBlockContainsClause() {
 		return blockContainsClause;
 	}
@@ -213,6 +253,11 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	@Override
 	public RecordContainsClause getRecordContainsClause() {
 		return recordContainsClause;
+	}
+
+	@Override
+	public ValueOfClause getValueOfClause() {
+		return valueOfClause;
 	}
 
 	@Override

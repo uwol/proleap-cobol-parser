@@ -11,6 +11,7 @@ package io.proleap.cobol.parser.metamodel.data.file;
 import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.LabelRecordsClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseContext;
+import io.proleap.cobol.Cobol85Parser.ValueOfClauseContext;
 import io.proleap.cobol.parser.metamodel.Declaration;
 import io.proleap.cobol.parser.metamodel.data.DataDescriptionEntryContainer;
 
@@ -22,11 +23,15 @@ public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Dec
 
 	RecordContainsClause addRecordContainsClause(RecordContainsClauseContext ctx);
 
+	ValueOfClause addValueOfClause(ValueOfClauseContext ctx);
+
 	BlockContainsClause getBlockContainsClause();
 
 	LabelRecordsClause getLabelRecordsClause();
 
 	RecordContainsClause getRecordContainsClause();
+
+	ValueOfClause getValueOfClause();
 
 	Boolean isExternal();
 

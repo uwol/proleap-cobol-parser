@@ -563,7 +563,11 @@ labelRecordsClause :
 ;
 
 valueOfClause :
-	VALUE OF (systemName IS? (qualifiedDataName | literal))+
+	VALUE OF valuePair+
+;
+
+valuePair :
+	systemName IS? (qualifiedDataName | literal)
 ;
 
 dataRecordClause :
