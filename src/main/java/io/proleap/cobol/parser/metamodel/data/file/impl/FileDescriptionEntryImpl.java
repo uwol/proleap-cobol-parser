@@ -9,13 +9,16 @@
 package io.proleap.cobol.parser.metamodel.data.file.impl;
 
 import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataNameContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
+import io.proleap.cobol.Cobol85Parser.LabelRecordsClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseFormat2Context;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.file.BlockContainsClause;
 import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.RecordContainsClause;
 import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntryContainerImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
@@ -29,6 +32,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	protected Boolean external;
 
 	protected Boolean global;
+
+	protected LabelRecordsClause labelRecordsClause;
 
 	protected final String name;
 
@@ -79,6 +84,45 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			result.setUnit(unit);
 
 			blockContainsClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public LabelRecordsClause addLabelRecordsClause(final LabelRecordsClauseContext ctx) {
+		LabelRecordsClause result = (LabelRecordsClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new LabelRecordsClauseImpl(programUnit, ctx);
+
+			/*
+			 * unit
+			 */
+			final LabelRecordsClause.Type type;
+
+			if (ctx.OMITTED() != null) {
+				type = LabelRecordsClause.Type.Omitted;
+			} else if (ctx.STANDARD() != null) {
+				type = LabelRecordsClause.Type.Standard;
+			} else if (!ctx.dataName().isEmpty()) {
+				type = LabelRecordsClause.Type.DataNames;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
+
+			/*
+			 * data names
+			 */
+			for (final DataNameContext dataNameContext : ctx.dataName()) {
+				final CallValueStmt dataNameValueStmt = createCallValueStmt(dataNameContext);
+				result.addDataNameValueStmt(dataNameValueStmt);
+			}
+
+			labelRecordsClause = result;
 			registerASGElement(result);
 		}
 
@@ -154,6 +198,11 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	@Override
 	public BlockContainsClause getBlockContainsClause() {
 		return blockContainsClause;
+	}
+
+	@Override
+	public LabelRecordsClause getLabelRecordsClause() {
+		return labelRecordsClause;
 	}
 
 	@Override

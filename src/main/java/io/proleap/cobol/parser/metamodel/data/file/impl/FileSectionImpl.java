@@ -66,6 +66,10 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 				if (fileDescriptionEntryClause.recordContainsClause() != null) {
 					result.addRecordContainsClause(fileDescriptionEntryClause.recordContainsClause());
 				}
+
+				if (fileDescriptionEntryClause.labelRecordsClause() != null) {
+					result.addLabelRecordsClause(fileDescriptionEntryClause.labelRecordsClause());
+				}
 			}
 
 			/*

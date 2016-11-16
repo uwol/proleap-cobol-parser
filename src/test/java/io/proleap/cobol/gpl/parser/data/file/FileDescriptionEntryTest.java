@@ -18,6 +18,7 @@ import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.file.BlockContainsClause;
 import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.file.FileSection;
+import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.RecordContainsClause;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -60,6 +61,15 @@ public class FileDescriptionEntryTest extends CobolTestSupport {
 			assertEquals(new Integer(1), recordContainsClause.getFrom().getValue());
 			assertEquals(new Integer(5), recordContainsClause.getTo().getValue());
 			assertNotNull(recordContainsClause.getDependingOnValueStmt());
+		}
+
+		{
+			final LabelRecordsClause labelRecordsClause = fileDescriptionEntry.getLabelRecordsClause();
+			assertNotNull(labelRecordsClause);
+			assertEquals(LabelRecordsClause.Type.DataNames, labelRecordsClause.getType());
+			assertEquals(2, labelRecordsClause.getDataNames().size());
+			assertNotNull(labelRecordsClause.getDataNames().get(0));
+			assertNotNull(labelRecordsClause.getDataNames().get(1));
 		}
 	}
 }
