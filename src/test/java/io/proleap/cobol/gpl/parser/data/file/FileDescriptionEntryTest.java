@@ -16,6 +16,7 @@ import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.file.BlockContainsClause;
+import io.proleap.cobol.parser.metamodel.data.file.CodeSetClause;
 import io.proleap.cobol.parser.metamodel.data.file.DataRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.file.FileSection;
@@ -104,6 +105,12 @@ public class FileDescriptionEntryTest extends CobolTestSupport {
 			assertEquals(new Integer(2), linageClause.getLinesAtTopValueStmt().getValue());
 
 			assertNotNull(linageClause.getLinesAtBottomValueStmt());
+		}
+
+		{
+			final CodeSetClause codeSetClause = fileDescriptionEntry.getCodeSetClause();
+			assertNotNull(codeSetClause);
+			assertEquals("SomeAlphabet", codeSetClause.getAlphabetName());
 		}
 	}
 }

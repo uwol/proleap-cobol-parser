@@ -9,6 +9,7 @@
 package io.proleap.cobol.parser.metamodel.data.file;
 
 import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
+import io.proleap.cobol.Cobol85Parser.CodeSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataRecordsClauseContext;
 import io.proleap.cobol.Cobol85Parser.LabelRecordsClauseContext;
 import io.proleap.cobol.Cobol85Parser.LinageClauseContext;
@@ -21,6 +22,8 @@ public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Dec
 
 	BlockContainsClause addBlockContainsClause(BlockContainsClauseContext ctx);
 
+	CodeSetClause addCodeSetClause(CodeSetClauseContext ctx);
+
 	DataRecordsClause addDataRecordsClause(DataRecordsClauseContext ctx);
 
 	LabelRecordsClause addLabelRecordsClause(LabelRecordsClauseContext ctx);
@@ -32,6 +35,8 @@ public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Dec
 	ValueOfClause addValueOfClause(ValueOfClauseContext ctx);
 
 	BlockContainsClause getBlockContainsClause();
+
+	CodeSetClause getCodeSetClause();
 
 	DataRecordsClause getDataRecordsClause();
 

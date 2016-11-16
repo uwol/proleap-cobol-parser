@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
+import io.proleap.cobol.Cobol85Parser.CodeSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
 import io.proleap.cobol.Cobol85Parser.DataRecordsClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
@@ -28,6 +29,7 @@ import io.proleap.cobol.Cobol85Parser.ValuePairContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.file.BlockContainsClause;
+import io.proleap.cobol.parser.metamodel.data.file.CodeSetClause;
 import io.proleap.cobol.parser.metamodel.data.file.DataRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
@@ -44,6 +46,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	private final static Logger LOG = LogManager.getLogger(FileDescriptionEntryImpl.class);
 
 	protected BlockContainsClause blockContainsClause;
+
+	protected CodeSetClause codeSetClause;
 
 	protected final FileDescriptionEntryContext ctx;
 
@@ -115,6 +119,23 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	}
 
 	@Override
+	public CodeSetClause addCodeSetClause(final CodeSetClauseContext ctx) {
+		CodeSetClause result = (CodeSetClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new CodeSetClauseImpl(programUnit, ctx);
+
+			final String alphabetName = determineName(ctx.alphabetName());
+			result.setAlhpabetName(alphabetName);
+
+			codeSetClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public DataRecordsClause addDataRecordsClause(final DataRecordsClauseContext ctx) {
 		DataRecordsClause result = (DataRecordsClause) getASGElement(ctx);
 
@@ -144,7 +165,7 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			result = new LabelRecordsClauseImpl(programUnit, ctx);
 
 			/*
-			 * unit
+			 * type
 			 */
 			final LabelRecordsClause.Type type;
 
@@ -370,6 +391,11 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	@Override
 	public BlockContainsClause getBlockContainsClause() {
 		return blockContainsClause;
+	}
+
+	@Override
+	public CodeSetClause getCodeSetClause() {
+		return codeSetClause;
 	}
 
 	@Override

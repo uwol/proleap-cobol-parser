@@ -14,5 +14,5 @@
         WITH FOOTING AT 5
         LINES AT TOP 2
         LINES AT BOTTOM SOMEBOTTOMLINESVAR
-    .
+    CODE-SET SomeAlphabet.
     01 PERSON-FILE.
