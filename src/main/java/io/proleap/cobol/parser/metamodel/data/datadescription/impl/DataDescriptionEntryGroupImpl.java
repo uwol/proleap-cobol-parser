@@ -14,18 +14,28 @@ import java.util.List;
 import java.util.Map;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
+import io.proleap.cobol.Cobol85Parser.DataExternalClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryGroup;
+import io.proleap.cobol.parser.metamodel.data.datadescription.ExternalClause;
 
 //FIXME: add clauses
 public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryGroup {
+
+	protected Boolean aligned;
+
+	protected Boolean blankWhenZero;
 
 	protected final DataDescriptionEntryFormat1Context ctx;
 
 	protected List<DataDescriptionEntry> dataDescriptionEntries = new ArrayList<DataDescriptionEntry>();
 
 	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesByName = new HashMap<String, DataDescriptionEntry>();
+
+	protected ExternalClause externalClause;
+
+	protected Invariance invariance;
 
 	protected String pictureString;
 
@@ -45,6 +55,30 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
+	public ExternalClause addExternalClause(final DataExternalClauseContext ctx) {
+		ExternalClause result = (ExternalClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ExternalClauseImpl(programUnit, ctx);
+
+			externalClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public Boolean getAligned() {
+		return aligned;
+	}
+
+	@Override
+	public Boolean getBlankWhenZero() {
+		return blankWhenZero;
+	}
+
+	@Override
 	public List<DataDescriptionEntry> getDataDescriptionEntries() {
 		return dataDescriptionEntries;
 	}
@@ -52,6 +86,16 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	@Override
 	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
 		return dataDescriptionEntriesByName.get(name);
+	}
+
+	@Override
+	public ExternalClause getExternalClause() {
+		return externalClause;
+	}
+
+	@Override
+	public Invariance getInvariance() {
+		return invariance;
 	}
 
 	@Override
@@ -70,6 +114,21 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 		}
 
 		return result;
+	}
+
+	@Override
+	public void setAligned(final Boolean aligned) {
+		this.aligned = aligned;
+	}
+
+	@Override
+	public void setBlankWhenZero(final Boolean blankWhenZero) {
+		this.blankWhenZero = blankWhenZero;
+	}
+
+	@Override
+	public void setInvariance(final Invariance invariance) {
+		this.invariance = invariance;
 	}
 
 	@Override

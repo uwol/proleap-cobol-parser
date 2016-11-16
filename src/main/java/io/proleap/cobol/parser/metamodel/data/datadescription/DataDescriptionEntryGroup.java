@@ -10,16 +10,37 @@ package io.proleap.cobol.parser.metamodel.data.datadescription;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.DataExternalClauseContext;
+
 public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 
+	public enum Invariance {
+		Common, Local, Own
+	}
+
 	void addDataDescriptionEntry(DataDescriptionEntry dataDescriptionEntry);
+
+	ExternalClause addExternalClause(DataExternalClauseContext ctx);
+
+	Boolean getAligned();
+
+	Boolean getBlankWhenZero();
 
 	List<DataDescriptionEntry> getDataDescriptionEntries();
 
 	DataDescriptionEntry getDataDescriptionEntry(String name);
 
+	ExternalClause getExternalClause();
+
+	Invariance getInvariance();
+
 	String getPictureString();
 
-	void setPictureString(String pictureString);
+	void setAligned(Boolean aligned);
 
+	void setBlankWhenZero(Boolean blankWhenZero);
+
+	void setInvariance(Invariance invariance);
+
+	void setPictureString(String pictureString);
 }

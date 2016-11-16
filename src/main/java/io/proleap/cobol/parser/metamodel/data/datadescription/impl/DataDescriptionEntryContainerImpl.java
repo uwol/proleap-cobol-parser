@@ -17,6 +17,9 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.DataAlignedClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataBlankWhenZeroClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataCommonOwnLocalClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
@@ -73,6 +76,9 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 			final String name = determineName(ctx);
 			result = new DataDescriptionEntryGroupImpl(name, programUnit, ctx);
 
+			/*
+			 * level number
+			 */
 			final Integer levelNumber;
 
 			if (ctx.LEVEL_NUMBER_77() != null) {
@@ -85,6 +91,50 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 
 			result.setLevelNumber(levelNumber);
 
+			/*
+			 * aligned clause
+			 */
+			final DataAlignedClauseContext dataAlignedClause = ctx.dataAlignedClause();
+			result.setAligned(dataAlignedClause != null);
+
+			/*
+			 * blank when zero clause
+			 */
+			final List<DataBlankWhenZeroClauseContext> dataBlankWhenZeroClauses = ctx.dataBlankWhenZeroClause();
+			result.setBlankWhenZero(!dataBlankWhenZeroClauses.isEmpty());
+
+			/*
+			 * common own local clause
+			 */
+			final List<DataCommonOwnLocalClauseContext> dataCommonOwnLocalClause = ctx.dataCommonOwnLocalClause();
+
+			if (!dataCommonOwnLocalClause.isEmpty()) {
+				final DataCommonOwnLocalClauseContext dataCommonOwnLocalClauseContext = dataCommonOwnLocalClause.get(0);
+				final DataDescriptionEntryGroup.Invariance invariance;
+
+				if (dataCommonOwnLocalClauseContext.COMMON() != null) {
+					invariance = DataDescriptionEntryGroup.Invariance.Common;
+				} else if (dataCommonOwnLocalClauseContext.OWN() != null) {
+					invariance = DataDescriptionEntryGroup.Invariance.Own;
+				} else if (dataCommonOwnLocalClauseContext.LOCAL() != null) {
+					invariance = DataDescriptionEntryGroup.Invariance.Local;
+				} else {
+					invariance = null;
+				}
+
+				result.setInvariance(invariance);
+			}
+
+			/*
+			 * external clause
+			 */
+			if (ctx.dataExternalClause() != null) {
+				result.addExternalClause(ctx.dataExternalClause());
+			}
+
+			/*
+			 * picture clause
+			 */
 			if (!ctx.dataPictureClause().isEmpty()) {
 				final DataPictureClauseContext dataPictureClauseContext = ctx.dataPictureClause().get(0);
 				final PictureStringContext pictureString = dataPictureClauseContext.pictureString();
