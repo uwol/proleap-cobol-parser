@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryContext;
+import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -45,6 +46,31 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 			final String name = determineName(ctx);
 			result = new FileDescriptionEntryImpl(name, programUnit, ctx);
 
+			/*
+			 * file description entries
+			 */
+			for (final FileDescriptionEntryClauseContext fileDescriptionEntryClause : ctx
+					.fileDescriptionEntryClause()) {
+				if (fileDescriptionEntryClause.blockContainsClause() != null) {
+					result.addBlockContainsClause(fileDescriptionEntryClause.blockContainsClause());
+				}
+
+				if (fileDescriptionEntryClause.externalClause() != null) {
+					result.setExternal(true);
+				}
+
+				if (fileDescriptionEntryClause.globalClause() != null) {
+					result.setGlobal(true);
+				}
+
+				if (fileDescriptionEntryClause.recordContainsClause() != null) {
+					result.addRecordContainsClause(fileDescriptionEntryClause.recordContainsClause());
+				}
+			}
+
+			/*
+			 * data description entries
+			 */
 			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
 
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
