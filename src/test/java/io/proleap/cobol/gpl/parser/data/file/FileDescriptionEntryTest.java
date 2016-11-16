@@ -23,6 +23,7 @@ import io.proleap.cobol.parser.metamodel.data.file.FileSection;
 import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.LinageClause;
 import io.proleap.cobol.parser.metamodel.data.file.RecordContainsClause;
+import io.proleap.cobol.parser.metamodel.data.file.ReportClause;
 import io.proleap.cobol.parser.metamodel.data.file.ValueOfClause;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -71,17 +72,17 @@ public class FileDescriptionEntryTest extends CobolTestSupport {
 			final LabelRecordsClause labelRecordsClause = fileDescriptionEntry.getLabelRecordsClause();
 			assertNotNull(labelRecordsClause);
 			assertEquals(LabelRecordsClause.Type.DataNames, labelRecordsClause.getType());
-			assertEquals(2, labelRecordsClause.getDataNames().size());
-			assertNotNull(labelRecordsClause.getDataNames().get(0));
-			assertNotNull(labelRecordsClause.getDataNames().get(1));
+			assertEquals(2, labelRecordsClause.getDataNameValueStmts().size());
+			assertNotNull(labelRecordsClause.getDataNameValueStmts().get(0));
+			assertNotNull(labelRecordsClause.getDataNameValueStmts().get(1));
 		}
 
 		{
 			final DataRecordsClause dataRecordsClause = fileDescriptionEntry.getDataRecordsClause();
 			assertNotNull(dataRecordsClause);
-			assertEquals(2, dataRecordsClause.getDataNames().size());
-			assertNotNull(dataRecordsClause.getDataNames().get(0));
-			assertNotNull(dataRecordsClause.getDataNames().get(1));
+			assertEquals(2, dataRecordsClause.getDataNameValueStmts().size());
+			assertNotNull(dataRecordsClause.getDataNameValueStmts().get(0));
+			assertNotNull(dataRecordsClause.getDataNameValueStmts().get(1));
 		}
 
 		{
@@ -111,6 +112,12 @@ public class FileDescriptionEntryTest extends CobolTestSupport {
 			final CodeSetClause codeSetClause = fileDescriptionEntry.getCodeSetClause();
 			assertNotNull(codeSetClause);
 			assertEquals("SomeAlphabet", codeSetClause.getAlphabetName());
+		}
+
+		{
+			final ReportClause reportClause = fileDescriptionEntry.getReportClause();
+			assertNotNull(reportClause);
+			assertEquals(2, reportClause.getReportNameValueStmts().size());
 		}
 	}
 }

@@ -15,8 +15,8 @@ import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface DataRecordsClause extends CobolDivisionElement {
 
-	void addDataNameValueStmt(ValueStmt dataName);
+	void addDataNameValueStmt(ValueStmt dataNameValueStmt);
 
-	List<ValueStmt> getDataNames();
+	List<ValueStmt> getDataNameValueStmts();
 
 }

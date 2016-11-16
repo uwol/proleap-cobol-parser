@@ -13,4 +13,5 @@ import org.antlr.v4.runtime.tree.ParseTree;
 public interface NameResolver {
 
 	String determineName(ParseTree ctx);
+
 }

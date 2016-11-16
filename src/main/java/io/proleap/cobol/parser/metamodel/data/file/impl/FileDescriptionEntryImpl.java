@@ -24,6 +24,8 @@ import io.proleap.cobol.Cobol85Parser.LinageLinesAtBottomContext;
 import io.proleap.cobol.Cobol85Parser.LinageLinesAtTopContext;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseFormat2Context;
+import io.proleap.cobol.Cobol85Parser.ReportClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.ValueOfClauseContext;
 import io.proleap.cobol.Cobol85Parser.ValuePairContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
@@ -35,6 +37,7 @@ import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.LinageClause;
 import io.proleap.cobol.parser.metamodel.data.file.RecordContainsClause;
+import io.proleap.cobol.parser.metamodel.data.file.ReportClause;
 import io.proleap.cobol.parser.metamodel.data.file.ValueOfClause;
 import io.proleap.cobol.parser.metamodel.data.file.ValueOfNameValuePair;
 import io.proleap.cobol.parser.metamodel.data.impl.DataDescriptionEntryContainerImpl;
@@ -64,6 +67,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	protected final String name;
 
 	protected RecordContainsClause recordContainsClause;
+
+	protected ReportClause reportClause;
 
 	protected ValueOfClause valueOfClause;
 
@@ -356,6 +361,28 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	}
 
 	@Override
+	public ReportClause addReportClause(final ReportClauseContext ctx) {
+		ReportClause result = (ReportClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ReportClauseImpl(programUnit, ctx);
+
+			/*
+			 * report names
+			 */
+			for (final ReportNameContext reportNameContext : ctx.reportName()) {
+				final CallValueStmt reportNameValueStmt = createCallValueStmt(reportNameContext);
+				result.addReportNameValueStmt(reportNameValueStmt);
+			}
+
+			reportClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public ValueOfClause addValueOfClause(final ValueOfClauseContext ctx) {
 		ValueOfClause result = (ValueOfClause) getASGElement(ctx);
 
@@ -421,6 +448,11 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	@Override
 	public RecordContainsClause getRecordContainsClause() {
 		return recordContainsClause;
+	}
+
+	@Override
+	public ReportClause getReportClause() {
+		return reportClause;
 	}
 
 	@Override

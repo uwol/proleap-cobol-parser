@@ -37,7 +37,7 @@ public class LabelRecordsClauseImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
-	public List<ValueStmt> getDataNames() {
+	public List<ValueStmt> getDataNameValueStmts() {
 		return dataNameValueStmts;
 	}
 

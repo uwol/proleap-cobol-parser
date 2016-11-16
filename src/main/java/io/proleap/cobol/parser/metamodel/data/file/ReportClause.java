@@ -13,17 +13,10 @@ import java.util.List;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface LabelRecordsClause extends CobolDivisionElement {
+public interface ReportClause extends CobolDivisionElement {
 
-	enum Type {
-		DataNames, Omitted, Standard
-	}
+	void addReportNameValueStmt(ValueStmt reportNameValueStmt);
 
-	void addDataNameValueStmt(ValueStmt dataNameValueStmt);
+	List<ValueStmt> getReportNameValueStmts();
 
-	List<ValueStmt> getDataNameValueStmts();
-
-	Type getType();
-
-	void setType(Type type);
 }
