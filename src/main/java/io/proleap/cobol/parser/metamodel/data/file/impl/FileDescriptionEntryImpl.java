@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
+import io.proleap.cobol.Cobol85Parser.DataRecordsClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.LabelRecordsClauseContext;
 import io.proleap.cobol.Cobol85Parser.LinageAtContext;
@@ -27,6 +28,7 @@ import io.proleap.cobol.Cobol85Parser.ValuePairContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.file.BlockContainsClause;
+import io.proleap.cobol.parser.metamodel.data.file.DataRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.LinageClause;
@@ -44,6 +46,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	protected BlockContainsClause blockContainsClause;
 
 	protected final FileDescriptionEntryContext ctx;
+
+	protected DataRecordsClause dataRecordsClause;
 
 	protected Boolean external;
 
@@ -104,6 +108,28 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			result.setUnit(unit);
 
 			blockContainsClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public DataRecordsClause addDataRecordsClause(final DataRecordsClauseContext ctx) {
+		DataRecordsClause result = (DataRecordsClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new DataRecordsClauseImpl(programUnit, ctx);
+
+			/*
+			 * data names
+			 */
+			for (final DataNameContext dataNameContext : ctx.dataName()) {
+				final CallValueStmt dataNameValueStmt = createCallValueStmt(dataNameContext);
+				result.addDataNameValueStmt(dataNameValueStmt);
+			}
+
+			dataRecordsClause = result;
 			registerASGElement(result);
 		}
 
@@ -344,6 +370,11 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	@Override
 	public BlockContainsClause getBlockContainsClause() {
 		return blockContainsClause;
+	}
+
+	@Override
+	public DataRecordsClause getDataRecordsClause() {
+		return dataRecordsClause;
 	}
 
 	@Override

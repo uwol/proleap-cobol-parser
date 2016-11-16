@@ -515,7 +515,7 @@ fileDescriptionEntryClause :
 	| recordContainsClause
 	| labelRecordsClause
 	| valueOfClause
-	| dataRecordClause
+	| dataRecordsClause
 	| linageClause
 	| codeSetClause
 	| reportClause
@@ -570,7 +570,7 @@ valuePair :
 	systemName IS? (qualifiedDataName | literal)
 ;
 
-dataRecordClause :
+dataRecordsClause :
 	DATA (RECORD IS? | RECORDS ARE?) dataName+
 ;
 

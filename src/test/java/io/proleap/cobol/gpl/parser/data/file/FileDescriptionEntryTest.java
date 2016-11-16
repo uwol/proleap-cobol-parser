@@ -16,6 +16,7 @@ import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.file.BlockContainsClause;
+import io.proleap.cobol.parser.metamodel.data.file.DataRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.file.FileSection;
 import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
@@ -72,6 +73,14 @@ public class FileDescriptionEntryTest extends CobolTestSupport {
 			assertEquals(2, labelRecordsClause.getDataNames().size());
 			assertNotNull(labelRecordsClause.getDataNames().get(0));
 			assertNotNull(labelRecordsClause.getDataNames().get(1));
+		}
+
+		{
+			final DataRecordsClause dataRecordsClause = fileDescriptionEntry.getDataRecordsClause();
+			assertNotNull(dataRecordsClause);
+			assertEquals(2, dataRecordsClause.getDataNames().size());
+			assertNotNull(dataRecordsClause.getDataNames().get(0));
+			assertNotNull(dataRecordsClause.getDataNames().get(1));
 		}
 
 		{
