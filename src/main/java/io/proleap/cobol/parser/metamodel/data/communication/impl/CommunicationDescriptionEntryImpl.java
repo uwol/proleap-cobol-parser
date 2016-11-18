@@ -8,28 +8,20 @@
 
 package io.proleap.cobol.parser.metamodel.data.communication.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.communication.CommunicationDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
-public class CommunicationDescriptionEntryImpl extends CobolDivisionElementImpl
+public abstract class CommunicationDescriptionEntryImpl extends CobolDivisionElementImpl
 		implements CommunicationDescriptionEntry {
-
-	private final static Logger LOG = LogManager.getLogger(CommunicationDescriptionEntryImpl.class);
-
-	protected final CommunicationDescriptionEntryContext ctx;
 
 	protected final String name;
 
-	public CommunicationDescriptionEntryImpl(final String name, final ProgramUnit programUnit,
-			final CommunicationDescriptionEntryContext ctx) {
+	public CommunicationDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final ParseTree ctx) {
 		super(programUnit, ctx);
 
-		this.ctx = ctx;
 		this.name = name;
 	}
 

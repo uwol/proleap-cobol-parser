@@ -8,14 +8,6 @@
 
 package io.proleap.cobol.parser.metamodel.data.communication;
 
-import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.Declaration;
+public interface CommunicationDescriptionEntryInputOutput extends CommunicationDescriptionEntry {
 
-public interface CommunicationDescriptionEntry extends CobolDivisionElement, Declaration {
-
-	enum Type {
-		Input, InputOutput, Output
-	}
-
-	Type getType();
 }

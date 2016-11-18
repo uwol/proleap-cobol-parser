@@ -11,11 +11,24 @@ package io.proleap.cobol.parser.metamodel.data.communication;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryContext;
+import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryFormat1Context;
+import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryFormat2Context;
+import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryFormat3Context;
 import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryContainer;
 
 public interface CommunicationSection extends DataDescriptionEntryContainer {
 
-	CommunicationDescriptionEntry addCommunicationDescriptionEntry(CommunicationDescriptionEntryContext ctx);
+	CommunicationDescriptionEntryInput addCommunicationDescriptionEntryInput(
+			CommunicationDescriptionEntryFormat1Context ctx);
+
+	CommunicationDescriptionEntryInputOutput addCommunicationDescriptionEntryInputOutput(
+			CommunicationDescriptionEntryFormat3Context ctx);
+
+	CommunicationDescriptionEntryOutput addCommunicationDescriptionEntryOutput(
+			CommunicationDescriptionEntryFormat2Context ctx);
+
+	CommunicationDescriptionEntry createCommunicationDescriptionEntry(
+			CommunicationDescriptionEntryContext communicationDescriptionEntryContext);
 
 	List<CommunicationDescriptionEntry> getCommunicationDescriptionEntries();
 

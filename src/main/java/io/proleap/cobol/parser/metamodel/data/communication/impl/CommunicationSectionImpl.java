@@ -17,9 +17,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryContext;
+import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryFormat1Context;
+import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryFormat2Context;
+import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.CommunicationSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.communication.CommunicationDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.communication.CommunicationDescriptionEntryInput;
+import io.proleap.cobol.parser.metamodel.data.communication.CommunicationDescriptionEntryInputOutput;
+import io.proleap.cobol.parser.metamodel.data.communication.CommunicationDescriptionEntryOutput;
 import io.proleap.cobol.parser.metamodel.data.communication.CommunicationSection;
 import io.proleap.cobol.parser.metamodel.data.datadescription.impl.DataDescriptionEntryContainerImpl;
 
@@ -40,19 +46,79 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 	}
 
 	@Override
-	public CommunicationDescriptionEntry addCommunicationDescriptionEntry(
-			final CommunicationDescriptionEntryContext ctx) {
-		CommunicationDescriptionEntry result = (CommunicationDescriptionEntry) getASGElement(ctx);
+	public CommunicationDescriptionEntryInput addCommunicationDescriptionEntryInput(
+			final CommunicationDescriptionEntryFormat1Context ctx) {
+		CommunicationDescriptionEntryInput result = (CommunicationDescriptionEntryInput) getASGElement(ctx);
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new CommunicationDescriptionEntryImpl(name, programUnit, ctx);
+			result = new CommunicationDescriptionEntryInputImpl(name, programUnit, ctx);
 
 			// FIXME
 
 			communicationDescriptionEntries.add(result);
 			communicationDescriptionEntriesByName.put(name, result);
 			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public CommunicationDescriptionEntryInputOutput addCommunicationDescriptionEntryInputOutput(
+			final CommunicationDescriptionEntryFormat3Context ctx) {
+		CommunicationDescriptionEntryInputOutput result = (CommunicationDescriptionEntryInputOutput) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new CommunicationDescriptionEntryInputOutputImpl(name, programUnit, ctx);
+
+			// FIXME
+
+			communicationDescriptionEntries.add(result);
+			communicationDescriptionEntriesByName.put(name, result);
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public CommunicationDescriptionEntryOutput addCommunicationDescriptionEntryOutput(
+			final CommunicationDescriptionEntryFormat2Context ctx) {
+		CommunicationDescriptionEntryOutput result = (CommunicationDescriptionEntryOutput) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new CommunicationDescriptionEntryOutputImpl(name, programUnit, ctx);
+
+			// FIXME
+
+			communicationDescriptionEntries.add(result);
+			communicationDescriptionEntriesByName.put(name, result);
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public CommunicationDescriptionEntry createCommunicationDescriptionEntry(
+			final CommunicationDescriptionEntryContext communicationDescriptionEntryContext) {
+		final CommunicationDescriptionEntry result;
+
+		if (communicationDescriptionEntryContext.communicationDescriptionEntryFormat1() != null) {
+			result = addCommunicationDescriptionEntryInput(
+					communicationDescriptionEntryContext.communicationDescriptionEntryFormat1());
+		} else if (communicationDescriptionEntryContext.communicationDescriptionEntryFormat2() != null) {
+			result = addCommunicationDescriptionEntryOutput(
+					communicationDescriptionEntryContext.communicationDescriptionEntryFormat2());
+		} else if (communicationDescriptionEntryContext.communicationDescriptionEntryFormat3() != null) {
+			result = addCommunicationDescriptionEntryInputOutput(
+					communicationDescriptionEntryContext.communicationDescriptionEntryFormat3());
+		} else {
+			LOG.warn("unknown communication description entry {}", communicationDescriptionEntryContext);
+			result = null;
 		}
 
 		return result;

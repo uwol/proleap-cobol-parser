@@ -91,7 +91,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			 */
 			for (final CommunicationDescriptionEntryContext communicationDescriptionEntryContext : ctx
 					.communicationDescriptionEntry()) {
-				result.addCommunicationDescriptionEntry(communicationDescriptionEntryContext);
+				result.createCommunicationDescriptionEntry(communicationDescriptionEntryContext);
 			}
 
 			communicationSection = result;
