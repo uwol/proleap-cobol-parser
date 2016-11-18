@@ -61,11 +61,11 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 				}
 
 				if (fileDescriptionEntryClause.externalClause() != null) {
-					result.setExternal(true);
+					result.addExternalClause(fileDescriptionEntryClause.externalClause());
 				}
 
 				if (fileDescriptionEntryClause.globalClause() != null) {
-					result.setGlobal(true);
+					result.addGlobalClause(fileDescriptionEntryClause.globalClause());
 				}
 
 				if (fileDescriptionEntryClause.codeSetClause() != null) {

@@ -20,6 +20,7 @@ import io.proleap.cobol.parser.metamodel.data.file.CodeSetClause;
 import io.proleap.cobol.parser.metamodel.data.file.DataRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.file.FileSection;
+import io.proleap.cobol.parser.metamodel.data.file.GlobalClause;
 import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.LinageClause;
 import io.proleap.cobol.parser.metamodel.data.file.RecordContainsClause;
@@ -56,8 +57,11 @@ public class FileDescriptionEntryTest extends CobolTestSupport {
 			assertEquals(new Integer(5), blockContainsClause.getTo().getValue());
 		}
 
-		assertTrue(fileDescriptionEntry.isExternal());
-		assertTrue(fileDescriptionEntry.isGlobal());
+		{
+			final GlobalClause globalClause = fileDescriptionEntry.getGlobalClause();
+			assertNotNull(globalClause);
+			assertTrue(globalClause.isGlobal());
+		}
 
 		{
 			final RecordContainsClause recordContainsClause = fileDescriptionEntry.getRecordContainsClause();

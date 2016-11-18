@@ -11,6 +11,8 @@ package io.proleap.cobol.parser.metamodel.data.file;
 import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.CodeSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataRecordsClauseContext;
+import io.proleap.cobol.Cobol85Parser.ExternalClauseContext;
+import io.proleap.cobol.Cobol85Parser.GlobalClauseContext;
 import io.proleap.cobol.Cobol85Parser.LabelRecordsClauseContext;
 import io.proleap.cobol.Cobol85Parser.LinageClauseContext;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseContext;
@@ -26,6 +28,10 @@ public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Dec
 	CodeSetClause addCodeSetClause(CodeSetClauseContext ctx);
 
 	DataRecordsClause addDataRecordsClause(DataRecordsClauseContext ctx);
+
+	ExternalClause addExternalClause(ExternalClauseContext ctx);
+
+	GlobalClause addGlobalClause(GlobalClauseContext ctx);
 
 	LabelRecordsClause addLabelRecordsClause(LabelRecordsClauseContext ctx);
 
@@ -43,6 +49,10 @@ public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Dec
 
 	DataRecordsClause getDataRecordsClause();
 
+	ExternalClause getExternalClause();
+
+	GlobalClause getGlobalClause();
+
 	LabelRecordsClause getLabelRecordsClause();
 
 	LinageClause getLinageClause();
@@ -52,13 +62,5 @@ public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Dec
 	ReportClause getReportClause();
 
 	ValueOfClause getValueOfClause();
-
-	Boolean isExternal();
-
-	Boolean isGlobal();
-
-	void setExternal(Boolean external);
-
-	void setGlobal(Boolean global);
 
 }

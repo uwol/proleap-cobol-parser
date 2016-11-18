@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.data.impl;
 
+import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryContext;
+import io.proleap.cobol.Cobol85Parser.CommunicationSectionContext;
 import io.proleap.cobol.Cobol85Parser.DataBaseSectionContext;
 import io.proleap.cobol.Cobol85Parser.DataBaseSectionEntryContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryContext;
@@ -20,6 +22,8 @@ import io.proleap.cobol.Cobol85Parser.ScreenSectionContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
+import io.proleap.cobol.parser.metamodel.data.communication.CommunicationSection;
+import io.proleap.cobol.parser.metamodel.data.communication.impl.CommunicationSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.database.DataBaseSection;
 import io.proleap.cobol.parser.metamodel.data.database.impl.DataBaseSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry;
@@ -36,8 +40,10 @@ import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSecti
 import io.proleap.cobol.parser.metamodel.data.workingstorage.impl.WorkingStorageSectionImpl;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
 
-//FIXME: add communication section, report section, program library section
+//FIXME: add report section, program library section
 public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision {
+
+	protected CommunicationSection communicationSection;
 
 	protected final DataDivisionContext ctx;
 
@@ -57,6 +63,42 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public CommunicationSection addCommunicationSection(final CommunicationSectionContext ctx) {
+		CommunicationSection result = (CommunicationSection) getASGElement(ctx);
+
+		if (result == null) {
+			result = new CommunicationSectionImpl(programUnit, ctx);
+
+			/*
+			 * data descriptions
+			 */
+			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
+
+			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
+				final DataDescriptionEntry dataDescriptionEntry = result
+						.createDataDescriptionEntry(lastDataDescriptionEntryGroup, dataDescriptionEntryContext);
+
+				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
+					lastDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+				}
+			}
+
+			/*
+			 * communication descriptions
+			 */
+			for (final CommunicationDescriptionEntryContext communicationDescriptionEntryContext : ctx
+					.communicationDescriptionEntry()) {
+				result.addCommunicationDescriptionEntry(communicationDescriptionEntryContext);
+			}
+
+			communicationSection = result;
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -183,6 +225,11 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		}
 
 		return result;
+	}
+
+	@Override
+	public CommunicationSection getCommunicationSection() {
+		return communicationSection;
 	}
 
 	@Override

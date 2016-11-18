@@ -15,7 +15,9 @@ import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.CodeSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
 import io.proleap.cobol.Cobol85Parser.DataRecordsClauseContext;
+import io.proleap.cobol.Cobol85Parser.ExternalClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
+import io.proleap.cobol.Cobol85Parser.GlobalClauseContext;
 import io.proleap.cobol.Cobol85Parser.LabelRecordsClauseContext;
 import io.proleap.cobol.Cobol85Parser.LinageAtContext;
 import io.proleap.cobol.Cobol85Parser.LinageClauseContext;
@@ -34,7 +36,9 @@ import io.proleap.cobol.parser.metamodel.data.datadescription.impl.DataDescripti
 import io.proleap.cobol.parser.metamodel.data.file.BlockContainsClause;
 import io.proleap.cobol.parser.metamodel.data.file.CodeSetClause;
 import io.proleap.cobol.parser.metamodel.data.file.DataRecordsClause;
+import io.proleap.cobol.parser.metamodel.data.file.ExternalClause;
 import io.proleap.cobol.parser.metamodel.data.file.FileDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.file.GlobalClause;
 import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
 import io.proleap.cobol.parser.metamodel.data.file.LinageClause;
 import io.proleap.cobol.parser.metamodel.data.file.RecordContainsClause;
@@ -56,9 +60,9 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 
 	protected DataRecordsClause dataRecordsClause;
 
-	protected Boolean external;
+	protected ExternalClause externalClause;
 
-	protected Boolean global;
+	protected GlobalClause globalClause;
 
 	protected LabelRecordsClause labelRecordsClause;
 
@@ -156,6 +160,38 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			}
 
 			dataRecordsClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ExternalClause addExternalClause(final ExternalClauseContext ctx) {
+		ExternalClause result = (ExternalClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ExternalClauseImpl(programUnit, ctx);
+
+			result.setExternal(true);
+
+			externalClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public GlobalClause addGlobalClause(final GlobalClauseContext ctx) {
+		GlobalClause result = (GlobalClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new GlobalClauseImpl(programUnit, ctx);
+
+			result.setGlobal(true);
+
+			globalClause = result;
 			registerASGElement(result);
 		}
 
@@ -431,6 +467,16 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	}
 
 	@Override
+	public ExternalClause getExternalClause() {
+		return externalClause;
+	}
+
+	@Override
+	public GlobalClause getGlobalClause() {
+		return globalClause;
+	}
+
+	@Override
 	public LabelRecordsClause getLabelRecordsClause() {
 		return labelRecordsClause;
 	}
@@ -458,26 +504,6 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	@Override
 	public ValueOfClause getValueOfClause() {
 		return valueOfClause;
-	}
-
-	@Override
-	public Boolean isExternal() {
-		return external;
-	}
-
-	@Override
-	public Boolean isGlobal() {
-		return global;
-	}
-
-	@Override
-	public void setExternal(final Boolean external) {
-		this.external = external;
-	}
-
-	@Override
-	public void setGlobal(final Boolean global) {
-		this.global = global;
 	}
 
 }
