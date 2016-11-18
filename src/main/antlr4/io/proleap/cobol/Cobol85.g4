@@ -675,7 +675,7 @@ communicationDescriptionEntryFormat2 :
 		| statusKeyClause
 		| destinationTableClause
 		| errorKeyClause
-		| symbolicDestinationSource
+		| symbolicDestinationClause
 	)*
 	DOT_FS
 ;
@@ -728,7 +728,7 @@ statusKeyClause :
 	STATUS KEY IS? dataDescName
 ;
 
-symbolicDestinationSource :
+symbolicDestinationClause :
 	SYMBOLIC? DESTINATION IS? dataDescName
 ;
 

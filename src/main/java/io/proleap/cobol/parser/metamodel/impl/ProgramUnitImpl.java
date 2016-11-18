@@ -86,6 +86,10 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 				result.addWorkingStorageSection(dataDivisionBodyContext.workingStorageSection());
 			}
 
+			if (dataDivisionBodyContext.communicationSection() != null) {
+				result.addCommunicationSection(dataDivisionBodyContext.communicationSection());
+			}
+
 			registerASGElement(result);
 			dataDivision = result;
 		}

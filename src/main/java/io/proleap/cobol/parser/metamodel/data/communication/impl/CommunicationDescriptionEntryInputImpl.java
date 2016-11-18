@@ -8,20 +8,280 @@
 
 package io.proleap.cobol.parser.metamodel.data.communication.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryFormat1Context;
+import io.proleap.cobol.Cobol85Parser.EndKeyClauseContext;
+import io.proleap.cobol.Cobol85Parser.MessageCountClauseContext;
+import io.proleap.cobol.Cobol85Parser.MessageDateClauseContext;
+import io.proleap.cobol.Cobol85Parser.MessageTimeClauseContext;
+import io.proleap.cobol.Cobol85Parser.StatusKeyClauseContext;
+import io.proleap.cobol.Cobol85Parser.SymbolicQueueClauseContext;
+import io.proleap.cobol.Cobol85Parser.SymbolicSourceClauseContext;
+import io.proleap.cobol.Cobol85Parser.SymbolicSubQueueClauseContext;
+import io.proleap.cobol.Cobol85Parser.TextLengthClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.communication.CommunicationDescriptionEntryInput;
+import io.proleap.cobol.parser.metamodel.data.communication.EndKeyClause;
+import io.proleap.cobol.parser.metamodel.data.communication.MessageCountClause;
+import io.proleap.cobol.parser.metamodel.data.communication.MessageDateClause;
+import io.proleap.cobol.parser.metamodel.data.communication.MessageTimeClause;
+import io.proleap.cobol.parser.metamodel.data.communication.StatusKeyClause;
+import io.proleap.cobol.parser.metamodel.data.communication.SymbolicQueueClause;
+import io.proleap.cobol.parser.metamodel.data.communication.SymbolicSourceClause;
+import io.proleap.cobol.parser.metamodel.data.communication.SymbolicSubQueueClause;
+import io.proleap.cobol.parser.metamodel.data.communication.TextLengthClause;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class CommunicationDescriptionEntryInputImpl extends CommunicationDescriptionEntryImpl
 		implements CommunicationDescriptionEntryInput {
 
+	private final static Logger LOG = LogManager.getLogger(CommunicationDescriptionEntryInputImpl.class);
+
 	protected final CommunicationDescriptionEntryFormat1Context ctx;
+
+	protected EndKeyClause endKeyClause;
+
+	protected EndKeyClauseContext endKeyClauseContext;
+
+	protected MessageCountClause messageCountClause;
+
+	protected MessageDateClause messageDateClause;
+
+	protected MessageTimeClause messageTimeClause;
+
+	protected StatusKeyClause statusKeyClause;
+
+	protected SymbolicQueueClause symbolicQueueClause;
+
+	protected SymbolicSourceClause symbolicSourceClause;
+
+	protected SymbolicSubQueueClause symbolicSubQueueClause;
+
+	protected TextLengthClause textLengthClause;
 
 	public CommunicationDescriptionEntryInputImpl(final String name, final ProgramUnit programUnit,
 			final CommunicationDescriptionEntryFormat1Context ctx) {
 		super(name, programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public EndKeyClause addEndKeyClause(final EndKeyClauseContext ctx) {
+		EndKeyClause result = (EndKeyClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new EndKeyClauseImpl(programUnit, ctx);
+
+			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
+			result.setDataDescValueStmt(dataDescValueStmt);
+
+			endKeyClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public MessageCountClause addMessageCountClause(final MessageCountClauseContext ctx) {
+		MessageCountClause result = (MessageCountClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new MessageCountClauseImpl(programUnit, ctx);
+
+			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
+			result.setDataDescValueStmt(dataDescValueStmt);
+
+			messageCountClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public MessageDateClause addMessageDateClause(final MessageDateClauseContext ctx) {
+		MessageDateClause result = (MessageDateClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new MessageDateClauseImpl(programUnit, ctx);
+
+			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
+			result.setDataDescValueStmt(dataDescValueStmt);
+
+			messageDateClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public MessageTimeClause addMessageTimeClause(final MessageTimeClauseContext ctx) {
+		MessageTimeClause result = (MessageTimeClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new MessageTimeClauseImpl(programUnit, ctx);
+
+			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
+			result.setDataDescValueStmt(dataDescValueStmt);
+
+			messageTimeClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public StatusKeyClause addStatusKeyClause(final StatusKeyClauseContext ctx) {
+		StatusKeyClause result = (StatusKeyClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new StatusKeyClauseImpl(programUnit, ctx);
+
+			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
+			result.setDataDescValueStmt(dataDescValueStmt);
+
+			statusKeyClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public SymbolicQueueClause addSymbolicQueueClause(final SymbolicQueueClauseContext ctx) {
+		SymbolicQueueClause result = (SymbolicQueueClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SymbolicQueueClauseImpl(programUnit, ctx);
+
+			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
+			result.setDataDescValueStmt(dataDescValueStmt);
+
+			symbolicQueueClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public SymbolicSourceClause addSymbolicSourceClause(final SymbolicSourceClauseContext ctx) {
+		SymbolicSourceClause result = (SymbolicSourceClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SymbolicSourceClauseImpl(programUnit, ctx);
+
+			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
+			result.setDataDescValueStmt(dataDescValueStmt);
+
+			symbolicSourceClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public SymbolicSubQueueClause addSymbolicSubQueueClause(final SymbolicSubQueueClauseContext ctx) {
+		SymbolicSubQueueClause result = (SymbolicSubQueueClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SymbolicSubQueueClauseImpl(programUnit, ctx);
+
+			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
+			result.setDataDescValueStmt(dataDescValueStmt);
+
+			/*
+			 * sub queue
+			 */
+			final SymbolicSubQueueClause.Type type;
+
+			if (ctx.SUB_QUEUE_1() != null) {
+				type = SymbolicSubQueueClause.Type.SubQueue1;
+			} else if (ctx.SUB_QUEUE_2() != null) {
+				type = SymbolicSubQueueClause.Type.SubQueue2;
+			} else if (ctx.SUB_QUEUE_3() != null) {
+				type = SymbolicSubQueueClause.Type.SubQueue3;
+			} else {
+				LOG.warn("unknown type at {}", ctx);
+				type = null;
+			}
+
+			result.setType(type);
+
+			symbolicSubQueueClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public TextLengthClause addTextLengthClause(final TextLengthClauseContext ctx) {
+		TextLengthClause result = (TextLengthClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new TextLengthClauseImpl(programUnit, ctx);
+
+			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
+			result.setDataDescValueStmt(dataDescValueStmt);
+
+			textLengthClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public EndKeyClause getEndKeyClause() {
+		return endKeyClause;
+	}
+
+	@Override
+	public MessageCountClause getMessageCountClause() {
+		return messageCountClause;
+	}
+
+	@Override
+	public MessageDateClause getMessageDateClause() {
+		return messageDateClause;
+	}
+
+	@Override
+	public MessageTimeClause getMessageTimeClause() {
+		return messageTimeClause;
+	}
+
+	@Override
+	public StatusKeyClause getStatusKeyClause() {
+		return statusKeyClause;
+	}
+
+	@Override
+	public SymbolicQueueClause getSymbolicQueueClause() {
+		return symbolicQueueClause;
+	}
+
+	@Override
+	public SymbolicSourceClause getSymbolicSourceClause() {
+		return symbolicSourceClause;
+	}
+
+	@Override
+	public SymbolicSubQueueClause getSymbolicSubQueueClause() {
+		return symbolicSubQueueClause;
+	}
+
+	@Override
+	public TextLengthClause getTextLengthClause() {
+		return textLengthClause;
 	}
 
 	@Override
