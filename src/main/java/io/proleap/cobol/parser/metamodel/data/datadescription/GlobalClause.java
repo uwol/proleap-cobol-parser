@@ -8,12 +8,12 @@
 
 package io.proleap.cobol.parser.metamodel.data.datadescription;
 
-import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface DataDescriptionEntryCondition extends DataDescriptionEntry {
+public interface GlobalClause extends CobolDivisionElement {
 
-	ValueClause addValueClause(DataValueClauseContext ctx);
+	Boolean isGlobal();
 
-	ValueClause getValueClause();
+	void setGlobal(Boolean global);
 
 }

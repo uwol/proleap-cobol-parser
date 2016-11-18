@@ -8,12 +8,15 @@
 
 package io.proleap.cobol.parser.metamodel.data.datadescription;
 
-import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface DataDescriptionEntryCondition extends DataDescriptionEntry {
+public interface TypeClause extends CobolDivisionElement {
 
-	ValueClause addValueClause(DataValueClauseContext ctx);
+	enum TimeType {
+		LongDate, LongTime, NumericDate, NumericTime, ShortDate
+	}
 
-	ValueClause getValueClause();
+	TimeType getTimeType();
 
+	void setTimeType(TimeType timeType);
 }

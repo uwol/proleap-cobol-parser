@@ -8,12 +8,20 @@
 
 package io.proleap.cobol.parser.metamodel.data.datadescription;
 
-import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface DataDescriptionEntryCondition extends DataDescriptionEntry {
+public interface SignClause extends CobolDivisionElement {
 
-	ValueClause addValueClause(DataValueClauseContext ctx);
+	enum Type {
+		Leading, Trailing
+	}
 
-	ValueClause getValueClause();
+	Type getType();
+
+	Boolean isSeparate();
+
+	void setSeparate(Boolean separate);
+
+	void setType(Type type);
 
 }

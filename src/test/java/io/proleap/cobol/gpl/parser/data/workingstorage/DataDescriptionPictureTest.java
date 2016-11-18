@@ -41,6 +41,6 @@ public class DataDescriptionPictureTest extends CobolTestSupport {
 				.getDataDescriptionEntry("ITEM");
 
 		assertNotNull(dataDescriptionEntryItem);
-		assertEquals("X(10)", dataDescriptionEntryItem.getPictureString());
+		assertEquals("X(10)", dataDescriptionEntryItem.getPictureClause().getPictureString());
 	}
 }

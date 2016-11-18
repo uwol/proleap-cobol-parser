@@ -8,12 +8,13 @@
 
 package io.proleap.cobol.parser.metamodel.data.datadescription;
 
-import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface DataDescriptionEntryCondition extends DataDescriptionEntry {
+public interface RedefinesClause extends CobolDivisionElement {
 
-	ValueClause addValueClause(DataValueClauseContext ctx);
+	ValueStmt getRedefinesValueStmt();
 
-	ValueClause getValueClause();
+	void setRedefinesValueStmt(ValueStmt redefinesValueStmt);
 
 }

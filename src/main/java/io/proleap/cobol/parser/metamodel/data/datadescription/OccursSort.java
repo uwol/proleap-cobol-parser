@@ -8,16 +8,22 @@
 
 package io.proleap.cobol.parser.metamodel.data.datadescription;
 
+import java.util.List;
+
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface ExternalClause extends CobolDivisionElement {
+public interface OccursSort extends CobolDivisionElement {
 
-	LiteralValueStmt getByLiteralValueStmt();
+	enum Order {
+		Ascending, Descending
+	}
 
-	Boolean isExternal();
+	void addKeyValueStmt(ValueStmt keyValueStmt);
 
-	void setByLiteralValueStmt(LiteralValueStmt byLiteralValueStmt);
+	List<ValueStmt> getKeyValueStmts();
 
-	void setExternal(Boolean external);
+	Order getOrder();
+
+	void setOrder(Order order);
 }

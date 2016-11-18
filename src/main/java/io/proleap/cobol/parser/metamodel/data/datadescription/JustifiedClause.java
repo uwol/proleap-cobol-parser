@@ -8,12 +8,15 @@
 
 package io.proleap.cobol.parser.metamodel.data.datadescription;
 
-import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface DataDescriptionEntryCondition extends DataDescriptionEntry {
+public interface JustifiedClause extends CobolDivisionElement {
 
-	ValueClause addValueClause(DataValueClauseContext ctx);
+	enum Justified {
+		Justified, JustifiedRight
+	}
 
-	ValueClause getValueClause();
+	Justified getJustified();
 
+	void setJustified(Justified justified);
 }

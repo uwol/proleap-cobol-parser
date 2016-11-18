@@ -8,12 +8,15 @@
 
 package io.proleap.cobol.parser.metamodel.data.datadescription;
 
-import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface DataDescriptionEntryCondition extends DataDescriptionEntry {
+public interface IntegerStringClause extends CobolDivisionElement {
 
-	ValueClause addValueClause(DataValueClauseContext ctx);
+	enum PrimitiveType {
+		Integer, String
+	}
 
-	ValueClause getValueClause();
+	PrimitiveType getPrimitiveType();
 
+	void setPrimitiveType(PrimitiveType primitiveType);
 }

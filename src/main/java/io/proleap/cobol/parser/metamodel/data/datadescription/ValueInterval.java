@@ -9,15 +9,15 @@
 package io.proleap.cobol.parser.metamodel.data.datadescription;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface ExternalClause extends CobolDivisionElement {
+public interface ValueInterval extends CobolDivisionElement {
 
-	LiteralValueStmt getByLiteralValueStmt();
+	ValueStmt getFromValueStmt();
 
-	Boolean isExternal();
+	ValueStmt getToValueStmt();
 
-	void setByLiteralValueStmt(LiteralValueStmt byLiteralValueStmt);
+	void setFrom(ValueStmt fromValueStmt);
 
-	void setExternal(Boolean external);
+	void setTo(ValueStmt toValueStmt);
 }

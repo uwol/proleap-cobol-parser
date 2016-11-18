@@ -973,12 +973,18 @@ dataJustifiedClause :
 ;
 
 dataOccursClause :
-	OCCURS (integerLiteral TO)? integerLiteral TIMES?
+	OCCURS integerLiteral dataOccursTo? TIMES?
 	(DEPENDING ON? qualifiedDataName)?
-	(
-		(ASCENDING | DESCENDING) KEY? IS? qualifiedDataName+
-	)*
+	dataOccursSort*
 	(INDEXED BY? LOCAL? indexName+)?
+;
+
+dataOccursTo :
+	TO integerLiteral
+;
+
+dataOccursSort :
+	(ASCENDING | DESCENDING) KEY? IS? qualifiedDataName+
 ;
 
 dataPictureClause :
@@ -1093,21 +1099,25 @@ dataUsageClause :
 ;
 
 dataUsingClause :
-	USING
-	(
-		CONVENTION OF? (cobolWord | dataName)
-		| LANGUAGE OF? (cobolWord | dataName)
-	)
+	USING (LANGUAGE | CONVENTION)
+	OF? (cobolWord | dataName)
 ;
 
 dataValueClause :
 	(VALUE IS? | VALUES ARE?)?
-	(
-		(literal | cobolWord)
-		(
-			(THROUGH | THRU) literal
-		)?
-	)+
+	dataValueInterval+
+;
+
+dataValueInterval :
+	dataValueIntervalFrom dataValueIntervalTo?
+;
+
+dataValueIntervalFrom :
+	literal | cobolWord
+;
+
+dataValueIntervalTo :
+	(THROUGH | THRU) literal
 ;
 
 dataWithLowerBoundsClause :

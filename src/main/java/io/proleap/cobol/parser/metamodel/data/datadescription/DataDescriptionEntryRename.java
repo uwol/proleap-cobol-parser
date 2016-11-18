@@ -8,6 +8,11 @@
 
 package io.proleap.cobol.parser.metamodel.data.datadescription;
 
+import io.proleap.cobol.Cobol85Parser.DataRenamesClauseContext;
+
 public interface DataDescriptionEntryRename extends DataDescriptionEntry {
 
+	RenamesClause addRenamesClause(DataRenamesClauseContext ctx);
+
+	RenamesClause getRenamesClause();
 }

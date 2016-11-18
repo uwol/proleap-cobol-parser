@@ -9,19 +9,59 @@
 package io.proleap.cobol.parser.metamodel.data.datadescription.impl;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
+import io.proleap.cobol.Cobol85Parser.DataRenamesClauseContext;
+import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryRename;
+import io.proleap.cobol.parser.metamodel.data.datadescription.RenamesClause;
+import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 
-//FIXME: add clauses
 public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryRename {
 
 	protected final DataDescriptionEntryFormat2Context ctx;
+
+	protected RenamesClause renamesClause;
 
 	public DataDescriptionEntryRenameImpl(final String name, final ProgramUnit programUnit,
 			final DataDescriptionEntryFormat2Context ctx) {
 		super(name, programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public RenamesClause addRenamesClause(final DataRenamesClauseContext ctx) {
+		RenamesClause result = (RenamesClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new RenamesClauseImpl(programUnit, ctx);
+
+			/*
+			 * from
+			 */
+			final QualifiedDataNameContext fromContext = ctx.qualifiedDataName(0);
+			final CallValueStmt fromValueStmt = createCallValueStmt(fromContext);
+			result.setFrom(fromValueStmt);
+
+			/*
+			 * to
+			 */
+			if (ctx.qualifiedDataName().size() > 1) {
+				final QualifiedDataNameContext toContext = ctx.qualifiedDataName(1);
+				final CallValueStmt toValueStmt = createCallValueStmt(toContext);
+				result.setTo(toValueStmt);
+			}
+
+			renamesClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public RenamesClause getRenamesClause() {
+		return renamesClause;
 	}
 
 	@Override

@@ -10,21 +10,79 @@ package io.proleap.cobol.parser.metamodel.data.datadescription;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.DataAlignedClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataBlankWhenZeroClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataCommonOwnLocalClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataExternalClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataGlobalClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataIntegerStringClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataJustifiedClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataOccursClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataPictureClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataReceivedByClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataRecordAreaClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataRedefinesClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataSignClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataSynchronizedClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataThreadLocalClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataTypeClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataTypeDefClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataUsageClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataUsingClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
+import io.proleap.cobol.Cobol85Parser.DataWithLowerBoundsClauseContext;
 
 public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 
-	public enum Invariance {
-		Common, Local, Own
-	}
+	AlignedClause addAlignedClause(DataAlignedClauseContext ctx);
+
+	BlankWhenZeroClause addBlankWhenZeroClause(DataBlankWhenZeroClauseContext ctx);
+
+	CommonOwnLocalClause addCommonOwnLocalClause(DataCommonOwnLocalClauseContext ctx);
 
 	void addDataDescriptionEntry(DataDescriptionEntry dataDescriptionEntry);
 
 	ExternalClause addExternalClause(DataExternalClauseContext ctx);
 
-	Boolean getAligned();
+	GlobalClause addGlobalClause(DataGlobalClauseContext ctx);
 
-	Boolean getBlankWhenZero();
+	IntegerStringClause addIntegerStringClause(DataIntegerStringClauseContext ctx);
+
+	JustifiedClause addJustifiedClause(DataJustifiedClauseContext ctx);
+
+	OccursClause addOccursClause(DataOccursClauseContext ctx);
+
+	PictureClause addPictureClause(DataPictureClauseContext ctx);
+
+	ReceivedByClause addReceivedByClause(DataReceivedByClauseContext ctx);
+
+	RecordAreaClause addRecordAreaClause(DataRecordAreaClauseContext ctx);
+
+	RedefinesClause addRedefinesClause(DataRedefinesClauseContext ctx);
+
+	SignClause addSignClause(DataSignClauseContext dataSignClauseContext);
+
+	SynchronizedClause addSynchronizedClause(DataSynchronizedClauseContext ctx);
+
+	ThreadLocalClause addThreadLocalClause(DataThreadLocalClauseContext ctx);
+
+	TypeClause addTypeClause(DataTypeClauseContext ctx);
+
+	TypeDefClause addTypeDefClause(DataTypeDefClauseContext ctx);
+
+	UsageClause addUsageClause(DataUsageClauseContext ctx);
+
+	UsingClause addUsingClause(DataUsingClauseContext ctx);
+
+	ValueClause addValueClause(DataValueClauseContext ctx);
+
+	WithLowerBoundsClause addWithLowerBoundClause(DataWithLowerBoundsClauseContext ctx);
+
+	AlignedClause getAlignedClause();
+
+	BlankWhenZeroClause getBlankWhenZeroClause();
+
+	CommonOwnLocalClause getCommonOwnLocalClause();
 
 	List<DataDescriptionEntry> getDataDescriptionEntries();
 
@@ -32,15 +90,38 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 
 	ExternalClause getExternalClause();
 
-	Invariance getInvariance();
+	GlobalClause getGlobalClause();
 
-	String getPictureString();
+	IntegerStringClause getIntegerStringClause();
 
-	void setAligned(Boolean aligned);
+	JustifiedClause getJustifiedClause();
 
-	void setBlankWhenZero(Boolean blankWhenZero);
+	List<OccursClause> getOccursClauses();
 
-	void setInvariance(Invariance invariance);
+	PictureClause getPictureClause();
 
-	void setPictureString(String pictureString);
+	ReceivedByClause getReceivedByClause();
+
+	RecordAreaClause getRecordAreaClause();
+
+	RedefinesClause getRedefinesClause();
+
+	SignClause getSignClause();
+
+	SynchronizedClause getSynchronizedClause();
+
+	ThreadLocalClause getThreadLocalClause();
+
+	TypeClause getTypeClause();
+
+	TypeDefClause getTypeDefClause();
+
+	UsageClause getUsageClause();
+
+	UsingClause getUsingClause();
+
+	ValueClause getValueClause();
+
+	WithLowerBoundsClause getWithLowerBoundsClause();
+
 }
