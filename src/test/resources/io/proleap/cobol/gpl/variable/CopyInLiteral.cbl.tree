@@ -18,7 +18,9 @@
 											(integerLiteral 14)) 
 										(pictureChars )))) 
 								(dataValueClause VALUE IS 
-									(literal "AB COPY, TEST.")) .\n       ))))) 
+									(dataValueInterval 
+										(dataValueIntervalFrom
+											(literal "AB COPY, TEST.")))) .\n       ))))) 
 			(procedureDivision Procedure Division .\n         
 				(procedureDivisionBody 
 					(paragraphs 

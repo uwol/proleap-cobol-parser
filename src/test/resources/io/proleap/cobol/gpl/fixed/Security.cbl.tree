@@ -26,4 +26,6 @@
 											(integerLiteral 52)) 
 										(pictureChars )))) 
 								(dataValueClause VALUE IS 
-									(literal "COPY, TEST.")) .))))))) <EOF>)
+									(dataValueInterval 
+										(dataValueIntervalFrom
+											(literal "COPY, TEST.")))) .))))))) <EOF>)
