@@ -652,17 +652,15 @@ communicationDescriptionEntryFormat1 :
 	CD cdName FOR? INITIAL? INPUT
 	(
 		(
-			SYMBOLIC? QUEUE IS? dataDescName
-			| SYMBOLIC? SUB_QUEUE_1 IS? dataDescName
-			| SYMBOLIC? SUB_QUEUE_2 IS? dataDescName
-			| SYMBOLIC? SUB_QUEUE_3 IS? dataDescName
-			| MESSAGE DATE IS? dataDescName
-			| MESSAGE TIME IS? dataDescName
-			| SYMBOLIC? SOURCE IS? dataDescName
-			| TEXT LENGTH IS? dataDescName
-			| END KEY IS? dataDescName
-			| STATUS KEY IS? dataDescName
-			| MESSAGE? COUNT IS? dataDescName
+			symbolicQueueClause
+			| symbolicSubQueueClause
+			| messageDateClause
+			| messageTimeClause
+			| symbolicSourceClause
+			| textLengthClause
+			| endKeyClause
+			| statusKeyClause
+			| messageCountClause
 		)
 		| dataDescName
 	)*
@@ -672,12 +670,12 @@ communicationDescriptionEntryFormat1 :
 communicationDescriptionEntryFormat2 :
 	CD cdName FOR? OUTPUT
 	(
-		DESTINATION COUNT IS? dataDescName
-		| TEXT LENGTH IS? dataDescName
-		| STATUS KEY IS? dataDescName
-		| DESTINATION TABLE OCCURS integerLiteral TIMES (INDEXED BY indexName+)?
-		| ERROR KEY IS? dataDescName
-		| SYMBOLIC? DESTINATION IS? dataDescName
+		destinationCountClause
+		| textLengthClause
+		| statusKeyClause
+		| destinationTableClause
+		| errorKeyClause
+		| symbolicDestinationSource
 	)*
 	DOT_FS
 ;
@@ -686,16 +684,73 @@ communicationDescriptionEntryFormat3 :
 	CD cdName FOR? INITIAL I_O
 	( 	
 		(
-			MESSAGE DATE IS? dataDescName
-			| MESSAGE TIME IS? dataDescName
-			| SYMBOLIC? TERMINAL IS? dataDescName
-			| TEXT LENGTH IS? dataDescName
-			| END KEY IS? dataDescName
-			| STATUS KEY IS? dataDescName
+			messageDateClause
+			| messageTimeClause
+			| symbolicTerminalClause
+			| textLengthClause
+			| endKeyClause
+			| statusKeyClause
 		)
-		| dataDescName+
+		| dataDescName
 	)*
 	DOT_FS
+;
+
+destinationCountClause :
+	DESTINATION COUNT IS? dataDescName
+;
+
+destinationTableClause :
+	DESTINATION TABLE OCCURS integerLiteral TIMES (INDEXED BY indexName+)?
+;
+
+endKeyClause :
+	END KEY IS? dataDescName
+;
+
+errorKeyClause :
+	ERROR KEY IS? dataDescName
+;
+
+messageCountClause :
+	MESSAGE? COUNT IS? dataDescName
+;
+
+messageDateClause :
+	MESSAGE DATE IS? dataDescName
+;
+
+messageTimeClause :
+	MESSAGE TIME IS? dataDescName
+;
+
+statusKeyClause :
+	STATUS KEY IS? dataDescName
+;
+
+symbolicDestinationSource :
+	SYMBOLIC? DESTINATION IS? dataDescName
+;
+
+symbolicQueueClause :
+	SYMBOLIC? QUEUE IS? dataDescName
+;
+
+symbolicSourceClause :
+	SYMBOLIC? SOURCE IS? dataDescName
+;
+
+symbolicTerminalClause :
+	SYMBOLIC? TERMINAL IS? dataDescName
+;
+
+symbolicSubQueueClause :
+	SYMBOLIC? (SUB_QUEUE_1 | SUB_QUEUE_2 | SUB_QUEUE_3) 
+	IS? dataDescName
+;
+
+textLengthClause :
+	TEXT LENGTH IS? dataDescName
 ;
 
 // -- local storage section ----------------------------------
