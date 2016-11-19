@@ -62,6 +62,10 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 
 			final DataDivisionBodyContext dataDivisionBodyContext = ctx.dataDivisionBody();
 
+			if (dataDivisionBodyContext.communicationSection() != null) {
+				result.addCommunicationSection(dataDivisionBodyContext.communicationSection());
+			}
+
 			if (dataDivisionBodyContext.dataBaseSection() != null) {
 				result.addDataBaseSection(dataDivisionBodyContext.dataBaseSection());
 			}
@@ -78,16 +82,16 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 				result.addLocalStorageSection(dataDivisionBodyContext.localStorageSection());
 			}
 
+			if (dataDivisionBodyContext.programLibrarySection() != null) {
+				result.addProgramLibrarySection(dataDivisionBodyContext.programLibrarySection());
+			}
+
 			if (dataDivisionBodyContext.screenSection() != null) {
 				result.addScreenSection(dataDivisionBodyContext.screenSection());
 			}
 
 			if (dataDivisionBodyContext.workingStorageSection() != null) {
 				result.addWorkingStorageSection(dataDivisionBodyContext.workingStorageSection());
-			}
-
-			if (dataDivisionBodyContext.communicationSection() != null) {
-				result.addCommunicationSection(dataDivisionBodyContext.communicationSection());
 			}
 
 			registerASGElement(result);

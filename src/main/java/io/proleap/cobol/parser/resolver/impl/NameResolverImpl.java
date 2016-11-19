@@ -29,6 +29,7 @@ import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IndexNameContext;
+import io.proleap.cobol.Cobol85Parser.LibraryNameContext;
 import io.proleap.cobol.Cobol85Parser.LocalNameContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
@@ -132,6 +133,11 @@ public class NameResolverImpl implements NameResolver {
 		return result;
 	}
 
+	public String determineName(final LibraryNameContext ctx) {
+		final String result = ctx != null ? ctx.getText() : null;
+		return result;
+	}
+
 	public String determineName(final LocalNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;
 		return result;
@@ -190,6 +196,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((IdentifierContext) ctx);
 		} else if (ctx instanceof IndexNameContext) {
 			result = determineName((IndexNameContext) ctx);
+		} else if (ctx instanceof LibraryNameContext) {
+			result = determineName((LibraryNameContext) ctx);
 		} else if (ctx instanceof LocalNameContext) {
 			result = determineName((LocalNameContext) ctx);
 		} else if (ctx instanceof ObjectComputerParagraphContext) {

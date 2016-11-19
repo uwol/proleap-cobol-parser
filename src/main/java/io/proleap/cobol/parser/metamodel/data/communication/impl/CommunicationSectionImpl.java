@@ -328,20 +328,17 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 
 	@Override
 	public CommunicationDescriptionEntry createCommunicationDescriptionEntry(
-			final CommunicationDescriptionEntryContext communicationDescriptionEntryContext) {
+			final CommunicationDescriptionEntryContext ctx) {
 		final CommunicationDescriptionEntry result;
 
-		if (communicationDescriptionEntryContext.communicationDescriptionEntryFormat1() != null) {
-			result = addCommunicationDescriptionEntryInput(
-					communicationDescriptionEntryContext.communicationDescriptionEntryFormat1());
-		} else if (communicationDescriptionEntryContext.communicationDescriptionEntryFormat2() != null) {
-			result = addCommunicationDescriptionEntryOutput(
-					communicationDescriptionEntryContext.communicationDescriptionEntryFormat2());
-		} else if (communicationDescriptionEntryContext.communicationDescriptionEntryFormat3() != null) {
-			result = addCommunicationDescriptionEntryInputOutput(
-					communicationDescriptionEntryContext.communicationDescriptionEntryFormat3());
+		if (ctx.communicationDescriptionEntryFormat1() != null) {
+			result = addCommunicationDescriptionEntryInput(ctx.communicationDescriptionEntryFormat1());
+		} else if (ctx.communicationDescriptionEntryFormat2() != null) {
+			result = addCommunicationDescriptionEntryOutput(ctx.communicationDescriptionEntryFormat2());
+		} else if (ctx.communicationDescriptionEntryFormat3() != null) {
+			result = addCommunicationDescriptionEntryInputOutput(ctx.communicationDescriptionEntryFormat3());
 		} else {
-			LOG.warn("unknown communication description entry {}", communicationDescriptionEntryContext);
+			LOG.warn("unknown communication description entry {}", ctx);
 			result = null;
 		}
 

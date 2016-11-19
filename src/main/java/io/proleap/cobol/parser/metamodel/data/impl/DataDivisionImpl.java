@@ -16,8 +16,10 @@ import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
+import io.proleap.cobol.Cobol85Parser.LibraryDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.LinkageSectionContext;
 import io.proleap.cobol.Cobol85Parser.LocalStorageSectionContext;
+import io.proleap.cobol.Cobol85Parser.ProgramLibrarySectionContext;
 import io.proleap.cobol.Cobol85Parser.ScreenSectionContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -34,13 +36,15 @@ import io.proleap.cobol.parser.metamodel.data.linkage.LinkageSection;
 import io.proleap.cobol.parser.metamodel.data.linkage.impl.LinkageSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.localstorage.LocalStorageSection;
 import io.proleap.cobol.parser.metamodel.data.localstorage.impl.LocalStorageSectionImpl;
+import io.proleap.cobol.parser.metamodel.data.programlibrary.ProgramLibrarySection;
+import io.proleap.cobol.parser.metamodel.data.programlibrary.impl.ProgramLibrarySectionImpl;
 import io.proleap.cobol.parser.metamodel.data.screen.ScreenSection;
 import io.proleap.cobol.parser.metamodel.data.screen.impl.ScreenSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.impl.WorkingStorageSectionImpl;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
 
-//FIXME: add report section, program library section
+//FIXME: add report section
 public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision {
 
 	protected CommunicationSection communicationSection;
@@ -54,6 +58,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	protected LinkageSection linkageSection;
 
 	protected LocalStorageSection localStorageSection;
+
+	protected ProgramLibrarySection programLibrarySection;
 
 	protected ScreenSection screenSection;
 
@@ -189,6 +195,24 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	}
 
 	@Override
+	public ProgramLibrarySection addProgramLibrarySection(final ProgramLibrarySectionContext ctx) {
+		ProgramLibrarySection result = (ProgramLibrarySection) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ProgramLibrarySectionImpl(programUnit, ctx);
+
+			for (final LibraryDescriptionEntryContext libraryDescriptionEntryContext : ctx.libraryDescriptionEntry()) {
+				result.createLibraryDescriptionEntry(libraryDescriptionEntryContext);
+			}
+
+			programLibrarySection = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public ScreenSection addScreenSection(final ScreenSectionContext ctx) {
 		ScreenSection result = (ScreenSection) getASGElement(ctx);
 
@@ -250,6 +274,11 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	@Override
 	public LocalStorageSection getLocalStorageSection() {
 		return localStorageSection;
+	}
+
+	@Override
+	public ProgramLibrarySection getProgramLibrarySection() {
+		return programLibrarySection;
 	}
 
 	@Override

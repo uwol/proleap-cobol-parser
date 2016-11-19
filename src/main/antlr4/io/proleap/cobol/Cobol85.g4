@@ -912,16 +912,36 @@ libraryDescriptionEntryFormat2 :
 libraryAttributeClauseFormat1 :
 	ATTRIBUTE
 	(
-		SHARING IS? (DONTCARE | PRIVATE | SHAREDBYRUNUNIT | SHAREDBYALL)
+		SHARING IS? 
+		(
+			DONTCARE | 
+			PRIVATE | 
+			SHAREDBYRUNUNIT | 
+			SHAREDBYALL
+		)
 	)?
 ;
 
 libraryAttributeClauseFormat2 :
 	ATTRIBUTE
-	(FUNCTIONNAME IS literal)?
-	(LIBACCESS IS? (BYFUNCTION | BYTITLE))?
-	(LIBPARAMETER IS? literal)?
-	(TITLE IS? literal)?
+	libraryAttributeFunction?
+	(LIBACCESS IS? 
+		(BYFUNCTION | BYTITLE)
+	)?
+	libraryAttributeParameter?
+	libraryAttributeTitle?
+;
+
+libraryAttributeFunction :
+	FUNCTIONNAME IS literal
+;
+
+libraryAttributeParameter :
+	LIBPARAMETER IS? literal
+;
+
+libraryAttributeTitle :
+	TITLE IS? literal
 ;
 
 libraryEntryProcedureClauseFormat1 :
@@ -946,11 +966,19 @@ libraryEntryProcedureGivingClause :
 ;
 
 libraryEntryProcedureUsingClause :
-	WITH (dataName | fileName)+
+	USING libraryEntryProcedureUsingName+
+;
+
+libraryEntryProcedureUsingName :
+	dataName | fileName
 ;
 
 libraryEntryProcedureWithClause :
-	WITH (localName | fileName)+
+	WITH libraryEntryProcedureWithName+
+;
+
+libraryEntryProcedureWithName :
+	localName | fileName
 ;
 
 libraryIsCommonClause :
