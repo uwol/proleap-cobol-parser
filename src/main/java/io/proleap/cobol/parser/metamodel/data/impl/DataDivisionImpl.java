@@ -20,6 +20,8 @@ import io.proleap.cobol.Cobol85Parser.LibraryDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.LinkageSectionContext;
 import io.proleap.cobol.Cobol85Parser.LocalStorageSectionContext;
 import io.proleap.cobol.Cobol85Parser.ProgramLibrarySectionContext;
+import io.proleap.cobol.Cobol85Parser.ReportContext;
+import io.proleap.cobol.Cobol85Parser.ReportSectionContext;
 import io.proleap.cobol.Cobol85Parser.ScreenSectionContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -38,13 +40,14 @@ import io.proleap.cobol.parser.metamodel.data.localstorage.LocalStorageSection;
 import io.proleap.cobol.parser.metamodel.data.localstorage.impl.LocalStorageSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.ProgramLibrarySection;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.impl.ProgramLibrarySectionImpl;
+import io.proleap.cobol.parser.metamodel.data.report.ReportSection;
+import io.proleap.cobol.parser.metamodel.data.report.impl.ReportSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.screen.ScreenSection;
 import io.proleap.cobol.parser.metamodel.data.screen.impl.ScreenSectionImpl;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.impl.WorkingStorageSectionImpl;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
 
-//FIXME: add report section
 public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision {
 
 	protected CommunicationSection communicationSection;
@@ -60,6 +63,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	protected LocalStorageSection localStorageSection;
 
 	protected ProgramLibrarySection programLibrarySection;
+
+	protected ReportSection reportSection;
 
 	protected ScreenSection screenSection;
 
@@ -213,6 +218,24 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	}
 
 	@Override
+	public ReportSection addReportSection(final ReportSectionContext ctx) {
+		ReportSection result = (ReportSection) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ReportSectionImpl(programUnit, ctx);
+
+			for (final ReportContext reportContext : ctx.report()) {
+				result.addReport(reportContext);
+			}
+
+			reportSection = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public ScreenSection addScreenSection(final ScreenSectionContext ctx) {
 		ScreenSection result = (ScreenSection) getASGElement(ctx);
 
@@ -279,6 +302,11 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	@Override
 	public ProgramLibrarySection getProgramLibrarySection() {
 		return programLibrarySection;
+	}
+
+	@Override
+	public ReportSection getReportSection() {
+		return reportSection;
 	}
 
 	@Override

@@ -82,6 +82,15 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	}
 
 	@Override
+	public Boolean visitReportSection(@NotNull final Cobol85Parser.ReportSectionContext ctx) {
+		final DataDivision dataDivision = findDataDivision(ctx);
+
+		dataDivision.addReportSection(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitScreenSection(@NotNull final Cobol85Parser.ScreenSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 

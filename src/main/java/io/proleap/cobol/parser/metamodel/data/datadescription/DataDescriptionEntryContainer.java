@@ -25,7 +25,7 @@ public interface DataDescriptionEntryContainer extends CobolDivisionElement {
 	DataDescriptionEntryRename addDataDescriptionEntryRename(DataDescriptionEntryFormat2Context ctx);
 
 	DataDescriptionEntry createDataDescriptionEntry(DataDescriptionEntryGroup lastDataDescriptionEntryGroup,
-			DataDescriptionEntryContext dataDescriptionEntryContext);
+			DataDescriptionEntryContext ctx);
 
 	List<DataDescriptionEntry> getDataDescriptionEntries();
 

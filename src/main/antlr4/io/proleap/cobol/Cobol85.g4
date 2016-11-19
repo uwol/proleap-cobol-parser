@@ -778,22 +778,49 @@ screenSection :
 
 reportSection :
 	REPORT SECTION DOT_FS
-	(
-		reportDescriptionEntry reportGroupDescriptionEntry+
-	)*
+	report*
+;
+
+report :
+	reportDescriptionEntry 
+	reportGroupDescriptionEntry+
 ;
 
 reportDescriptionEntry :
 	RD reportName
-	(IS? GLOBAL)?
+	reportDescriptionGlobalClause?
 	(
-		PAGE (LIMIT IS? | LIMITS ARE?)? integerLiteral (LINE | LINES)?
-		(HEADING integerLiteral)?
-		(FIRST DETAIL integerLiteral)?
-		(LAST DETAIL integerLiteral)?
-		(FOOTING integerLiteral)?
+		reportDescriptionPageLimitClause
+		reportDescriptionHeadingClause?
+		reportDescriptionFirstDetailClause?
+		reportDescriptionLastDetailClause?
+		reportDescriptionFootingClause?
 	)?
 	DOT_FS
+;
+
+reportDescriptionGlobalClause :
+	IS? GLOBAL
+;
+
+reportDescriptionPageLimitClause :
+	PAGE (LIMIT IS? | LIMITS ARE?)? integerLiteral (LINE | LINES)?
+;
+
+reportDescriptionHeadingClause :
+	HEADING integerLiteral
+;
+
+reportDescriptionFirstDetailClause :
+	FIRST DETAIL integerLiteral
+;
+
+reportDescriptionLastDetailClause :
+	LAST DETAIL integerLiteral
+;
+
+reportDescriptionFootingClause :
+	FOOTING integerLiteral
 ;
 
 reportGroupDescriptionEntry :
