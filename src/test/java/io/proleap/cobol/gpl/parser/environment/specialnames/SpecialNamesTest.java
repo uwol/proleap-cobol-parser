@@ -14,9 +14,14 @@ import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClause;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClauseAlphanumeric;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClauseNational;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClauseNational.AlphabetClauseNationalType;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ChannelClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClause;
-import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClauseThrough;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassThrough;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.CurrencySignClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.DecimalPointClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.DefaultDisplaySignClause;
@@ -60,10 +65,10 @@ public class SpecialNamesTest extends CobolTestSupport {
 			assertNotNull(classClause.getClassNameValueStmt());
 			assertEquals(ClassClause.Type.National, classClause.getType());
 
-			assertEquals(2, classClause.getClassClauseThroughs().size());
+			assertEquals(2, classClause.getClassThroughs().size());
 
 			{
-				final ClassClauseThrough clauseThrough1 = classClause.getClassClauseThroughs().get(0);
+				final ClassThrough clauseThrough1 = classClause.getClassThroughs().get(0);
 
 				final ValueStmt from1 = clauseThrough1.getFrom();
 				assertNotNull(from1);
@@ -73,7 +78,7 @@ public class SpecialNamesTest extends CobolTestSupport {
 			}
 
 			{
-				final ClassClauseThrough clauseThrough2 = classClause.getClassClauseThroughs().get(1);
+				final ClassThrough clauseThrough2 = classClause.getClassThroughs().get(1);
 
 				final ValueStmt from2 = clauseThrough2.getFrom();
 				assertNotNull(from2);
@@ -118,6 +123,62 @@ public class SpecialNamesTest extends CobolTestSupport {
 					.getSymbolicCharactersClause();
 			assertNotNull(symbolicCharactersClause);
 			assertEquals(SymbolicCharactersClause.Type.National, symbolicCharactersClause.getType());
+		}
+
+		{
+			assertNotNull(specialNamesParagraph.getAlphabetClauses());
+			assertEquals(5, specialNamesParagraph.getAlphabetClauses().size());
+
+			{
+				final AlphabetClause alphabetClause = specialNamesParagraph.getAlphabetClauses().get(0);
+				assertEquals(AlphabetClause.Type.National, alphabetClause.getType());
+				assertNotNull(alphabetClause.getAlphabetValueStmt());
+
+				final AlphabetClauseNational alphabetClauseNational = (AlphabetClauseNational) alphabetClause;
+
+				assertEquals(AlphabetClauseNationalType.Native, alphabetClauseNational.getAlphabetClauseType());
+			}
+
+			{
+				final AlphabetClause alphabetClause = specialNamesParagraph.getAlphabetClauses().get(1);
+				assertEquals(AlphabetClause.Type.National, alphabetClause.getType());
+				assertNotNull(alphabetClause.getAlphabetValueStmt());
+
+				final AlphabetClauseNational alphabetClauseNational = (AlphabetClauseNational) alphabetClause;
+
+				assertEquals(AlphabetClauseNationalType.CcsVersion, alphabetClauseNational.getAlphabetClauseType());
+				assertEquals("123", alphabetClauseNational.getCcsVersion().getValue());
+			}
+
+			{
+				final AlphabetClause alphabetClause = specialNamesParagraph.getAlphabetClauses().get(2);
+				assertEquals(AlphabetClause.Type.Alphanumeric, alphabetClause.getType());
+				assertNotNull(alphabetClause.getAlphabetValueStmt());
+
+				final AlphabetClauseAlphanumeric alphabetClauseAlphanumeric = (AlphabetClauseAlphanumeric) alphabetClause;
+
+				assertEquals(AlphabetClauseAlphanumericType.Ebcdic, alphabetClauseAlphanumeric.getAlphabetClauseType());
+			}
+
+			{
+				final AlphabetClause alphabetClause = specialNamesParagraph.getAlphabetClauses().get(3);
+				assertEquals(AlphabetClause.Type.Alphanumeric, alphabetClause.getType());
+				assertNotNull(alphabetClause.getAlphabetValueStmt());
+
+				final AlphabetClauseAlphanumeric alphabetClauseAlphanumeric = (AlphabetClauseAlphanumeric) alphabetClause;
+
+				assertEquals(1, alphabetClauseAlphanumeric.getCharacterSetValueStmts().size());
+			}
+
+			{
+				final AlphabetClause alphabetClause = specialNamesParagraph.getAlphabetClauses().get(4);
+				assertEquals(AlphabetClause.Type.Alphanumeric, alphabetClause.getType());
+				assertNotNull(alphabetClause.getAlphabetValueStmt());
+
+				final AlphabetClauseAlphanumeric alphabetClauseAlphanumeric = (AlphabetClauseAlphanumeric) alphabetClause;
+
+				assertEquals(4, alphabetClauseAlphanumeric.getCharacterSetValueStmts().size());
+			}
 		}
 	}
 }

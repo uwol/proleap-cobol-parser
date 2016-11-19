@@ -11,14 +11,16 @@ package io.proleap.cobol.parser.metamodel.environment.specialnames;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface ClassClauseThrough extends CobolDivisionElement {
+public interface AlphabetClause extends CobolDivisionElement {
 
-	ValueStmt getFrom();
+	enum Type {
+		Alphanumeric, National
+	}
 
-	ValueStmt getTo();
+	ValueStmt getAlphabetValueStmt();
 
-	void setFrom(ValueStmt from);
+	Type getType();
 
-	void setTo(ValueStmt to);
+	void setAlphabetValueStmt(ValueStmt alphabetValueStmt);
 
 }

@@ -343,18 +343,17 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 
 	@Override
 	public DataDescriptionEntry createDataDescriptionEntry(
-			final DataDescriptionEntryGroup lastDataDescriptionEntryGroup,
-			final DataDescriptionEntryContext dataDescriptionEntryContext) {
+			final DataDescriptionEntryGroup lastDataDescriptionEntryGroup, final DataDescriptionEntryContext ctx) {
 		final DataDescriptionEntry result;
 
-		if (dataDescriptionEntryContext.dataDescriptionEntryFormat1() != null) {
-			result = addDataDescriptionEntryGroup(dataDescriptionEntryContext.dataDescriptionEntryFormat1());
-		} else if (dataDescriptionEntryContext.dataDescriptionEntryFormat2() != null) {
-			result = addDataDescriptionEntryRename(dataDescriptionEntryContext.dataDescriptionEntryFormat2());
-		} else if (dataDescriptionEntryContext.dataDescriptionEntryFormat3() != null) {
-			result = addDataDescriptionEntryCondition(dataDescriptionEntryContext.dataDescriptionEntryFormat3());
+		if (ctx.dataDescriptionEntryFormat1() != null) {
+			result = addDataDescriptionEntryGroup(ctx.dataDescriptionEntryFormat1());
+		} else if (ctx.dataDescriptionEntryFormat2() != null) {
+			result = addDataDescriptionEntryRename(ctx.dataDescriptionEntryFormat2());
+		} else if (ctx.dataDescriptionEntryFormat3() != null) {
+			result = addDataDescriptionEntryCondition(ctx.dataDescriptionEntryFormat3());
 		} else {
-			LOG.warn("unknown data description entry {}", dataDescriptionEntryContext);
+			LOG.warn("unknown data description entry {}", ctx);
 			result = null;
 		}
 

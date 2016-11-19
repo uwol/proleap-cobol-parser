@@ -249,13 +249,19 @@ alphabetClauseFormat1 :
 		| STANDARD_2
 		| NATIVE
 		| cobolWord
-		| (literal
-			(
-				(THROUGH | THRU) literal 
-				| (ALSO literal+)+
-			)?
-		)+
+		| literal (
+			alphabetThrough
+			| alphabetAlso+
+		)?
 	)
+;
+
+alphabetThrough :
+	(THROUGH | THRU) literal 
+;
+
+alphabetAlso :
+	ALSO literal+
 ;
 
 alphabetClauseFormat2 :

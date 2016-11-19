@@ -13,6 +13,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
 import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
 import io.proleap.cobol.Cobol85Parser.ClassNameContext;
 import io.proleap.cobol.Cobol85Parser.CobolWordContext;
@@ -62,6 +63,17 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		super(ctx);
 
 		this.programUnit = programUnit;
+	}
+
+	public Call addCall(final AlphabetNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
 	}
 
 	public Call addCall(final AssignmentNameContext ctx) {
@@ -275,6 +287,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected void associateProcedureCallWithParagraph(final ProcedureCall procedureCall, final Paragraph paragraph) {
 		paragraph.addProcedureCall(procedureCall);
+	}
+
+	protected CallValueStmt createCallValueStmt(final AlphabetNameContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
 	}
 
 	protected CallValueStmt createCallValueStmt(final AssignmentNameContext ctx) {

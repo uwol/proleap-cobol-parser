@@ -20,9 +20,9 @@ public interface ClassClause extends CobolDivisionElement {
 		AlphaNumeric, National
 	}
 
-	ClassClauseThrough addClassClauseThrough(ClassClauseThroughContext ctx);
+	ClassThrough addClassThrough(ClassClauseThroughContext ctx);
 
-	List<ClassClauseThrough> getClassClauseThroughs();
+	List<ClassThrough> getClassThroughs();
 
 	ValueStmt getClassNameValueStmt();
 

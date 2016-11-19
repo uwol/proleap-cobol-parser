@@ -10,11 +10,11 @@ package io.proleap.cobol.parser.metamodel.environment.specialnames.impl;
 
 import io.proleap.cobol.Cobol85Parser.ClassClauseThroughContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClauseThrough;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassThrough;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public class ClassClauseThroughImpl extends CobolDivisionElementImpl implements ClassClauseThrough {
+public class ClassThroughImpl extends CobolDivisionElementImpl implements ClassThrough {
 
 	protected final ClassClauseThroughContext ctx;
 
@@ -22,7 +22,7 @@ public class ClassClauseThroughImpl extends CobolDivisionElementImpl implements 
 
 	protected ValueStmt to;
 
-	public ClassClauseThroughImpl(final ProgramUnit programUnit, final ClassClauseThroughContext ctx) {
+	public ClassThroughImpl(final ProgramUnit programUnit, final ClassClauseThroughContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

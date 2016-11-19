@@ -8,6 +8,11 @@
 
 package io.proleap.cobol.parser.metamodel.environment.specialnames;
 
+import java.util.List;
+
+import io.proleap.cobol.Cobol85Parser.AlphabetClauseContext;
+import io.proleap.cobol.Cobol85Parser.AlphabetClauseFormat1Context;
+import io.proleap.cobol.Cobol85Parser.AlphabetClauseFormat2Context;
 import io.proleap.cobol.Cobol85Parser.ChannelClauseContext;
 import io.proleap.cobol.Cobol85Parser.ClassClauseContext;
 import io.proleap.cobol.Cobol85Parser.CurrencySignClauseContext;
@@ -19,6 +24,10 @@ import io.proleap.cobol.Cobol85Parser.SymbolicCharactersClauseContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface SpecialNamesParagraph extends CobolDivisionElement {
+
+	AlphabetClauseAlphanumeric addAlphabetClauseAlphanumeric(AlphabetClauseFormat1Context ctx);
+
+	AlphabetClauseNational addAlphabetClauseNational(AlphabetClauseFormat2Context ctx);
 
 	ChannelClause addChannelClause(ChannelClauseContext ctx);
 
@@ -35,6 +44,10 @@ public interface SpecialNamesParagraph extends CobolDivisionElement {
 	ReserveNetworkClause addReserveNetworkClause(ReserveNetworkClauseContext ctx);
 
 	SymbolicCharactersClause addSymbolicCharactersClause(SymbolicCharactersClauseContext ctx);
+
+	AlphabetClause createAlphabetClause(AlphabetClauseContext ctx);
+
+	List<AlphabetClause> getAlphabetClauses();
 
 	ChannelClause getChannelClause();
 

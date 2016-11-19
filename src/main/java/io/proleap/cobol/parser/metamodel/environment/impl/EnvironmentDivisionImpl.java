@@ -120,6 +120,8 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 					result.addReserveNetworkClause(specialNameClauseContext.reserveNetworkClause());
 				} else if (specialNameClauseContext.symbolicCharactersClause() != null) {
 					result.addSymbolicCharactersClause(specialNameClauseContext.symbolicCharactersClause());
+				} else if (specialNameClauseContext.alphabetClause() != null) {
+					result.createAlphabetClause(specialNameClauseContext.alphabetClause());
 				} else {
 					LOG.warn("unknown special name clause {}", specialNameClauseContext);
 				}

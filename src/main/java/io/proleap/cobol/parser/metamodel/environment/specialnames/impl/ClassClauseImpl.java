@@ -17,13 +17,13 @@ import io.proleap.cobol.Cobol85Parser.ClassClauseThroughContext;
 import io.proleap.cobol.Cobol85Parser.ClassClauseToContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClause;
-import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClauseThrough;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassThrough;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassClause {
 
-	protected List<ClassClauseThrough> classClauseThroughs = new ArrayList<ClassClauseThrough>();
+	protected List<ClassThrough> classThroughs = new ArrayList<ClassThrough>();
 
 	protected ValueStmt classNameValueStmt;
 
@@ -38,11 +38,11 @@ public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassCl
 	}
 
 	@Override
-	public ClassClauseThrough addClassClauseThrough(final ClassClauseThroughContext ctx) {
-		ClassClauseThrough result = (ClassClauseThrough) getASGElement(ctx);
+	public ClassThrough addClassThrough(final ClassClauseThroughContext ctx) {
+		ClassThrough result = (ClassThrough) getASGElement(ctx);
 
 		if (result == null) {
-			result = new ClassClauseThroughImpl(programUnit, ctx);
+			result = new ClassThroughImpl(programUnit, ctx);
 
 			final ClassClauseFromContext fromContext = ctx.classClauseFrom();
 			final ClassClauseToContext toContext = ctx.classClauseTo();
@@ -77,7 +77,7 @@ public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassCl
 
 			result.setTo(toValueStmt);
 
-			classClauseThroughs.add(result);
+			classThroughs.add(result);
 			registerASGElement(result);
 		}
 
@@ -85,8 +85,8 @@ public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassCl
 	}
 
 	@Override
-	public List<ClassClauseThrough> getClassClauseThroughs() {
-		return classClauseThroughs;
+	public List<ClassThrough> getClassThroughs() {
+		return classThroughs;
 	}
 
 	@Override

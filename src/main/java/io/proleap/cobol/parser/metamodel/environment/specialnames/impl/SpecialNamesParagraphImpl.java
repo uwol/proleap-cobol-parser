@@ -8,12 +8,23 @@
 
 package io.proleap.cobol.parser.metamodel.environment.specialnames.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import io.proleap.cobol.Cobol85Parser.AlphabetAlsoContext;
+import io.proleap.cobol.Cobol85Parser.AlphabetClauseContext;
+import io.proleap.cobol.Cobol85Parser.AlphabetClauseFormat1Context;
+import io.proleap.cobol.Cobol85Parser.AlphabetClauseFormat2Context;
 import io.proleap.cobol.Cobol85Parser.ChannelClauseContext;
 import io.proleap.cobol.Cobol85Parser.ClassClauseContext;
 import io.proleap.cobol.Cobol85Parser.ClassClauseThroughContext;
 import io.proleap.cobol.Cobol85Parser.CurrencySignClauseContext;
 import io.proleap.cobol.Cobol85Parser.DecimalPointClauseContext;
 import io.proleap.cobol.Cobol85Parser.DefaultDisplaySignClauseContext;
+import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.OdtClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReserveNetworkClauseContext;
 import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
@@ -22,6 +33,9 @@ import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.MnemonicName;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClause;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClauseAlphanumeric;
+import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClauseNational;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ChannelClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.CurrencySignClause;
@@ -35,6 +49,10 @@ import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implements SpecialNamesParagraph {
+
+	private final static Logger LOG = LogManager.getLogger(SpecialNamesParagraphImpl.class);
+
+	protected List<AlphabetClause> alphabetClauses = new ArrayList<AlphabetClause>();
 
 	protected ChannelClause channelClause;
 
@@ -58,6 +76,127 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public AlphabetClauseAlphanumeric addAlphabetClauseAlphanumeric(final AlphabetClauseFormat1Context ctx) {
+		AlphabetClauseAlphanumeric result = (AlphabetClauseAlphanumeric) getASGElement(ctx);
+
+		if (result == null) {
+			result = new AlphabetClauseAlphanumericImpl(programUnit, ctx);
+
+			/*
+			 * alphabet name
+			 */
+			final ValueStmt alphabetValueStmt = createCallValueStmt(ctx.alphabetName());
+			result.setAlphabetValueStmt(alphabetValueStmt);
+
+			/*
+			 * type
+			 */
+			final AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType alphabetClauseAlphanumericType;
+
+			if (ctx.EBCDIC() != null) {
+				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.Ebcdic;
+			} else if (ctx.ASCII() != null) {
+				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.Ascii;
+			} else if (ctx.STANDARD_1() != null) {
+				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.Standard1;
+			} else if (ctx.STANDARD_2() != null) {
+				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.Standard2;
+			} else if (ctx.NATIVE() != null) {
+				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.Native;
+			} else {
+				alphabetClauseAlphanumericType = null;
+			}
+
+			result.setAlphabetClauseAlphanumericType(alphabetClauseAlphanumericType);
+
+			/*
+			 * character set, collating sequence
+			 */
+			final ValueStmt characterSetValueStmt;
+
+			if (ctx.cobolWord() != null) {
+				characterSetValueStmt = createCallValueStmt(ctx.cobolWord());
+			} else if (ctx.literal() != null) {
+				characterSetValueStmt = createLiteralValueStmt(ctx.literal());
+			} else {
+				characterSetValueStmt = null;
+			}
+
+			result.addCharacterSetValueStmt(characterSetValueStmt);
+
+			/*
+			 * through
+			 */
+			if (ctx.alphabetThrough() != null) {
+				final ValueStmt characterSetThroughValueStmt = createLiteralValueStmt(ctx.alphabetThrough().literal());
+				// TODO: add char sets in between
+				result.addCharacterSetValueStmt(characterSetThroughValueStmt);
+			}
+
+			/*
+			 * also
+			 */
+			for (final AlphabetAlsoContext alphabetAlsoContext : ctx.alphabetAlso()) {
+				final List<LiteralContext> literalContexts = alphabetAlsoContext.literal();
+
+				for (final LiteralContext literalContext : literalContexts) {
+					final ValueStmt characterSetAlsoValueStmt = createLiteralValueStmt(literalContext);
+					result.addCharacterSetValueStmt(characterSetAlsoValueStmt);
+				}
+			}
+
+			alphabetClauses.add(result);
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public AlphabetClauseNational addAlphabetClauseNational(final AlphabetClauseFormat2Context ctx) {
+		AlphabetClauseNational result = (AlphabetClauseNational) getASGElement(ctx);
+
+		if (result == null) {
+			result = new AlphabetClauseNationalImpl(programUnit, ctx);
+
+			/*
+			 * alphabet name
+			 */
+			final ValueStmt alphabetValueStmt = createCallValueStmt(ctx.alphabetName());
+			result.setAlphabetValueStmt(alphabetValueStmt);
+
+			/*
+			 * type
+			 */
+			final AlphabetClauseNational.AlphabetClauseNationalType alphabetClauseNationalType;
+
+			if (ctx.NATIVE() != null) {
+				alphabetClauseNationalType = AlphabetClauseNational.AlphabetClauseNationalType.Native;
+			} else if (ctx.CCSVERSION() != null) {
+				alphabetClauseNationalType = AlphabetClauseNational.AlphabetClauseNationalType.CcsVersion;
+			} else {
+				LOG.warn("unknown type at {}", ctx);
+				alphabetClauseNationalType = null;
+			}
+
+			result.setAlphabetClauseType(alphabetClauseNationalType);
+
+			/*
+			 * literal
+			 */
+			if (ctx.literal() != null) {
+				final Literal ccsVersionLiteral = addLiteral(ctx.literal());
+				result.setCcsVersionLiteral(ccsVersionLiteral);
+			}
+
+			alphabetClauses.add(result);
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -112,7 +251,7 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			 * class through
 			 */
 			for (final ClassClauseThroughContext classClauseThroughContext : ctx.classClauseThrough()) {
-				result.addClassClauseThrough(classClauseThroughContext);
+				result.addClassThrough(classClauseThroughContext);
 			}
 
 			classClause = result;
@@ -249,6 +388,27 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 		}
 
 		return result;
+	}
+
+	@Override
+	public AlphabetClause createAlphabetClause(final AlphabetClauseContext ctx) {
+		final AlphabetClause result;
+
+		if (ctx.alphabetClauseFormat1() != null) {
+			result = addAlphabetClauseAlphanumeric(ctx.alphabetClauseFormat1());
+		} else if (ctx.alphabetClauseFormat2() != null) {
+			result = addAlphabetClauseNational(ctx.alphabetClauseFormat2());
+		} else {
+			LOG.warn("unknown data description entry {}", ctx);
+			result = null;
+		}
+
+		return result;
+	}
+
+	@Override
+	public List<AlphabetClause> getAlphabetClauses() {
+		return alphabetClauses;
 	}
 
 	@Override
