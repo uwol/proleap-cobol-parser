@@ -14,17 +14,16 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import io.proleap.cobol.Cobol85Parser.AlphabetAlsoContext;
 import io.proleap.cobol.Cobol85Parser.AlphabetClauseContext;
 import io.proleap.cobol.Cobol85Parser.AlphabetClauseFormat1Context;
 import io.proleap.cobol.Cobol85Parser.AlphabetClauseFormat2Context;
+import io.proleap.cobol.Cobol85Parser.AlphabetLiteralsContext;
 import io.proleap.cobol.Cobol85Parser.ChannelClauseContext;
 import io.proleap.cobol.Cobol85Parser.ClassClauseContext;
 import io.proleap.cobol.Cobol85Parser.ClassClauseThroughContext;
 import io.proleap.cobol.Cobol85Parser.CurrencySignClauseContext;
 import io.proleap.cobol.Cobol85Parser.DecimalPointClauseContext;
 import io.proleap.cobol.Cobol85Parser.DefaultDisplaySignClauseContext;
-import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.OdtClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReserveNetworkClauseContext;
 import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
@@ -115,36 +114,14 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			/*
 			 * character set, collating sequence
 			 */
-			final ValueStmt characterSetValueStmt;
-
 			if (ctx.cobolWord() != null) {
-				characterSetValueStmt = createCallValueStmt(ctx.cobolWord());
-			} else if (ctx.literal() != null) {
-				characterSetValueStmt = createLiteralValueStmt(ctx.literal());
-			} else {
-				characterSetValueStmt = null;
-			}
+				final ValueStmt characterSetValueStmt = createCallValueStmt(ctx.cobolWord());
+				result.addCharacterSetValueStmt(characterSetValueStmt);
+			} else if (!ctx.alphabetLiterals().isEmpty()) {
+				final List<AlphabetLiteralsContext> alphabetLiteralsContexts = ctx.alphabetLiterals();
 
-			result.addCharacterSetValueStmt(characterSetValueStmt);
-
-			/*
-			 * through
-			 */
-			if (ctx.alphabetThrough() != null) {
-				final ValueStmt characterSetThroughValueStmt = createLiteralValueStmt(ctx.alphabetThrough().literal());
-				// TODO: add char sets in between
-				result.addCharacterSetValueStmt(characterSetThroughValueStmt);
-			}
-
-			/*
-			 * also
-			 */
-			for (final AlphabetAlsoContext alphabetAlsoContext : ctx.alphabetAlso()) {
-				final List<LiteralContext> literalContexts = alphabetAlsoContext.literal();
-
-				for (final LiteralContext literalContext : literalContexts) {
-					final ValueStmt characterSetAlsoValueStmt = createLiteralValueStmt(literalContext);
-					result.addCharacterSetValueStmt(characterSetAlsoValueStmt);
+				for (final AlphabetLiteralsContext alphabetLiteralsContext : alphabetLiteralsContexts) {
+					result.addCharacterSetValueStmts(alphabetLiteralsContext);
 				}
 			}
 

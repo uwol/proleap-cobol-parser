@@ -11,7 +11,10 @@ package io.proleap.cobol.parser.metamodel.environment.specialnames.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.AlphabetAlsoContext;
 import io.proleap.cobol.Cobol85Parser.AlphabetClauseFormat1Context;
+import io.proleap.cobol.Cobol85Parser.AlphabetLiteralsContext;
+import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClauseAlphanumeric;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
@@ -36,6 +39,33 @@ public class AlphabetClauseAlphanumericImpl extends AlphabetClauseImpl implement
 	}
 
 	@Override
+	public void addCharacterSetValueStmts(final AlphabetLiteralsContext ctx) {
+		final ValueStmt characterSetValueStmt = createLiteralValueStmt(ctx.literal());
+		characterSetValueStmts.add(characterSetValueStmt);
+
+		/*
+		 * through
+		 */
+		if (ctx.alphabetThrough() != null) {
+			final ValueStmt characterSetThroughValueStmt = createLiteralValueStmt(ctx.alphabetThrough().literal());
+			// TODO: add char sets in between
+			characterSetValueStmts.add(characterSetThroughValueStmt);
+		}
+
+		/*
+		 * also
+		 */
+		for (final AlphabetAlsoContext alphabetAlsoContext : ctx.alphabetAlso()) {
+			final List<LiteralContext> literalContexts = alphabetAlsoContext.literal();
+
+			for (final LiteralContext literalContext : literalContexts) {
+				final ValueStmt characterSetAlsoValueStmt = createLiteralValueStmt(literalContext);
+				characterSetValueStmts.add(characterSetAlsoValueStmt);
+			}
+		}
+	}
+
+	@Override
 	public AlphabetClauseAlphanumericType getAlphabetClauseType() {
 		return alphabetClauseAlphanumericType;
 	}
@@ -54,4 +84,5 @@ public class AlphabetClauseAlphanumericImpl extends AlphabetClauseImpl implement
 	public void setAlphabetClauseAlphanumericType(final AlphabetClauseAlphanumericType alphabetClauseAlphanumericType) {
 		this.alphabetClauseAlphanumericType = alphabetClauseAlphanumericType;
 	}
+
 }

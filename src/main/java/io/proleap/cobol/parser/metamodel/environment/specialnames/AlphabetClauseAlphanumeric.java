@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.environment.specialnames;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.AlphabetLiteralsContext;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface AlphabetClauseAlphanumeric extends AlphabetClause {
@@ -19,6 +20,8 @@ public interface AlphabetClauseAlphanumeric extends AlphabetClause {
 	}
 
 	void addCharacterSetValueStmt(ValueStmt characterSetValueStmt);
+
+	void addCharacterSetValueStmts(AlphabetLiteralsContext ctx);
 
 	AlphabetClauseAlphanumericType getAlphabetClauseType();
 

@@ -249,11 +249,12 @@ alphabetClauseFormat1 :
 		| STANDARD_2
 		| NATIVE
 		| cobolWord
-		| literal (
-			alphabetThrough
-			| alphabetAlso+
-		)?
+		| alphabetLiterals+
 	)
+;
+
+alphabetLiterals :
+	literal (alphabetThrough | alphabetAlso+)?
 ;
 
 alphabetThrough :
