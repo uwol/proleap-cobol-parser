@@ -9,7 +9,9 @@
 package io.proleap.cobol.parser.metamodel.data.report.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -55,6 +57,8 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 	protected ReportDescriptionEntry reportDescriptionEntry;
 
 	protected List<ReportGroupDescriptionEntry> reportGroupDescriptionEntries = new ArrayList<ReportGroupDescriptionEntry>();
+
+	protected Map<String, ReportGroupDescriptionEntry> reportGroupDescriptionEntriesByName = new HashMap<String, ReportGroupDescriptionEntry>();
 
 	public ReportImpl(final String name, final ProgramUnit programUnit, final ReportContext ctx) {
 		super(programUnit, ctx);
@@ -260,6 +264,8 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 			}
 
 			reportGroupDescriptionEntries.add(result);
+			reportGroupDescriptionEntriesByName.put(name, result);
+
 			registerASGElement(result);
 		}
 
@@ -284,16 +290,22 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 			/*
 			 * line number
 			 */
-			final ReportGroupLineNumberClauseContext lineNumberClauseContext = ctx.reportGroupLineNumberClause();
-			result.addLineNumberClause(lineNumberClauseContext);
+			if (ctx.reportGroupLineNumberClause() != null) {
+				final ReportGroupLineNumberClauseContext lineNumberClauseContext = ctx.reportGroupLineNumberClause();
+				result.addLineNumberClause(lineNumberClauseContext);
+			}
 
 			/*
 			 * group usage
 			 */
-			final ReportGroupUsageClauseContext usageClauseContext = ctx.reportGroupUsageClause();
-			result.addGroupUsageClause(usageClauseContext);
+			if (ctx.reportGroupUsageClause() != null) {
+				final ReportGroupUsageClauseContext usageClauseContext = ctx.reportGroupUsageClause();
+				result.addGroupUsageClause(usageClauseContext);
+			}
 
 			reportGroupDescriptionEntries.add(result);
+			reportGroupDescriptionEntriesByName.put(name, result);
+
 			registerASGElement(result);
 		}
 
@@ -318,28 +330,38 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 			/*
 			 * line number
 			 */
-			final ReportGroupLineNumberClauseContext lineNumberClauseContext = ctx.reportGroupLineNumberClause();
-			result.addLineNumberClause(lineNumberClauseContext);
+			if (ctx.reportGroupLineNumberClause() != null) {
+				final ReportGroupLineNumberClauseContext lineNumberClauseContext = ctx.reportGroupLineNumberClause();
+				result.addLineNumberClause(lineNumberClauseContext);
+			}
 
 			/*
 			 * next group
 			 */
-			final ReportGroupNextGroupClauseContext nextGroupClause = ctx.reportGroupNextGroupClause();
-			result.addNextGroupClause(nextGroupClause);
+			if (ctx.reportGroupNextGroupClause() != null) {
+				final ReportGroupNextGroupClauseContext nextGroupClause = ctx.reportGroupNextGroupClause();
+				result.addNextGroupClause(nextGroupClause);
+			}
 
 			/*
 			 * type
 			 */
-			final ReportGroupTypeClauseContext typeClause = ctx.reportGroupTypeClause();
-			result.addTypeClause(typeClause);
+			if (ctx.reportGroupTypeClause() != null) {
+				final ReportGroupTypeClauseContext typeClause = ctx.reportGroupTypeClause();
+				result.addTypeClause(typeClause);
+			}
 
 			/*
 			 * usage
 			 */
-			final ReportGroupUsageClauseContext groupUsageClause = ctx.reportGroupUsageClause();
-			result.addGroupUsageClause(groupUsageClause);
+			if (ctx.reportGroupUsageClause() != null) {
+				final ReportGroupUsageClauseContext groupUsageClause = ctx.reportGroupUsageClause();
+				result.addGroupUsageClause(groupUsageClause);
+			}
 
 			reportGroupDescriptionEntries.add(result);
+			reportGroupDescriptionEntriesByName.put(name, result);
+
 			registerASGElement(result);
 		}
 
@@ -383,6 +405,25 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 	@Override
 	public List<ReportGroupDescriptionEntry> getReportGroupDescriptionEntries() {
 		return reportGroupDescriptionEntries;
+	}
+
+	@Override
+	public ReportGroupDescriptionEntry getReportGroupDescriptionEntry(final String name) {
+		return reportGroupDescriptionEntriesByName.get(name);
+	}
+
+	@Override
+	public List<ReportGroupDescriptionEntry> getRootReportGroupDescriptionEntries() {
+		final List<ReportGroupDescriptionEntry> result = new ArrayList<ReportGroupDescriptionEntry>();
+
+		for (final ReportGroupDescriptionEntry reportGroupDescriptionEntry : reportGroupDescriptionEntries) {
+
+			if (reportGroupDescriptionEntry.getParentReportGroupDescriptionEntry() == null) {
+				result.add(reportGroupDescriptionEntry);
+			}
+		}
+
+		return result;
 	}
 
 	protected void groupReportGroupDescriptionEntry(final ReportGroupDescriptionEntry lastReportGroupDescriptionEntry,

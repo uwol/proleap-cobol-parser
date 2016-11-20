@@ -18,7 +18,7 @@ import io.proleap.cobol.parser.metamodel.data.report.Report;
 import io.proleap.cobol.parser.metamodel.data.report.ReportSection;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class ReportTest extends CobolTestSupport {
+public class ReportDescriptionTest extends CobolTestSupport {
 
 	@Override
 	@Before
