@@ -831,81 +831,157 @@ reportGroupDescriptionEntry :
 
 reportGroupDescriptionEntryFormat1 :
 	integerLiteral dataName
-	(
-		LINE NUMBER? IS?
-		(
-			integerLiteral (ON? NEXT PAGE)?
-			| PLUS integerLiteral
-			| NEXT PAGE
-		)
-	)?
-	
-	(
-		NEXT GROUP IS?
-		(
-			integerLiteral | PLUS integerLiteral | NEXT PAGE
-		)
-	)?
-	
-	TYPE IS? (
-		(REPORT HEADING | RH)
-		| (PAGE HEADING | PH)
-		| (CONTROL HEADING | CH) (dataName | FINAL)
-		| (DETAIL | DE)
-		| (CONTROL FOOTING | CF) (dataName | FINAL)
-		| (PAGE FOOTING | PF)
-		| (REPORT FOOTING | RF)
-	)
-	
-	(
-		USAGE IS? (DISPLAY | DISPLAY_1)
-	)?
+	reportGroupLineNumberClause?
+	reportGroupNextGroupClause?
+	reportGroupTypeClause
+	reportGroupUsageClause?
 	DOT_FS
 ;
 
 reportGroupDescriptionEntryFormat2 :
 	integerLiteral dataName?
-	(
-		LINE NUMBER? IS?
-		(
-			integerLiteral (ON? NEXT PAGE)?
-			| PLUS integerLiteral
-			| NEXT PAGE
-		)
-	)?
-	(
-		USAGE IS? (DISPLAY | DISPLAY_1)	
-	)
+	reportGroupLineNumberClause?
+	reportGroupUsageClause
 	DOT_FS
 ;
 
 reportGroupDescriptionEntryFormat3 :
 	integerLiteral dataName?
 	(
-		dataPictureClause
-		| (USAGE IS? (DISPLAY | DISPLAY_1))
-		| (SIGN IS? (LEADING | TRAILING) SEPARATE CHARACTER?)
-		| ((JUSTIFIED | JUST) RIGHT?)
-		| (BLANK WHEN? ZERO)
+		reportGroupPictureClause
+		| reportGroupUsageClause
+		| reportGroupSignClause
+		| reportGroupJustifiedClause
+		| reportGroupBlankWhenZeroClause
+		| reportGroupLineNumberClause
+		| reportGroupColumnNumberClause
 		| (
-			LINE? NUMBER? IS? (
-		 		integerLiteral (ON? NEXT PAGE)?
-				| PLUS integerLiteral
-			)
+			reportGroupSourceClause
+			| reportGroupValueClause 
+			| reportGroupSumClause
+			| reportGroupResetClause
 		)
-		| (COLUMN NUMBER? IS? integerLiteral)
-		| (
-			SOURCE IS? identifier
-			| VALUE IS? literal
-			| (
-				SUM identifier (COMMACHAR identifier)+
-				(UPON dataName (COMMACHAR dataName)+)?
-			)
-			| (RESET ON? (FINAL | dataName))
-		)
-		| (GROUP INDICATE?)
+		| reportGroupIndicateClause
 	)*
 	DOT_FS
+;
+
+reportGroupBlankWhenZeroClause :
+	BLANK WHEN? ZERO
+;
+
+reportGroupColumnNumberClause :
+	COLUMN NUMBER? IS? integerLiteral
+;
+
+reportGroupIndicateClause :
+	GROUP INDICATE?
+;
+
+reportGroupJustifiedClause :
+	(JUSTIFIED | JUST) RIGHT?
+;
+
+reportGroupLineNumberClause :
+	LINE? NUMBER? IS?
+	(
+ 		reportGroupLineNumberNextPage
+		| reportGroupLineNumberPlus
+	)
+;
+
+reportGroupLineNumberNextPage :
+	integerLiteral (ON? NEXT PAGE)?
+;
+
+reportGroupLineNumberPlus :
+	PLUS integerLiteral
+;
+
+reportGroupNextGroupClause :
+	NEXT GROUP IS?
+	(
+		integerLiteral
+		| reportGroupNextGroupNextPage
+		| reportGroupNextGroupPlus
+	)
+;
+
+reportGroupNextGroupPlus :
+	PLUS integerLiteral
+;
+
+reportGroupNextGroupNextPage :
+	NEXT PAGE
+;
+
+reportGroupPictureClause :
+	(PICTURE | PIC) IS? pictureString
+;
+
+reportGroupResetClause :
+	RESET ON? (FINAL | dataName)
+;
+
+reportGroupSignClause :
+	SIGN IS? (LEADING | TRAILING) SEPARATE CHARACTER?
+;
+
+reportGroupSourceClause :
+	SOURCE IS? identifier
+;
+
+reportGroupSumClause :
+	SUM identifier (COMMACHAR? identifier)*
+	(UPON dataName (COMMACHAR? dataName)*)?
+;
+
+reportGroupTypeClause :
+	TYPE IS? (
+		reportGroupTypeReportHeading
+		| reportGroupTypePageHeading
+		| reportGroupTypeControlHeading
+		| reportGroupTypeDetail
+		| reportGroupTypeControlFooting
+		| reportGroupTypePageFooting
+		| reportGroupTypeReportFooting
+	)
+;
+
+reportGroupTypeReportHeading :
+	REPORT HEADING | RH
+;
+
+reportGroupTypePageHeading :
+	PAGE HEADING | PH
+;
+
+reportGroupTypeControlHeading :
+	(CONTROL HEADING | CH) (dataName | FINAL)
+;
+
+reportGroupTypeDetail :
+	DETAIL | DE
+;
+
+reportGroupTypeControlFooting :
+	(CONTROL FOOTING | CF) (dataName | FINAL)
+;
+
+reportGroupUsageClause :
+	USAGE IS? (DISPLAY | DISPLAY_1)	
+;
+
+reportGroupTypePageFooting :
+	PAGE FOOTING | PF
+;
+
+reportGroupTypeReportFooting :
+	REPORT FOOTING | RF
+;
+
+reportGroupValueClause :
+	VALUE IS? literal
 ;
 
 // -- program library section ----------------------------------

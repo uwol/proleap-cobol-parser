@@ -16,10 +16,24 @@ import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.ReportContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionEntryContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupBlankWhenZeroClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupColumnNumberClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat3Context;
+import io.proleap.cobol.Cobol85Parser.ReportGroupIndicateClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupJustifiedClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupLineNumberClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupNextGroupClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupPictureClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupResetClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupSignClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupSourceClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupSumClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupTypeClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupUsageClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupValueClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.report.Report;
 import io.proleap.cobol.parser.metamodel.data.report.ReportDescriptionEntry;
@@ -28,6 +42,7 @@ import io.proleap.cobol.parser.metamodel.data.report.ReportGroupDescriptionEntry
 import io.proleap.cobol.parser.metamodel.data.report.ReportGroupDescriptionEntrySingle;
 import io.proleap.cobol.parser.metamodel.data.report.ReportGroupDescriptionEntryVertical;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.parser.util.StringUtils;
 
 public class ReportImpl extends CobolDivisionElementImpl implements Report {
 
@@ -108,26 +123,233 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 	@Override
 	public ReportGroupDescriptionEntryPrintable addReportGroupDescriptionEntryPrintable(
 			final ReportGroupDescriptionEntryFormat3Context ctx) {
-		// FIXME
-		return null;
+		ReportGroupDescriptionEntryPrintable result = (ReportGroupDescriptionEntryPrintable) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new ReportGroupDescriptionEntryPrintableImpl(name, programUnit, ctx);
+
+			/*
+			 * level number
+			 */
+			final Integer levelNumber = StringUtils.parseInteger(ctx.integerLiteral().getText());
+			result.setLevelNumber(levelNumber);
+
+			/*
+			 * picture
+			 */
+			final List<ReportGroupPictureClauseContext> pictureClauseContexts = ctx.reportGroupPictureClause();
+
+			if (!pictureClauseContexts.isEmpty()) {
+				final ReportGroupPictureClauseContext pictureClauseContext = pictureClauseContexts.get(0);
+				result.addPictureClause(pictureClauseContext);
+			}
+
+			/*
+			 * usage
+			 */
+			final List<ReportGroupUsageClauseContext> usageClauseContexts = ctx.reportGroupUsageClause();
+
+			if (!usageClauseContexts.isEmpty()) {
+				final ReportGroupUsageClauseContext groupUsageClause = usageClauseContexts.get(0);
+				result.addGroupUsageClause(groupUsageClause);
+			}
+
+			/*
+			 * sign
+			 */
+			final List<ReportGroupSignClauseContext> signClauseContexts = ctx.reportGroupSignClause();
+
+			if (!signClauseContexts.isEmpty()) {
+				final ReportGroupSignClauseContext signClauseContext = signClauseContexts.get(0);
+				result.addSignClause(signClauseContext);
+			}
+
+			/*
+			 * justified
+			 */
+			final List<ReportGroupJustifiedClauseContext> justifiedClauseContexts = ctx.reportGroupJustifiedClause();
+
+			if (!justifiedClauseContexts.isEmpty()) {
+				final ReportGroupJustifiedClauseContext justifiedClauseContext = justifiedClauseContexts.get(0);
+				result.addJustifiedClause(justifiedClauseContext);
+			}
+
+			/*
+			 * blank when zero
+			 */
+			final List<ReportGroupBlankWhenZeroClauseContext> blankWhenZeroClauseContexts = ctx
+					.reportGroupBlankWhenZeroClause();
+
+			if (!blankWhenZeroClauseContexts.isEmpty()) {
+				final ReportGroupBlankWhenZeroClauseContext blankWhenZeroClauseContext = blankWhenZeroClauseContexts
+						.get(0);
+				result.addBlankWhenZeroClause(blankWhenZeroClauseContext);
+			}
+
+			/*
+			 * line number
+			 */
+			final List<ReportGroupLineNumberClauseContext> lineNumberClauseContexts = ctx.reportGroupLineNumberClause();
+
+			if (!lineNumberClauseContexts.isEmpty()) {
+				final ReportGroupLineNumberClauseContext lineNumberClauseContext = lineNumberClauseContexts.get(0);
+				result.addLineNumberClause(lineNumberClauseContext);
+			}
+
+			/*
+			 * column number
+			 */
+			final List<ReportGroupColumnNumberClauseContext> columnNumberClauseContexts = ctx
+					.reportGroupColumnNumberClause();
+
+			if (!columnNumberClauseContexts.isEmpty()) {
+				final ReportGroupColumnNumberClauseContext columnNumberClauseContext = columnNumberClauseContexts
+						.get(0);
+				result.addColumnNumberClause(columnNumberClauseContext);
+			}
+
+			/*
+			 * source
+			 */
+			final List<ReportGroupSourceClauseContext> sourceClauseContexts = ctx.reportGroupSourceClause();
+
+			if (!sourceClauseContexts.isEmpty()) {
+				final ReportGroupSourceClauseContext sourceClauseContext = sourceClauseContexts.get(0);
+				result.addSourceClause(sourceClauseContext);
+			}
+
+			/*
+			 * value
+			 */
+			final List<ReportGroupValueClauseContext> valueClauseContexts = ctx.reportGroupValueClause();
+
+			if (!valueClauseContexts.isEmpty()) {
+				final ReportGroupValueClauseContext valueClauseContext = valueClauseContexts.get(0);
+				result.addValueClause(valueClauseContext);
+			}
+
+			/*
+			 * sum
+			 */
+			final List<ReportGroupSumClauseContext> sumClauseContexts = ctx.reportGroupSumClause();
+
+			if (!sumClauseContexts.isEmpty()) {
+				final ReportGroupSumClauseContext sumClauseContext = sumClauseContexts.get(0);
+				result.addSumClause(sumClauseContext);
+			}
+
+			/*
+			 * reset
+			 */
+			final List<ReportGroupResetClauseContext> resetClauseContexts = ctx.reportGroupResetClause();
+
+			if (!resetClauseContexts.isEmpty()) {
+				final ReportGroupResetClauseContext resetClauseContext = resetClauseContexts.get(0);
+				result.addResetClause(resetClauseContext);
+			}
+
+			/*
+			 * group indicate
+			 */
+			final List<ReportGroupIndicateClauseContext> indicateClauseContexts = ctx.reportGroupIndicateClause();
+
+			if (!indicateClauseContexts.isEmpty()) {
+				final ReportGroupIndicateClauseContext indicateClauseContext = indicateClauseContexts.get(0);
+				result.addGroupIndicateClause(indicateClauseContext);
+			}
+
+			reportGroupDescriptionEntries.add(result);
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
 	public ReportGroupDescriptionEntrySingle addReportGroupDescriptionEntrySingle(
 			final ReportGroupDescriptionEntryFormat2Context ctx) {
-		// FIXME
-		return null;
+		ReportGroupDescriptionEntrySingle result = (ReportGroupDescriptionEntrySingle) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new ReportGroupDescriptionEntrySingleImpl(name, programUnit, ctx);
+
+			/*
+			 * level number
+			 */
+			final Integer levelNumber = StringUtils.parseInteger(ctx.integerLiteral().getText());
+			result.setLevelNumber(levelNumber);
+
+			/*
+			 * line number
+			 */
+			final ReportGroupLineNumberClauseContext lineNumberClauseContext = ctx.reportGroupLineNumberClause();
+			result.addLineNumberClause(lineNumberClauseContext);
+
+			/*
+			 * group usage
+			 */
+			final ReportGroupUsageClauseContext usageClauseContext = ctx.reportGroupUsageClause();
+			result.addGroupUsageClause(usageClauseContext);
+
+			reportGroupDescriptionEntries.add(result);
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
 	public ReportGroupDescriptionEntryVertical addReportGroupDescriptionEntryVertical(
 			final ReportGroupDescriptionEntryFormat1Context ctx) {
-		// FIXME
-		return null;
+		ReportGroupDescriptionEntryVertical result = (ReportGroupDescriptionEntryVertical) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new ReportGroupDescriptionEntryVerticalImpl(name, programUnit, ctx);
+
+			/*
+			 * level number
+			 */
+			final Integer levelNumber = StringUtils.parseInteger(ctx.integerLiteral().getText());
+			result.setLevelNumber(levelNumber);
+
+			/*
+			 * line number
+			 */
+			final ReportGroupLineNumberClauseContext lineNumberClauseContext = ctx.reportGroupLineNumberClause();
+			result.addLineNumberClause(lineNumberClauseContext);
+
+			/*
+			 * next group
+			 */
+			final ReportGroupNextGroupClauseContext nextGroupClause = ctx.reportGroupNextGroupClause();
+			result.addNextGroupClause(nextGroupClause);
+
+			/*
+			 * type
+			 */
+			final ReportGroupTypeClauseContext typeClause = ctx.reportGroupTypeClause();
+			result.addTypeClause(typeClause);
+
+			/*
+			 * usage
+			 */
+			final ReportGroupUsageClauseContext groupUsageClause = ctx.reportGroupUsageClause();
+			result.addGroupUsageClause(groupUsageClause);
+
+			reportGroupDescriptionEntries.add(result);
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
-	public ReportGroupDescriptionEntry createReportGroupDescriptionEntry(final ReportGroupDescriptionEntryContext ctx) {
+	public ReportGroupDescriptionEntry createReportGroupDescriptionEntry(
+			final ReportGroupDescriptionEntry lastReportGroupDescriptionEntry,
+			final ReportGroupDescriptionEntryContext ctx) {
 		final ReportGroupDescriptionEntry result;
 
 		if (ctx.reportGroupDescriptionEntryFormat1() != null) {
@@ -139,6 +361,10 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 		} else {
 			LOG.warn("unknown report description entry {}", ctx);
 			result = null;
+		}
+
+		if (lastReportGroupDescriptionEntry != null && result != null) {
+			groupReportGroupDescriptionEntry(lastReportGroupDescriptionEntry, result);
 		}
 
 		return result;
@@ -157,6 +383,24 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 	@Override
 	public List<ReportGroupDescriptionEntry> getReportGroupDescriptionEntries() {
 		return reportGroupDescriptionEntries;
+	}
+
+	protected void groupReportGroupDescriptionEntry(final ReportGroupDescriptionEntry lastReportGroupDescriptionEntry,
+			final ReportGroupDescriptionEntry reportGroupDescriptionEntry) {
+		final Integer lastLevelNumber = lastReportGroupDescriptionEntry.getLevelNumber();
+		final Integer levelNumber = reportGroupDescriptionEntry.getLevelNumber();
+
+		if (levelNumber > lastLevelNumber) {
+			lastReportGroupDescriptionEntry.addReportGroupDescriptionEntry(reportGroupDescriptionEntry);
+			reportGroupDescriptionEntry.setParentReportGroupDescriptionEntry(lastReportGroupDescriptionEntry);
+		} else {
+			final ReportGroupDescriptionEntry lastSuperReportGroupDescriptionEntry = lastReportGroupDescriptionEntry
+					.getParentReportGroupDescriptionEntry();
+
+			if (lastSuperReportGroupDescriptionEntry != null) {
+				groupReportGroupDescriptionEntry(lastSuperReportGroupDescriptionEntry, reportGroupDescriptionEntry);
+			}
+		}
 	}
 
 }

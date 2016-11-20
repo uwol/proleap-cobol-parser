@@ -100,14 +100,14 @@ public class CommunicationDescriptionInputOutputTest extends CobolTestSupport {
 			assertNotNull(dataDescriptionEntryWsPerson);
 			assertEquals("WS-PERSON", dataDescriptionEntryWsPerson.getName());
 			assertEquals(new Integer(1), dataDescriptionEntryWsPerson.getLevelNumber());
-			assertNull(dataDescriptionEntryWsPerson.getDataDescriptionEntryGroup());
+			assertNull(dataDescriptionEntryWsPerson.getParentDataDescriptionEntryGroup());
 
 			final DataDescriptionEntry dataDescriptionEntryWsPersonId = communicationSection
 					.getDataDescriptionEntry("WS-PERSON-ID");
 			assertNotNull(dataDescriptionEntryWsPersonId);
 			assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
 			assertEquals(new Integer(5), dataDescriptionEntryWsPersonId.getLevelNumber());
-			assertEquals(dataDescriptionEntryWsPerson, dataDescriptionEntryWsPersonId.getDataDescriptionEntryGroup());
+			assertEquals(dataDescriptionEntryWsPerson, dataDescriptionEntryWsPersonId.getParentDataDescriptionEntryGroup());
 		}
 	}
 }

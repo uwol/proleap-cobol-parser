@@ -256,6 +256,9 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		if (result == null) {
 			result = new WorkingStorageSectionImpl(programUnit, ctx);
 
+			/*
+			 * data descriptions
+			 */
 			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
 
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {

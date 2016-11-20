@@ -40,6 +40,9 @@ import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.Cobol85Parser.ReportContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionEntryContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat1Context;
+import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat2Context;
+import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
@@ -218,6 +221,12 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((ReportContext) ctx);
 		} else if (ctx instanceof ReportDescriptionEntryContext) {
 			result = determineName((ReportDescriptionEntryContext) ctx);
+		} else if (ctx instanceof ReportGroupDescriptionEntryFormat1Context) {
+			result = determineName((ReportGroupDescriptionEntryFormat1Context) ctx);
+		} else if (ctx instanceof ReportGroupDescriptionEntryFormat2Context) {
+			result = determineName((ReportGroupDescriptionEntryFormat2Context) ctx);
+		} else if (ctx instanceof ReportGroupDescriptionEntryFormat3Context) {
+			result = determineName((ReportGroupDescriptionEntryFormat3Context) ctx);
 		} else if (ctx instanceof ReportNameContext) {
 			result = determineName((ReportNameContext) ctx);
 		} else if (ctx instanceof QualifiedDataNameContext) {
@@ -262,6 +271,21 @@ public class NameResolverImpl implements NameResolver {
 
 	public String determineName(final ReportDescriptionEntryContext ctx) {
 		final String result = ctx != null ? determineName(ctx.reportName()) : null;
+		return result;
+	}
+
+	public String determineName(final ReportGroupDescriptionEntryFormat1Context ctx) {
+		final String result = ctx != null ? determineName(ctx.dataName()) : null;
+		return result;
+	}
+
+	public String determineName(final ReportGroupDescriptionEntryFormat2Context ctx) {
+		final String result = ctx != null ? determineName(ctx.dataName()) : null;
+		return result;
+	}
+
+	public String determineName(final ReportGroupDescriptionEntryFormat3Context ctx) {
+		final String result = ctx != null ? determineName(ctx.dataName()) : null;
 		return result;
 	}
 

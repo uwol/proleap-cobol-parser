@@ -8,6 +8,17 @@
 
 package io.proleap.cobol.parser.metamodel.data.report;
 
+import io.proleap.cobol.Cobol85Parser.ReportGroupNextGroupClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupTypeClauseContext;
+
 public interface ReportGroupDescriptionEntryVertical extends ReportGroupDescriptionEntry {
+
+	NextGroupClause addNextGroupClause(ReportGroupNextGroupClauseContext ctx);
+
+	TypeClause addTypeClause(ReportGroupTypeClauseContext ctx);
+
+	NextGroupClause getNextGroupClause();
+
+	TypeClause getTypeClause();
 
 }

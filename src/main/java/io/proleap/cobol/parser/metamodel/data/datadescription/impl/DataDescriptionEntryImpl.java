@@ -23,11 +23,11 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 
 	protected final List<DataDescriptionEntryCall> dataDescriptionEntryCalls = new ArrayList<DataDescriptionEntryCall>();
 
-	protected DataDescriptionEntryGroup dataDescriptionEntryGroup;
-
 	protected Integer levelNumber;
 
 	protected final String name;
+
+	protected DataDescriptionEntryGroup parentDataDescriptionEntryGroup;
 
 	public DataDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final ParseTree ctx) {
 		super(programUnit, ctx);
@@ -46,11 +46,6 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	}
 
 	@Override
-	public DataDescriptionEntryGroup getDataDescriptionEntryGroup() {
-		return dataDescriptionEntryGroup;
-	}
-
-	@Override
 	public Integer getLevelNumber() {
 		return levelNumber;
 	}
@@ -61,13 +56,18 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	}
 
 	@Override
-	public void setDataDescriptionEntryGroup(final DataDescriptionEntryGroup dataDescriptionEntryGroup) {
-		this.dataDescriptionEntryGroup = dataDescriptionEntryGroup;
+	public DataDescriptionEntryGroup getParentDataDescriptionEntryGroup() {
+		return parentDataDescriptionEntryGroup;
 	}
 
 	@Override
 	public void setLevelNumber(final Integer levelNumber) {
 		this.levelNumber = levelNumber;
+	}
+
+	@Override
+	public void setParentDataDescriptionEntryGroup(final DataDescriptionEntryGroup parentDataDescriptionEntryGroup) {
+		this.parentDataDescriptionEntryGroup = parentDataDescriptionEntryGroup;
 	}
 
 	@Override

@@ -8,13 +8,41 @@
 
 package io.proleap.cobol.parser.metamodel.data.report;
 
-import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import java.util.List;
 
-public interface ReportGroupDescriptionEntry extends CobolDivisionElement {
+import io.proleap.cobol.Cobol85Parser.ReportGroupLineNumberClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupUsageClauseContext;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.Declaration;
+
+public interface ReportGroupDescriptionEntry extends CobolDivisionElement, Declaration {
 
 	enum Type {
 		Printable, Single, Vertical
 	}
 
+	UsageClause addGroupUsageClause(ReportGroupUsageClauseContext ctx);
+
+	LineNumberClause addLineNumberClause(ReportGroupLineNumberClauseContext ctx);
+
+	void addReportGroupDescriptionEntry(ReportGroupDescriptionEntry reportGroupDescriptionEntry);
+
+	Integer getLevelNumber();
+
+	LineNumberClause getLineNumberClause();
+
+	ReportGroupDescriptionEntry getParentReportGroupDescriptionEntry();
+
+	List<ReportGroupDescriptionEntry> getReportGroupDescriptionEntries();
+
+	ReportGroupDescriptionEntry getReportGroupDescriptionEntry(String name);
+
 	Type getType();
+
+	UsageClause getUsageClause();
+
+	void setLevelNumber(Integer levelNumber);
+
+	void setParentReportGroupDescriptionEntry(ReportGroupDescriptionEntry parentReportGroupDescriptionEntry);
+
 }

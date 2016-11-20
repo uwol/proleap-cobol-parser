@@ -19,6 +19,7 @@ import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.ReportSectionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.report.Report;
+import io.proleap.cobol.parser.metamodel.data.report.ReportGroupDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.report.ReportSection;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
@@ -53,11 +54,14 @@ public class ReportSectionImpl extends CobolDivisionElementImpl implements Repor
 			/*
 			 * report group descriptions
 			 */
-			final List<ReportGroupDescriptionEntryContext> reportGroupDescriptionEntryContexts = ctx
-					.reportGroupDescriptionEntry();
+			ReportGroupDescriptionEntry lastReportGroupDescriptionEntry = null;
 
-			for (final ReportGroupDescriptionEntryContext reportGroupDescriptionEntryContext : reportGroupDescriptionEntryContexts) {
-				result.createReportGroupDescriptionEntry(reportGroupDescriptionEntryContext);
+			for (final ReportGroupDescriptionEntryContext reportGroupDescriptionEntryContext : ctx
+					.reportGroupDescriptionEntry()) {
+				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = result
+						.createReportGroupDescriptionEntry(lastReportGroupDescriptionEntry,
+								reportGroupDescriptionEntryContext);
+				lastReportGroupDescriptionEntry = reportGroupDescriptionEntry;
 			}
 
 			reports.add(result);

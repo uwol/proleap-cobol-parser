@@ -49,7 +49,7 @@ public class DataDescription77Test extends CobolTestSupport {
 		assertEquals("SOME-TEXT", dataDescriptionEntrySomeText.getName());
 		assertEquals(DataDescriptionEntry.Type.Scalar, dataDescriptionEntrySomeText.getType());
 		assertEquals(new Integer(77), dataDescriptionEntrySomeText.getLevelNumber());
-		assertNull(dataDescriptionEntrySomeText.getDataDescriptionEntryGroup());
+		assertNull(dataDescriptionEntrySomeText.getParentDataDescriptionEntryGroup());
 
 		final DataDescriptionEntry dataDescriptionEntrySomeNumber = workingStorageSection
 				.getDataDescriptionEntry("SOME-NUMBER");
@@ -58,6 +58,6 @@ public class DataDescription77Test extends CobolTestSupport {
 		assertEquals("SOME-NUMBER", dataDescriptionEntrySomeNumber.getName());
 		assertEquals(DataDescriptionEntry.Type.Scalar, dataDescriptionEntrySomeText.getType());
 		assertEquals(new Integer(77), dataDescriptionEntrySomeNumber.getLevelNumber());
-		assertNull(dataDescriptionEntrySomeNumber.getDataDescriptionEntryGroup());
+		assertNull(dataDescriptionEntrySomeNumber.getParentDataDescriptionEntryGroup());
 	}
 }

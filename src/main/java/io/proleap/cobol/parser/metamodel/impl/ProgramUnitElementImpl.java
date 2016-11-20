@@ -44,6 +44,7 @@ import io.proleap.cobol.parser.metamodel.call.impl.ProcedureCallImpl;
 import io.proleap.cobol.parser.metamodel.call.impl.UndefinedCallImpl;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
 import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
@@ -152,23 +153,27 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final DataDivision dataDivision = programUnit.getDataDivision();
 
 			if (dataDivision != null) {
-				final DataDescriptionEntry dataDescriptionEntry = dataDivision.getWorkingStorageSection()
-						.getDataDescriptionEntry(name);
+				final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
-				/*
-				 * create call model element
-				 */
-				if (dataDescriptionEntry != null) {
-					final DataDescriptionEntryCall dataDescriptionEntryCall = new DataDescriptionEntryCallImpl(name,
-							dataDescriptionEntry, programUnit, ctx);
+				if (workingStorageSection != null) {
+					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
+							.getDataDescriptionEntry(name);
 
-					associateDataDescriptionEntryCallWithDataDescriptionEntry(dataDescriptionEntryCall,
-							dataDescriptionEntry);
+					/*
+					 * create call model element
+					 */
+					if (dataDescriptionEntry != null) {
+						final DataDescriptionEntryCall dataDescriptionEntryCall = new DataDescriptionEntryCallImpl(name,
+								dataDescriptionEntry, programUnit, ctx);
 
-					result = dataDescriptionEntryCall;
-				} else {
-					LOG.warn("call to unknown element {}", name);
-					result = new UndefinedCallImpl(name, programUnit, ctx);
+						associateDataDescriptionEntryCallWithDataDescriptionEntry(dataDescriptionEntryCall,
+								dataDescriptionEntry);
+
+						result = dataDescriptionEntryCall;
+					} else {
+						LOG.warn("call to unknown element {}", name);
+						result = new UndefinedCallImpl(name, programUnit, ctx);
+					}
 				}
 			}
 		}

@@ -17,9 +17,9 @@ public class ReportGroupDescriptionEntrySingleImpl extends ReportGroupDescriptio
 
 	protected final ReportGroupDescriptionEntryFormat2Context ctx;
 
-	public ReportGroupDescriptionEntrySingleImpl(final ProgramUnit programUnit,
+	public ReportGroupDescriptionEntrySingleImpl(final String name, final ProgramUnit programUnit,
 			final ReportGroupDescriptionEntryFormat2Context ctx) {
-		super(programUnit, ctx);
+		super(name, programUnit, ctx);
 
 		this.ctx = ctx;
 	}

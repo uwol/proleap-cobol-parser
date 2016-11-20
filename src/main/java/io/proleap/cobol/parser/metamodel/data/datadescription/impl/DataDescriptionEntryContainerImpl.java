@@ -380,7 +380,7 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 
 		for (final DataDescriptionEntry dataDescriptionEntry : dataDescriptionEntries) {
 
-			if (dataDescriptionEntry.getDataDescriptionEntryGroup() == null) {
+			if (dataDescriptionEntry.getParentDataDescriptionEntryGroup() == null) {
 				result.add(dataDescriptionEntry);
 			}
 		}
@@ -397,10 +397,10 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 				|| DataDescriptionEntry.LEVEL_NUMBER_RENAME == levelNumber) {
 		} else if (levelNumber > lastLevelNumber) {
 			lastDataDescriptionEntryGroup.addDataDescriptionEntry(dataDescriptionEntry);
-			dataDescriptionEntry.setDataDescriptionEntryGroup(lastDataDescriptionEntryGroup);
+			dataDescriptionEntry.setParentDataDescriptionEntryGroup(lastDataDescriptionEntryGroup);
 		} else {
 			final DataDescriptionEntryGroup lastSuperDataDescriptionEntryGroup = lastDataDescriptionEntryGroup
-					.getDataDescriptionEntryGroup();
+					.getParentDataDescriptionEntryGroup();
 
 			if (lastSuperDataDescriptionEntryGroup != null) {
 				groupDataDescriptionEntry(lastSuperDataDescriptionEntryGroup, dataDescriptionEntry);

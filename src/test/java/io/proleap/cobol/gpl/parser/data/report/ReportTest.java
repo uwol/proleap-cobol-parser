@@ -28,11 +28,12 @@ public class ReportTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/data/report/Report.cbl");
+		final File inputFile = new File(
+				"src/test/resources/io/proleap/cobol/gpl/parser/data/report/ReportDescription.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 
-		final CopyBook copyBook = program.getCopyBook("Report");
+		final CopyBook copyBook = program.getCopyBook("ReportDescription");
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final ReportSection reportSection = dataDivision.getReportSection();

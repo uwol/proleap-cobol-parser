@@ -31,7 +31,8 @@ public interface Report extends CobolDivisionElement, Declaration {
 	ReportGroupDescriptionEntryVertical addReportGroupDescriptionEntryVertical(
 			ReportGroupDescriptionEntryFormat1Context ctx);
 
-	ReportGroupDescriptionEntry createReportGroupDescriptionEntry(ReportGroupDescriptionEntryContext ctx);
+	ReportGroupDescriptionEntry createReportGroupDescriptionEntry(
+			ReportGroupDescriptionEntry lastReportGroupDescriptionEntry, ReportGroupDescriptionEntryContext ctx);
 
 	ReportDescriptionEntry getReportDescriptionEntry();
 
