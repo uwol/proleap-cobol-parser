@@ -20,13 +20,13 @@ import io.proleap.cobol.parser.metamodel.procedure.ParagraphName;
 
 public class ParagraphImpl extends CobolDivisionElementImpl implements Paragraph {
 
+	protected final List<ProcedureCall> calls = new ArrayList<ProcedureCall>();
+
 	protected final ParagraphContext ctx;
 
 	protected final String name;
 
 	protected ParagraphName paragraphName;
-
-	protected final List<ProcedureCall> procedureCalls = new ArrayList<ProcedureCall>();
 
 	public ParagraphImpl(final String name, final ProgramUnit programUnit, final ParagraphContext ctx) {
 		super(programUnit, ctx);
@@ -36,13 +36,18 @@ public class ParagraphImpl extends CobolDivisionElementImpl implements Paragraph
 	}
 
 	@Override
+	public void addCall(final ProcedureCall procedureCall) {
+		calls.add(procedureCall);
+	}
+
+	@Override
 	public void addParagraphName(final ParagraphName paragraphName) {
 		this.paragraphName = paragraphName;
 	}
 
 	@Override
-	public void addProcedureCall(final ProcedureCall procedureCall) {
-		procedureCalls.add(procedureCall);
+	public List<ProcedureCall> getCalls() {
+		return calls;
 	}
 
 	@Override
@@ -53,11 +58,6 @@ public class ParagraphImpl extends CobolDivisionElementImpl implements Paragraph
 	@Override
 	public ParagraphName getParagraphName() {
 		return paragraphName;
-	}
-
-	@Override
-	public List<ProcedureCall> getProcedureCalls() {
-		return procedureCalls;
 	}
 
 	@Override

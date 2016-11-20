@@ -21,7 +21,7 @@ import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl implements DataDescriptionEntry {
 
-	protected final List<DataDescriptionEntryCall> dataDescriptionEntryCalls = new ArrayList<DataDescriptionEntryCall>();
+	protected final List<DataDescriptionEntryCall> calls = new ArrayList<DataDescriptionEntryCall>();
 
 	protected Integer levelNumber;
 
@@ -36,13 +36,13 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	}
 
 	@Override
-	public void addDataDescriptionEntryCall(final DataDescriptionEntryCall dataDescriptionEntryCall) {
-		dataDescriptionEntryCalls.add(dataDescriptionEntryCall);
+	public void addCall(final DataDescriptionEntryCall call) {
+		calls.add(call);
 	}
 
 	@Override
-	public List<DataDescriptionEntryCall> getDataDescriptionEntryCalls() {
-		return dataDescriptionEntryCalls;
+	public List<DataDescriptionEntryCall> getCalls() {
+		return calls;
 	}
 
 	@Override

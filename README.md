@@ -81,7 +81,7 @@ io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.appl
 io.proleap.cobol.parser.metamodel.CopyBook copyBook = program.getCopyBook("HelloWorld");
 io.proleap.cobol.parser.metamodel.ProgramUnit programUnit = copyBook.getProgramUnit();
 io.proleap.cobol.parser.metamodel.data.DataDivision dataDivision = programUnit.getDataDivision();
-io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry dataDescriptionEntry = dataDivision.getDataDescriptionEntry("ITEMS");
+io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry dataDescriptionEntry = dataDivision.getWorkingStorageSection().getDataDescriptionEntry("ITEMS");
 ```
 
 ### Abstract Syntax Tree (AST) parsing
@@ -137,7 +137,7 @@ io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.appl
 io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>() {
   @Override
   public Boolean visitDataDescriptionEntryFormat1(final io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context ctx) {
-    io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry entry = (io.proleap.cobol.parser.metamodel.data.DataDescriptionEntry) io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
+    io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry entry = (io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry) io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
     String name = entry.getName();
 
     return visitChildren(ctx);

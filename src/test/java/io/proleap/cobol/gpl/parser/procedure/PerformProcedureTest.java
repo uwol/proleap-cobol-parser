@@ -40,13 +40,13 @@ public class PerformProcedureTest extends CobolTestSupport {
 		final Paragraph paragraphProc1 = procedureDivision.getParagraph("PROC1");
 
 		assertNotNull(paragraphProc1);
-		assertFalse(paragraphProc1.getProcedureCalls().isEmpty());
-		assertEquals(2, paragraphProc1.getProcedureCalls().size());
+		assertFalse(paragraphProc1.getCalls().isEmpty());
+		assertEquals(2, paragraphProc1.getCalls().size());
 
 		final Paragraph paragraphProc2 = procedureDivision.getParagraph("PROC2");
 
 		assertNotNull(paragraphProc2);
-		assertFalse(paragraphProc2.getProcedureCalls().isEmpty());
-		assertEquals(1, paragraphProc2.getProcedureCalls().size());
+		assertFalse(paragraphProc2.getCalls().isEmpty());
+		assertEquals(1, paragraphProc2.getCalls().size());
 	}
 }

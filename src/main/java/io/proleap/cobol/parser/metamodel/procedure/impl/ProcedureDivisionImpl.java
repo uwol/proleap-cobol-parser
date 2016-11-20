@@ -16,6 +16,8 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
+import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
@@ -33,6 +35,7 @@ import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
 import io.proleap.cobol.parser.metamodel.call.impl.ProcedureCallImpl;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
+import io.proleap.cobol.parser.metamodel.procedure.CallStatement;
 import io.proleap.cobol.parser.metamodel.procedure.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
@@ -61,6 +64,27 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		this.ctx = ctx;
 	}
 
+	@Override
+	public CallStatement addCallStatement(final CallStatementContext ctx) {
+		CallStatement result = (CallStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new CallStatementImpl(programUnit, ctx);
+
+			/*
+			 * using call by reference
+			 */
+			for (final CallByReferenceStatementContext callByReferenceStatementContext : ctx
+					.callByReferenceStatement()) {
+				result.addCallByReferenceStatement(callByReferenceStatementContext);
+			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
 	protected List<Call> addCallsThrough(final Call firstCall, final Call lastCall,
 			final PerformProcedureStatementContext ctx) {
 		final List<Call> result = new ArrayList<Call>();
@@ -78,10 +102,10 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			} else if (paragraphName.equals(firstCallName)) {
 				inThrough = true;
 			} else if (inThrough) {
-				final ProcedureCall procedureCall = new ProcedureCallImpl(paragraphName, paragraph, programUnit, ctx);
-				result.add(procedureCall);
+				final ProcedureCall call = new ProcedureCallImpl(paragraphName, paragraph, programUnit, ctx);
+				result.add(call);
 
-				associateProcedureCallWithParagraph(procedureCall, paragraph);
+				associateProcedureCallWithParagraph(call, paragraph);
 			}
 		}
 

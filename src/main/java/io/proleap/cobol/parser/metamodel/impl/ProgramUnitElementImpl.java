@@ -163,13 +163,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 					 * create call model element
 					 */
 					if (dataDescriptionEntry != null) {
-						final DataDescriptionEntryCall dataDescriptionEntryCall = new DataDescriptionEntryCallImpl(name,
+						final DataDescriptionEntryCall call = new DataDescriptionEntryCallImpl(name,
 								dataDescriptionEntry, programUnit, ctx);
 
-						associateDataDescriptionEntryCallWithDataDescriptionEntry(dataDescriptionEntryCall,
-								dataDescriptionEntry);
+						associateDataDescriptionEntryCallWithDataDescriptionEntry(call, dataDescriptionEntry);
 
-						result = dataDescriptionEntryCall;
+						result = call;
 					} else {
 						LOG.warn("call to unknown element {}", name);
 						result = new UndefinedCallImpl(name, programUnit, ctx);
@@ -211,11 +210,11 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final Paragraph paragraph = programUnit.getProcedureDivision().getParagraph(name);
 
 			if (paragraph != null) {
-				final ProcedureCall procedureCall = new ProcedureCallImpl(name, paragraph, programUnit, ctx);
+				final ProcedureCall call = new ProcedureCallImpl(name, paragraph, programUnit, ctx);
 
-				associateProcedureCallWithParagraph(procedureCall, paragraph);
+				associateProcedureCallWithParagraph(call, paragraph);
 
-				result = procedureCall;
+				result = call;
 			} else {
 				result = new UndefinedCallImpl(name, programUnit, ctx);
 			}
@@ -309,13 +308,13 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected void associateDataDescriptionEntryCallWithDataDescriptionEntry(
-			final DataDescriptionEntryCall dataDescriptionEntryCall, final DataDescriptionEntry dataDescriptionEntry) {
-		dataDescriptionEntry.addDataDescriptionEntryCall(dataDescriptionEntryCall);
+	protected void associateDataDescriptionEntryCallWithDataDescriptionEntry(final DataDescriptionEntryCall call,
+			final DataDescriptionEntry dataDescriptionEntry) {
+		dataDescriptionEntry.addCall(call);
 	}
 
-	protected void associateProcedureCallWithParagraph(final ProcedureCall procedureCall, final Paragraph paragraph) {
-		paragraph.addProcedureCall(procedureCall);
+	protected void associateProcedureCallWithParagraph(final ProcedureCall call, final Paragraph paragraph) {
+		paragraph.addCall(call);
 	}
 
 	protected CallValueStmt createCallValueStmt(final AlphabetNameContext ctx) {

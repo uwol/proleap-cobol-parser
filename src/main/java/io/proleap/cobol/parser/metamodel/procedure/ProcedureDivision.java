@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.procedure;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
@@ -22,6 +23,8 @@ import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface ProcedureDivision extends CobolDivision {
+
+	CallStatement addCallStatement(CallStatementContext ctx);
 
 	DisplayStatement addDisplayStatement(DisplayStatementContext ctx);
 

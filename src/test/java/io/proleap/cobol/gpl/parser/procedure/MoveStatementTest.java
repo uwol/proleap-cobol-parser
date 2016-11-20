@@ -43,8 +43,8 @@ public class MoveStatementTest extends CobolTestSupport {
 					.getDataDescriptionEntry("SOME-TEXT");
 
 			assertNotNull(dataDescriptionEntry1);
-			assertFalse(dataDescriptionEntry1.getDataDescriptionEntryCalls().isEmpty());
-			assertEquals(2, dataDescriptionEntry1.getDataDescriptionEntryCalls().size());
+			assertFalse(dataDescriptionEntry1.getCalls().isEmpty());
+			assertEquals(2, dataDescriptionEntry1.getCalls().size());
 		}
 
 		{
@@ -52,8 +52,8 @@ public class MoveStatementTest extends CobolTestSupport {
 					.getDataDescriptionEntry("SOME-NUMBER");
 
 			assertNotNull(dataDescriptionEntry2);
-			assertFalse(dataDescriptionEntry2.getDataDescriptionEntryCalls().isEmpty());
-			assertEquals(1, dataDescriptionEntry2.getDataDescriptionEntryCalls().size());
+			assertFalse(dataDescriptionEntry2.getCalls().isEmpty());
+			assertEquals(1, dataDescriptionEntry2.getCalls().size());
 		}
 
 		{
@@ -61,8 +61,8 @@ public class MoveStatementTest extends CobolTestSupport {
 					.getDataDescriptionEntry("SOME-TEXT2");
 
 			assertNotNull(dataDescriptionEntry3);
-			assertFalse(dataDescriptionEntry3.getDataDescriptionEntryCalls().isEmpty());
-			assertEquals(1, dataDescriptionEntry3.getDataDescriptionEntryCalls().size());
+			assertFalse(dataDescriptionEntry3.getCalls().isEmpty());
+			assertEquals(1, dataDescriptionEntry3.getCalls().size());
 		}
 	}
 }

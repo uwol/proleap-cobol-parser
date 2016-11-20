@@ -41,24 +41,24 @@ public class PerformProcedureThroughTest extends CobolTestSupport {
 		final Paragraph paragraphProc1 = procedureDivision.getParagraph("PROC1");
 
 		assertNotNull(paragraphProc1);
-		assertTrue(paragraphProc1.getProcedureCalls().isEmpty());
+		assertTrue(paragraphProc1.getCalls().isEmpty());
 
 		final Paragraph paragraphProc2 = procedureDivision.getParagraph("PROC2");
 
 		assertNotNull(paragraphProc2);
-		assertFalse(paragraphProc2.getProcedureCalls().isEmpty());
-		assertEquals(1, paragraphProc2.getProcedureCalls().size());
+		assertFalse(paragraphProc2.getCalls().isEmpty());
+		assertEquals(1, paragraphProc2.getCalls().size());
 
 		final Paragraph paragraphProc3 = procedureDivision.getParagraph("PROC3");
 
 		assertNotNull(paragraphProc3);
-		assertFalse(paragraphProc3.getProcedureCalls().isEmpty());
-		assertEquals(2, paragraphProc3.getProcedureCalls().size());
+		assertFalse(paragraphProc3.getCalls().isEmpty());
+		assertEquals(2, paragraphProc3.getCalls().size());
 
 		final Paragraph paragraphProc4 = procedureDivision.getParagraph("PROC4");
 
 		assertNotNull(paragraphProc4);
-		assertFalse(paragraphProc4.getProcedureCalls().isEmpty());
-		assertEquals(1, paragraphProc4.getProcedureCalls().size());
+		assertFalse(paragraphProc4.getCalls().isEmpty());
+		assertEquals(1, paragraphProc4.getCalls().size());
 	}
 }

@@ -10,17 +10,12 @@ package io.proleap.cobol.parser.metamodel.procedure;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.Declaration;
-import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
 
-public interface Paragraph extends CobolDivisionElement, Declaration {
+public interface CallStatement extends CobolDivisionElement {
 
-	void addCall(ProcedureCall procedureCall);
+	CallByReferenceStatement addCallByReferenceStatement(CallByReferenceStatementContext ctx);
 
-	void addParagraphName(ParagraphName paragraphName);
-
-	List<ProcedureCall> getCalls();
-
-	ParagraphName getParagraphName();
+	List<CallByReferenceStatement> getCallByReferenceStatements();
 }
