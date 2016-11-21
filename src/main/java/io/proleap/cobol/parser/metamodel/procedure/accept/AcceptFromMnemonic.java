@@ -6,18 +6,14 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.procedure;
-
-import java.util.List;
+package io.proleap.cobol.parser.metamodel.procedure.accept;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface PerformProcedureStatement extends CobolDivisionElement {
+public interface AcceptFromMnemonic extends CobolDivisionElement {
 
-	void addCall(Call call);
+	ValueStmt getMnemonicValueStmt();
 
-	void addCalls(List<Call> calls);
-
-	List<Call> getCalls();
+	void setMnemonicValueStmt(ValueStmt mnemonicValueStmt);
 }

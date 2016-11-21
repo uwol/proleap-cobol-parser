@@ -16,6 +16,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.AcceptStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
@@ -25,25 +26,30 @@ import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
-import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
-import io.proleap.cobol.parser.metamodel.call.impl.ProcedureCallImpl;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
-import io.proleap.cobol.parser.metamodel.procedure.CallStatement;
-import io.proleap.cobol.parser.metamodel.procedure.DisplayStatement;
-import io.proleap.cobol.parser.metamodel.procedure.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
 import io.proleap.cobol.parser.metamodel.procedure.ParagraphName;
-import io.proleap.cobol.parser.metamodel.procedure.PerformProcedureStatement;
-import io.proleap.cobol.parser.metamodel.procedure.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
-import io.proleap.cobol.parser.metamodel.procedure.StopStatement;
+import io.proleap.cobol.parser.metamodel.procedure.Statement;
+import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptStatement;
+import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptStatement.Type;
+import io.proleap.cobol.parser.metamodel.procedure.accept.impl.AcceptStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.call.CallStatement;
+import io.proleap.cobol.parser.metamodel.procedure.call.impl.CallStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
+import io.proleap.cobol.parser.metamodel.procedure.display.impl.DisplayStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
+import io.proleap.cobol.parser.metamodel.procedure.move.impl.MoveToStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
+import io.proleap.cobol.parser.metamodel.procedure.perform.impl.PerformStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
+import io.proleap.cobol.parser.metamodel.procedure.stop.impl.StopStatementImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.ValueStmtDelegateImpl;
@@ -58,10 +64,52 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 	protected Map<String, Paragraph> paragraphsByName = new HashMap<String, Paragraph>();
 
+	protected List<Statement> statements = new ArrayList<Statement>();
+
 	public ProcedureDivisionImpl(final ProgramUnit programUnit, final ProcedureDivisionContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public AcceptStatement addAcceptStatement(final AcceptStatementContext ctx) {
+		AcceptStatement result = (AcceptStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new AcceptStatementImpl(programUnit, ctx);
+
+			/*
+			 * accept value stmt
+			 */
+			final CallValueStmt acceptValueStmt = createCallValueStmt(ctx.identifier());
+			result.setAcceptValueStmt(acceptValueStmt);
+
+			/*
+			 * type
+			 */
+			final Type type;
+
+			if (ctx.acceptFromDate() != null) {
+				result.addAcceptFromDate(ctx.acceptFromDate());
+				type = Type.Date;
+			} else if (ctx.acceptFromMnemonic() != null) {
+				result.addAcceptFromMnemonic(ctx.acceptFromMnemonic());
+				type = Type.Mnemonic;
+			} else if (ctx.acceptMessageCount() != null) {
+				result.addAcceptMessageCount(ctx.acceptMessageCount());
+				type = Type.MessageCount;
+			} else {
+				LOG.warn("unknown type at {}", ctx);
+				type = null;
+			}
+
+			result.setType(type);
+
+			registerStatement(result);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -79,34 +127,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 				result.addCallByReferenceStatement(callByReferenceStatementContext);
 			}
 
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	protected List<Call> addCallsThrough(final Call firstCall, final Call lastCall,
-			final PerformProcedureStatementContext ctx) {
-		final List<Call> result = new ArrayList<Call>();
-
-		final String firstCallName = firstCall.getName();
-		final String lastCallName = lastCall.getName();
-
-		boolean inThrough = false;
-
-		for (final Paragraph paragraph : paragraphs) {
-			final String paragraphName = paragraph.getName();
-
-			if (paragraphName.equals(lastCallName)) {
-				break;
-			} else if (paragraphName.equals(firstCallName)) {
-				inThrough = true;
-			} else if (inThrough) {
-				final ProcedureCall call = new ProcedureCallImpl(paragraphName, paragraph, programUnit, ctx);
-				result.add(call);
-
-				associateProcedureCallWithParagraph(call, paragraph);
-			}
+			registerStatement(result);
 		}
 
 		return result;
@@ -119,7 +140,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new DisplayStatementImpl(programUnit, ctx);
 
-			registerASGElement(result);
+			registerStatement(result);
 		}
 
 		return result;
@@ -145,7 +166,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 				result.addReceivingAreaCall(receivingAreaCall);
 			}
 
-			registerASGElement(result);
+			registerStatement(result);
 		}
 
 		return result;
@@ -186,49 +207,20 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 	}
 
 	@Override
-	public PerformProcedureStatement addPerformProcedureStatement(final PerformProcedureStatementContext ctx) {
-		PerformProcedureStatement result = (PerformProcedureStatement) getASGElement(ctx);
-
-		if (result == null) {
-			result = new PerformProcedureStatementImpl(programUnit, ctx);
-
-			final List<ProcedureNameContext> procedureNames = ctx.procedureName();
-
-			if (procedureNames.isEmpty()) {
-				LOG.warn("no calls in {}.", ctx);
-			} else {
-				final Call firstCall = addCall(procedureNames.get(0));
-				result.addCall(firstCall);
-
-				if (procedureNames.size() > 1) {
-					final Call lastCall = addCall(procedureNames.get(1));
-					result.addCall(lastCall);
-
-					final List<Call> callsThrough = addCallsThrough(firstCall, lastCall, ctx);
-					result.addCalls(callsThrough);
-				}
-			}
-
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
 	public PerformStatement addPerformStatement(final PerformStatementContext ctx) {
 		PerformStatement result = (PerformStatement) getASGElement(ctx);
 
 		if (result == null) {
 			result = new PerformStatementImpl(programUnit, ctx);
 
+			/*
+			 * perform procedure
+			 */
 			if (ctx.performProcedureStatement() != null) {
-				final PerformProcedureStatement performProcedureStatement = addPerformProcedureStatement(
-						ctx.performProcedureStatement());
-				result.setPerformProcedureStatement(performProcedureStatement);
+				result.addPerformProcedureStatement(ctx.performProcedureStatement());
 			}
 
-			registerASGElement(result);
+			registerStatement(result);
 		}
 
 		return result;
@@ -241,7 +233,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new StopStatementImpl(programUnit, ctx);
 
-			registerASGElement(result);
+			registerStatement(result);
 		}
 
 		return result;
@@ -294,5 +286,15 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 	@Override
 	public List<Paragraph> getParagraphs() {
 		return paragraphs;
+	}
+
+	@Override
+	public List<Statement> getStatements() {
+		return statements;
+	}
+
+	protected void registerStatement(final Statement statement) {
+		statements.add(statement);
+		registerASGElement(statement);
 	}
 }

@@ -6,10 +6,10 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.procedure;
+package io.proleap.cobol.parser.metamodel.procedure.accept;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface StopStatement extends CobolDivisionElement {
+public interface AcceptMessageCount extends CobolDivisionElement {
 
 }

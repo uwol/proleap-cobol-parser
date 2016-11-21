@@ -6,7 +6,7 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.procedure.impl;
+package io.proleap.cobol.parser.metamodel.procedure.call.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +15,12 @@ import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.procedure.CallByReferenceStatement;
-import io.proleap.cobol.parser.metamodel.procedure.CallStatement;
+import io.proleap.cobol.parser.metamodel.procedure.call.CallByReferenceStatement;
+import io.proleap.cobol.parser.metamodel.procedure.call.CallStatement;
+import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public class CallStatementImpl extends CobolDivisionElementImpl implements CallStatement {
+public class CallStatementImpl extends StatementImpl implements CallStatement {
 
 	protected List<CallByReferenceStatement> callByReferenceStatements = new ArrayList<CallByReferenceStatement>();
 

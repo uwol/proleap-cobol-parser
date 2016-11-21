@@ -6,7 +6,7 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.procedure.impl;
+package io.proleap.cobol.parser.metamodel.procedure.perform.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.procedure.PerformProcedureStatement;
+import io.proleap.cobol.parser.metamodel.procedure.perform.PerformProcedureStatement;
 
 public class PerformProcedureStatementImpl extends CobolDivisionElementImpl implements PerformProcedureStatement {
 

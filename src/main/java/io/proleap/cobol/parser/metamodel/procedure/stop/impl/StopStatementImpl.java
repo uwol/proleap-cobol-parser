@@ -6,14 +6,14 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.procedure.impl;
+package io.proleap.cobol.parser.metamodel.procedure.stop.impl;
 
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.procedure.StopStatement;
+import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 
-public class StopStatementImpl extends CobolDivisionElementImpl implements StopStatement {
+public class StopStatementImpl extends StatementImpl implements StopStatement {
 
 	protected final StopStatementContext ctx;
 

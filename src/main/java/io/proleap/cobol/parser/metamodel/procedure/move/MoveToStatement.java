@@ -6,13 +6,13 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.procedure;
+package io.proleap.cobol.parser.metamodel.procedure.move;
 
-import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.procedure.Statement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface MoveToStatement extends CobolDivisionElement {
+public interface MoveToStatement extends Statement {
 
 	void addReceivingAreaCall(Call receivingAreaCall);
 

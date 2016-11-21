@@ -10,19 +10,27 @@ package io.proleap.cobol.parser.metamodel.procedure;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.AcceptStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
-import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
+import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptStatement;
+import io.proleap.cobol.parser.metamodel.procedure.call.CallStatement;
+import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
+import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
+import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
+import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface ProcedureDivision extends CobolDivision {
+
+	AcceptStatement addAcceptStatement(AcceptStatementContext ctx);
 
 	CallStatement addCallStatement(CallStatementContext ctx);
 
@@ -34,8 +42,6 @@ public interface ProcedureDivision extends CobolDivision {
 
 	ParagraphName addParagraphName(ParagraphNameContext ctx);
 
-	PerformProcedureStatement addPerformProcedureStatement(PerformProcedureStatementContext ctx);
-
 	PerformStatement addPerformStatement(PerformStatementContext ctx);
 
 	StopStatement addStopStatement(StopStatementContext ctx);
@@ -45,5 +51,7 @@ public interface ProcedureDivision extends CobolDivision {
 	Paragraph getParagraph(String name);
 
 	List<Paragraph> getParagraphs();
+
+	List<Statement> getStatements();
 
 }

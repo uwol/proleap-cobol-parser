@@ -1,4 +1,4 @@
-package io.proleap.cobol.gpl.parser.procedure;
+package io.proleap.cobol.gpl.parser.procedure.perform;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -30,7 +30,7 @@ public class PerformProcedureThroughTest extends CobolTestSupport {
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/gpl/parser/procedure/PerformProcedureThrough.cbl");
+				"src/test/resources/io/proleap/cobol/gpl/parser/procedure/perform/PerformProcedureThrough.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 

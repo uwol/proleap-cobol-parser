@@ -28,6 +28,15 @@ public class CobolProcedureExpressionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
+	public Boolean visitAcceptStatement(@NotNull final Cobol85Parser.AcceptStatementContext ctx) {
+		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+
+		procedureDivision.addAcceptStatement(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitCallStatement(@NotNull final Cobol85Parser.CallStatementContext ctx) {
 		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
 
@@ -50,15 +59,6 @@ public class CobolProcedureExpressionVisitorImpl extends AbstractCobolParserVisi
 		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
 
 		procedureDivision.addMoveToStatement(ctx);
-
-		return visitChildren(ctx);
-	}
-
-	@Override
-	public Boolean visitPerformProcedureStatement(@NotNull final Cobol85Parser.PerformProcedureStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
-
-		procedureDivision.addPerformProcedureStatement(ctx);
 
 		return visitChildren(ctx);
 	}

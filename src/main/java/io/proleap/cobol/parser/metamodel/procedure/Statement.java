@@ -8,14 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.procedure;
 
-import java.util.List;
-
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface CallByReferenceStatement extends CobolDivisionElement {
+public interface Statement extends CobolDivisionElement {
 
-	void addReferenceValueStmt(ValueStmt referenceValueStmt);
-
-	List<ValueStmt> getReferenceValueStmts();
 }

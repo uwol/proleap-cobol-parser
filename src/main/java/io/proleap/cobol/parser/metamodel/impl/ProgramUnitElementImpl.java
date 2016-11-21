@@ -202,6 +202,17 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	public Call addCall(final MnemonicNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
+	}
+
 	public Call addCall(final ProcedureNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
@@ -372,6 +383,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected CallValueStmt createCallValueStmt(final LocalNameContext ctx) {
+		final Call delegatedCall = addCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final MnemonicNameContext ctx) {
 		final Call delegatedCall = addCall(ctx);
 		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
 		return result;

@@ -8,19 +8,16 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.impl;
 
-import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
+import org.antlr.v4.runtime.tree.ParseTree;
+
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.procedure.DisplayStatement;
+import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
-public class DisplayStatementImpl extends CobolDivisionElementImpl implements DisplayStatement {
+public class StatementImpl extends CobolDivisionElementImpl implements Statement {
 
-	protected final DisplayStatementContext ctx;
-
-	public DisplayStatementImpl(final ProgramUnit programUnit, final DisplayStatementContext ctx) {
+	public StatementImpl(final ProgramUnit programUnit, final ParseTree ctx) {
 		super(programUnit, ctx);
-
-		this.ctx = ctx;
 	}
 
 }
