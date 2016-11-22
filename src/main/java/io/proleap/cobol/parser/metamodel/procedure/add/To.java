@@ -8,17 +8,16 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.add;
 
-import io.proleap.cobol.parser.metamodel.procedure.Statement;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface AddCorresponding extends Statement {
+public interface To extends CobolDivisionElement {
 
-	ValueStmt getFromValueStmt();
+	ValueStmt getToValueStmt();
 
-	To getTo();
+	Boolean isRounded();
 
-	void setFromValueStmt(ValueStmt fromValueStmt);
+	void setRounded(Boolean rounded);
 
-	void setTo(To to);
-
+	void setToValueStmt(ValueStmt toValueStmt);
 }

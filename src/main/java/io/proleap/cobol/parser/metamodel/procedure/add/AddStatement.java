@@ -11,12 +11,18 @@ package io.proleap.cobol.parser.metamodel.procedure.add;
 import io.proleap.cobol.Cobol85Parser.AddCorrespondingStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddToGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddToStatementContext;
+import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
 /**
  * Adds two or more numeric operands and stores the result.
  */
 public interface AddStatement extends Statement {
+
+	enum Type {
+		Corresponding, Giving, To
+	}
 
 	AddCorresponding addAddCorresponding(AddCorrespondingStatementContext ctx);
 
@@ -29,4 +35,16 @@ public interface AddStatement extends Statement {
 	AddTo getAddTo();
 
 	AddToGiving getAddToGiving();
+
+	NotOnSizeErrorPhrase getNotOnSizeErrorPhrase();
+
+	OnSizeErrorPhrase getOnSizeErrorPhrase();
+
+	Type getType();
+
+	void setNotOnSizeErrorPhrase(NotOnSizeErrorPhrase notOnSizeErrorPhrase);
+
+	void setOnSizeErrorPhrase(OnSizeErrorPhrase onSizeErrorPhrase);
+
+	void setType(Type type);
 }

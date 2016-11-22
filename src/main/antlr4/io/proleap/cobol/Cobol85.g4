@@ -1466,21 +1466,33 @@ addStatement :
 		| addToGivingStatement
 		| addCorrespondingStatement
 	)
-	(ON? SIZE ERROR statements)?
-	(NOT ON? SIZE ERROR statements)?
+	onSizeErrorPhrase?
+	notOnSizeErrorPhrase?
 	END_ADD?
 ;
 
 addToStatement :
-	(identifier | literal)+ TO (identifier ROUNDED?)+
+	addFrom+ TO addTo+
 ;
 
 addToGivingStatement :
-	(identifier | literal)+ (TO identifier+)? GIVING (identifier ROUNDED?)+
+	addFrom+ (TO addTo+)? GIVING addGiving+
 ;
 
 addCorrespondingStatement :
-	(CORRESPONDING | CORR) identifier TO identifier ROUNDED?
+	(CORRESPONDING | CORR) identifier TO addTo
+;
+
+addFrom :
+	identifier | literal
+;
+
+addTo :
+	identifier ROUNDED?
+;
+
+addGiving :
+	identifier ROUNDED?
 ;
 
 // altered go to statement
@@ -1563,8 +1575,8 @@ closePortFileIOStatement :
 computeStatement :
 	COMPUTE (identifier ROUNDED?)+
 	(EQUALCHAR | EQUAL) arithmeticExpression
-	(ON SIZE ERROR statements)?
-	(NOT ON? SIZE ERROR statements)?
+	onSizeErrorPhrase?
+	notOnSizeErrorPhrase?
 	END_COMPUTE?
 ;
 
@@ -1609,8 +1621,8 @@ divideStatement :
 		| divideIntoByGivingStatement
 	)
 	(REMAINDER identifier)?
-	(ON? SIZE ERROR statements)?
-	(NOT ON? SIZE ERROR statements)?
+	onSizeErrorPhrase?
+	notOnSizeErrorPhrase?
 	END_DIVIDE?
 ;
 
@@ -1834,8 +1846,8 @@ multiplyStatement :
 		multiplyRegular
 		| multiplyGiving
 	)
-	(ON? SIZE ERROR statements)?
-	(NOT ON? SIZE ERROR statements)?
+	onSizeErrorPhrase?
+	notOnSizeErrorPhrase?
 	END_MULTIPLY?
 ;
 
@@ -2122,8 +2134,8 @@ subtractStatement :
 		| subtractFromGivingStatement
 		| subtractCorrespondingStatement
  	)
-	(ON? SIZE ERROR statements)?
-	(NOT ON? SIZE ERROR statements)?
+	onSizeErrorPhrase?
+	notOnSizeErrorPhrase?
 	END_SUBTRACT?
 ;
 
@@ -2211,6 +2223,16 @@ writeAdvancingPhrase :
 		| (identifier | literal) (LINE | LINES)?
 		| mnemonicName
 	)
+;
+
+// statement phrases ----------------------------------
+
+onSizeErrorPhrase :
+	ON? SIZE ERROR statements
+;
+
+notOnSizeErrorPhrase :
+	NOT ON? SIZE ERROR statements
 ;
 
 // statement clauses ----------------------------------

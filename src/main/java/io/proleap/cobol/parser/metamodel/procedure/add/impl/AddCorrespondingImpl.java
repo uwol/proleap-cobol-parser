@@ -11,16 +11,42 @@ package io.proleap.cobol.parser.metamodel.procedure.add.impl;
 import io.proleap.cobol.Cobol85Parser.AddCorrespondingStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddCorresponding;
+import io.proleap.cobol.parser.metamodel.procedure.add.To;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class AddCorrespondingImpl extends StatementImpl implements AddCorresponding {
 
 	protected final AddCorrespondingStatementContext ctx;
 
+	protected ValueStmt from;
+
+	protected To to;
+
 	public AddCorrespondingImpl(final ProgramUnit programUnit, final AddCorrespondingStatementContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public ValueStmt getFromValueStmt() {
+		return from;
+	}
+
+	@Override
+	public To getTo() {
+		return to;
+	}
+
+	@Override
+	public void setFromValueStmt(final ValueStmt from) {
+		this.from = from;
+	}
+
+	@Override
+	public void setTo(final To to) {
+		this.to = to;
 	}
 
 }

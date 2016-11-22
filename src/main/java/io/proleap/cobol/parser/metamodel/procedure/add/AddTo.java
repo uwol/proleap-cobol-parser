@@ -8,8 +8,17 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.add;
 
+import java.util.List;
+
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
 public interface AddTo extends Statement {
 
+	void addFrom(From from);
+
+	void addTo(To to);
+
+	List<From> getFroms();
+
+	List<To> getTos();
 }

@@ -25,6 +25,8 @@ import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
+import io.proleap.cobol.Cobol85Parser.NotOnSizeErrorPhraseContext;
+import io.proleap.cobol.Cobol85Parser.OnSizeErrorPhraseContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
@@ -33,6 +35,8 @@ import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
+import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
 import io.proleap.cobol.parser.metamodel.procedure.ParagraphName;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
@@ -125,17 +129,40 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			/*
 			 * add sub statement
 			 */
+			final AddStatement.Type type;
+
 			if (ctx.addToStatement() != null) {
 				result.addAddTo(ctx.addToStatement());
-			} else if (ctx.addToStatement() != null) {
-				result.addAddTo(ctx.addToStatement());
-			} else if (ctx.addToStatement() != null) {
-				result.addAddTo(ctx.addToStatement());
+				type = AddStatement.Type.To;
+			} else if (ctx.addToGivingStatement() != null) {
+				result.addAddToGiving(ctx.addToGivingStatement());
+				type = AddStatement.Type.Giving;
+			} else if (ctx.addCorrespondingStatement() != null) {
+				result.addAddCorresponding(ctx.addCorrespondingStatement());
+				type = AddStatement.Type.Corresponding;
 			} else {
 				LOG.warn("unknown add statement at {}", ctx);
+				type = null;
 			}
 
-			// FIXME: on error ...
+			result.setType(type);
+
+			/*
+			 * on size
+			 */
+			if (ctx.onSizeErrorPhrase() != null) {
+				final OnSizeErrorPhrase onSizeErrorPhrase = createOnSizeErrorPhrase(ctx.onSizeErrorPhrase());
+				result.setOnSizeErrorPhrase(onSizeErrorPhrase);
+			}
+
+			/*
+			 * not on size
+			 */
+			if (ctx.notOnSizeErrorPhrase() != null) {
+				final NotOnSizeErrorPhrase notOnSizeErrorPhrase = createNotOnSizeErrorPhrase(
+						ctx.notOnSizeErrorPhrase());
+				result.setNotOnSizeErrorPhrase(notOnSizeErrorPhrase);
+			}
 
 			registerStatement(result);
 		}
@@ -302,6 +329,34 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			}
 
 			result = new ValueStmtDelegateImpl(delegatedValueStmt, programUnit, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected NotOnSizeErrorPhrase createNotOnSizeErrorPhrase(final NotOnSizeErrorPhraseContext ctx) {
+		NotOnSizeErrorPhrase result = (NotOnSizeErrorPhrase) getASGElement(ctx);
+
+		if (result == null) {
+			result = new NotOnSizeErrorPhraseImpl(programUnit, ctx);
+
+			// FIXME add statements
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected OnSizeErrorPhrase createOnSizeErrorPhrase(final OnSizeErrorPhraseContext ctx) {
+		OnSizeErrorPhrase result = (OnSizeErrorPhrase) getASGElement(ctx);
+
+		if (result == null) {
+			result = new OnSizeErrorPhraseImpl(programUnit, ctx);
+
+			// FIXME add statements
 
 			registerASGElement(result);
 		}
