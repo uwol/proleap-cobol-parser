@@ -31,11 +31,13 @@
 									(statement 
 										(addStatement ADD 
 											(addToStatement 
-												(literal 
-													(numericLiteral 
-														(integerLiteral 1))) TO 
-												(identifier 
-													(qualifiedDataName 
-														(qualifiedDataNameFormat1 
-															(dataName 
-																(cobolWord COUNTER))))))))) .))))))) <EOF>)
+												(addFrom
+													(literal 
+														(numericLiteral 
+															(integerLiteral 1)))) TO 
+												(addTo
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord COUNTER)))))))))) .))))))) <EOF>)

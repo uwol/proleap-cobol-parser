@@ -13,14 +13,16 @@
 								(statement 
 									(addStatement ADD 
 										(addToStatement 
-											(literal 
-												(numericLiteral 
-													(integerLiteral 42))) TO 
-											(identifier 
-												(qualifiedDataName 
-													(qualifiedDataNameFormat1 
-														(dataName 
-															(cobolWord Var1))))))))) .\n       ) 
+											(addFrom
+												(literal 
+													(numericLiteral 
+														(integerLiteral 42)))) TO
+											(addTo 
+												(identifier 
+													(qualifiedDataName 
+														(qualifiedDataNameFormat1 
+															(dataName 
+																(cobolWord Var1)))))))))) .\n       ) 
 						(sentence 
 							(statements 
 								(statement 
