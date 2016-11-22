@@ -10,6 +10,9 @@ package io.proleap.cobol.parser.metamodel.identification;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
+/**
+ * holds name of the person who wrote the program
+ */
 public interface AuthorParagraph extends CobolDivisionElement {
 
 }

@@ -10,6 +10,9 @@ package io.proleap.cobol.parser.metamodel.identification;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
+/**
+ * date the program was compiled
+ */
 public interface DateCompiledParagraph extends CobolDivisionElement {
 
 }

@@ -10,6 +10,9 @@ package io.proleap.cobol.parser.metamodel.identification;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
+/**
+ * name of the site where the program will be used
+ */
 public interface InstallationParagraph extends CobolDivisionElement {
 
 }
