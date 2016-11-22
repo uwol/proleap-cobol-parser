@@ -10,6 +10,9 @@ package io.proleap.cobol.parser.metamodel.procedure.stop;
 
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
+/**
+ * Halts execution of the program permanently or temporarily.
+ */
 public interface StopStatement extends Statement {
 
 }

@@ -12,7 +12,7 @@ import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.NamedElement;
 
 /**
- * specifies program name and assigns attributes to it
+ * Specifies program name and assigns attributes to it.
  */
 public interface ProgramIdParagraph extends CobolDivisionElement, NamedElement {
 

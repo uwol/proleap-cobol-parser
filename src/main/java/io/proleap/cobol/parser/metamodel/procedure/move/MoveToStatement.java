@@ -12,6 +12,9 @@ import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
+/**
+ * Transfers data from one storage area to another.
+ */
 public interface MoveToStatement extends Statement {
 
 	void addReceivingAreaCall(Call receivingAreaCall);

@@ -10,6 +10,9 @@ package io.proleap.cobol.parser.metamodel.procedure.display;
 
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
+/**
+ * Displays the value of a data item on a screen or writes it to a file.
+ */
 public interface DisplayStatement extends Statement {
 
 }

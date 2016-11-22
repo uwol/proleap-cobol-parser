@@ -10,6 +10,9 @@ package io.proleap.cobol.parser.metamodel.procedure.accept;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
+/**
+ * Transfers number of entries in storage queue.
+ */
 public interface AcceptMessageCount extends CobolDivisionElement {
 
 }

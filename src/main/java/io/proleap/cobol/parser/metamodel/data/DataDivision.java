@@ -29,7 +29,7 @@ import io.proleap.cobol.parser.metamodel.data.screen.ScreenSection;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 
 /**
- * defines variables used in the program
+ * Defines variables used in the program.
  */
 public interface DataDivision extends CobolDivision {
 

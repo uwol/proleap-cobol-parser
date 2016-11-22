@@ -11,7 +11,7 @@ package io.proleap.cobol.parser.metamodel.identification;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 /**
- * date the program was written
+ * Date the program was written.
  */
 public interface DateWrittenParagraph extends CobolDivisionElement {
 

@@ -10,6 +10,9 @@ package io.proleap.cobol.parser.metamodel.procedure.accept;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
+/**
+ * Transfers data from date or time register.
+ */
 public interface AcceptFromDate extends CobolDivisionElement {
 
 	enum DateType {

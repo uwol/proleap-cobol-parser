@@ -13,6 +13,9 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
+/**
+ * Transfers control to another program.
+ */
 public interface CallStatement extends Statement {
 
 	CallByReferenceStatement addCallByReferenceStatement(CallByReferenceStatementContext ctx);

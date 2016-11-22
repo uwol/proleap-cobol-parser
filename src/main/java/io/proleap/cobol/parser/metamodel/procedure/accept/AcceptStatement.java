@@ -14,6 +14,10 @@ import io.proleap.cobol.Cobol85Parser.AcceptMessageCountContext;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
+/**
+ * Transfers low volume data or system date-related information into the
+ * referenced data area.
+ */
 public interface AcceptStatement extends Statement {
 
 	enum Type {

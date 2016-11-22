@@ -11,7 +11,7 @@ package io.proleap.cobol.parser.metamodel.identification;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 /**
- * identifies security restrictions under which the program can be accessed
+ * Identifies security restrictions under which the program can be accessed.
  */
 public interface SecurityParagraph extends CobolDivisionElement {
 

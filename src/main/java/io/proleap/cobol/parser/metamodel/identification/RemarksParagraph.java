@@ -11,7 +11,7 @@ package io.proleap.cobol.parser.metamodel.identification;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 /**
- * describes the function of the program
+ * Describes the function of the program.
  */
 public interface RemarksParagraph extends CobolDivisionElement {
 
