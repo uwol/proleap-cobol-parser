@@ -77,7 +77,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		paragraph.addCall(call);
 	}
 
-	public Call createCall(final AlphabetNameContext ctx) {
+	protected Call createCall(final AlphabetNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -88,7 +88,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final AssignmentNameContext ctx) {
+	protected Call createCall(final AssignmentNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -99,7 +99,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final ClassNameContext ctx) {
+	protected Call createCall(final ClassNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -110,7 +110,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final CobolWordContext ctx) {
+	protected Call createCall(final CobolWordContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -121,7 +121,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final DataDescNameContext ctx) {
+	protected Call createCall(final DataDescNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -132,7 +132,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final DataNameContext ctx) {
+	protected Call createCall(final DataNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -143,7 +143,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final FileNameContext ctx) {
+	protected Call createCall(final FileNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -154,7 +154,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final IdentifierContext ctx) {
+	protected Call createCall(final IdentifierContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -189,7 +189,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final IndexNameContext ctx) {
+	protected Call createCall(final IndexNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -200,7 +200,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final LocalNameContext ctx) {
+	protected Call createCall(final LocalNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -211,7 +211,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final MnemonicNameContext ctx) {
+	protected Call createCall(final MnemonicNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -222,7 +222,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final ProcedureNameContext ctx) {
+	protected Call createCall(final ProcedureNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -245,7 +245,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final ProgramNameContext ctx) {
+	protected Call createCall(final ProgramNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -256,7 +256,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final QualifiedDataNameContext ctx) {
+	protected Call createCall(final QualifiedDataNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -267,7 +267,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final ReportNameContext ctx) {
+	protected Call createCall(final ReportNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -278,7 +278,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call createCall(final SystemNameContext ctx) {
+	protected Call createCall(final SystemNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -355,6 +355,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected CallValueStmt createCallValueStmt(final ProcedureNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
 	protected CallValueStmt createCallValueStmt(final ProgramNameContext ctx) {
 		final Call delegatedCall = createCall(ctx);
 		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
@@ -379,7 +385,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public IntegerLiteral createIntegerLiteral(final IntegerLiteralContext ctx) {
+	protected IntegerLiteral createIntegerLiteral(final IntegerLiteralContext ctx) {
 		IntegerLiteral result = (IntegerLiteral) getASGElement(ctx);
 
 		if (result == null) {
@@ -399,7 +405,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Literal createLiteral(final LiteralContext ctx) {
+	protected Literal createLiteral(final LiteralContext ctx) {
 		Literal result = (Literal) getASGElement(ctx);
 
 		if (result == null) {
@@ -419,7 +425,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public MnemonicName createMnemonicName(final MnemonicNameContext ctx) {
+	protected MnemonicName createMnemonicName(final MnemonicNameContext ctx) {
 		MnemonicName result = (MnemonicName) getASGElement(ctx);
 
 		if (result == null) {

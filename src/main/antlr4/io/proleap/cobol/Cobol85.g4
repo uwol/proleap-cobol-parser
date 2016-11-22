@@ -1504,7 +1504,11 @@ alteredGoTo :
 // alter statement
 
 alterStatement :
-	ALTER (procedureName TO (PROCEED TO)? procedureName)+
+	ALTER alterProceedTo+
+;
+
+alterProceedTo :
+	procedureName TO (PROCEED TO)? procedureName
 ;
 
 // call statement

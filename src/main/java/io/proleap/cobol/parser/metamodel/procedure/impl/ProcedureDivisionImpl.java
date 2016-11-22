@@ -18,6 +18,8 @@ import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.AcceptStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddStatementContext;
+import io.proleap.cobol.Cobol85Parser.AlterProceedToContext;
+import io.proleap.cobol.Cobol85Parser.AlterStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
@@ -46,6 +48,8 @@ import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptStatement.Type;
 import io.proleap.cobol.parser.metamodel.procedure.accept.impl.AcceptStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddStatement;
 import io.proleap.cobol.parser.metamodel.procedure.add.impl.AddStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.alter.AlterStatement;
+import io.proleap.cobol.parser.metamodel.procedure.alter.impl.AlterStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallStatement;
 import io.proleap.cobol.parser.metamodel.procedure.call.impl.CallStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
@@ -162,6 +166,23 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 				final NotOnSizeErrorPhrase notOnSizeErrorPhrase = createNotOnSizeErrorPhrase(
 						ctx.notOnSizeErrorPhrase());
 				result.setNotOnSizeErrorPhrase(notOnSizeErrorPhrase);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public AlterStatement addAlterStatement(final AlterStatementContext ctx) {
+		AlterStatement result = (AlterStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new AlterStatementImpl(programUnit, ctx);
+
+			for (final AlterProceedToContext alterProceedToContext : ctx.alterProceedTo()) {
+				result.addAlterProceedTo(alterProceedToContext);
 			}
 
 			registerStatement(result);

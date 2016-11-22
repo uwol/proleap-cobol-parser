@@ -12,6 +12,7 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.AcceptStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddStatementContext;
+import io.proleap.cobol.Cobol85Parser.AlterStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
@@ -23,6 +24,7 @@ import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptStatement;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddStatement;
+import io.proleap.cobol.parser.metamodel.procedure.alter.AlterStatement;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallStatement;
 import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
@@ -38,6 +40,8 @@ public interface ProcedureDivision extends CobolDivision {
 	AcceptStatement addAcceptStatement(AcceptStatementContext ctx);
 
 	AddStatement addAddStatement(AddStatementContext ctx);
+
+	AlterStatement addAlterStatement(AlterStatementContext ctx);
 
 	CallStatement addCallStatement(CallStatementContext ctx);
 
