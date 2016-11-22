@@ -39,7 +39,7 @@ public class ExportEntryProcedureImpl extends CobolDivisionElementImpl implement
 		if (result == null) {
 			result = new ForClauseImpl(programUnit, ctx);
 
-			final Literal forLiteral = addLiteral(ctx.literal());
+			final Literal forLiteral = createLiteral(ctx.literal());
 			result.setForLiteral(forLiteral);
 
 			forClause = result;

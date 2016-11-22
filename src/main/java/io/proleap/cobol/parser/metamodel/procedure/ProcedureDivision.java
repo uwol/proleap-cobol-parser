@@ -28,6 +28,9 @@ import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
+/**
+ * contains procedures to manipulate the data from data division
+ */
 public interface ProcedureDivision extends CobolDivision {
 
 	AcceptStatement addAcceptStatement(AcceptStatementContext ctx);

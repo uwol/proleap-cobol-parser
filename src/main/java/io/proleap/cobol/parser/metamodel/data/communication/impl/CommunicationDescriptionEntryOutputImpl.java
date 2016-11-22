@@ -81,7 +81,7 @@ public class CommunicationDescriptionEntryOutputImpl extends CommunicationDescri
 			/*
 			 * occurs
 			 */
-			final IntegerLiteral occursIntegerLiteral = addIntegerLiteral(ctx.integerLiteral());
+			final IntegerLiteral occursIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			result.setIntegerLiteral(occursIntegerLiteral);
 
 			/*

@@ -57,10 +57,10 @@ public class ReportGroupDescriptionEntryVerticalImpl extends ReportGroupDescript
 				integerLiteral = null;
 			} else if (ctx.reportGroupNextGroupPlus() != null) {
 				type = NextGroupClause.Type.Plus;
-				integerLiteral = addIntegerLiteral(ctx.reportGroupNextGroupPlus().integerLiteral());
+				integerLiteral = createIntegerLiteral(ctx.reportGroupNextGroupPlus().integerLiteral());
 			} else {
 				type = NextGroupClause.Type.Absolute;
-				integerLiteral = addIntegerLiteral(ctx.integerLiteral());
+				integerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			}
 
 			result.setIntegerLiteral(integerLiteral);

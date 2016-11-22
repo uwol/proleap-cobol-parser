@@ -96,10 +96,10 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 
 			if (ctx.reportGroupLineNumberNextPage() != null) {
 				type = LineNumberClause.Type.NextPage;
-				integerLiteral = addIntegerLiteral(ctx.reportGroupLineNumberNextPage().integerLiteral());
+				integerLiteral = createIntegerLiteral(ctx.reportGroupLineNumberNextPage().integerLiteral());
 			} else if (ctx.reportGroupLineNumberPlus() != null) {
 				type = LineNumberClause.Type.Plus;
-				integerLiteral = addIntegerLiteral(ctx.reportGroupLineNumberPlus().integerLiteral());
+				integerLiteral = createIntegerLiteral(ctx.reportGroupLineNumberPlus().integerLiteral());
 			} else {
 				LOG.warn("unknown line number at {}", ctx);
 				type = null;

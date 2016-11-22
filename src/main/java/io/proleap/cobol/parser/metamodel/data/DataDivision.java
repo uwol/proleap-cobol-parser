@@ -28,6 +28,9 @@ import io.proleap.cobol.parser.metamodel.data.report.ReportSection;
 import io.proleap.cobol.parser.metamodel.data.screen.ScreenSection;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 
+/**
+ * defines variables used in the program
+ */
 public interface DataDivision extends CobolDivision {
 
 	CommunicationSection addCommunicationSection(CommunicationSectionContext ctx);

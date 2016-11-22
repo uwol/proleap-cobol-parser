@@ -94,14 +94,14 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			/*
 			 * from
 			 */
-			final IntegerLiteral from = addIntegerLiteral(ctx.integerLiteral());
+			final IntegerLiteral from = createIntegerLiteral(ctx.integerLiteral());
 			result.setFrom(from);
 
 			/*
 			 * to
 			 */
 			if (ctx.blockContainsTo() != null) {
-				final IntegerLiteral to = addIntegerLiteral(ctx.blockContainsTo().integerLiteral());
+				final IntegerLiteral to = createIntegerLiteral(ctx.blockContainsTo().integerLiteral());
 				result.setTo(to);
 			}
 
@@ -338,7 +338,7 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			result = new RecordContainsClauseImpl(programUnit, ctx);
 
 			if (ctx.recordContainsClauseFormat1() != null) {
-				final IntegerLiteral from = addIntegerLiteral(ctx.recordContainsClauseFormat1().integerLiteral());
+				final IntegerLiteral from = createIntegerLiteral(ctx.recordContainsClauseFormat1().integerLiteral());
 				result.setFrom(from);
 			} else if (ctx.recordContainsClauseFormat2() != null) {
 				final RecordContainsClauseFormat2Context recordContainsClauseFormat2 = ctx
@@ -347,14 +347,14 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 				/*
 				 * from
 				 */
-				final IntegerLiteral from = addIntegerLiteral(recordContainsClauseFormat2.integerLiteral());
+				final IntegerLiteral from = createIntegerLiteral(recordContainsClauseFormat2.integerLiteral());
 				result.setFrom(from);
 
 				/*
 				 * to
 				 */
 				if (recordContainsClauseFormat2.recordContainsTo() != null) {
-					final IntegerLiteral to = addIntegerLiteral(
+					final IntegerLiteral to = createIntegerLiteral(
 							recordContainsClauseFormat2.recordContainsTo().integerLiteral());
 					result.setTo(to);
 				}
@@ -378,13 +378,13 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 				/*
 				 * from
 				 */
-				final IntegerLiteral from = addIntegerLiteral(ctx.recordContainsClauseFormat3().integerLiteral());
+				final IntegerLiteral from = createIntegerLiteral(ctx.recordContainsClauseFormat3().integerLiteral());
 				result.setFrom(from);
 
 				/*
 				 * to
 				 */
-				final IntegerLiteral to = addIntegerLiteral(
+				final IntegerLiteral to = createIntegerLiteral(
 						ctx.recordContainsClauseFormat2().recordContainsTo().integerLiteral());
 				result.setTo(to);
 			}

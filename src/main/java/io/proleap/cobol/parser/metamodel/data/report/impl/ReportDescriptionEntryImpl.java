@@ -59,7 +59,7 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new FirstDetailClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral firstDetailIntegerLiteral = addIntegerLiteral(ctx.integerLiteral());
+			final IntegerLiteral firstDetailIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			result.setFirstDetailIntegerLiteral(firstDetailIntegerLiteral);
 
 			firstDetailClause = result;
@@ -76,7 +76,7 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new FootingClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral footingIntegerLiteral = addIntegerLiteral(ctx.integerLiteral());
+			final IntegerLiteral footingIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			result.setFootingIntegerLiteral(footingIntegerLiteral);
 
 			footingClause = result;
@@ -109,7 +109,7 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new HeadingClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral headingIntegerLiteral = addIntegerLiteral(ctx.integerLiteral());
+			final IntegerLiteral headingIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			result.setHeadingIntegerLiteral(headingIntegerLiteral);
 
 			headingClause = result;
@@ -126,7 +126,7 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new LastDetailClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral lastDetailIntegerLiteral = addIntegerLiteral(ctx.integerLiteral());
+			final IntegerLiteral lastDetailIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			result.setLastDetailIntegerLiteral(lastDetailIntegerLiteral);
 
 			lastDetailClause = result;
@@ -143,7 +143,7 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new PageLimitClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral pageLimitIntegerLiteral = addIntegerLiteral(ctx.integerLiteral());
+			final IntegerLiteral pageLimitIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			result.setPageLimitIntegerLiteral(pageLimitIntegerLiteral);
 
 			pageLimitClause = result;

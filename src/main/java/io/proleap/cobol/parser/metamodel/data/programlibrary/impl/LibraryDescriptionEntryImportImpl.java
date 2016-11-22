@@ -108,7 +108,7 @@ public class LibraryDescriptionEntryImportImpl extends LibraryDescriptionEntryIm
 			 * function
 			 */
 			if (ctx.libraryAttributeFunction() != null) {
-				final Literal functionLiteral = addLiteral(ctx.libraryAttributeFunction().literal());
+				final Literal functionLiteral = createLiteral(ctx.libraryAttributeFunction().literal());
 				result.setFunctionLiteral(functionLiteral);
 			}
 
@@ -116,7 +116,7 @@ public class LibraryDescriptionEntryImportImpl extends LibraryDescriptionEntryIm
 			 * parameter
 			 */
 			if (ctx.libraryAttributeParameter() != null) {
-				final Literal parameterLiteral = addLiteral(ctx.libraryAttributeParameter().literal());
+				final Literal parameterLiteral = createLiteral(ctx.libraryAttributeParameter().literal());
 				result.setParameterLiteral(parameterLiteral);
 			}
 
@@ -124,7 +124,7 @@ public class LibraryDescriptionEntryImportImpl extends LibraryDescriptionEntryIm
 			 * title
 			 */
 			if (ctx.libraryAttributeTitle() != null) {
-				final Literal titleLiteral = addLiteral(ctx.libraryAttributeTitle().literal());
+				final Literal titleLiteral = createLiteral(ctx.libraryAttributeTitle().literal());
 				result.setTitleLiteral(titleLiteral);
 			}
 

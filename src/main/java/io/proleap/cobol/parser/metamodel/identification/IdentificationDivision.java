@@ -17,6 +17,10 @@ import io.proleap.cobol.Cobol85Parser.RemarksParagraphContext;
 import io.proleap.cobol.Cobol85Parser.SecurityParagraphContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 
+/**
+ * names the program and may include the date it was written, the date of
+ * compilation and other documentary information
+ */
 public interface IdentificationDivision extends CobolDivision {
 
 	AuthorParagraph addAuthorParagraph(AuthorParagraphContext ctx);

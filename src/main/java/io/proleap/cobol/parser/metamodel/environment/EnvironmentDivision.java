@@ -16,6 +16,9 @@ import io.proleap.cobol.parser.metamodel.environment.configuration.Configuration
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.InputOutputSection;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
 
+/**
+ * describes the environment for which the program is written
+ */
 public interface EnvironmentDivision extends CobolDivision {
 
 	ConfigurationSection addConfigurationSection(ConfigurationSectionContext ctx);

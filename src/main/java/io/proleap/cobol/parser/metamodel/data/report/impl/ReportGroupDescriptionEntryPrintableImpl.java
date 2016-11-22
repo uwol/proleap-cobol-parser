@@ -93,7 +93,7 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 		if (result == null) {
 			result = new ColumnNumberClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral integerLiteral = addIntegerLiteral(ctx.integerLiteral());
+			final IntegerLiteral integerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			result.setIntegerLiteral(integerLiteral);
 
 			columnNumberClause = result;
@@ -270,7 +270,7 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 		if (result == null) {
 			result = new ValueClauseImpl(programUnit, ctx);
 
-			final Literal literal = addLiteral(ctx.literal());
+			final Literal literal = createLiteral(ctx.literal());
 			result.setLiteral(literal);
 
 			valueClause = result;

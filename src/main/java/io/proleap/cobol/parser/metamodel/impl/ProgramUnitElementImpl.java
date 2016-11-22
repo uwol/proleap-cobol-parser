@@ -68,7 +68,16 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		this.programUnit = programUnit;
 	}
 
-	public Call addCall(final AlphabetNameContext ctx) {
+	protected void associateDataDescriptionEntryCallWithDataDescriptionEntry(final DataDescriptionEntryCall call,
+			final DataDescriptionEntry dataDescriptionEntry) {
+		dataDescriptionEntry.addCall(call);
+	}
+
+	protected void associateProcedureCallWithParagraph(final ProcedureCall call, final Paragraph paragraph) {
+		paragraph.addCall(call);
+	}
+
+	public Call createCall(final AlphabetNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -79,7 +88,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final AssignmentNameContext ctx) {
+	public Call createCall(final AssignmentNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -90,7 +99,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final ClassNameContext ctx) {
+	public Call createCall(final ClassNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -101,7 +110,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final CobolWordContext ctx) {
+	public Call createCall(final CobolWordContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -112,7 +121,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final DataDescNameContext ctx) {
+	public Call createCall(final DataDescNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -123,7 +132,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final DataNameContext ctx) {
+	public Call createCall(final DataNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -134,7 +143,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final FileNameContext ctx) {
+	public Call createCall(final FileNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -145,7 +154,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final IdentifierContext ctx) {
+	public Call createCall(final IdentifierContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -180,7 +189,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final IndexNameContext ctx) {
+	public Call createCall(final IndexNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -191,7 +200,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final LocalNameContext ctx) {
+	public Call createCall(final LocalNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -202,7 +211,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final MnemonicNameContext ctx) {
+	public Call createCall(final MnemonicNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -213,7 +222,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final ProcedureNameContext ctx) {
+	public Call createCall(final ProcedureNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -236,7 +245,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final ProgramNameContext ctx) {
+	public Call createCall(final ProgramNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -247,7 +256,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final QualifiedDataNameContext ctx) {
+	public Call createCall(final QualifiedDataNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -258,7 +267,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final ReportNameContext ctx) {
+	public Call createCall(final ReportNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -269,7 +278,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Call addCall(final SystemNameContext ctx) {
+	public Call createCall(final SystemNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -280,7 +289,97 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public IntegerLiteral addIntegerLiteral(final IntegerLiteralContext ctx) {
+	protected CallValueStmt createCallValueStmt(final AlphabetNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final AssignmentNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final ClassNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final CobolWordContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final DataDescNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final DataNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final FileNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final IdentifierContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final IndexNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final LocalNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final MnemonicNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final ProgramNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final QualifiedDataNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final ReportNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final SystemNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	public IntegerLiteral createIntegerLiteral(final IntegerLiteralContext ctx) {
 		IntegerLiteral result = (IntegerLiteral) getASGElement(ctx);
 
 		if (result == null) {
@@ -293,7 +392,14 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public Literal addLiteral(final LiteralContext ctx) {
+	protected IntegerLiteralValueStmt createIntegerLiteralValueStmt(final IntegerLiteralContext ctx) {
+		final IntegerLiteral integerLiteral = createIntegerLiteral(ctx);
+		final IntegerLiteralValueStmt result = new IntegerLiteralValueStmtImpl(programUnit, ctx);
+		result.setIntegerLiteral(integerLiteral);
+		return result;
+	}
+
+	public Literal createLiteral(final LiteralContext ctx) {
 		Literal result = (Literal) getASGElement(ctx);
 
 		if (result == null) {
@@ -306,7 +412,14 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	public MnemonicName addMnemonicName(final MnemonicNameContext ctx) {
+	protected LiteralValueStmt createLiteralValueStmt(final LiteralContext ctx) {
+		final Literal literal = createLiteral(ctx);
+		final LiteralValueStmt result = new LiteralValueStmtImpl(programUnit, ctx);
+		result.setLiteral(literal);
+		return result;
+	}
+
+	public MnemonicName createMnemonicName(final MnemonicNameContext ctx) {
 		MnemonicName result = (MnemonicName) getASGElement(ctx);
 
 		if (result == null) {
@@ -316,119 +429,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			registerASGElement(result);
 		}
 
-		return result;
-	}
-
-	protected void associateDataDescriptionEntryCallWithDataDescriptionEntry(final DataDescriptionEntryCall call,
-			final DataDescriptionEntry dataDescriptionEntry) {
-		dataDescriptionEntry.addCall(call);
-	}
-
-	protected void associateProcedureCallWithParagraph(final ProcedureCall call, final Paragraph paragraph) {
-		paragraph.addCall(call);
-	}
-
-	protected CallValueStmt createCallValueStmt(final AlphabetNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final AssignmentNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final ClassNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final CobolWordContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final DataDescNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final DataNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final FileNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final IdentifierContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final IndexNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final LocalNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final MnemonicNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final ProgramNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final QualifiedDataNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final ReportNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final SystemNameContext ctx) {
-		final Call delegatedCall = addCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected IntegerLiteralValueStmt createIntegerLiteralValueStmt(final IntegerLiteralContext ctx) {
-		final IntegerLiteral integerLiteral = addIntegerLiteral(ctx);
-		final IntegerLiteralValueStmt result = new IntegerLiteralValueStmtImpl(programUnit, ctx);
-		result.setIntegerLiteral(integerLiteral);
-		return result;
-	}
-
-	protected LiteralValueStmt createLiteralValueStmt(final LiteralContext ctx) {
-		final Literal literal = addLiteral(ctx);
-		final LiteralValueStmt result = new LiteralValueStmtImpl(programUnit, ctx);
-		result.setLiteral(literal);
 		return result;
 	}
 

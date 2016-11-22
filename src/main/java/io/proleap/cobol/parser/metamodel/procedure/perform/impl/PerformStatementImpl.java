@@ -81,11 +81,11 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 			if (procedureNames.isEmpty()) {
 				LOG.warn("no calls in {}.", ctx);
 			} else {
-				final Call firstCall = addCall(procedureNames.get(0));
+				final Call firstCall = createCall(procedureNames.get(0));
 				result.addCall(firstCall);
 
 				if (procedureNames.size() > 1) {
-					final Call lastCall = addCall(procedureNames.get(1));
+					final Call lastCall = createCall(procedureNames.get(1));
 					result.addCall(lastCall);
 
 					final List<Call> callsThrough = addCallsThrough(firstCall, lastCall, ctx);

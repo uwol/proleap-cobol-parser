@@ -165,7 +165,7 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			 * literal
 			 */
 			if (ctx.literal() != null) {
-				final Literal ccsVersionLiteral = addLiteral(ctx.literal());
+				final Literal ccsVersionLiteral = createLiteral(ctx.literal());
 				result.setCcsVersionLiteral(ccsVersionLiteral);
 			}
 
@@ -183,10 +183,10 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 		if (result == null) {
 			result = new ChannelClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral integerLiteral = addIntegerLiteral(ctx.integerLiteral());
+			final IntegerLiteral integerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			result.setIntegerLiteral(integerLiteral);
 
-			final MnemonicName mnemonicName = addMnemonicName(ctx.mnemonicName());
+			final MnemonicName mnemonicName = createMnemonicName(ctx.mnemonicName());
 			result.setMnemonicName(mnemonicName);
 
 			channelClause = result;
@@ -245,11 +245,11 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 		if (result == null) {
 			result = new CurrencySignClauseImpl(programUnit, ctx);
 
-			final Literal currencyLiteral = addLiteral(ctx.literal(0));
+			final Literal currencyLiteral = createLiteral(ctx.literal(0));
 			result.setCurrencyLiteral(currencyLiteral);
 
 			if (ctx.literal().size() > 1) {
-				final Literal pictureSymbolLiteral = addLiteral(ctx.literal(1));
+				final Literal pictureSymbolLiteral = createLiteral(ctx.literal(1));
 				result.setPictureSymbolLiteral(pictureSymbolLiteral);
 			}
 
@@ -310,7 +310,7 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 		if (result == null) {
 			result = new OdtClauseImpl(programUnit, ctx);
 
-			final MnemonicName mnemonicName = addMnemonicName(ctx.mnemonicName());
+			final MnemonicName mnemonicName = createMnemonicName(ctx.mnemonicName());
 			result.setMnemonicName(mnemonicName);
 
 			odtClause = result;

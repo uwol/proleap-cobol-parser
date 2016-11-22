@@ -304,14 +304,14 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			/*
 			 * from
 			 */
-			final IntegerLiteral from = addIntegerLiteral(ctx.integerLiteral());
+			final IntegerLiteral from = createIntegerLiteral(ctx.integerLiteral());
 			result.setFrom(from);
 
 			/*
 			 * to
 			 */
 			if (ctx.dataOccursTo() != null) {
-				final IntegerLiteral to = addIntegerLiteral(ctx.dataOccursTo().integerLiteral());
+				final IntegerLiteral to = createIntegerLiteral(ctx.dataOccursTo().integerLiteral());
 				result.setTo(to);
 			}
 

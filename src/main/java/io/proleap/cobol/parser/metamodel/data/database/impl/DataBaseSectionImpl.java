@@ -39,7 +39,7 @@ public class DataBaseSectionImpl extends CobolDivisionElementImpl implements Dat
 		if (result == null) {
 			result = new DataBaseSectionEntryImpl(programUnit, ctx);
 
-			final IntegerLiteral integerLiteral = addIntegerLiteral(ctx.integerLiteral());
+			final IntegerLiteral integerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			result.setIntegerLiteral(integerLiteral);
 
 			final LiteralValueStmt literalValueStmt1 = createLiteralValueStmt(ctx.literal(0));

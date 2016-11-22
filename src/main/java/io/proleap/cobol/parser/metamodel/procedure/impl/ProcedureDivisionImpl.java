@@ -162,7 +162,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 			// receiving area calls
 			for (final IdentifierContext identifierCtx : identifierCtxs) {
-				final Call receivingAreaCall = addCall(identifierCtx);
+				final Call receivingAreaCall = createCall(identifierCtx);
 				result.addReceivingAreaCall(receivingAreaCall);
 			}
 

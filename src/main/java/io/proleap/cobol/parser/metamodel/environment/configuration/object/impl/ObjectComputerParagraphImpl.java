@@ -197,7 +197,7 @@ public class ObjectComputerParagraphImpl extends CobolDivisionElementImpl implem
 		if (result == null) {
 			result = new SegmentLimitClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral integerLiteral = addIntegerLiteral(ctx.integerLiteral());
+			final IntegerLiteral integerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			result.setIntegerLiteral(integerLiteral);
 
 			segmentLimitClause = result;
