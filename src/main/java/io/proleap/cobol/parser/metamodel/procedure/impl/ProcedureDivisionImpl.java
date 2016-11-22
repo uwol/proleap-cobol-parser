@@ -17,6 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.AcceptStatementContext;
+import io.proleap.cobol.Cobol85Parser.AddStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
@@ -39,6 +40,8 @@ import io.proleap.cobol.parser.metamodel.procedure.Statement;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptStatement;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptStatement.Type;
 import io.proleap.cobol.parser.metamodel.procedure.accept.impl.AcceptStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.add.AddStatement;
+import io.proleap.cobol.parser.metamodel.procedure.add.impl.AddStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallStatement;
 import io.proleap.cobol.parser.metamodel.procedure.call.impl.CallStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
@@ -105,6 +108,34 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			}
 
 			result.setType(type);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public AddStatement addAddStatement(final AddStatementContext ctx) {
+		AddStatement result = (AddStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new AddStatementImpl(programUnit, ctx);
+
+			/*
+			 * add sub statement
+			 */
+			if (ctx.addToStatement() != null) {
+				result.addAddTo(ctx.addToStatement());
+			} else if (ctx.addToStatement() != null) {
+				result.addAddTo(ctx.addToStatement());
+			} else if (ctx.addToStatement() != null) {
+				result.addAddTo(ctx.addToStatement());
+			} else {
+				LOG.warn("unknown add statement at {}", ctx);
+			}
+
+			// FIXME: on error ...
 
 			registerStatement(result);
 		}
