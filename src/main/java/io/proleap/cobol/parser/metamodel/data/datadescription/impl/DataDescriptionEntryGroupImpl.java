@@ -85,7 +85,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 
 	protected List<DataDescriptionEntry> dataDescriptionEntries = new ArrayList<DataDescriptionEntry>();
 
-	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesByName = new HashMap<String, DataDescriptionEntry>();
+	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesSymbolTable = new HashMap<String, DataDescriptionEntry>();
 
 	protected ExternalClause externalClause;
 
@@ -198,7 +198,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 		final String name = dataDescriptionEntry.getName();
 
 		dataDescriptionEntries.add(dataDescriptionEntry);
-		dataDescriptionEntriesByName.put(name, dataDescriptionEntry);
+		dataDescriptionEntriesSymbolTable.put(name, dataDescriptionEntry);
 	}
 
 	@Override
@@ -726,7 +726,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 
 	@Override
 	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
-		return dataDescriptionEntriesByName.get(name);
+		return dataDescriptionEntriesSymbolTable.get(name);
 	}
 
 	@Override

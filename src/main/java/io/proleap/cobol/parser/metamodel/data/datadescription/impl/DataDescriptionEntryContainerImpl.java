@@ -58,7 +58,7 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 
 	protected List<DataDescriptionEntry> dataDescriptionEntries = new ArrayList<DataDescriptionEntry>();
 
-	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesByName = new HashMap<String, DataDescriptionEntry>();
+	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesSymbolTable = new HashMap<String, DataDescriptionEntry>();
 
 	public DataDescriptionEntryContainerImpl(final ProgramUnit programUnit, final ParseTree ctx) {
 		super(programUnit, ctx);
@@ -79,7 +79,7 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
-			dataDescriptionEntriesByName.put(name, result);
+			dataDescriptionEntriesSymbolTable.put(name, result);
 		}
 
 		return result;
@@ -315,7 +315,7 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
-			dataDescriptionEntriesByName.put(name, result);
+			dataDescriptionEntriesSymbolTable.put(name, result);
 		}
 
 		return result;
@@ -335,7 +335,7 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
-			dataDescriptionEntriesByName.put(name, result);
+			dataDescriptionEntriesSymbolTable.put(name, result);
 		}
 
 		return result;
@@ -371,7 +371,7 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 
 	@Override
 	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
-		return dataDescriptionEntriesByName.get(name);
+		return dataDescriptionEntriesSymbolTable.get(name);
 	}
 
 	@Override

@@ -58,7 +58,7 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 
 	protected List<ReportGroupDescriptionEntry> reportGroupDescriptionEntries = new ArrayList<ReportGroupDescriptionEntry>();
 
-	protected Map<String, ReportGroupDescriptionEntry> reportGroupDescriptionEntriesByName = new HashMap<String, ReportGroupDescriptionEntry>();
+	protected Map<String, ReportGroupDescriptionEntry> reportGroupDescriptionEntriesSymbolTable = new HashMap<String, ReportGroupDescriptionEntry>();
 
 	public ReportImpl(final String name, final ProgramUnit programUnit, final ReportContext ctx) {
 		super(programUnit, ctx);
@@ -264,7 +264,7 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 			}
 
 			reportGroupDescriptionEntries.add(result);
-			reportGroupDescriptionEntriesByName.put(name, result);
+			reportGroupDescriptionEntriesSymbolTable.put(name, result);
 
 			registerASGElement(result);
 		}
@@ -304,7 +304,7 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 			}
 
 			reportGroupDescriptionEntries.add(result);
-			reportGroupDescriptionEntriesByName.put(name, result);
+			reportGroupDescriptionEntriesSymbolTable.put(name, result);
 
 			registerASGElement(result);
 		}
@@ -360,7 +360,7 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 			}
 
 			reportGroupDescriptionEntries.add(result);
-			reportGroupDescriptionEntriesByName.put(name, result);
+			reportGroupDescriptionEntriesSymbolTable.put(name, result);
 
 			registerASGElement(result);
 		}
@@ -409,7 +409,7 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 
 	@Override
 	public ReportGroupDescriptionEntry getReportGroupDescriptionEntry(final String name) {
-		return reportGroupDescriptionEntriesByName.get(name);
+		return reportGroupDescriptionEntriesSymbolTable.get(name);
 	}
 
 	@Override

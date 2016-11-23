@@ -29,7 +29,7 @@ public class ReportSectionImpl extends CobolDivisionElementImpl implements Repor
 
 	protected List<Report> reports = new ArrayList<Report>();
 
-	protected Map<String, Report> reportsByName = new HashMap<String, Report>();
+	protected Map<String, Report> reportsSymbolTable = new HashMap<String, Report>();
 
 	public ReportSectionImpl(final ProgramUnit programUnit, final ReportSectionContext ctx) {
 		super(programUnit, ctx);
@@ -65,7 +65,7 @@ public class ReportSectionImpl extends CobolDivisionElementImpl implements Repor
 			}
 
 			reports.add(result);
-			reportsByName.put(name, result);
+			reportsSymbolTable.put(name, result);
 			registerASGElement(result);
 		}
 
@@ -74,7 +74,7 @@ public class ReportSectionImpl extends CobolDivisionElementImpl implements Repor
 
 	@Override
 	public Report getReport(final String name) {
-		return reportsByName.get(name);
+		return reportsSymbolTable.get(name);
 	}
 
 	@Override

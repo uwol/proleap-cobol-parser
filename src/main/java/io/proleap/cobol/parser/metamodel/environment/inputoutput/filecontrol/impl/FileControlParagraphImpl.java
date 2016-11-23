@@ -27,7 +27,7 @@ public class FileControlParagraphImpl extends CobolDivisionElementImpl implement
 
 	protected final List<FileControlEntry> fileControlEntries = new ArrayList<FileControlEntry>();
 
-	protected Map<String, FileControlEntry> fileControlEntriesByName = new HashMap<String, FileControlEntry>();
+	protected Map<String, FileControlEntry> fileControlEntriesSymbolTable = new HashMap<String, FileControlEntry>();
 
 	public FileControlParagraphImpl(final ProgramUnit programUnit, final FileControlParagraphContext ctx) {
 		super(programUnit, ctx);
@@ -94,7 +94,7 @@ public class FileControlParagraphImpl extends CobolDivisionElementImpl implement
 			registerASGElement(result);
 
 			fileControlEntries.add(result);
-			fileControlEntriesByName.put(name, result);
+			fileControlEntriesSymbolTable.put(name, result);
 		}
 
 		return result;
@@ -107,7 +107,7 @@ public class FileControlParagraphImpl extends CobolDivisionElementImpl implement
 
 	@Override
 	public FileControlEntry getFileControlEntry(final String name) {
-		return fileControlEntriesByName.get(name);
+		return fileControlEntriesSymbolTable.get(name);
 	}
 
 }

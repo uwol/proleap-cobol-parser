@@ -68,15 +68,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		this.programUnit = programUnit;
 	}
 
-	protected void associateDataDescriptionEntryCallWithDataDescriptionEntry(final DataDescriptionEntryCall call,
-			final DataDescriptionEntry dataDescriptionEntry) {
-		dataDescriptionEntry.addCall(call);
-	}
-
-	protected void associateProcedureCallWithParagraph(final ProcedureCall call, final Paragraph paragraph) {
-		paragraph.addCall(call);
-	}
-
 	protected Call createCall(final AlphabetNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
@@ -175,7 +166,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 						final DataDescriptionEntryCall call = new DataDescriptionEntryCallImpl(name,
 								dataDescriptionEntry, programUnit, ctx);
 
-						associateDataDescriptionEntryCallWithDataDescriptionEntry(call, dataDescriptionEntry);
+						linkDataDescriptionEntryCallWithDataDescriptionEntry(call, dataDescriptionEntry);
 
 						result = call;
 					} else {
@@ -232,7 +223,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			if (paragraph != null) {
 				final ProcedureCall call = new ProcedureCallImpl(name, paragraph, programUnit, ctx);
 
-				associateProcedureCallWithParagraph(call, paragraph);
+				linkProcedureCallWithParagraph(call, paragraph);
 
 				result = call;
 			} else {
@@ -446,6 +437,15 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	@Override
 	public ProgramUnit getProgramUnit() {
 		return programUnit;
+	}
+
+	protected void linkDataDescriptionEntryCallWithDataDescriptionEntry(final DataDescriptionEntryCall call,
+			final DataDescriptionEntry dataDescriptionEntry) {
+		dataDescriptionEntry.addCall(call);
+	}
+
+	protected void linkProcedureCallWithParagraph(final ProcedureCall call, final Paragraph paragraph) {
+		paragraph.addCall(call);
 	}
 
 }

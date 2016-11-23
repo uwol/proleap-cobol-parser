@@ -43,7 +43,7 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 
 	protected List<ReportGroupDescriptionEntry> reportGroupDescriptionEntries = new ArrayList<ReportGroupDescriptionEntry>();
 
-	protected Map<String, ReportGroupDescriptionEntry> reportGroupDescriptionEntriesByName = new HashMap<String, ReportGroupDescriptionEntry>();
+	protected Map<String, ReportGroupDescriptionEntry> reportGroupDescriptionEntriesSymbolTable = new HashMap<String, ReportGroupDescriptionEntry>();
 
 	protected UsageClause usageClause;
 
@@ -121,7 +121,7 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 		final String name = reportGroupDescriptionEntry.getName();
 
 		reportGroupDescriptionEntries.add(reportGroupDescriptionEntry);
-		reportGroupDescriptionEntriesByName.put(name, reportGroupDescriptionEntry);
+		reportGroupDescriptionEntriesSymbolTable.put(name, reportGroupDescriptionEntry);
 	}
 
 	@Override
@@ -151,7 +151,7 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 
 	@Override
 	public ReportGroupDescriptionEntry getReportGroupDescriptionEntry(final String name) {
-		return reportGroupDescriptionEntriesByName.get(name);
+		return reportGroupDescriptionEntriesSymbolTable.get(name);
 	}
 
 	@Override

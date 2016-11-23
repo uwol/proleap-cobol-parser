@@ -39,7 +39,7 @@ public class ProgramLibrarySectionImpl extends CobolDivisionElementImpl implemen
 
 	protected List<LibraryDescriptionEntry> libraryDescriptionEntries = new ArrayList<LibraryDescriptionEntry>();
 
-	protected Map<String, LibraryDescriptionEntry> libraryDescriptionEntriesByName = new HashMap<String, LibraryDescriptionEntry>();
+	protected Map<String, LibraryDescriptionEntry> libraryDescriptionEntriesSymbolTable = new HashMap<String, LibraryDescriptionEntry>();
 
 	public ProgramLibrarySectionImpl(final ProgramUnit programUnit, final ProgramLibrarySectionContext ctx) {
 		super(programUnit, ctx);
@@ -71,7 +71,7 @@ public class ProgramLibrarySectionImpl extends CobolDivisionElementImpl implemen
 			}
 
 			libraryDescriptionEntries.add(result);
-			libraryDescriptionEntriesByName.put(name, result);
+			libraryDescriptionEntriesSymbolTable.put(name, result);
 			registerASGElement(result);
 		}
 
@@ -122,7 +122,7 @@ public class ProgramLibrarySectionImpl extends CobolDivisionElementImpl implemen
 			}
 
 			libraryDescriptionEntries.add(result);
-			libraryDescriptionEntriesByName.put(name, result);
+			libraryDescriptionEntriesSymbolTable.put(name, result);
 			registerASGElement(result);
 		}
 
@@ -152,6 +152,6 @@ public class ProgramLibrarySectionImpl extends CobolDivisionElementImpl implemen
 
 	@Override
 	public LibraryDescriptionEntry getLibraryDescriptionEntry(final String name) {
-		return libraryDescriptionEntriesByName.get(name);
+		return libraryDescriptionEntriesSymbolTable.get(name);
 	}
 }

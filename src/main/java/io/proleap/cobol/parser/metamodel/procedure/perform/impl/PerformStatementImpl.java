@@ -62,7 +62,7 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 				final ProcedureCall call = new ProcedureCallImpl(paragraphName, paragraph, programUnit, ctx);
 				result.add(call);
 
-				associateProcedureCallWithParagraph(call, paragraph);
+				linkProcedureCallWithParagraph(call, paragraph);
 			}
 		}
 

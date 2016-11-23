@@ -35,7 +35,7 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 
 	protected List<FileDescriptionEntry> fileDescriptionEntries = new ArrayList<FileDescriptionEntry>();
 
-	protected Map<String, FileDescriptionEntry> fileDescriptionEntriesByName = new HashMap<String, FileDescriptionEntry>();
+	protected Map<String, FileDescriptionEntry> fileDescriptionEntriesSymbolTable = new HashMap<String, FileDescriptionEntry>();
 
 	public FileSectionImpl(final ProgramUnit programUnit, final FileSectionContext ctx) {
 		super(programUnit, ctx);
@@ -112,7 +112,7 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 			}
 
 			fileDescriptionEntries.add(result);
-			fileDescriptionEntriesByName.put(name, result);
+			fileDescriptionEntriesSymbolTable.put(name, result);
 
 			registerASGElement(result);
 		}
@@ -127,6 +127,6 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 
 	@Override
 	public FileDescriptionEntry getFileDescriptionEntry(final String name) {
-		return fileDescriptionEntriesByName.get(name);
+		return fileDescriptionEntriesSymbolTable.get(name);
 	}
 }

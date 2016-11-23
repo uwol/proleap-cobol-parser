@@ -49,7 +49,7 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 
 	protected List<CommunicationDescriptionEntry> communicationDescriptionEntries = new ArrayList<CommunicationDescriptionEntry>();
 
-	protected Map<String, CommunicationDescriptionEntry> communicationDescriptionEntriesByName = new HashMap<String, CommunicationDescriptionEntry>();
+	protected Map<String, CommunicationDescriptionEntry> communicationDescriptionEntriesSymbolTable = new HashMap<String, CommunicationDescriptionEntry>();
 
 	protected final CommunicationSectionContext ctx;
 
@@ -160,7 +160,7 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 			}
 
 			communicationDescriptionEntries.add(result);
-			communicationDescriptionEntriesByName.put(name, result);
+			communicationDescriptionEntriesSymbolTable.put(name, result);
 			registerASGElement(result);
 		}
 
@@ -238,7 +238,7 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 			}
 
 			communicationDescriptionEntries.add(result);
-			communicationDescriptionEntriesByName.put(name, result);
+			communicationDescriptionEntriesSymbolTable.put(name, result);
 			registerASGElement(result);
 		}
 
@@ -319,7 +319,7 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 			}
 
 			communicationDescriptionEntries.add(result);
-			communicationDescriptionEntriesByName.put(name, result);
+			communicationDescriptionEntriesSymbolTable.put(name, result);
 			registerASGElement(result);
 		}
 
@@ -352,6 +352,6 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 
 	@Override
 	public CommunicationDescriptionEntry getCommunicationDescriptionEntry(final String name) {
-		return communicationDescriptionEntriesByName.get(name);
+		return communicationDescriptionEntriesSymbolTable.get(name);
 	}
 }

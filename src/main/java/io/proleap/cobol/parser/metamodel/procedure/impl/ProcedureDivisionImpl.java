@@ -73,7 +73,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 	protected List<Paragraph> paragraphs = new ArrayList<Paragraph>();
 
-	protected Map<String, Paragraph> paragraphsByName = new HashMap<String, Paragraph>();
+	protected Map<String, Paragraph> paragraphsSymbolTable = new HashMap<String, Paragraph>();
 
 	protected List<Statement> statements = new ArrayList<Statement>();
 
@@ -260,7 +260,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			result = new ParagraphImpl(name, programUnit, ctx);
 
 			paragraphs.add(result);
-			paragraphsByName.put(name, result);
+			paragraphsSymbolTable.put(name, result);
 
 			final ParagraphName paragraphName = addParagraphName(ctx.paragraphName());
 			result.addParagraphName(paragraphName);
@@ -387,7 +387,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 	@Override
 	public Paragraph getParagraph(final String name) {
-		return paragraphsByName.get(name);
+		return paragraphsSymbolTable.get(name);
 	}
 
 	@Override
