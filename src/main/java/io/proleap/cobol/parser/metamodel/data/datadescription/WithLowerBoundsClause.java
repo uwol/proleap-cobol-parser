@@ -12,7 +12,7 @@ import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface WithLowerBoundsClause extends CobolDivisionElement {
 
-	Boolean isWithLowerBounds();
+	boolean isWithLowerBounds();
 
-	void setWithLowerBounds(Boolean withLowerBounds);
+	void setWithLowerBounds(boolean withLowerBounds);
 }

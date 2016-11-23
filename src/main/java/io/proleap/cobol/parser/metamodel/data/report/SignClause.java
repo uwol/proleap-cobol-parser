@@ -18,9 +18,9 @@ public interface SignClause extends CobolDivisionElement {
 
 	Type getType();
 
-	Boolean isSeparate();
+	boolean isSeparate();
 
-	void setSeparate(Boolean separate);
+	void setSeparate(boolean separate);
 
 	void setType(Type type);
 

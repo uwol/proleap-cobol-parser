@@ -17,7 +17,7 @@ public class WithLowerBoundsClauseImpl extends CobolDivisionElementImpl implemen
 
 	protected DataWithLowerBoundsClauseContext ctx;
 
-	protected Boolean withLowerBounds;
+	protected boolean withLowerBounds;
 
 	public WithLowerBoundsClauseImpl(final ProgramUnit programUnit, final DataWithLowerBoundsClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,12 +26,12 @@ public class WithLowerBoundsClauseImpl extends CobolDivisionElementImpl implemen
 	}
 
 	@Override
-	public Boolean isWithLowerBounds() {
+	public boolean isWithLowerBounds() {
 		return withLowerBounds;
 	}
 
 	@Override
-	public void setWithLowerBounds(final Boolean withLowerBounds) {
+	public void setWithLowerBounds(final boolean withLowerBounds) {
 		this.withLowerBounds = withLowerBounds;
 	}
 

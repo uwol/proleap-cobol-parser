@@ -12,8 +12,8 @@ import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface CommonClause extends CobolDivisionElement {
 
-	Boolean isCommon();
+	boolean isCommon();
 
-	void setCommon(Boolean common);
+	void setCommon(boolean common);
 
 }

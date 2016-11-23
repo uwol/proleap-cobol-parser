@@ -15,9 +15,9 @@ public interface ExternalClause extends CobolDivisionElement {
 
 	LiteralValueStmt getByLiteralValueStmt();
 
-	Boolean isExternal();
+	boolean isExternal();
 
 	void setByLiteralValueStmt(LiteralValueStmt byLiteralValueStmt);
 
-	void setExternal(Boolean external);
+	void setExternal(boolean external);
 }

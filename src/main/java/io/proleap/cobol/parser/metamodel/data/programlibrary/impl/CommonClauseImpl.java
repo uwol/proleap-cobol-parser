@@ -15,7 +15,7 @@ import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 public class CommonClauseImpl extends CobolDivisionElementImpl implements CommonClause {
 
-	protected Boolean common;
+	protected boolean common;
 
 	protected LibraryIsCommonClauseContext ctx;
 
@@ -26,12 +26,12 @@ public class CommonClauseImpl extends CobolDivisionElementImpl implements Common
 	}
 
 	@Override
-	public Boolean isCommon() {
+	public boolean isCommon() {
 		return common;
 	}
 
 	@Override
-	public void setCommon(final Boolean common) {
+	public void setCommon(final boolean common) {
 		this.common = common;
 	}
 

@@ -15,9 +15,9 @@ public interface Giving extends CobolDivisionElement {
 
 	Call getGiving();
 
-	Boolean isRounded();
+	boolean isRounded();
 
 	void setGiving(Call giving);
 
-	void setRounded(Boolean rounded);
+	void setRounded(boolean rounded);
 }

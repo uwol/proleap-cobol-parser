@@ -12,7 +12,7 @@ import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface ExternalClause extends CobolDivisionElement {
 
-	Boolean isExternal();
+	boolean isExternal();
 
-	void setExternal(Boolean external);
+	void setExternal(boolean external);
 }

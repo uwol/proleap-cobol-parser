@@ -17,7 +17,7 @@ public class RecordAreaClauseImpl extends CobolDivisionElementImpl implements Re
 
 	protected DataRecordAreaClauseContext ctx;
 
-	protected Boolean recordArea;
+	protected boolean recordArea;
 
 	public RecordAreaClauseImpl(final ProgramUnit programUnit, final DataRecordAreaClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,12 +26,12 @@ public class RecordAreaClauseImpl extends CobolDivisionElementImpl implements Re
 	}
 
 	@Override
-	public Boolean isRecordArea() {
+	public boolean isRecordArea() {
 		return recordArea;
 	}
 
 	@Override
-	public void setRecordArea(final Boolean recordArea) {
+	public void setRecordArea(final boolean recordArea) {
 		this.recordArea = recordArea;
 	}
 

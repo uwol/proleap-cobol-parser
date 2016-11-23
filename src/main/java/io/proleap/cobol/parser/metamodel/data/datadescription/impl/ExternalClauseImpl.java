@@ -20,7 +20,7 @@ public class ExternalClauseImpl extends CobolDivisionElementImpl implements Exte
 
 	protected DataExternalClauseContext ctx;
 
-	protected Boolean external;
+	protected boolean external;
 
 	public ExternalClauseImpl(final ProgramUnit programUnit, final DataExternalClauseContext ctx) {
 		super(programUnit, ctx);
@@ -34,7 +34,7 @@ public class ExternalClauseImpl extends CobolDivisionElementImpl implements Exte
 	}
 
 	@Override
-	public Boolean isExternal() {
+	public boolean isExternal() {
 		return external;
 	}
 
@@ -44,7 +44,7 @@ public class ExternalClauseImpl extends CobolDivisionElementImpl implements Exte
 	}
 
 	@Override
-	public void setExternal(final Boolean external) {
+	public void setExternal(final boolean external) {
 		this.external = external;
 	}
 }

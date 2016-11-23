@@ -12,8 +12,8 @@ import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface RecordAreaClause extends CobolDivisionElement {
 
-	Boolean isRecordArea();
+	boolean isRecordArea();
 
-	void setRecordArea(Boolean recordArea);
+	void setRecordArea(boolean recordArea);
 
 }

@@ -12,7 +12,7 @@ import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface TypeDefClause extends CobolDivisionElement {
 
-	Boolean isTypeDef();
+	boolean isTypeDef();
 
-	void setTypeDef(Boolean typeDef);
+	void setTypeDef(boolean typeDef);
 }

@@ -17,7 +17,7 @@ public class SignClauseImpl extends CobolDivisionElementImpl implements SignClau
 
 	protected DataSignClauseContext ctx;
 
-	protected Boolean separate;
+	protected boolean separate;
 
 	protected Type type;
 
@@ -33,12 +33,12 @@ public class SignClauseImpl extends CobolDivisionElementImpl implements SignClau
 	}
 
 	@Override
-	public Boolean isSeparate() {
+	public boolean isSeparate() {
 		return separate;
 	}
 
 	@Override
-	public void setSeparate(final Boolean separate) {
+	public void setSeparate(final boolean separate) {
 		this.separate = separate;
 	}
 

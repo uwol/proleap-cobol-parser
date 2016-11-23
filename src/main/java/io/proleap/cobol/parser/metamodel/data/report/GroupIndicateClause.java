@@ -12,7 +12,7 @@ import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface GroupIndicateClause extends CobolDivisionElement {
 
-	Boolean isIndicate();
+	boolean isIndicate();
 
-	void setIndicate(Boolean indicate);
+	void setIndicate(boolean indicate);
 }

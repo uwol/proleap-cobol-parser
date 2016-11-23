@@ -17,7 +17,7 @@ public class GroupIndicateClauseImpl extends CobolDivisionElementImpl implements
 
 	protected ReportGroupIndicateClauseContext ctx;
 
-	protected Boolean indicate;
+	protected boolean indicate;
 
 	public GroupIndicateClauseImpl(final ProgramUnit programUnit, final ReportGroupIndicateClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,12 +26,12 @@ public class GroupIndicateClauseImpl extends CobolDivisionElementImpl implements
 	}
 
 	@Override
-	public Boolean isIndicate() {
+	public boolean isIndicate() {
 		return indicate;
 	}
 
 	@Override
-	public void setIndicate(final Boolean indicate) {
+	public void setIndicate(final boolean indicate) {
 		this.indicate = indicate;
 	}
 

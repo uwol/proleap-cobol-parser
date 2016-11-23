@@ -12,8 +12,8 @@ import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface AlignedClause extends CobolDivisionElement {
 
-	Boolean isAligned();
+	boolean isAligned();
 
-	void setAligned(Boolean aligned);
+	void setAligned(boolean aligned);
 
 }

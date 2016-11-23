@@ -18,7 +18,7 @@ public class ToImpl extends CobolDivisionElementImpl implements To {
 
 	protected final AddToContext ctx;
 
-	protected Boolean rounded;
+	protected boolean rounded;
 
 	protected Call to;
 
@@ -34,12 +34,12 @@ public class ToImpl extends CobolDivisionElementImpl implements To {
 	}
 
 	@Override
-	public Boolean isRounded() {
+	public boolean isRounded() {
 		return rounded;
 	}
 
 	@Override
-	public void setRounded(final Boolean rounded) {
+	public void setRounded(final boolean rounded) {
 		this.rounded = rounded;
 	}
 

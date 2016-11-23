@@ -17,7 +17,7 @@ public class GlobalClauseImpl extends CobolDivisionElementImpl implements Global
 
 	protected final ReportDescriptionGlobalClauseContext ctx;
 
-	protected Boolean global;
+	protected boolean global;
 
 	public GlobalClauseImpl(final ProgramUnit programUnit, final ReportDescriptionGlobalClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,12 +26,12 @@ public class GlobalClauseImpl extends CobolDivisionElementImpl implements Global
 	}
 
 	@Override
-	public Boolean isGlobal() {
+	public boolean isGlobal() {
 		return global;
 	}
 
 	@Override
-	public void setGlobal(final Boolean global) {
+	public void setGlobal(final boolean global) {
 		this.global = global;
 	}
 

@@ -12,8 +12,8 @@ import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface BlankWhenZeroClause extends CobolDivisionElement {
 
-	Boolean isBlankWhenZero();
+	boolean isBlankWhenZero();
 
-	void setBlankWhenZero(Boolean blankWhenZero);
+	void setBlankWhenZero(boolean blankWhenZero);
 
 }

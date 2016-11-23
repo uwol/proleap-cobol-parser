@@ -20,7 +20,7 @@ public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 
 	protected Call giving;
 
-	protected Boolean rounded;
+	protected boolean rounded;
 
 	public GivingImpl(final ProgramUnit programUnit, final AddGivingContext ctx) {
 		super(programUnit, ctx);
@@ -34,7 +34,7 @@ public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 	}
 
 	@Override
-	public Boolean isRounded() {
+	public boolean isRounded() {
 		return rounded;
 	}
 
@@ -44,7 +44,7 @@ public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 	}
 
 	@Override
-	public void setRounded(final Boolean rounded) {
+	public void setRounded(final boolean rounded) {
 		this.rounded = rounded;
 	}
 

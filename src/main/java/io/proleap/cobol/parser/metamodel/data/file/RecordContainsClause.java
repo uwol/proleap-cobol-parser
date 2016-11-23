@@ -20,7 +20,7 @@ public interface RecordContainsClause extends CobolDivisionElement {
 
 	IntegerLiteral getTo();
 
-	Boolean isVarying();
+	boolean isVarying();
 
 	void setDependingOnValueStmt(ValueStmt dependingOnValueStmt);
 
@@ -28,6 +28,6 @@ public interface RecordContainsClause extends CobolDivisionElement {
 
 	void setTo(IntegerLiteral to);
 
-	void setVarying(Boolean varying);
+	void setVarying(boolean varying);
 
 }

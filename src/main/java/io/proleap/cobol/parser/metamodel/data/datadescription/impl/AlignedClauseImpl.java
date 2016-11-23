@@ -15,7 +15,7 @@ import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 public class AlignedClauseImpl extends CobolDivisionElementImpl implements AlignedClause {
 
-	protected Boolean aligned;
+	protected boolean aligned;
 
 	protected DataAlignedClauseContext ctx;
 
@@ -26,12 +26,12 @@ public class AlignedClauseImpl extends CobolDivisionElementImpl implements Align
 	}
 
 	@Override
-	public Boolean isAligned() {
+	public boolean isAligned() {
 		return aligned;
 	}
 
 	@Override
-	public void setAligned(final Boolean aligned) {
+	public void setAligned(final boolean aligned) {
 		this.aligned = aligned;
 	}
 

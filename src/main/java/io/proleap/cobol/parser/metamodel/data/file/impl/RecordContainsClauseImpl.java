@@ -25,7 +25,7 @@ public class RecordContainsClauseImpl extends CobolDivisionElementImpl implement
 
 	protected IntegerLiteral to;
 
-	protected Boolean varying;
+	protected boolean varying;
 
 	public RecordContainsClauseImpl(final ProgramUnit programUnit, final RecordContainsClauseContext ctx) {
 		super(programUnit, ctx);
@@ -49,7 +49,7 @@ public class RecordContainsClauseImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
-	public Boolean isVarying() {
+	public boolean isVarying() {
 		return varying;
 	}
 
@@ -69,7 +69,7 @@ public class RecordContainsClauseImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
-	public void setVarying(final Boolean varying) {
+	public void setVarying(final boolean varying) {
 		this.varying = varying;
 	}
 

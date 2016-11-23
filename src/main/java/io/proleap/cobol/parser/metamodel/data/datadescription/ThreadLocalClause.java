@@ -12,7 +12,7 @@ import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface ThreadLocalClause extends CobolDivisionElement {
 
-	Boolean isThreadLocal();
+	boolean isThreadLocal();
 
-	void setThreadLocal(Boolean threadLocal);
+	void setThreadLocal(boolean threadLocal);
 }

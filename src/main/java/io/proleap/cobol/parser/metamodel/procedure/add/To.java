@@ -15,9 +15,9 @@ public interface To extends CobolDivisionElement {
 
 	Call getTo();
 
-	Boolean isRounded();
+	boolean isRounded();
 
-	void setRounded(Boolean rounded);
+	void setRounded(boolean rounded);
 
 	void setTo(Call to);
 }

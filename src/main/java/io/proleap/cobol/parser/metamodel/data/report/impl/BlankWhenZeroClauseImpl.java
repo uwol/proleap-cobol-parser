@@ -15,7 +15,7 @@ import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 public class BlankWhenZeroClauseImpl extends CobolDivisionElementImpl implements BlankWhenZeroClause {
 
-	protected Boolean blankWhenZero;
+	protected boolean blankWhenZero;
 
 	protected ReportGroupBlankWhenZeroClauseContext ctx;
 
@@ -26,12 +26,12 @@ public class BlankWhenZeroClauseImpl extends CobolDivisionElementImpl implements
 	}
 
 	@Override
-	public Boolean isBlankWhenZero() {
+	public boolean isBlankWhenZero() {
 		return blankWhenZero;
 	}
 
 	@Override
-	public void setBlankWhenZero(final Boolean blankWhenZero) {
+	public void setBlankWhenZero(final boolean blankWhenZero) {
 		this.blankWhenZero = blankWhenZero;
 	}
 }

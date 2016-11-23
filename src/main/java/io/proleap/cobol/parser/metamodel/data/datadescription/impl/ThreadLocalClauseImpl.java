@@ -17,7 +17,7 @@ public class ThreadLocalClauseImpl extends CobolDivisionElementImpl implements T
 
 	protected DataThreadLocalClauseContext ctx;
 
-	protected Boolean threadLocal;
+	protected boolean threadLocal;
 
 	public ThreadLocalClauseImpl(final ProgramUnit programUnit, final DataThreadLocalClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,12 +26,12 @@ public class ThreadLocalClauseImpl extends CobolDivisionElementImpl implements T
 	}
 
 	@Override
-	public Boolean isThreadLocal() {
+	public boolean isThreadLocal() {
 		return threadLocal;
 	}
 
 	@Override
-	public void setThreadLocal(final Boolean threadLocal) {
+	public void setThreadLocal(final boolean threadLocal) {
 		this.threadLocal = threadLocal;
 	}
 

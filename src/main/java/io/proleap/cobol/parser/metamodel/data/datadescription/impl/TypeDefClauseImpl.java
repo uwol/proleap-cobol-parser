@@ -17,7 +17,7 @@ public class TypeDefClauseImpl extends CobolDivisionElementImpl implements TypeD
 
 	protected DataTypeDefClauseContext ctx;
 
-	protected Boolean typeDef;
+	protected boolean typeDef;
 
 	public TypeDefClauseImpl(final ProgramUnit programUnit, final DataTypeDefClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,12 +26,12 @@ public class TypeDefClauseImpl extends CobolDivisionElementImpl implements TypeD
 	}
 
 	@Override
-	public Boolean isTypeDef() {
+	public boolean isTypeDef() {
 		return typeDef;
 	}
 
 	@Override
-	public void setTypeDef(final Boolean typeDef) {
+	public void setTypeDef(final boolean typeDef) {
 		this.typeDef = typeDef;
 	}
 

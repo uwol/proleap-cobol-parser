@@ -12,8 +12,8 @@ import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface GlobalClause extends CobolDivisionElement {
 
-	Boolean isGlobal();
+	boolean isGlobal();
 
-	void setGlobal(Boolean global);
+	void setGlobal(boolean global);
 
 }
