@@ -10,12 +10,12 @@ package io.proleap.cobol.parser.metamodel.procedure.call;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.CallByReferenceContext;
+import io.proleap.cobol.Cobol85Parser.CallByContentContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface CallByReferenceStatement extends CobolDivisionElement {
+public interface CallByContentStatement extends CobolDivisionElement {
 
-	ByReference addByReference(CallByReferenceContext ctx);
+	ByContent addByContent(CallByContentContext ctx);
 
-	List<ByReference> getByReferences();
+	List<ByContent> getByContents();
 }

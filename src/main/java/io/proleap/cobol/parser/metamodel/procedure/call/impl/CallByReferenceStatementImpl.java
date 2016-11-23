@@ -11,17 +11,24 @@ package io.proleap.cobol.parser.metamodel.procedure.call.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import io.proleap.cobol.Cobol85Parser.CallByReferenceContext;
 import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.call.ByReference;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallByReferenceStatement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class CallByReferenceStatementImpl extends CobolDivisionElementImpl implements CallByReferenceStatement {
 
-	protected final CallByReferenceStatementContext ctx;
+	private final static Logger LOG = LogManager.getLogger(CallByReferenceStatementImpl.class);
 
-	protected List<ValueStmt> referenceValueStmts = new ArrayList<ValueStmt>();
+	protected List<ByReference> byReferences = new ArrayList<ByReference>();
+
+	protected final CallByReferenceStatementContext ctx;
 
 	public CallByReferenceStatementImpl(final ProgramUnit programUnit, final CallByReferenceStatementContext ctx) {
 		super(programUnit, ctx);
@@ -30,13 +37,51 @@ public class CallByReferenceStatementImpl extends CobolDivisionElementImpl imple
 	}
 
 	@Override
-	public void addReferenceValueStmt(final ValueStmt referenceValueStmt) {
-		referenceValueStmts.add(referenceValueStmt);
+	public ByReference addByReference(final CallByReferenceContext ctx) {
+		ByReference result = (ByReference) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ByReferenceImpl(programUnit, ctx);
+
+			// call and type
+			final Call call;
+
+			if (ctx.fileName() != null) {
+				call = createCall(ctx.fileName());
+			} else if (ctx.identifier() != null) {
+				call = createCall(ctx.identifier());
+			} else {
+				LOG.warn("unknown reference at {}", ctx);
+				call = null;
+			}
+
+			result.setCall(call);
+
+			// type
+			final ByReference.Type type;
+
+			if (ctx.ADDRESS() != null) {
+				type = ByReference.Type.AddressOf;
+			} else if (ctx.INTEGER() != null) {
+				type = ByReference.Type.Integer;
+			} else if (ctx.STRING() != null) {
+				type = ByReference.Type.String;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
+
+			byReferences.add(result);
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
-	public List<ValueStmt> getReferenceValueStmts() {
-		return referenceValueStmts;
+	public List<ByReference> getByReferences() {
+		return byReferences;
 	}
 
 }

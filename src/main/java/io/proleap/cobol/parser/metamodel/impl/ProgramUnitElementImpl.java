@@ -192,6 +192,17 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected Call createCall(final LiteralContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
+	}
+
 	protected Call createCall(final LocalNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 

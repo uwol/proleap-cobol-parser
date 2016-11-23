@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.move;
 
+import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
@@ -19,5 +20,6 @@ public interface MoveToStatement extends Statement {
 
 	void addReceivingAreaCall(Call receivingAreaCall);
 
-	void setSendingAreaValueStmt(ValueStmt sendingAreaValueStmt);
+	ValueStmt addSendingAreaValueStmt(MoveToStatementSendingAreaContext ctx);
+
 }

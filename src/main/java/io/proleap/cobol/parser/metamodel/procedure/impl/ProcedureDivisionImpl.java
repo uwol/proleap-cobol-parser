@@ -20,14 +20,20 @@ import io.proleap.cobol.Cobol85Parser.AcceptStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddStatementContext;
 import io.proleap.cobol.Cobol85Parser.AlterProceedToContext;
 import io.proleap.cobol.Cobol85Parser.AlterStatementContext;
+import io.proleap.cobol.Cobol85Parser.CallByContentStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
+import io.proleap.cobol.Cobol85Parser.CallByValueStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
+import io.proleap.cobol.Cobol85Parser.NotOnExceptionClauseContext;
+import io.proleap.cobol.Cobol85Parser.NotOnOverflowPhraseContext;
 import io.proleap.cobol.Cobol85Parser.NotOnSizeErrorPhraseContext;
+import io.proleap.cobol.Cobol85Parser.OnExceptionClauseContext;
+import io.proleap.cobol.Cobol85Parser.OnOverflowPhraseContext;
 import io.proleap.cobol.Cobol85Parser.OnSizeErrorPhraseContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
@@ -37,7 +43,11 @@ import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
+import io.proleap.cobol.parser.metamodel.procedure.NotOnExceptionClause;
+import io.proleap.cobol.parser.metamodel.procedure.NotOnOverflowPhrase;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.OnExceptionClause;
+import io.proleap.cobol.parser.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.parser.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
 import io.proleap.cobol.parser.metamodel.procedure.ParagraphName;
@@ -62,7 +72,6 @@ import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.impl.StopStatementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.impl.ValueStmtDelegateImpl;
 
 public class ProcedureDivisionImpl extends CobolDivisionImpl implements ProcedureDivision {
 
@@ -89,15 +98,11 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new AcceptStatementImpl(programUnit, ctx);
 
-			/*
-			 * accept call
-			 */
+			// accept call
 			final Call acceptCall = createCall(ctx.identifier());
 			result.setAcceptCall(acceptCall);
 
-			/*
-			 * type
-			 */
+			// type
 			final Type type;
 
 			if (ctx.acceptFromDateStatement() != null) {
@@ -129,9 +134,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new AddStatementImpl(programUnit, ctx);
 
-			/*
-			 * add sub statement
-			 */
+			// add sub statement
 			final AddStatement.Type type;
 
 			if (ctx.addToStatement() != null) {
@@ -150,17 +153,13 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 			result.setType(type);
 
-			/*
-			 * on size
-			 */
+			// on size
 			if (ctx.onSizeErrorPhrase() != null) {
 				final OnSizeErrorPhrase onSizeErrorPhrase = createOnSizeErrorPhrase(ctx.onSizeErrorPhrase());
 				result.setOnSizeErrorPhrase(onSizeErrorPhrase);
 			}
 
-			/*
-			 * not on size
-			 */
+			// not on size
 			if (ctx.notOnSizeErrorPhrase() != null) {
 				final NotOnSizeErrorPhrase notOnSizeErrorPhrase = createNotOnSizeErrorPhrase(
 						ctx.notOnSizeErrorPhrase());
@@ -197,12 +196,58 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new CallStatementImpl(programUnit, ctx);
 
-			/*
-			 * using call by reference
-			 */
+			// called program
+			final Call programCall;
+
+			if (ctx.literal() != null) {
+				programCall = createCall(ctx.literal());
+			} else if (ctx.identifier() != null) {
+				programCall = createCall(ctx.identifier());
+			} else {
+				LOG.warn("unknown program call at {}", ctx);
+				programCall = null;
+			}
+
+			result.setProgramCall(programCall);
+
+			// using call by reference
 			for (final CallByReferenceStatementContext callByReferenceStatementContext : ctx
 					.callByReferenceStatement()) {
 				result.addCallByReferenceStatement(callByReferenceStatementContext);
+			}
+
+			// using call by value
+			for (final CallByValueStatementContext callByValueStatementContext : ctx.callByValueStatement()) {
+				result.addCallByValueStatement(callByValueStatementContext);
+			}
+
+			// using call by content
+			for (final CallByContentStatementContext callByContentStatementContext : ctx.callByContentStatement()) {
+				result.addCallByContentStatement(callByContentStatementContext);
+			}
+
+			// giving
+			if (ctx.callGivingPhrase() != null) {
+				result.addGivingPhrase(ctx.callGivingPhrase());
+			}
+
+			// on overflow
+			if (ctx.onOverflowPhrase() != null) {
+				final OnOverflowPhrase onOverflowPhrase = createOnOverflowPhrase(ctx.onOverflowPhrase());
+				result.setOnOverflowPhrase(onOverflowPhrase);
+			}
+
+			// on exception
+			if (ctx.onExceptionClause() != null) {
+				final OnExceptionClause onExceptionClause = createOnExceptionClause(ctx.onExceptionClause());
+				result.setOnExceptionClause(onExceptionClause);
+			}
+
+			// not on exception
+			if (ctx.notOnExceptionClause() != null) {
+				final NotOnExceptionClause notOnExceptionClause = createNotOnExceptionClause(
+						ctx.notOnExceptionClause());
+				result.setNotOnExceptionClause(notOnExceptionClause);
 			}
 
 			registerStatement(result);
@@ -235,8 +280,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			final List<IdentifierContext> identifierCtxs = ctx.identifier();
 
 			// sending area value statement
-			final ValueStmt sendingAreaValueStmt = addValueStmt(moveToStatementSendingArea);
-			result.setSendingAreaValueStmt(sendingAreaValueStmt);
+			result.addSendingAreaValueStmt(moveToStatementSendingArea);
 
 			// receiving area calls
 			for (final IdentifierContext identifierCtx : identifierCtxs) {
@@ -291,9 +335,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new PerformStatementImpl(programUnit, ctx);
 
-			/*
-			 * perform procedure
-			 */
+			// perform procedure
 			if (ctx.performProcedureStatement() != null) {
 				result.addPerformProcedureStatement(ctx.performProcedureStatement());
 			}
@@ -329,26 +371,27 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		return result;
 	}
 
-	@Override
-	public ValueStmt addValueStmt(final MoveToStatementSendingAreaContext ctx) {
-		ValueStmt result = (ValueStmt) getASGElement(ctx);
+	protected NotOnExceptionClause createNotOnExceptionClause(final NotOnExceptionClauseContext ctx) {
+		NotOnExceptionClause result = (NotOnExceptionClause) getASGElement(ctx);
 
 		if (result == null) {
-			/*
-			 * then the delegated value stmt
-			 */
-			final ValueStmt delegatedValueStmt;
+			result = new NotOnExceptionClauseImpl(programUnit, ctx);
 
-			if (ctx.identifier() != null) {
-				delegatedValueStmt = createCallValueStmt(ctx.identifier());
-			} else if (ctx.literal() != null) {
-				delegatedValueStmt = createLiteralValueStmt(ctx.literal());
-			} else {
-				LOG.warn("unknown value stmt {}.", ctx);
-				delegatedValueStmt = null;
-			}
+			// FIXME add statements
 
-			result = new ValueStmtDelegateImpl(delegatedValueStmt, programUnit, ctx);
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected NotOnOverflowPhrase createNotOnOverflowPhrase(final NotOnOverflowPhraseContext ctx) {
+		NotOnOverflowPhrase result = (NotOnOverflowPhrase) getASGElement(ctx);
+
+		if (result == null) {
+			result = new NotOnOverflowPhraseImpl(programUnit, ctx);
+
+			// FIXME add statements
 
 			registerASGElement(result);
 		}
@@ -361,6 +404,34 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 		if (result == null) {
 			result = new NotOnSizeErrorPhraseImpl(programUnit, ctx);
+
+			// FIXME add statements
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected OnExceptionClause createOnExceptionClause(final OnExceptionClauseContext ctx) {
+		OnExceptionClause result = (OnExceptionClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new OnExceptionClauseImpl(programUnit, ctx);
+
+			// FIXME add statements
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected OnOverflowPhrase createOnOverflowPhrase(final OnOverflowPhraseContext ctx) {
+		OnOverflowPhrase result = (OnOverflowPhrase) getASGElement(ctx);
+
+		if (result == null) {
+			result = new OnOverflowPhraseImpl(programUnit, ctx);
 
 			// FIXME add statements
 

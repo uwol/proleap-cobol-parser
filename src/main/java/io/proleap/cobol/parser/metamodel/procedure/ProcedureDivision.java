@@ -16,7 +16,6 @@ import io.proleap.cobol.Cobol85Parser.AlterStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
-import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
@@ -30,7 +29,6 @@ import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 /**
  * Contains procedures to manipulate the data from data division.
@@ -56,8 +54,6 @@ public interface ProcedureDivision extends CobolDivision {
 	PerformStatement addPerformStatement(PerformStatementContext ctx);
 
 	StopStatement addStopStatement(StopStatementContext ctx);
-
-	ValueStmt addValueStmt(MoveToStatementSendingAreaContext ctx);
 
 	Paragraph getParagraph(String name);
 

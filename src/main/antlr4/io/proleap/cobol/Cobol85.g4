@@ -1516,23 +1516,41 @@ callStatement :
 	(
 		USING (callByReferenceStatement | callByValueStatement | callByContentStatement)+
 	)?
-	(GIVING identifier)?
-	(ON? OVERFLOW statements)?
+	callGivingPhrase?
+	onOverflowPhrase?
 	onExceptionClause?
 	notOnExceptionClause?
 	END_CALL?
 ;
 
 callByReferenceStatement :
-	(BY? REFERENCE)? (identifier | ADDRESS OF identifier | fileName | INTEGER identifier | STRING identifier)+
+	(BY? REFERENCE)? callByReference+
+;
+
+callByReference :
+	(ADDRESS OF | INTEGER | STRING)? identifier 
+	| fileName
 ;
 
 callByValueStatement :
-	BY? VALUE (identifier | literal)+
+	BY? VALUE callByValue+
+;
+
+callByValue :
+	identifier | literal
 ;
 
 callByContentStatement :
-	BY? CONTENT ((LENGTH OF)? identifier | ADDRESS OF identifier | literal)+
+	BY? CONTENT callByContent+
+;
+
+callByContent :
+	(ADDRESS OF | LENGTH OF)? identifier 
+	| literal
+;
+
+callGivingPhrase :
+	GIVING identifier
 ;
 
 // cancel statement
@@ -2122,8 +2140,8 @@ stringStatement :
 	)+
 	INTO identifier
 	(WITH? POINTER qualifiedDataName)?
-	(ON? OVERFLOW statements)?
-	(NOT ON? OVERFLOW statements)?
+	onOverflowPhrase?
+	notOnOverflowPhrase?
 	END_STRING?
 ;
 
@@ -2175,8 +2193,8 @@ unstringStatement :
 	)+
 	(WITH? POINTER qualifiedDataName)?
 	(TALLYING IN? qualifiedDataName)?
-	(ON? OVERFLOW statements)?
-	(NOT ON? OVERFLOW statements)?
+	onOverflowPhrase?
+	notOnOverflowPhrase?
 	END_UNSTRING?
 ;
 
@@ -2228,6 +2246,14 @@ writeAdvancingPhrase :
 ;
 
 // statement phrases ----------------------------------
+
+onOverflowPhrase :
+	ON? OVERFLOW statements
+;
+
+notOnOverflowPhrase :
+	NOT ON? OVERFLOW statements
+;
 
 onSizeErrorPhrase :
 	ON? SIZE ERROR statements
