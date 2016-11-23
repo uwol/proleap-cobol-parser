@@ -28,6 +28,8 @@ import io.proleap.cobol.Cobol85Parser.CancelCallContext;
 import io.proleap.cobol.Cobol85Parser.CancelStatementContext;
 import io.proleap.cobol.Cobol85Parser.CloseFileContext;
 import io.proleap.cobol.Cobol85Parser.CloseStatementContext;
+import io.proleap.cobol.Cobol85Parser.ComputeStatementContext;
+import io.proleap.cobol.Cobol85Parser.ComputeStoreContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
@@ -70,6 +72,8 @@ import io.proleap.cobol.parser.metamodel.procedure.cancel.CancelStatement;
 import io.proleap.cobol.parser.metamodel.procedure.cancel.impl.CancelStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.close.CloseStatement;
 import io.proleap.cobol.parser.metamodel.procedure.close.impl.CloseStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.compute.ComputeStatement;
+import io.proleap.cobol.parser.metamodel.procedure.compute.impl.ComputeStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.display.impl.DisplayStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
@@ -78,6 +82,7 @@ import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.perform.impl.PerformStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.impl.StopStatementImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
 
@@ -290,6 +295,41 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 			for (final CloseFileContext closeFileContext : ctx.closeFile()) {
 				result.addCloseFile(closeFileContext);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ComputeStatement addComputeStatement(final ComputeStatementContext ctx) {
+		ComputeStatement result = (ComputeStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ComputeStatementImpl(programUnit, ctx);
+
+			// store calls
+			for (final ComputeStoreContext computeStoreContext : ctx.computeStore()) {
+				result.addStore(computeStoreContext);
+			}
+
+			// arithmetic expression
+			final ArithmeticValueStmt arithmeticExpression = createArithmeticValueStmt(ctx.arithmeticExpression());
+			result.setArithmeticExpression(arithmeticExpression);
+
+			// on size error
+			if (ctx.onSizeErrorPhrase() != null) {
+				final OnSizeErrorPhrase onSizeErrorPhrase = createOnSizeErrorPhrase(ctx.onSizeErrorPhrase());
+				result.setOnSizeErrorPhrase(onSizeErrorPhrase);
+			}
+
+			// not on size error
+			if (ctx.notOnSizeErrorPhrase() != null) {
+				final NotOnSizeErrorPhrase notOnSizeErrorPhrase = createNotOnSizeErrorPhrase(
+						ctx.notOnSizeErrorPhrase());
+				result.setNotOnSizeErrorPhrase(notOnSizeErrorPhrase);
 			}
 
 			registerStatement(result);

@@ -1606,11 +1606,15 @@ closePortFileIOUsingAssociatedDataLength :
 // compute statement
 
 computeStatement :
-	COMPUTE (identifier ROUNDED?)+
+	COMPUTE computeStore+
 	(EQUALCHAR | EQUAL) arithmeticExpression
 	onSizeErrorPhrase?
 	notOnSizeErrorPhrase?
 	END_COMPUTE?
+;
+
+computeStore :
+	identifier ROUNDED?
 ;
 
 // continue statement

@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
+import io.proleap.cobol.Cobol85Parser.ArithmeticExpressionContext;
 import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
 import io.proleap.cobol.Cobol85Parser.ClassNameContext;
 import io.proleap.cobol.Cobol85Parser.CobolWordContext;
@@ -47,10 +48,12 @@ import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
+import io.proleap.cobol.parser.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.TerminalValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.impl.ArithmeticValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.CallValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.IntegerLiteralValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
@@ -67,6 +70,11 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		super(ctx);
 
 		this.programUnit = programUnit;
+	}
+
+	protected ArithmeticValueStmt createArithmeticValueStmt(final ArithmeticExpressionContext ctx) {
+		final ArithmeticValueStmt result = new ArithmeticValueStmtImpl(programUnit, ctx);
+		return result;
 	}
 
 	protected Call createCall(final AlphabetNameContext ctx) {
