@@ -14,7 +14,8 @@ import io.proleap.cobol.Cobol85Parser.CancelCallContext;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
 /**
- * Displays the value of a data item on a screen or writes it to a file.
+ * Ensures that the referenced subprogram is entered in initial state next time
+ * it is called.
  */
 public interface CancelStatement extends Statement {
 

@@ -1566,16 +1566,15 @@ cancelCall :
 // close statement
 
 closeStatement :
-	CLOSE
-	(
-		fileName (closeReelUnitStatement | closeRelativeStatement | closePortFileIOStatement)?
-	)+
+	CLOSE closeFile+
+;
+
+closeFile :
+	fileName (closeReelUnitStatement | closeRelativeStatement | closePortFileIOStatement)?
 ;
 
 closeReelUnitStatement :
-	(REEL | UNIT)
-	(FOR? REMOVAL)?
-	(WITH? (NO REWIND | LOCK))?
+	(REEL | UNIT) (FOR? REMOVAL)? (WITH? (NO REWIND | LOCK))?
 ;
 
 closeRelativeStatement :
@@ -1583,15 +1582,25 @@ closeRelativeStatement :
 ;
 
 closePortFileIOStatement :
-	(WITH? NO WAIT | WITH WAIT)
-	(
-		USING
-		(
-			CLOSE_DISPOSITION OF? (ABORT | ORDERLY)
-			| ASSOCIATED_DATA_LENGTH OF? (identifier | integerLiteral)
-			| ASSOCIATED_DATA (identifier | integerLiteral)
-		)*
-	)?
+	(WITH? NO WAIT | WITH WAIT) (USING closePortFileIOUsing*)?
+;
+
+closePortFileIOUsing :
+	closePortFileIOUsingCloseDisposition 
+	| closePortFileIOUsingAssociatedData 
+	| closePortFileIOUsingAssociatedDataLength
+;
+
+closePortFileIOUsingCloseDisposition :
+	CLOSE_DISPOSITION OF? (ABORT | ORDERLY)
+;
+
+closePortFileIOUsingAssociatedData :
+	ASSOCIATED_DATA (identifier | integerLiteral)
+;
+
+closePortFileIOUsingAssociatedDataLength :
+	ASSOCIATED_DATA_LENGTH OF? (identifier | integerLiteral)
 ;
 
 // compute statement

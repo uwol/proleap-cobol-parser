@@ -26,6 +26,8 @@ import io.proleap.cobol.Cobol85Parser.CallByValueStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.CancelCallContext;
 import io.proleap.cobol.Cobol85Parser.CancelStatementContext;
+import io.proleap.cobol.Cobol85Parser.CloseFileContext;
+import io.proleap.cobol.Cobol85Parser.CloseStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
@@ -66,6 +68,8 @@ import io.proleap.cobol.parser.metamodel.procedure.call.CallStatement;
 import io.proleap.cobol.parser.metamodel.procedure.call.impl.CallStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.cancel.CancelStatement;
 import io.proleap.cobol.parser.metamodel.procedure.cancel.impl.CancelStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.close.CloseStatement;
+import io.proleap.cobol.parser.metamodel.procedure.close.impl.CloseStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.display.impl.DisplayStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
@@ -269,6 +273,23 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 			for (final CancelCallContext cancelCallContext : ctx.cancelCall()) {
 				result.addCancelCall(cancelCallContext);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public CloseStatement addCloseStatement(final CloseStatementContext ctx) {
+		CloseStatement result = (CloseStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new CloseStatementImpl(programUnit, ctx);
+
+			for (final CloseFileContext closeFileContext : ctx.closeFile()) {
+				result.addCloseFile(closeFileContext);
 			}
 
 			registerStatement(result);
