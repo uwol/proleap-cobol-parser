@@ -152,26 +152,27 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final String name = determineName(ctx);
 			final DataDivision dataDivision = programUnit.getDataDivision();
 
-			if (dataDivision != null) {
+			if (dataDivision == null) {
+				result = new UndefinedCallImpl(name, programUnit, ctx);
+			} else {
 				final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
-				if (workingStorageSection != null) {
+				if (workingStorageSection == null) {
+					result = new UndefinedCallImpl(name, programUnit, ctx);
+				} else {
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.getDataDescriptionEntry(name);
 
-					/*
-					 * create call model element
-					 */
-					if (dataDescriptionEntry != null) {
+					if (dataDescriptionEntry == null) {
+						LOG.warn("call to unknown element {}", name);
+						result = new UndefinedCallImpl(name, programUnit, ctx);
+					} else {
 						final DataDescriptionEntryCall call = new DataDescriptionEntryCallImpl(name,
 								dataDescriptionEntry, programUnit, ctx);
 
 						linkDataDescriptionEntryCallWithDataDescriptionEntry(call, dataDescriptionEntry);
 
 						result = call;
-					} else {
-						LOG.warn("call to unknown element {}", name);
-						result = new UndefinedCallImpl(name, programUnit, ctx);
 					}
 				}
 			}
@@ -220,14 +221,14 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final String name = determineName(ctx);
 			final Paragraph paragraph = programUnit.getProcedureDivision().getParagraph(name);
 
-			if (paragraph != null) {
+			if (paragraph == null) {
+				result = new UndefinedCallImpl(name, programUnit, ctx);
+			} else {
 				final ProcedureCall call = new ProcedureCallImpl(name, paragraph, programUnit, ctx);
 
 				linkProcedureCallWithParagraph(call, paragraph);
 
 				result = call;
-			} else {
-				result = new UndefinedCallImpl(name, programUnit, ctx);
 			}
 
 			registerASGElement(result);

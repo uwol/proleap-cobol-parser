@@ -8,11 +8,11 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.accept;
 
-import io.proleap.cobol.Cobol85Parser.AcceptFromDateContext;
-import io.proleap.cobol.Cobol85Parser.AcceptFromMnemonicContext;
-import io.proleap.cobol.Cobol85Parser.AcceptMessageCountContext;
+import io.proleap.cobol.Cobol85Parser.AcceptFromDateStatementContext;
+import io.proleap.cobol.Cobol85Parser.AcceptFromMnemonicStatementContext;
+import io.proleap.cobol.Cobol85Parser.AcceptMessageCountStatementContext;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 /**
  * Transfers low volume data or system date-related information into the
@@ -24,11 +24,13 @@ public interface AcceptStatement extends Statement {
 		Date, MessageCount, Mnemonic
 	}
 
-	AcceptFromDate addAcceptFromDate(AcceptFromDateContext ctx);
+	AcceptFromDate addAcceptFromDate(AcceptFromDateStatementContext ctx);
 
-	AcceptFromMnemonic addAcceptFromMnemonic(AcceptFromMnemonicContext ctx);
+	AcceptFromMnemonic addAcceptFromMnemonic(AcceptFromMnemonicStatementContext ctx);
 
-	AcceptMessageCount addAcceptMessageCount(AcceptMessageCountContext ctx);
+	AcceptMessageCount addAcceptMessageCount(AcceptMessageCountStatementContext ctx);
+
+	Call getAcceptCall();
 
 	AcceptFromDate getAcceptFromDate();
 
@@ -36,11 +38,9 @@ public interface AcceptStatement extends Statement {
 
 	AcceptMessageCount getAcceptMessageCount();
 
-	ValueStmt getAcceptValueStmt();
-
 	Type getType();
 
-	void setAcceptValueStmt(ValueStmt acceptValueStmt);
+	void setAcceptCall(Call acceptCall);
 
 	void setType(Type fromType);
 }

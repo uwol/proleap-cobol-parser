@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.AddToContext;
 import io.proleap.cobol.Cobol85Parser.AddToGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddToStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeErrorPhrase;
 import io.proleap.cobol.parser.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddCorresponding;
@@ -61,7 +62,7 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			 * from
 			 */
 			final ValueStmt fromValueStmt = createCallValueStmt(ctx.identifier());
-			result.setFromValueStmt(fromValueStmt);
+			result.setFrom(fromValueStmt);
 
 			/*
 			 * to
@@ -163,7 +164,7 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 				fromValueStmt = null;
 			}
 
-			result.setFromValueStmt(fromValueStmt);
+			result.setFrom(fromValueStmt);
 
 			registerASGElement(result);
 		}
@@ -180,8 +181,8 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			/*
 			 * giving value stmt
 			 */
-			final ValueStmt givingValueStmt = createCallValueStmt(ctx.identifier());
-			result.setGivingValueStmt(givingValueStmt);
+			final Call giving = createCall(ctx.identifier());
+			result.setGiving(giving);
 
 			/*
 			 * rounded
@@ -205,8 +206,8 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			/*
 			 * to value stmt
 			 */
-			final ValueStmt toValueStmt = createCallValueStmt(ctx.identifier());
-			result.setToValueStmt(toValueStmt);
+			final Call to = createCall(ctx.identifier());
+			result.setTo(to);
 
 			/*
 			 * rounded

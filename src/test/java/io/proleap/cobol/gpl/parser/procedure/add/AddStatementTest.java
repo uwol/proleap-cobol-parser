@@ -13,11 +13,15 @@ import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddCorresponding;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddStatement;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddTo;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddToGiving;
+import io.proleap.cobol.parser.metamodel.procedure.add.From;
+import io.proleap.cobol.parser.metamodel.procedure.add.Giving;
+import io.proleap.cobol.parser.metamodel.procedure.add.To;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class AddStatementTest extends CobolTestSupport {
@@ -48,10 +52,16 @@ public class AddStatementTest extends CobolTestSupport {
 
 			final AddTo addTo = addStatement.getAddTo();
 			assertEquals(1, addTo.getFroms().size());
-			assertNotNull(addTo.getFroms().get(0).getFromValueStmt());
 
+			final From from = addTo.getFroms().get(0);
+
+			assertNotNull(from.getFrom());
 			assertEquals(1, addTo.getTos().size());
-			assertNotNull(addTo.getTos().get(0).getToValueStmt());
+
+			final To to = addTo.getTos().get(0);
+
+			assertNotNull(to.getTo());
+			assertEquals(Call.CallType.DataDescriptionsEntryCall, to.getTo().getCallType());
 		}
 
 		{
@@ -61,12 +71,21 @@ public class AddStatementTest extends CobolTestSupport {
 
 			final AddTo addTo = addStatement.getAddTo();
 			assertEquals(2, addTo.getFroms().size());
-			assertNotNull(addTo.getFroms().get(0).getFromValueStmt());
-			assertNotNull(addTo.getFroms().get(1).getFromValueStmt());
 
+			final From from1 = addTo.getFroms().get(0);
+			final From from2 = addTo.getFroms().get(1);
+
+			assertNotNull(from1.getFrom());
+			assertNotNull(from2.getFrom());
 			assertEquals(2, addTo.getTos().size());
-			assertNotNull(addTo.getTos().get(0).getToValueStmt());
-			assertNotNull(addTo.getTos().get(1).getToValueStmt());
+
+			final To to1 = addTo.getTos().get(0);
+			final To to2 = addTo.getTos().get(1);
+
+			assertNotNull(to1.getTo());
+			assertEquals(Call.CallType.DataDescriptionsEntryCall, to1.getTo().getCallType());
+			assertNotNull(to2.getTo());
+			assertEquals(Call.CallType.DataDescriptionsEntryCall, to2.getTo().getCallType());
 		}
 
 		{
@@ -76,13 +95,22 @@ public class AddStatementTest extends CobolTestSupport {
 
 			final AddToGiving addToGiving = addStatement.getAddToGiving();
 			assertEquals(1, addToGiving.getFroms().size());
-			assertNotNull(addToGiving.getFroms().get(0).getFromValueStmt());
 
+			final From from = addToGiving.getFroms().get(0);
+			assertNotNull(from.getFrom());
 			assertEquals(1, addToGiving.getTos().size());
-			assertNotNull(addToGiving.getTos().get(0).getToValueStmt());
+
+			final To to = addToGiving.getTos().get(0);
+
+			assertNotNull(to.getTo());
+			assertEquals(Call.CallType.DataDescriptionsEntryCall, to.getTo().getCallType());
 
 			assertEquals(1, addToGiving.getGivings().size());
-			assertNotNull(addToGiving.getGivings().get(0).getGivingValueStmt());
+
+			final Giving giving = addToGiving.getGivings().get(0);
+
+			assertNotNull(giving.getGiving());
+			assertEquals(Call.CallType.DataDescriptionsEntryCall, giving.getGiving().getCallType());
 		}
 
 		{
@@ -92,16 +120,31 @@ public class AddStatementTest extends CobolTestSupport {
 
 			final AddToGiving addToGiving = addStatement.getAddToGiving();
 			assertEquals(2, addToGiving.getFroms().size());
-			assertNotNull(addToGiving.getFroms().get(0).getFromValueStmt());
-			assertNotNull(addToGiving.getFroms().get(1).getFromValueStmt());
 
+			final From from1 = addToGiving.getFroms().get(0);
+			final From from2 = addToGiving.getFroms().get(1);
+
+			assertNotNull(from1.getFrom());
+			assertNotNull(from2.getFrom());
 			assertEquals(2, addToGiving.getTos().size());
-			assertNotNull(addToGiving.getTos().get(0).getToValueStmt());
-			assertNotNull(addToGiving.getTos().get(1).getToValueStmt());
+
+			final To to1 = addToGiving.getTos().get(0);
+			final To to2 = addToGiving.getTos().get(1);
+
+			assertNotNull(to1.getTo());
+			assertEquals(Call.CallType.DataDescriptionsEntryCall, to1.getTo().getCallType());
+			assertNotNull(to2.getTo());
+			assertEquals(Call.CallType.DataDescriptionsEntryCall, to2.getTo().getCallType());
 
 			assertEquals(2, addToGiving.getGivings().size());
-			assertNotNull(addToGiving.getGivings().get(0).getGivingValueStmt());
-			assertNotNull(addToGiving.getGivings().get(1).getGivingValueStmt());
+
+			final Giving giving1 = addToGiving.getGivings().get(0);
+			final Giving giving2 = addToGiving.getGivings().get(1);
+
+			assertNotNull(giving1.getGiving());
+			assertEquals(Call.CallType.DataDescriptionsEntryCall, giving1.getGiving().getCallType());
+			assertNotNull(giving2.getGiving());
+			assertEquals(Call.CallType.DataDescriptionsEntryCall, giving2.getGiving().getCallType());
 		}
 
 		{
@@ -110,9 +153,10 @@ public class AddStatementTest extends CobolTestSupport {
 			assertNotNull(addStatement.getAddCorresponding());
 
 			final AddCorresponding addCorresponding = addStatement.getAddCorresponding();
-			assertNotNull(addCorresponding.getFromValueStmt());
+			assertNotNull(addCorresponding.getFrom());
 			assertNotNull(addCorresponding.getTo());
-			assertNotNull(addCorresponding.getTo().getToValueStmt());
+			assertNotNull(addCorresponding.getTo().getTo());
+			assertEquals(Call.CallType.DataDescriptionsEntryCall, addCorresponding.getTo().getTo().getCallType());
 		}
 	}
 }

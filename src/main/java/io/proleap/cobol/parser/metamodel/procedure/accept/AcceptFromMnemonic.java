@@ -9,14 +9,14 @@
 package io.proleap.cobol.parser.metamodel.procedure.accept;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 /**
  * Transfers data from hardware device.
  */
 public interface AcceptFromMnemonic extends CobolDivisionElement {
 
-	ValueStmt getMnemonicValueStmt();
+	Call getMnemonicCall();
 
-	void setMnemonicValueStmt(ValueStmt mnemonicValueStmt);
+	void setMnemonicCall(Call mnemonicCall);
 }

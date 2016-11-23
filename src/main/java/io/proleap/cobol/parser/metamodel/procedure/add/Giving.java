@@ -9,15 +9,15 @@
 package io.proleap.cobol.parser.metamodel.procedure.add;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface Giving extends CobolDivisionElement {
 
-	ValueStmt getGivingValueStmt();
+	Call getGiving();
 
 	Boolean isRounded();
 
-	void setGivingValueStmt(ValueStmt givingValueStmt);
+	void setGiving(Call giving);
 
 	void setRounded(Boolean rounded);
 }

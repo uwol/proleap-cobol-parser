@@ -10,9 +10,9 @@ package io.proleap.cobol.parser.metamodel.procedure.add.impl;
 
 import io.proleap.cobol.Cobol85Parser.AddToContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.add.To;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ToImpl extends CobolDivisionElementImpl implements To {
 
@@ -20,7 +20,7 @@ public class ToImpl extends CobolDivisionElementImpl implements To {
 
 	protected Boolean rounded;
 
-	protected ValueStmt toValueStmt;
+	protected Call to;
 
 	public ToImpl(final ProgramUnit programUnit, final AddToContext ctx) {
 		super(programUnit, ctx);
@@ -29,8 +29,8 @@ public class ToImpl extends CobolDivisionElementImpl implements To {
 	}
 
 	@Override
-	public ValueStmt getToValueStmt() {
-		return toValueStmt;
+	public Call getTo() {
+		return to;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class ToImpl extends CobolDivisionElementImpl implements To {
 	}
 
 	@Override
-	public void setToValueStmt(final ValueStmt toValueStmt) {
-		this.toValueStmt = toValueStmt;
+	public void setTo(final Call to) {
+		this.to = to;
 	}
 
 }

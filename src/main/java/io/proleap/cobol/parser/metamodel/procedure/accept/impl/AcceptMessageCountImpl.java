@@ -8,16 +8,16 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.accept.impl;
 
-import io.proleap.cobol.Cobol85Parser.AcceptMessageCountContext;
+import io.proleap.cobol.Cobol85Parser.AcceptMessageCountStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptMessageCount;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
 public class AcceptMessageCountImpl extends StatementImpl implements AcceptMessageCount {
 
-	protected final AcceptMessageCountContext ctx;
+	protected final AcceptMessageCountStatementContext ctx;
 
-	public AcceptMessageCountImpl(final ProgramUnit programUnit, final AcceptMessageCountContext ctx) {
+	public AcceptMessageCountImpl(final ProgramUnit programUnit, final AcceptMessageCountStatementContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

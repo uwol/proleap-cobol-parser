@@ -13,11 +13,11 @@ import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface AddCorresponding extends Statement {
 
-	ValueStmt getFromValueStmt();
+	ValueStmt getFrom();
 
 	To getTo();
 
-	void setFromValueStmt(ValueStmt fromValueStmt);
+	void setFrom(ValueStmt from);
 
 	void setTo(To to);
 

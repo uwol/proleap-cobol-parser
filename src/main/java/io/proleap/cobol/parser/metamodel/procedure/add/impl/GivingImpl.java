@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.procedure.add.impl;
 
 import io.proleap.cobol.Cobol85Parser.AddGivingContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.add.Giving;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 
 	protected final AddGivingContext ctx;
 
-	protected ValueStmt givingValueStmt;
+	protected Call giving;
 
 	protected Boolean rounded;
 
@@ -29,8 +29,8 @@ public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 	}
 
 	@Override
-	public ValueStmt getGivingValueStmt() {
-		return givingValueStmt;
+	public Call getGiving() {
+		return giving;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 	}
 
 	@Override
-	public void setGivingValueStmt(final ValueStmt givingValueStmt) {
-		this.givingValueStmt = givingValueStmt;
+	public void setGiving(final Call giving) {
+		this.giving = giving;
 	}
 
 	@Override

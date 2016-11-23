@@ -19,13 +19,6 @@
 *
 * 2. To be used in conjunction with the provided preprocessor, which executes
 *    COPY and REPLACE statements.
-*
-*
-* Known limitations (work under progress):
-*
-* 1. Picture strings are parsed as (groups of) terminal symbols.
-*
-* 2. Comments are skipped.
 */
 
 grammar Cobol85;
@@ -1430,10 +1423,15 @@ statement :
 // accept statement
 
 acceptStatement :
-	ACCEPT identifier (acceptFromDate | acceptFromMnemonic | acceptMessageCount)?
+	ACCEPT identifier 
+	(
+		acceptFromDateStatement 
+		| acceptFromMnemonicStatement
+		| acceptMessageCountStatement
+	)?
 ;
 
-acceptFromDate :
+acceptFromDateStatement :
 	FROM
 	(
 		DATE YYYYMMDD?
@@ -1449,11 +1447,11 @@ acceptFromDate :
 	)
 ;
 
-acceptFromMnemonic :
+acceptFromMnemonicStatement :
 	FROM mnemonicName
 ;
 
-acceptMessageCount :
+acceptMessageCountStatement :
 	MESSAGE? COUNT
 ;
 

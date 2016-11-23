@@ -9,15 +9,15 @@
 package io.proleap.cobol.parser.metamodel.procedure.add;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface To extends CobolDivisionElement {
 
-	ValueStmt getToValueStmt();
+	Call getTo();
 
 	Boolean isRounded();
 
 	void setRounded(Boolean rounded);
 
-	void setToValueStmt(ValueStmt toValueStmt);
+	void setTo(Call to);
 }

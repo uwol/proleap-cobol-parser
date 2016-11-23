@@ -60,7 +60,6 @@ import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.perform.impl.PerformStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.impl.StopStatementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.ValueStmtDelegateImpl;
@@ -91,24 +90,24 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			result = new AcceptStatementImpl(programUnit, ctx);
 
 			/*
-			 * accept value stmt
+			 * accept call
 			 */
-			final CallValueStmt acceptValueStmt = createCallValueStmt(ctx.identifier());
-			result.setAcceptValueStmt(acceptValueStmt);
+			final Call acceptCall = createCall(ctx.identifier());
+			result.setAcceptCall(acceptCall);
 
 			/*
 			 * type
 			 */
 			final Type type;
 
-			if (ctx.acceptFromDate() != null) {
-				result.addAcceptFromDate(ctx.acceptFromDate());
+			if (ctx.acceptFromDateStatement() != null) {
+				result.addAcceptFromDate(ctx.acceptFromDateStatement());
 				type = Type.Date;
-			} else if (ctx.acceptFromMnemonic() != null) {
-				result.addAcceptFromMnemonic(ctx.acceptFromMnemonic());
+			} else if (ctx.acceptFromMnemonicStatement() != null) {
+				result.addAcceptFromMnemonic(ctx.acceptFromMnemonicStatement());
 				type = Type.Mnemonic;
-			} else if (ctx.acceptMessageCount() != null) {
-				result.addAcceptMessageCount(ctx.acceptMessageCount());
+			} else if (ctx.acceptMessageCountStatement() != null) {
+				result.addAcceptMessageCount(ctx.acceptMessageCountStatement());
 				type = Type.MessageCount;
 			} else {
 				LOG.warn("unknown type at {}", ctx);

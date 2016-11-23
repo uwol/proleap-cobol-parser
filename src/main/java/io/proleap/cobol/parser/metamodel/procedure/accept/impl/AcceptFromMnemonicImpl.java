@@ -8,32 +8,32 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.accept.impl;
 
-import io.proleap.cobol.Cobol85Parser.AcceptFromMnemonicContext;
+import io.proleap.cobol.Cobol85Parser.AcceptFromMnemonicStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptFromMnemonic;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class AcceptFromMnemonicImpl extends StatementImpl implements AcceptFromMnemonic {
 
-	protected final AcceptFromMnemonicContext ctx;
+	protected final AcceptFromMnemonicStatementContext ctx;
 
-	protected ValueStmt mnemonicValueStmt;
+	protected Call mnemonicCall;
 
-	public AcceptFromMnemonicImpl(final ProgramUnit programUnit, final AcceptFromMnemonicContext ctx) {
+	public AcceptFromMnemonicImpl(final ProgramUnit programUnit, final AcceptFromMnemonicStatementContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}
 
 	@Override
-	public ValueStmt getMnemonicValueStmt() {
-		return mnemonicValueStmt;
+	public Call getMnemonicCall() {
+		return mnemonicCall;
 	}
 
 	@Override
-	public void setMnemonicValueStmt(final ValueStmt mnemonicValueStmt) {
-		this.mnemonicValueStmt = mnemonicValueStmt;
+	public void setMnemonicCall(final Call mnemonicCall) {
+		this.mnemonicCall = mnemonicCall;
 	}
 
 }

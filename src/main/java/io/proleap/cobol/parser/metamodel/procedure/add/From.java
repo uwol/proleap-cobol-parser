@@ -13,7 +13,7 @@ import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface From extends CobolDivisionElement {
 
-	ValueStmt getFromValueStmt();
+	ValueStmt getFrom();
 
-	void setFromValueStmt(ValueStmt fromValueStmt);
+	void setFrom(ValueStmt from);
 }

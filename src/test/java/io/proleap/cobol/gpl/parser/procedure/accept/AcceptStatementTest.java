@@ -13,6 +13,7 @@ import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.CopyBook;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptFromDate;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptFromMnemonic;
@@ -43,7 +44,8 @@ public class AcceptStatementTest extends CobolTestSupport {
 
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(0);
-			assertNotNull(acceptStatement.getAcceptValueStmt());
+			assertNotNull(acceptStatement.getAcceptCall());
+			assertEquals(Call.CallType.UndefinedCall, acceptStatement.getAcceptCall().getCallType());
 			assertNotNull(acceptStatement.getAcceptFromDate());
 
 			final AcceptFromDate acceptFromDate = acceptStatement.getAcceptFromDate();
@@ -52,16 +54,19 @@ public class AcceptStatementTest extends CobolTestSupport {
 
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(1);
-			assertNotNull(acceptStatement.getAcceptValueStmt());
+			assertNotNull(acceptStatement.getAcceptCall());
+			assertEquals(Call.CallType.UndefinedCall, acceptStatement.getAcceptCall().getCallType());
 			assertNotNull(acceptStatement.getAcceptFromMnemonic());
 
 			final AcceptFromMnemonic acceptFromMnemonic = acceptStatement.getAcceptFromMnemonic();
-			assertNotNull(acceptFromMnemonic.getMnemonicValueStmt());
+			assertNotNull(acceptFromMnemonic.getMnemonicCall());
+			assertEquals(Call.CallType.UndefinedCall, acceptFromMnemonic.getMnemonicCall().getCallType());
 		}
 
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(2);
-			assertNotNull(acceptStatement.getAcceptValueStmt());
+			assertNotNull(acceptStatement.getAcceptCall());
+			assertEquals(Call.CallType.UndefinedCall, acceptStatement.getAcceptCall().getCallType());
 			assertNotNull(acceptStatement.getAcceptMessageCount());
 
 			final AcceptMessageCount acceptMessageCount = acceptStatement.getAcceptMessageCount();

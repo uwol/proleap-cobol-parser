@@ -8,27 +8,27 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.accept.impl;
 
-import io.proleap.cobol.Cobol85Parser.AcceptFromDateContext;
-import io.proleap.cobol.Cobol85Parser.AcceptFromMnemonicContext;
-import io.proleap.cobol.Cobol85Parser.AcceptMessageCountContext;
+import io.proleap.cobol.Cobol85Parser.AcceptFromDateStatementContext;
+import io.proleap.cobol.Cobol85Parser.AcceptFromMnemonicStatementContext;
+import io.proleap.cobol.Cobol85Parser.AcceptMessageCountStatementContext;
 import io.proleap.cobol.Cobol85Parser.AcceptStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptFromDate;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptFromMnemonic;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptMessageCount;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptStatement;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class AcceptStatementImpl extends StatementImpl implements AcceptStatement {
+
+	protected Call acceptCall;
 
 	protected AcceptFromDate acceptFromDate;
 
 	protected AcceptFromMnemonic acceptFromMnemonic;
 
 	protected AcceptMessageCount acceptMessageCount;
-
-	protected ValueStmt acceptValueStmt;
 
 	protected final AcceptStatementContext ctx;
 
@@ -41,7 +41,7 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public AcceptFromDate addAcceptFromDate(final AcceptFromDateContext ctx) {
+	public AcceptFromDate addAcceptFromDate(final AcceptFromDateStatementContext ctx) {
 		AcceptFromDate result = (AcceptFromDate) getASGElement(ctx);
 
 		if (result == null) {
@@ -90,14 +90,14 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public AcceptFromMnemonic addAcceptFromMnemonic(final AcceptFromMnemonicContext ctx) {
+	public AcceptFromMnemonic addAcceptFromMnemonic(final AcceptFromMnemonicStatementContext ctx) {
 		AcceptFromMnemonic result = (AcceptFromMnemonic) getASGElement(ctx);
 
 		if (result == null) {
 			result = new AcceptFromMnemonicImpl(programUnit, ctx);
 
-			final ValueStmt mnemonicValueStmt = createCallValueStmt(ctx.mnemonicName());
-			result.setMnemonicValueStmt(mnemonicValueStmt);
+			final Call mnemonicCall = createCall(ctx.mnemonicName());
+			result.setMnemonicCall(mnemonicCall);
 
 			acceptFromMnemonic = result;
 			registerASGElement(result);
@@ -107,7 +107,7 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public AcceptMessageCount addAcceptMessageCount(final AcceptMessageCountContext ctx) {
+	public AcceptMessageCount addAcceptMessageCount(final AcceptMessageCountStatementContext ctx) {
 		AcceptMessageCount result = (AcceptMessageCount) getASGElement(ctx);
 
 		if (result == null) {
@@ -118,6 +118,11 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 		}
 
 		return result;
+	}
+
+	@Override
+	public Call getAcceptCall() {
+		return acceptCall;
 	}
 
 	@Override
@@ -136,18 +141,13 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public ValueStmt getAcceptValueStmt() {
-		return acceptValueStmt;
-	}
-
-	@Override
 	public Type getType() {
 		return type;
 	}
 
 	@Override
-	public void setAcceptValueStmt(final ValueStmt acceptValueStmt) {
-		this.acceptValueStmt = acceptValueStmt;
+	public void setAcceptCall(final Call acceptCall) {
+		this.acceptCall = acceptCall;
 	}
 
 	@Override

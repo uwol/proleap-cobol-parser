@@ -30,7 +30,7 @@ public class AddCorrespondingImpl extends StatementImpl implements AddCorrespond
 	}
 
 	@Override
-	public ValueStmt getFromValueStmt() {
+	public ValueStmt getFrom() {
 		return from;
 	}
 
@@ -40,7 +40,7 @@ public class AddCorrespondingImpl extends StatementImpl implements AddCorrespond
 	}
 
 	@Override
-	public void setFromValueStmt(final ValueStmt from) {
+	public void setFrom(final ValueStmt from) {
 		this.from = from;
 	}
 
