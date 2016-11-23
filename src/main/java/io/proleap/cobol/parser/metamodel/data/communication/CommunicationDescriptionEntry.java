@@ -8,14 +8,21 @@
 
 package io.proleap.cobol.parser.metamodel.data.communication;
 
+import java.util.List;
+
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.Declaration;
+import io.proleap.cobol.parser.metamodel.call.CommunicationDescriptionEntryCall;
 
 public interface CommunicationDescriptionEntry extends CobolDivisionElement, Declaration {
 
 	enum Type {
 		Input, InputOutput, Output
 	}
+
+	void addCall(CommunicationDescriptionEntryCall call);
+
+	List<CommunicationDescriptionEntryCall> getCalls();
 
 	Type getType();
 }

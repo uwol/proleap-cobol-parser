@@ -61,7 +61,7 @@ public class AddStatementTest extends CobolTestSupport {
 			final To to = addTo.getTos().get(0);
 
 			assertNotNull(to.getTo());
-			assertEquals(Call.CallType.DataDescriptionsEntryCall, to.getTo().getCallType());
+			assertEquals(Call.CallType.DataDescriptionEntryCall, to.getTo().getCallType());
 		}
 
 		{
@@ -83,9 +83,9 @@ public class AddStatementTest extends CobolTestSupport {
 			final To to2 = addTo.getTos().get(1);
 
 			assertNotNull(to1.getTo());
-			assertEquals(Call.CallType.DataDescriptionsEntryCall, to1.getTo().getCallType());
+			assertEquals(Call.CallType.DataDescriptionEntryCall, to1.getTo().getCallType());
 			assertNotNull(to2.getTo());
-			assertEquals(Call.CallType.DataDescriptionsEntryCall, to2.getTo().getCallType());
+			assertEquals(Call.CallType.DataDescriptionEntryCall, to2.getTo().getCallType());
 		}
 
 		{
@@ -103,14 +103,14 @@ public class AddStatementTest extends CobolTestSupport {
 			final To to = addToGiving.getTos().get(0);
 
 			assertNotNull(to.getTo());
-			assertEquals(Call.CallType.DataDescriptionsEntryCall, to.getTo().getCallType());
+			assertEquals(Call.CallType.DataDescriptionEntryCall, to.getTo().getCallType());
 
 			assertEquals(1, addToGiving.getGivings().size());
 
 			final Giving giving = addToGiving.getGivings().get(0);
 
 			assertNotNull(giving.getGiving());
-			assertEquals(Call.CallType.DataDescriptionsEntryCall, giving.getGiving().getCallType());
+			assertEquals(Call.CallType.DataDescriptionEntryCall, giving.getGiving().getCallType());
 		}
 
 		{
@@ -132,9 +132,9 @@ public class AddStatementTest extends CobolTestSupport {
 			final To to2 = addToGiving.getTos().get(1);
 
 			assertNotNull(to1.getTo());
-			assertEquals(Call.CallType.DataDescriptionsEntryCall, to1.getTo().getCallType());
+			assertEquals(Call.CallType.DataDescriptionEntryCall, to1.getTo().getCallType());
 			assertNotNull(to2.getTo());
-			assertEquals(Call.CallType.DataDescriptionsEntryCall, to2.getTo().getCallType());
+			assertEquals(Call.CallType.DataDescriptionEntryCall, to2.getTo().getCallType());
 
 			assertEquals(2, addToGiving.getGivings().size());
 
@@ -142,9 +142,9 @@ public class AddStatementTest extends CobolTestSupport {
 			final Giving giving2 = addToGiving.getGivings().get(1);
 
 			assertNotNull(giving1.getGiving());
-			assertEquals(Call.CallType.DataDescriptionsEntryCall, giving1.getGiving().getCallType());
+			assertEquals(Call.CallType.DataDescriptionEntryCall, giving1.getGiving().getCallType());
 			assertNotNull(giving2.getGiving());
-			assertEquals(Call.CallType.DataDescriptionsEntryCall, giving2.getGiving().getCallType());
+			assertEquals(Call.CallType.DataDescriptionEntryCall, giving2.getGiving().getCallType());
 		}
 
 		{
@@ -156,7 +156,7 @@ public class AddStatementTest extends CobolTestSupport {
 			assertNotNull(addCorresponding.getFrom());
 			assertNotNull(addCorresponding.getTo());
 			assertNotNull(addCorresponding.getTo().getTo());
-			assertEquals(Call.CallType.DataDescriptionsEntryCall, addCorresponding.getTo().getTo().getCallType());
+			assertEquals(Call.CallType.DataDescriptionEntryCall, addCorresponding.getTo().getTo().getCallType());
 		}
 	}
 }

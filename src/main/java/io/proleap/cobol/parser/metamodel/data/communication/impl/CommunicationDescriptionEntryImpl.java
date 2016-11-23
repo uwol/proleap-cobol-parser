@@ -8,14 +8,20 @@
 
 package io.proleap.cobol.parser.metamodel.data.communication.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.CommunicationDescriptionEntryCall;
 import io.proleap.cobol.parser.metamodel.data.communication.CommunicationDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 public abstract class CommunicationDescriptionEntryImpl extends CobolDivisionElementImpl
 		implements CommunicationDescriptionEntry {
+
+	protected final List<CommunicationDescriptionEntryCall> calls = new ArrayList<CommunicationDescriptionEntryCall>();
 
 	protected final String name;
 
@@ -23,6 +29,16 @@ public abstract class CommunicationDescriptionEntryImpl extends CobolDivisionEle
 		super(programUnit, ctx);
 
 		this.name = name;
+	}
+
+	@Override
+	public void addCall(final CommunicationDescriptionEntryCall call) {
+		calls.add(call);
+	}
+
+	@Override
+	public List<CommunicationDescriptionEntryCall> getCalls() {
+		return calls;
 	}
 
 	@Override

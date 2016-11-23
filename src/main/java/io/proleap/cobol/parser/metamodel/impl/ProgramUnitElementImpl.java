@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
 import io.proleap.cobol.Cobol85Parser.ArithmeticExpressionContext;
 import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
+import io.proleap.cobol.Cobol85Parser.CdNameContext;
 import io.proleap.cobol.Cobol85Parser.ClassNameContext;
 import io.proleap.cobol.Cobol85Parser.CobolWordContext;
 import io.proleap.cobol.Cobol85Parser.DataDescNameContext;
@@ -39,12 +40,16 @@ import io.proleap.cobol.parser.metamodel.MnemonicName;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.ProgramUnitElement;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.call.CommunicationDescriptionEntryCall;
 import io.proleap.cobol.parser.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
+import io.proleap.cobol.parser.metamodel.call.impl.CommunicationDescriptionEntryCallImpl;
 import io.proleap.cobol.parser.metamodel.call.impl.DataDescriptionEntryCallImpl;
 import io.proleap.cobol.parser.metamodel.call.impl.ProcedureCallImpl;
 import io.proleap.cobol.parser.metamodel.call.impl.UndefinedCallImpl;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
+import io.proleap.cobol.parser.metamodel.data.communication.CommunicationDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.communication.CommunicationSection;
 import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
@@ -94,6 +99,43 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (result == null) {
 			final String name = determineName(ctx);
 			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
+	}
+
+	protected Call createCall(final CdNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			final DataDivision dataDivision = programUnit.getDataDivision();
+
+			if (dataDivision == null) {
+				result = new UndefinedCallImpl(name, programUnit, ctx);
+			} else {
+				final CommunicationSection communicationSection = dataDivision.getCommunicationSection();
+
+				if (communicationSection == null) {
+					result = new UndefinedCallImpl(name, programUnit, ctx);
+				} else {
+					final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
+							.getCommunicationDescriptionEntry(name);
+
+					if (communicationDescriptionEntry == null) {
+						LOG.warn("call to unknown element {}", name);
+						result = new UndefinedCallImpl(name, programUnit, ctx);
+					} else {
+						final CommunicationDescriptionEntryCall call = new CommunicationDescriptionEntryCallImpl(name,
+								communicationDescriptionEntry, programUnit, ctx);
+
+						linkCommunicationDescriptionEntryCallWithCommunicationDescriptionEntry(call,
+								communicationDescriptionEntry);
+
+						result = call;
+					}
+				}
+			}
 		}
 
 		return result;
@@ -480,6 +522,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	@Override
 	public ProgramUnit getProgramUnit() {
 		return programUnit;
+	}
+
+	protected void linkCommunicationDescriptionEntryCallWithCommunicationDescriptionEntry(
+			final CommunicationDescriptionEntryCall call,
+			final CommunicationDescriptionEntry communicationDescriptionEntry) {
+		communicationDescriptionEntry.addCall(call);
 	}
 
 	protected void linkDataDescriptionEntryCallWithDataDescriptionEntry(final DataDescriptionEntryCall call,

@@ -27,7 +27,7 @@ public class DataDescriptionEntryCallImpl extends CallImpl implements DataDescri
 
 	@Override
 	public CallType getCallType() {
-		return CallType.DataDescriptionsEntryCall;
+		return CallType.DataDescriptionEntryCall;
 	}
 
 	@Override

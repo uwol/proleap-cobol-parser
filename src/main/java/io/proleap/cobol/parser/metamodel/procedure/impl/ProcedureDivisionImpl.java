@@ -32,6 +32,7 @@ import io.proleap.cobol.Cobol85Parser.ComputeStatementContext;
 import io.proleap.cobol.Cobol85Parser.ComputeStoreContext;
 import io.proleap.cobol.Cobol85Parser.ContinueStatementContext;
 import io.proleap.cobol.Cobol85Parser.DeleteStatementContext;
+import io.proleap.cobol.Cobol85Parser.DisableStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
@@ -84,6 +85,8 @@ import io.proleap.cobol.parser.metamodel.procedure.contin.ContinueStatement;
 import io.proleap.cobol.parser.metamodel.procedure.contin.impl.ContinueStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.delete.DeleteStatement;
 import io.proleap.cobol.parser.metamodel.procedure.delete.impl.DeleteStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.disable.DisableStatement;
+import io.proleap.cobol.parser.metamodel.procedure.disable.impl.DisableStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.display.impl.DisplayStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
@@ -387,6 +390,56 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 				final NotInvalidKeyPhrase notInvalidKeyPhrase = createNotInvalidKeyPhrase(ctx.notInvalidKeyPhrase());
 				result.setNotInvalidKeyPhrase(notInvalidKeyPhrase);
 			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public DisableStatement addDisableStatement(final DisableStatementContext ctx) {
+		DisableStatement result = (DisableStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new DisableStatementImpl(programUnit, ctx);
+
+			// type
+			final DisableStatement.Type type;
+
+			if (ctx.INPUT() != null) {
+				type = DisableStatement.Type.Input;
+			} else if (ctx.I_O() != null) {
+				type = DisableStatement.Type.InputOutput;
+			} else if (ctx.OUTPUT() != null) {
+				type = DisableStatement.Type.Output;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
+
+			// terminal
+			if (ctx.TERMINAL() != null) {
+				result.setTerminal(true);
+			}
+
+			// cd name
+			final Call cdNameCall = createCall(ctx.cdName());
+			result.setCommunicationDescriptionCall(cdNameCall);
+
+			// key
+			final Call keyCall;
+
+			if (ctx.identifier() != null) {
+				keyCall = createCall(ctx.identifier());
+			} else if (ctx.literal() != null) {
+				keyCall = createCall(ctx.literal());
+			} else {
+				keyCall = null;
+			}
+
+			result.setKeyCall(keyCall);
 
 			registerStatement(result);
 		}
