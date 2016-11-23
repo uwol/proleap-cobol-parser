@@ -12,6 +12,9 @@
 							(statements 
 								(statement 
 									(displayStatement DISPLAY 
-										(literal "World") 
-										(otherKeyword STOP) 
-										(otherKeyword RUN)))) .)))))) <EOF>)
+										(displayOperand
+											(literal "World"))
+										(displayOperand
+											(otherKeyword STOP))
+										(displayOperand 
+											(otherKeyword RUN))))) .)))))) <EOF>)

@@ -28,8 +28,13 @@
 							(statements 
 								(statement 
 									(displayStatement Display 
-										(literal "COPY ,") 
-										(otherKeyword Display) 
-										(literal "COPY,") 
-										(otherKeyword STOP) 
-										(otherKeyword RUN)))) .)))))) <EOF>)
+										(displayOperand 
+											(literal "COPY ,"))
+										(displayOperand  
+											(otherKeyword Display))
+										(displayOperand  
+											(literal "COPY,"))
+										(displayOperand  
+											(otherKeyword STOP))
+										(displayOperand  
+											(otherKeyword RUN))))) .)))))) <EOF>)

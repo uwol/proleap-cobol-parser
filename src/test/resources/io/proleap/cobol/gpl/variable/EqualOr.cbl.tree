@@ -56,5 +56,7 @@
 																				(integerLiteral 25))))))) ))))) 
 										(statement 
 											(displayStatement Display 
-												(literal "Hello world") 
-												(otherKeyword END-IF)))))) .)))))) <EOF>)
+												(displayOperand 
+													(literal "Hello world")) 
+												(displayOperand 
+													(otherKeyword END-IF))))))) .)))))) <EOF>)

@@ -26,6 +26,7 @@
 						(sentence 
 							(statements 
 								(statement 
-									(displayStatement Display 
-										(literal "Hello world")))) .\n       )) END DECLARATIVES .) 
+									(displayStatement Display
+										(displayOperand  
+											(literal "Hello world"))))) .\n       )) END DECLARATIVES .) 
 				(procedureDivisionBody paragraphs)))) <EOF>)

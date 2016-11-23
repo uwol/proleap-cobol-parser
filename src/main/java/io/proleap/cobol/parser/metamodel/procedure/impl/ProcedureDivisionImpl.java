@@ -33,6 +33,7 @@ import io.proleap.cobol.Cobol85Parser.ComputeStoreContext;
 import io.proleap.cobol.Cobol85Parser.ContinueStatementContext;
 import io.proleap.cobol.Cobol85Parser.DeleteStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisableStatementContext;
+import io.proleap.cobol.Cobol85Parser.DisplayOperandContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
@@ -453,6 +454,21 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 		if (result == null) {
 			result = new DisplayStatementImpl(programUnit, ctx);
+
+			// operands
+			for (final DisplayOperandContext displayOperandContext : ctx.displayOperand()) {
+				result.addOperand(displayOperandContext);
+			}
+
+			// upon
+			if (ctx.displayUpon() != null) {
+				result.addUpon(ctx.displayUpon());
+			}
+
+			// with
+			if (ctx.displayWith() != null) {
+				result.addWith(ctx.displayWith());
+			}
 
 			registerStatement(result);
 		}

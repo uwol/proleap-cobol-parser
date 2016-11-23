@@ -21,6 +21,7 @@ import io.proleap.cobol.Cobol85Parser.ClassNameContext;
 import io.proleap.cobol.Cobol85Parser.CobolWordContext;
 import io.proleap.cobol.Cobol85Parser.DataDescNameContext;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
+import io.proleap.cobol.Cobol85Parser.EnvironmentNameContext;
 import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IndexNameContext;
@@ -29,6 +30,7 @@ import io.proleap.cobol.Cobol85Parser.LibraryNameContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.LocalNameContext;
 import io.proleap.cobol.Cobol85Parser.MnemonicNameContext;
+import io.proleap.cobol.Cobol85Parser.OtherKeywordContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
@@ -185,6 +187,17 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected Call createCall(final EnvironmentNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
+	}
+
 	protected Call createCall(final FileNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
@@ -288,6 +301,17 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final MnemonicNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
+	}
+
+	protected Call createCall(final OtherKeywordContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {

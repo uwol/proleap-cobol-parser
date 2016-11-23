@@ -31,8 +31,10 @@
 																			(numericLiteral ZERO)))))))))) 
 										(statement 
 											(displayStatement Display 
-												(literal "Hello world") 
-												(otherKeyword END-IF)))))) .\n       \n         ) 
+												(displayOperand 
+													(literal "Hello world"))
+												(displayOperand  
+													(otherKeyword END-IF))))))) .\n       \n         ) 
 						(sentence 
 							(statements 
 								(statement 
@@ -56,8 +58,10 @@
 																			(numericLiteral ZERO)))))))))) 
 										(statement 
 											(displayStatement Display 
-												(literal "Hello world") 
-												(otherKeyword END-IF)))))) .\n       \n         ) 
+												(displayOperand 
+													(literal "Hello world"))
+												(displayOperand  
+													(otherKeyword END-IF))))))) .\n       \n         ) 
 						(sentence 
 							(statements 
 								(statement 

@@ -12,7 +12,8 @@
 							(statements 
 								(statement 
 									(displayStatement Display 
-										(literal "Hello world")))) .\n        ) 
+										(displayOperand 
+											(literal "Hello world"))))) .\n        ) 
 						(sentence 
 							(statements 
 								(statement 

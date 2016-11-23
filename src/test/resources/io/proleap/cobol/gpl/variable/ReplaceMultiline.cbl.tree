@@ -12,15 +12,20 @@
 							(statements 
 								(statement 
 									(displayStatement Display 
-										(literal "Hello world") 
-										(otherKeyword MOVE) 
-										(literal "*") 
-										(otherKeyword TO) 
-										(identifier 
-											(qualifiedDataName 
-												(qualifiedDataNameFormat1 
-													(dataName 
-														(cobolWord WRK-XN-00001)))))))) .\n       \n       ) 
+										(displayOperand 
+											(literal "Hello world"))
+										(displayOperand  
+											(otherKeyword MOVE))
+										(displayOperand  
+											(literal "*")) 
+										(displayOperand 
+											(otherKeyword TO))
+										(displayOperand  
+											(identifier 
+												(qualifiedDataName 
+													(qualifiedDataNameFormat1 
+														(dataName 
+															(cobolWord WRK-XN-00001))))))))) .\n       \n       ) 
 						(sentence 
 							(statements 
 								(statement 
@@ -46,6 +51,9 @@
 																		(literal "*"))))))))) 
 										(statement 
 											(displayStatement Display 
-												(literal "Hello world") 
-												(otherKeyword STOP) 
-												(otherKeyword RUN)))))) .)))))) <EOF>)
+												(displayOperand 
+													(literal "Hello world"))
+												(displayOperand  
+													(otherKeyword STOP))
+												(displayOperand  
+													(otherKeyword RUN))))))) .)))))) <EOF>)

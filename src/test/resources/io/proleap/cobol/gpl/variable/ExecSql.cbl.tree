@@ -26,6 +26,9 @@
 							(statements 
 								(statement 
 									(displayStatement Display 
-										(literal "Hello world") 
-										(otherKeyword STOP) 
-										(otherKeyword RUN)))) .)))))) <EOF>)
+										(displayOperand 
+											(literal "Hello world")) 
+										(displayOperand 
+											(otherKeyword STOP)) 
+										(displayOperand 
+											(otherKeyword RUN))))) .)))))) <EOF>)
