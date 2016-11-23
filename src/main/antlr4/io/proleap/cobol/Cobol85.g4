@@ -1556,7 +1556,11 @@ callGivingPhrase :
 // cancel statement
 
 cancelStatement :
-	CANCEL (identifier | literal | libraryName (BYTITLE | BYFUNCTION))+
+	CANCEL cancelCall+
+;
+
+cancelCall :
+	identifier | literal | libraryName (BYTITLE | BYFUNCTION)
 ;
 
 // close statement

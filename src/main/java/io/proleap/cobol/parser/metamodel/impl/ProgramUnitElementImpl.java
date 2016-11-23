@@ -23,6 +23,7 @@ import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IndexNameContext;
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
+import io.proleap.cobol.Cobol85Parser.LibraryNameContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.LocalNameContext;
 import io.proleap.cobol.Cobol85Parser.MnemonicNameContext;
@@ -182,6 +183,17 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final IndexNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
+	}
+
+	protected Call createCall(final LibraryNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {

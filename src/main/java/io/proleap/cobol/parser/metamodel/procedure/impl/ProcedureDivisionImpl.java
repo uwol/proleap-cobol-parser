@@ -24,6 +24,8 @@ import io.proleap.cobol.Cobol85Parser.CallByContentStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallByValueStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
+import io.proleap.cobol.Cobol85Parser.CancelCallContext;
+import io.proleap.cobol.Cobol85Parser.CancelStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
@@ -62,6 +64,8 @@ import io.proleap.cobol.parser.metamodel.procedure.alter.AlterStatement;
 import io.proleap.cobol.parser.metamodel.procedure.alter.impl.AlterStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallStatement;
 import io.proleap.cobol.parser.metamodel.procedure.call.impl.CallStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.cancel.CancelStatement;
+import io.proleap.cobol.parser.metamodel.procedure.cancel.impl.CancelStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.display.impl.DisplayStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
@@ -248,6 +252,23 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 				final NotOnExceptionClause notOnExceptionClause = createNotOnExceptionClause(
 						ctx.notOnExceptionClause());
 				result.setNotOnExceptionClause(notOnExceptionClause);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public CancelStatement addCancelStatement(final CancelStatementContext ctx) {
+		CancelStatement result = (CancelStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new CancelStatementImpl(programUnit, ctx);
+
+			for (final CancelCallContext cancelCallContext : ctx.cancelCall()) {
+				result.addCancelCall(cancelCallContext);
 			}
 
 			registerStatement(result);
