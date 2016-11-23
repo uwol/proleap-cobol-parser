@@ -31,11 +31,14 @@ import io.proleap.cobol.Cobol85Parser.CloseStatementContext;
 import io.proleap.cobol.Cobol85Parser.ComputeStatementContext;
 import io.proleap.cobol.Cobol85Parser.ComputeStoreContext;
 import io.proleap.cobol.Cobol85Parser.ContinueStatementContext;
+import io.proleap.cobol.Cobol85Parser.DeleteStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
+import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
+import io.proleap.cobol.Cobol85Parser.NotInvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.NotOnExceptionClauseContext;
 import io.proleap.cobol.Cobol85Parser.NotOnOverflowPhraseContext;
 import io.proleap.cobol.Cobol85Parser.NotOnSizeErrorPhraseContext;
@@ -50,6 +53,8 @@ import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
+import io.proleap.cobol.parser.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnExceptionClause;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnOverflowPhrase;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeErrorPhrase;
@@ -77,6 +82,8 @@ import io.proleap.cobol.parser.metamodel.procedure.compute.ComputeStatement;
 import io.proleap.cobol.parser.metamodel.procedure.compute.impl.ComputeStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.contin.ContinueStatement;
 import io.proleap.cobol.parser.metamodel.procedure.contin.impl.ContinueStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.delete.DeleteStatement;
+import io.proleap.cobol.parser.metamodel.procedure.delete.impl.DeleteStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.display.impl.DisplayStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
@@ -355,6 +362,39 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 	}
 
 	@Override
+	public DeleteStatement addDeleteStatement(final DeleteStatementContext ctx) {
+		DeleteStatement result = (DeleteStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new DeleteStatementImpl(programUnit, ctx);
+
+			// file
+			final Call fileCall = createCall(ctx.fileName());
+			result.setFileCall(fileCall);
+
+			if (ctx.RECORD() != null) {
+				result.setRecord(true);
+			}
+
+			// invalid key
+			if (ctx.invalidKeyPhrase() != null) {
+				final InvalidKeyPhrase invalidKeyPhrase = createInvalidKeyPhrase(ctx.invalidKeyPhrase());
+				result.setInvalidKeyPhrase(invalidKeyPhrase);
+			}
+
+			// not invalid key
+			if (ctx.notInvalidKeyPhrase() != null) {
+				final NotInvalidKeyPhrase notInvalidKeyPhrase = createNotInvalidKeyPhrase(ctx.notInvalidKeyPhrase());
+				result.setNotInvalidKeyPhrase(notInvalidKeyPhrase);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public DisplayStatement addDisplayStatement(final DisplayStatementContext ctx) {
 		DisplayStatement result = (DisplayStatement) getASGElement(ctx);
 
@@ -462,6 +502,34 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 		if (result == null) {
 			result = new LiteralValueStmtImpl(programUnit, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected InvalidKeyPhrase createInvalidKeyPhrase(final InvalidKeyPhraseContext ctx) {
+		InvalidKeyPhrase result = (InvalidKeyPhrase) getASGElement(ctx);
+
+		if (result == null) {
+			result = new InvalidKeyPhraseImpl(programUnit, ctx);
+
+			// FIXME add statements
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected NotInvalidKeyPhrase createNotInvalidKeyPhrase(final NotInvalidKeyPhraseContext ctx) {
+		NotInvalidKeyPhrase result = (NotInvalidKeyPhrase) getASGElement(ctx);
+
+		if (result == null) {
+			result = new NotInvalidKeyPhraseImpl(programUnit, ctx);
+
+			// FIXME add statements
 
 			registerASGElement(result);
 		}

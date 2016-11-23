@@ -1627,8 +1627,8 @@ continueStatement :
 
 deleteStatement :
 	DELETE fileName RECORD?
-	(INVALID KEY? statements)?
-	(NOT INVALID KEY? statements)?
+	invalidKeyPhrase?
+	notInvalidKeyPhrase?
 	END_DELETE?
 ;
 
@@ -1994,8 +1994,8 @@ readStatement :
 		)
 	)?
 	(KEY IS? qualifiedDataName)?
-	(INVALID KEY? statements)?
-	(NOT INVALID KEY? statements)?
+	invalidKeyPhrase?
+	notInvalidKeyPhrase?
 	(AT? END statements)?
 	(NOT AT? END statements)?
 	END_READ?
@@ -2040,8 +2040,8 @@ returnStatement :
 
 rewriteStatement :
 	REWRITE recordName (FROM identifier)?
-	(INVALID KEY? statements)?
-	(NOT INVALID KEY? statements)?
+	invalidKeyPhrase?
+	notInvalidKeyPhrase?
 	END_REWRITE?
 ;
 
@@ -2136,8 +2136,8 @@ startStatement :
 		| GREATER THAN? OR EQUAL TO?
 		| MORETHANOREQUAL
 	) qualifiedDataName)?
-	(INVALID KEY? statements)?
-	(NOT INVALID KEY? statements)?
+	invalidKeyPhrase?
+	notInvalidKeyPhrase?
 	END_START?
 ;
 
@@ -2248,8 +2248,8 @@ writeStatement :
 	writeAdvancingPhrase?
 	(AT? (END_OF_PAGE | EOP) statements)?
 	(NOT AT? (END_OF_PAGE | EOP) statements)?
-	(INVALID KEY? statements)?
-	(NOT INVALID KEY? statements)?
+	invalidKeyPhrase?
+	notInvalidKeyPhrase?
 	END_WRITE?
 ;
 
@@ -2263,6 +2263,14 @@ writeAdvancingPhrase :
 ;
 
 // statement phrases ----------------------------------
+
+invalidKeyPhrase :
+	INVALID KEY? statements
+;
+
+notInvalidKeyPhrase :
+	NOT INVALID KEY? statements
+;
 
 onOverflowPhrase :
 	ON? OVERFLOW statements
