@@ -30,6 +30,7 @@ import io.proleap.cobol.Cobol85Parser.CloseFileContext;
 import io.proleap.cobol.Cobol85Parser.CloseStatementContext;
 import io.proleap.cobol.Cobol85Parser.ComputeStatementContext;
 import io.proleap.cobol.Cobol85Parser.ComputeStoreContext;
+import io.proleap.cobol.Cobol85Parser.ContinueStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
@@ -74,6 +75,8 @@ import io.proleap.cobol.parser.metamodel.procedure.close.CloseStatement;
 import io.proleap.cobol.parser.metamodel.procedure.close.impl.CloseStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.compute.ComputeStatement;
 import io.proleap.cobol.parser.metamodel.procedure.compute.impl.ComputeStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.contin.ContinueStatement;
+import io.proleap.cobol.parser.metamodel.procedure.contin.impl.ContinueStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.display.impl.DisplayStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
@@ -331,6 +334,19 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 						ctx.notOnSizeErrorPhrase());
 				result.setNotOnSizeErrorPhrase(notOnSizeErrorPhrase);
 			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ContinueStatement addContinueStatement(final ContinueStatementContext ctx) {
+		ContinueStatement result = (ContinueStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ContinueStatementImpl(programUnit, ctx);
 
 			registerStatement(result);
 		}
