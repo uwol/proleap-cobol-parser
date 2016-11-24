@@ -17,6 +17,6 @@ public class HelloWorldTest {
 
 		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/HelloWorld.cbl");
 		final CobolParseTestRunner runner = new CobolParseTestRunnerImpl();
-		runner.parseFile(inputFile, CobolSourceFormatEnum.TANDEM);
+		runner.parseFile(inputFile, CobolSourceFormatEnum.FIXED);
 	}
 }

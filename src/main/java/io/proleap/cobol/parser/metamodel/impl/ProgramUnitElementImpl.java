@@ -362,6 +362,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCall((EnvironmentNameContext) ctx);
 			} else if (ctx instanceof FileNameContext) {
 				result = createCall((FileNameContext) ctx);
+			} else if (ctx instanceof LibraryNameContext) {
+				result = createCall((LibraryNameContext) ctx);
 			} else if (ctx instanceof LocalNameContext) {
 				result = createCall((LocalNameContext) ctx);
 			} else if (ctx instanceof MnemonicNameContext) {
