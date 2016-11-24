@@ -6,20 +6,20 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.procedure.disable;
+package io.proleap.cobol.parser.metamodel.procedure.enable;
 
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
-import io.proleap.cobol.parser.metamodel.procedure.enable.EnableStatement;
+import io.proleap.cobol.parser.metamodel.procedure.disable.DisableStatement;
 
 /**
- * Notifies the MCS to inhibit data transfer between specified output queues and
+ * Notifies the MCS to allow data transfer between specified output queues and
  * destinations (for output) or between specified sources and input queues (for
  * input).
  *
- * @see EnableStatement
+ * @see DisableStatement
  */
-public interface DisableStatement extends Statement {
+public interface EnableStatement extends Statement {
 
 	enum Type {
 		Input, InputOutput, Output

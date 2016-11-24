@@ -36,6 +36,7 @@ import io.proleap.cobol.Cobol85Parser.DisableStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayOperandContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
+import io.proleap.cobol.Cobol85Parser.EnableStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
@@ -93,6 +94,8 @@ import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.display.impl.DisplayStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.divide.DivideStatement;
 import io.proleap.cobol.parser.metamodel.procedure.divide.impl.DivideStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.enable.EnableStatement;
+import io.proleap.cobol.parser.metamodel.procedure.enable.impl.EnableStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.impl.MoveToStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
@@ -502,6 +505,47 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 				final NotOnSizeError notOnSizeError = createNotOnSizeError(ctx.notOnSizeErrorPhrase());
 				result.setNotOnSizeError(notOnSizeError);
 			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public EnableStatement addEnableStatement(final EnableStatementContext ctx) {
+		EnableStatement result = (EnableStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new EnableStatementImpl(programUnit, ctx);
+
+			// type
+			final EnableStatement.Type type;
+
+			if (ctx.INPUT() != null) {
+				type = EnableStatement.Type.Input;
+			} else if (ctx.I_O() != null) {
+				type = EnableStatement.Type.InputOutput;
+			} else if (ctx.OUTPUT() != null) {
+				type = EnableStatement.Type.Output;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
+
+			// terminal
+			if (ctx.TERMINAL() != null) {
+				result.setTerminal(true);
+			}
+
+			// cd name
+			final Call cdNameCall = createCall(ctx.cdName());
+			result.setCommunicationDescriptionCall(cdNameCall);
+
+			// key
+			final Call keyCall = createCall(ctx.identifier(), ctx.literal());
+			result.setKeyCall(keyCall);
 
 			registerStatement(result);
 		}

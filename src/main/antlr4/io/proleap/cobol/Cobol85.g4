@@ -1635,9 +1635,7 @@ deleteStatement :
 // disable statement
 
 disableStatement :
-	DISABLE
-	(INPUT TERMINAL? | I_O TERMINAL | OUTPUT)
-	cdName WITH? KEY (identifier | literal)
+	DISABLE	(INPUT TERMINAL? | I_O TERMINAL | OUTPUT) cdName WITH? KEY (identifier | literal)
 ;
 
 // display statement
@@ -1700,8 +1698,7 @@ divideRemainder :
 // enable statement
 
 enableStatement :
-	ENABLE (INPUT TERMINAL? | I_O TERMINAL | OUTPUT)
-	cdName WITH? KEY (literal | identifier)
+	ENABLE (INPUT TERMINAL? | I_O TERMINAL | OUTPUT) cdName WITH? KEY (literal | identifier)
 ;
 
 // entry statement
