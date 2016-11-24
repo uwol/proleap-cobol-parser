@@ -37,6 +37,7 @@ import io.proleap.cobol.Cobol85Parser.DisplayOperandContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
 import io.proleap.cobol.Cobol85Parser.EnableStatementContext;
+import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
@@ -96,6 +97,8 @@ import io.proleap.cobol.parser.metamodel.procedure.divide.DivideStatement;
 import io.proleap.cobol.parser.metamodel.procedure.divide.impl.DivideStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.enable.EnableStatement;
 import io.proleap.cobol.parser.metamodel.procedure.enable.impl.EnableStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.entry.EntryStatement;
+import io.proleap.cobol.parser.metamodel.procedure.entry.impl.EntryStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.impl.MoveToStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
@@ -546,6 +549,29 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			// key
 			final Call keyCall = createCall(ctx.identifier(), ctx.literal());
 			result.setKeyCall(keyCall);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public EntryStatement addEntryStatement(final EntryStatementContext ctx) {
+		EntryStatement result = (EntryStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new EntryStatementImpl(programUnit, ctx);
+
+			// entry
+			final Call entryCall = createCall(ctx.literal());
+			result.setEntryCall(entryCall);
+
+			// using
+			for (final IdentifierContext identifierContext : ctx.identifier()) {
+				final Call usingCall = createCall(identifierContext);
+				result.addUsingCall(usingCall);
+			}
 
 			registerStatement(result);
 		}
