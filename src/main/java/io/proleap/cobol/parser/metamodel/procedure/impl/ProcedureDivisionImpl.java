@@ -39,6 +39,7 @@ import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
 import io.proleap.cobol.Cobol85Parser.EnableStatementContext;
 import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
+import io.proleap.cobol.Cobol85Parser.GobackStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.InitiateStatementContext;
 import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
@@ -105,6 +106,8 @@ import io.proleap.cobol.parser.metamodel.procedure.enable.EnableStatement;
 import io.proleap.cobol.parser.metamodel.procedure.enable.impl.EnableStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.entry.EntryStatement;
 import io.proleap.cobol.parser.metamodel.procedure.entry.impl.EntryStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.goback.GobackStatement;
+import io.proleap.cobol.parser.metamodel.procedure.goback.impl.GobackStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.initiate.InitiateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.initiate.impl.InitiateStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
@@ -586,6 +589,19 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 				final Call usingCall = createCall(identifierContext);
 				result.addUsingCall(usingCall);
 			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public GobackStatement addGobackStatement(final GobackStatementContext ctx) {
+		GobackStatement result = (GobackStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new GobackStatementImpl(programUnit, ctx);
 
 			registerStatement(result);
 		}
