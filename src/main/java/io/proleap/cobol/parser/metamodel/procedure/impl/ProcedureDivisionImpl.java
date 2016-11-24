@@ -63,6 +63,7 @@ import io.proleap.cobol.Cobol85Parser.ReleaseStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
+import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
@@ -125,6 +126,8 @@ import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.impl.StopStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.TerminateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.impl.TerminateStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.write.WriteStatement;
+import io.proleap.cobol.parser.metamodel.procedure.write.impl.WriteStatementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
@@ -814,6 +817,55 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			result = new LiteralValueStmtImpl(programUnit, ctx);
 
 			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public WriteStatement addWriteStatement(final WriteStatementContext ctx) {
+		WriteStatement result = (WriteStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new WriteStatementImpl(programUnit, ctx);
+
+			// record
+			final Call recordCall = createCall(ctx.recordName());
+			result.setRecordCall(recordCall);
+
+			// from
+			if (ctx.writeFromPhrase() != null) {
+				result.addFrom(ctx.writeFromPhrase());
+			}
+
+			// advancing
+			if (ctx.writeAdvancingPhrase() != null) {
+				result.addAdvancing(ctx.writeAdvancingPhrase());
+			}
+
+			// at end of page
+			if (ctx.writeAtEndOfPagePhrase() != null) {
+				result.addAtEndOfPage(ctx.writeAtEndOfPagePhrase());
+			}
+
+			// not at end of page
+			if (ctx.writeNotAtEndOfPagePhrase() != null) {
+				result.addNotAtEndOfPage(ctx.writeNotAtEndOfPagePhrase());
+			}
+
+			// invalid key
+			if (ctx.invalidKeyPhrase() != null) {
+				final InvalidKey invalidKey = createInvalidKey(ctx.invalidKeyPhrase());
+				result.setInvalidKey(invalidKey);
+			}
+
+			// not invalid key
+			if (ctx.notInvalidKeyPhrase() != null) {
+				final NotInvalidKey notInvalidKey = createNotInvalidKey(ctx.notInvalidKeyPhrase());
+				result.setNotInvalidKey(notInvalidKey);
+			}
+
+			registerStatement(result);
 		}
 
 		return result;

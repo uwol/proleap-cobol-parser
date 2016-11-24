@@ -2263,22 +2263,43 @@ useProcedureDebugClause :
 // write statement
 
 writeStatement :
-	WRITE recordName (FROM (identifier | literal))?
+	WRITE recordName
+	writeFromPhrase?
 	writeAdvancingPhrase?
-	(AT? (END_OF_PAGE | EOP) statements)?
-	(NOT AT? (END_OF_PAGE | EOP) statements)?
+	writeAtEndOfPagePhrase?
+	writeNotAtEndOfPagePhrase?
 	invalidKeyPhrase?
 	notInvalidKeyPhrase?
 	END_WRITE?
 ;
 
+writeFromPhrase :
+	FROM (identifier | literal)
+;
+
 writeAdvancingPhrase :
 	(BEFORE | AFTER) ADVANCING?
-	(
-		PAGE
-		| (identifier | literal) (LINE | LINES)?
-		| mnemonicName
-	)
+	(writeAdvancingPage	| writeAdvancingLines | writeAdvancingMnemonic)
+;
+
+writeAdvancingPage :
+	PAGE
+;
+
+writeAdvancingLines :
+	(identifier | literal) (LINE | LINES)?
+;
+
+writeAdvancingMnemonic :
+	mnemonicName
+;
+
+writeAtEndOfPagePhrase :
+	AT? (END_OF_PAGE | EOP) statements
+;
+
+writeNotAtEndOfPagePhrase :
+	NOT AT? (END_OF_PAGE | EOP) statements
 ;
 
 // statement phrases ----------------------------------
