@@ -6,11 +6,11 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.procedure.contin.impl;
+package io.proleap.cobol.parser.metamodel.procedure.continuestmt.impl;
 
 import io.proleap.cobol.Cobol85Parser.ContinueStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.procedure.contin.ContinueStatement;
+import io.proleap.cobol.parser.metamodel.procedure.continuestmt.ContinueStatement;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
 public class ContinueStatementImpl extends StatementImpl implements ContinueStatement {

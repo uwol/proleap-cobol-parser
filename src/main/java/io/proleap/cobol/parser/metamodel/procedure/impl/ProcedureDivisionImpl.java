@@ -55,6 +55,7 @@ import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
+import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
@@ -85,8 +86,8 @@ import io.proleap.cobol.parser.metamodel.procedure.close.CloseStatement;
 import io.proleap.cobol.parser.metamodel.procedure.close.impl.CloseStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.compute.ComputeStatement;
 import io.proleap.cobol.parser.metamodel.procedure.compute.impl.ComputeStatementImpl;
-import io.proleap.cobol.parser.metamodel.procedure.contin.ContinueStatement;
-import io.proleap.cobol.parser.metamodel.procedure.contin.impl.ContinueStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.continuestmt.ContinueStatement;
+import io.proleap.cobol.parser.metamodel.procedure.continuestmt.impl.ContinueStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.delete.DeleteStatement;
 import io.proleap.cobol.parser.metamodel.procedure.delete.impl.DeleteStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.disable.DisableStatement;
@@ -105,6 +106,8 @@ import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.perform.impl.PerformStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.impl.StopStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.terminate.TerminateStatement;
+import io.proleap.cobol.parser.metamodel.procedure.terminate.impl.TerminateStatementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
@@ -662,6 +665,22 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 		if (result == null) {
 			result = new StopStatementImpl(programUnit, ctx);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public TerminateStatement addTerminateStatement(final TerminateStatementContext ctx) {
+		TerminateStatement result = (TerminateStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new TerminateStatementImpl(programUnit, ctx);
+
+			final Call reportCall = createCall(ctx.reportName());
+			result.setReportCall(reportCall);
 
 			registerStatement(result);
 		}

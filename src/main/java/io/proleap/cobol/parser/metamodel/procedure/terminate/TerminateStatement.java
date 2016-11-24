@@ -6,13 +6,17 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.procedure.contin;
+package io.proleap.cobol.parser.metamodel.procedure.terminate;
 
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
 /**
- * No operation.
+ * Terminates processing on the given report names.
  */
-public interface ContinueStatement extends Statement {
+public interface TerminateStatement extends Statement {
 
+	Call getReportCall();
+
+	void setReportCall(Call reportCall);
 }

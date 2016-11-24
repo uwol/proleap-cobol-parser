@@ -29,6 +29,7 @@ import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
+import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
 import io.proleap.cobol.parser.metamodel.CobolDivision;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptStatement;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddStatement;
@@ -37,7 +38,7 @@ import io.proleap.cobol.parser.metamodel.procedure.call.CallStatement;
 import io.proleap.cobol.parser.metamodel.procedure.cancel.CancelStatement;
 import io.proleap.cobol.parser.metamodel.procedure.close.CloseStatement;
 import io.proleap.cobol.parser.metamodel.procedure.compute.ComputeStatement;
-import io.proleap.cobol.parser.metamodel.procedure.contin.ContinueStatement;
+import io.proleap.cobol.parser.metamodel.procedure.continuestmt.ContinueStatement;
 import io.proleap.cobol.parser.metamodel.procedure.delete.DeleteStatement;
 import io.proleap.cobol.parser.metamodel.procedure.disable.DisableStatement;
 import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
@@ -47,6 +48,7 @@ import io.proleap.cobol.parser.metamodel.procedure.entry.EntryStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
+import io.proleap.cobol.parser.metamodel.procedure.terminate.TerminateStatement;
 
 /**
  * Contains procedures to manipulate the data from data division.
@@ -90,6 +92,8 @@ public interface ProcedureDivision extends CobolDivision {
 	PerformStatement addPerformStatement(PerformStatementContext ctx);
 
 	StopStatement addStopStatement(StopStatementContext ctx);
+
+	TerminateStatement addTerminateStatement(TerminateStatementContext ctx);
 
 	Paragraph getParagraph(String name);
 

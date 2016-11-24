@@ -180,4 +180,13 @@ public class CobolProcedureExpressionVisitorImpl extends AbstractCobolParserVisi
 		return visitChildren(ctx);
 	}
 
+	@Override
+	public Boolean visitTerminateStatement(@NotNull final Cobol85Parser.TerminateStatementContext ctx) {
+		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+
+		procedureDivision.addTerminateStatement(ctx);
+
+		return visitChildren(ctx);
+	}
+
 }
