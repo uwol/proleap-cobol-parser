@@ -40,6 +40,7 @@ import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
 import io.proleap.cobol.Cobol85Parser.EnableStatementContext;
 import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
+import io.proleap.cobol.Cobol85Parser.InitiateStatementContext;
 import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
@@ -57,6 +58,7 @@ import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.Cobol85Parser.PurgeStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReleaseStatementContext;
+import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -103,6 +105,8 @@ import io.proleap.cobol.parser.metamodel.procedure.enable.EnableStatement;
 import io.proleap.cobol.parser.metamodel.procedure.enable.impl.EnableStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.entry.EntryStatement;
 import io.proleap.cobol.parser.metamodel.procedure.entry.impl.EntryStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.initiate.InitiateStatement;
+import io.proleap.cobol.parser.metamodel.procedure.initiate.impl.InitiateStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.impl.MoveToStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
@@ -581,6 +585,24 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			for (final IdentifierContext identifierContext : ctx.identifier()) {
 				final Call usingCall = createCall(identifierContext);
 				result.addUsingCall(usingCall);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public InitiateStatement addInitiateStatement(final InitiateStatementContext ctx) {
+		InitiateStatement result = (InitiateStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new InitiateStatementImpl(programUnit, ctx);
+
+			for (final ReportNameContext reportNameContext : ctx.reportName()) {
+				final Call reportCall = createCall(reportNameContext);
+				result.addReportCall(reportCall);
 			}
 
 			registerStatement(result);

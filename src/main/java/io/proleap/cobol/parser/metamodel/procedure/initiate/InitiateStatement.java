@@ -6,7 +6,7 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.procedure.purge;
+package io.proleap.cobol.parser.metamodel.procedure.initiate;
 
 import java.util.List;
 
@@ -14,11 +14,11 @@ import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
 /**
- * Eliminates a partial message from the Message Control System (MCS).
+ * Initializes report writer control fields.
  */
-public interface PurgeStatement extends Statement {
+public interface InitiateStatement extends Statement {
 
-	void addCommunicationDescriptionEntryCall(Call communicationDescriptionEntryCall);
+	void addReportCall(Call reportCall);
 
-	List<Call> getCommunicationDescriptionEntryCalls();
+	List<Call> getReportCalls();
 }
