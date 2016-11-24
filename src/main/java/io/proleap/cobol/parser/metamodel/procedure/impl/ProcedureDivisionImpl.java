@@ -26,6 +26,7 @@ import io.proleap.cobol.Cobol85Parser.CallByValueStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.CancelCallContext;
 import io.proleap.cobol.Cobol85Parser.CancelStatementContext;
+import io.proleap.cobol.Cobol85Parser.CdNameContext;
 import io.proleap.cobol.Cobol85Parser.CloseFileContext;
 import io.proleap.cobol.Cobol85Parser.CloseStatementContext;
 import io.proleap.cobol.Cobol85Parser.ComputeStatementContext;
@@ -54,6 +55,7 @@ import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
+import io.proleap.cobol.Cobol85Parser.PurgeStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReleaseStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
@@ -105,6 +107,8 @@ import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.impl.MoveToStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.perform.impl.PerformStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.purge.PurgeStatement;
+import io.proleap.cobol.parser.metamodel.procedure.purge.impl.PurgeStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.release.ReleaseStatement;
 import io.proleap.cobol.parser.metamodel.procedure.release.impl.ReleaseStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
@@ -654,6 +658,24 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			// perform procedure
 			if (ctx.performProcedureStatement() != null) {
 				result.addPerformProcedureStatement(ctx.performProcedureStatement());
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public PurgeStatement addPurgeStatement(final PurgeStatementContext ctx) {
+		PurgeStatement result = (PurgeStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new PurgeStatementImpl(programUnit, ctx);
+
+			for (final CdNameContext cdNameContext : ctx.cdName()) {
+				final Call communicationDescriptionEntryCall = createCall(cdNameContext);
+				result.addCommunicationDescriptionEntryCall(communicationDescriptionEntryCall);
 			}
 
 			registerStatement(result);
