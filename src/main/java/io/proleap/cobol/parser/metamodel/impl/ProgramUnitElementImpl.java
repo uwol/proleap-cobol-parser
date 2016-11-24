@@ -34,6 +34,7 @@ import io.proleap.cobol.Cobol85Parser.OtherKeywordContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
+import io.proleap.cobol.Cobol85Parser.RecordNameContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.SystemNameContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
@@ -374,6 +375,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCall((ProgramNameContext) ctx);
 			} else if (ctx instanceof QualifiedDataNameContext) {
 				result = createCall((QualifiedDataNameContext) ctx);
+			} else if (ctx instanceof RecordNameContext) {
+				result = createCall((RecordNameContext) ctx);
 			} else if (ctx instanceof ReportNameContext) {
 				result = createCall((ReportNameContext) ctx);
 			} else if (ctx instanceof SystemNameContext) {
@@ -421,6 +424,17 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final QualifiedDataNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+		}
+
+		return result;
+	}
+
+	protected Call createCall(final RecordNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
