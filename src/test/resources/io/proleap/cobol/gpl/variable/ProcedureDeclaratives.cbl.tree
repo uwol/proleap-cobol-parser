@@ -1,0 +1,35 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision Identification Division .\n        
+				(programIdParagraph Program-ID .\n         
+					(programName 
+						(cobolWord HELLOWORLD)) .\n       )) 
+			(procedureDivision Procedure Division .\n        
+				(procedureDeclaratives DECLARATIVES .\n        
+					(procedureDeclarative 
+						(procedureSectionHeader 
+							(sectionName 
+								(cobolWord TEST-1)) SECTION) .\n            
+						(useStatement USE 
+							(useDebugClause FOR DEBUGGING ON 
+								(useDebugOn ALL REFERENCES OF 
+									(identifier 
+										(qualifiedDataName 
+											(qualifiedDataNameFormat1 
+												(dataName 
+													(cobolWord KEY-1)))))) 
+								(useDebugOn ALL 
+									(identifier 
+										(qualifiedDataName 
+											(qualifiedDataNameFormat1 
+												(dataName 
+													(cobolWord ID-2)))))))) .\n          
+						(paragraphs 
+							(sentence 
+								(statements 
+									(statement 
+										(displayStatement Display 
+											(displayOperand 
+												(literal "Hello world"))))) .\n       ))) END DECLARATIVES .) 
+				(procedureDivisionBody paragraphs)))) <EOF>)
