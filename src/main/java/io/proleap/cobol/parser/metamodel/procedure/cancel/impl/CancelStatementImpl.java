@@ -44,19 +44,7 @@ public class CancelStatementImpl extends StatementImpl implements CancelStatemen
 			result = new CancelCallImpl(programUnit, ctx);
 
 			// call
-			final Call call;
-
-			if (ctx.identifier() != null) {
-				call = createCall(ctx.identifier());
-			} else if (ctx.literal() != null) {
-				call = createCall(ctx.literal());
-			} else if (ctx.libraryName() != null) {
-				call = createCall(ctx.libraryName());
-			} else {
-				LOG.warn("unknown call at {}", ctx);
-				call = null;
-			}
-
+			final Call call = createCall(ctx.identifier(), ctx.literal(), ctx.libraryName());
 			result.setCall(call);
 
 			// type

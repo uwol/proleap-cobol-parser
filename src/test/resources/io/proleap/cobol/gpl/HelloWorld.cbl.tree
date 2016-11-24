@@ -1,11 +1,11 @@
 (startRule 
 	(compilationUnit 
 		(programUnit 
-			(identificationDivision Identification Division .\n  
-				(programIdParagraph Program-ID .\n   
+			(identificationDivision Identification Division .\n        
+				(programIdParagraph Program-ID .\n         
 					(programName 
-						(cobolWord HELLOWORLD)) .\n )) 
-			(procedureDivision Procedure Division .\n   
+						(cobolWord HELLOWORLD)) .\n       )) 
+			(procedureDivision Procedure Division .\n         
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
@@ -13,7 +13,7 @@
 								(statement 
 									(displayStatement Display 
 										(displayOperand 
-											(literal "Hello world"))))) .\n  ) 
+											(literal "Hello world"))))) .\n        ) 
 						(sentence 
 							(statements 
 								(statement 

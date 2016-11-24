@@ -46,16 +46,7 @@ public class UsingImpl extends CobolDivisionElementImpl implements Using {
 			result = new UsingAssociatedDataImpl(programUnit, ctx);
 
 			// data call
-			final Call dataCall;
-
-			if (ctx.identifier() != null) {
-				dataCall = createCall(ctx.identifier());
-			} else if (ctx.integerLiteral() != null) {
-				dataCall = createCall(ctx.integerLiteral());
-			} else {
-				dataCall = null;
-			}
-
+			final Call dataCall = createCall(ctx.identifier(), ctx.integerLiteral());
 			result.setDataCall(dataCall);
 
 			usingAssociatedData = result;
@@ -74,16 +65,7 @@ public class UsingImpl extends CobolDivisionElementImpl implements Using {
 			result = new UsingAssociatedDataLengthImpl(programUnit, ctx);
 
 			// data call
-			final Call dataLengthCall;
-
-			if (ctx.identifier() != null) {
-				dataLengthCall = createCall(ctx.identifier());
-			} else if (ctx.integerLiteral() != null) {
-				dataLengthCall = createCall(ctx.integerLiteral());
-			} else {
-				dataLengthCall = null;
-			}
-
+			final Call dataLengthCall = createCall(ctx.identifier(), ctx.integerLiteral());
 			result.setDataLengthCall(dataLengthCall);
 
 			usingAssociatedDataLength = result;

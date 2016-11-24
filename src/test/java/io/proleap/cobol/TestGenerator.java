@@ -32,7 +32,7 @@ public class TestGenerator {
 
 	private final static String[] COBOL_FILE_EXTENSIONS = new String[] { "cbl", "cob", "jcl", "txt", "" };
 
-	private final static String[] DIRECTORIES_EXCLUDED = new String[] { "cics" };
+	private final static String[] DIRECTORIES_EXCLUDED = new String[] { "cics", "nist", "ibm", "parser" };
 
 	private final static File INPUT_DIRECTORY = new File("src/test/resources");
 

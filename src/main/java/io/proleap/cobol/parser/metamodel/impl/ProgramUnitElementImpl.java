@@ -322,6 +322,68 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected Call createCall(final ParseTree... ctxs) {
+		Call result = null;
+
+		for (final ParseTree ctx : ctxs) {
+			if (result != null) {
+				break;
+			}
+
+			if (ctx == null) {
+				continue;
+			}
+
+			if (ctx instanceof IdentifierContext) {
+				result = createCall((IdentifierContext) ctx);
+			} else if (ctx instanceof LiteralContext) {
+				result = createCall((LiteralContext) ctx);
+			} else if (ctx instanceof IntegerLiteralContext) {
+				result = createCall((IntegerLiteralContext) ctx);
+			} else if (ctx instanceof MnemonicNameContext) {
+				result = createCall((MnemonicNameContext) ctx);
+			} else if (ctx instanceof ProcedureNameContext) {
+				result = createCall((ProcedureNameContext) ctx);
+			} else if (ctx instanceof CdNameContext) {
+				result = createCall((CdNameContext) ctx);
+			} else if (ctx instanceof AlphabetNameContext) {
+				result = createCall((AlphabetNameContext) ctx);
+			} else if (ctx instanceof AssignmentNameContext) {
+				result = createCall((AssignmentNameContext) ctx);
+			} else if (ctx instanceof ClassNameContext) {
+				result = createCall((ClassNameContext) ctx);
+			} else if (ctx instanceof CobolWordContext) {
+				result = createCall((CobolWordContext) ctx);
+			} else if (ctx instanceof DataDescNameContext) {
+				result = createCall((DataDescNameContext) ctx);
+			} else if (ctx instanceof DataNameContext) {
+				result = createCall((DataNameContext) ctx);
+			} else if (ctx instanceof EnvironmentNameContext) {
+				result = createCall((EnvironmentNameContext) ctx);
+			} else if (ctx instanceof FileNameContext) {
+				result = createCall((FileNameContext) ctx);
+			} else if (ctx instanceof LocalNameContext) {
+				result = createCall((LocalNameContext) ctx);
+			} else if (ctx instanceof MnemonicNameContext) {
+				result = createCall((MnemonicNameContext) ctx);
+			} else if (ctx instanceof OtherKeywordContext) {
+				result = createCall((OtherKeywordContext) ctx);
+			} else if (ctx instanceof ProgramNameContext) {
+				result = createCall((ProgramNameContext) ctx);
+			} else if (ctx instanceof QualifiedDataNameContext) {
+				result = createCall((QualifiedDataNameContext) ctx);
+			} else if (ctx instanceof ReportNameContext) {
+				result = createCall((ReportNameContext) ctx);
+			} else if (ctx instanceof SystemNameContext) {
+				result = createCall((SystemNameContext) ctx);
+			} else {
+				LOG.warn("unknown call at {}", ctx);
+			}
+		}
+
+		return result;
+	}
+
 	protected Call createCall(final ProcedureNameContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 

@@ -44,17 +44,7 @@ public class CallByReferenceStatementImpl extends CobolDivisionElementImpl imple
 			result = new ByReferenceImpl(programUnit, ctx);
 
 			// call and type
-			final Call call;
-
-			if (ctx.fileName() != null) {
-				call = createCall(ctx.fileName());
-			} else if (ctx.identifier() != null) {
-				call = createCall(ctx.identifier());
-			} else {
-				LOG.warn("unknown reference at {}", ctx);
-				call = null;
-			}
-
+			final Call call = createCall(ctx.fileName(), ctx.identifier());
 			result.setCall(call);
 
 			// type

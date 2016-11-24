@@ -19,7 +19,7 @@
 										(pictureChars )))) 
 								(dataValueClause VALUE IS 
 									(dataValueInterval 
-										(dataValueIntervalFrom
+										(dataValueIntervalFrom 
 											(literal "AB COPY, TEST.")))) .\n       ))))) 
 			(procedureDivision Procedure Division .\n         
 				(procedureDivisionBody 
@@ -29,12 +29,14 @@
 								(statement 
 									(displayStatement Display 
 										(displayOperand 
-											(literal "COPY ,"))
-										(displayOperand  
-											(otherKeyword Display))
-										(displayOperand  
-											(literal "COPY,"))
-										(displayOperand  
-											(otherKeyword STOP))
-										(displayOperand  
-											(otherKeyword RUN))))) .)))))) <EOF>)
+											(literal "COPY ,"))))) .\n        ) 
+						(sentence 
+							(statements 
+								(statement 
+									(displayStatement Display 
+										(displayOperand 
+											(literal "COPY,"))))) .\n        ) 
+						(sentence 
+							(statements 
+								(statement 
+									(stopStatement STOP RUN))) .)))))) <EOF>)

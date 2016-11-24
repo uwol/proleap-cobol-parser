@@ -13,5 +13,5 @@
        Procedure Division.
         EXEC SQL CONNECT TO demo END-EXEC
        
-        Display "Hello world"
+        Display "Hello world".
         STOP RUN.

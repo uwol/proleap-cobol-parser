@@ -27,5 +27,5 @@
 										(pictureChars )))) 
 								(dataValueClause VALUE IS 
 									(dataValueInterval 
-										(dataValueIntervalFrom
+										(dataValueIntervalFrom 
 											(literal "COPY, TEST.")))) .))))))) <EOF>)

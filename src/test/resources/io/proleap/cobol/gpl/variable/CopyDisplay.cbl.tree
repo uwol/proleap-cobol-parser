@@ -13,8 +13,8 @@
 								(statement 
 									(displayStatement Display 
 										(displayOperand 
-											(literal "Hello World"))
-										(displayOperand  
-											(otherKeyword STOP)) 
-										(displayOperand 
-											(otherKeyword RUN))))) .)))))) <EOF>)
+											(literal "Hello World"))))) .\n\n        ) 
+						(sentence 
+							(statements 
+								(statement 
+									(stopStatement STOP RUN))) .)))))) <EOF>)

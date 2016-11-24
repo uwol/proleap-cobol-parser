@@ -224,17 +224,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			result = new CallStatementImpl(programUnit, ctx);
 
 			// called program
-			final Call programCall;
-
-			if (ctx.literal() != null) {
-				programCall = createCall(ctx.literal());
-			} else if (ctx.identifier() != null) {
-				programCall = createCall(ctx.identifier());
-			} else {
-				LOG.warn("unknown program call at {}", ctx);
-				programCall = null;
-			}
-
+			final Call programCall = createCall(ctx.literal(), ctx.identifier());
 			result.setProgramCall(programCall);
 
 			// using call by reference
@@ -430,16 +420,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			result.setCommunicationDescriptionCall(cdNameCall);
 
 			// key
-			final Call keyCall;
-
-			if (ctx.identifier() != null) {
-				keyCall = createCall(ctx.identifier());
-			} else if (ctx.literal() != null) {
-				keyCall = createCall(ctx.literal());
-			} else {
-				keyCall = null;
-			}
-
+			final Call keyCall = createCall(ctx.identifier(), ctx.literal());
 			result.setKeyCall(keyCall);
 
 			registerStatement(result);

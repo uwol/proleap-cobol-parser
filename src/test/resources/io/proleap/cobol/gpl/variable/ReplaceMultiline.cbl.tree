@@ -13,14 +13,14 @@
 								(statement 
 									(displayStatement Display 
 										(displayOperand 
-											(literal "Hello world"))
-										(displayOperand  
-											(otherKeyword MOVE))
-										(displayOperand  
-											(literal "*")) 
-										(displayOperand 
-											(otherKeyword TO))
-										(displayOperand  
+											(literal "Hello world"))))) .\n       ) 
+						(sentence 
+							(statements 
+								(statement 
+									(moveStatement MOVE 
+										(moveToStatement 
+											(moveToStatementSendingArea 
+												(literal "*")) TO 
 											(identifier 
 												(qualifiedDataName 
 													(qualifiedDataNameFormat1 
@@ -52,8 +52,8 @@
 										(statement 
 											(displayStatement Display 
 												(displayOperand 
-													(literal "Hello world"))
-												(displayOperand  
-													(otherKeyword STOP))
-												(displayOperand  
-													(otherKeyword RUN))))))) .)))))) <EOF>)
+													(literal "Hello world"))))))) .\n\n        ) 
+						(sentence 
+							(statements 
+								(statement 
+									(stopStatement STOP RUN))) .)))))) <EOF>)

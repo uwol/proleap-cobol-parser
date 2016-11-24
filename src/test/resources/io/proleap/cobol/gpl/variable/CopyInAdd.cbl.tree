@@ -13,10 +13,10 @@
 								(statement 
 									(addStatement ADD 
 										(addToStatement 
-											(addFrom
+											(addFrom 
 												(literal 
 													(numericLiteral 
-														(integerLiteral 42)))) TO
+														(integerLiteral 42)))) TO 
 											(addTo 
 												(identifier 
 													(qualifiedDataName 

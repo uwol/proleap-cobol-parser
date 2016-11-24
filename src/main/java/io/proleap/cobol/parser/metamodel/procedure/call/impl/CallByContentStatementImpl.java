@@ -44,17 +44,7 @@ public class CallByContentStatementImpl extends CobolDivisionElementImpl impleme
 			result = new ByContentImpl(programUnit, ctx);
 
 			// call and type
-			final Call call;
-
-			if (ctx.literal() != null) {
-				call = createCall(ctx.literal());
-			} else if (ctx.identifier() != null) {
-				call = createCall(ctx.identifier());
-			} else {
-				LOG.warn("unknown content at {}", ctx);
-				call = null;
-			}
-
+			final Call call = createCall(ctx.literal(), ctx.identifier());
 			result.setCall(call);
 
 			// type

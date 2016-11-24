@@ -8,9 +8,9 @@
 000400 ==MOVE   "*" TO WRK-XN-00001.
 000400 
 000400 IF      WRK-XN-00001 = "*"==.
-000400 Display "Hello world"
+000400 Display "Hello world".
 000400 MOVE   "*" AO WRK-XN-00001.
 000400 IE      WRK-XN-00001 = "*"
-000400 Display "Hello world"
+000400 Display "Hello world".
 000400 REPLACE OFF.
 000800  STOP RUN.

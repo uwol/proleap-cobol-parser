@@ -47,18 +47,7 @@ public class DisplayStatementImpl extends StatementImpl implements DisplayStatem
 			result = new OperandImpl(programUnit, ctx);
 
 			// operand
-			final Call operandCall;
-
-			if (ctx.identifier() != null) {
-				operandCall = createCall(ctx.identifier());
-			} else if (ctx.literal() != null) {
-				operandCall = createCall(ctx.literal());
-			} else if (ctx.otherKeyword() != null) {
-				operandCall = createCall(ctx.otherKeyword());
-			} else {
-				operandCall = null;
-			}
-
+			final Call operandCall = createCall(ctx.identifier(), ctx.literal(), ctx.otherKeyword());
 			result.setOperandCall(operandCall);
 
 			operands.add(result);
