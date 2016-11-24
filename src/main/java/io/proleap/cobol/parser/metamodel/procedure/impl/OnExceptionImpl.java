@@ -11,19 +11,19 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
+import io.proleap.cobol.Cobol85Parser.OnExceptionClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.OnException;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
-public class InvalidKeyPhraseImpl extends CobolDivisionElementImpl implements InvalidKeyPhrase {
+public class OnExceptionImpl extends CobolDivisionElementImpl implements OnException {
 
-	protected final InvalidKeyPhraseContext ctx;
+	protected final OnExceptionClauseContext ctx;
 
 	protected List<Statement> statements = new ArrayList<Statement>();
 
-	public InvalidKeyPhraseImpl(final ProgramUnit programUnit, final InvalidKeyPhraseContext ctx) {
+	public OnExceptionImpl(final ProgramUnit programUnit, final OnExceptionClauseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

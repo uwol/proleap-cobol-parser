@@ -11,8 +11,8 @@ package io.proleap.cobol.parser.metamodel.procedure.delete.impl;
 import io.proleap.cobol.Cobol85Parser.DeleteStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.procedure.InvalidKeyPhrase;
-import io.proleap.cobol.parser.metamodel.procedure.NotInvalidKeyPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.InvalidKey;
+import io.proleap.cobol.parser.metamodel.procedure.NotInvalidKey;
 import io.proleap.cobol.parser.metamodel.procedure.delete.DeleteStatement;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
@@ -22,9 +22,9 @@ public class DeleteStatementImpl extends StatementImpl implements DeleteStatemen
 
 	protected Call fileCall;
 
-	protected InvalidKeyPhrase invalidKeyPhrase;
+	protected InvalidKey invalidKey;
 
-	protected NotInvalidKeyPhrase notInvalidKeyPhrase;
+	protected NotInvalidKey notInvalidKey;
 
 	protected boolean record;
 
@@ -40,13 +40,13 @@ public class DeleteStatementImpl extends StatementImpl implements DeleteStatemen
 	}
 
 	@Override
-	public InvalidKeyPhrase getInvalidKeyPhrase() {
-		return invalidKeyPhrase;
+	public InvalidKey getInvalidKey() {
+		return invalidKey;
 	}
 
 	@Override
-	public NotInvalidKeyPhrase getNotInvalidKeyPhrase() {
-		return notInvalidKeyPhrase;
+	public NotInvalidKey getNotInvalidKey() {
+		return notInvalidKey;
 	}
 
 	@Override
@@ -60,13 +60,13 @@ public class DeleteStatementImpl extends StatementImpl implements DeleteStatemen
 	}
 
 	@Override
-	public void setInvalidKeyPhrase(final InvalidKeyPhrase invalidKeyPhrase) {
-		this.invalidKeyPhrase = invalidKeyPhrase;
+	public void setInvalidKey(final InvalidKey invalidKey) {
+		this.invalidKey = invalidKey;
 	}
 
 	@Override
-	public void setNotInvalidKeyPhrase(final NotInvalidKeyPhrase notInvalidKeyPhrase) {
-		this.notInvalidKeyPhrase = notInvalidKeyPhrase;
+	public void setNotInvalidKey(final NotInvalidKey notInvalidKey) {
+		this.notInvalidKey = notInvalidKey;
 	}
 
 	@Override

@@ -22,7 +22,7 @@ import io.proleap.cobol.parser.metamodel.procedure.call.CallByContentStatement;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallByReferenceStatement;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallByValueStatement;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallStatement;
-import io.proleap.cobol.parser.metamodel.procedure.call.GivingPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.call.Giving;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -48,9 +48,9 @@ public class CallStatementTest extends CobolTestSupport {
 		final CallStatement callStatement = (CallStatement) procedureDivision.getStatements().get(0);
 
 		{
-			final GivingPhrase givingPhrase = callStatement.getGivingPhrase();
-			assertNotNull(givingPhrase.getGiving());
-			assertEquals(Call.CallType.UndefinedCall, givingPhrase.getGiving().getCallType());
+			final Giving giving = callStatement.getGiving();
+			assertNotNull(giving.getGivingCall());
+			assertEquals(Call.CallType.UndefinedCall, giving.getGivingCall().getCallType());
 		}
 
 		{

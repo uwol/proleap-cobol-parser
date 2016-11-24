@@ -11,9 +11,9 @@ package io.proleap.cobol.parser.metamodel.procedure.call;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
-public interface GivingPhrase extends Statement {
+public interface Giving extends Statement {
 
-	Call getGiving();
+	Call getGivingCall();
 
-	void setGiving(Call giving);
+	void setGivingCall(Call givingCall);
 }

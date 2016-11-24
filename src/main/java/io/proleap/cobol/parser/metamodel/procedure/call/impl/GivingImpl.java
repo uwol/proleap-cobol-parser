@@ -11,29 +11,29 @@ package io.proleap.cobol.parser.metamodel.procedure.call.impl;
 import io.proleap.cobol.Cobol85Parser.CallGivingPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.procedure.call.GivingPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.call.Giving;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
-public class GivingPhraseImpl extends StatementImpl implements GivingPhrase {
+public class GivingImpl extends StatementImpl implements Giving {
 
 	protected final CallGivingPhraseContext ctx;
 
-	protected Call giving;
+	protected Call givingCall;
 
-	public GivingPhraseImpl(final ProgramUnit programUnit, final CallGivingPhraseContext ctx) {
+	public GivingImpl(final ProgramUnit programUnit, final CallGivingPhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}
 
 	@Override
-	public Call getGiving() {
-		return giving;
+	public Call getGivingCall() {
+		return givingCall;
 	}
 
 	@Override
-	public void setGiving(final Call giving) {
-		this.giving = giving;
+	public void setGivingCall(final Call givingCall) {
+		this.givingCall = givingCall;
 	}
 
 }

@@ -21,6 +21,7 @@ import io.proleap.cobol.Cobol85Parser.ContinueStatementContext;
 import io.proleap.cobol.Cobol85Parser.DeleteStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisableStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
+import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
@@ -38,6 +39,7 @@ import io.proleap.cobol.parser.metamodel.procedure.contin.ContinueStatement;
 import io.proleap.cobol.parser.metamodel.procedure.delete.DeleteStatement;
 import io.proleap.cobol.parser.metamodel.procedure.disable.DisableStatement;
 import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
+import io.proleap.cobol.parser.metamodel.procedure.divide.DivideStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
@@ -68,6 +70,8 @@ public interface ProcedureDivision extends CobolDivision {
 	DisableStatement addDisableStatement(DisableStatementContext ctx);
 
 	DisplayStatement addDisplayStatement(DisplayStatementContext ctx);
+
+	DivideStatement addDivideStatement(DivideStatementContext ctx);
 
 	MoveToStatement addMoveToStatement(MoveToStatementContext ctx);
 

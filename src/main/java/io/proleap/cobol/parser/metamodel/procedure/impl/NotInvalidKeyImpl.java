@@ -11,19 +11,19 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.NotOnExceptionClauseContext;
+import io.proleap.cobol.Cobol85Parser.NotInvalidKeyPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.procedure.NotOnExceptionClause;
+import io.proleap.cobol.parser.metamodel.procedure.NotInvalidKey;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
-public class NotOnExceptionClauseImpl extends CobolDivisionElementImpl implements NotOnExceptionClause {
+public class NotInvalidKeyImpl extends CobolDivisionElementImpl implements NotInvalidKey {
 
-	protected final NotOnExceptionClauseContext ctx;
+	protected final NotInvalidKeyPhraseContext ctx;
 
 	protected List<Statement> statements = new ArrayList<Statement>();
 
-	public NotOnExceptionClauseImpl(final ProgramUnit programUnit, final NotOnExceptionClauseContext ctx) {
+	public NotInvalidKeyImpl(final ProgramUnit programUnit, final NotInvalidKeyPhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

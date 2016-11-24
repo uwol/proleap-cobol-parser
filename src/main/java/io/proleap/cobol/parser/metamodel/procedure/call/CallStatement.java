@@ -15,9 +15,9 @@ import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallByValueStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallGivingPhraseContext;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.procedure.NotOnExceptionClause;
-import io.proleap.cobol.parser.metamodel.procedure.OnExceptionClause;
-import io.proleap.cobol.parser.metamodel.procedure.OnOverflowPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.NotOnException;
+import io.proleap.cobol.parser.metamodel.procedure.OnException;
+import io.proleap.cobol.parser.metamodel.procedure.OnOverflow;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
 /**
@@ -31,7 +31,7 @@ public interface CallStatement extends Statement {
 
 	CallByValueStatement addCallByValueStatement(CallByValueStatementContext ctx);
 
-	GivingPhrase addGivingPhrase(CallGivingPhraseContext ctx);
+	Giving addGiving(CallGivingPhraseContext ctx);
 
 	List<CallByContentStatement> getCallByContentStatements();
 
@@ -39,21 +39,21 @@ public interface CallStatement extends Statement {
 
 	List<CallByValueStatement> getCallByValueStatements();
 
-	GivingPhrase getGivingPhrase();
+	Giving getGiving();
 
-	NotOnExceptionClause getNotOnExceptionClause();
+	NotOnException getNotOnException();
 
-	OnExceptionClause getOnExceptionClause();
+	OnException getOnException();
 
-	OnOverflowPhrase getOnOverflowPhrase();
+	OnOverflow getOnOverflow();
 
 	Call getProgramCall();
 
-	void setNotOnExceptionClause(NotOnExceptionClause notOnExceptionClause);
+	void setNotOnException(NotOnException notOnExceptionClause);
 
-	void setOnExceptionClause(OnExceptionClause onExceptionClause);
+	void setOnException(OnException onExceptionClause);
 
-	void setOnOverflowPhrase(OnOverflowPhrase onOverflowPhrase);
+	void setOnOverflow(OnOverflow onOverflowPhrase);
 
 	void setProgramCall(Call programCall);
 }

@@ -1667,22 +1667,34 @@ divideStatement :
 		| divideIntoGivingStatement
 		| divideIntoByGivingStatement
 	)
-	(REMAINDER identifier)?
+	divideRemainder?
 	onSizeErrorPhrase?
 	notOnSizeErrorPhrase?
 	END_DIVIDE?
 ;
 
 divideIntoStatement :
-	INTO (identifier | literal) (GIVING (identifier ROUNDED?)+)?
+	INTO (identifier | literal) divideGivingPhrase?
 ;
 
 divideIntoGivingStatement :
-	INTO (identifier ROUNDED?)+
+	INTO divideGiving+
 ;
 
 divideIntoByGivingStatement :
-	BY (identifier | literal) (GIVING (identifier ROUNDED?)+)?
+	BY (identifier | literal) divideGivingPhrase?
+;
+
+divideGivingPhrase :
+	GIVING divideGiving+
+;
+
+divideGiving :
+	identifier ROUNDED?
+;
+
+divideRemainder :
+	REMAINDER identifier
 ;
 
 // enable statement

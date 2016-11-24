@@ -11,19 +11,19 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.NotOnSizeErrorPhraseContext;
+import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.InvalidKey;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
-public class NotOnSizeErrorPhraseImpl extends CobolDivisionElementImpl implements NotOnSizeErrorPhrase {
+public class InvalidKeyImpl extends CobolDivisionElementImpl implements InvalidKey {
 
-	protected final NotOnSizeErrorPhraseContext ctx;
+	protected final InvalidKeyPhraseContext ctx;
 
 	protected List<Statement> statements = new ArrayList<Statement>();
 
-	public NotOnSizeErrorPhraseImpl(final ProgramUnit programUnit, final NotOnSizeErrorPhraseContext ctx) {
+	public InvalidKeyImpl(final ProgramUnit programUnit, final InvalidKeyPhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

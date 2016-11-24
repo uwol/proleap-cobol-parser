@@ -9,8 +9,8 @@
 package io.proleap.cobol.parser.metamodel.procedure.delete;
 
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.procedure.InvalidKeyPhrase;
-import io.proleap.cobol.parser.metamodel.procedure.NotInvalidKeyPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.InvalidKey;
+import io.proleap.cobol.parser.metamodel.procedure.NotInvalidKey;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
 /**
@@ -20,17 +20,17 @@ public interface DeleteStatement extends Statement {
 
 	Call getFileCall();
 
-	InvalidKeyPhrase getInvalidKeyPhrase();
+	InvalidKey getInvalidKey();
 
-	NotInvalidKeyPhrase getNotInvalidKeyPhrase();
+	NotInvalidKey getNotInvalidKey();
 
 	boolean isRecord();
 
 	void setFileCall(Call fileCall);
 
-	void setInvalidKeyPhrase(InvalidKeyPhrase invalidKeyPhrase);
+	void setInvalidKey(InvalidKey invalidKey);
 
-	void setNotInvalidKeyPhrase(NotInvalidKeyPhrase notInvalidKeyPhrase);
+	void setNotInvalidKey(NotInvalidKey notInvalidKey);
 
 	void setRecord(boolean record);
 

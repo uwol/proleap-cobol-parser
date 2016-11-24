@@ -12,7 +12,7 @@ import java.util.List;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface OnExceptionClause extends CobolDivisionElement {
+public interface OnOverflow extends CobolDivisionElement {
 
 	void addStatement(Statement statement);
 

@@ -17,8 +17,8 @@ import io.proleap.cobol.Cobol85Parser.AddToGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddToStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeErrorPhrase;
-import io.proleap.cobol.parser.metamodel.procedure.OnSizeErrorPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeError;
+import io.proleap.cobol.parser.metamodel.procedure.OnSizeError;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddCorresponding;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddStatement;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddTo;
@@ -39,9 +39,9 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 
 	protected final AddStatementContext ctx;
 
-	protected NotOnSizeErrorPhrase notOnSizeErrorPhrase;
+	protected NotOnSizeError notOnSizeError;
 
-	protected OnSizeErrorPhrase onSizeErrorPhrase;
+	protected OnSizeError onSizeError;
 
 	protected Type type;
 
@@ -238,13 +238,13 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 	}
 
 	@Override
-	public NotOnSizeErrorPhrase getNotOnSizeErrorPhrase() {
-		return notOnSizeErrorPhrase;
+	public NotOnSizeError getNotOnSizeError() {
+		return notOnSizeError;
 	}
 
 	@Override
-	public OnSizeErrorPhrase getOnSizeErrorPhrase() {
-		return onSizeErrorPhrase;
+	public OnSizeError getOnSizeError() {
+		return onSizeError;
 	}
 
 	@Override
@@ -253,13 +253,13 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 	}
 
 	@Override
-	public void setNotOnSizeErrorPhrase(final NotOnSizeErrorPhrase notOnSizeErrorPhrase) {
-		this.notOnSizeErrorPhrase = notOnSizeErrorPhrase;
+	public void setNotOnSize(final NotOnSizeError notOnSizeError) {
+		this.notOnSizeError = notOnSizeError;
 	}
 
 	@Override
-	public void setOnSizeErrorPhrase(final OnSizeErrorPhrase onSizeErrorPhrase) {
-		this.onSizeErrorPhrase = onSizeErrorPhrase;
+	public void setOnSizeError(final OnSizeError onSizeError) {
+		this.onSizeError = onSizeError;
 	}
 
 	@Override

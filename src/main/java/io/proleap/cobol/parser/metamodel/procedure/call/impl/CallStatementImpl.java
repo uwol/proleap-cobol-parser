@@ -21,14 +21,14 @@ import io.proleap.cobol.Cobol85Parser.CallGivingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.procedure.NotOnExceptionClause;
-import io.proleap.cobol.parser.metamodel.procedure.OnExceptionClause;
-import io.proleap.cobol.parser.metamodel.procedure.OnOverflowPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.NotOnException;
+import io.proleap.cobol.parser.metamodel.procedure.OnException;
+import io.proleap.cobol.parser.metamodel.procedure.OnOverflow;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallByContentStatement;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallByReferenceStatement;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallByValueStatement;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallStatement;
-import io.proleap.cobol.parser.metamodel.procedure.call.GivingPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.call.Giving;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
 public class CallStatementImpl extends StatementImpl implements CallStatement {
@@ -41,13 +41,13 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 
 	protected final CallStatementContext ctx;
 
-	protected GivingPhrase givingPhrase;
+	protected Giving giving;
 
-	protected NotOnExceptionClause notOnExceptionClause;
+	protected NotOnException notOnException;
 
-	protected OnExceptionClause onExceptionClause;
+	protected OnException onException;
 
-	protected OnOverflowPhrase onOverflowPhrase;
+	protected OnOverflow onOverflow;
 
 	protected Call programCall;
 
@@ -112,16 +112,16 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 	}
 
 	@Override
-	public GivingPhrase addGivingPhrase(final CallGivingPhraseContext ctx) {
-		GivingPhrase result = (GivingPhrase) getASGElement(ctx);
+	public Giving addGiving(final CallGivingPhraseContext ctx) {
+		Giving result = (Giving) getASGElement(ctx);
 
 		if (result == null) {
-			result = new GivingPhraseImpl(programUnit, ctx);
+			result = new GivingImpl(programUnit, ctx);
 
-			final Call giving = createCall(ctx.identifier());
-			result.setGiving(giving);
+			final Call givingCall = createCall(ctx.identifier());
+			result.setGivingCall(givingCall);
 
-			givingPhrase = result;
+			giving = result;
 			registerASGElement(result);
 		}
 
@@ -144,23 +144,23 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 	}
 
 	@Override
-	public GivingPhrase getGivingPhrase() {
-		return givingPhrase;
+	public Giving getGiving() {
+		return giving;
 	}
 
 	@Override
-	public NotOnExceptionClause getNotOnExceptionClause() {
-		return notOnExceptionClause;
+	public NotOnException getNotOnException() {
+		return notOnException;
 	}
 
 	@Override
-	public OnExceptionClause getOnExceptionClause() {
-		return onExceptionClause;
+	public OnException getOnException() {
+		return onException;
 	}
 
 	@Override
-	public OnOverflowPhrase getOnOverflowPhrase() {
-		return onOverflowPhrase;
+	public OnOverflow getOnOverflow() {
+		return onOverflow;
 	}
 
 	@Override
@@ -169,18 +169,18 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 	}
 
 	@Override
-	public void setNotOnExceptionClause(final NotOnExceptionClause notOnExceptionClause) {
-		this.notOnExceptionClause = notOnExceptionClause;
+	public void setNotOnException(final NotOnException notOnException) {
+		this.notOnException = notOnException;
 	}
 
 	@Override
-	public void setOnExceptionClause(final OnExceptionClause onExceptionClause) {
-		this.onExceptionClause = onExceptionClause;
+	public void setOnException(final OnException onException) {
+		this.onException = onException;
 	}
 
 	@Override
-	public void setOnOverflowPhrase(final OnOverflowPhrase onOverflowPhrase) {
-		this.onOverflowPhrase = onOverflowPhrase;
+	public void setOnOverflow(final OnOverflow onOverflow) {
+		this.onOverflow = onOverflow;
 	}
 
 	@Override

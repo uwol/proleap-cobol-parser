@@ -12,7 +12,7 @@ import java.util.List;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface NotInvalidKeyPhrase extends CobolDivisionElement {
+public interface OnException extends CobolDivisionElement {
 
 	void addStatement(Statement statement);
 

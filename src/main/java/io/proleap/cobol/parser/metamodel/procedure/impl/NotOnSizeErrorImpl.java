@@ -11,19 +11,19 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.NotOnOverflowPhraseContext;
+import io.proleap.cobol.Cobol85Parser.NotOnSizeErrorPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.procedure.NotOnOverflowPhrase;
+import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeError;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
-public class NotOnOverflowPhraseImpl extends CobolDivisionElementImpl implements NotOnOverflowPhrase {
+public class NotOnSizeErrorImpl extends CobolDivisionElementImpl implements NotOnSizeError {
 
-	protected final NotOnOverflowPhraseContext ctx;
+	protected final NotOnSizeErrorPhraseContext ctx;
 
 	protected List<Statement> statements = new ArrayList<Statement>();
 
-	public NotOnOverflowPhraseImpl(final ProgramUnit programUnit, final NotOnOverflowPhraseContext ctx) {
+	public NotOnSizeErrorImpl(final ProgramUnit programUnit, final NotOnSizeErrorPhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

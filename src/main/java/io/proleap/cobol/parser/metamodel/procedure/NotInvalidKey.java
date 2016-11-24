@@ -12,7 +12,7 @@ import java.util.List;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
-public interface NotOnSizeErrorPhrase extends CobolDivisionElement {
+public interface NotInvalidKey extends CobolDivisionElement {
 
 	void addStatement(Statement statement);
 
