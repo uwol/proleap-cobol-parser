@@ -46,14 +46,19 @@ import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.call.CommunicationDescriptionEntryCall;
 import io.proleap.cobol.parser.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
+import io.proleap.cobol.parser.metamodel.call.ReportDescriptionEntryCall;
 import io.proleap.cobol.parser.metamodel.call.impl.CommunicationDescriptionEntryCallImpl;
 import io.proleap.cobol.parser.metamodel.call.impl.DataDescriptionEntryCallImpl;
 import io.proleap.cobol.parser.metamodel.call.impl.ProcedureCallImpl;
+import io.proleap.cobol.parser.metamodel.call.impl.ReportDescriptionEntryCallImpl;
 import io.proleap.cobol.parser.metamodel.call.impl.UndefinedCallImpl;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.communication.CommunicationDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.communication.CommunicationSection;
 import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.report.Report;
+import io.proleap.cobol.parser.metamodel.data.report.ReportDescriptionEntry;
+import io.proleap.cobol.parser.metamodel.data.report.ReportSection;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
@@ -90,8 +95,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -101,8 +105,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -112,23 +115,23 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
 			final DataDivision dataDivision = programUnit.getDataDivision();
 
 			if (dataDivision == null) {
-				result = new UndefinedCallImpl(name, programUnit, ctx);
+				result = createUndefinedCall(ctx);
 			} else {
 				final CommunicationSection communicationSection = dataDivision.getCommunicationSection();
 
 				if (communicationSection == null) {
-					result = new UndefinedCallImpl(name, programUnit, ctx);
+					result = createUndefinedCall(ctx);
 				} else {
+					final String name = determineName(ctx);
 					final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
 							.getCommunicationDescriptionEntry(name);
 
 					if (communicationDescriptionEntry == null) {
 						LOG.warn("call to unknown element {}", name);
-						result = new UndefinedCallImpl(name, programUnit, ctx);
+						result = createUndefinedCall(ctx);
 					} else {
 						final CommunicationDescriptionEntryCall call = new CommunicationDescriptionEntryCallImpl(name,
 								communicationDescriptionEntry, programUnit, ctx);
@@ -140,6 +143,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 					}
 				}
 			}
+
+			registerASGElement(result);
 		}
 
 		return result;
@@ -149,8 +154,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -160,8 +164,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -171,8 +174,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -182,8 +184,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -193,8 +194,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -204,8 +204,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -215,23 +214,23 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
 			final DataDivision dataDivision = programUnit.getDataDivision();
 
 			if (dataDivision == null) {
-				result = new UndefinedCallImpl(name, programUnit, ctx);
+				result = createUndefinedCall(ctx);
 			} else {
 				final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
 				if (workingStorageSection == null) {
-					result = new UndefinedCallImpl(name, programUnit, ctx);
+					result = createUndefinedCall(ctx);
 				} else {
+					final String name = determineName(ctx);
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.getDataDescriptionEntry(name);
 
 					if (dataDescriptionEntry == null) {
 						LOG.warn("call to unknown element {}", name);
-						result = new UndefinedCallImpl(name, programUnit, ctx);
+						result = createUndefinedCall(ctx);
 					} else {
 						final DataDescriptionEntryCall call = new DataDescriptionEntryCallImpl(name,
 								dataDescriptionEntry, programUnit, ctx);
@@ -242,6 +241,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 					}
 				}
 			}
+
+			registerASGElement(result);
 		}
 
 		return result;
@@ -251,8 +252,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -262,8 +262,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -273,8 +272,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -284,8 +282,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -295,8 +292,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -306,8 +302,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -317,8 +312,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -394,16 +388,16 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
 			final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 
 			if (procedureDivision == null) {
-				result = new UndefinedCallImpl(name, programUnit, ctx);
+				result = createUndefinedCall(ctx);
 			} else {
+				final String name = determineName(ctx);
 				final Paragraph paragraph = procedureDivision.getParagraph(name);
 
 				if (paragraph == null) {
-					result = new UndefinedCallImpl(name, programUnit, ctx);
+					result = createUndefinedCall(ctx);
 				} else {
 					final ProcedureCall call = new ProcedureCallImpl(name, paragraph, programUnit, ctx);
 
@@ -411,9 +405,9 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 					result = call;
 				}
-
-				registerASGElement(result);
 			}
+
+			registerASGElement(result);
 		}
 
 		return result;
@@ -423,8 +417,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -434,8 +427,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -445,8 +437,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -456,8 +447,34 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			final DataDivision dataDivision = programUnit.getDataDivision();
+
+			if (dataDivision == null) {
+				result = createUndefinedCall(ctx);
+			} else {
+				final ReportSection reportSection = dataDivision.getReportSection();
+
+				if (reportSection == null) {
+					result = createUndefinedCall(ctx);
+				} else {
+					final String name = determineName(ctx);
+					final Report report = reportSection.getReport(name);
+
+					if (report == null) {
+						result = createUndefinedCall(ctx);
+					} else {
+						final ReportDescriptionEntry reportDescriptionEntry = report.getReportDescriptionEntry();
+						final ReportDescriptionEntryCall call = new ReportDescriptionEntryCallImpl(name,
+								reportDescriptionEntry, programUnit, ctx);
+
+						linkReportDescriptionEntryCallWithReportDescriptionEntry(call, reportDescriptionEntry);
+
+						result = call;
+					}
+				}
+			}
+
+			registerASGElement(result);
 		}
 
 		return result;
@@ -467,8 +484,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			result = new UndefinedCallImpl(name, programUnit, ctx);
+			result = createUndefinedCall(ctx);
 		}
 
 		return result;
@@ -628,6 +644,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected Call createUndefinedCall(final ParseTree ctx) {
+		final String name = determineName(ctx);
+		final Call result = new UndefinedCallImpl(name, programUnit, ctx);
+		return result;
+	}
+
 	@Override
 	public ProgramUnit getProgramUnit() {
 		return programUnit;
@@ -646,6 +668,11 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected void linkProcedureCallWithParagraph(final ProcedureCall call, final Paragraph paragraph) {
 		paragraph.addCall(call);
+	}
+
+	protected void linkReportDescriptionEntryCallWithReportDescriptionEntry(final ReportDescriptionEntryCall call,
+			final ReportDescriptionEntry reportDescriptionEntry) {
+		reportDescriptionEntry.addCall(call);
 	}
 
 }

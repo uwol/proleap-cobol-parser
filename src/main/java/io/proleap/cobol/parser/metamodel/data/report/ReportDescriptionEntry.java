@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.data.report;
 
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionFirstDetailClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionFootingClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionGlobalClauseContext;
@@ -16,8 +18,11 @@ import io.proleap.cobol.Cobol85Parser.ReportDescriptionLastDetailClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionPageLimitClauseContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.Declaration;
+import io.proleap.cobol.parser.metamodel.call.ReportDescriptionEntryCall;
 
 public interface ReportDescriptionEntry extends CobolDivisionElement, Declaration {
+
+	void addCall(ReportDescriptionEntryCall call);
 
 	FirstDetailClause addFirstDetailClause(ReportDescriptionFirstDetailClauseContext ctx);
 
@@ -31,6 +36,8 @@ public interface ReportDescriptionEntry extends CobolDivisionElement, Declaratio
 
 	PageLimitClause addPageLimitClause(ReportDescriptionPageLimitClauseContext ctx);
 
+	List<ReportDescriptionEntryCall> getCalls();
+
 	FirstDetailClause getFirstDetailClause();
 
 	FootingClause getFootingClause();
@@ -42,4 +49,8 @@ public interface ReportDescriptionEntry extends CobolDivisionElement, Declaratio
 	LastDetailClause getLastDetailClause();
 
 	PageLimitClause getPageLimitClause();
+
+	Report getReport();
+
+	void setReport(Report report);
 }

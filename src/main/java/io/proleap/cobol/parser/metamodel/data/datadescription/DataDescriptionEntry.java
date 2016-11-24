@@ -26,7 +26,7 @@ public interface DataDescriptionEntry extends CobolDivisionElement, Declaration 
 
 	static final int LEVEL_NUMBER_SCALAR = 77;
 
-	void addCall(DataDescriptionEntryCall dataDescriptionEntryCall);
+	void addCall(DataDescriptionEntryCall call);
 
 	List<DataDescriptionEntryCall> getCalls();
 

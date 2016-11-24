@@ -8,6 +8,9 @@
 
 package io.proleap.cobol.parser.metamodel.data.report.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionFirstDetailClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionFootingClauseContext;
@@ -17,16 +20,20 @@ import io.proleap.cobol.Cobol85Parser.ReportDescriptionLastDetailClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionPageLimitClauseContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.ReportDescriptionEntryCall;
 import io.proleap.cobol.parser.metamodel.data.report.FirstDetailClause;
 import io.proleap.cobol.parser.metamodel.data.report.FootingClause;
 import io.proleap.cobol.parser.metamodel.data.report.GlobalClause;
 import io.proleap.cobol.parser.metamodel.data.report.HeadingClause;
 import io.proleap.cobol.parser.metamodel.data.report.LastDetailClause;
 import io.proleap.cobol.parser.metamodel.data.report.PageLimitClause;
+import io.proleap.cobol.parser.metamodel.data.report.Report;
 import io.proleap.cobol.parser.metamodel.data.report.ReportDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 
 public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl implements ReportDescriptionEntry {
+
+	protected List<ReportDescriptionEntryCall> calls = new ArrayList<ReportDescriptionEntryCall>();
 
 	protected final ReportDescriptionEntryContext ctx;
 
@@ -44,12 +51,19 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 
 	protected PageLimitClause pageLimitClause;
 
+	protected Report report;
+
 	public ReportDescriptionEntryImpl(final String name, final ProgramUnit programUnit,
 			final ReportDescriptionEntryContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
 		this.name = name;
+	}
+
+	@Override
+	public void addCall(final ReportDescriptionEntryCall call) {
+		calls.add(call);
 	}
 
 	@Override
@@ -154,6 +168,11 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
+	public List<ReportDescriptionEntryCall> getCalls() {
+		return calls;
+	}
+
+	@Override
 	public FirstDetailClause getFirstDetailClause() {
 		return firstDetailClause;
 	}
@@ -186,6 +205,16 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 	@Override
 	public PageLimitClause getPageLimitClause() {
 		return pageLimitClause;
+	}
+
+	@Override
+	public Report getReport() {
+		return report;
+	}
+
+	@Override
+	public void setReport(final Report report) {
+		this.report = report;
 	}
 
 }

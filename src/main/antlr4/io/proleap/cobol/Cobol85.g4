@@ -1747,7 +1747,7 @@ exitStatement :
 // generate statement
 
 generateStatement :
-	GENERATE (dataName | reportName)
+	GENERATE reportName
 ;
 
 // goback statement

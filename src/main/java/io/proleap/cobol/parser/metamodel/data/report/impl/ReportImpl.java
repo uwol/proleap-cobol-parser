@@ -117,6 +117,7 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 				result.addFootingClause(ctx.reportDescriptionFootingClause());
 			}
 
+			result.setReport(this);
 			reportDescriptionEntry = result;
 			registerASGElement(result);
 		}
