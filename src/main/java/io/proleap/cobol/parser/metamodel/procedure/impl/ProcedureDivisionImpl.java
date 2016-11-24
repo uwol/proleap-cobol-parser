@@ -57,6 +57,8 @@ import io.proleap.cobol.Cobol85Parser.OnSizeErrorPhraseContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativeContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativesContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.Cobol85Parser.PurgeStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReleaseStatementContext;
@@ -96,6 +98,8 @@ import io.proleap.cobol.parser.metamodel.procedure.compute.ComputeStatement;
 import io.proleap.cobol.parser.metamodel.procedure.compute.impl.ComputeStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.continuestmt.ContinueStatement;
 import io.proleap.cobol.parser.metamodel.procedure.continuestmt.impl.ContinueStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.declaratives.Declaratives;
+import io.proleap.cobol.parser.metamodel.procedure.declaratives.impl.DeclarativesImpl;
 import io.proleap.cobol.parser.metamodel.procedure.delete.DeleteStatement;
 import io.proleap.cobol.parser.metamodel.procedure.delete.impl.DeleteStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.disable.DisableStatement;
@@ -137,6 +141,8 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 	private final static Logger LOG = LogManager.getLogger(ProcedureDivisionImpl.class);
 
 	protected final ProcedureDivisionContext ctx;
+
+	protected Declaratives declaratives;
 
 	protected List<Paragraph> paragraphs = new ArrayList<Paragraph>();
 
@@ -379,6 +385,25 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			result = new ContinueStatementImpl(programUnit, ctx);
 
 			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public Declaratives addDeclaratives(final ProcedureDeclarativesContext ctx) {
+		Declaratives result = (Declaratives) getASGElement(ctx);
+
+		if (result == null) {
+			result = new DeclarativesImpl(programUnit, ctx);
+
+			// declaratives
+			for (final ProcedureDeclarativeContext procedureDeclarativeContext : ctx.procedureDeclarative()) {
+				result.addDeclarative(procedureDeclarativeContext);
+			}
+
+			declaratives = result;
+			registerASGElement(result);
 		}
 
 		return result;
@@ -981,6 +1006,11 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		}
 
 		return result;
+	}
+
+	@Override
+	public Declaratives getDeclaratives() {
+		return declaratives;
 	}
 
 	@Override

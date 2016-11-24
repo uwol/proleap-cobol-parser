@@ -56,6 +56,7 @@ import io.proleap.cobol.parser.metamodel.data.communication.CommunicationSection
 import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
+import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
@@ -394,19 +395,25 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			final Paragraph paragraph = programUnit.getProcedureDivision().getParagraph(name);
+			final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 
-			if (paragraph == null) {
+			if (procedureDivision == null) {
 				result = new UndefinedCallImpl(name, programUnit, ctx);
 			} else {
-				final ProcedureCall call = new ProcedureCallImpl(name, paragraph, programUnit, ctx);
+				final Paragraph paragraph = procedureDivision.getParagraph(name);
 
-				linkProcedureCallWithParagraph(call, paragraph);
+				if (paragraph == null) {
+					result = new UndefinedCallImpl(name, programUnit, ctx);
+				} else {
+					final ProcedureCall call = new ProcedureCallImpl(name, paragraph, programUnit, ctx);
 
-				result = call;
+					linkProcedureCallWithParagraph(call, paragraph);
+
+					result = call;
+				}
+
+				registerASGElement(result);
 			}
-
-			registerASGElement(result);
 		}
 
 		return result;

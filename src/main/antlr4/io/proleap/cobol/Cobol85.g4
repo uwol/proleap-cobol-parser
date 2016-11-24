@@ -1328,12 +1328,14 @@ procedureDivisionGivingClause :
 
 procedureDeclaratives :
 	DECLARATIVES DOT_FS
-	(
-		procedureSectionHeader DOT_FS
-		useStatement DOT_FS
-		paragraphs
-	)+
+	procedureDeclarative+
 	END DECLARATIVES DOT_FS
+;
+
+procedureDeclarative :
+	procedureSectionHeader DOT_FS
+	useStatement DOT_FS
+	paragraphs
 ;
 
 procedureSectionHeader :
@@ -2237,27 +2239,23 @@ unstringStatement :
 // use statement
 
 useStatement :
-	USE (useProcedureClause	| useProcedureDebugClause)
+	USE (useAfterClause | useDebugClause)
 ;
 
-useProcedureClause :
-	GLOBAL? AFTER STANDARD?
-	(
-		(EXCEPTION | ERROR)
-		| (BEGINNING | ENDING)? (FILE | REEL | UNIT)? LABEL
-	)
-	PROCEDURE ON? (fileName+ | INPUT | OUTPUT | I_O | EXTEND)
-	(GIVING dataName+)?
+useAfterClause :
+	GLOBAL? AFTER STANDARD? (EXCEPTION | ERROR) PROCEDURE ON? useAfterOn
 ;
 
-useProcedureDebugClause :
-	FOR? DEBUGGING ON?
-	(
-		ALL PROCEDURES
-		| ALL REFERENCES? OF? identifier
-		| procedureName
-		| fileName
-	)+
+useAfterOn :
+	fileName+ | INPUT | OUTPUT | I_O | EXTEND
+;
+
+useDebugClause :
+	FOR? DEBUGGING ON? useDebugOn+
+;
+
+useDebugOn :
+	ALL PROCEDURES | ALL REFERENCES? OF? identifier	| procedureName	| fileName
 ;
 
 // write statement

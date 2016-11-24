@@ -17,6 +17,19 @@
 		</license>
 	</licenses>
 
+	<properties>
+		<exclude.tests>nothing.to.exclude</exclude.tests>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>skip.nist.tests</id>
+			<properties>
+				<exclude.tests>**/gov/nist/**</exclude.tests>
+			</properties>
+		</profile>
+	</profiles>
+
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<outputDirectory>target/classes</outputDirectory>
@@ -83,6 +96,9 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<argLine>-Xmx2048m -XX:MaxPermSize=256m -Djava.awt.headless=true</argLine>
+					<excludes>
+						<exclude>${exclude.tests}</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 			<plugin>
