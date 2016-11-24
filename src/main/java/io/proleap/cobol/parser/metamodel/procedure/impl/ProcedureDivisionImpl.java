@@ -666,6 +666,25 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new StopStatementImpl(programUnit, ctx);
 
+			if (ctx.literal() != null) {
+				final Call displayCall = createCall(ctx.literal());
+				result.setDisplayCall(displayCall);
+			}
+
+			// type
+			final StopStatement.Type type;
+
+			if (ctx.RUN() != null) {
+				type = StopStatement.Type.StopRun;
+			} else if (ctx.literal() != null) {
+				type = StopStatement.Type.StopRunAndDisplay;
+			} else {
+				LOG.warn("unknown type at {}", ctx);
+				type = null;
+			}
+
+			result.setType(type);
+
 			registerStatement(result);
 		}
 
