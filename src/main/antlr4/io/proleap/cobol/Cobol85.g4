@@ -1787,23 +1787,15 @@ ifElse :
 // initialize statement
 
 initializeStatement :
-	INITIALIZE identifier+
-	(
-		REPLACING
-		(
-			(
-				ALPHABETIC
-				| ALPHANUMERIC
-				| NATIONAL
-				| NUMERIC
-				| ALPHANUMERIC_EDITED
-				| NUMERIC_EDITED
-				| DBCS
-				| EGCS
-			)
-			DATA? BY (identifier | literal)
-		)+
-	)?
+	INITIALIZE identifier+ initializeReplacingPhrase?
+;
+
+initializeReplacingPhrase :
+	REPLACING initializeReplacingBy+
+;
+
+initializeReplacingBy :
+	(ALPHABETIC | ALPHANUMERIC | NATIONAL | NUMERIC | ALPHANUMERIC_EDITED | NUMERIC_EDITED | DBCS | EGCS) DATA? BY (identifier | literal)
 ;
 
 // initiate statement

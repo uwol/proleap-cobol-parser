@@ -45,6 +45,7 @@ import io.proleap.cobol.Cobol85Parser.GoToStatementContext;
 import io.proleap.cobol.Cobol85Parser.GobackStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IfStatementContext;
+import io.proleap.cobol.Cobol85Parser.InitializeStatementContext;
 import io.proleap.cobol.Cobol85Parser.InitiateStatementContext;
 import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
@@ -125,6 +126,8 @@ import io.proleap.cobol.parser.metamodel.procedure.gotostmt.GoToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.gotostmt.impl.GoToStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.ifstmt.IfStatement;
 import io.proleap.cobol.parser.metamodel.procedure.ifstmt.impl.IfStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.initialize.InitializeStatement;
+import io.proleap.cobol.parser.metamodel.procedure.initialize.impl.InitializeStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.initiate.InitiateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.initiate.impl.InitiateStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
@@ -726,6 +729,30 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			// else
 			if (ctx.ifElse() != null) {
 				result.addElse(ctx.ifElse());
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public InitializeStatement addInitializeStatement(final InitializeStatementContext ctx) {
+		InitializeStatement result = (InitializeStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new InitializeStatementImpl(programUnit, ctx);
+
+			// data item calls
+			for (final IdentifierContext identifierContext : ctx.identifier()) {
+				final Call dataItemCall = createCall(identifierContext);
+				result.addDataItemCall(dataItemCall);
+			}
+
+			// replacing
+			if (ctx.initializeReplacingPhrase() != null) {
+				result.addReplacing(ctx.initializeReplacingPhrase());
 			}
 
 			registerStatement(result);
