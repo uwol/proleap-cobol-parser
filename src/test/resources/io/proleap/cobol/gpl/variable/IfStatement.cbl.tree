@@ -29,12 +29,11 @@
 																	(basis 
 																		(literal 
 																			(numericLiteral ZERO)))))))))) 
-										(statement 
-											(displayStatement Display 
-												(displayOperand 
-													(literal "Hello world")) 
-												(displayOperand 
-													(otherKeyword END-IF))))))) .\n       \n         ) 
+										(ifThen 
+											(statement 
+												(displayStatement Display 
+													(displayOperand 
+														(literal "Hello world"))))) END-IF))) .\n       \n         ) 
 						(sentence 
 							(statements 
 								(statement 
@@ -56,12 +55,11 @@
 																	(basis 
 																		(literal 
 																			(numericLiteral ZERO)))))))))) 
-										(statement 
-											(displayStatement Display 
-												(displayOperand 
-													(literal "Hello world")) 
-												(displayOperand 
-													(otherKeyword END-IF))))))) .\n       \n         ) 
+										(ifThen 
+											(statement 
+												(displayStatement Display 
+													(displayOperand 
+														(literal "Hello world"))))) END-IF))) .\n       \n         ) 
 						(sentence 
 							(statements 
 								(statement 
@@ -103,10 +101,4 @@
 														(timesDiv 
 															(power 
 																(basis 
-																	(literal "Hello world")))))) 
-												(abbreviationLeaf 
-													(arithmeticExpression 
-														(timesDiv 
-															(power 
-																(basis 
-																	(otherKeyword END-IF))))))))))) .)))))) <EOF>)
+																	(literal "Hello world")))))))) ifThen END-IF))) .)))))) <EOF>)

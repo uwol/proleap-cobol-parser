@@ -49,10 +49,11 @@
 																(power 
 																	(basis 
 																		(literal "*"))))))))) 
-										(statement 
-											(displayStatement Display 
-												(displayOperand 
-													(literal "Hello world"))))))) .\n\n        ) 
+										(ifThen 
+											(statement 
+												(displayStatement Display 
+													(displayOperand 
+														(literal "Hello world")))))))) .\n\n        ) 
 						(sentence 
 							(statements 
 								(statement 

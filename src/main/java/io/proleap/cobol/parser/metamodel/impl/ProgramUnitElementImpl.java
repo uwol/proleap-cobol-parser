@@ -19,6 +19,7 @@ import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
 import io.proleap.cobol.Cobol85Parser.CdNameContext;
 import io.proleap.cobol.Cobol85Parser.ClassNameContext;
 import io.proleap.cobol.Cobol85Parser.CobolWordContext;
+import io.proleap.cobol.Cobol85Parser.ConditionContext;
 import io.proleap.cobol.Cobol85Parser.DataDescNameContext;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentNameContext;
@@ -64,11 +65,13 @@ import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.ConditionValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.TerminalValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.ArithmeticValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.CallValueStmtImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.impl.ConditionValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.IntegerLiteralValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.TerminalValueStmtImpl;
@@ -583,6 +586,11 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	protected CallValueStmt createCallValueStmt(final SystemNameContext ctx) {
 		final Call delegatedCall = createCall(ctx);
 		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected ConditionValueStmt createConditionValueStmt(final ConditionContext ctx) {
+		final ConditionValueStmt result = new ConditionValueStmtImpl(programUnit, ctx);
 		return result;
 	}
 

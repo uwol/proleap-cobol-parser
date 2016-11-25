@@ -44,6 +44,7 @@ import io.proleap.cobol.Cobol85Parser.GenerateStatementContext;
 import io.proleap.cobol.Cobol85Parser.GoToStatementContext;
 import io.proleap.cobol.Cobol85Parser.GobackStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
+import io.proleap.cobol.Cobol85Parser.IfStatementContext;
 import io.proleap.cobol.Cobol85Parser.InitiateStatementContext;
 import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
@@ -122,6 +123,8 @@ import io.proleap.cobol.parser.metamodel.procedure.goback.GobackStatement;
 import io.proleap.cobol.parser.metamodel.procedure.goback.impl.GobackStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.gotostmt.GoToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.gotostmt.impl.GoToStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.ifstmt.IfStatement;
+import io.proleap.cobol.parser.metamodel.procedure.ifstmt.impl.IfStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.initiate.InitiateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.initiate.impl.InitiateStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
@@ -139,6 +142,7 @@ import io.proleap.cobol.parser.metamodel.procedure.terminate.impl.TerminateState
 import io.proleap.cobol.parser.metamodel.procedure.write.WriteStatement;
 import io.proleap.cobol.parser.metamodel.procedure.write.impl.WriteStatementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ArithmeticValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.ConditionValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.LiteralValueStmtImpl;
 
@@ -696,6 +700,33 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			}
 
 			result.setType(type);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public IfStatement addIfStatement(final IfStatementContext ctx) {
+		IfStatement result = (IfStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new IfStatementImpl(programUnit, ctx);
+
+			// condition
+			final ConditionValueStmt condition = createConditionValueStmt(ctx.condition());
+			result.setCondition(condition);
+
+			// then
+			if (ctx.ifThen() != null) {
+				result.addThen(ctx.ifThen());
+			}
+
+			// else
+			if (ctx.ifElse() != null) {
+				result.addElse(ctx.ifElse());
+			}
 
 			registerStatement(result);
 		}

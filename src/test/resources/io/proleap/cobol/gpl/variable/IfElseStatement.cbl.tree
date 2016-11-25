@@ -32,25 +32,27 @@
 																	(basis 
 																		(literal 
 																			(figurativeConstant SPACE)))))))))) 
-										(statement 
-											(setStatement SET 
-												(setToStatement 
-													(identifier 
-														(specialRegister ADDRESS OF 
-															(identifier 
-																(qualifiedDataName 
-																	(qualifiedDataNameFormat1 
-																		(dataName 
-																			(cobolWord PointerA))))))) TO 
+										(ifThen 
+											(statement 
+												(setStatement SET 
+													(setToStatement 
+														(identifier 
+															(specialRegister ADDRESS OF 
+																(identifier 
+																	(qualifiedDataName 
+																		(qualifiedDataNameFormat1 
+																			(dataName 
+																				(cobolWord PointerA))))))) TO 
+														(identifier 
+															(qualifiedDataName 
+																(qualifiedDataNameFormat1 
+																	(dataName 
+																		(cobolWord PointerB))))))))) 
+										(ifElse ELSE 
+											(statement 
+												(initializeStatement INITIALIZE 
 													(identifier 
 														(qualifiedDataName 
 															(qualifiedDataNameFormat1 
 																(dataName 
-																	(cobolWord PointerB)))))))) ELSE 
-										(statement 
-											(initializeStatement INITIALIZE 
-												(identifier 
-													(qualifiedDataName 
-														(qualifiedDataNameFormat1 
-															(dataName 
-																(cobolWord Test1))))))) END-IF))) .)))))) <EOF>)
+																	(cobolWord Test1)))))))) END-IF))) .)))))) <EOF>)

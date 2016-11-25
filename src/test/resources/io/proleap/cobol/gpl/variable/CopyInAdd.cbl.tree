@@ -48,9 +48,10 @@
 																		(literal 
 																			(numericLiteral 
 																				(integerLiteral 12345))))))))))) 
-										(statement 
-											(goToStatement GO TO 
-												(goToStatementSimple 
-													(procedureName 
-														(paragraphName 
-															(cobolWord JMP-1))))))))) .)))))) <EOF>)
+										(ifThen 
+											(statement 
+												(goToStatement GO TO 
+													(goToStatementSimple 
+														(procedureName 
+															(paragraphName 
+																(cobolWord JMP-1)))))))))) .)))))) <EOF>)
