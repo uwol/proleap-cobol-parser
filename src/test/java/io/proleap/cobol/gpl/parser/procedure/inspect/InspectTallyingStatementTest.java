@@ -49,38 +49,42 @@ public class InspectTallyingStatementTest extends CobolTestSupport {
 			assertEquals(InspectStatement.Type.Tallying, inspectStatement.getType());
 
 			final Tallying tallying = inspectStatement.getTallying();
-			final For for1 = tallying.getFor();
-
-			assertNotNull(for1.getTallyCountDataItemCall());
-			assertEquals(Call.CallType.UndefinedCall, for1.getTallyCountDataItemCall().getCallType());
-			assertEquals(1, for1.getCharacters().size());
-			assertEquals(1, for1.getAllLeadings().size());
+			assertEquals(1, tallying.getFors().size());
 
 			{
-				final Characters characters = for1.getCharacters().get(0);
-				assertEquals(1, characters.getBeforeAfters().size());
+				final For for1 = tallying.getFors().get(0);
+
+				assertNotNull(for1.getTallyCountDataItemCall());
+				assertEquals(Call.CallType.UndefinedCall, for1.getTallyCountDataItemCall().getCallType());
+				assertEquals(1, for1.getCharacters().size());
+				assertEquals(1, for1.getAllLeadings().size());
 
 				{
-					final BeforeAfter beforeAfter = characters.getBeforeAfters().get(0);
-					assertEquals(BeforeAfter.Type.After, beforeAfter.getType());
-				}
-			}
-
-			{
-				final AllLeadings allLeadings = for1.getAllLeadings().get(0);
-				assertEquals(AllLeadings.Type.All, allLeadings.getType());
-				assertEquals(1, allLeadings.getAllLeadings().size());
-
-				{
-					final AllLeading allLeading = allLeadings.getAllLeadings().get(0);
-
-					assertNotNull(allLeading.getPatternDataItemCall());
-					assertEquals(Call.CallType.UndefinedCall, allLeading.getPatternDataItemCall().getCallType());
-					assertEquals(1, allLeading.getBeforeAfters().size());
+					final Characters characters = for1.getCharacters().get(0);
+					assertEquals(1, characters.getBeforeAfters().size());
 
 					{
-						final BeforeAfter beforeAfter = allLeading.getBeforeAfters().get(0);
-						assertEquals(BeforeAfter.Type.Before, beforeAfter.getType());
+						final BeforeAfter beforeAfter = characters.getBeforeAfters().get(0);
+						assertEquals(BeforeAfter.Type.After, beforeAfter.getType());
+					}
+				}
+
+				{
+					final AllLeadings allLeadings = for1.getAllLeadings().get(0);
+					assertEquals(AllLeadings.Type.All, allLeadings.getType());
+					assertEquals(1, allLeadings.getAllLeadings().size());
+
+					{
+						final AllLeading allLeading = allLeadings.getAllLeadings().get(0);
+
+						assertNotNull(allLeading.getPatternDataItemCall());
+						assertEquals(Call.CallType.UndefinedCall, allLeading.getPatternDataItemCall().getCallType());
+						assertEquals(1, allLeading.getBeforeAfters().size());
+
+						{
+							final BeforeAfter beforeAfter = allLeading.getBeforeAfters().get(0);
+							assertEquals(BeforeAfter.Type.Before, beforeAfter.getType());
+						}
 					}
 				}
 			}

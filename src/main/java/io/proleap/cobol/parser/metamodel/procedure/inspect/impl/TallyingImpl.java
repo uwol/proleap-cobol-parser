@@ -8,6 +8,9 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.inspect.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.InspectForContext;
 import io.proleap.cobol.Cobol85Parser.InspectTallyingPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -18,7 +21,7 @@ public class TallyingImpl extends InspectPhraseImpl implements Tallying {
 
 	protected final InspectTallyingPhraseContext ctx;
 
-	protected For tallyFor;
+	protected List<For> fors = new ArrayList<For>();
 
 	public TallyingImpl(final ProgramUnit programUnit, final InspectTallyingPhraseContext ctx) {
 		super(programUnit, ctx);
@@ -32,15 +35,15 @@ public class TallyingImpl extends InspectPhraseImpl implements Tallying {
 
 		if (result == null) {
 			result = createFor(ctx);
-			tallyFor = result;
+			fors.add(result);
 		}
 
 		return result;
 	}
 
 	@Override
-	public For getFor() {
-		return tallyFor;
+	public List<For> getFors() {
+		return fors;
 	}
 
 }

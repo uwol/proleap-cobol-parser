@@ -108,7 +108,9 @@ public class InspectStatementImpl extends StatementImpl implements InspectStatem
 			result = new TallyingImpl(programUnit, ctx);
 
 			// for
-			result.addFor(ctx.inspectFor());
+			for (final InspectForContext inspectForContext : ctx.inspectFor()) {
+				result.addFor(inspectForContext);
+			}
 
 			tallying = result;
 			registerASGElement(result);

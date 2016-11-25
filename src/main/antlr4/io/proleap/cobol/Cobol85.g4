@@ -1817,7 +1817,7 @@ inspectStatement :
 ;
 
 inspectTallyingPhrase :
-	TALLYING inspectFor
+	TALLYING inspectFor+
 ;
 
 inspectReplacingPhrase :

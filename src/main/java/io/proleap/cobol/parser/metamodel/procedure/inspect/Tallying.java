@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.inspect;
 
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.InspectForContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
@@ -15,6 +17,6 @@ public interface Tallying extends CobolDivisionElement {
 
 	For addFor(InspectForContext ctx);
 
-	For getFor();
+	List<For> getFors();
 
 }
