@@ -1807,48 +1807,70 @@ initiateStatement :
 // inspect statement
 
 inspectStatement :
-	INSPECT identifier
+	INSPECT identifier 
 	(
 		inspectTallyingPhrase
-		| inspectConvertingPhrase
 		| inspectReplacingPhrase
+		| inspectTallyingReplacingPhrase 
+		| inspectConvertingPhrase 
 	)
 ;
 
 inspectTallyingPhrase :
-	TALLYING
-	(
-		identifier FOR
-		(
-			CHARACTERS inspectBeforeAfterPhrase*
-			|
-			(ALL | LEADING)
-			(
-				(identifier | literal) inspectBeforeAfterPhrase*
-			)+
-		)+
-	)+
-	inspectReplacingPhrase?
+	TALLYING inspectFor
+;
+
+inspectReplacingPhrase :
+	REPLACING (inspectReplacingCharacters | inspectReplacingAllLeadings)+
+;
+
+inspectTallyingReplacingPhrase :
+	TALLYING inspectFor+ inspectReplacingPhrase+
 ;
 
 inspectConvertingPhrase :
 	CONVERTING (identifier | literal)
-	TO (identifier | literal) inspectBeforeAfterPhrase*
+	inspectTo inspectBeforeAfter*
 ;
 
-inspectReplacingPhrase :
-	REPLACING
-	(
-		CHARACTERS BY (identifier | literal) inspectBeforeAfterPhrase*
-		| (ALL | LEADING | FIRST)
-		(
-			(identifier | literal) BY (identifier | literal)
-			inspectBeforeAfterPhrase*
-		)+
-	)+
+
+inspectFor :
+	identifier FOR (inspectCharacters | inspectAllLeadings)+
 ;
 
-inspectBeforeAfterPhrase :
+inspectCharacters :
+	CHARACTERS inspectBeforeAfter*
+;
+
+inspectReplacingCharacters :
+	CHARACTERS inspectBy inspectBeforeAfter*
+;
+
+inspectAllLeadings :
+	(ALL | LEADING)	inspectAllLeading+
+;
+
+inspectReplacingAllLeadings :
+	(ALL | LEADING | FIRST) inspectReplacingAllLeading+
+;
+
+inspectAllLeading :
+	(identifier | literal) inspectBeforeAfter*
+;
+
+inspectReplacingAllLeading :
+	(identifier | literal) inspectBy inspectBeforeAfter*
+;
+
+inspectBy :
+	BY (identifier | literal)
+;
+
+inspectTo :
+	TO (identifier | literal)
+;
+
+inspectBeforeAfter :
 	(BEFORE | AFTER) INITIAL? (identifier | literal)
 ;
 

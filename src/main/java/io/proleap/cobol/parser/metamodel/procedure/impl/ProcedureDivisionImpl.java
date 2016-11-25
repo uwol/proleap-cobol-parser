@@ -47,6 +47,7 @@ import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IfStatementContext;
 import io.proleap.cobol.Cobol85Parser.InitializeStatementContext;
 import io.proleap.cobol.Cobol85Parser.InitiateStatementContext;
+import io.proleap.cobol.Cobol85Parser.InspectStatementContext;
 import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
@@ -130,6 +131,8 @@ import io.proleap.cobol.parser.metamodel.procedure.initialize.InitializeStatemen
 import io.proleap.cobol.parser.metamodel.procedure.initialize.impl.InitializeStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.initiate.InitiateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.initiate.impl.InitiateStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.inspect.InspectStatement;
+import io.proleap.cobol.parser.metamodel.procedure.inspect.impl.InspectStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.impl.MoveToStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
@@ -772,6 +775,44 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 				final Call reportCall = createCall(reportNameContext);
 				result.addReportCall(reportCall);
 			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public InspectStatement addInspectStatement(final InspectStatementContext ctx) {
+		InspectStatement result = (InspectStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new InspectStatementImpl(programUnit, ctx);
+
+			// data item call
+			final Call dataItemCall = createCall(ctx.identifier());
+			result.setDataItemCall(dataItemCall);
+
+			// type
+			final InspectStatement.Type type;
+
+			if (ctx.inspectTallyingPhrase() != null) {
+				result.addTallying(ctx.inspectTallyingPhrase());
+				type = InspectStatement.Type.Tallying;
+			} else if (ctx.inspectReplacingPhrase() != null) {
+				result.addReplacing(ctx.inspectReplacingPhrase());
+				type = InspectStatement.Type.Replacing;
+			} else if (ctx.inspectTallyingReplacingPhrase() != null) {
+				result.addTallyingReplacing(ctx.inspectTallyingReplacingPhrase());
+				type = InspectStatement.Type.TallyingReplacing;
+			} else if (ctx.inspectConvertingPhrase() != null) {
+				result.addConverting(ctx.inspectConvertingPhrase());
+				type = InspectStatement.Type.Converting;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
 
 			registerStatement(result);
 		}
