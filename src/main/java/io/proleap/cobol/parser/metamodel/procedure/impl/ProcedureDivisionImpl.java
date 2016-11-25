@@ -41,6 +41,7 @@ import io.proleap.cobol.Cobol85Parser.EnableStatementContext;
 import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
 import io.proleap.cobol.Cobol85Parser.ExitStatementContext;
 import io.proleap.cobol.Cobol85Parser.GenerateStatementContext;
+import io.proleap.cobol.Cobol85Parser.GoToStatementContext;
 import io.proleap.cobol.Cobol85Parser.GobackStatementContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.InitiateStatementContext;
@@ -119,6 +120,8 @@ import io.proleap.cobol.parser.metamodel.procedure.generate.GenerateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.generate.impl.GenerateStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.goback.GobackStatement;
 import io.proleap.cobol.parser.metamodel.procedure.goback.impl.GobackStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.gotostmt.GoToStatement;
+import io.proleap.cobol.parser.metamodel.procedure.gotostmt.impl.GoToStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.initiate.InitiateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.initiate.impl.InitiateStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
@@ -665,6 +668,34 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 		if (result == null) {
 			result = new GobackStatementImpl(programUnit, ctx);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public GoToStatement addGoToStatement(final GoToStatementContext ctx) {
+		GoToStatement result = (GoToStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new GoToStatementImpl(programUnit, ctx);
+
+			// type
+			final GoToStatement.Type type;
+
+			if (ctx.goToStatementSimple() != null) {
+				result.addSimple(ctx.goToStatementSimple());
+				type = GoToStatement.Type.Simple;
+			} else if (ctx.goToDependingOnStatement() != null) {
+				result.addDependingOn(ctx.goToDependingOnStatement());
+				type = GoToStatement.Type.DependingOn;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
 
 			registerStatement(result);
 		}
