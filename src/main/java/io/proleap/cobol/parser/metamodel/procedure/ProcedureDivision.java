@@ -39,6 +39,7 @@ import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativesContext;
 import io.proleap.cobol.Cobol85Parser.PurgeStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReadStatementContext;
+import io.proleap.cobol.Cobol85Parser.ReceiveStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReleaseStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
@@ -71,6 +72,7 @@ import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.purge.PurgeStatement;
 import io.proleap.cobol.parser.metamodel.procedure.read.ReadStatement;
+import io.proleap.cobol.parser.metamodel.procedure.receive.ReceiveStatement;
 import io.proleap.cobol.parser.metamodel.procedure.release.ReleaseStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.TerminateStatement;
@@ -138,6 +140,8 @@ public interface ProcedureDivision extends CobolDivision {
 	PurgeStatement addPurgeStatement(PurgeStatementContext ctx);
 
 	ReadStatement addReadStatement(ReadStatementContext ctx);
+
+	ReceiveStatement addReceiveStatement(ReceiveStatementContext ctx);
 
 	ReleaseStatement addReleaseStatement(ReleaseStatementContext ctx);
 

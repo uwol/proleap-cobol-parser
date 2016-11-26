@@ -69,6 +69,7 @@ import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativesContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.Cobol85Parser.PurgeStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReadStatementContext;
+import io.proleap.cobol.Cobol85Parser.ReceiveStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReleaseStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
@@ -146,6 +147,8 @@ import io.proleap.cobol.parser.metamodel.procedure.purge.PurgeStatement;
 import io.proleap.cobol.parser.metamodel.procedure.purge.impl.PurgeStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.read.ReadStatement;
 import io.proleap.cobol.parser.metamodel.procedure.read.impl.ReadStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.receive.ReceiveStatement;
+import io.proleap.cobol.parser.metamodel.procedure.receive.impl.ReceiveStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.release.ReleaseStatement;
 import io.proleap.cobol.parser.metamodel.procedure.release.impl.ReleaseStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
@@ -912,8 +915,8 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			result = new PurgeStatementImpl(programUnit, ctx);
 
 			for (final CdNameContext cdNameContext : ctx.cdName()) {
-				final Call communicationDescriptionEntryCall = createCall(cdNameContext);
-				result.addCommunicationDescriptionEntryCall(communicationDescriptionEntryCall);
+				final Call cdNameCall = createCall(cdNameContext);
+				result.addCommunicationDescriptionEntryCall(cdNameCall);
 			}
 
 			registerStatement(result);
@@ -975,6 +978,46 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			if (ctx.notAtEndPhrase() != null) {
 				final NotAtEnd notAtEnd = createNotAtEnd(ctx.notAtEndPhrase());
 				result.setNotAtEnd(notAtEnd);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ReceiveStatement addReceiveStatement(final ReceiveStatementContext ctx) {
+		ReceiveStatement result = (ReceiveStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ReceiveStatementImpl(programUnit, ctx);
+
+			// type
+			final ReceiveStatement.Type type;
+
+			if (ctx.receiveFromStatement() != null) {
+				result.addReceiveFromStatement(ctx.receiveFromStatement());
+				type = ReceiveStatement.Type.From;
+			} else if (ctx.receiveIntoStatement() != null) {
+				result.addReceiveIntoStatement(ctx.receiveIntoStatement());
+				type = ReceiveStatement.Type.Into;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
+
+			// on exception
+			if (ctx.onExceptionClause() != null) {
+				final OnException onException = createOnException(ctx.onExceptionClause());
+				result.setOnException(onException);
+			}
+
+			// not on exeption
+			if (ctx.notOnExceptionClause() != null) {
+				final NotOnException notOnException = createNotOnException(ctx.notOnExceptionClause());
+				result.setNotOnException(notOnException);
 			}
 
 			registerStatement(result);
@@ -1127,11 +1170,11 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		return result;
 	}
 
-	protected NotAtEnd createNotAtEnd(final NotAtEndPhraseContext ctx) {
-		NotAtEnd result = (NotAtEnd) getASGElement(ctx);
+	protected InvalidKey createInvalidKey(final InvalidKeyPhraseContext ctx) {
+		InvalidKey result = (InvalidKey) getASGElement(ctx);
 
 		if (result == null) {
-			result = new NotAtEndImpl(programUnit, ctx);
+			result = new InvalidKeyImpl(programUnit, ctx);
 
 			// FIXME add statements
 
@@ -1141,11 +1184,11 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		return result;
 	}
 
-	protected InvalidKey createInvalidKey(final InvalidKeyPhraseContext ctx) {
-		InvalidKey result = (InvalidKey) getASGElement(ctx);
+	protected NotAtEnd createNotAtEnd(final NotAtEndPhraseContext ctx) {
+		NotAtEnd result = (NotAtEnd) getASGElement(ctx);
 
 		if (result == null) {
-			result = new InvalidKeyImpl(programUnit, ctx);
+			result = new NotAtEndImpl(programUnit, ctx);
 
 			// FIXME add statements
 

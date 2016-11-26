@@ -2049,21 +2049,50 @@ readKey :
 // receive statement
 
 receiveStatement :
-	RECEIVE
-	(
-		dataName FROM (THREAD dataName | LAST THREAD | ANY THREAD)
-		(
-			BEFORE TIME? (numericLiteral | identifier)
-			| WITH? NO WAIT
-			| THREAD IN? dataName
-			| SIZE IN? (numericLiteral | identifier)
-			| STATUS IN? (identifier)
-			| onExceptionClause
-			| notOnExceptionClause
-		)
-		| cdName (MESSAGE | SEGMENT) INTO? identifier (NO DATA statements)? (WITH DATA statements)?
-	)
+	RECEIVE	(receiveFromStatement | receiveIntoStatement)
+	onExceptionClause?
+	notOnExceptionClause?
 	END_RECEIVE?
+;
+
+receiveFromStatement :
+	dataName FROM receiveFrom (receiveBefore | receiveWith | receiveThread | receiveSize | receiveStatus)*
+;
+
+receiveFrom :
+	THREAD dataName | LAST THREAD | ANY THREAD
+;
+
+receiveIntoStatement :
+	cdName (MESSAGE | SEGMENT) INTO? identifier receiveNoData? receiveWithData?
+;
+
+receiveNoData :
+	NO DATA statements
+;
+
+receiveWithData :
+	WITH DATA statements
+;
+
+receiveBefore :
+	BEFORE TIME? (numericLiteral | identifier)
+;
+
+receiveWith :
+	WITH? NO WAIT
+;
+
+receiveThread :
+	THREAD IN? dataName
+;
+
+receiveSize :
+	SIZE IN? (numericLiteral | identifier)
+;
+
+receiveStatus :
+	STATUS IN? (identifier)
 ;
 
 // release statement
