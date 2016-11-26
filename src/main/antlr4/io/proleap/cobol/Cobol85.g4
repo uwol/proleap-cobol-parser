@@ -2226,7 +2226,15 @@ sortStatement :
 
 startStatement :
 	START fileName
-	(KEY IS? (
+	startKey?
+	invalidKeyPhrase?
+	notInvalidKeyPhrase?
+	END_START?
+;
+
+startKey : 
+	KEY IS?
+	(
 		EQUAL TO?
 		| EQUALCHAR
 		| GREATER THAN?
@@ -2235,10 +2243,8 @@ startStatement :
 		| NOT LESSTHANCHAR
 		| GREATER THAN? OR EQUAL TO?
 		| MORETHANOREQUAL
-	) qualifiedDataName)?
-	invalidKeyPhrase?
-	notInvalidKeyPhrase?
-	END_START?
+	)
+	qualifiedDataName
 ;
 
 // stop statement
