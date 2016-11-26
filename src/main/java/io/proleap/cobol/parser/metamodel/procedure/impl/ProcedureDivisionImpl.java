@@ -61,6 +61,11 @@ import io.proleap.cobol.Cobol85Parser.NotOnSizeErrorPhraseContext;
 import io.proleap.cobol.Cobol85Parser.OnExceptionClauseContext;
 import io.proleap.cobol.Cobol85Parser.OnOverflowPhraseContext;
 import io.proleap.cobol.Cobol85Parser.OnSizeErrorPhraseContext;
+import io.proleap.cobol.Cobol85Parser.OpenExtendStatementContext;
+import io.proleap.cobol.Cobol85Parser.OpenIOStatementContext;
+import io.proleap.cobol.Cobol85Parser.OpenInputStatementContext;
+import io.proleap.cobol.Cobol85Parser.OpenOutputStatementContext;
+import io.proleap.cobol.Cobol85Parser.OpenStatementContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
@@ -145,6 +150,8 @@ import io.proleap.cobol.parser.metamodel.procedure.inspect.InspectStatement;
 import io.proleap.cobol.parser.metamodel.procedure.inspect.impl.InspectStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.impl.MoveToStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.open.OpenStatement;
+import io.proleap.cobol.parser.metamodel.procedure.open.impl.OpenStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.perform.impl.PerformStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.purge.PurgeStatement;
@@ -857,6 +864,39 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			for (final IdentifierContext identifierCtx : identifierCtxs) {
 				final Call receivingAreaCall = createCall(identifierCtx);
 				result.addReceivingAreaCall(receivingAreaCall);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public OpenStatement addOpenStatement(final OpenStatementContext ctx) {
+		OpenStatement result = (OpenStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new OpenStatementImpl(programUnit, ctx);
+
+			// input
+			for (final OpenInputStatementContext openInputStatementContext : ctx.openInputStatement()) {
+				result.addOpenInput(openInputStatementContext);
+			}
+
+			// output
+			for (final OpenOutputStatementContext openOutputStatementContext : ctx.openOutputStatement()) {
+				result.addOpenOutput(openOutputStatementContext);
+			}
+
+			// input / output
+			for (final OpenIOStatementContext openIOStatementContext : ctx.openIOStatement()) {
+				result.addOpenInputOutput(openIOStatementContext);
+			}
+
+			// extend
+			for (final OpenExtendStatementContext openExtendStatementContext : ctx.openExtendStatement()) {
+				result.addOpenExtend(openExtendStatementContext);
 			}
 
 			registerStatement(result);

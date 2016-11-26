@@ -235,6 +235,15 @@ public class CobolProcedureExpressionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
+	public Boolean visitOpenStatement(@NotNull final Cobol85Parser.OpenStatementContext ctx) {
+		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+
+		procedureDivision.addOpenStatement(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitPerformStatement(@NotNull final Cobol85Parser.PerformStatementContext ctx) {
 		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
 

@@ -1949,11 +1949,19 @@ openStatement :
 ;
 
 openInputStatement :
-	INPUT (fileName (REVERSED | WITH? NO REWIND)?)+
+	INPUT openInput+
+;
+
+openInput :
+	fileName (REVERSED | WITH? NO REWIND)?
 ;
 
 openOutputStatement :
-	OUTPUT (fileName (WITH? NO REWIND)?)+
+	OUTPUT openOutput+
+;
+
+openOutput :
+	fileName (WITH? NO REWIND)?
 ;
 
 openIOStatement :
