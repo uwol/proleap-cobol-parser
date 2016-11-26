@@ -2104,10 +2104,15 @@ releaseStatement :
 // return statement
 
 returnStatement :
-	RETURN fileName RECORD? (INTO qualifiedDataName)?
+	RETURN fileName RECORD?
+	returnInto?
 	atEndPhrase
 	notAtEndPhrase?
 	END_RETURN?
+;
+
+returnInto :
+	INTO qualifiedDataName
 ;
 
 // rewrite statement

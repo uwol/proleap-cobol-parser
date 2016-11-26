@@ -72,6 +72,7 @@ import io.proleap.cobol.Cobol85Parser.ReadStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReceiveStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReleaseStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
+import io.proleap.cobol.Cobol85Parser.ReturnStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
 import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
@@ -151,6 +152,8 @@ import io.proleap.cobol.parser.metamodel.procedure.receive.ReceiveStatement;
 import io.proleap.cobol.parser.metamodel.procedure.receive.impl.ReceiveStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.release.ReleaseStatement;
 import io.proleap.cobol.parser.metamodel.procedure.release.impl.ReleaseStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.returnstmt.ReturnStatement;
+import io.proleap.cobol.parser.metamodel.procedure.returnstmt.impl.ReturnStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.impl.StopStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.TerminateStatement;
@@ -1040,6 +1043,40 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			// content
 			final Call contentCall = createCall(ctx.qualifiedDataName());
 			result.setContentCall(contentCall);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ReturnStatement addReturnStatement(final ReturnStatementContext ctx) {
+		ReturnStatement result = (ReturnStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ReturnStatementImpl(programUnit, ctx);
+
+			// file call
+			final Call fileCall = createCall(ctx.fileName());
+			result.addFileCall(fileCall);
+
+			// into
+			if (ctx.returnInto() != null) {
+				result.addInto(ctx.returnInto());
+			}
+
+			// at end
+			if (ctx.atEndPhrase() != null) {
+				final AtEnd atEnd = createAtEnd(ctx.atEndPhrase());
+				result.setAtEnd(atEnd);
+			}
+
+			// not at end
+			if (ctx.notAtEndPhrase() != null) {
+				final NotAtEnd notAtEnd = createNotAtEnd(ctx.notAtEndPhrase());
+				result.setNotAtEnd(notAtEnd);
+			}
 
 			registerStatement(result);
 		}
