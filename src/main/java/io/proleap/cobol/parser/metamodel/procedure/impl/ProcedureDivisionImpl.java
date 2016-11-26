@@ -20,6 +20,7 @@ import io.proleap.cobol.Cobol85Parser.AcceptStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddStatementContext;
 import io.proleap.cobol.Cobol85Parser.AlterProceedToContext;
 import io.proleap.cobol.Cobol85Parser.AlterStatementContext;
+import io.proleap.cobol.Cobol85Parser.AtEndPhraseContext;
 import io.proleap.cobol.Cobol85Parser.CallByContentStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallByValueStatementContext;
@@ -52,6 +53,7 @@ import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
+import io.proleap.cobol.Cobol85Parser.NotAtEndPhraseContext;
 import io.proleap.cobol.Cobol85Parser.NotInvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.NotOnExceptionClauseContext;
 import io.proleap.cobol.Cobol85Parser.NotOnOverflowPhraseContext;
@@ -66,6 +68,7 @@ import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativeContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativesContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.Cobol85Parser.PurgeStatementContext;
+import io.proleap.cobol.Cobol85Parser.ReadStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReleaseStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
@@ -74,7 +77,9 @@ import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
+import io.proleap.cobol.parser.metamodel.procedure.AtEnd;
 import io.proleap.cobol.parser.metamodel.procedure.InvalidKey;
+import io.proleap.cobol.parser.metamodel.procedure.NotAtEnd;
 import io.proleap.cobol.parser.metamodel.procedure.NotInvalidKey;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnException;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnOverflow;
@@ -139,6 +144,8 @@ import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.perform.impl.PerformStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.purge.PurgeStatement;
 import io.proleap.cobol.parser.metamodel.procedure.purge.impl.PurgeStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.read.ReadStatement;
+import io.proleap.cobol.parser.metamodel.procedure.read.impl.ReadStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.release.ReleaseStatement;
 import io.proleap.cobol.parser.metamodel.procedure.release.impl.ReleaseStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
@@ -916,6 +923,67 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 	}
 
 	@Override
+	public ReadStatement addReadStatement(final ReadStatementContext ctx) {
+		ReadStatement result = (ReadStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ReadStatementImpl(programUnit, ctx);
+
+			// file
+			final Call fileCall = createCall(ctx.fileName());
+			result.setFileCall(fileCall);
+
+			// next record
+			if (ctx.RECORD() != null) {
+				result.setNextRecord(true);
+			}
+
+			// into
+			if (ctx.readInto() != null) {
+				result.addInto(ctx.readInto());
+			}
+
+			// with
+			if (ctx.readWith() != null) {
+				result.addWith(ctx.readWith());
+			}
+
+			// key
+			if (ctx.readKey() != null) {
+				result.addKey(ctx.readKey());
+			}
+
+			// invalid key
+			if (ctx.invalidKeyPhrase() != null) {
+				final InvalidKey invalidKey = createInvalidKey(ctx.invalidKeyPhrase());
+				result.setInvalidKey(invalidKey);
+			}
+
+			// not invalid key
+			if (ctx.notInvalidKeyPhrase() != null) {
+				final NotInvalidKey notInvalidKey = createNotInvalidKey(ctx.notInvalidKeyPhrase());
+				result.setNotInvalidKey(notInvalidKey);
+			}
+
+			// at end
+			if (ctx.atEndPhrase() != null) {
+				final AtEnd atEnd = createAtEnd(ctx.atEndPhrase());
+				result.setAtEnd(atEnd);
+			}
+
+			// not at end
+			if (ctx.notAtEndPhrase() != null) {
+				final NotAtEnd notAtEnd = createNotAtEnd(ctx.notAtEndPhrase());
+				result.setNotAtEnd(notAtEnd);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public ReleaseStatement addReleaseStatement(final ReleaseStatementContext ctx) {
 		ReleaseStatement result = (ReleaseStatement) getASGElement(ctx);
 
@@ -1040,6 +1108,34 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			}
 
 			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	protected AtEnd createAtEnd(final AtEndPhraseContext ctx) {
+		AtEnd result = (AtEnd) getASGElement(ctx);
+
+		if (result == null) {
+			result = new AtEndImpl(programUnit, ctx);
+
+			// FIXME add statements
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected NotAtEnd createNotAtEnd(final NotAtEndPhraseContext ctx) {
+		NotAtEnd result = (NotAtEnd) getASGElement(ctx);
+
+		if (result == null) {
+			result = new NotAtEndImpl(programUnit, ctx);
+
+			// FIXME add statements
+
+			registerASGElement(result);
 		}
 
 		return result;
