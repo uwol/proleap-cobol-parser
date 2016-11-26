@@ -73,6 +73,7 @@ import io.proleap.cobol.Cobol85Parser.ReceiveStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReleaseStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.ReturnStatementContext;
+import io.proleap.cobol.Cobol85Parser.RewriteStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
 import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
@@ -154,6 +155,8 @@ import io.proleap.cobol.parser.metamodel.procedure.release.ReleaseStatement;
 import io.proleap.cobol.parser.metamodel.procedure.release.impl.ReleaseStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.returnstmt.ReturnStatement;
 import io.proleap.cobol.parser.metamodel.procedure.returnstmt.impl.ReturnStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.rewrite.RewriteStatement;
+import io.proleap.cobol.parser.metamodel.procedure.rewrite.impl.RewriteStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.impl.StopStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.TerminateStatement;
@@ -1076,6 +1079,40 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			if (ctx.notAtEndPhrase() != null) {
 				final NotAtEnd notAtEnd = createNotAtEnd(ctx.notAtEndPhrase());
 				result.setNotAtEnd(notAtEnd);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public RewriteStatement addRewriteStatement(final RewriteStatementContext ctx) {
+		RewriteStatement result = (RewriteStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new RewriteStatementImpl(programUnit, ctx);
+
+			// record
+			final Call recordCall = createCall(ctx.recordName());
+			result.setRecordCall(recordCall);
+
+			// from
+			if (ctx.rewriteFrom() != null) {
+				result.addFrom(ctx.rewriteFrom());
+			}
+
+			// invalid key
+			if (ctx.invalidKeyPhrase() != null) {
+				final InvalidKey invalidKey = createInvalidKey(ctx.invalidKeyPhrase());
+				result.setInvalidKey(invalidKey);
+			}
+
+			// not invalid key
+			if (ctx.notInvalidKeyPhrase() != null) {
+				final NotInvalidKey notInvalidKey = createNotInvalidKey(ctx.notInvalidKeyPhrase());
+				result.setNotInvalidKey(notInvalidKey);
 			}
 
 			registerStatement(result);

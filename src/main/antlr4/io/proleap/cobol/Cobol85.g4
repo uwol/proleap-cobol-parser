@@ -2118,10 +2118,15 @@ returnInto :
 // rewrite statement
 
 rewriteStatement :
-	REWRITE recordName (FROM identifier)?
+	REWRITE recordName 
+	rewriteFrom?
 	invalidKeyPhrase?
 	notInvalidKeyPhrase?
 	END_REWRITE?
+;
+
+rewriteFrom :
+	FROM identifier
 ;
 
 // search statement
