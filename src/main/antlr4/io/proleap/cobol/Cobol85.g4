@@ -2133,10 +2133,18 @@ rewriteFrom :
 
 searchStatement :
 	SEARCH ALL? qualifiedDataName
-	(VARYING qualifiedDataName)?
+	searchVarying?
 	atEndPhrase?
-	(WHEN condition (statements | NEXT SENTENCE))+
+	searchWhen+
 	END_SEARCH?
+;
+
+searchVarying :
+	VARYING qualifiedDataName
+;
+
+searchWhen :
+	WHEN condition (statements | NEXT SENTENCE)
 ;
 
 // send statement
@@ -2815,7 +2823,7 @@ otherKeyword :
 	| TABLE | TALLYING | TASK | TAPE | TERMINAL | TERMINATE | TEST | TEXT | THAN | THEN | THREAD | THREAD_LOCAL | THROUGH | THRU | TIMER | TIMES | TITLE | TO | TODAYS_DATE | TODAYS_NAME | TOP | TRAILING | TRUE | TRUNCATED | TYPE | TYPEDEF
 	| UNIT | UNLOCK | UNLOCKFILE | UNLOCKRECORD | UNSTRING | UNTIL | UP | USAGE | USE | USING
 	| VALUE | VALUES | VARYING
-	| WAIT | WHEN | WITH | WORDS | WRITE
+	| WAIT | WITH | WORDS | WRITE
 	| XOPTS
 	| YEAR | YYYYMMDD | YYYYDDD
 ;

@@ -74,6 +74,8 @@ import io.proleap.cobol.Cobol85Parser.ReleaseStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.ReturnStatementContext;
 import io.proleap.cobol.Cobol85Parser.RewriteStatementContext;
+import io.proleap.cobol.Cobol85Parser.SearchStatementContext;
+import io.proleap.cobol.Cobol85Parser.SearchWhenContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
 import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
@@ -157,6 +159,8 @@ import io.proleap.cobol.parser.metamodel.procedure.returnstmt.ReturnStatement;
 import io.proleap.cobol.parser.metamodel.procedure.returnstmt.impl.ReturnStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.rewrite.RewriteStatement;
 import io.proleap.cobol.parser.metamodel.procedure.rewrite.impl.RewriteStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.search.SearchStatement;
+import io.proleap.cobol.parser.metamodel.procedure.search.impl.SearchStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.impl.StopStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.TerminateStatement;
@@ -1113,6 +1117,39 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			if (ctx.notInvalidKeyPhrase() != null) {
 				final NotInvalidKey notInvalidKey = createNotInvalidKey(ctx.notInvalidKeyPhrase());
 				result.setNotInvalidKey(notInvalidKey);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public SearchStatement addSearchStatement(final SearchStatementContext ctx) {
+		SearchStatement result = (SearchStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SearchStatementImpl(programUnit, ctx);
+
+			// data call
+			final Call dataCall = createCall(ctx.qualifiedDataName());
+			result.setDataCall(dataCall);
+
+			// varying
+			if (ctx.searchVarying() != null) {
+				result.addVarying(ctx.searchVarying());
+			}
+
+			// at end
+			if (ctx.atEndPhrase() != null) {
+				final AtEnd atEnd = createAtEnd(ctx.atEndPhrase());
+				result.setAtEnd(atEnd);
+			}
+
+			// when
+			for (final SearchWhenContext searchWhenContext : ctx.searchWhen()) {
+				result.addWhen(searchWhenContext);
 			}
 
 			registerStatement(result);
