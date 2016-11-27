@@ -152,7 +152,7 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			result = new FromImpl(programUnit, ctx);
 
 			/*
-			 * value stmt
+			 * from
 			 */
 			final ValueStmt fromValueStmt;
 
@@ -179,7 +179,7 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			result = new GivingImpl(programUnit, ctx);
 
 			/*
-			 * giving value stmt
+			 * giving
 			 */
 			final Call giving = createCall(ctx.identifier());
 			result.setGiving(giving);
@@ -204,7 +204,7 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			result = new ToImpl(programUnit, ctx);
 
 			/*
-			 * to value stmt
+			 * to
 			 */
 			final Call to = createCall(ctx.identifier());
 			result.setTo(to);
