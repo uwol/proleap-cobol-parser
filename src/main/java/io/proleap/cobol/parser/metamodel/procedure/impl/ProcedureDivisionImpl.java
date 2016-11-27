@@ -87,6 +87,7 @@ import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.StringSendingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.StringStatementContext;
 import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
+import io.proleap.cobol.Cobol85Parser.UnstringStatementContext;
 import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
@@ -182,6 +183,8 @@ import io.proleap.cobol.parser.metamodel.procedure.string.StringStatement;
 import io.proleap.cobol.parser.metamodel.procedure.string.impl.StringStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.TerminateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.impl.TerminateStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.unstring.UnstringStatement;
+import io.proleap.cobol.parser.metamodel.procedure.unstring.impl.UnstringStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.write.WriteStatement;
 import io.proleap.cobol.parser.metamodel.procedure.write.impl.WriteStatementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ArithmeticValueStmt;
@@ -1327,7 +1330,7 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 			// sending
 			for (final StringSendingPhraseContext stringSendingPhraseContext : ctx.stringSendingPhrase()) {
-				result.addSending(stringSendingPhraseContext);
+				result.addSendings(stringSendingPhraseContext);
 			}
 
 			// into
@@ -1365,6 +1368,47 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 
 			final Call reportCall = createCall(ctx.reportName());
 			result.setReportCall(reportCall);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public UnstringStatement addUnstringStatement(final UnstringStatementContext ctx) {
+		UnstringStatement result = (UnstringStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new UnstringStatementImpl(programUnit, ctx);
+
+			// sending
+			result.addSending(ctx.unstringSendingPhrase());
+
+			// into
+			result.addIntos(ctx.unstringIntoPhrase());
+
+			// with pointer
+			if (ctx.unstringWithPointerPhrase() != null) {
+				result.addWithPointer(ctx.unstringWithPointerPhrase());
+			}
+
+			// tallying
+			if (ctx.unstringTallyingPhrase() != null) {
+				result.addTallying(ctx.unstringTallyingPhrase());
+			}
+
+			// on overflow
+			if (ctx.onOverflowPhrase() != null) {
+				final OnOverflow onOverflow = createOnOverflow(ctx.onOverflowPhrase());
+				result.setOnOverflow(onOverflow);
+			}
+
+			// not on overflow
+			if (ctx.notOnOverflowPhrase() != null) {
+				final NotOnOverflow notOnOverflow = createNotOnOverflow(ctx.notOnOverflowPhrase());
+				result.setNotOnOverflow(notOnOverflow);
+			}
 
 			registerStatement(result);
 		}

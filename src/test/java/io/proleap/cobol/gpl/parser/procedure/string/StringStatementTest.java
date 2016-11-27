@@ -18,7 +18,7 @@ import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.procedure.string.DelimitedBy;
 import io.proleap.cobol.parser.metamodel.procedure.string.For;
 import io.proleap.cobol.parser.metamodel.procedure.string.Into;
-import io.proleap.cobol.parser.metamodel.procedure.string.Sending;
+import io.proleap.cobol.parser.metamodel.procedure.string.Sendings;
 import io.proleap.cobol.parser.metamodel.procedure.string.StringStatement;
 import io.proleap.cobol.parser.metamodel.procedure.string.WithPointer;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -47,19 +47,19 @@ public class StringStatementTest extends CobolTestSupport {
 		assertEquals(2, stringStatement.getSendings().size());
 
 		{
-			final Sending sending = stringStatement.getSendings().get(0);
-			assertEquals(Sending.Type.DelimitedBy, sending.getType());
+			final Sendings sendings = stringStatement.getSendings().get(0);
+			assertEquals(Sendings.Type.DelimitedBy, sendings.getType());
 
-			final DelimitedBy delimitedBy = sending.getDelimitedBy();
+			final DelimitedBy delimitedBy = sendings.getDelimitedBy();
 			assertEquals(DelimitedBy.Type.Characters, delimitedBy.getType());
 			assertEquals(Call.CallType.UndefinedCall, delimitedBy.getCharactersCall().getCallType());
 		}
 
 		{
-			final Sending sending = stringStatement.getSendings().get(1);
-			assertEquals(Sending.Type.For, sending.getType());
+			final Sendings sendings = stringStatement.getSendings().get(1);
+			assertEquals(Sendings.Type.For, sendings.getType());
 
-			final For sendingFor = sending.getFor();
+			final For sendingFor = sendings.getFor();
 			assertEquals(Call.CallType.UndefinedCall, sendingFor.getForCall().getCallType());
 		}
 

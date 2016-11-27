@@ -15,7 +15,7 @@ import io.proleap.cobol.Cobol85Parser.StringForPhraseContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.call.Call;
 
-public interface Sending extends CobolDivisionElement {
+public interface Sendings extends CobolDivisionElement {
 
 	enum Type {
 		DelimitedBy, For

@@ -2329,22 +2329,46 @@ terminateStatement :
 // unstring statement
 
 unstringStatement :
-	UNSTRING qualifiedDataName
-	(
-		DELIMITED BY? ALL? (identifier | literal)
-		(OR ALL? (identifier | literal))*
-	)?
-	INTO
-	(
-		identifier
-		(DELIMITER IN? identifier)?
-		(COUNT IN? identifier)?
-	)+
-	(WITH? POINTER qualifiedDataName)?
-	(TALLYING IN? qualifiedDataName)?
+	UNSTRING unstringSendingPhrase unstringIntoPhrase unstringWithPointerPhrase? unstringTallyingPhrase?
 	onOverflowPhrase?
 	notOnOverflowPhrase?
 	END_UNSTRING?
+;
+
+unstringSendingPhrase :
+	qualifiedDataName (unstringDelimitedByPhrase unstringOrAllPhrase*)?
+;
+
+unstringDelimitedByPhrase :
+	DELIMITED BY? ALL? (identifier | literal)
+;
+
+unstringOrAllPhrase :
+	OR ALL? (identifier | literal)
+;
+
+unstringIntoPhrase :
+	INTO unstringInto+
+;
+
+unstringInto :
+	identifier unstringDelimiterIn? unstringCountIn?
+;
+
+unstringDelimiterIn :
+	DELIMITER IN? identifier
+;
+
+unstringCountIn :
+	COUNT IN? identifier
+;
+
+unstringWithPointerPhrase :
+	WITH? POINTER qualifiedDataName
+;
+
+unstringTallyingPhrase :
+	TALLYING IN? qualifiedDataName
 ;
 
 // use statement

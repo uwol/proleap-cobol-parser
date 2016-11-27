@@ -24,7 +24,7 @@ public interface StringStatement extends Statement {
 
 	Into addInto(StringIntoPhraseContext ctx);
 
-	Sending addSending(StringSendingPhraseContext ctx);
+	Sendings addSendings(StringSendingPhraseContext ctx);
 
 	WithPointer addWithPointer(StringWithPointerPhraseContext ctx);
 
@@ -34,7 +34,7 @@ public interface StringStatement extends Statement {
 
 	OnOverflow getOnOverflow();
 
-	List<Sending> getSendings();
+	List<Sendings> getSendings();
 
 	WithPointer getWithPointer();
 

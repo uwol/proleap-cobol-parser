@@ -19,9 +19,9 @@ import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.string.DelimitedBy;
 import io.proleap.cobol.parser.metamodel.procedure.string.For;
-import io.proleap.cobol.parser.metamodel.procedure.string.Sending;
+import io.proleap.cobol.parser.metamodel.procedure.string.Sendings;
 
-public class SendingImpl extends CobolDivisionElementImpl implements Sending {
+public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 
 	protected final StringSendingPhraseContext ctx;
 
@@ -33,7 +33,7 @@ public class SendingImpl extends CobolDivisionElementImpl implements Sending {
 
 	protected Type type;
 
-	public SendingImpl(final ProgramUnit programUnit, final StringSendingPhraseContext ctx) {
+	public SendingsImpl(final ProgramUnit programUnit, final StringSendingPhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

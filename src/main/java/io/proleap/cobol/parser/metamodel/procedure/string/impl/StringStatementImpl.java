@@ -22,7 +22,7 @@ import io.proleap.cobol.parser.metamodel.procedure.NotOnOverflow;
 import io.proleap.cobol.parser.metamodel.procedure.OnOverflow;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.string.Into;
-import io.proleap.cobol.parser.metamodel.procedure.string.Sending;
+import io.proleap.cobol.parser.metamodel.procedure.string.Sendings;
 import io.proleap.cobol.parser.metamodel.procedure.string.StringStatement;
 import io.proleap.cobol.parser.metamodel.procedure.string.WithPointer;
 
@@ -36,7 +36,7 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 
 	protected OnOverflow onOverflow;
 
-	protected List<Sending> sendings = new ArrayList<Sending>();
+	protected List<Sendings> sendings = new ArrayList<Sendings>();
 
 	protected WithPointer withPointer;
 
@@ -65,11 +65,11 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 	}
 
 	@Override
-	public Sending addSending(final StringSendingPhraseContext ctx) {
-		Sending result = (Sending) getASGElement(ctx);
+	public Sendings addSendings(final StringSendingPhraseContext ctx) {
+		Sendings result = (Sendings) getASGElement(ctx);
 
 		if (result == null) {
-			result = new SendingImpl(programUnit, ctx);
+			result = new SendingsImpl(programUnit, ctx);
 
 			// sending calls
 			for (final StringSendingContext stringSendingContext : ctx.stringSending()) {
@@ -78,14 +78,14 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 			}
 
 			// type
-			final Sending.Type type;
+			final Sendings.Type type;
 
 			if (ctx.stringDelimitedByPhrase() != null) {
 				result.addDelimitedBy(ctx.stringDelimitedByPhrase());
-				type = Sending.Type.DelimitedBy;
+				type = Sendings.Type.DelimitedBy;
 			} else if (ctx.stringForPhrase() != null) {
 				result.addFor(ctx.stringForPhrase());
-				type = Sending.Type.For;
+				type = Sendings.Type.For;
 			} else {
 				type = null;
 			}
@@ -132,7 +132,7 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 	}
 
 	@Override
-	public List<Sending> getSendings() {
+	public List<Sendings> getSendings() {
 		return sendings;
 	}
 
