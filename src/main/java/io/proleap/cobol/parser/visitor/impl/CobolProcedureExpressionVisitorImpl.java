@@ -352,6 +352,15 @@ public class CobolProcedureExpressionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
+	public Boolean visitSubtractStatement(@NotNull final Cobol85Parser.SubtractStatementContext ctx) {
+		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+
+		procedureDivision.addSubtractStatement(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitTerminateStatement(@NotNull final Cobol85Parser.TerminateStatementContext ctx) {
 		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
 

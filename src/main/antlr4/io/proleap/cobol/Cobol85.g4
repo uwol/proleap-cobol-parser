@@ -2309,15 +2309,35 @@ subtractStatement :
 ;
 
 subtractFromStatement :
-	(identifier | literal)+ FROM (identifier ROUNDED?)+
+	subtractSubtrahend+ FROM subtractMinuend+
 ;
 
 subtractFromGivingStatement :
-	(identifier | literal)+ FROM (identifier | literal) GIVING (identifier ROUNDED?)+
+	subtractSubtrahend+ FROM subtractMinuendGiving GIVING subtractGiving+
 ;
 
 subtractCorrespondingStatement :
-	(CORRESPONDING | CORR) qualifiedDataName FROM qualifiedDataName ROUNDED?
+	(CORRESPONDING | CORR) qualifiedDataName FROM subtractMinuendCorresponding
+;
+
+subtractSubtrahend :
+	identifier | literal
+;
+
+subtractMinuend :
+	identifier ROUNDED?
+;
+
+subtractMinuendGiving :
+	identifier | literal
+;
+
+subtractGiving :
+	identifier ROUNDED?
+;
+
+subtractMinuendCorresponding :
+	qualifiedDataName ROUNDED?
 ;
 
 // terminate statement

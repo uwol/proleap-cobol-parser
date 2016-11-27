@@ -49,6 +49,7 @@ import io.proleap.cobol.Cobol85Parser.SearchStatementContext;
 import io.proleap.cobol.Cobol85Parser.StartStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.StringStatementContext;
+import io.proleap.cobol.Cobol85Parser.SubtractStatementContext;
 import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
 import io.proleap.cobol.Cobol85Parser.UnstringStatementContext;
 import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
@@ -90,6 +91,7 @@ import io.proleap.cobol.parser.metamodel.procedure.search.SearchStatement;
 import io.proleap.cobol.parser.metamodel.procedure.start.StartStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.string.StringStatement;
+import io.proleap.cobol.parser.metamodel.procedure.subtract.SubtractStatement;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.TerminateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.unstring.UnstringStatement;
 import io.proleap.cobol.parser.metamodel.procedure.write.WriteStatement;
@@ -176,6 +178,8 @@ public interface ProcedureDivision extends CobolDivision {
 	StopStatement addStopStatement(StopStatementContext ctx);
 
 	StringStatement addStringStatement(StringStatementContext ctx);
+
+	SubtractStatement addSubtractStatement(SubtractStatementContext ctx);
 
 	TerminateStatement addTerminateStatement(TerminateStatementContext ctx);
 

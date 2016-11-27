@@ -86,6 +86,7 @@ import io.proleap.cobol.Cobol85Parser.StartStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.StringSendingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.StringStatementContext;
+import io.proleap.cobol.Cobol85Parser.SubtractStatementContext;
 import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
 import io.proleap.cobol.Cobol85Parser.UnstringStatementContext;
 import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
@@ -181,6 +182,8 @@ import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.impl.StopStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.string.StringStatement;
 import io.proleap.cobol.parser.metamodel.procedure.string.impl.StringStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.subtract.SubtractStatement;
+import io.proleap.cobol.parser.metamodel.procedure.subtract.impl.SubtractStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.TerminateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.impl.TerminateStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.unstring.UnstringStatement;
@@ -1351,6 +1354,49 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			if (ctx.notOnOverflowPhrase() != null) {
 				final NotOnOverflow notOnOverflow = createNotOnOverflow(ctx.notOnOverflowPhrase());
 				result.setNotOnOverflow(notOnOverflow);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public SubtractStatement addSubtractStatement(final SubtractStatementContext ctx) {
+		SubtractStatement result = (SubtractStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SubtractStatementImpl(programUnit, ctx);
+
+			// type
+			final SubtractStatement.Type type;
+
+			if (ctx.subtractFromStatement() != null) {
+				result.addSubtractFrom(ctx.subtractFromStatement());
+				type = SubtractStatement.Type.From;
+			} else if (ctx.subtractFromGivingStatement() != null) {
+				result.addSubtractFromGiving(ctx.subtractFromGivingStatement());
+				type = SubtractStatement.Type.FromGiving;
+			} else if (ctx.subtractCorrespondingStatement() != null) {
+				result.addSubtractCorresponding(ctx.subtractCorrespondingStatement());
+				type = SubtractStatement.Type.Corresponding;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
+
+			// on size error
+			if (ctx.onSizeErrorPhrase() != null) {
+				final OnSizeError onSizeError = createOnSizeError(ctx.onSizeErrorPhrase());
+				result.setOnSizeError(onSizeError);
+			}
+
+			// not on size error
+			if (ctx.notOnSizeErrorPhrase() != null) {
+				final NotOnSizeError notOnSizeError = createNotOnSizeError(ctx.notOnSizeErrorPhrase());
+				result.setNotOnSizeError(notOnSizeError);
 			}
 
 			registerStatement(result);
