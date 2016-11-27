@@ -33,6 +33,7 @@ import io.proleap.cobol.Cobol85Parser.InitializeStatementContext;
 import io.proleap.cobol.Cobol85Parser.InitiateStatementContext;
 import io.proleap.cobol.Cobol85Parser.InspectStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
+import io.proleap.cobol.Cobol85Parser.MultiplyStatementContext;
 import io.proleap.cobol.Cobol85Parser.OpenStatementContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
@@ -74,6 +75,7 @@ import io.proleap.cobol.parser.metamodel.procedure.initialize.InitializeStatemen
 import io.proleap.cobol.parser.metamodel.procedure.initiate.InitiateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.inspect.InspectStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
+import io.proleap.cobol.parser.metamodel.procedure.multiply.MultiplyStatement;
 import io.proleap.cobol.parser.metamodel.procedure.open.OpenStatement;
 import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.parser.metamodel.procedure.purge.PurgeStatement;
@@ -140,6 +142,8 @@ public interface ProcedureDivision extends CobolDivision {
 	InspectStatement addInspectStatement(InspectStatementContext ctx);
 
 	MoveToStatement addMoveToStatement(MoveToStatementContext ctx);
+
+	MultiplyStatement addMultiplyStatement(MultiplyStatementContext ctx);
 
 	OpenStatement addOpenStatement(OpenStatementContext ctx);
 

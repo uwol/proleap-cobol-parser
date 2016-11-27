@@ -1917,23 +1917,31 @@ moveCorrespondingToStatement :
 // multiply statement
 
 multiplyStatement :
-	MULTIPLY (identifier | literal) BY
-	(
-		multiplyRegular
-		| multiplyGiving
-	)
+	MULTIPLY (identifier | literal) BY 
+	(multiplyRegular | multiplyGiving)
 	onSizeErrorPhrase?
 	notOnSizeErrorPhrase?
 	END_MULTIPLY?
 ;
 
 multiplyRegular :
-	(identifier ROUNDED?)+
+	multiplyRegularOperand+
+;
+
+multiplyRegularOperand :
+	identifier ROUNDED?
 ;
 
 multiplyGiving :
-	(identifier | literal)
-	GIVING (identifier ROUNDED?)+
+	multiplyGivingOperand GIVING multiplyGivingResult+
+;
+
+multiplyGivingOperand :
+	identifier | literal
+;
+
+multiplyGivingResult :
+	identifier ROUNDED?
 ;
 
 // open statement

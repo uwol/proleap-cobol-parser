@@ -53,6 +53,7 @@ import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
+import io.proleap.cobol.Cobol85Parser.MultiplyStatementContext;
 import io.proleap.cobol.Cobol85Parser.NotAtEndPhraseContext;
 import io.proleap.cobol.Cobol85Parser.NotInvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.NotOnExceptionClauseContext;
@@ -151,6 +152,8 @@ import io.proleap.cobol.parser.metamodel.procedure.inspect.InspectStatement;
 import io.proleap.cobol.parser.metamodel.procedure.inspect.impl.InspectStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.impl.MoveToStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.multiply.MultiplyStatement;
+import io.proleap.cobol.parser.metamodel.procedure.multiply.impl.MultiplyStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.open.OpenStatement;
 import io.proleap.cobol.parser.metamodel.procedure.open.impl.OpenStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.perform.PerformStatement;
@@ -867,6 +870,50 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			for (final IdentifierContext identifierCtx : identifierCtxs) {
 				final Call receivingAreaCall = createCall(identifierCtx);
 				result.addReceivingAreaCall(receivingAreaCall);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public MultiplyStatement addMultiplyStatement(final MultiplyStatementContext ctx) {
+		MultiplyStatement result = (MultiplyStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new MultiplyStatementImpl(programUnit, ctx);
+
+			// operand
+			final Call operandCall = createCall(ctx.identifier(), ctx.literal());
+			result.setOperandCall(operandCall);
+
+			// type
+			final MultiplyStatement.Type type;
+
+			if (ctx.multiplyRegular() != null) {
+				result.addRegular(ctx.multiplyRegular());
+				type = MultiplyStatement.Type.Regular;
+			} else if (ctx.multiplyGiving() != null) {
+				result.addGiving(ctx.multiplyGiving());
+				type = MultiplyStatement.Type.Giving;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
+
+			// on size error
+			if (ctx.onSizeErrorPhrase() != null) {
+				final OnSizeError onSizeError = createOnSizeError(ctx.onSizeErrorPhrase());
+				result.setOnSizeError(onSizeError);
+			}
+
+			// not on size error
+			if (ctx.notOnSizeErrorPhrase() != null) {
+				final NotOnSizeError notOnSizeError = createNotOnSizeError(ctx.notOnSizeErrorPhrase());
+				result.setNotOnSizeError(notOnSizeError);
 			}
 
 			registerStatement(result);
