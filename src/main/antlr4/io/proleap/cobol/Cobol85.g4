@@ -2264,16 +2264,34 @@ stopStatement :
 // string statement
 
 stringStatement :
-	STRING
-	(
-		(tableCall | literal)+
-		DELIMITED BY? (identifier | literal | SIZE)
-	)+
-	INTO identifier
-	(WITH? POINTER qualifiedDataName)?
+	STRING stringSendingPhrase+ stringIntoPhrase stringWithPointerPhrase?
 	onOverflowPhrase?
 	notOnOverflowPhrase?
 	END_STRING?
+;
+
+stringSendingPhrase :
+	stringSending+ (stringDelimitedByPhrase | stringForPhrase)
+;
+
+stringSending :
+	tableCall | literal
+;
+
+stringDelimitedByPhrase :
+	DELIMITED BY? (identifier | literal | SIZE)
+;
+
+stringForPhrase :
+	FOR (identifier | literal)
+;
+
+stringIntoPhrase :
+	INTO identifier
+;
+
+stringWithPointerPhrase :
+	WITH? POINTER qualifiedDataName
 ;
 
 // subtract statement

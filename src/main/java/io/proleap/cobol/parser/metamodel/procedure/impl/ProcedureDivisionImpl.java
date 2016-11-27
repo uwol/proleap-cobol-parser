@@ -84,6 +84,8 @@ import io.proleap.cobol.Cobol85Parser.SearchStatementContext;
 import io.proleap.cobol.Cobol85Parser.SearchWhenContext;
 import io.proleap.cobol.Cobol85Parser.StartStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
+import io.proleap.cobol.Cobol85Parser.StringSendingPhraseContext;
+import io.proleap.cobol.Cobol85Parser.StringStatementContext;
 import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
 import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -176,6 +178,8 @@ import io.proleap.cobol.parser.metamodel.procedure.start.StartStatement;
 import io.proleap.cobol.parser.metamodel.procedure.start.impl.StartStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.impl.StopStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.string.StringStatement;
+import io.proleap.cobol.parser.metamodel.procedure.string.impl.StringStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.TerminateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.impl.TerminateStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.write.WriteStatement;
@@ -1307,6 +1311,44 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			}
 
 			result.setType(type);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public StringStatement addStringStatement(final StringStatementContext ctx) {
+		StringStatement result = (StringStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new StringStatementImpl(programUnit, ctx);
+
+			// sending
+			for (final StringSendingPhraseContext stringSendingPhraseContext : ctx.stringSendingPhrase()) {
+				result.addSending(stringSendingPhraseContext);
+			}
+
+			// into
+			result.addInto(ctx.stringIntoPhrase());
+
+			// with pointer
+			if (ctx.stringWithPointerPhrase() != null) {
+				result.addWithPointer(ctx.stringWithPointerPhrase());
+			}
+
+			// on overflow
+			if (ctx.onOverflowPhrase() != null) {
+				final OnOverflow onOverflow = createOnOverflow(ctx.onOverflowPhrase());
+				result.setOnOverflow(onOverflow);
+			}
+
+			// not on overflow
+			if (ctx.notOnOverflowPhrase() != null) {
+				final NotOnOverflow notOnOverflow = createNotOnOverflow(ctx.notOnOverflowPhrase());
+				result.setNotOnOverflow(notOnOverflow);
+			}
 
 			registerStatement(result);
 		}
