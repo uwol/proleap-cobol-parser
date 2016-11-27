@@ -6,4 +6,3 @@
        WITH SOMEID2
        REPLACING LINE
        BEFORE ADVANCING 3 LINES.
-       

@@ -65,6 +65,7 @@ public class SendSyncStatementTest extends CobolTestSupport {
 		{
 			final With with = sync.getWith();
 			assertNotNull(with);
+			assertEquals(With.Type.Call, with.getType());
 			assertEquals(Call.CallType.UndefinedCall, with.getWithCall().getCallType());
 		}
 
