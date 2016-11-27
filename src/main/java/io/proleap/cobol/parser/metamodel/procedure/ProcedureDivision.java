@@ -46,6 +46,7 @@ import io.proleap.cobol.Cobol85Parser.ReleaseStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReturnStatementContext;
 import io.proleap.cobol.Cobol85Parser.RewriteStatementContext;
 import io.proleap.cobol.Cobol85Parser.SearchStatementContext;
+import io.proleap.cobol.Cobol85Parser.SendStatementContext;
 import io.proleap.cobol.Cobol85Parser.StartStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.StringStatementContext;
@@ -88,6 +89,7 @@ import io.proleap.cobol.parser.metamodel.procedure.release.ReleaseStatement;
 import io.proleap.cobol.parser.metamodel.procedure.returnstmt.ReturnStatement;
 import io.proleap.cobol.parser.metamodel.procedure.rewrite.RewriteStatement;
 import io.proleap.cobol.parser.metamodel.procedure.search.SearchStatement;
+import io.proleap.cobol.parser.metamodel.procedure.send.SendStatement;
 import io.proleap.cobol.parser.metamodel.procedure.start.StartStatement;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.parser.metamodel.procedure.string.StringStatement;
@@ -172,6 +174,8 @@ public interface ProcedureDivision extends CobolDivision {
 	RewriteStatement addRewriteStatement(RewriteStatementContext ctx);
 
 	SearchStatement addSearchStatement(SearchStatementContext ctx);
+
+	SendStatement addSendStatement(SendStatementContext ctx);
 
 	StartStatement addStartStatement(StartStatementContext ctx);
 

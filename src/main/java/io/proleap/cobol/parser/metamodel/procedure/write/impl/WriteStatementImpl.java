@@ -115,6 +115,7 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 		if (result == null) {
 			result = new FromImpl(programUnit, ctx);
 
+			// from
 			final Call fromCall = createCall(ctx.identifier(), ctx.literal());
 			result.setFromCall(fromCall);
 

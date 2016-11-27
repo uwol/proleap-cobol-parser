@@ -82,6 +82,7 @@ import io.proleap.cobol.Cobol85Parser.ReturnStatementContext;
 import io.proleap.cobol.Cobol85Parser.RewriteStatementContext;
 import io.proleap.cobol.Cobol85Parser.SearchStatementContext;
 import io.proleap.cobol.Cobol85Parser.SearchWhenContext;
+import io.proleap.cobol.Cobol85Parser.SendStatementContext;
 import io.proleap.cobol.Cobol85Parser.StartStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.StringSendingPhraseContext;
@@ -176,6 +177,8 @@ import io.proleap.cobol.parser.metamodel.procedure.rewrite.RewriteStatement;
 import io.proleap.cobol.parser.metamodel.procedure.rewrite.impl.RewriteStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.search.SearchStatement;
 import io.proleap.cobol.parser.metamodel.procedure.search.impl.SearchStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.send.SendStatement;
+import io.proleap.cobol.parser.metamodel.procedure.send.impl.SendStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.start.StartStatement;
 import io.proleap.cobol.parser.metamodel.procedure.start.impl.StartStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
@@ -1250,6 +1253,46 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			// when
 			for (final SearchWhenContext searchWhenContext : ctx.searchWhen()) {
 				result.addWhen(searchWhenContext);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public SendStatement addSendStatement(final SendStatementContext ctx) {
+		SendStatement result = (SendStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SendStatementImpl(programUnit, ctx);
+
+			// type
+			final SendStatement.Type type;
+
+			if (ctx.sendStatementSync() != null) {
+				result.addSync(ctx.sendStatementSync());
+				type = SendStatement.Type.Sync;
+			} else if (ctx.sendStatementAsync() != null) {
+				result.addAsync(ctx.sendStatementAsync());
+				type = SendStatement.Type.Async;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
+
+			// on exception
+			if (ctx.onExceptionClause() != null) {
+				final OnException onException = createOnException(ctx.onExceptionClause());
+				result.setOnException(onException);
+			}
+
+			// not on exeption
+			if (ctx.notOnExceptionClause() != null) {
+				final NotOnException notOnException = createNotOnException(ctx.notOnExceptionClause());
+				result.setNotOnException(notOnException);
 			}
 
 			registerStatement(result);

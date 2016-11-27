@@ -2167,32 +2167,45 @@ searchWhen :
 
 sendStatement :
 	SEND (sendStatementSync | sendStatementAsync)
+	onExceptionClause?
+	notOnExceptionClause?
 ;
 
 sendStatementSync :
-	(identifier | literal) (FROM identifier)?
-	(
-		WITH (identifier | EGI | EMI | ESI)
-	)?
-	(REPLACING LINE?)?
-	sendAdvancingPhrase?
-	onExceptionClause?
-	notOnExceptionClause?
+	(identifier | literal) sendFromPhrase? sendWithPhrase? sendReplacingPhrase? sendAdvancingPhrase?
 ;
 
 sendStatementAsync :
 	TO (TOP | BOTTOM) identifier
-	onExceptionClause?
-	notOnExceptionClause?
+;
+
+sendFromPhrase :
+	FROM identifier
+;
+
+sendWithPhrase :
+	WITH (identifier | EGI | EMI | ESI)
+;
+
+sendReplacingPhrase :
+	REPLACING LINE?
 ;
 
 sendAdvancingPhrase :
 	(BEFORE | AFTER) ADVANCING?
-	(
-		PAGE
-		| (identifier | literal) (LINE | LINES)?
-		| mnemonicName
-	)
+	(sendAdvancingPage | sendAdvancingLines | sendAdvancingMnemonic)
+;
+
+sendAdvancingPage :
+	PAGE
+;
+
+sendAdvancingLines :
+	(identifier | literal) (LINE | LINES)?
+;
+
+sendAdvancingMnemonic :
+	mnemonicName
 ;
 
 // set statement
@@ -2432,7 +2445,7 @@ writeFromPhrase :
 
 writeAdvancingPhrase :
 	(BEFORE | AFTER) ADVANCING?
-	(writeAdvancingPage	| writeAdvancingLines | writeAdvancingMnemonic)
+	(writeAdvancingPage | writeAdvancingLines | writeAdvancingMnemonic)
 ;
 
 writeAdvancingPage :
