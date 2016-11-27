@@ -2211,15 +2211,27 @@ sendAdvancingMnemonic :
 // set statement
 
 setStatement :
-	SET (setToStatement	| setUpDownByStatement)
+	SET (setToStatement+ | setUpDownByStatement)
 ;
 
 setToStatement :
-	(identifier+ TO (identifier | ON | OFF | literal))+
+	setTo+ TO setToValue+
 ;
 
 setUpDownByStatement :
-	identifier+ (UP BY | DOWN BY) (identifier | literal)
+	setTo+ (UP BY | DOWN BY) setByValue
+;
+
+setTo :
+	identifier
+;
+
+setToValue :
+	identifier | ON | OFF | literal
+;
+
+setByValue :
+	identifier | literal
 ;
 
 // sort statement

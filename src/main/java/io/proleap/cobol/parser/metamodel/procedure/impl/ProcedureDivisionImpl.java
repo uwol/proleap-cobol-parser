@@ -83,6 +83,8 @@ import io.proleap.cobol.Cobol85Parser.RewriteStatementContext;
 import io.proleap.cobol.Cobol85Parser.SearchStatementContext;
 import io.proleap.cobol.Cobol85Parser.SearchWhenContext;
 import io.proleap.cobol.Cobol85Parser.SendStatementContext;
+import io.proleap.cobol.Cobol85Parser.SetStatementContext;
+import io.proleap.cobol.Cobol85Parser.SetToStatementContext;
 import io.proleap.cobol.Cobol85Parser.StartStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.StringSendingPhraseContext;
@@ -179,6 +181,8 @@ import io.proleap.cobol.parser.metamodel.procedure.search.SearchStatement;
 import io.proleap.cobol.parser.metamodel.procedure.search.impl.SearchStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.send.SendStatement;
 import io.proleap.cobol.parser.metamodel.procedure.send.impl.SendStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.set.SetStatement;
+import io.proleap.cobol.parser.metamodel.procedure.set.impl.SetStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.start.StartStatement;
 import io.proleap.cobol.parser.metamodel.procedure.start.impl.StartStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
@@ -1294,6 +1298,37 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 				final NotOnException notOnException = createNotOnException(ctx.notOnExceptionClause());
 				result.setNotOnException(notOnException);
 			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public SetStatement addSetStatement(final SetStatementContext ctx) {
+		SetStatement result = (SetStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SetStatementImpl(programUnit, ctx);
+
+			// type
+			final SetStatement.Type type;
+
+			if (!ctx.setToStatement().isEmpty()) {
+				type = SetStatement.Type.To;
+
+				for (final SetToStatementContext setToStatementContext : ctx.setToStatement()) {
+					result.addSetTo(setToStatementContext);
+				}
+			} else if (ctx.setUpDownByStatement() != null) {
+				result.addSetBy(ctx.setUpDownByStatement());
+				type = SetStatement.Type.By;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
 
 			registerStatement(result);
 		}
