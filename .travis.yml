@@ -1,5 +1,3 @@
 language: java
 jdk:
   - oraclejdk8
-notifications:
-  slack: nitro-comm:mlMV9YQu04U4qlanKKLwPvnh#cobol85grammar
