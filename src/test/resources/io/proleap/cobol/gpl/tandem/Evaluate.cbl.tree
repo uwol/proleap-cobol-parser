@@ -1,0 +1,340 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision Identification Division .\n  
+				(programIdParagraph Program-ID .  
+					(programName 
+						(cobolWord EVALSTMT)) .\n )) 
+			(procedureDivision Procedure Division .\n      
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statements 
+								(statement 
+									(evaluateStatement EVALUATE 
+										(evaluateSelect 
+											(identifier 
+												(qualifiedDataName 
+													(qualifiedDataNameFormat1 
+														(dataName 
+															(cobolWord SOMEVAR1)))))) 
+										(evaluateAlsoSelect ALSO 
+											(evaluateSelect 
+												(literal 
+													(numericLiteral 
+														(integerLiteral 123))))) 
+										(evaluateAlsoSelect ALSO 
+											(evaluateSelect 
+												(arithmeticExpression 
+													(timesDiv 
+														(power 
+															(basis ( 
+																(arithmeticExpression 
+																	(timesDiv 
+																		(power 
+																			(basis 
+																				(identifier 
+																					(qualifiedDataName 
+																						(qualifiedDataNameFormat1 
+																							(dataName 
+																								(cobolWord SOMEVAR2))))))) * 
+																		(power 
+																			(basis 
+																				(literal 
+																					(numericLiteral 
+																						(integerLiteral 9))))))) ))))))) 
+										(evaluateAlsoSelect ALSO 
+											(evaluateSelect 
+												(identifier 
+													(qualifiedDataName 
+														(qualifiedDataNameFormat1 
+															(dataName 
+																(cobolWord IT-IS-81))))))) 
+										(evaluateAlsoSelect ALSO 
+											(evaluateSelect 
+												(literal 
+													(booleanLiteral TRUE)))) 
+										(evaluateAlsoSelect ALSO 
+											(evaluateSelect 
+												(literal 
+													(booleanLiteral FALSE)))) 
+										(evaluateWhenPhrase 
+											(evaluateWhen WHEN 
+												(evaluateCondition 
+													(condition 
+														(combinableCondition NOT 
+															(simpleCondition 
+																(conditionNameCondition 
+																	(conditionNameReference 
+																		(conditionName 
+																			(cobolWord SOMEVAR3)))))))) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition 
+														(condition 
+															(combinableCondition 
+																(simpleCondition 
+																	(conditionNameCondition 
+																		(conditionNameReference 
+																			(conditionName 
+																				(cobolWord SOMEVAR4))))))))) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition 
+														(evaluateValue 
+															(literal 
+																(numericLiteral 
+																	(integerLiteral 234)))))) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition 
+														(booleanLiteral TRUE))) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition 
+														(condition 
+															(combinableCondition 
+																(simpleCondition 
+																	(relationCondition 
+																		(arithmeticExpression 
+																			(timesDiv 
+																				(power 
+																					(basis 
+																						(identifier 
+																							(qualifiedDataName 
+																								(qualifiedDataNameFormat1 
+																									(dataName 
+																										(cobolWord SOMEVAR5))))))))) 
+																		(relationalOperator =) 
+																		(arithmeticExpression 
+																			(timesDiv 
+																				(power 
+																					(basis 
+																						(literal 
+																							(numericLiteral 
+																								(integerLiteral 0))))))))))))) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition 
+														(condition 
+															(combinableCondition 
+																(simpleCondition 
+																	(relationCondition 
+																		(arithmeticExpression 
+																			(timesDiv 
+																				(power 
+																					(basis 
+																						(identifier 
+																							(qualifiedDataName 
+																								(qualifiedDataNameFormat1 
+																									(dataName 
+																										(cobolWord SOMEVAR6))))))))) 
+																		(relationalOperator <) 
+																		(arithmeticExpression 
+																			(timesDiv 
+																				(power 
+																					(basis 
+																						(literal 
+																							(numericLiteral 
+																								(integerLiteral 9)))))))))))))) 
+											(statements 
+												(statement 
+													(moveStatement MOVE 
+														(moveToStatement 
+															(moveToStatementSendingArea 
+																(literal "A")) TO 
+															(identifier 
+																(qualifiedDataName 
+																	(qualifiedDataNameFormat1 
+																		(dataName 
+																			(cobolWord SOMEVAR1)))))))) 
+												(statement 
+													(moveStatement MOVE 
+														(moveToStatement 
+															(moveToStatementSendingArea 
+																(literal "B")) TO 
+															(identifier 
+																(qualifiedDataName 
+																	(qualifiedDataNameFormat1 
+																		(dataName 
+																			(cobolWord SOMEVAR2)))))))))) 
+										(evaluateWhenPhrase 
+											(evaluateWhen WHEN 
+												(evaluateCondition 
+													(evaluateValue 
+														(literal 
+															(numericLiteral 
+																(integerLiteral 42))))) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition 
+														(condition 
+															(combinableCondition 
+																(simpleCondition 
+																	(conditionNameCondition 
+																		(conditionNameReference 
+																			(conditionName 
+																				(cobolWord SOMEVAR1))))))))) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition 
+														(evaluateValue 
+															(arithmeticExpression 
+																(timesDiv 
+																	(power 
+																		(basis ( 
+																			(arithmeticExpression 
+																				(timesDiv 
+																					(power 
+																						(basis 
+																							(literal 
+																								(numericLiteral 
+																									(integerLiteral 9))))) * 
+																					(power 
+																						(basis 
+																							(literal 
+																								(numericLiteral 
+																									(integerLiteral 9))))) * 
+																					(power 
+																						(basis 
+																							(literal 
+																								(numericLiteral 
+																									(integerLiteral 9))))))) )))))))) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition 
+														(booleanLiteral FALSE))) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition 
+														(condition 
+															(combinableCondition 
+																(simpleCondition 
+																	(relationCondition 
+																		(arithmeticExpression 
+																			(timesDiv 
+																				(power 
+																					(basis 
+																						(identifier 
+																							(qualifiedDataName 
+																								(qualifiedDataNameFormat1 
+																									(dataName 
+																										(cobolWord SOMEVAR1-2))))))))) 
+																		(relationalOperator =) 
+																		(arithmeticExpression 
+																			(timesDiv 
+																				(power 
+																					(basis 
+																						(literal "*"))))))))))) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition 
+														(condition 
+															(combinableCondition 
+																(simpleCondition 
+																	(relationCondition 
+																		(arithmeticExpression 
+																			(timesDiv 
+																				(power 
+																					(basis 
+																						(identifier 
+																							(qualifiedDataName 
+																								(qualifiedDataNameFormat1 
+																									(dataName 
+																										(cobolWord SOMEVAR))))))))) 
+																		(relationalOperator >) 
+																		(arithmeticExpression 
+																			(timesDiv 
+																				(power 
+																					(basis 
+																						(literal 
+																							(numericLiteral 
+																								(integerLiteral 8)))))))))))))) 
+											(statements 
+												(statement 
+													(moveStatement MOVE 
+														(moveToStatement 
+															(moveToStatementSendingArea 
+																(literal "C")) TO 
+															(identifier 
+																(qualifiedDataName 
+																	(qualifiedDataNameFormat1 
+																		(dataName 
+																			(cobolWord SOMEVAR1)))))))) 
+												(statement 
+													(moveStatement MOVE 
+														(moveToStatement 
+															(moveToStatementSendingArea 
+																(literal "D")) TO 
+															(identifier 
+																(qualifiedDataName 
+																	(qualifiedDataNameFormat1 
+																		(dataName 
+																			(cobolWord SOMEVAR2)))))))))) 
+										(evaluateWhenPhrase 
+											(evaluateWhen WHEN 
+												(evaluateCondition ANY) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition ANY)) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition ANY)) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition ANY)) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition ANY)) 
+												(evaluateAlsoCondition ALSO 
+													(evaluateCondition 
+														(condition 
+															(combinableCondition 
+																(simpleCondition 
+																	(relationCondition 
+																		(arithmeticExpression 
+																			(timesDiv 
+																				(power 
+																					(basis 
+																						(identifier 
+																							(qualifiedDataName 
+																								(qualifiedDataNameFormat1 
+																									(dataName 
+																										(cobolWord SOMEVAR))))))))) 
+																		(relationalOperator =) 
+																		(arithmeticExpression 
+																			(timesDiv 
+																				(power 
+																					(basis 
+																						(literal 
+																							(numericLiteral 
+																								(integerLiteral 23)))))))))))))) 
+											(statements 
+												(statement 
+													(moveStatement MOVE 
+														(moveToStatement 
+															(moveToStatementSendingArea 
+																(literal "E")) TO 
+															(identifier 
+																(qualifiedDataName 
+																	(qualifiedDataNameFormat1 
+																		(dataName 
+																			(cobolWord SOMEVAR1)))))))) 
+												(statement 
+													(moveStatement MOVE 
+														(moveToStatement 
+															(moveToStatementSendingArea 
+																(literal "F")) TO 
+															(identifier 
+																(qualifiedDataName 
+																	(qualifiedDataNameFormat1 
+																		(dataName 
+																			(cobolWord SOMEVAR2)))))))))) 
+										(evaluateWhenOther WHEN OTHER 
+											(statements 
+												(statement 
+													(moveStatement MOVE 
+														(moveToStatement 
+															(moveToStatementSendingArea 
+																(literal "G")) TO 
+															(identifier 
+																(qualifiedDataName 
+																	(qualifiedDataNameFormat1 
+																		(dataName 
+																			(cobolWord SOMEVAR1)))))))) 
+												(statement 
+													(moveStatement MOVE 
+														(moveToStatement 
+															(moveToStatementSendingArea 
+																(literal "H")) TO 
+															(identifier 
+																(qualifiedDataName 
+																	(qualifiedDataNameFormat1 
+																		(dataName 
+																			(cobolWord SOMEVAR2)))))))))) END-EVALUATE))) .)))))) <EOF>)

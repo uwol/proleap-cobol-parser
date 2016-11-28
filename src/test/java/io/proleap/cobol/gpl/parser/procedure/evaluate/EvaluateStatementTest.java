@@ -152,14 +152,28 @@ public class EvaluateStatementTest extends CobolTestSupport {
 
 				{
 					final When when = whenPhrase.getWhens().get(0);
-					final Condition condition = when.getCondition();
-					assertNotNull(condition);
-					assertEquals(Condition.Type.ValueThrough, condition.getType());
 
 					{
-						final Value value = condition.getValue();
-						assertNotNull(value);
-						assertNotNull(value.getValueStmt());
+						final Condition condition = when.getCondition();
+						assertNotNull(condition);
+						assertEquals(Condition.Type.ValueThrough, condition.getType());
+
+						{
+							final Value value = condition.getValue();
+							assertNotNull(value);
+							assertNotNull(value.getValueStmt());
+						}
+
+						{
+							final Through through = condition.getThrough();
+							assertNotNull(through);
+
+							{
+								final Value value = through.getValue();
+								assertNotNull(value);
+								assertNotNull(value.getValueStmt());
+							}
+						}
 					}
 
 					assertEquals(1, when.getAlsoConditions().size());
@@ -169,20 +183,15 @@ public class EvaluateStatementTest extends CobolTestSupport {
 						assertNotNull(alsoCondition);
 
 						{
-							final Value value = alsoCondition.getValue();
-							assertNotNull(value);
-							assertNotNull(value.getValueStmt());
-						}
-					}
+							final Condition condition = alsoCondition.getCondition();
+							assertNotNull(condition);
+							assertEquals(Condition.Type.Value, condition.getType());
 
-					{
-						final Through through = condition.getThrough();
-						assertNotNull(through);
-
-						{
-							final Value value = through.getValue();
-							assertNotNull(value);
-							assertNotNull(value.getValueStmt());
+							{
+								final Value value = condition.getValue();
+								assertNotNull(value);
+								assertNotNull(value.getValueStmt());
+							}
 						}
 					}
 				}

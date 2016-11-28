@@ -8,13 +8,13 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.evaluate;
 
-import io.proleap.cobol.Cobol85Parser.EvaluateValueContext;
+import io.proleap.cobol.Cobol85Parser.EvaluateConditionContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 
 public interface AlsoCondition extends CobolDivisionElement {
 
-	Value addValue(EvaluateValueContext ctx);
+	Condition addCondition(EvaluateConditionContext ctx);
 
-	Value getValue();
+	Condition getCondition();
 
 }

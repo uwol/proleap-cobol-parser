@@ -43,8 +43,8 @@ public class WhenImpl extends CobolDivisionElementImpl implements When {
 		if (result == null) {
 			result = new AlsoConditionImpl(programUnit, ctx);
 
-			// value
-			result.addValue(ctx.evaluateValue());
+			// condition
+			result.addCondition(ctx.evaluateCondition());
 
 			alsoConditions.add(result);
 			registerASGElement(result);

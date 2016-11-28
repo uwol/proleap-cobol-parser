@@ -1740,7 +1740,7 @@ evaluateThrough :
 ;
 
 evaluateAlsoCondition :
-	ALSO evaluateValue
+	ALSO evaluateCondition
 ;
 
 evaluateWhenOther :
