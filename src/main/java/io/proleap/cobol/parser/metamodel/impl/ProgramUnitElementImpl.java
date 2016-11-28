@@ -590,18 +590,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected CallValueStmt createCallValueStmt(final MnemonicNameContext ctx) {
-		final Call delegatedCall = createCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
-	protected CallValueStmt createCallValueStmt(final ProcedureNameContext ctx) {
-		final Call delegatedCall = createCall(ctx);
-		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
-		return result;
-	}
-
 	protected CallValueStmt createCallValueStmt(final ProgramNameContext ctx) {
 		final Call delegatedCall = createCall(ctx);
 		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
