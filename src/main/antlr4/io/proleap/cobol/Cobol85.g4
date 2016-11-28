@@ -1877,7 +1877,7 @@ inspectBeforeAfter :
 // merge statement
 
 mergeStatement :
-	MERGE fileName mergeOnKeyClause+ mergeCollatingSequencePhrase? mergeUsing+ mergeOutputProcedurePhrase? mergeGivingPhrase*
+	MERGE fileName mergeOnKeyClause+ mergeCollatingSequencePhrase? mergeUsing* mergeOutputProcedurePhrase? mergeGivingPhrase*
 ;
 
 mergeOnKeyClause :
@@ -2263,7 +2263,7 @@ setByValue :
 // sort statement
 
 sortStatement :
-	SORT fileName sortOnKeyClause+ sortDuplicatesPhrase? sortCollatingSequencePhrase? sortInputProcedurePhrase? sortUsing+ sortOutputProcedurePhrase? sortGivingPhrase*
+	SORT fileName sortOnKeyClause+ sortDuplicatesPhrase? sortCollatingSequencePhrase? sortInputProcedurePhrase? sortUsing* sortOutputProcedurePhrase? sortGivingPhrase*
 ;
 
 sortOnKeyClause :

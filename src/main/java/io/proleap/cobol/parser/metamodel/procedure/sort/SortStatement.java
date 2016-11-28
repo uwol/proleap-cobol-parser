@@ -21,7 +21,9 @@ import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
 /**
- * Merges two or more identically sequenced files by specified keys.
+ * Creates a sort file from input procedures or by transferring records from
+ * another file. After sorting the records in the sort file makes them available
+ * in sorted order to an output procedure or an output file.
  */
 public interface SortStatement extends Statement {
 
