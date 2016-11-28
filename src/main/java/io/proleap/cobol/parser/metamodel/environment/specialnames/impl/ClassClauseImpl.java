@@ -23,9 +23,9 @@ import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassClause {
 
-	protected List<ClassThrough> classThroughs = new ArrayList<ClassThrough>();
-
 	protected ValueStmt classNameValueStmt;
+
+	protected List<ClassThrough> classThroughs = new ArrayList<ClassThrough>();
 
 	protected final ClassClauseContext ctx;
 
@@ -50,31 +50,13 @@ public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassCl
 			/*
 			 * from
 			 */
-			final ValueStmt fromValueStmt;
-
-			if (fromContext.identifier() != null) {
-				fromValueStmt = createCallValueStmt(fromContext.identifier());
-			} else if (fromContext.literal() != null) {
-				fromValueStmt = createLiteralValueStmt(fromContext.literal());
-			} else {
-				fromValueStmt = null;
-			}
-
+			final ValueStmt fromValueStmt = createValueStmt(fromContext.identifier(), fromContext.literal());
 			result.setFrom(fromValueStmt);
 
 			/*
 			 * to
 			 */
-			final ValueStmt toValueStmt;
-
-			if (toContext.identifier() != null) {
-				toValueStmt = createCallValueStmt(toContext.identifier());
-			} else if (toContext.literal() != null) {
-				toValueStmt = createLiteralValueStmt(toContext.literal());
-			} else {
-				toValueStmt = null;
-			}
-
+			final ValueStmt toValueStmt = createValueStmt(toContext.identifier(), toContext.literal());
 			result.setTo(toValueStmt);
 
 			classThroughs.add(result);
@@ -85,13 +67,13 @@ public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassCl
 	}
 
 	@Override
-	public List<ClassThrough> getClassThroughs() {
-		return classThroughs;
+	public ValueStmt getClassNameValueStmt() {
+		return classNameValueStmt;
 	}
 
 	@Override
-	public ValueStmt getClassNameValueStmt() {
-		return classNameValueStmt;
+	public List<ClassThrough> getClassThroughs() {
+		return classThroughs;
 	}
 
 	@Override

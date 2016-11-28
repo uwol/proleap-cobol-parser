@@ -154,16 +154,7 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			/*
 			 * from
 			 */
-			final ValueStmt fromValueStmt;
-
-			if (ctx.identifier() != null) {
-				fromValueStmt = createCallValueStmt(ctx.identifier());
-			} else if (ctx.literal() != null) {
-				fromValueStmt = createLiteralValueStmt(ctx.literal());
-			} else {
-				fromValueStmt = null;
-			}
-
+			final ValueStmt fromValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
 			result.setFrom(fromValueStmt);
 
 			registerASGElement(result);

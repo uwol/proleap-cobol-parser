@@ -99,17 +99,7 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 			/*
 			 * on value
 			 */
-			final ValueStmt onValueStmt;
-
-			if (ctx.assignmentName() != null) {
-				onValueStmt = createCallValueStmt(ctx.assignmentName());
-			} else if (ctx.fileName() != null) {
-				onValueStmt = createCallValueStmt(ctx.fileName());
-			} else {
-				LOG.warn("unknown on value stmt {}.", ctx);
-				onValueStmt = null;
-			}
-
+			final ValueStmt onValueStmt = createValueStmt(ctx.assignmentName(), ctx.fileName());
 			result.setOnValueStmt(onValueStmt);
 
 			if (ctx.rerunEveryRecords() != null) {

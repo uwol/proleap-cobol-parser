@@ -40,14 +40,7 @@ public class CallByValueStatementImpl extends CobolDivisionElementImpl implement
 		ValueStmt result = (ValueStmt) getASGElement(ctx);
 
 		if (result == null) {
-			if (ctx.literal() != null) {
-				result = createLiteralValueStmt(ctx.literal());
-			} else if (ctx.identifier() != null) {
-				result = createCallValueStmt(ctx.identifier());
-			} else {
-				LOG.warn("unknown value at {}", ctx);
-				result = null;
-			}
+			result = createValueStmt(ctx.literal(), ctx.identifier());
 
 			valueStmts.add(result);
 		}

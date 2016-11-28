@@ -110,18 +110,7 @@ public class WhenImpl extends CobolDivisionElementImpl implements When {
 	}
 
 	protected ValueStmt createValueStmt(final EvaluateValueContext ctx) {
-		final ValueStmt result;
-
-		if (ctx.identifier() != null) {
-			result = createCallValueStmt(ctx.identifier());
-		} else if (ctx.literal() != null) {
-			result = createLiteralValueStmt(ctx.literal());
-		} else if (ctx.arithmeticExpression() != null) {
-			result = createArithmeticValueStmt(ctx.arithmeticExpression());
-		} else {
-			result = null;
-		}
-
+		final ValueStmt result = createValueStmt(ctx.identifier(), ctx.literal(), ctx.arithmeticExpression());
 		return result;
 	}
 

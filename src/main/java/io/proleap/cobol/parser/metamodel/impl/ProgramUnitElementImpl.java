@@ -73,6 +73,7 @@ import io.proleap.cobol.parser.metamodel.valuestmt.ConditionValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.TerminalValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.ArithmeticValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.BooleanLiteralValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.CallValueStmtImpl;
@@ -680,6 +681,62 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	protected Call createUndefinedCall(final ParseTree ctx) {
 		final String name = determineName(ctx);
 		final Call result = new UndefinedCallImpl(name, programUnit, ctx);
+		return result;
+	}
+
+	protected ValueStmt createValueStmt(final ParseTree... ctxs) {
+		ValueStmt result = null;
+
+		for (final ParseTree ctx : ctxs) {
+			if (result != null) {
+				break;
+			}
+
+			if (ctx == null) {
+				continue;
+			}
+
+			if (ctx instanceof IdentifierContext) {
+				result = createCallValueStmt((IdentifierContext) ctx);
+			} else if (ctx instanceof AlphabetNameContext) {
+				result = createCallValueStmt((AlphabetNameContext) ctx);
+			} else if (ctx instanceof AssignmentNameContext) {
+				result = createCallValueStmt((AssignmentNameContext) ctx);
+			} else if (ctx instanceof ClassNameContext) {
+				result = createCallValueStmt((ClassNameContext) ctx);
+			} else if (ctx instanceof CobolWordContext) {
+				result = createCallValueStmt((CobolWordContext) ctx);
+			} else if (ctx instanceof DataDescNameContext) {
+				result = createCallValueStmt((DataDescNameContext) ctx);
+			} else if (ctx instanceof DataNameContext) {
+				result = createCallValueStmt((DataNameContext) ctx);
+			} else if (ctx instanceof FileNameContext) {
+				result = createCallValueStmt((FileNameContext) ctx);
+			} else if (ctx instanceof IndexNameContext) {
+				result = createCallValueStmt((IndexNameContext) ctx);
+			} else if (ctx instanceof LocalNameContext) {
+				result = createCallValueStmt((LocalNameContext) ctx);
+			} else if (ctx instanceof ProgramNameContext) {
+				result = createCallValueStmt((ProgramNameContext) ctx);
+			} else if (ctx instanceof QualifiedDataNameContext) {
+				result = createCallValueStmt((QualifiedDataNameContext) ctx);
+			} else if (ctx instanceof ReportNameContext) {
+				result = createCallValueStmt((ReportNameContext) ctx);
+			} else if (ctx instanceof SystemNameContext) {
+				result = createCallValueStmt((SystemNameContext) ctx);
+			} else if (ctx instanceof ConditionContext) {
+				result = createConditionValueStmt((ConditionContext) ctx);
+			} else if (ctx instanceof IntegerLiteralContext) {
+				result = createIntegerLiteralValueStmt((IntegerLiteralContext) ctx);
+			} else if (ctx instanceof LiteralContext) {
+				result = createLiteralValueStmt((LiteralContext) ctx);
+			} else if (ctx instanceof TerminalNode) {
+				result = createTerminalValueStmt((TerminalNode) ctx);
+			} else {
+				LOG.warn("unknown value stmt at {}", ctx);
+			}
+		}
+
 		return result;
 	}
 

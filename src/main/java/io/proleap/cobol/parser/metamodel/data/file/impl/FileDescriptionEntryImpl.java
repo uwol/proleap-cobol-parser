@@ -247,17 +247,7 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			/*
 			 * number of lines
 			 */
-			final ValueStmt numberOfLinesValueStmt;
-
-			if (ctx.dataName() != null) {
-				numberOfLinesValueStmt = createCallValueStmt(ctx.dataName());
-			} else if (ctx.integerLiteral() != null) {
-				numberOfLinesValueStmt = createIntegerLiteralValueStmt(ctx.integerLiteral());
-			} else {
-				LOG.warn("unknown number of lines at {}", ctx);
-				numberOfLinesValueStmt = null;
-			}
-
+			final ValueStmt numberOfLinesValueStmt = createValueStmt(ctx.dataName(), ctx.integerLiteral());
 			result.setNumberOfLinesValueStmt(numberOfLinesValueStmt);
 
 			/*
@@ -427,15 +417,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 
 			for (final ValuePairContext valuePairContext : ctx.valuePair()) {
 				final ValueStmt systemName = createCallValueStmt(valuePairContext.systemName());
-				final ValueStmt value;
-
-				if (valuePairContext.qualifiedDataName() != null) {
-					value = createCallValueStmt(valuePairContext.qualifiedDataName());
-				} else if (valuePairContext.literal() != null) {
-					value = createLiteralValueStmt(valuePairContext.literal());
-				} else {
-					value = null;
-				}
+				final ValueStmt value = createValueStmt(valuePairContext.qualifiedDataName(),
+						valuePairContext.literal());
 
 				final ValueOfNameValuePair valuePair = new ValueOfNameValuePairImpl();
 				valuePair.setName(systemName);

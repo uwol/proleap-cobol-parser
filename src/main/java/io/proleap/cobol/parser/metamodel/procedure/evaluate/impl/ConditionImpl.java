@@ -61,19 +61,7 @@ public class ConditionImpl extends CobolDivisionElementImpl implements Condition
 		if (result == null) {
 			result = new ValueImpl(programUnit, ctx);
 
-			// value
-			final ValueStmt valueStmt;
-
-			if (ctx.identifier() != null) {
-				valueStmt = createCallValueStmt(ctx.identifier());
-			} else if (ctx.literal() != null) {
-				valueStmt = createLiteralValueStmt(ctx.literal());
-			} else if (ctx.arithmeticExpression() != null) {
-				valueStmt = createArithmeticValueStmt(ctx.arithmeticExpression());
-			} else {
-				valueStmt = null;
-			}
-
+			final ValueStmt valueStmt = createValueStmt(ctx.identifier(), ctx.literal(), ctx.arithmeticExpression());
 			result.setValueStmt(valueStmt);
 
 			value = result;

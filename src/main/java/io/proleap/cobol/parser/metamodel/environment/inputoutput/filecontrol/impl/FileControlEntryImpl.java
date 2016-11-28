@@ -141,17 +141,7 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new AssignClauseImpl(programUnit, ctx);
 
-			final ValueStmt valueStmt;
-
-			if (ctx.assignmentName() != null) {
-				valueStmt = createCallValueStmt(ctx.assignmentName());
-			} else if (ctx.literal() != null) {
-				valueStmt = createLiteralValueStmt(ctx.literal());
-			} else {
-				LOG.warn("unknown value stmt {}.", ctx);
-				valueStmt = null;
-			}
-
+			final ValueStmt valueStmt = createValueStmt(ctx.assignmentName(), ctx.literal());
 			result.setValueStmt(valueStmt);
 
 			assignClause = result;
@@ -240,17 +230,7 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new PaddingCharacterClauseImpl(programUnit, ctx);
 
-			final ValueStmt valueStmt;
-
-			if (ctx.qualifiedDataName() != null) {
-				valueStmt = createCallValueStmt(ctx.qualifiedDataName());
-			} else if (ctx.literal() != null) {
-				valueStmt = createLiteralValueStmt(ctx.literal());
-			} else {
-				LOG.warn("unknown value stmt {}.", ctx);
-				valueStmt = null;
-			}
-
+			final ValueStmt valueStmt = createValueStmt(ctx.qualifiedDataName(), ctx.literal());
 			result.setValueStmt(valueStmt);
 
 			paddingCharacterClause = result;
@@ -284,19 +264,7 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new RecordDelimiterClauseImpl(programUnit, ctx);
 
-			final ValueStmt valueStmt;
-
-			if (ctx.assignmentName() != null) {
-				valueStmt = createCallValueStmt(ctx.assignmentName());
-			} else if (ctx.STANDARD_1() != null) {
-				valueStmt = createTerminalValueStmt(ctx.STANDARD_1());
-			} else if (ctx.IMPLICIT() != null) {
-				valueStmt = createTerminalValueStmt(ctx.IMPLICIT());
-			} else {
-				LOG.warn("unknown value stmt {}.", ctx);
-				valueStmt = null;
-			}
-
+			final ValueStmt valueStmt = createValueStmt(ctx.assignmentName(), ctx.STANDARD_1(), ctx.IMPLICIT());
 			result.setValueStmt(valueStmt);
 
 			recordDelimiterClause = result;

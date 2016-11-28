@@ -49,17 +49,7 @@ public class ValueClauseImpl extends CobolDivisionElementImpl implements ValueCl
 			 * from
 			 */
 			final DataValueIntervalFromContext fromContext = ctx.dataValueIntervalFrom();
-			final ValueStmt fromValueStmt;
-
-			if (fromContext.literal() != null) {
-				fromValueStmt = createLiteralValueStmt(fromContext.literal());
-			} else if (fromContext.cobolWord() != null) {
-				fromValueStmt = createCallValueStmt(fromContext.cobolWord());
-			} else {
-				LOG.warn("unknown from at {}", ctx);
-				fromValueStmt = null;
-			}
-
+			final ValueStmt fromValueStmt = createValueStmt(fromContext.literal(), fromContext.cobolWord());
 			result.setFrom(fromValueStmt);
 
 			/*
@@ -68,15 +58,7 @@ public class ValueClauseImpl extends CobolDivisionElementImpl implements ValueCl
 			final DataValueIntervalToContext toContext = ctx.dataValueIntervalTo();
 
 			if (toContext != null) {
-				final ValueStmt toValueStmt;
-
-				if (toContext.literal() != null) {
-					toValueStmt = createLiteralValueStmt(toContext.literal());
-				} else {
-					LOG.warn("unknown to at {}", ctx);
-					toValueStmt = null;
-				}
-
+				final ValueStmt toValueStmt = createValueStmt(toContext.literal());
 				result.setTo(toValueStmt);
 			}
 

@@ -90,16 +90,8 @@ public class ImportEntryProcedureImpl extends CobolDivisionElementImpl implement
 
 			for (final LibraryEntryProcedureUsingNameContext libraryEntryProcedureUsingNameContext : ctx
 					.libraryEntryProcedureUsingName()) {
-				final ValueStmt withValueStmt;
-
-				if (libraryEntryProcedureUsingNameContext.dataName() != null) {
-					withValueStmt = createCallValueStmt(libraryEntryProcedureUsingNameContext.dataName());
-				} else if (libraryEntryProcedureUsingNameContext.fileName() != null) {
-					withValueStmt = createCallValueStmt(libraryEntryProcedureUsingNameContext.fileName());
-				} else {
-					withValueStmt = null;
-				}
-
+				final ValueStmt withValueStmt = createValueStmt(libraryEntryProcedureUsingNameContext.dataName(),
+						libraryEntryProcedureUsingNameContext.fileName());
 				result.addUsingValueStmt(withValueStmt);
 			}
 
@@ -119,16 +111,8 @@ public class ImportEntryProcedureImpl extends CobolDivisionElementImpl implement
 
 			for (final LibraryEntryProcedureWithNameContext libraryEntryProcedureWithNameContext : ctx
 					.libraryEntryProcedureWithName()) {
-				final ValueStmt withValueStmt;
-
-				if (libraryEntryProcedureWithNameContext.localName() != null) {
-					withValueStmt = createCallValueStmt(libraryEntryProcedureWithNameContext.localName());
-				} else if (libraryEntryProcedureWithNameContext.fileName() != null) {
-					withValueStmt = createCallValueStmt(libraryEntryProcedureWithNameContext.fileName());
-				} else {
-					withValueStmt = null;
-				}
-
+				final ValueStmt withValueStmt = createValueStmt(libraryEntryProcedureWithNameContext.localName(),
+						libraryEntryProcedureWithNameContext.fileName());
 				result.addWithValueStmt(withValueStmt);
 			}
 

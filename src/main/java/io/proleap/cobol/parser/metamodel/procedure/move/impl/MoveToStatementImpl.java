@@ -52,17 +52,7 @@ public class MoveToStatementImpl extends StatementImpl implements MoveToStatemen
 			/*
 			 * then the delegated value stmt
 			 */
-			final ValueStmt delegatedValueStmt;
-
-			if (ctx.identifier() != null) {
-				delegatedValueStmt = createCallValueStmt(ctx.identifier());
-			} else if (ctx.literal() != null) {
-				delegatedValueStmt = createLiteralValueStmt(ctx.literal());
-			} else {
-				LOG.warn("unknown value stmt {}.", ctx);
-				delegatedValueStmt = null;
-			}
-
+			final ValueStmt delegatedValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
 			result = new ValueStmtDelegateImpl(delegatedValueStmt, programUnit, ctx);
 
 			sendingAreaValueStmt = result;

@@ -651,16 +651,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			/*
 			 * of
 			 */
-			final ValueStmt ofValueStmt;
-
-			if (ctx.cobolWord() != null) {
-				ofValueStmt = createCallValueStmt(ctx.cobolWord());
-			} else if (ctx.dataName() != null) {
-				ofValueStmt = createCallValueStmt(ctx.dataName());
-			} else {
-				ofValueStmt = null;
-			}
-
+			final ValueStmt ofValueStmt = createValueStmt(ctx.cobolWord(), ctx.dataName());
 			result.setOfValueStmt(ofValueStmt);
 
 			usingClause = result;

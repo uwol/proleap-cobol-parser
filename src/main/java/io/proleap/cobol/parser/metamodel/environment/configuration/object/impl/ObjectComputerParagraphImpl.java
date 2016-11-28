@@ -108,17 +108,7 @@ public class ObjectComputerParagraphImpl extends CobolDivisionElementImpl implem
 			/*
 			 * size value stmt
 			 */
-			final ValueStmt valueStmt;
-
-			if (ctx.integerLiteral() != null) {
-				valueStmt = createIntegerLiteralValueStmt(ctx.integerLiteral());
-			} else if (ctx.cobolWord() != null) {
-				valueStmt = createCallValueStmt(ctx.cobolWord());
-			} else {
-				LOG.warn("unknown value stmt {}.", ctx);
-				valueStmt = null;
-			}
-
+			final ValueStmt valueStmt = createValueStmt(ctx.integerLiteral(), ctx.cobolWord());
 			result.setValueStmt(valueStmt);
 
 			/*
@@ -153,17 +143,7 @@ public class ObjectComputerParagraphImpl extends CobolDivisionElementImpl implem
 			/*
 			 * size value stmt
 			 */
-			final ValueStmt valueStmt;
-
-			if (ctx.integerLiteral() != null) {
-				valueStmt = createIntegerLiteralValueStmt(ctx.integerLiteral());
-			} else if (ctx.cobolWord() != null) {
-				valueStmt = createCallValueStmt(ctx.cobolWord());
-			} else {
-				LOG.warn("unknown value stmt {}.", ctx);
-				valueStmt = null;
-			}
-
+			final ValueStmt valueStmt = createValueStmt(ctx.integerLiteral(), ctx.cobolWord());
 			result.setValueStmt(valueStmt);
 
 			/*

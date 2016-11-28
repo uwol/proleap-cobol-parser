@@ -113,20 +113,8 @@ public class EvaluateStatementImpl extends StatementImpl implements EvaluateStat
 			result = new SelectImpl(programUnit, ctx);
 
 			// select value stmt
-			final ValueStmt selectValueStmt;
-
-			if (ctx.identifier() != null) {
-				selectValueStmt = createCallValueStmt(ctx.identifier());
-			} else if (ctx.literal() != null) {
-				selectValueStmt = createLiteralValueStmt(ctx.literal());
-			} else if (ctx.arithmeticExpression() != null) {
-				selectValueStmt = createArithmeticValueStmt(ctx.arithmeticExpression());
-			} else if (ctx.condition() != null) {
-				selectValueStmt = createConditionValueStmt(ctx.condition());
-			} else {
-				selectValueStmt = null;
-			}
-
+			final ValueStmt selectValueStmt = createValueStmt(ctx.identifier(), ctx.literal(),
+					ctx.arithmeticExpression(), ctx.condition());
 			result.setSelectValueStmt(selectValueStmt);
 
 			registerASGElement(result);
