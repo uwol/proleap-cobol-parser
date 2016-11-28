@@ -1712,30 +1712,43 @@ entryStatement :
 // evaluate statement
 
 evaluateStatement :
-	EVALUATE evaluateValue
-	(ALSO evaluateValue)*
-	(
-		(WHEN evaluatePhrase (ALSO evaluatePhrase)*)+
-		statements
-	)+
-	(WHEN OTHER statements)?
-	END_EVALUATE?
+	EVALUATE evaluateSelect evaluateAlsoSelect* evaluateWhenPhrase+ evaluateWhenOther? END_EVALUATE?
+;
+
+evaluateSelect :
+	identifier | literal | arithmeticExpression | condition
+;
+
+evaluateAlsoSelect :
+	ALSO evaluateSelect
+;
+
+evaluateWhenPhrase :
+	evaluateWhen+ statements
+;
+
+evaluateWhen :
+	WHEN evaluateCondition evaluateAlsoCondition*
+;
+
+evaluateCondition :
+	ANY | condition | booleanLiteral | NOT? evaluateValue evaluateThrough?
+;
+
+evaluateThrough :
+	(THROUGH | THRU) evaluateValue
+;
+
+evaluateAlsoCondition :
+	ALSO evaluateValue
+;
+
+evaluateWhenOther :
+	WHEN OTHER statements
 ;
 
 evaluateValue :
-	arithmeticExpression
-	| identifier
-	| literal
-	| condition
-;
-
-evaluatePhrase :
-	ANY
-	| condition
-	| booleanLiteral
-	| NOT? (identifier | literal | arithmeticExpression) (
-		(THROUGH | THRU) (identifier | literal | arithmeticExpression)
-	)?
+	identifier | literal | arithmeticExpression
 ;
 
 // exit statement
@@ -2985,7 +2998,7 @@ otherKeyword :
 	| LABEL | LANGUAGE | LAST | LB | LD | LEADING | LEFT | LENGTH | LESS | LIB | LIBACCESS | LIBPARAMETER | LIBRARY | LIMIT | LIMITS | LINAGE | LINE | LINES | LIST | LOCAL | LOCK | LOCKFILE | LONG_DATE | LONG_TIME | LOWER
 	| MEMORY | MERGE | MESSAGE | MMDDYYYY | MODE | MODULES | MORE_LABELS | MOVE | MULTIPLE | MULTIPLY
 	| NATIONAL | NATIVE | NEGATIVE | NETWORK | NEXT | NO | NOSEQ | NUMBER | NUMERIC | NUMERIC_DATE | NUMERIC_EDITED | NUMERIC_TIME
-	| OCCURS | ODT | OFF | OMITTED | ON | OPEN | OPTIMIZE | OPTIONAL | ORDER | ORDERLY | ORGANIZATION | OTHER | OUTPUT | OVERFLOW | OWN
+	| OCCURS | ODT | OFF | OMITTED | ON | OPEN | OPTIMIZE | OPTIONAL | ORDER | ORDERLY | ORGANIZATION | OUTPUT | OVERFLOW | OWN
 	| PACKED_DECIMAL | PADDING | PAGE | PASSWORD | PERFORM | PF | PH | PIC | PICTURE | PLUS | POINTER | POSITION | POSITIVE | PRINTING | PRIVATE | PROCEDURE_POINTER| PROCEDURES | PROCEED | PROCESS | PROGRAM | PROGRAM_STATUS | PROMPT | PROTECTED | PURGE
 	| QUEUE
 	| RANDOM | RD | READ | REAL | RECEIVE | RECEIVE_CONTROL | RECEIVED | RECORD | RECORDING | RECORDS | REDEFINES | REEL | REF | REFERENCE | REFERENCES | RELATIVE | RELEASE | REMAINDER | REMOVE | REMOVAL | RENAMES | REPLACE | REPLACING | REPLY | REPORTING | REPORTS | RERUN | RESERVE | RESET | RETURN | RETURNED | REVERSED | REWIND | REWRITE | RF | RH | RIGHT | ROUNDED | RUN

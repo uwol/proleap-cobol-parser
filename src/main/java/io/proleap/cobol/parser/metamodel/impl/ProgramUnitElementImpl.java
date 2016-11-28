@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
 import io.proleap.cobol.Cobol85Parser.ArithmeticExpressionContext;
 import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
+import io.proleap.cobol.Cobol85Parser.BooleanLiteralContext;
 import io.proleap.cobol.Cobol85Parser.CdNameContext;
 import io.proleap.cobol.Cobol85Parser.ClassNameContext;
 import io.proleap.cobol.Cobol85Parser.CobolWordContext;
@@ -39,6 +40,7 @@ import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.Cobol85Parser.RecordNameContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.SystemNameContext;
+import io.proleap.cobol.parser.metamodel.BooleanLiteral;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.MnemonicName;
@@ -65,12 +67,14 @@ import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSecti
 import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.parser.metamodel.valuestmt.ArithmeticValueStmt;
+import io.proleap.cobol.parser.metamodel.valuestmt.BooleanLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ConditionValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.TerminalValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.ArithmeticValueStmtImpl;
+import io.proleap.cobol.parser.metamodel.valuestmt.impl.BooleanLiteralValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.CallValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.ConditionValueStmtImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.impl.IntegerLiteralValueStmtImpl;
@@ -92,6 +96,26 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected ArithmeticValueStmt createArithmeticValueStmt(final ArithmeticExpressionContext ctx) {
 		final ArithmeticValueStmt result = new ArithmeticValueStmtImpl(programUnit, ctx);
+		return result;
+	}
+
+	protected BooleanLiteral createBooleanLiteral(final BooleanLiteralContext ctx) {
+		BooleanLiteral result = (BooleanLiteral) getASGElement(ctx);
+
+		if (result == null) {
+			final Boolean value = StringUtils.parseBoolean(ctx.getText());
+			result = new BooleanLiteralImpl(value, programUnit, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected BooleanLiteralValueStmt createBooleanLiteralValueStmt(final BooleanLiteralContext ctx) {
+		final BooleanLiteral booleanLiteral = createBooleanLiteral(ctx);
+		final BooleanLiteralValueStmt result = new BooleanLiteralValueStmtImpl(programUnit, ctx);
+		result.setBooleanLiteral(booleanLiteral);
 		return result;
 	}
 

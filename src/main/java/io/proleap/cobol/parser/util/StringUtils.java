@@ -10,6 +10,11 @@ package io.proleap.cobol.parser.util;
 
 public class StringUtils {
 
+	public static boolean isBoolean(final String str) {
+		final Boolean b = Boolean.parseBoolean(str);
+		return b != null;
+	}
+
 	public static boolean isDouble(final String str) {
 		try {
 			Double.parseDouble(str);
@@ -26,6 +31,11 @@ public class StringUtils {
 			return false;
 		}
 		return true;
+	}
+
+	public static Boolean parseBoolean(final String str) {
+		final Boolean b = Boolean.parseBoolean(str);
+		return b;
 	}
 
 	public static Double parseDouble(final String str) {

@@ -40,6 +40,9 @@ import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
 import io.proleap.cobol.Cobol85Parser.EnableStatementContext;
 import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
+import io.proleap.cobol.Cobol85Parser.EvaluateAlsoSelectContext;
+import io.proleap.cobol.Cobol85Parser.EvaluateStatementContext;
+import io.proleap.cobol.Cobol85Parser.EvaluateWhenPhraseContext;
 import io.proleap.cobol.Cobol85Parser.ExitStatementContext;
 import io.proleap.cobol.Cobol85Parser.GenerateStatementContext;
 import io.proleap.cobol.Cobol85Parser.GoToStatementContext;
@@ -149,6 +152,8 @@ import io.proleap.cobol.parser.metamodel.procedure.enable.EnableStatement;
 import io.proleap.cobol.parser.metamodel.procedure.enable.impl.EnableStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.entry.EntryStatement;
 import io.proleap.cobol.parser.metamodel.procedure.entry.impl.EntryStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.evaluate.EvaluateStatement;
+import io.proleap.cobol.parser.metamodel.procedure.evaluate.impl.EvaluateStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.exit.ExitStatement;
 import io.proleap.cobol.parser.metamodel.procedure.exit.impl.ExitStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.generate.GenerateStatement;
@@ -697,6 +702,37 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			for (final IdentifierContext identifierContext : ctx.identifier()) {
 				final Call usingCall = createCall(identifierContext);
 				result.addUsingCall(usingCall);
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public EvaluateStatement addEvaluateStatement(final EvaluateStatementContext ctx) {
+		EvaluateStatement result = (EvaluateStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new EvaluateStatementImpl(programUnit, ctx);
+
+			// select
+			result.addSelect(ctx.evaluateSelect());
+
+			// also selects
+			for (final EvaluateAlsoSelectContext evaluateAlsoSelectContext : ctx.evaluateAlsoSelect()) {
+				result.addAlsoSelect(evaluateAlsoSelectContext);
+			}
+
+			// when
+			for (final EvaluateWhenPhraseContext evaluateWhenPhraseContext : ctx.evaluateWhenPhrase()) {
+				result.addWhenPhrase(evaluateWhenPhraseContext);
+			}
+
+			// when other
+			if (ctx.evaluateWhenOther() != null) {
+				result.addWhenOther(ctx.evaluateWhenOther());
 			}
 
 			registerStatement(result);

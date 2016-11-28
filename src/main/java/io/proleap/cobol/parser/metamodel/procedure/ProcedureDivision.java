@@ -24,6 +24,7 @@ import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
 import io.proleap.cobol.Cobol85Parser.EnableStatementContext;
 import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
+import io.proleap.cobol.Cobol85Parser.EvaluateStatementContext;
 import io.proleap.cobol.Cobol85Parser.ExitStatementContext;
 import io.proleap.cobol.Cobol85Parser.GenerateStatementContext;
 import io.proleap.cobol.Cobol85Parser.GoToStatementContext;
@@ -73,6 +74,7 @@ import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.divide.DivideStatement;
 import io.proleap.cobol.parser.metamodel.procedure.enable.EnableStatement;
 import io.proleap.cobol.parser.metamodel.procedure.entry.EntryStatement;
+import io.proleap.cobol.parser.metamodel.procedure.evaluate.EvaluateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.exit.ExitStatement;
 import io.proleap.cobol.parser.metamodel.procedure.generate.GenerateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.goback.GobackStatement;
@@ -138,6 +140,8 @@ public interface ProcedureDivision extends CobolDivision {
 	EnableStatement addEnableStatement(EnableStatementContext ctx);
 
 	EntryStatement addEntryStatement(EntryStatementContext ctx);
+
+	EvaluateStatement addEvaluateStatement(EvaluateStatementContext ctx);
 
 	ExitStatement addExitStatement(ExitStatementContext ctx);
 
