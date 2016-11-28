@@ -51,6 +51,8 @@ import io.proleap.cobol.Cobol85Parser.InitiateStatementContext;
 import io.proleap.cobol.Cobol85Parser.InspectStatementContext;
 import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.Cobol85Parser.MergeOnKeyClauseContext;
+import io.proleap.cobol.Cobol85Parser.MergeStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
 import io.proleap.cobol.Cobol85Parser.MultiplyStatementContext;
@@ -157,6 +159,8 @@ import io.proleap.cobol.parser.metamodel.procedure.initiate.InitiateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.initiate.impl.InitiateStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.inspect.InspectStatement;
 import io.proleap.cobol.parser.metamodel.procedure.inspect.impl.InspectStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.merge.MergeStatement;
+import io.proleap.cobol.parser.metamodel.procedure.merge.impl.MergeStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.parser.metamodel.procedure.move.impl.MoveToStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.multiply.MultiplyStatement;
@@ -863,6 +867,48 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			}
 
 			result.setType(type);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public MergeStatement addMergeStatement(final MergeStatementContext ctx) {
+		MergeStatement result = (MergeStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new MergeStatementImpl(programUnit, ctx);
+
+			// file
+			final Call fileCall = createCall(ctx.fileName());
+			result.setFileCall(fileCall);
+
+			// on key
+			for (final MergeOnKeyClauseContext mergeOnKeyClauseContext : ctx.mergeOnKeyClause()) {
+				result.addOnKey(mergeOnKeyClauseContext);
+			}
+
+			// collating sequence
+			if (ctx.mergeCollatingSequencePhrase() != null) {
+				result.addCollatingSequence(ctx.mergeCollatingSequencePhrase());
+			}
+
+			// using
+			if (ctx.mergeUsing() != null) {
+				result.addUsing(ctx.mergeUsing());
+			}
+
+			// output procedure
+			if (ctx.mergeOutputProcedurePhrase() != null) {
+				result.addOutputProcedure(ctx.mergeOutputProcedurePhrase());
+			}
+
+			// giving
+			if (ctx.mergeGivingPhrase() != null) {
+				result.addGiving(ctx.mergeGivingPhrase());
+			}
 
 			registerStatement(result);
 		}

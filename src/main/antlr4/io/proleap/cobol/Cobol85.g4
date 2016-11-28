@@ -1877,19 +1877,45 @@ inspectBeforeAfter :
 // merge statement
 
 mergeStatement :
-	MERGE fileName
-	(ON? (ASCENDING | DESCENDING) KEY? qualifiedDataName+)+
-	(
-		COLLATING? SEQUENCE IS? alphabetName+
-		(FOR? ALPHANUMERIC IS alphabetName)?
-		(FOR? NATIONAL IS? alphabetName)? 
-	)? 
+	MERGE fileName mergeOnKeyClause+ mergeCollatingSequencePhrase? mergeUsing mergeOutputProcedurePhrase? mergeGivingPhrase?
+;
+
+mergeOnKeyClause :
+	ON? (ASCENDING | DESCENDING) KEY? qualifiedDataName+
+;
+
+mergeCollatingSequencePhrase :
+	COLLATING? SEQUENCE IS? alphabetName+
+	mergeCollatingAlphanumeric?
+	mergeCollatingNational?
+;
+
+mergeCollatingAlphanumeric :
+	FOR? ALPHANUMERIC IS alphabetName
+;
+
+mergeCollatingNational :
+	FOR? NATIONAL IS? alphabetName
+;
+
+mergeUsing :
 	USING fileName+
-	(OUTPUT PROCEDURE IS? procedureName)?
-	((THROUGH | THRU) procedureName)?
-	(GIVING 
-		(fileName (LOCK | SAVE | NO REWIND | CRUNCH | RELEASE | WITH REMOVE CRUNCH)?)+
-	)?
+;
+
+mergeOutputProcedurePhrase :
+	OUTPUT PROCEDURE IS? procedureName mergeOutputThrough?
+;
+
+mergeOutputThrough :
+	(THROUGH | THRU) procedureName
+;
+
+mergeGivingPhrase :
+	GIVING mergeGiving+
+;
+
+mergeGiving :
+	fileName (LOCK | SAVE | NO REWIND | CRUNCH | RELEASE | WITH REMOVE CRUNCH)?
 ;
 
 // move statement
