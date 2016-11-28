@@ -6,40 +6,48 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.parser.metamodel.procedure.merge.impl;
+package io.proleap.cobol.parser.metamodel.procedure.sort.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
 import io.proleap.cobol.Cobol85Parser.FileNameContext;
-import io.proleap.cobol.Cobol85Parser.MergeCollatingSequencePhraseContext;
-import io.proleap.cobol.Cobol85Parser.MergeGivingContext;
-import io.proleap.cobol.Cobol85Parser.MergeGivingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.MergeOnKeyClauseContext;
-import io.proleap.cobol.Cobol85Parser.MergeOutputProcedurePhraseContext;
-import io.proleap.cobol.Cobol85Parser.MergeStatementContext;
-import io.proleap.cobol.Cobol85Parser.MergeUsingContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
+import io.proleap.cobol.Cobol85Parser.SortCollatingSequencePhraseContext;
+import io.proleap.cobol.Cobol85Parser.SortDuplicatesPhraseContext;
+import io.proleap.cobol.Cobol85Parser.SortGivingContext;
+import io.proleap.cobol.Cobol85Parser.SortGivingPhraseContext;
+import io.proleap.cobol.Cobol85Parser.SortInputProcedurePhraseContext;
+import io.proleap.cobol.Cobol85Parser.SortOnKeyClauseContext;
+import io.proleap.cobol.Cobol85Parser.SortOutputProcedurePhraseContext;
+import io.proleap.cobol.Cobol85Parser.SortStatementContext;
+import io.proleap.cobol.Cobol85Parser.SortUsingContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.parser.metamodel.procedure.merge.CollatingSequence;
-import io.proleap.cobol.parser.metamodel.procedure.merge.Givings;
-import io.proleap.cobol.parser.metamodel.procedure.merge.MergeStatement;
-import io.proleap.cobol.parser.metamodel.procedure.merge.OnKey;
-import io.proleap.cobol.parser.metamodel.procedure.merge.OutputProcedure;
-import io.proleap.cobol.parser.metamodel.procedure.merge.Using;
+import io.proleap.cobol.parser.metamodel.procedure.sort.CollatingSequence;
+import io.proleap.cobol.parser.metamodel.procedure.sort.Duplicates;
+import io.proleap.cobol.parser.metamodel.procedure.sort.Givings;
+import io.proleap.cobol.parser.metamodel.procedure.sort.InputProcedure;
+import io.proleap.cobol.parser.metamodel.procedure.sort.OnKey;
+import io.proleap.cobol.parser.metamodel.procedure.sort.OutputProcedure;
+import io.proleap.cobol.parser.metamodel.procedure.sort.SortStatement;
+import io.proleap.cobol.parser.metamodel.procedure.sort.Using;
 
-public class MergeStatementImpl extends StatementImpl implements MergeStatement {
+public class SortStatementImpl extends StatementImpl implements SortStatement {
 
 	protected CollatingSequence collatingSequence;
 
-	protected final MergeStatementContext ctx;
+	protected final SortStatementContext ctx;
+
+	protected Duplicates duplicates;
 
 	protected Call fileCall;
 
 	protected List<Givings> givings = new ArrayList<Givings>();
+
+	protected InputProcedure inputProcedure;
 
 	protected List<OnKey> onKeys = new ArrayList<OnKey>();
 
@@ -47,14 +55,14 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 
 	protected List<Using> usings = new ArrayList<Using>();
 
-	public MergeStatementImpl(final ProgramUnit programUnit, final MergeStatementContext ctx) {
+	public SortStatementImpl(final ProgramUnit programUnit, final SortStatementContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}
 
 	@Override
-	public CollatingSequence addCollatingSequence(final MergeCollatingSequencePhraseContext ctx) {
+	public CollatingSequence addCollatingSequence(final SortCollatingSequencePhraseContext ctx) {
 		CollatingSequence result = (CollatingSequence) getASGElement(ctx);
 
 		if (result == null) {
@@ -67,13 +75,13 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 			}
 
 			// alphanumeric
-			if (ctx.mergeCollatingAlphanumeric() != null) {
-				result.addAlphanumeric(ctx.mergeCollatingAlphanumeric());
+			if (ctx.sortCollatingAlphanumeric() != null) {
+				result.addAlphanumeric(ctx.sortCollatingAlphanumeric());
 			}
 
 			// national
-			if (ctx.mergeCollatingNational() != null) {
-				result.addNational(ctx.mergeCollatingNational());
+			if (ctx.sortCollatingNational() != null) {
+				result.addNational(ctx.sortCollatingNational());
 			}
 
 			collatingSequence = result;
@@ -84,15 +92,31 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
-	public Givings addGiving(final MergeGivingPhraseContext ctx) {
+	public Duplicates addDuplicates(final SortDuplicatesPhraseContext ctx) {
+		Duplicates result = (Duplicates) getASGElement(ctx);
+
+		if (result == null) {
+			result = new DuplicatesImpl(programUnit, ctx);
+
+			result.setDuplicatesInOrder(true);
+
+			duplicates = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public Givings addGiving(final SortGivingPhraseContext ctx) {
 		Givings result = (Givings) getASGElement(ctx);
 
 		if (result == null) {
 			result = new GivingsImpl(programUnit, ctx);
 
 			// givings
-			for (final MergeGivingContext mergeGivingContext : ctx.mergeGiving()) {
-				result.addGiving(mergeGivingContext);
+			for (final SortGivingContext sortGivingContext : ctx.sortGiving()) {
+				result.addGiving(sortGivingContext);
 			}
 
 			givings.add(result);
@@ -103,7 +127,30 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
-	public OnKey addOnKey(final MergeOnKeyClauseContext ctx) {
+	public InputProcedure addInputProcedure(final SortInputProcedurePhraseContext ctx) {
+		InputProcedure result = (InputProcedure) getASGElement(ctx);
+
+		if (result == null) {
+			result = new InputProcedureImpl(programUnit, ctx);
+
+			// procedure
+			final Call procedureCall = createCall(ctx.procedureName());
+			result.setProcedureCall(procedureCall);
+
+			// through
+			if (ctx.sortInputThrough() != null) {
+				result.addInputThrough(ctx.sortInputThrough());
+			}
+
+			inputProcedure = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public OnKey addOnKey(final SortOnKeyClauseContext ctx) {
 		OnKey result = (OnKey) getASGElement(ctx);
 
 		if (result == null) {
@@ -136,7 +183,7 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
-	public OutputProcedure addOutputProcedure(final MergeOutputProcedurePhraseContext ctx) {
+	public OutputProcedure addOutputProcedure(final SortOutputProcedurePhraseContext ctx) {
 		OutputProcedure result = (OutputProcedure) getASGElement(ctx);
 
 		if (result == null) {
@@ -147,8 +194,8 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 			result.setProcedureCall(procedureCall);
 
 			// through
-			if (ctx.mergeOutputThrough() != null) {
-				result.addOutputThrough(ctx.mergeOutputThrough());
+			if (ctx.sortOutputThrough() != null) {
+				result.addOutputThrough(ctx.sortOutputThrough());
 			}
 
 			outputProcedure = result;
@@ -159,7 +206,7 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
-	public Using addUsing(final MergeUsingContext ctx) {
+	public Using addUsing(final SortUsingContext ctx) {
 		Using result = (Using) getASGElement(ctx);
 
 		if (result == null) {
@@ -184,6 +231,11 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
+	public Duplicates getDuplicates() {
+		return duplicates;
+	}
+
+	@Override
 	public Call getFileCall() {
 		return fileCall;
 	}
@@ -191,6 +243,11 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	@Override
 	public List<Givings> getGivings() {
 		return givings;
+	}
+
+	@Override
+	public InputProcedure getInputProcedure() {
+		return inputProcedure;
 	}
 
 	@Override

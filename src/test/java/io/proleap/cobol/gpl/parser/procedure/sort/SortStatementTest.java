@@ -1,7 +1,8 @@
-package io.proleap.cobol.gpl.parser.procedure.merge;
+package io.proleap.cobol.gpl.parser.procedure.sort;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
@@ -15,19 +16,20 @@ import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
-import io.proleap.cobol.parser.metamodel.procedure.merge.Alphanumeric;
-import io.proleap.cobol.parser.metamodel.procedure.merge.CollatingSequence;
-import io.proleap.cobol.parser.metamodel.procedure.merge.Giving;
-import io.proleap.cobol.parser.metamodel.procedure.merge.Givings;
-import io.proleap.cobol.parser.metamodel.procedure.merge.MergeStatement;
-import io.proleap.cobol.parser.metamodel.procedure.merge.National;
-import io.proleap.cobol.parser.metamodel.procedure.merge.OnKey;
-import io.proleap.cobol.parser.metamodel.procedure.merge.OutputProcedure;
-import io.proleap.cobol.parser.metamodel.procedure.merge.OutputThrough;
-import io.proleap.cobol.parser.metamodel.procedure.merge.Using;
+import io.proleap.cobol.parser.metamodel.procedure.sort.Alphanumeric;
+import io.proleap.cobol.parser.metamodel.procedure.sort.CollatingSequence;
+import io.proleap.cobol.parser.metamodel.procedure.sort.Duplicates;
+import io.proleap.cobol.parser.metamodel.procedure.sort.Giving;
+import io.proleap.cobol.parser.metamodel.procedure.sort.Givings;
+import io.proleap.cobol.parser.metamodel.procedure.sort.National;
+import io.proleap.cobol.parser.metamodel.procedure.sort.OnKey;
+import io.proleap.cobol.parser.metamodel.procedure.sort.OutputProcedure;
+import io.proleap.cobol.parser.metamodel.procedure.sort.OutputThrough;
+import io.proleap.cobol.parser.metamodel.procedure.sort.SortStatement;
+import io.proleap.cobol.parser.metamodel.procedure.sort.Using;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class MergeStatementTest extends CobolTestSupport {
+public class SortStatementTest extends CobolTestSupport {
 
 	@Override
 	@Before
@@ -38,29 +40,29 @@ public class MergeStatementTest extends CobolTestSupport {
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/gpl/parser/procedure/merge/MergeStatement.cbl");
+				"src/test/resources/io/proleap/cobol/gpl/parser/procedure/sort/SortStatement.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 
-		final CopyBook copyBook = program.getCopyBook("MergeStatement");
+		final CopyBook copyBook = program.getCopyBook("SortStatement");
 		final ProgramUnit programUnit = copyBook.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 
 		{
-			final MergeStatement mergeStatement = (MergeStatement) procedureDivision.getStatements().get(0);
-			assertNotNull(mergeStatement);
+			final SortStatement sortStatement = (SortStatement) procedureDivision.getStatements().get(0);
+			assertNotNull(sortStatement);
 
 			{
-				final Call fileCall = mergeStatement.getFileCall();
+				final Call fileCall = sortStatement.getFileCall();
 				assertNotNull(fileCall);
 				assertEquals(Call.CallType.UndefinedCall, fileCall.getCallType());
 			}
 
 			{
-				assertEquals(2, mergeStatement.getOnKeys().size());
+				assertEquals(2, sortStatement.getOnKeys().size());
 
 				{
-					final OnKey onKey = mergeStatement.getOnKeys().get(0);
+					final OnKey onKey = sortStatement.getOnKeys().get(0);
 					assertEquals(OnKey.Type.Descending, onKey.getType());
 					assertEquals(1, onKey.getKeyCalls().size());
 
@@ -71,7 +73,7 @@ public class MergeStatementTest extends CobolTestSupport {
 				}
 
 				{
-					final OnKey onKey = mergeStatement.getOnKeys().get(1);
+					final OnKey onKey = sortStatement.getOnKeys().get(1);
 					assertEquals(OnKey.Type.Ascending, onKey.getType());
 					assertEquals(2, onKey.getKeyCalls().size());
 
@@ -88,7 +90,7 @@ public class MergeStatementTest extends CobolTestSupport {
 			}
 
 			{
-				final CollatingSequence collatingSequence = mergeStatement.getCollatingSequence();
+				final CollatingSequence collatingSequence = sortStatement.getCollatingSequence();
 				assertEquals(2, collatingSequence.getAlphabetCalls().size());
 
 				{
@@ -109,9 +111,15 @@ public class MergeStatementTest extends CobolTestSupport {
 			}
 
 			{
-				assertEquals(1, mergeStatement.getUsings().size());
+				final Duplicates duplicates = sortStatement.getDuplicates();
+				assertNotNull(duplicates);
+				assertTrue(duplicates.isDuplicatesInOrder());
+			}
 
-				final Using using = mergeStatement.getUsings().get(0);
+			{
+				assertEquals(1, sortStatement.getUsings().size());
+
+				final Using using = sortStatement.getUsings().get(0);
 				assertEquals(1, using.getFileCalls().size());
 
 				final Call fileCall = using.getFileCalls().get(0);
@@ -119,7 +127,7 @@ public class MergeStatementTest extends CobolTestSupport {
 			}
 
 			{
-				final OutputProcedure outputProcedure = mergeStatement.getOutputProcedure();
+				final OutputProcedure outputProcedure = sortStatement.getOutputProcedure();
 				assertNotNull(outputProcedure);
 
 				{
@@ -139,9 +147,9 @@ public class MergeStatementTest extends CobolTestSupport {
 			}
 
 			{
-				assertEquals(1, mergeStatement.getGivings().size());
+				assertEquals(1, sortStatement.getGivings().size());
 
-				final Givings givings = mergeStatement.getGivings().get(0);
+				final Givings givings = sortStatement.getGivings().get(0);
 				assertNotNull(givings);
 				assertEquals(1, givings.getGivings().size());
 

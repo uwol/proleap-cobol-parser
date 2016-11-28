@@ -37,13 +37,13 @@ public interface MergeStatement extends Statement {
 
 	Call getFileCall();
 
-	Givings getGivings();
+	List<Givings> getGivings();
 
 	List<OnKey> getOnKeys();
 
 	OutputProcedure getOutputProcedure();
 
-	Using getUsing();
+	List<Using> getUsings();
 
 	void setFileCall(Call fileCall);
 

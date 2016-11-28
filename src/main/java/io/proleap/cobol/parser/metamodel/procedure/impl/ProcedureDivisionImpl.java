@@ -51,8 +51,10 @@ import io.proleap.cobol.Cobol85Parser.InitiateStatementContext;
 import io.proleap.cobol.Cobol85Parser.InspectStatementContext;
 import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.Cobol85Parser.MergeGivingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.MergeOnKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.MergeStatementContext;
+import io.proleap.cobol.Cobol85Parser.MergeUsingContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
 import io.proleap.cobol.Cobol85Parser.MultiplyStatementContext;
@@ -87,6 +89,10 @@ import io.proleap.cobol.Cobol85Parser.SearchWhenContext;
 import io.proleap.cobol.Cobol85Parser.SendStatementContext;
 import io.proleap.cobol.Cobol85Parser.SetStatementContext;
 import io.proleap.cobol.Cobol85Parser.SetToStatementContext;
+import io.proleap.cobol.Cobol85Parser.SortGivingPhraseContext;
+import io.proleap.cobol.Cobol85Parser.SortOnKeyClauseContext;
+import io.proleap.cobol.Cobol85Parser.SortStatementContext;
+import io.proleap.cobol.Cobol85Parser.SortUsingContext;
 import io.proleap.cobol.Cobol85Parser.StartStatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.StringSendingPhraseContext;
@@ -187,6 +193,8 @@ import io.proleap.cobol.parser.metamodel.procedure.send.SendStatement;
 import io.proleap.cobol.parser.metamodel.procedure.send.impl.SendStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.set.SetStatement;
 import io.proleap.cobol.parser.metamodel.procedure.set.impl.SetStatementImpl;
+import io.proleap.cobol.parser.metamodel.procedure.sort.SortStatement;
+import io.proleap.cobol.parser.metamodel.procedure.sort.impl.SortStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.start.StartStatement;
 import io.proleap.cobol.parser.metamodel.procedure.start.impl.StartStatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
@@ -896,8 +904,8 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			}
 
 			// using
-			if (ctx.mergeUsing() != null) {
-				result.addUsing(ctx.mergeUsing());
+			for (final MergeUsingContext mergeUsingContext : ctx.mergeUsing()) {
+				result.addUsing(mergeUsingContext);
 			}
 
 			// output procedure
@@ -906,8 +914,8 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			}
 
 			// giving
-			if (ctx.mergeGivingPhrase() != null) {
-				result.addGiving(ctx.mergeGivingPhrase());
+			for (final MergeGivingPhraseContext mergeGivingPhraseContext : ctx.mergeGivingPhrase()) {
+				result.addGiving(mergeGivingPhraseContext);
 			}
 
 			registerStatement(result);
@@ -1375,6 +1383,58 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 			}
 
 			result.setType(type);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public SortStatement addSortStatement(final SortStatementContext ctx) {
+		SortStatement result = (SortStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SortStatementImpl(programUnit, ctx);
+
+			// file
+			final Call fileCall = createCall(ctx.fileName());
+			result.setFileCall(fileCall);
+
+			// on key
+			for (final SortOnKeyClauseContext sortOnKeyClauseContext : ctx.sortOnKeyClause()) {
+				result.addOnKey(sortOnKeyClauseContext);
+			}
+
+			// duplicates
+			if (ctx.sortDuplicatesPhrase() != null) {
+				result.addDuplicates(ctx.sortDuplicatesPhrase());
+			}
+
+			// collating sequence
+			if (ctx.sortCollatingSequencePhrase() != null) {
+				result.addCollatingSequence(ctx.sortCollatingSequencePhrase());
+			}
+
+			// using
+			for (final SortUsingContext sortUsingContext : ctx.sortUsing()) {
+				result.addUsing(sortUsingContext);
+			}
+
+			// input procedure
+			if (ctx.sortInputProcedurePhrase() != null) {
+				result.addInputProcedure(ctx.sortInputProcedurePhrase());
+			}
+
+			// giving
+			for (final SortGivingPhraseContext sortGivingPhraseContext : ctx.sortGivingPhrase()) {
+				result.addGiving(sortGivingPhraseContext);
+			}
+
+			// output procedure
+			if (ctx.sortOutputProcedurePhrase() != null) {
+				result.addOutputProcedure(ctx.sortOutputProcedurePhrase());
+			}
 
 			registerStatement(result);
 		}

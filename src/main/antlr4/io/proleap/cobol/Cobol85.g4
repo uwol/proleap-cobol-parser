@@ -1877,7 +1877,7 @@ inspectBeforeAfter :
 // merge statement
 
 mergeStatement :
-	MERGE fileName mergeOnKeyClause+ mergeCollatingSequencePhrase? mergeUsing mergeOutputProcedurePhrase? mergeGivingPhrase?
+	MERGE fileName mergeOnKeyClause+ mergeCollatingSequencePhrase? mergeUsing+ mergeOutputProcedurePhrase? mergeGivingPhrase*
 ;
 
 mergeOnKeyClause :
@@ -2263,22 +2263,57 @@ setByValue :
 // sort statement
 
 sortStatement :
-	SORT fileName
-	(ON? (ASCENDING | DESCENDING) KEY? qualifiedDataName+)+
-	(WITH? DUPLICATES IN? ORDER?)?
-	(
-		COLLATING? SEQUENCE IS? alphabetName+
-		(FOR? ALPHANUMERIC IS? alphabetName)?
-		(FOR? NATIONAL IS? alphabetName)?
-	)?
-	(
-		USING fileName+ 
-		| INPUT PROCEDURE IS? procedureName ((THROUGH | THRU) procedureName)?
-	)
-	(
-		GIVING (fileName (LOCK | SAVE | NO REWIND | CRUNCH | RELEASE | WITH REMOVE CRUNCH)?)+
-		| OUTPUT PROCEDURE IS? procedureName ((THROUGH | THRU) procedureName)?
-	)
+	SORT fileName sortOnKeyClause+ sortDuplicatesPhrase? sortCollatingSequencePhrase? sortInputProcedurePhrase? sortUsing+ sortOutputProcedurePhrase? sortGivingPhrase*
+;
+
+sortOnKeyClause :
+	ON? (ASCENDING | DESCENDING) KEY? qualifiedDataName+
+;
+
+sortDuplicatesPhrase :
+	WITH? DUPLICATES IN? ORDER?
+;
+
+sortCollatingSequencePhrase :
+	COLLATING? SEQUENCE IS? alphabetName+
+	sortCollatingAlphanumeric?
+	sortCollatingNational?
+;
+
+sortCollatingAlphanumeric :
+	FOR? ALPHANUMERIC IS alphabetName
+;
+
+sortCollatingNational :
+	FOR? NATIONAL IS? alphabetName
+;
+
+sortInputProcedurePhrase :
+	INPUT PROCEDURE IS? procedureName sortInputThrough?
+;
+
+sortInputThrough :
+	(THROUGH | THRU) procedureName
+;
+
+sortUsing :
+	USING fileName+
+;
+
+sortOutputProcedurePhrase :
+	OUTPUT PROCEDURE IS? procedureName sortOutputThrough?
+;
+
+sortOutputThrough :
+	(THROUGH | THRU) procedureName
+;
+
+sortGivingPhrase :
+	GIVING sortGiving+
+;
+
+sortGiving :
+	fileName (LOCK | SAVE | NO REWIND | CRUNCH | RELEASE | WITH REMOVE CRUNCH)?
 ;
 
 // start statement
