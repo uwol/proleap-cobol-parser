@@ -78,10 +78,11 @@ java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/g
 io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
 io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null, format);
 
-io.proleap.cobol.parser.metamodel.CopyBook copyBook = program.getCopyBook("HelloWorld");
-io.proleap.cobol.parser.metamodel.ProgramUnit programUnit = copyBook.getProgramUnit();
+io.proleap.cobol.parser.metamodel.CompilationUnit compilationUnit = program.getCompilationUnit("HelloWorld");
+io.proleap.cobol.parser.metamodel.ProgramUnit programUnit = compilationUnit.getProgramUnit();
 io.proleap.cobol.parser.metamodel.data.DataDivision dataDivision = programUnit.getDataDivision();
 io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry dataDescriptionEntry = dataDivision.getWorkingStorageSection().getDataDescriptionEntry("ITEMS");
+Integer levelNumber = dataDescriptionEntry.getLevelNumber();
 ```
 
 ### Abstract Syntax Tree (AST) parsing
@@ -95,7 +96,7 @@ java.io.File libDirectory = inputFile.getParentFile();
 /*
 * preprocessor
 */
-io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
+io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.FIXED;
 String preProcessedInput = io.proleap.cobol.applicationcontext.CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile, libDirectory, null, format);
 
 /*
@@ -144,8 +145,8 @@ io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobo
   }
 };
 
-for (final io.proleap.cobol.parser.metamodel.CopyBook copyBook : program.getCopyBooks()) {
-  visitor.visit(copyBook.getCtx());
+for (final io.proleap.cobol.parser.metamodel.CompilationUnit compilationUnit : program.getCompilationUnits()) {
+  visitor.visit(compilationUnit.getCtx());
 }
 ```
 
@@ -191,7 +192,7 @@ Running io.proleap.cobol.gpl.fixed.QuotesInCommentEntryTest
 ...
 Results :
 
-Tests run: 504, Failures: 0, Errors: 0, Skipped: 0
+Tests run: 622, Failures: 0, Errors: 0, Skipped: 0
 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS

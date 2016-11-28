@@ -19,7 +19,7 @@ import io.proleap.cobol.Cobol85Parser.IdentificationDivisionBodyContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.impl.DataDivisionImpl;
@@ -34,7 +34,7 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 
 	private final static Logger LOG = LogManager.getLogger(ProgramUnitImpl.class);
 
-	protected final CopyBook copyBook;
+	protected final CompilationUnit compilationUnit;
 
 	protected final ProgramUnitContext ctx;
 
@@ -46,11 +46,11 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 
 	protected ProcedureDivision procedureDivision;
 
-	public ProgramUnitImpl(final CopyBook copyBook, final ProgramUnitContext ctx) {
+	public ProgramUnitImpl(final CompilationUnit compilationUnit, final ProgramUnitContext ctx) {
 		super(ctx);
 
 		this.ctx = ctx;
-		this.copyBook = copyBook;
+		this.compilationUnit = compilationUnit;
 	}
 
 	@Override
@@ -182,8 +182,8 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 	}
 
 	@Override
-	public CopyBook getCopyBook() {
-		return copyBook;
+	public CompilationUnit getCompilationUnit() {
+		return compilationUnit;
 	}
 
 	@Override

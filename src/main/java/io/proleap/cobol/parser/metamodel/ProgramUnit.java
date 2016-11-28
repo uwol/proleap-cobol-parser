@@ -27,7 +27,7 @@ public interface ProgramUnit extends CompilationUnitElement {
 
 	ProcedureDivision addProcedureDivision(ProcedureDivisionContext ctx);
 
-	CopyBook getCopyBook();
+	CompilationUnit getCompilationUnit();
 
 	DataDivision getDataDivision();
 

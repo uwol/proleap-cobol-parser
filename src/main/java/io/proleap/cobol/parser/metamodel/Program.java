@@ -12,9 +12,9 @@ import java.util.Collection;
 
 public interface Program extends ASGElement {
 
-	CopyBook getCopyBook(String name);
+	CompilationUnit getCompilationUnit(String name);
 
-	Collection<CopyBook> getCopyBooks();
+	Collection<CompilationUnit> getCompilationUnits();
 
-	void registerCopyBook(CopyBook copyBook);
+	void registerCompilationUnit(CompilationUnit compilationUnit);
 }

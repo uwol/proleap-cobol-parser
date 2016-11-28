@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestSupport;
 import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
@@ -34,8 +34,8 @@ public class AddCorrespondingStatementTest extends CobolTestSupport {
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
 
-		final CopyBook copyBook = program.getCopyBook("AddCorrespondingStatement");
-		final ProgramUnit programUnit = copyBook.getProgramUnit();
+		final CompilationUnit compilationUnit = program.getCompilationUnit("AddCorrespondingStatement");
+		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 
 		assertEquals(1, procedureDivision.getStatements().size());

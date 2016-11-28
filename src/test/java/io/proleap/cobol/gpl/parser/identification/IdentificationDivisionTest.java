@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestSupport;
 import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.identification.IdentificationDivision;
@@ -30,8 +30,8 @@ public class IdentificationDivisionTest extends CobolTestSupport {
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.VARIABLE);
 
-		final CopyBook copyBook = program.getCopyBook("IdentificationDivision");
-		final ProgramUnit programUnit = copyBook.getProgramUnit();
+		final CompilationUnit compilationUnit = program.getCompilationUnit("IdentificationDivision");
+		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final IdentificationDivision identificationDivision = programUnit.getIdentificationDivision();
 
 		assertNotNull(identificationDivision.getProgramIdParagraph());

@@ -22,7 +22,7 @@ import io.proleap.cobol.Cobol85Lexer;
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
 import io.proleap.cobol.applicationcontext.CobolGrammarContext;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.impl.ProgramImpl;
 import io.proleap.cobol.parser.runner.CobolParserRunner;
@@ -53,11 +53,11 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	protected void analyzeDataDivisions(final Program program) {
-		for (final CopyBook copyBook : program.getCopyBooks()) {
+		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
 			final ParserVisitor visitor = new CobolDataDivisionVisitorImpl();
 
-			LOG.info("Analyzing data divisions of copy book {}.", copyBook.getName());
-			visitor.visit(copyBook.getCtx());
+			LOG.info("Analyzing data divisions of compilation unit {}.", compilationUnit.getName());
+			visitor.visit(compilationUnit.getCtx());
 		}
 	}
 
@@ -76,11 +76,11 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	protected void analyzeEnvironmentDivisions(final Program program) {
-		for (final CopyBook copyBook : program.getCopyBooks()) {
+		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
 			final ParserVisitor visitor = new CobolEnvironmentDivisionVisitorImpl();
 
-			LOG.info("Analyzing environment divisions of copy book {}.", copyBook.getName());
-			visitor.visit(copyBook.getCtx());
+			LOG.info("Analyzing environment divisions of compilation unit {}.", compilationUnit.getName());
+			visitor.visit(compilationUnit.getCtx());
 		}
 	}
 
@@ -96,42 +96,42 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	protected void analyzeIdentificationDivisions(final Program program) {
-		for (final CopyBook copyBook : program.getCopyBooks()) {
+		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
 			final ParserVisitor visitor = new CobolIdentificationDivisionVisitorImpl();
 
-			LOG.info("Analyzing identification divisions of copy book {}.", copyBook.getName());
-			visitor.visit(copyBook.getCtx());
+			LOG.info("Analyzing identification divisions of compilation unit {}.", compilationUnit.getName());
+			visitor.visit(compilationUnit.getCtx());
 		}
 	}
 
 	protected void analyzeProcedureDivisions(final Program program) {
-		for (final CopyBook copyBook : program.getCopyBooks()) {
+		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
 			final ParserVisitor visitor = new CobolProcedureDivisionVisitorImpl();
 
-			LOG.info("Analyzing procedure divisions of copy book {}.", copyBook.getName());
-			visitor.visit(copyBook.getCtx());
+			LOG.info("Analyzing procedure divisions of compilation unit {}.", compilationUnit.getName());
+			visitor.visit(compilationUnit.getCtx());
 		}
 	}
 
 	protected void analyzeProcedureExpressions(final Program program) {
-		for (final CopyBook copyBook : program.getCopyBooks()) {
+		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
 			final ParserVisitor visitor = new CobolProcedureExpressionVisitorImpl();
 
-			LOG.info("Analyzing expressions of copy book {}.", copyBook.getName());
-			visitor.visit(copyBook.getCtx());
+			LOG.info("Analyzing expressions of compilation unit {}.", compilationUnit.getName());
+			visitor.visit(compilationUnit.getCtx());
 		}
 	}
 
 	protected void analyzeProgramUnits(final Program program) {
-		for (final CopyBook copyBook : program.getCopyBooks()) {
-			final ParserVisitor visitor = new CobolProgramUnitVisitorImpl(copyBook);
+		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
+			final ParserVisitor visitor = new CobolProgramUnitVisitorImpl(compilationUnit);
 
-			LOG.info("Analyzing program units of copy book {}.", copyBook.getName());
-			visitor.visit(copyBook.getCtx());
+			LOG.info("Analyzing program units of compilation unit {}.", compilationUnit.getName());
+			visitor.visit(compilationUnit.getCtx());
 		}
 	}
 
-	protected String getCopyBookName(final File inputFile) {
+	protected String getCompilationUnitName(final File inputFile) {
 		return StringUtils.capitalize(FilenameUtils.removeExtension(inputFile.getName()));
 	}
 
@@ -168,10 +168,10 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			final StartRuleContext ctx = parser.startRule();
 
 			// determine the copy book name
-			final String copyBookName = getCopyBookName(inputFile);
+			final String compilationUnitName = getCompilationUnitName(inputFile);
 
 			// analyze contained copy books
-			final ParserVisitor visitor = new CobolCompilationUnitVisitorImpl(program, copyBookName);
+			final ParserVisitor visitor = new CobolCompilationUnitVisitorImpl(program, compilationUnitName);
 
 			LOG.info("Collecting units in file {}.", inputFile.getName());
 			visitor.visit(ctx);

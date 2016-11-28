@@ -11,7 +11,7 @@ package io.proleap.cobol.parser.visitor.impl;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import io.proleap.cobol.Cobol85Parser;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 
 /**
@@ -19,10 +19,10 @@ import io.proleap.cobol.parser.metamodel.ProgramUnit;
  */
 public class CobolProgramUnitVisitorImpl extends AbstractCobolParserVisitorImpl {
 
-	protected final CopyBook copyBook;
+	protected final CompilationUnit compilationUnit;
 
-	public CobolProgramUnitVisitorImpl(final CopyBook copyBook) {
-		this.copyBook = copyBook;
+	public CobolProgramUnitVisitorImpl(final CompilationUnit compilationUnit) {
+		this.compilationUnit = compilationUnit;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class CobolProgramUnitVisitorImpl extends AbstractCobolParserVisitorImpl 
 
 	@Override
 	public Boolean visitProgramUnit(@NotNull final Cobol85Parser.ProgramUnitContext ctx) {
-		copyBook.addProgramUnit(ctx);
+		compilationUnit.addProgramUnit(ctx);
 
 		return visitChildren(ctx);
 	}

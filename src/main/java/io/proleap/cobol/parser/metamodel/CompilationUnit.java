@@ -12,7 +12,7 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
 
-public interface CopyBook extends CompilationUnitElement, NamedElement {
+public interface CompilationUnit extends ASGElement, NamedElement {
 
 	ProgramUnit addProgramUnit(ProgramUnitContext ctx);
 

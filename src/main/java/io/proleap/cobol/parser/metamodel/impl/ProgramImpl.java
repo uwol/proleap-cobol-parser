@@ -12,35 +12,35 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 
 public class ProgramImpl extends ASGElementImpl implements Program {
 
-	protected final Map<String, CopyBook> copyBooks = new LinkedHashMap<String, CopyBook>();
+	protected final Map<String, CompilationUnit> compilationUnits = new LinkedHashMap<String, CompilationUnit>();
 
 	public ProgramImpl() {
 		super(null);
 	}
 
 	@Override
-	public CopyBook getCopyBook(final String name) {
-		final String copyBookKey = getCopyBookKey(name);
-		return copyBooks.get(copyBookKey);
+	public CompilationUnit getCompilationUnit(final String name) {
+		final String compilationUnitKey = getCompilationUnitKey(name);
+		return compilationUnits.get(compilationUnitKey);
 	}
 
-	private String getCopyBookKey(final String name) {
+	private String getCompilationUnitKey(final String name) {
 		return name.toLowerCase();
 	}
 
 	@Override
-	public Collection<CopyBook> getCopyBooks() {
-		return copyBooks.values();
+	public Collection<CompilationUnit> getCompilationUnits() {
+		return compilationUnits.values();
 	}
 
 	@Override
-	public void registerCopyBook(final CopyBook copyBook) {
-		final String copyBookKey = getCopyBookKey(copyBook.getName());
-		copyBooks.put(copyBookKey, copyBook);
+	public void registerCompilationUnit(final CompilationUnit compilationUnit) {
+		final String compilationUnitKey = getCompilationUnitKey(compilationUnit.getName());
+		compilationUnits.put(compilationUnitKey, compilationUnit);
 	}
 }

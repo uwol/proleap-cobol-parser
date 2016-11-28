@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestSupport;
 import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
@@ -39,8 +39,8 @@ public class OBIC1ATest extends CobolTestSupport {
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.FIXED);
 
-		final CopyBook copyBook = program.getCopyBook("OBIC1A");
-		final ProgramUnit programUnit = copyBook.getProgramUnit();
+		final CompilationUnit compilationUnit = program.getCompilationUnit("OBIC1A");
+		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 
 		{
 			final EnvironmentDivision environmentDivision = programUnit.getEnvironmentDivision();

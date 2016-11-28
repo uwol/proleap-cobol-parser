@@ -11,13 +11,17 @@ package io.proleap.cobol.parser.metamodel.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.antlr.v4.runtime.tree.ParseTree;
+
 import io.proleap.cobol.Cobol85Parser.CompilationUnitContext;
 import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
-import io.proleap.cobol.parser.metamodel.CopyBook;
+import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
+import io.proleap.cobol.parser.metamodel.ASGElement;
+import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 
-public class CopyBookImpl extends CompilationUnitElementImpl implements CopyBook {
+public class CompilationUnitImpl extends ASGElementImpl implements CompilationUnit {
 
 	protected CompilationUnitContext ctx;
 
@@ -27,7 +31,7 @@ public class CopyBookImpl extends CompilationUnitElementImpl implements CopyBook
 
 	protected final List<ProgramUnit> programUnits = new ArrayList<ProgramUnit>();
 
-	public CopyBookImpl(final String name, final Program program, final CompilationUnitContext ctx) {
+	public CompilationUnitImpl(final String name, final Program program, final CompilationUnitContext ctx) {
 		super(ctx);
 
 		this.name = name;
@@ -35,7 +39,7 @@ public class CopyBookImpl extends CompilationUnitElementImpl implements CopyBook
 		this.ctx = ctx;
 
 		registerASGElement(this);
-		program.registerCopyBook(this);
+		program.registerCompilationUnit(this);
 	}
 
 	@Override
@@ -70,6 +74,11 @@ public class CopyBookImpl extends CompilationUnitElementImpl implements CopyBook
 		return result;
 	}
 
+	protected ASGElement getASGElement(final ParseTree ctx) {
+		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
+		return result;
+	}
+
 	@Override
 	public CompilationUnitContext getCtx() {
 		return ctx;
@@ -96,6 +105,13 @@ public class CopyBookImpl extends CompilationUnitElementImpl implements CopyBook
 	@Override
 	public List<ProgramUnit> getProgramUnits() {
 		return programUnits;
+	}
+
+	protected void registerASGElement(final ASGElement asgElement) {
+		assert asgElement != null;
+		assert asgElement.getCtx() != null;
+
+		CobolParserContext.getInstance().getASGElementRegistry().addASGElement(asgElement);
 	}
 
 	@Override
