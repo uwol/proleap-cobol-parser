@@ -9,9 +9,9 @@
 /*
 * Cobol 85 Grammar for ANTLR4
 *
-* This is an approximate grammar for Cobol 85. It is akin but neither
-* copied from nor identical to Cobol.jj, Cobol.kg and VS COBOL II grammars.
-* Tested against the NIST test suite.
+* This is an approximate grammar for Cobol 85 and the parser at
+* https://github.com/uwol/cobol85parser. It is akin but neither copied from 
+* nor identical to the Cobol.jj, Cobol.kg and VS COBOL II grammars.
 *
 * Characteristics:
 *
