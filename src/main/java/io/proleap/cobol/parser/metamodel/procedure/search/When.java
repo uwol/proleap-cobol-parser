@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.search;
 
-import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.StatementsContainer;
 import io.proleap.cobol.parser.metamodel.valuestmt.ConditionValueStmt;
 
-public interface When extends CobolDivisionElement {
+public interface When extends StatementsContainer {
 
 	enum Type {
 		NextSentence, Statements

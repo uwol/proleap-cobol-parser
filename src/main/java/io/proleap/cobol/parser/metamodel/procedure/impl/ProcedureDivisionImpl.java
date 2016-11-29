@@ -97,6 +97,7 @@ import io.proleap.cobol.Cobol85Parser.SortOnKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.SortStatementContext;
 import io.proleap.cobol.Cobol85Parser.SortUsingContext;
 import io.proleap.cobol.Cobol85Parser.StartStatementContext;
+import io.proleap.cobol.Cobol85Parser.StatementContext;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.Cobol85Parser.StringSendingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.StringStatementContext;
@@ -1749,7 +1750,9 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new AtEndImpl(programUnit, ctx);
 
-			// FIXME add statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			registerASGElement(result);
 		}
@@ -1763,7 +1766,9 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new InvalidKeyImpl(programUnit, ctx);
 
-			// FIXME add statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			registerASGElement(result);
 		}
@@ -1777,7 +1782,9 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new NotAtEndImpl(programUnit, ctx);
 
-			// FIXME add statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			registerASGElement(result);
 		}
@@ -1791,7 +1798,9 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new NotInvalidKeyImpl(programUnit, ctx);
 
-			// FIXME add statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			registerASGElement(result);
 		}
@@ -1805,7 +1814,9 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new NotOnExceptionImpl(programUnit, ctx);
 
-			// FIXME add statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			registerASGElement(result);
 		}
@@ -1819,7 +1830,9 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new NotOnOverflowImpl(programUnit, ctx);
 
-			// FIXME add statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			registerASGElement(result);
 		}
@@ -1833,7 +1846,9 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new NotOnSizeErrorImpl(programUnit, ctx);
 
-			// FIXME add statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			registerASGElement(result);
 		}
@@ -1847,7 +1862,9 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new OnExceptionImpl(programUnit, ctx);
 
-			// FIXME add statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			registerASGElement(result);
 		}
@@ -1861,7 +1878,9 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new OnOverflowImpl(programUnit, ctx);
 
-			// FIXME add statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			registerASGElement(result);
 		}
@@ -1875,7 +1894,9 @@ public class ProcedureDivisionImpl extends CobolDivisionImpl implements Procedur
 		if (result == null) {
 			result = new OnSizeErrorImpl(programUnit, ctx);
 
-			// FIXME add statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			registerASGElement(result);
 		}

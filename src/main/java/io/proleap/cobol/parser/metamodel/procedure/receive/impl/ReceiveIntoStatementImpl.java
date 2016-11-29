@@ -11,6 +11,7 @@ package io.proleap.cobol.parser.metamodel.procedure.receive.impl;
 import io.proleap.cobol.Cobol85Parser.ReceiveIntoStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReceiveNoDataContext;
 import io.proleap.cobol.Cobol85Parser.ReceiveWithDataContext;
+import io.proleap.cobol.Cobol85Parser.StatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -45,7 +46,9 @@ public class ReceiveIntoStatementImpl extends CobolDivisionElementImpl implement
 		if (result == null) {
 			result = new NoDataImpl(programUnit, ctx);
 
-			// FIXME statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			noData = result;
 			registerASGElement(result);
@@ -61,7 +64,9 @@ public class ReceiveIntoStatementImpl extends CobolDivisionElementImpl implement
 		if (result == null) {
 			result = new WithDataImpl(programUnit, ctx);
 
-			// FIXME statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			withData = result;
 			registerASGElement(result);

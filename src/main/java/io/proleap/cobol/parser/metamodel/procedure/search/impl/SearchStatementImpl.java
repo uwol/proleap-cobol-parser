@@ -14,6 +14,7 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.SearchStatementContext;
 import io.proleap.cobol.Cobol85Parser.SearchVaryingContext;
 import io.proleap.cobol.Cobol85Parser.SearchWhenContext;
+import io.proleap.cobol.Cobol85Parser.StatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.AtEnd;
@@ -75,7 +76,10 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 			if (ctx.NEXT() != null) {
 				type = When.Type.NextSentence;
 			} else if (!ctx.statement().isEmpty()) {
-				// FIXME statements
+				for (final StatementContext statementContext : ctx.statement()) {
+					result.addStatement(statementContext);
+				}
+
 				type = When.Type.Statements;
 			} else {
 				type = null;

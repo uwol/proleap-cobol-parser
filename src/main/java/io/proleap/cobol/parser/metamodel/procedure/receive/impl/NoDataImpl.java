@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.receive.impl;
 
 import io.proleap.cobol.Cobol85Parser.ReceiveNoDataContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
 import io.proleap.cobol.parser.metamodel.procedure.receive.NoData;
 
-public class NoDataImpl extends CobolDivisionElementImpl implements NoData {
+public class NoDataImpl extends StatementsContainerImpl implements NoData {
 
 	protected final ReceiveNoDataContext ctx;
 

@@ -8,35 +8,19 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.proleap.cobol.Cobol85Parser.NotOnOverflowPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnOverflow;
-import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
-public class NotOnOverflowImpl extends CobolDivisionElementImpl implements NotOnOverflow {
+public class NotOnOverflowImpl extends StatementsContainerImpl implements NotOnOverflow {
 
 	protected final NotOnOverflowPhraseContext ctx;
-
-	protected List<Statement> statements = new ArrayList<Statement>();
 
 	public NotOnOverflowImpl(final ProgramUnit programUnit, final NotOnOverflowPhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
-	}
-
-	@Override
-	public void addStatement(final Statement statement) {
-		statements.add(statement);
-	}
-
-	@Override
-	public List<Statement> getStatements() {
-		return statements;
 	}
 
 }

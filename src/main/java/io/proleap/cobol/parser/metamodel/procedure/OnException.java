@@ -8,13 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.procedure;
 
-import java.util.List;
+import io.proleap.cobol.parser.metamodel.StatementsContainer;
 
-import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+public interface OnException extends StatementsContainer {
 
-public interface OnException extends CobolDivisionElement {
-
-	void addStatement(Statement statement);
-
-	List<Statement> getStatements();
 }

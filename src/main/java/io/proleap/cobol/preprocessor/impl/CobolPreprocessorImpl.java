@@ -703,13 +703,13 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 
 		@Override
 		public void exitExecCicsStatement(final Cobol85PreprocessorParser.ExecCicsStatementContext ctx) {
-			// throw away EXEC SQL terminals -> FIXME
+			// throw away EXEC SQL terminals -> TODO
 			pop();
 		}
 
 		@Override
 		public void exitExecSqlStatement(final Cobol85PreprocessorParser.ExecSqlStatementContext ctx) {
-			// throw away EXEC SQL terminals -> FIXME
+			// throw away EXEC SQL terminals -> TODO
 			pop();
 		}
 

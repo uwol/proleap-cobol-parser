@@ -17,6 +17,7 @@ import io.proleap.cobol.Cobol85Parser.EvaluateStatementContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateWhenContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateWhenOtherContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateWhenPhraseContext;
+import io.proleap.cobol.Cobol85Parser.StatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.procedure.evaluate.AlsoSelect;
 import io.proleap.cobol.parser.metamodel.procedure.evaluate.EvaluateStatement;
@@ -76,7 +77,9 @@ public class EvaluateStatementImpl extends StatementImpl implements EvaluateStat
 		if (result == null) {
 			result = new WhenOtherImpl(programUnit, ctx);
 
-			// FIXME statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			whenOther = result;
 			registerASGElement(result);
@@ -97,7 +100,10 @@ public class EvaluateStatementImpl extends StatementImpl implements EvaluateStat
 				result.addWhen(evaluateWhenContext);
 			}
 
-			// FIXME statements
+			// statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
 
 			whenPhrases.add(result);
 			registerASGElement(result);

@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.receive;
 
-import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.StatementsContainer;
 
-public interface NoData extends CobolDivisionElement {
+public interface NoData extends StatementsContainer {
 
 }

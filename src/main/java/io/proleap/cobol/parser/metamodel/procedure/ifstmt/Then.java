@@ -8,17 +8,9 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.ifstmt;
 
-import java.util.List;
+import io.proleap.cobol.parser.metamodel.StatementsContainer;
 
-import io.proleap.cobol.Cobol85Parser.StatementContext;
-import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.procedure.Statement;
-
-public interface Then extends CobolDivisionElement {
-
-	Statement addStatement(StatementContext ctx);
-
-	List<Statement> getStatements();
+public interface Then extends StatementsContainer {
 
 	boolean isNextSentence();
 

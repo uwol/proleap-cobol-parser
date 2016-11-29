@@ -8,35 +8,19 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.proleap.cobol.Cobol85Parser.NotOnExceptionClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnException;
-import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
-public class NotOnExceptionImpl extends CobolDivisionElementImpl implements NotOnException {
+public class NotOnExceptionImpl extends StatementsContainerImpl implements NotOnException {
 
 	protected final NotOnExceptionClauseContext ctx;
-
-	protected List<Statement> statements = new ArrayList<Statement>();
 
 	public NotOnExceptionImpl(final ProgramUnit programUnit, final NotOnExceptionClauseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
-	}
-
-	@Override
-	public void addStatement(final Statement statement) {
-		statements.add(statement);
-	}
-
-	@Override
-	public List<Statement> getStatements() {
-		return statements;
 	}
 
 }

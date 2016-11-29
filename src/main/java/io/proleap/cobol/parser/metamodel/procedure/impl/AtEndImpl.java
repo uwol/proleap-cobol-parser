@@ -8,35 +8,19 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.proleap.cobol.Cobol85Parser.AtEndPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
 import io.proleap.cobol.parser.metamodel.procedure.AtEnd;
-import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
-public class AtEndImpl extends CobolDivisionElementImpl implements AtEnd {
+public class AtEndImpl extends StatementsContainerImpl implements AtEnd {
 
 	protected final AtEndPhraseContext ctx;
-
-	protected List<Statement> statements = new ArrayList<Statement>();
 
 	public AtEndImpl(final ProgramUnit programUnit, final AtEndPhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
-	}
-
-	@Override
-	public void addStatement(final Statement statement) {
-		statements.add(statement);
-	}
-
-	@Override
-	public List<Statement> getStatements() {
-		return statements;
 	}
 
 }

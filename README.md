@@ -51,14 +51,12 @@ Example
 				(procedureDivisionBody
 					(paragraphs
 						(sentence
-							(statements
-								(statement
-									(displayStatement Display
-										(literal "Hello world")))) .)
+							(statement
+								(displayStatement Display
+									(literal "Hello world")))) .)
 						(sentence
-							(statements
-								(statement
-									(stopStatement STOP RUN))) .)))))) <EOF>)
+							(statement
+								(stopStatement STOP RUN))) .)))))) <EOF>)
 ```
 
 

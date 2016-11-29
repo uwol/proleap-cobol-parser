@@ -8,39 +8,21 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.ifstmt.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.proleap.cobol.Cobol85Parser.IfElseContext;
-import io.proleap.cobol.Cobol85Parser.StatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.procedure.Statement;
+import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
 import io.proleap.cobol.parser.metamodel.procedure.ifstmt.Else;
 
-public class ElseImpl extends CobolDivisionElementImpl implements Else {
+public class ElseImpl extends StatementsContainerImpl implements Else {
 
 	protected final IfElseContext ctx;
 
 	protected boolean nextSentence;
 
-	protected List<Statement> statements = new ArrayList<Statement>();
-
 	public ElseImpl(final ProgramUnit programUnit, final IfElseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
-	}
-
-	@Override
-	public Statement addStatement(final StatementContext ctx) {
-		// FIXME
-		return null;
-	}
-
-	@Override
-	public List<Statement> getStatements() {
-		return statements;
 	}
 
 	@Override

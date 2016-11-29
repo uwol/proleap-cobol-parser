@@ -8,39 +8,21 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.ifstmt.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.proleap.cobol.Cobol85Parser.IfThenContext;
-import io.proleap.cobol.Cobol85Parser.StatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.procedure.Statement;
+import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
 import io.proleap.cobol.parser.metamodel.procedure.ifstmt.Then;
 
-public class ThenImpl extends CobolDivisionElementImpl implements Then {
+public class ThenImpl extends StatementsContainerImpl implements Then {
 
 	protected final IfThenContext ctx;
 
 	protected boolean nextSentence;
 
-	protected List<Statement> statements = new ArrayList<Statement>();
-
 	public ThenImpl(final ProgramUnit programUnit, final IfThenContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
-	}
-
-	@Override
-	public Statement addStatement(final StatementContext ctx) {
-		// FIXME
-		return null;
-	}
-
-	@Override
-	public List<Statement> getStatements() {
-		return statements;
 	}
 
 	@Override

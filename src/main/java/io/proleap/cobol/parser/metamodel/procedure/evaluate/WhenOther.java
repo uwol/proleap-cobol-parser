@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.evaluate;
 
-import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.StatementsContainer;
 
-public interface WhenOther extends CobolDivisionElement {
+public interface WhenOther extends StatementsContainer {
 
 }

@@ -11,9 +11,9 @@ package io.proleap.cobol.parser.metamodel.procedure.evaluate;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.EvaluateWhenContext;
-import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.StatementsContainer;
 
-public interface WhenPhrase extends CobolDivisionElement {
+public interface WhenPhrase extends StatementsContainer {
 
 	When addWhen(EvaluateWhenContext ctx);
 
