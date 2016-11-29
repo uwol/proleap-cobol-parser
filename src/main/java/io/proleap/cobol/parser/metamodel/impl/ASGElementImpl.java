@@ -44,7 +44,7 @@ public abstract class ASGElementImpl implements ASGElement {
 	@Override
 	public ASGElement getParent() {
 		final ASGElementRegistry asgElementRegistry = CobolParserContext.getInstance().getASGElementRegistry();
-		final ASGElement result = ANTLRUtils.findParentASGElement(ctx, asgElementRegistry);
+		final ASGElement result = ANTLRUtils.findParent(ASGElement.class, ctx, asgElementRegistry);
 		return result;
 	}
 

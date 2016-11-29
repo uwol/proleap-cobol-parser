@@ -93,7 +93,4 @@ public class ANTLRUtils {
 		return result;
 	}
 
-	public static ASGElement findParentASGElement(final ParseTree from, final ASGElementRegistry asgElementRegistry) {
-		return findParent(ASGElement.class, from, asgElementRegistry);
-	}
 }
