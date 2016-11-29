@@ -9,52 +9,48 @@
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
-							(statements 
-								(statement 
-									(displayStatement Display 
-										(displayOperand 
-											(literal "Hello world"))))) .\n       ) 
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(literal "Hello world")))) .\n       ) 
 						(sentence 
-							(statements 
-								(statement 
-									(moveStatement MOVE 
-										(moveToStatement 
-											(moveToStatementSendingArea 
-												(literal "*")) TO 
-											(identifier 
-												(qualifiedDataName 
-													(qualifiedDataNameFormat1 
-														(dataName 
-															(cobolWord WRK-XN-00001))))))))) .\n       \n       ) 
+							(statement 
+								(moveStatement MOVE 
+									(moveToStatement 
+										(moveToStatementSendingArea 
+											(literal "*")) TO 
+										(identifier 
+											(qualifiedDataName 
+												(qualifiedDataNameFormat1 
+													(dataName 
+														(cobolWord WRK-XN-00001)))))))) .\n       \n       ) 
 						(sentence 
-							(statements 
-								(statement 
-									(ifStatement IF 
-										(condition 
-											(combinableCondition 
-												(simpleCondition 
-													(relationCondition 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(identifier 
-																			(qualifiedDataName 
-																				(qualifiedDataNameFormat1 
-																					(dataName 
-																						(cobolWord WRK-XN-00001))))))))) 
-														(relationalOperator =) 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(literal "*"))))))))) 
-										(ifThen 
-											(statement 
-												(displayStatement Display 
-													(displayOperand 
-														(literal "Hello world")))))))) .\n\n        ) 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(relationCondition 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(identifier 
+																		(qualifiedDataName 
+																			(qualifiedDataNameFormat1 
+																				(dataName 
+																					(cobolWord WRK-XN-00001))))))))) 
+													(relationalOperator =) 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(literal "*"))))))))) 
+									(ifThen 
+										(statement 
+											(displayStatement Display 
+												(displayOperand 
+													(literal "Hello world"))))))) .\n\n        ) 
 						(sentence 
-							(statements 
-								(statement 
-									(stopStatement STOP RUN))) .)))))) <EOF>)
+							(statement 
+								(stopStatement STOP RUN)) .)))))) <EOF>)

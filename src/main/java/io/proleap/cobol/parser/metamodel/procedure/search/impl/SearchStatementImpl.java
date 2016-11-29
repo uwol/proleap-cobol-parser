@@ -74,7 +74,7 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 
 			if (ctx.NEXT() != null) {
 				type = When.Type.NextSentence;
-			} else if (ctx.statements() != null) {
+			} else if (!ctx.statement().isEmpty()) {
 				// FIXME statements
 				type = When.Type.Statements;
 			} else {

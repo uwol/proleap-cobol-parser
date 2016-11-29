@@ -27,17 +27,16 @@
 							(paragraphName 
 								(cobolWord INIT)) .\n      
 							(sentence 
-								(statements 
-									(statement 
-										(addStatement ADD 
-											(addToStatement 
-												(addFrom 
-													(literal 
-														(numericLiteral 
-															(integerLiteral 1)))) TO 
-												(addTo 
-													(identifier 
-														(qualifiedDataName 
-															(qualifiedDataNameFormat1 
-																(dataName 
-																	(cobolWord COUNTER)))))))))) .))))))) <EOF>)
+								(statement 
+									(addStatement ADD 
+										(addToStatement 
+											(addFrom 
+												(literal 
+													(numericLiteral 
+														(integerLiteral 1)))) TO 
+											(addTo 
+												(identifier 
+													(qualifiedDataName 
+														(qualifiedDataNameFormat1 
+															(dataName 
+																(cobolWord COUNTER))))))))) .))))))) <EOF>)

@@ -9,52 +9,51 @@
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
-							(statements 
-								(statement 
-									(ifStatement IF 
-										(condition 
-											(combinableCondition 
-												(simpleCondition 
-													(relationCondition 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(identifier 
-																			(qualifiedDataName 
-																				(qualifiedDataNameFormat1 
-																					(dataName 
-																						(cobolWord Obj-Name))))))))) 
-														(relationalOperator NOT =) 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(literal 
-																			(figurativeConstant SPACE)))))))))) 
-										(ifThen 
-											(statement 
-												(setStatement SET 
-													(setToStatement 
-														(setTo 
-															(identifier 
-																(specialRegister ADDRESS OF 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(relationCondition 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
 																	(identifier 
 																		(qualifiedDataName 
 																			(qualifiedDataNameFormat1 
 																				(dataName 
-																					(cobolWord PointerA)))))))) TO 
-														(setToValue 
-															(identifier 
-																(qualifiedDataName 
-																	(qualifiedDataNameFormat1 
-																		(dataName 
-																			(cobolWord PointerB)))))))))) 
-										(ifElse ELSE 
-											(statement 
-												(initializeStatement INITIALIZE 
-													(identifier 
-														(qualifiedDataName 
-															(qualifiedDataNameFormat1 
-																(dataName 
-																	(cobolWord Test1)))))))) END-IF))) .)))))) <EOF>)
+																					(cobolWord Obj-Name))))))))) 
+													(relationalOperator NOT =) 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(literal 
+																		(figurativeConstant SPACE)))))))))) 
+									(ifThen 
+										(statement 
+											(setStatement SET 
+												(setToStatement 
+													(setTo 
+														(identifier 
+															(specialRegister ADDRESS OF 
+																(identifier 
+																	(qualifiedDataName 
+																		(qualifiedDataNameFormat1 
+																			(dataName 
+																				(cobolWord PointerA)))))))) TO 
+													(setToValue 
+														(identifier 
+															(qualifiedDataName 
+																(qualifiedDataNameFormat1 
+																	(dataName 
+																		(cobolWord PointerB)))))))))) 
+									(ifElse ELSE 
+										(statement 
+											(initializeStatement INITIALIZE 
+												(identifier 
+													(qualifiedDataName 
+														(qualifiedDataNameFormat1 
+															(dataName 
+																(cobolWord Test1)))))))) END-IF)) .)))))) <EOF>)

@@ -9,96 +9,93 @@
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
-							(statements 
-								(statement 
-									(ifStatement IF 
-										(condition 
-											(combinableCondition 
-												(simpleCondition 
-													(relationCondition 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(identifier 
-																			(specialRegister LINE-COUNTER)))))) 
-														(relationalOperator EQUAL TO) 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(literal 
-																			(numericLiteral ZERO)))))))))) 
-										(ifThen 
-											(statement 
-												(displayStatement Display 
-													(displayOperand 
-														(literal "Hello world"))))) END-IF))) .\n       \n         ) 
-						(sentence 
-							(statements 
-								(statement 
-									(ifStatement IF 
-										(condition 
-											(combinableCondition 
-												(simpleCondition 
-													(relationCondition 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(identifier 
-																			(specialRegister LINE-COUNTER)))))) 
-														(relationalOperator =) 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(literal 
-																			(numericLiteral ZERO)))))))))) 
-										(ifThen 
-											(statement 
-												(displayStatement Display 
-													(displayOperand 
-														(literal "Hello world"))))) END-IF))) .\n       \n         ) 
-						(sentence 
-							(statements 
-								(statement 
-									(ifStatement IF 
-										(condition 
-											(combinableCondition 
-												(simpleCondition 
-													(relationCondition 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(identifier 
-																			(specialRegister LINE-COUNTER)))))) 
-														(relationalOperator =) 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(literal 
-																			(numericLiteral ZERO))))))))) OR 
-											(abbreviationRest 
-												(abbreviationLeaf 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(relationCondition 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(identifier 
+																		(specialRegister LINE-COUNTER)))))) 
+													(relationalOperator EQUAL TO) 
 													(arithmeticExpression 
 														(timesDiv 
 															(power 
 																(basis 
 																	(literal 
-																		(numericLiteral 
-																			(integerLiteral 1)))))))) 
-												(abbreviationLeaf 
+																		(numericLiteral ZERO)))))))))) 
+									(ifThen 
+										(statement 
+											(displayStatement Display 
+												(displayOperand 
+													(literal "Hello world"))))) END-IF)) .\n       \n         ) 
+						(sentence 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(relationCondition 
 													(arithmeticExpression 
 														(timesDiv 
 															(power 
 																(basis 
-																	(otherKeyword Display)))))) 
-												(abbreviationLeaf 
+																	(identifier 
+																		(specialRegister LINE-COUNTER)))))) 
+													(relationalOperator =) 
 													(arithmeticExpression 
 														(timesDiv 
 															(power 
 																(basis 
-																	(literal "Hello world")))))))) ifThen END-IF))) .)))))) <EOF>)
+																	(literal 
+																		(numericLiteral ZERO)))))))))) 
+									(ifThen 
+										(statement 
+											(displayStatement Display 
+												(displayOperand 
+													(literal "Hello world"))))) END-IF)) .\n       \n         ) 
+						(sentence 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(relationCondition 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(identifier 
+																		(specialRegister LINE-COUNTER)))))) 
+													(relationalOperator =) 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(literal 
+																		(numericLiteral ZERO))))))))) OR 
+										(abbreviationRest 
+											(abbreviationLeaf 
+												(arithmeticExpression 
+													(timesDiv 
+														(power 
+															(basis 
+																(literal 
+																	(numericLiteral 
+																		(integerLiteral 1)))))))) 
+											(abbreviationLeaf 
+												(arithmeticExpression 
+													(timesDiv 
+														(power 
+															(basis 
+																(otherKeyword Display)))))) 
+											(abbreviationLeaf 
+												(arithmeticExpression 
+													(timesDiv 
+														(power 
+															(basis 
+																(literal "Hello world")))))))) ifThen END-IF)) .)))))) <EOF>)

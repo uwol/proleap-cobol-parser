@@ -9,12 +9,11 @@
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
-							(statements 
-								(statement 
-									(displayStatement DISPLAY 
-										(displayOperand 
-											(literal "World")) 
-										(displayOperand 
-											(otherKeyword STOP)) 
-										(displayOperand 
-											(otherKeyword RUN))))) .)))))) <EOF>)
+							(statement 
+								(displayStatement DISPLAY 
+									(displayOperand 
+										(literal "World")) 
+									(displayOperand 
+										(otherKeyword STOP)) 
+									(displayOperand 
+										(otherKeyword RUN)))) .)))))) <EOF>)

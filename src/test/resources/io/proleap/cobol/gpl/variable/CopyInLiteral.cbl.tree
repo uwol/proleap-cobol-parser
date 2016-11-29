@@ -25,18 +25,15 @@
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
-							(statements 
-								(statement 
-									(displayStatement Display 
-										(displayOperand 
-											(literal "COPY ,"))))) .\n        ) 
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(literal "COPY ,")))) .\n        ) 
 						(sentence 
-							(statements 
-								(statement 
-									(displayStatement Display 
-										(displayOperand 
-											(literal "COPY,"))))) .\n        ) 
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(literal "COPY,")))) .\n        ) 
 						(sentence 
-							(statements 
-								(statement 
-									(stopStatement STOP RUN))) .)))))) <EOF>)
+							(statement 
+								(stopStatement STOP RUN)) .)))))) <EOF>)

@@ -9,12 +9,10 @@
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
-							(statements 
-								(statement 
-									(displayStatement Display 
-										(displayOperand 
-											(literal "Hello World"))))) .\n\n        ) 
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(literal "Hello World")))) .\n\n        ) 
 						(sentence 
-							(statements 
-								(statement 
-									(stopStatement STOP RUN))) .)))))) <EOF>)
+							(statement 
+								(stopStatement STOP RUN)) .)))))) <EOF>)

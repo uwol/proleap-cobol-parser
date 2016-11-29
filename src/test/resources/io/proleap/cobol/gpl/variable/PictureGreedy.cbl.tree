@@ -181,6 +181,5 @@
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
-							(statements 
-								(statement 
-									(stopStatement stop run))) .)))))) <EOF>)
+							(statement 
+								(stopStatement stop run)) .)))))) <EOF>)

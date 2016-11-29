@@ -9,49 +9,47 @@
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
-							(statements 
-								(statement 
-									(addStatement ADD 
-										(addToStatement 
-											(addFrom 
-												(literal 
-													(numericLiteral 
-														(integerLiteral 42)))) TO 
-											(addTo 
-												(identifier 
-													(qualifiedDataName 
-														(qualifiedDataNameFormat1 
-															(dataName 
-																(cobolWord Var1)))))))))) .\n       ) 
+							(statement 
+								(addStatement ADD 
+									(addToStatement 
+										(addFrom 
+											(literal 
+												(numericLiteral 
+													(integerLiteral 42)))) TO 
+										(addTo 
+											(identifier 
+												(qualifiedDataName 
+													(qualifiedDataNameFormat1 
+														(dataName 
+															(cobolWord Var1))))))))) .\n       ) 
 						(sentence 
-							(statements 
-								(statement 
-									(ifStatement IF 
-										(condition 
-											(combinableCondition 
-												(simpleCondition 
-													(relationCondition 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(identifier 
-																			(qualifiedDataName 
-																				(qualifiedDataNameFormat1 
-																					(dataName 
-																						(cobolWord Var1))))))))) 
-														(relationalOperator EQUAL TO) 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(literal 
-																			(numericLiteral 
-																				(integerLiteral 12345))))))))))) 
-										(ifThen 
-											(statement 
-												(goToStatement GO TO 
-													(goToStatementSimple 
-														(procedureName 
-															(paragraphName 
-																(cobolWord JMP-1)))))))))) .)))))) <EOF>)
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(relationCondition 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(identifier 
+																		(qualifiedDataName 
+																			(qualifiedDataNameFormat1 
+																				(dataName 
+																					(cobolWord Var1))))))))) 
+													(relationalOperator EQUAL TO) 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(literal 
+																		(numericLiteral 
+																			(integerLiteral 12345))))))))))) 
+									(ifThen 
+										(statement 
+											(goToStatement GO TO 
+												(goToStatementSimple 
+													(procedureName 
+														(paragraphName 
+															(cobolWord JMP-1))))))))) .)))))) <EOF>)

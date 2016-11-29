@@ -9,14 +9,13 @@
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
-							(statements 
-								(statement 
-									(moveStatement MOVE 
-										(moveToStatement 
-											(moveToStatementSendingArea 
-												(literal "Test")) TO 
-											(identifier 
-												(qualifiedDataName 
-													(qualifiedDataNameFormat1 
-														(dataName 
-															(cobolWord TESTVAR))))))))) .)))))) <EOF>)
+							(statement 
+								(moveStatement MOVE 
+									(moveToStatement 
+										(moveToStatementSendingArea 
+											(literal "Test")) TO 
+										(identifier 
+											(qualifiedDataName 
+												(qualifiedDataNameFormat1 
+													(dataName 
+														(cobolWord TESTVAR)))))))) .)))))) <EOF>)

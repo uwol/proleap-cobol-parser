@@ -1367,11 +1367,7 @@ paragraph :
 ;
 
 sentence :
-	statements DOT_FS
-;
-
-statements :
-	statement*
+	statement* DOT_FS
 ;
 
 statement :
@@ -1724,7 +1720,7 @@ evaluateAlsoSelect :
 ;
 
 evaluateWhenPhrase :
-	evaluateWhen+ statements
+	evaluateWhen+ statement*
 ;
 
 evaluateWhen :
@@ -1744,7 +1740,7 @@ evaluateAlsoCondition :
 ;
 
 evaluateWhenOther :
-	WHEN OTHER statements
+	WHEN OTHER statement*
 ;
 
 evaluateValue :
@@ -2123,11 +2119,11 @@ receiveIntoStatement :
 ;
 
 receiveNoData :
-	NO DATA statements
+	NO DATA statement*
 ;
 
 receiveWithData :
-	WITH DATA statements
+	WITH DATA statement*
 ;
 
 receiveBefore :
@@ -2199,7 +2195,7 @@ searchVarying :
 ;
 
 searchWhen :
-	WHEN condition (statements | NEXT SENTENCE)
+	WHEN condition (statement* | NEXT SENTENCE)
 ;
 
 // send statement
@@ -2547,55 +2543,55 @@ writeAdvancingMnemonic :
 ;
 
 writeAtEndOfPagePhrase :
-	AT? (END_OF_PAGE | EOP) statements
+	AT? (END_OF_PAGE | EOP) statement*
 ;
 
 writeNotAtEndOfPagePhrase :
-	NOT AT? (END_OF_PAGE | EOP) statements
+	NOT AT? (END_OF_PAGE | EOP) statement*
 ;
 
 // statement phrases ----------------------------------
 
 atEndPhrase :
-	AT? END statements
+	AT? END statement*
 ;
 
 notAtEndPhrase :
-	NOT AT? END statements
+	NOT AT? END statement*
 ;
 
 invalidKeyPhrase :
-	INVALID KEY? statements
+	INVALID KEY? statement*
 ;
 
 notInvalidKeyPhrase :
-	NOT INVALID KEY? statements
+	NOT INVALID KEY? statement*
 ;
 
 onOverflowPhrase :
-	ON? OVERFLOW statements
+	ON? OVERFLOW statement*
 ;
 
 notOnOverflowPhrase :
-	NOT ON? OVERFLOW statements
+	NOT ON? OVERFLOW statement*
 ;
 
 onSizeErrorPhrase :
-	ON? SIZE ERROR statements
+	ON? SIZE ERROR statement*
 ;
 
 notOnSizeErrorPhrase :
-	NOT ON? SIZE ERROR statements
+	NOT ON? SIZE ERROR statement*
 ;
 
 // statement clauses ----------------------------------
 
 onExceptionClause :
-	ON? EXCEPTION statements
+	ON? EXCEPTION statement*
 ;
 
 notOnExceptionClause :
-	NOT ON? EXCEPTION statements
+	NOT ON? EXCEPTION statement*
 ;
 
 // arithmetic expression ----------------------------------

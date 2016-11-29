@@ -27,9 +27,8 @@
 													(cobolWord ID-2)))))))) .\n          
 						(paragraphs 
 							(sentence 
-								(statements 
-									(statement 
-										(displayStatement Display 
-											(displayOperand 
-												(literal "Hello world"))))) .\n       ))) END DECLARATIVES .) 
+								(statement 
+									(displayStatement Display 
+										(displayOperand 
+											(literal "Hello world")))) .\n       ))) END DECLARATIVES .) 
 				(procedureDivisionBody paragraphs)))) <EOF>)

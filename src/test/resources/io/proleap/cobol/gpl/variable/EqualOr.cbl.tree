@@ -9,53 +9,52 @@
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
-							(statements 
-								(statement 
-									(ifStatement IF 
-										(condition 
-											(combinableCondition 
-												(simpleCondition 
-													(relationCondition 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(identifier 
-																			(qualifiedDataName 
-																				(qualifiedDataNameFormat1 
-																					(dataName 
-																						(cobolWord FIELDA))))))))) 
-														(relationalOperator =) ( 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(literal 
-																			(numericLiteral 
-																				(integerLiteral 10))))))) OR 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(literal 
-																			(numericLiteral 
-																				(integerLiteral 15))))))) OR 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(literal 
-																			(numericLiteral 
-																				(integerLiteral 20))))))) OR 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(literal 
-																			(numericLiteral 
-																				(integerLiteral 25))))))) ))))) 
-										(ifThen 
-											(statement 
-												(displayStatement Display 
-													(displayOperand 
-														(literal "Hello world"))))) END-IF))) .)))))) <EOF>)
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(relationCondition 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(identifier 
+																		(qualifiedDataName 
+																			(qualifiedDataNameFormat1 
+																				(dataName 
+																					(cobolWord FIELDA))))))))) 
+													(relationalOperator =) ( 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(literal 
+																		(numericLiteral 
+																			(integerLiteral 10))))))) OR 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(literal 
+																		(numericLiteral 
+																			(integerLiteral 15))))))) OR 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(literal 
+																		(numericLiteral 
+																			(integerLiteral 20))))))) OR 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(literal 
+																		(numericLiteral 
+																			(integerLiteral 25))))))) ))))) 
+									(ifThen 
+										(statement 
+											(displayStatement Display 
+												(displayOperand 
+													(literal "Hello world"))))) END-IF)) .)))))) <EOF>)

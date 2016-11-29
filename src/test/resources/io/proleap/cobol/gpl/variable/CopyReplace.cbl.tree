@@ -9,25 +9,24 @@
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
-							(statements 
-								(statement 
-									(displayStatement Display 
-										(displayOperand 
-											(identifier 
-												(tableCall 
-													(qualifiedDataName 
-														(qualifiedDataNameFormat1 
-															(dataName 
-																(cobolWord Z)))) ( 
-													(subscript 
-														(integerLiteral 1) 
-														(integerLiteral 2) 
-														(integerLiteral 3)) )))) 
-										(displayOperand 
-											(otherKeyword DISPLAY)) 
-										(displayOperand 
-											(literal "Hello World")) 
-										(displayOperand 
-											(otherKeyword STOP)) 
-										(displayOperand 
-											(otherKeyword RUN))))) .)))))) <EOF>)
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(identifier 
+											(tableCall 
+												(qualifiedDataName 
+													(qualifiedDataNameFormat1 
+														(dataName 
+															(cobolWord Z)))) ( 
+												(subscript 
+													(integerLiteral 1) 
+													(integerLiteral 2) 
+													(integerLiteral 3)) )))) 
+									(displayOperand 
+										(otherKeyword DISPLAY)) 
+									(displayOperand 
+										(literal "Hello World")) 
+									(displayOperand 
+										(otherKeyword STOP)) 
+									(displayOperand 
+										(otherKeyword RUN)))) .)))))) <EOF>)

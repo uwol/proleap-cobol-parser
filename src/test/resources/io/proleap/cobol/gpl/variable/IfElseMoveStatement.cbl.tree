@@ -9,55 +9,54 @@
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
-							(statements 
-								(statement 
-									(ifStatement IF 
-										(condition 
-											(combinableCondition 
-												(simpleCondition 
-													(relationCondition 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(identifier 
-																			(qualifiedDataName 
-																				(qualifiedDataNameFormat1 
-																					(dataName 
-																						(cobolWord Obj-Name))))))))) 
-														(relationalOperator >) 
-														(arithmeticExpression 
-															(timesDiv 
-																(power 
-																	(basis 
-																		(literal 
-																			(numericLiteral ZERO)))))))))) 
-										(ifThen 
-											(statement 
-												(setStatement SET 
-													(setToStatement 
-														(setTo 
-															(identifier 
-																(specialRegister ADDRESS OF 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(relationCondition 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
 																	(identifier 
 																		(qualifiedDataName 
 																			(qualifiedDataNameFormat1 
 																				(dataName 
-																					(cobolWord PointerA)))))))) TO 
-														(setToValue 
-															(identifier 
-																(qualifiedDataName 
-																	(qualifiedDataNameFormat1 
-																		(dataName 
-																			(cobolWord PointerB)))))))))) 
-										(ifElse ELSE 
-											(statement 
-												(moveStatement MOVE 
-													(moveToStatement 
-														(moveToStatementSendingArea 
-															(literal 'test')) TO 
+																					(cobolWord Obj-Name))))))))) 
+													(relationalOperator >) 
+													(arithmeticExpression 
+														(timesDiv 
+															(power 
+																(basis 
+																	(literal 
+																		(numericLiteral ZERO)))))))))) 
+									(ifThen 
+										(statement 
+											(setStatement SET 
+												(setToStatement 
+													(setTo 
+														(identifier 
+															(specialRegister ADDRESS OF 
+																(identifier 
+																	(qualifiedDataName 
+																		(qualifiedDataNameFormat1 
+																			(dataName 
+																				(cobolWord PointerA)))))))) TO 
+													(setToValue 
 														(identifier 
 															(qualifiedDataName 
 																(qualifiedDataNameFormat1 
 																	(dataName 
-																		(cobolWord testvar))))))))) END-IF))) .)))))) <EOF>)
+																		(cobolWord PointerB)))))))))) 
+									(ifElse ELSE 
+										(statement 
+											(moveStatement MOVE 
+												(moveToStatement 
+													(moveToStatementSendingArea 
+														(literal 'test')) TO 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord testvar))))))))) END-IF)) .)))))) <EOF>)
