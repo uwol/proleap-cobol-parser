@@ -14,7 +14,10 @@ import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.procedure.NotOnOverflow;
+import io.proleap.cobol.parser.metamodel.procedure.OnOverflow;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.string.DelimitedBy;
 import io.proleap.cobol.parser.metamodel.procedure.string.For;
 import io.proleap.cobol.parser.metamodel.procedure.string.Into;
@@ -79,7 +82,22 @@ public class StringStatementTest extends CobolTestSupport {
 			assertEquals(Call.CallType.UndefinedCall, pointerCall.getCallType());
 		}
 
-		assertNotNull(stringStatement.getOnOverflow());
-		assertNotNull(stringStatement.getNotOnOverflow());
+		{
+			final OnOverflow onOverflow = stringStatement.getOnOverflow();
+			assertNotNull(onOverflow);
+			assertEquals(1, onOverflow.getStatements().size());
+
+			final DisplayStatement displayStatement = (DisplayStatement) onOverflow.getStatements().get(0);
+			assertNotNull(displayStatement);
+		}
+
+		{
+			final NotOnOverflow notOnOverflow = stringStatement.getNotOnOverflow();
+			assertNotNull(notOnOverflow);
+			assertEquals(1, notOnOverflow.getStatements().size());
+
+			final DisplayStatement displayStatement = (DisplayStatement) notOnOverflow.getStatements().get(0);
+			assertNotNull(displayStatement);
+		}
 	}
 }

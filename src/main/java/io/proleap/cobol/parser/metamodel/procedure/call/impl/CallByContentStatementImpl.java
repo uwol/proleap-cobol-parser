@@ -11,9 +11,6 @@ package io.proleap.cobol.parser.metamodel.procedure.call.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.CallByContentContext;
 import io.proleap.cobol.Cobol85Parser.CallByContentStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -23,8 +20,6 @@ import io.proleap.cobol.parser.metamodel.procedure.call.ByContent;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallByContentStatement;
 
 public class CallByContentStatementImpl extends CobolDivisionElementImpl implements CallByContentStatement {
-
-	private final static Logger LOG = LogManager.getLogger(CallByContentStatementImpl.class);
 
 	protected List<ByContent> byContents = new ArrayList<ByContent>();
 

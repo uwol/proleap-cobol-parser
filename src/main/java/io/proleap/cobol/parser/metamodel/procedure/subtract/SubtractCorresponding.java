@@ -9,10 +9,10 @@
 package io.proleap.cobol.parser.metamodel.procedure.subtract;
 
 import io.proleap.cobol.Cobol85Parser.SubtractMinuendCorrespondingContext;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
-public interface SubtractCorresponding extends Statement {
+public interface SubtractCorresponding extends CobolDivisionElement {
 
 	MinuendCorresponding addMinuend(SubtractMinuendCorrespondingContext ctx);
 

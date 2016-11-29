@@ -11,12 +11,10 @@ package io.proleap.cobol.parser.metamodel.procedure.compute.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.ComputeStatementContext;
 import io.proleap.cobol.Cobol85Parser.ComputeStoreContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeError;
 import io.proleap.cobol.parser.metamodel.procedure.OnSizeError;
@@ -26,8 +24,6 @@ import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ArithmeticValueStmt;
 
 public class ComputeStatementImpl extends StatementImpl implements ComputeStatement {
-
-	private final static Logger LOG = LogManager.getLogger(ComputeStatementImpl.class);
 
 	protected ArithmeticValueStmt arithmeticExpression;
 
@@ -39,8 +35,8 @@ public class ComputeStatementImpl extends StatementImpl implements ComputeStatem
 
 	protected List<Store> stores = new ArrayList<Store>();
 
-	public ComputeStatementImpl(final ProgramUnit programUnit, final ComputeStatementContext ctx) {
-		super(programUnit, ctx);
+	public ComputeStatementImpl(final ProgramUnit programUnit, final Scope scope, final ComputeStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

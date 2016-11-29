@@ -11,9 +11,6 @@ package io.proleap.cobol.parser.metamodel.procedure.call.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.CallByReferenceContext;
 import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -23,8 +20,6 @@ import io.proleap.cobol.parser.metamodel.procedure.call.ByReference;
 import io.proleap.cobol.parser.metamodel.procedure.call.CallByReferenceStatement;
 
 public class CallByReferenceStatementImpl extends CobolDivisionElementImpl implements CallByReferenceStatement {
-
-	private final static Logger LOG = LogManager.getLogger(CallByReferenceStatementImpl.class);
 
 	protected List<ByReference> byReferences = new ArrayList<ByReference>();
 

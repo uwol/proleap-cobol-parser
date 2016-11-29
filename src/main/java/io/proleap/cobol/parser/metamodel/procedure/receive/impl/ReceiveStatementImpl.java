@@ -17,6 +17,7 @@ import io.proleap.cobol.Cobol85Parser.ReceiveStatusContext;
 import io.proleap.cobol.Cobol85Parser.ReceiveThreadContext;
 import io.proleap.cobol.Cobol85Parser.ReceiveWithContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnException;
 import io.proleap.cobol.parser.metamodel.procedure.OnException;
@@ -39,8 +40,8 @@ public class ReceiveStatementImpl extends StatementImpl implements ReceiveStatem
 
 	protected Type type;
 
-	public ReceiveStatementImpl(final ProgramUnit programUnit, final ReceiveStatementContext ctx) {
-		super(programUnit, ctx);
+	public ReceiveStatementImpl(final ProgramUnit programUnit, final Scope scope, final ReceiveStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

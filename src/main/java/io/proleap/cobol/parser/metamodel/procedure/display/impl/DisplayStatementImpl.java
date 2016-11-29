@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayUponContext;
 import io.proleap.cobol.Cobol85Parser.DisplayWithContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.display.Operand;
@@ -33,8 +34,8 @@ public class DisplayStatementImpl extends StatementImpl implements DisplayStatem
 
 	protected With with;
 
-	public DisplayStatementImpl(final ProgramUnit programUnit, final DisplayStatementContext ctx) {
-		super(programUnit, ctx);
+	public DisplayStatementImpl(final ProgramUnit programUnit, final Scope scope, final DisplayStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

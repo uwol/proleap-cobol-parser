@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.procedure.disable.impl;
 
 import io.proleap.cobol.Cobol85Parser.DisableStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.disable.DisableStatement;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
@@ -26,8 +27,8 @@ public class DisableStatementImpl extends StatementImpl implements DisableStatem
 
 	protected Type type;
 
-	public DisableStatementImpl(final ProgramUnit programUnit, final DisableStatementContext ctx) {
-		super(programUnit, ctx);
+	public DisableStatementImpl(final ProgramUnit programUnit, final Scope scope, final DisableStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

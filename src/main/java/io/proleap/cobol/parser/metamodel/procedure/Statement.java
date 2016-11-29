@@ -9,7 +9,9 @@
 package io.proleap.cobol.parser.metamodel.procedure;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.Scope;
 
 public interface Statement extends CobolDivisionElement {
 
+	Scope getScope();
 }

@@ -16,7 +16,10 @@ import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeError;
+import io.proleap.cobol.parser.metamodel.procedure.OnSizeError;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.multiply.MultiplyStatement;
 import io.proleap.cobol.parser.metamodel.procedure.multiply.Regular;
 import io.proleap.cobol.parser.metamodel.procedure.multiply.RegularOperand;
@@ -40,6 +43,7 @@ public class MultiplyRegularStatementTest extends CobolTestSupport {
 		final CompilationUnit compilationUnit = program.getCompilationUnit("MultiplyRegularStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(1, procedureDivision.getStatements().size());
 
 		final MultiplyStatement multiplyStatement = (MultiplyStatement) procedureDivision.getStatements().get(0);
 		assertNotNull(multiplyStatement);
@@ -75,7 +79,22 @@ public class MultiplyRegularStatementTest extends CobolTestSupport {
 			}
 		}
 
-		assertNotNull(multiplyStatement.getOnSizeError());
-		assertNotNull(multiplyStatement.getNotOnSizeError());
+		{
+			final OnSizeError onSizeError = multiplyStatement.getOnSizeError();
+			assertNotNull(onSizeError);
+			assertEquals(1, onSizeError.getStatements().size());
+
+			final DisplayStatement displayStatement = (DisplayStatement) onSizeError.getStatements().get(0);
+			assertNotNull(displayStatement);
+		}
+
+		{
+			final NotOnSizeError notOnSizeError = multiplyStatement.getNotOnSizeError();
+			assertNotNull(notOnSizeError);
+			assertEquals(1, notOnSizeError.getStatements().size());
+
+			final DisplayStatement displayStatement = (DisplayStatement) notOnSizeError.getStatements().get(0);
+			assertNotNull(displayStatement);
+		}
 	}
 }

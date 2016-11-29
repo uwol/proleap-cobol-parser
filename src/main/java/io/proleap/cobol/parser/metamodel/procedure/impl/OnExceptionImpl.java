@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.OnExceptionClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.OnException;
 
-public class OnExceptionImpl extends StatementsContainerImpl implements OnException {
+public class OnExceptionImpl extends ScopeImpl implements OnException {
 
 	protected final OnExceptionClauseContext ctx;
 

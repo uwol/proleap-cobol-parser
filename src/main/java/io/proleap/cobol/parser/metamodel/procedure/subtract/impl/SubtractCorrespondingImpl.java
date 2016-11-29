@@ -12,11 +12,11 @@ import io.proleap.cobol.Cobol85Parser.SubtractCorrespondingStatementContext;
 import io.proleap.cobol.Cobol85Parser.SubtractMinuendCorrespondingContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.subtract.MinuendCorresponding;
 import io.proleap.cobol.parser.metamodel.procedure.subtract.SubtractCorresponding;
 
-public class SubtractCorrespondingImpl extends StatementImpl implements SubtractCorresponding {
+public class SubtractCorrespondingImpl extends CobolDivisionElementImpl implements SubtractCorresponding {
 
 	protected final SubtractCorrespondingStatementContext ctx;
 

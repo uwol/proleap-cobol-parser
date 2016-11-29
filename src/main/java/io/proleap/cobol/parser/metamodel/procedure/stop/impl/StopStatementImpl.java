@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.procedure.stop.impl;
 
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.stop.StopStatement;
@@ -22,8 +23,8 @@ public class StopStatementImpl extends StatementImpl implements StopStatement {
 
 	protected Type type;
 
-	public StopStatementImpl(final ProgramUnit programUnit, final StopStatementContext ctx) {
-		super(programUnit, ctx);
+	public StopStatementImpl(final ProgramUnit programUnit, final Scope scope, final StopStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

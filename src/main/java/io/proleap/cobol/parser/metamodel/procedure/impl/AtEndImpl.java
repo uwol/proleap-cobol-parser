@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.AtEndPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.AtEnd;
 
-public class AtEndImpl extends StatementsContainerImpl implements AtEnd {
+public class AtEndImpl extends ScopeImpl implements AtEnd {
 
 	protected final AtEndPhraseContext ctx;
 

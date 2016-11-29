@@ -17,6 +17,7 @@ import io.proleap.cobol.Cobol85Parser.StringSendingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.StringStatementContext;
 import io.proleap.cobol.Cobol85Parser.StringWithPointerPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnOverflow;
 import io.proleap.cobol.parser.metamodel.procedure.OnOverflow;
@@ -40,8 +41,8 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 
 	protected WithPointer withPointer;
 
-	public StringStatementImpl(final ProgramUnit programUnit, final StringStatementContext ctx) {
-		super(programUnit, ctx);
+	public StringStatementImpl(final ProgramUnit programUnit, final Scope scope, final StringStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

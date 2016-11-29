@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.NotOnExceptionClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnException;
 
-public class NotOnExceptionImpl extends StatementsContainerImpl implements NotOnException {
+public class NotOnExceptionImpl extends ScopeImpl implements NotOnException {
 
 	protected final NotOnExceptionClauseContext ctx;
 

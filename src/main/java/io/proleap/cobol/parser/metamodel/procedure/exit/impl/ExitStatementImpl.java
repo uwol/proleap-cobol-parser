@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.procedure.exit.impl;
 
 import io.proleap.cobol.Cobol85Parser.ExitStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.procedure.exit.ExitStatement;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
@@ -17,8 +18,8 @@ public class ExitStatementImpl extends StatementImpl implements ExitStatement {
 
 	protected final ExitStatementContext ctx;
 
-	public ExitStatementImpl(final ProgramUnit programUnit, final ExitStatementContext ctx) {
-		super(programUnit, ctx);
+	public ExitStatementImpl(final ProgramUnit programUnit, final Scope scope, final ExitStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.procedure.release.impl;
 
 import io.proleap.cobol.Cobol85Parser.ReleaseStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.release.ReleaseStatement;
@@ -22,8 +23,8 @@ public class ReleaseStatementImpl extends StatementImpl implements ReleaseStatem
 
 	protected Call recordCall;
 
-	public ReleaseStatementImpl(final ProgramUnit programUnit, final ReleaseStatementContext ctx) {
-		super(programUnit, ctx);
+	public ReleaseStatementImpl(final ProgramUnit programUnit, final Scope scope, final ReleaseStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

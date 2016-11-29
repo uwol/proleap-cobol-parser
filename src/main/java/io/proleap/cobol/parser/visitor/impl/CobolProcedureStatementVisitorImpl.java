@@ -13,14 +13,15 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.parser.registry.ASGElementRegistry;
 import io.proleap.cobol.parser.util.ANTLRUtils;
 
 /**
- * Visitor for analyzing expressions in the AST.
+ * Visitor for analyzing statements in the AST.
  */
-public class CobolProcedureExpressionVisitorImpl extends AbstractCobolParserVisitorImpl {
+public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisitorImpl {
 
 	protected ProcedureDivision findProcedureDivision(final ParseTree ctx) {
 		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
@@ -29,405 +30,405 @@ public class CobolProcedureExpressionVisitorImpl extends AbstractCobolParserVisi
 
 	@Override
 	public Boolean visitAcceptStatement(@NotNull final Cobol85Parser.AcceptStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addAcceptStatement(ctx);
+		scope.addAcceptStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitAddStatement(@NotNull final Cobol85Parser.AddStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addAddStatement(ctx);
+		scope.addAddStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitAlterStatement(@NotNull final Cobol85Parser.AlterStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addAlterStatement(ctx);
+		scope.addAlterStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitCallStatement(@NotNull final Cobol85Parser.CallStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addCallStatement(ctx);
+		scope.addCallStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitCancelStatement(@NotNull final Cobol85Parser.CancelStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addCancelStatement(ctx);
+		scope.addCancelStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitCloseStatement(@NotNull final Cobol85Parser.CloseStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addCloseStatement(ctx);
+		scope.addCloseStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitComputeStatement(@NotNull final Cobol85Parser.ComputeStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addComputeStatement(ctx);
+		scope.addComputeStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitContinueStatement(@NotNull final Cobol85Parser.ContinueStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addContinueStatement(ctx);
+		scope.addContinueStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitDeleteStatement(@NotNull final Cobol85Parser.DeleteStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addDeleteStatement(ctx);
+		scope.addDeleteStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitDisableStatement(@NotNull final Cobol85Parser.DisableStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addDisableStatement(ctx);
+		scope.addDisableStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitDisplayStatement(@NotNull final Cobol85Parser.DisplayStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addDisplayStatement(ctx);
+		scope.addDisplayStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitDivideStatement(@NotNull final Cobol85Parser.DivideStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addDivideStatement(ctx);
+		scope.addDivideStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitEnableStatement(@NotNull final Cobol85Parser.EnableStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addEnableStatement(ctx);
+		scope.addEnableStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitEntryStatement(@NotNull final Cobol85Parser.EntryStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addEntryStatement(ctx);
+		scope.addEntryStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitEvaluateStatement(@NotNull final Cobol85Parser.EvaluateStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addEvaluateStatement(ctx);
+		scope.addEvaluateStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitExitStatement(@NotNull final Cobol85Parser.ExitStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addExitStatement(ctx);
+		scope.addExitStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitGenerateStatement(@NotNull final Cobol85Parser.GenerateStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addGenerateStatement(ctx);
+		scope.addGenerateStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitGobackStatement(@NotNull final Cobol85Parser.GobackStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addGobackStatement(ctx);
+		scope.addGobackStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitGoToStatement(@NotNull final Cobol85Parser.GoToStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addGoToStatement(ctx);
+		scope.addGoToStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitIfStatement(@NotNull final Cobol85Parser.IfStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addIfStatement(ctx);
+		scope.addIfStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitInitializeStatement(@NotNull final Cobol85Parser.InitializeStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addInitializeStatement(ctx);
+		scope.addInitializeStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitInitiateStatement(@NotNull final Cobol85Parser.InitiateStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addInitiateStatement(ctx);
+		scope.addInitiateStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitInspectStatement(@NotNull final Cobol85Parser.InspectStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addInspectStatement(ctx);
+		scope.addInspectStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitMergeStatement(@NotNull final Cobol85Parser.MergeStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addMergeStatement(ctx);
+		scope.addMergeStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitMoveToStatement(@NotNull final Cobol85Parser.MoveToStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addMoveToStatement(ctx);
+		scope.addMoveToStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitMultiplyStatement(@NotNull final Cobol85Parser.MultiplyStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addMultiplyStatement(ctx);
+		scope.addMultiplyStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitOpenStatement(@NotNull final Cobol85Parser.OpenStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addOpenStatement(ctx);
+		scope.addOpenStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitPerformStatement(@NotNull final Cobol85Parser.PerformStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addPerformStatement(ctx);
+		scope.addPerformStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitPurgeStatement(@NotNull final Cobol85Parser.PurgeStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addPurgeStatement(ctx);
+		scope.addPurgeStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitReadStatement(@NotNull final Cobol85Parser.ReadStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addReadStatement(ctx);
+		scope.addReadStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitReceiveStatement(@NotNull final Cobol85Parser.ReceiveStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addReceiveStatement(ctx);
+		scope.addReceiveStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitReleaseStatement(@NotNull final Cobol85Parser.ReleaseStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addReleaseStatement(ctx);
+		scope.addReleaseStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitReturnStatement(@NotNull final Cobol85Parser.ReturnStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addReturnStatement(ctx);
+		scope.addReturnStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitRewriteStatement(@NotNull final Cobol85Parser.RewriteStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addRewriteStatement(ctx);
+		scope.addRewriteStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitSearchStatement(@NotNull final Cobol85Parser.SearchStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addSearchStatement(ctx);
+		scope.addSearchStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitSendStatement(@NotNull final Cobol85Parser.SendStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addSendStatement(ctx);
+		scope.addSendStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitSetStatement(@NotNull final Cobol85Parser.SetStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addSetStatement(ctx);
+		scope.addSetStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitSortStatement(@NotNull final Cobol85Parser.SortStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addSortStatement(ctx);
+		scope.addSortStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitStartStatement(@NotNull final Cobol85Parser.StartStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addStartStatement(ctx);
+		scope.addStartStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitStopStatement(@NotNull final Cobol85Parser.StopStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addStopStatement(ctx);
+		scope.addStopStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitStringStatement(@NotNull final Cobol85Parser.StringStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addStringStatement(ctx);
+		scope.addStringStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitSubtractStatement(@NotNull final Cobol85Parser.SubtractStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addSubtractStatement(ctx);
+		scope.addSubtractStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitTerminateStatement(@NotNull final Cobol85Parser.TerminateStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addTerminateStatement(ctx);
+		scope.addTerminateStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitUnstringStatement(@NotNull final Cobol85Parser.UnstringStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addUnstringStatement(ctx);
+		scope.addUnstringStatement(ctx);
 
 		return visitChildren(ctx);
 	}
 
 	@Override
 	public Boolean visitWriteStatement(@NotNull final Cobol85Parser.WriteStatementContext ctx) {
-		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+		final Scope scope = findScope(ctx);
 
-		procedureDivision.addWriteStatement(ctx);
+		scope.addWriteStatement(ctx);
 
 		return visitChildren(ctx);
 	}

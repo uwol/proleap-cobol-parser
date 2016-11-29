@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.ifstmt;
 
-import io.proleap.cobol.parser.metamodel.StatementsContainer;
+import io.proleap.cobol.parser.metamodel.Scope;
 
-public interface Else extends StatementsContainer {
+public interface Else extends Scope {
 
 	boolean isNextSentence();
 

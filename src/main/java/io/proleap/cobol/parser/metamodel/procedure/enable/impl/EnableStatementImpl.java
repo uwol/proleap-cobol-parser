@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.procedure.enable.impl;
 
 import io.proleap.cobol.Cobol85Parser.EnableStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.enable.EnableStatement;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
@@ -26,8 +27,8 @@ public class EnableStatementImpl extends StatementImpl implements EnableStatemen
 
 	protected Type type;
 
-	public EnableStatementImpl(final ProgramUnit programUnit, final EnableStatementContext ctx) {
-		super(programUnit, ctx);
+	public EnableStatementImpl(final ProgramUnit programUnit, final Scope scope, final EnableStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

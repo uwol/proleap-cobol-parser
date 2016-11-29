@@ -13,6 +13,7 @@ import io.proleap.cobol.Cobol85Parser.AcceptFromMnemonicStatementContext;
 import io.proleap.cobol.Cobol85Parser.AcceptMessageCountStatementContext;
 import io.proleap.cobol.Cobol85Parser.AcceptStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptFromDate;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptFromMnemonic;
@@ -34,8 +35,8 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 
 	protected Type type;
 
-	public AcceptStatementImpl(final ProgramUnit programUnit, final AcceptStatementContext ctx) {
-		super(programUnit, ctx);
+	public AcceptStatementImpl(final ProgramUnit programUnit, final Scope scope, final AcceptStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

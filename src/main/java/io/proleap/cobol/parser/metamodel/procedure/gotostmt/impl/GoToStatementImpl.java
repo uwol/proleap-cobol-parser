@@ -13,6 +13,7 @@ import io.proleap.cobol.Cobol85Parser.GoToStatementContext;
 import io.proleap.cobol.Cobol85Parser.GoToStatementSimpleContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.gotostmt.DependingOn;
 import io.proleap.cobol.parser.metamodel.procedure.gotostmt.GoToStatement;
@@ -29,8 +30,8 @@ public class GoToStatementImpl extends StatementImpl implements GoToStatement {
 
 	protected Type type;
 
-	public GoToStatementImpl(final ProgramUnit programUnit, final GoToStatementContext ctx) {
-		super(programUnit, ctx);
+	public GoToStatementImpl(final ProgramUnit programUnit, final Scope scope, final GoToStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

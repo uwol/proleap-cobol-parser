@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.ifstmt.impl;
 
 import io.proleap.cobol.Cobol85Parser.IfElseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.ifstmt.Else;
 
-public class ElseImpl extends StatementsContainerImpl implements Else {
+public class ElseImpl extends ScopeImpl implements Else {
 
 	protected final IfElseContext ctx;
 

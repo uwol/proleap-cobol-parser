@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.procedure.goback.impl;
 
 import io.proleap.cobol.Cobol85Parser.GobackStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.procedure.goback.GobackStatement;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
@@ -17,8 +18,8 @@ public class GobackStatementImpl extends StatementImpl implements GobackStatemen
 
 	protected final GobackStatementContext ctx;
 
-	public GobackStatementImpl(final ProgramUnit programUnit, final GobackStatementContext ctx) {
-		super(programUnit, ctx);
+	public GobackStatementImpl(final ProgramUnit programUnit, final Scope scope, final GobackStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

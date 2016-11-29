@@ -24,6 +24,7 @@ import io.proleap.cobol.Cobol85Parser.SortOutputProcedurePhraseContext;
 import io.proleap.cobol.Cobol85Parser.SortStatementContext;
 import io.proleap.cobol.Cobol85Parser.SortUsingContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.sort.CollatingSequence;
@@ -55,8 +56,8 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 
 	protected List<Using> usings = new ArrayList<Using>();
 
-	public SortStatementImpl(final ProgramUnit programUnit, final SortStatementContext ctx) {
-		super(programUnit, ctx);
+	public SortStatementImpl(final ProgramUnit programUnit, final Scope scope, final SortStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

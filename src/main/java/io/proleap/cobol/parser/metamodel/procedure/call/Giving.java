@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.call;
 
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
-public interface Giving extends Statement {
+public interface Giving extends CobolDivisionElement {
 
 	Call getGivingCall();
 

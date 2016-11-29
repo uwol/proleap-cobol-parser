@@ -13,13 +13,13 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.AddToGivingStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddToGiving;
 import io.proleap.cobol.parser.metamodel.procedure.add.From;
 import io.proleap.cobol.parser.metamodel.procedure.add.Giving;
 import io.proleap.cobol.parser.metamodel.procedure.add.To;
-import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
-public class AddToGivingImpl extends StatementImpl implements AddToGiving {
+public class AddToGivingImpl extends CobolDivisionElementImpl implements AddToGiving {
 
 	protected final AddToGivingStatementContext ctx;
 

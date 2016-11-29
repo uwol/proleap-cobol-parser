@@ -15,11 +15,11 @@ import io.proleap.cobol.Cobol85Parser.EvaluateAlsoConditionContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateWhenContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateWhenPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.evaluate.When;
 import io.proleap.cobol.parser.metamodel.procedure.evaluate.WhenPhrase;
 
-public class WhenPhraseImpl extends StatementsContainerImpl implements WhenPhrase {
+public class WhenPhraseImpl extends ScopeImpl implements WhenPhrase {
 
 	protected final EvaluateWhenPhraseContext ctx;
 

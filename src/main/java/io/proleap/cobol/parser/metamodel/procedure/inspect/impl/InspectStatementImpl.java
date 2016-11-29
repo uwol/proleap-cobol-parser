@@ -18,6 +18,7 @@ import io.proleap.cobol.Cobol85Parser.InspectStatementContext;
 import io.proleap.cobol.Cobol85Parser.InspectTallyingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.InspectTallyingReplacingPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.inspect.Converting;
@@ -42,8 +43,8 @@ public class InspectStatementImpl extends StatementImpl implements InspectStatem
 
 	protected Type type;
 
-	public InspectStatementImpl(final ProgramUnit programUnit, final InspectStatementContext ctx) {
-		super(programUnit, ctx);
+	public InspectStatementImpl(final ProgramUnit programUnit, final Scope scope, final InspectStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

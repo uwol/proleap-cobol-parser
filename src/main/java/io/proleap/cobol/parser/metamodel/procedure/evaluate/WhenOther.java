@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.evaluate;
 
-import io.proleap.cobol.parser.metamodel.StatementsContainer;
+import io.proleap.cobol.parser.metamodel.Scope;
 
-public interface WhenOther extends StatementsContainer {
+public interface WhenOther extends Scope {
 
 }

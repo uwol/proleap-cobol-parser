@@ -32,7 +32,7 @@ import io.proleap.cobol.parser.visitor.impl.CobolDataDivisionVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolEnvironmentDivisionVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolIdentificationDivisionVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolProcedureDivisionVisitorImpl;
-import io.proleap.cobol.parser.visitor.impl.CobolProcedureExpressionVisitorImpl;
+import io.proleap.cobol.parser.visitor.impl.CobolProcedureStatementVisitorImpl;
 import io.proleap.cobol.parser.visitor.impl.CobolProgramUnitVisitorImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
@@ -49,7 +49,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		analyzeDataDivisions(program);
 		analyzeProcedureDivisions(program);
 
-		analyzeProcedureExpressions(program);
+		analyzeProcedureStatements(program);
 	}
 
 	protected void analyzeDataDivisions(final Program program) {
@@ -113,11 +113,11 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		}
 	}
 
-	protected void analyzeProcedureExpressions(final Program program) {
+	protected void analyzeProcedureStatements(final Program program) {
 		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
-			final ParserVisitor visitor = new CobolProcedureExpressionVisitorImpl();
+			final ParserVisitor visitor = new CobolProcedureStatementVisitorImpl();
 
-			LOG.info("Analyzing expressions of compilation unit {}.", compilationUnit.getName());
+			LOG.info("Analyzing statements of compilation unit {}.", compilationUnit.getName());
 			visitor.visit(compilationUnit.getCtx());
 		}
 	}

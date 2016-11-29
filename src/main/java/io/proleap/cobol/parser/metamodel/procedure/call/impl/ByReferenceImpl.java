@@ -11,10 +11,10 @@ package io.proleap.cobol.parser.metamodel.procedure.call.impl;
 import io.proleap.cobol.Cobol85Parser.CallByReferenceContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.call.ByReference;
-import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
-public class ByReferenceImpl extends StatementImpl implements ByReference {
+public class ByReferenceImpl extends CobolDivisionElementImpl implements ByReference {
 
 	protected Call call;
 

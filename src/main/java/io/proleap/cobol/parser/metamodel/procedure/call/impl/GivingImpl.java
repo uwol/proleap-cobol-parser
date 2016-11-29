@@ -11,10 +11,10 @@ package io.proleap.cobol.parser.metamodel.procedure.call.impl;
 import io.proleap.cobol.Cobol85Parser.CallGivingPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.call.Giving;
-import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
-public class GivingImpl extends StatementImpl implements Giving {
+public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 
 	protected final CallGivingPhraseContext ctx;
 

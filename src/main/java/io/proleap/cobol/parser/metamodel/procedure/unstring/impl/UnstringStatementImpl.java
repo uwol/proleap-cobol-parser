@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.UnstringStatementContext;
 import io.proleap.cobol.Cobol85Parser.UnstringTallyingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.UnstringWithPointerPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnOverflow;
 import io.proleap.cobol.parser.metamodel.procedure.OnOverflow;
@@ -42,8 +43,8 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 
 	protected WithPointer withPointer;
 
-	public UnstringStatementImpl(final ProgramUnit programUnit, final UnstringStatementContext ctx) {
-		super(programUnit, ctx);
+	public UnstringStatementImpl(final ProgramUnit programUnit, final Scope scope, final UnstringStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

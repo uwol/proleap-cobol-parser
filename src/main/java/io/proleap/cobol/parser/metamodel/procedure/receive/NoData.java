@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.receive;
 
-import io.proleap.cobol.parser.metamodel.StatementsContainer;
+import io.proleap.cobol.parser.metamodel.Scope;
 
-public interface NoData extends StatementsContainer {
+public interface NoData extends Scope {
 
 }

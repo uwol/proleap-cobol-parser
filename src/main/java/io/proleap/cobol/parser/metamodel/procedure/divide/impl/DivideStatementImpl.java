@@ -15,6 +15,7 @@ import io.proleap.cobol.Cobol85Parser.DivideIntoStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideRemainderContext;
 import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeError;
 import io.proleap.cobol.parser.metamodel.procedure.OnSizeError;
@@ -45,8 +46,8 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 
 	protected Type type;
 
-	public DivideStatementImpl(final ProgramUnit programUnit, final DivideStatementContext ctx) {
-		super(programUnit, ctx);
+	public DivideStatementImpl(final ProgramUnit programUnit, final Scope scope, final DivideStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

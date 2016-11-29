@@ -12,6 +12,7 @@ import io.proleap.cobol.Cobol85Parser.SendStatementAsyncContext;
 import io.proleap.cobol.Cobol85Parser.SendStatementContext;
 import io.proleap.cobol.Cobol85Parser.SendStatementSyncContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnException;
 import io.proleap.cobol.parser.metamodel.procedure.OnException;
@@ -34,8 +35,8 @@ public class SendStatementImpl extends StatementImpl implements SendStatement {
 
 	protected Type type;
 
-	public SendStatementImpl(final ProgramUnit programUnit, final SendStatementContext ctx) {
-		super(programUnit, ctx);
+	public SendStatementImpl(final ProgramUnit programUnit, final Scope scope, final SendStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

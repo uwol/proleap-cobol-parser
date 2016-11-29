@@ -1,5 +1,6 @@
 package io.proleap.cobol.gpl.parser.procedure.ifstmt;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
@@ -36,6 +37,7 @@ public class IfStatementTest extends CobolTestSupport {
 		final CompilationUnit compilationUnit = program.getCompilationUnit("IfStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(1, procedureDivision.getStatements().size());
 
 		final IfStatement ifStatement = (IfStatement) procedureDivision.getStatements().get(0);
 		assertNotNull(ifStatement);
@@ -47,11 +49,13 @@ public class IfStatementTest extends CobolTestSupport {
 		{
 			final Then then = ifStatement.getThen();
 			assertNotNull(then);
+			assertEquals(1, then.getStatements().size());
 		}
 
 		{
 			final Else ifElse = ifStatement.getElse();
 			assertNotNull(ifElse);
+			assertEquals(1, ifElse.getStatements().size());
 		}
 	}
 }

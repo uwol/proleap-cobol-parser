@@ -13,6 +13,7 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.InitiateStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.initiate.InitiateStatement;
@@ -23,8 +24,8 @@ public class InitiateStatementImpl extends StatementImpl implements InitiateStat
 
 	protected List<Call> reportCalls = new ArrayList<Call>();
 
-	public InitiateStatementImpl(final ProgramUnit programUnit, final InitiateStatementContext ctx) {
-		super(programUnit, ctx);
+	public InitiateStatementImpl(final ProgramUnit programUnit, final Scope scope, final InitiateStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

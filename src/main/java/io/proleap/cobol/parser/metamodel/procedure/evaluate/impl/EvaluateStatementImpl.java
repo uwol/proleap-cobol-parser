@@ -19,6 +19,7 @@ import io.proleap.cobol.Cobol85Parser.EvaluateWhenOtherContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateWhenPhraseContext;
 import io.proleap.cobol.Cobol85Parser.StatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.procedure.evaluate.AlsoSelect;
 import io.proleap.cobol.parser.metamodel.procedure.evaluate.EvaluateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.evaluate.Select;
@@ -39,8 +40,8 @@ public class EvaluateStatementImpl extends StatementImpl implements EvaluateStat
 
 	protected List<WhenPhrase> whenPhrases = new ArrayList<WhenPhrase>();
 
-	public EvaluateStatementImpl(final ProgramUnit programUnit, final EvaluateStatementContext ctx) {
-		super(programUnit, ctx);
+	public EvaluateStatementImpl(final ProgramUnit programUnit, final Scope scope, final EvaluateStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

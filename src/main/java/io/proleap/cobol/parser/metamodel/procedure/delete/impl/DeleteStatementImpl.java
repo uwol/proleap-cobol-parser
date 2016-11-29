@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.procedure.delete.impl;
 
 import io.proleap.cobol.Cobol85Parser.DeleteStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.InvalidKey;
 import io.proleap.cobol.parser.metamodel.procedure.NotInvalidKey;
@@ -28,8 +29,8 @@ public class DeleteStatementImpl extends StatementImpl implements DeleteStatemen
 
 	protected boolean record;
 
-	public DeleteStatementImpl(final ProgramUnit programUnit, final DeleteStatementContext ctx) {
-		super(programUnit, ctx);
+	public DeleteStatementImpl(final ProgramUnit programUnit, final Scope scope, final DeleteStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

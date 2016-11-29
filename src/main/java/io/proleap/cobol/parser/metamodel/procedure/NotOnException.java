@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.parser.metamodel.procedure;
 
-import io.proleap.cobol.parser.metamodel.StatementsContainer;
+import io.proleap.cobol.parser.metamodel.Scope;
 
-public interface NotOnException extends StatementsContainer {
+public interface NotOnException extends Scope {
 
 }

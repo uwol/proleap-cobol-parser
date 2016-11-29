@@ -20,6 +20,7 @@ import io.proleap.cobol.Cobol85Parser.CallByValueStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallGivingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnException;
 import io.proleap.cobol.parser.metamodel.procedure.OnException;
@@ -51,8 +52,8 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 
 	protected Call programCall;
 
-	public CallStatementImpl(final ProgramUnit programUnit, final CallStatementContext ctx) {
-		super(programUnit, ctx);
+	public CallStatementImpl(final ProgramUnit programUnit, final Scope scope, final CallStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

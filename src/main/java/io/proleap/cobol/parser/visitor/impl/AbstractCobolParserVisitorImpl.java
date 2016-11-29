@@ -15,6 +15,7 @@ import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.ASGElement;
 import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.registry.ASGElementRegistry;
 import io.proleap.cobol.parser.util.ANTLRUtils;
 import io.proleap.cobol.parser.visitor.ParserVisitor;
@@ -29,6 +30,11 @@ public abstract class AbstractCobolParserVisitorImpl extends Cobol85BaseVisitor<
 	protected ProgramUnit findProgramUnit(final ParseTree ctx) {
 		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
 		return ANTLRUtils.findParent(ProgramUnit.class, ctx, registry);
+	}
+
+	protected Scope findScope(final ParseTree ctx) {
+		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
+		return ANTLRUtils.findParent(Scope.class, ctx, registry);
 	}
 
 	protected ASGElement getASGElement(final ParseTree ctx) {

@@ -13,6 +13,7 @@ import io.proleap.cobol.Cobol85Parser.IfStatementContext;
 import io.proleap.cobol.Cobol85Parser.IfThenContext;
 import io.proleap.cobol.Cobol85Parser.StatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.procedure.ifstmt.Else;
 import io.proleap.cobol.parser.metamodel.procedure.ifstmt.IfStatement;
 import io.proleap.cobol.parser.metamodel.procedure.ifstmt.Then;
@@ -29,8 +30,8 @@ public class IfStatementImpl extends StatementImpl implements IfStatement {
 
 	protected Then then;
 
-	public IfStatementImpl(final ProgramUnit programUnit, final IfStatementContext ctx) {
-		super(programUnit, ctx);
+	public IfStatementImpl(final ProgramUnit programUnit, final Scope scope, final IfStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

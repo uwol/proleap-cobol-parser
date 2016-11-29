@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.SearchVaryingContext;
 import io.proleap.cobol.Cobol85Parser.SearchWhenContext;
 import io.proleap.cobol.Cobol85Parser.StatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.AtEnd;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
@@ -36,8 +37,8 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 
 	protected List<When> whens = new ArrayList<When>();
 
-	public SearchStatementImpl(final ProgramUnit programUnit, final SearchStatementContext ctx) {
-		super(programUnit, ctx);
+	public SearchStatementImpl(final ProgramUnit programUnit, final Scope scope, final SearchStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

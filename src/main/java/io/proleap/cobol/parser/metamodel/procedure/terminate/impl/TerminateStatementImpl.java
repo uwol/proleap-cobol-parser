@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.procedure.terminate.impl;
 
 import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.terminate.TerminateStatement;
@@ -20,8 +21,9 @@ public class TerminateStatementImpl extends StatementImpl implements TerminateSt
 
 	protected Call reportCall;
 
-	public TerminateStatementImpl(final ProgramUnit programUnit, final TerminateStatementContext ctx) {
-		super(programUnit, ctx);
+	public TerminateStatementImpl(final ProgramUnit programUnit, final Scope scope,
+			final TerminateStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.InvalidKeyPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.InvalidKey;
 
-public class InvalidKeyImpl extends StatementsContainerImpl implements InvalidKey {
+public class InvalidKeyImpl extends ScopeImpl implements InvalidKey {
 
 	protected final InvalidKeyPhraseContext ctx;
 

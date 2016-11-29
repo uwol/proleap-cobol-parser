@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.NotAtEndPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.NotAtEnd;
 
-public class NotAtEndImpl extends StatementsContainerImpl implements NotAtEnd {
+public class NotAtEndImpl extends ScopeImpl implements NotAtEnd {
 
 	protected final NotAtEndPhraseContext ctx;
 

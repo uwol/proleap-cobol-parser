@@ -18,6 +18,7 @@ import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.call.ProcedureCall;
 import io.proleap.cobol.parser.metamodel.call.impl.ProcedureCallImpl;
@@ -34,8 +35,8 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 
 	protected PerformProcedureStatement performProcedureStatement;
 
-	public PerformStatementImpl(final ProgramUnit programUnit, final PerformStatementContext ctx) {
-		super(programUnit, ctx);
+	public PerformStatementImpl(final ProgramUnit programUnit, final Scope scope, final PerformStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

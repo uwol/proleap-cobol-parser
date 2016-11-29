@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.SubtractMinuendContext;
 import io.proleap.cobol.Cobol85Parser.SubtractStatementContext;
 import io.proleap.cobol.Cobol85Parser.SubtractSubtrahendContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeError;
 import io.proleap.cobol.parser.metamodel.procedure.OnSizeError;
@@ -41,8 +42,8 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 
 	protected Type type;
 
-	public SubtractStatementImpl(final ProgramUnit programUnit, final SubtractStatementContext ctx) {
-		super(programUnit, ctx);
+	public SubtractStatementImpl(final ProgramUnit programUnit, final Scope scope, final SubtractStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

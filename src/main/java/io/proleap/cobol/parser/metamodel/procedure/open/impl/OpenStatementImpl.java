@@ -20,6 +20,7 @@ import io.proleap.cobol.Cobol85Parser.OpenOutputContext;
 import io.proleap.cobol.Cobol85Parser.OpenOutputStatementContext;
 import io.proleap.cobol.Cobol85Parser.OpenStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.open.OpenExtend;
@@ -40,8 +41,8 @@ public class OpenStatementImpl extends StatementImpl implements OpenStatement {
 
 	protected List<OpenOutput> openOutputs = new ArrayList<OpenOutput>();
 
-	public OpenStatementImpl(final ProgramUnit programUnit, final OpenStatementContext ctx) {
-		super(programUnit, ctx);
+	public OpenStatementImpl(final ProgramUnit programUnit, final Scope scope, final OpenStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

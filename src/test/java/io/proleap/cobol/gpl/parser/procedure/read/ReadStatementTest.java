@@ -15,7 +15,12 @@ import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.procedure.AtEnd;
+import io.proleap.cobol.parser.metamodel.procedure.InvalidKey;
+import io.proleap.cobol.parser.metamodel.procedure.NotAtEnd;
+import io.proleap.cobol.parser.metamodel.procedure.NotInvalidKey;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.read.Into;
 import io.proleap.cobol.parser.metamodel.procedure.read.Key;
 import io.proleap.cobol.parser.metamodel.procedure.read.ReadStatement;
@@ -72,10 +77,41 @@ public class ReadStatementTest extends CobolTestSupport {
 				assertEquals(Call.CallType.UndefinedCall, key.getKeyCall().getCallType());
 			}
 
-			assertNotNull(readStatement.getInvalidKey());
-			assertNotNull(readStatement.getNotInvalidKey());
-			assertNotNull(readStatement.getAtEnd());
-			assertNotNull(readStatement.getNotAtEnd());
+			{
+				final InvalidKey invalidKey = readStatement.getInvalidKey();
+				assertNotNull(invalidKey);
+				assertEquals(1, invalidKey.getStatements().size());
+
+				final DisplayStatement displayStatement = (DisplayStatement) invalidKey.getStatements().get(0);
+				assertNotNull(displayStatement);
+			}
+
+			{
+				final NotInvalidKey notInvalidKey = readStatement.getNotInvalidKey();
+				assertNotNull(notInvalidKey);
+				assertEquals(1, notInvalidKey.getStatements().size());
+
+				final DisplayStatement displayStatement = (DisplayStatement) notInvalidKey.getStatements().get(0);
+				assertNotNull(displayStatement);
+			}
+
+			{
+				final AtEnd atEnd = readStatement.getAtEnd();
+				assertNotNull(atEnd);
+				assertEquals(1, atEnd.getStatements().size());
+
+				final DisplayStatement displayStatement = (DisplayStatement) atEnd.getStatements().get(0);
+				assertNotNull(displayStatement);
+			}
+
+			{
+				final NotAtEnd notAtEnd = readStatement.getNotAtEnd();
+				assertNotNull(notAtEnd);
+				assertEquals(1, notAtEnd.getStatements().size());
+
+				final DisplayStatement displayStatement = (DisplayStatement) notAtEnd.getStatements().get(0);
+				assertNotNull(displayStatement);
+			}
 		}
 	}
 }

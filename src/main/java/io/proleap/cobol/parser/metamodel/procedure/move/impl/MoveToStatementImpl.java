@@ -11,12 +11,10 @@ package io.proleap.cobol.parser.metamodel.procedure.move.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.move.MoveToStatement;
@@ -25,16 +23,14 @@ import io.proleap.cobol.parser.metamodel.valuestmt.impl.ValueStmtDelegateImpl;
 
 public class MoveToStatementImpl extends StatementImpl implements MoveToStatement {
 
-	private final static Logger LOG = LogManager.getLogger(MoveToStatementImpl.class);
-
 	protected final MoveToStatementContext ctx;
 
 	protected List<Call> receivingAreaCalls = new ArrayList<Call>();
 
 	protected ValueStmt sendingAreaValueStmt;
 
-	public MoveToStatementImpl(final ProgramUnit programUnit, final MoveToStatementContext ctx) {
-		super(programUnit, ctx);
+	public MoveToStatementImpl(final ProgramUnit programUnit, final Scope scope, final MoveToStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

@@ -15,6 +15,7 @@ import io.proleap.cobol.Cobol85Parser.InitializeReplacingByContext;
 import io.proleap.cobol.Cobol85Parser.InitializeReplacingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.InitializeStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.initialize.InitializeStatement;
@@ -28,8 +29,9 @@ public class InitializeStatementImpl extends StatementImpl implements Initialize
 
 	protected Replacing replacing;
 
-	public InitializeStatementImpl(final ProgramUnit programUnit, final InitializeStatementContext ctx) {
-		super(programUnit, ctx);
+	public InitializeStatementImpl(final ProgramUnit programUnit, final Scope scope,
+			final InitializeStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

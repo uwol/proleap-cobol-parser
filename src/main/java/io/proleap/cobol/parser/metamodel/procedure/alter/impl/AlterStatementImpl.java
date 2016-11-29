@@ -14,6 +14,7 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.AlterProceedToContext;
 import io.proleap.cobol.Cobol85Parser.AlterStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.alter.AlterProceedTo;
 import io.proleap.cobol.parser.metamodel.procedure.alter.AlterStatement;
@@ -25,8 +26,8 @@ public class AlterStatementImpl extends StatementImpl implements AlterStatement 
 
 	protected final AlterStatementContext ctx;
 
-	public AlterStatementImpl(final ProgramUnit programUnit, final AlterStatementContext ctx) {
-		super(programUnit, ctx);
+	public AlterStatementImpl(final ProgramUnit programUnit, final Scope scope, final AlterStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

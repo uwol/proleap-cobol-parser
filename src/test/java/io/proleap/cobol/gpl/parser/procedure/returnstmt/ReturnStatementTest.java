@@ -14,7 +14,10 @@ import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.procedure.AtEnd;
+import io.proleap.cobol.parser.metamodel.procedure.NotAtEnd;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.returnstmt.Into;
 import io.proleap.cobol.parser.metamodel.procedure.returnstmt.ReturnStatement;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -57,8 +60,23 @@ public class ReturnStatementTest extends CobolTestSupport {
 				assertEquals(Call.CallType.UndefinedCall, intoCall.getCallType());
 			}
 
-			assertNotNull(returnStatement.getAtEnd());
-			assertNotNull(returnStatement.getNotAtEnd());
+			{
+				final AtEnd atEnd = returnStatement.getAtEnd();
+				assertNotNull(atEnd);
+				assertEquals(1, atEnd.getStatements().size());
+
+				final DisplayStatement displayStatement = (DisplayStatement) atEnd.getStatements().get(0);
+				assertNotNull(displayStatement);
+			}
+
+			{
+				final NotAtEnd notAtEnd = returnStatement.getNotAtEnd();
+				assertNotNull(notAtEnd);
+				assertEquals(1, notAtEnd.getStatements().size());
+
+				final DisplayStatement displayStatement = (DisplayStatement) notAtEnd.getStatements().get(0);
+				assertNotNull(displayStatement);
+			}
 		}
 	}
 }

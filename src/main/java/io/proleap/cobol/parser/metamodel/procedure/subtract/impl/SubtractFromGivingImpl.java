@@ -17,13 +17,13 @@ import io.proleap.cobol.Cobol85Parser.SubtractMinuendGivingContext;
 import io.proleap.cobol.Cobol85Parser.SubtractSubtrahendContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
-import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.subtract.Giving;
 import io.proleap.cobol.parser.metamodel.procedure.subtract.MinuendGiving;
 import io.proleap.cobol.parser.metamodel.procedure.subtract.SubtractFromGiving;
 import io.proleap.cobol.parser.metamodel.procedure.subtract.Subtrahend;
 
-public class SubtractFromGivingImpl extends StatementImpl implements SubtractFromGiving {
+public class SubtractFromGivingImpl extends CobolDivisionElementImpl implements SubtractFromGiving {
 
 	protected final SubtractFromGivingStatementContext ctx;
 

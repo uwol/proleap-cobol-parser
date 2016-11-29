@@ -14,6 +14,7 @@ import io.proleap.cobol.Cobol85Parser.MultiplyRegularContext;
 import io.proleap.cobol.Cobol85Parser.MultiplyRegularOperandContext;
 import io.proleap.cobol.Cobol85Parser.MultiplyStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeError;
 import io.proleap.cobol.parser.metamodel.procedure.OnSizeError;
@@ -38,8 +39,8 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 
 	protected Type type;
 
-	public MultiplyStatementImpl(final ProgramUnit programUnit, final MultiplyStatementContext ctx) {
-		super(programUnit, ctx);
+	public MultiplyStatementImpl(final ProgramUnit programUnit, final Scope scope, final MultiplyStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.OnOverflowPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.OnOverflow;
 
-public class OnOverflowImpl extends StatementsContainerImpl implements OnOverflow {
+public class OnOverflowImpl extends ScopeImpl implements OnOverflow {
 
 	protected final OnOverflowPhraseContext ctx;
 

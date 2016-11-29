@@ -22,6 +22,7 @@ import io.proleap.cobol.Cobol85Parser.MergeStatementContext;
 import io.proleap.cobol.Cobol85Parser.MergeUsingContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.merge.CollatingSequence;
@@ -47,8 +48,8 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 
 	protected List<Using> usings = new ArrayList<Using>();
 
-	public MergeStatementImpl(final ProgramUnit programUnit, final MergeStatementContext ctx) {
-		super(programUnit, ctx);
+	public MergeStatementImpl(final ProgramUnit programUnit, final Scope scope, final MergeStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

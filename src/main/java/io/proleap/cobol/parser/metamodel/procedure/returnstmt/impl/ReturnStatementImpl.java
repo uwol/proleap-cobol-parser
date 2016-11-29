@@ -11,6 +11,7 @@ package io.proleap.cobol.parser.metamodel.procedure.returnstmt.impl;
 import io.proleap.cobol.Cobol85Parser.ReturnIntoContext;
 import io.proleap.cobol.Cobol85Parser.ReturnStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.AtEnd;
 import io.proleap.cobol.parser.metamodel.procedure.NotAtEnd;
@@ -30,8 +31,8 @@ public class ReturnStatementImpl extends StatementImpl implements ReturnStatemen
 
 	protected NotAtEnd notAtEnd;
 
-	public ReturnStatementImpl(final ProgramUnit programUnit, final ReturnStatementContext ctx) {
-		super(programUnit, ctx);
+	public ReturnStatementImpl(final ProgramUnit programUnit, final Scope scope, final ReturnStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.procedure.continuestmt.impl;
 
 import io.proleap.cobol.Cobol85Parser.ContinueStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.procedure.continuestmt.ContinueStatement;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
@@ -17,8 +18,8 @@ public class ContinueStatementImpl extends StatementImpl implements ContinueStat
 
 	protected final ContinueStatementContext ctx;
 
-	public ContinueStatementImpl(final ProgramUnit programUnit, final ContinueStatementContext ctx) {
-		super(programUnit, ctx);
+	public ContinueStatementImpl(final ProgramUnit programUnit, final Scope scope, final ContinueStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

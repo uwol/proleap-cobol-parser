@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.OnSizeErrorPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.OnSizeError;
 
-public class OnSizeErrorImpl extends StatementsContainerImpl implements OnSizeError {
+public class OnSizeErrorImpl extends ScopeImpl implements OnSizeError {
 
 	protected final OnSizeErrorPhraseContext ctx;
 

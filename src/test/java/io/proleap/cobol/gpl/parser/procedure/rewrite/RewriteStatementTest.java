@@ -14,7 +14,10 @@ import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.procedure.InvalidKey;
+import io.proleap.cobol.parser.metamodel.procedure.NotInvalidKey;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.rewrite.From;
 import io.proleap.cobol.parser.metamodel.procedure.rewrite.RewriteStatement;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -57,8 +60,23 @@ public class RewriteStatementTest extends CobolTestSupport {
 				assertEquals(Call.CallType.UndefinedCall, fromCall.getCallType());
 			}
 
-			assertNotNull(rewriteStatement.getInvalidKey());
-			assertNotNull(rewriteStatement.getNotInvalidKey());
+			{
+				final InvalidKey invalidKey = rewriteStatement.getInvalidKey();
+				assertNotNull(invalidKey);
+				assertEquals(1, invalidKey.getStatements().size());
+
+				final DisplayStatement displayStatement = (DisplayStatement) invalidKey.getStatements().get(0);
+				assertNotNull(displayStatement);
+			}
+
+			{
+				final NotInvalidKey notInvalidKey = rewriteStatement.getNotInvalidKey();
+				assertNotNull(notInvalidKey);
+				assertEquals(1, notInvalidKey.getStatements().size());
+
+				final DisplayStatement displayStatement = (DisplayStatement) notInvalidKey.getStatements().get(0);
+				assertNotNull(displayStatement);
+			}
 		}
 	}
 }

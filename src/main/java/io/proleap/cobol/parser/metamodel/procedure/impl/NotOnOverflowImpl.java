@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 
 import io.proleap.cobol.Cobol85Parser.NotOnOverflowPhraseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnOverflow;
 
-public class NotOnOverflowImpl extends StatementsContainerImpl implements NotOnOverflow {
+public class NotOnOverflowImpl extends ScopeImpl implements NotOnOverflow {
 
 	protected final NotOnOverflowPhraseContext ctx;
 

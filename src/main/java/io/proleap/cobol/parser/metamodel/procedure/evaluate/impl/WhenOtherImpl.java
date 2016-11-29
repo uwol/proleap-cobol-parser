@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.evaluate.impl;
 
 import io.proleap.cobol.Cobol85Parser.EvaluateWhenOtherContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.evaluate.WhenOther;
 
-public class WhenOtherImpl extends StatementsContainerImpl implements WhenOther {
+public class WhenOtherImpl extends ScopeImpl implements WhenOther {
 
 	protected final EvaluateWhenOtherContext ctx;
 

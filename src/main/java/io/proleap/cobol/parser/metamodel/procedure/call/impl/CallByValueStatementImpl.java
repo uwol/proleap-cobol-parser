@@ -11,9 +11,6 @@ package io.proleap.cobol.parser.metamodel.procedure.call.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.CallByValueContext;
 import io.proleap.cobol.Cobol85Parser.CallByValueStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
@@ -22,8 +19,6 @@ import io.proleap.cobol.parser.metamodel.procedure.call.CallByValueStatement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class CallByValueStatementImpl extends CobolDivisionElementImpl implements CallByValueStatement {
-
-	private final static Logger LOG = LogManager.getLogger(CallByValueStatementImpl.class);
 
 	protected final CallByValueStatementContext ctx;
 

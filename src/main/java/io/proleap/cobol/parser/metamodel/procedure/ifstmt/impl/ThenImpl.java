@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.ifstmt.impl;
 
 import io.proleap.cobol.Cobol85Parser.IfThenContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.ifstmt.Then;
 
-public class ThenImpl extends StatementsContainerImpl implements Then {
+public class ThenImpl extends ScopeImpl implements Then {
 
 	protected final IfThenContext ctx;
 

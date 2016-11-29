@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.procedure.generate.impl;
 
 import io.proleap.cobol.Cobol85Parser.GenerateStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.generate.GenerateStatement;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
@@ -20,8 +21,8 @@ public class GenerateStatementImpl extends StatementImpl implements GenerateStat
 
 	protected Call reportDescriptionCall;
 
-	public GenerateStatementImpl(final ProgramUnit programUnit, final GenerateStatementContext ctx) {
-		super(programUnit, ctx);
+	public GenerateStatementImpl(final ProgramUnit programUnit, final Scope scope, final GenerateStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

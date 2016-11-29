@@ -11,12 +11,10 @@ package io.proleap.cobol.parser.metamodel.procedure.cancel.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.CancelCallContext;
 import io.proleap.cobol.Cobol85Parser.CancelStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.cancel.CancelCall;
 import io.proleap.cobol.parser.metamodel.procedure.cancel.CancelStatement;
@@ -24,14 +22,12 @@ import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
 public class CancelStatementImpl extends StatementImpl implements CancelStatement {
 
-	private final static Logger LOG = LogManager.getLogger(CancelStatementImpl.class);
-
 	protected List<CancelCall> cancelCalls = new ArrayList<CancelCall>();
 
 	protected final CancelStatementContext ctx;
 
-	public CancelStatementImpl(final ProgramUnit programUnit, final CancelStatementContext ctx) {
-		super(programUnit, ctx);
+	public CancelStatementImpl(final ProgramUnit programUnit, final Scope scope, final CancelStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.accept.impl;
 
 import io.proleap.cobol.Cobol85Parser.AcceptFromDateStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptFromDate;
-import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
-public class AcceptFromDateImpl extends StatementImpl implements AcceptFromDate {
+public class AcceptFromDateImpl extends CobolDivisionElementImpl implements AcceptFromDate {
 
 	protected final AcceptFromDateStatementContext ctx;
 

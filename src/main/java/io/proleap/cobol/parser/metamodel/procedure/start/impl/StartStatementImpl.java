@@ -11,6 +11,7 @@ package io.proleap.cobol.parser.metamodel.procedure.start.impl;
 import io.proleap.cobol.Cobol85Parser.StartKeyContext;
 import io.proleap.cobol.Cobol85Parser.StartStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.InvalidKey;
 import io.proleap.cobol.parser.metamodel.procedure.NotInvalidKey;
@@ -30,8 +31,8 @@ public class StartStatementImpl extends StatementImpl implements StartStatement 
 
 	protected NotInvalidKey notInvalidKey;
 
-	public StartStatementImpl(final ProgramUnit programUnit, final StartStatementContext ctx) {
-		super(programUnit, ctx);
+	public StartStatementImpl(final ProgramUnit programUnit, final Scope scope, final StartStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

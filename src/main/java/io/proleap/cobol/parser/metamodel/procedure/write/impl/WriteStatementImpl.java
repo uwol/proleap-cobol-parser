@@ -14,6 +14,7 @@ import io.proleap.cobol.Cobol85Parser.WriteFromPhraseContext;
 import io.proleap.cobol.Cobol85Parser.WriteNotAtEndOfPagePhraseContext;
 import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.InvalidKey;
 import io.proleap.cobol.parser.metamodel.procedure.NotInvalidKey;
@@ -42,8 +43,8 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 
 	protected Call recordCall;
 
-	public WriteStatementImpl(final ProgramUnit programUnit, final WriteStatementContext ctx) {
-		super(programUnit, ctx);
+	public WriteStatementImpl(final ProgramUnit programUnit, final Scope scope, final WriteStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

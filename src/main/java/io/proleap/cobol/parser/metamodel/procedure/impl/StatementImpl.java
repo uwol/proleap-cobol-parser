@@ -11,13 +11,22 @@ package io.proleap.cobol.parser.metamodel.procedure.impl;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.Statement;
 
 public class StatementImpl extends CobolDivisionElementImpl implements Statement {
 
-	public StatementImpl(final ProgramUnit programUnit, final ParseTree ctx) {
+	protected final Scope scope;
+
+	public StatementImpl(final ProgramUnit programUnit, final Scope scope, final ParseTree ctx) {
 		super(programUnit, ctx);
+
+		this.scope = scope;
 	}
 
+	@Override
+	public Scope getScope() {
+		return scope;
+	}
 }

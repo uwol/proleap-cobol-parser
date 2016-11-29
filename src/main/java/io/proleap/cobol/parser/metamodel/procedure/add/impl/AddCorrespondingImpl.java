@@ -10,12 +10,12 @@ package io.proleap.cobol.parser.metamodel.procedure.add.impl;
 
 import io.proleap.cobol.Cobol85Parser.AddCorrespondingStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddCorresponding;
 import io.proleap.cobol.parser.metamodel.procedure.add.To;
-import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public class AddCorrespondingImpl extends StatementImpl implements AddCorresponding {
+public class AddCorrespondingImpl extends CobolDivisionElementImpl implements AddCorresponding {
 
 	protected final AddCorrespondingStatementContext ctx;
 

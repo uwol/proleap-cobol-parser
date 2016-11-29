@@ -11,12 +11,10 @@ package io.proleap.cobol.parser.metamodel.procedure.close.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.CloseFileContext;
 import io.proleap.cobol.Cobol85Parser.CloseStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.close.CloseFile;
 import io.proleap.cobol.parser.metamodel.procedure.close.CloseStatement;
@@ -24,14 +22,12 @@ import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
 public class CloseStatementImpl extends StatementImpl implements CloseStatement {
 
-	private final static Logger LOG = LogManager.getLogger(CloseStatementImpl.class);
-
 	protected List<CloseFile> closeFiles = new ArrayList<CloseFile>();
 
 	protected final CloseStatementContext ctx;
 
-	public CloseStatementImpl(final ProgramUnit programUnit, final CloseStatementContext ctx) {
-		super(programUnit, ctx);
+	public CloseStatementImpl(final ProgramUnit programUnit, final Scope scope, final CloseStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

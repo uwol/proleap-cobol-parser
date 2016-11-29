@@ -13,6 +13,7 @@ import io.proleap.cobol.Cobol85Parser.ReadKeyContext;
 import io.proleap.cobol.Cobol85Parser.ReadStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReadWithContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.AtEnd;
 import io.proleap.cobol.parser.metamodel.procedure.InvalidKey;
@@ -46,8 +47,8 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 
 	protected With with;
 
-	public ReadStatementImpl(final ProgramUnit programUnit, final ReadStatementContext ctx) {
-		super(programUnit, ctx);
+	public ReadStatementImpl(final ProgramUnit programUnit, final Scope scope, final ReadStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

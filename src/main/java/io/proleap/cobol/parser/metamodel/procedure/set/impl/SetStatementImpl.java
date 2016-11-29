@@ -17,6 +17,7 @@ import io.proleap.cobol.Cobol85Parser.SetToStatementContext;
 import io.proleap.cobol.Cobol85Parser.SetToValueContext;
 import io.proleap.cobol.Cobol85Parser.SetUpDownByStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.set.SetBy;
 import io.proleap.cobol.parser.metamodel.procedure.set.SetStatement;
@@ -32,8 +33,8 @@ public class SetStatementImpl extends StatementImpl implements SetStatement {
 
 	protected Type type;
 
-	public SetStatementImpl(final ProgramUnit programUnit, final SetStatementContext ctx) {
-		super(programUnit, ctx);
+	public SetStatementImpl(final ProgramUnit programUnit, final Scope scope, final SetStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}

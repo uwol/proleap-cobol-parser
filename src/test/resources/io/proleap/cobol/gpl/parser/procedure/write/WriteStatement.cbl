@@ -4,4 +4,3 @@
     WRITE SOMERECORD1 
        FROM SOMEID1
        BEFORE ADVANCING 3 LINES.
-       

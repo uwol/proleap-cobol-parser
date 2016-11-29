@@ -14,7 +14,10 @@ import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.procedure.NotOnOverflow;
+import io.proleap.cobol.parser.metamodel.procedure.OnOverflow;
 import io.proleap.cobol.parser.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.parser.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.parser.metamodel.procedure.unstring.CountIn;
 import io.proleap.cobol.parser.metamodel.procedure.unstring.DelimitedBy;
 import io.proleap.cobol.parser.metamodel.procedure.unstring.DelimiterIn;
@@ -109,7 +112,22 @@ public class UnstringStatementTest extends CobolTestSupport {
 			assertEquals(Call.CallType.UndefinedCall, pointerCall.getCallType());
 		}
 
-		assertNotNull(unstringStatement.getOnOverflow());
-		assertNotNull(unstringStatement.getNotOnOverflow());
+		{
+			final OnOverflow onOverflow = unstringStatement.getOnOverflow();
+			assertNotNull(onOverflow);
+			assertEquals(1, onOverflow.getStatements().size());
+
+			final DisplayStatement displayStatement = (DisplayStatement) onOverflow.getStatements().get(0);
+			assertNotNull(displayStatement);
+		}
+
+		{
+			final NotOnOverflow notOnOverflow = unstringStatement.getNotOnOverflow();
+			assertNotNull(notOnOverflow);
+			assertEquals(1, notOnOverflow.getStatements().size());
+
+			final DisplayStatement displayStatement = (DisplayStatement) notOnOverflow.getStatements().get(0);
+			assertNotNull(displayStatement);
+		}
 	}
 }

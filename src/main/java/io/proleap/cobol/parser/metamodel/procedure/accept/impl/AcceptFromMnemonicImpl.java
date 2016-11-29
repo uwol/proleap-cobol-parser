@@ -11,10 +11,10 @@ package io.proleap.cobol.parser.metamodel.procedure.accept.impl;
 import io.proleap.cobol.Cobol85Parser.AcceptFromMnemonicStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.accept.AcceptFromMnemonic;
-import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
-public class AcceptFromMnemonicImpl extends StatementImpl implements AcceptFromMnemonic {
+public class AcceptFromMnemonicImpl extends CobolDivisionElementImpl implements AcceptFromMnemonic {
 
 	protected final AcceptFromMnemonicStatementContext ctx;
 

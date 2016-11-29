@@ -11,10 +11,10 @@ package io.proleap.cobol.parser.metamodel.procedure.call.impl;
 import io.proleap.cobol.Cobol85Parser.CallByContentContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
 import io.proleap.cobol.parser.metamodel.call.Call;
+import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.call.ByContent;
-import io.proleap.cobol.parser.metamodel.procedure.impl.StatementImpl;
 
-public class ByContentImpl extends StatementImpl implements ByContent {
+public class ByContentImpl extends CobolDivisionElementImpl implements ByContent {
 
 	protected Call call;
 

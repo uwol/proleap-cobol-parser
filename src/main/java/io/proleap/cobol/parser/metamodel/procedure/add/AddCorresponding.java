@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.parser.metamodel.procedure.add;
 
-import io.proleap.cobol.parser.metamodel.procedure.Statement;
+import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
-public interface AddCorresponding extends Statement {
+public interface AddCorresponding extends CobolDivisionElement {
 
 	ValueStmt getFrom();
 

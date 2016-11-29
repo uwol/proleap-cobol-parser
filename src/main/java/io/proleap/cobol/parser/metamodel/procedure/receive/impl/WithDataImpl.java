@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.procedure.receive.impl;
 
 import io.proleap.cobol.Cobol85Parser.ReceiveWithDataContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.impl.StatementsContainerImpl;
+import io.proleap.cobol.parser.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.parser.metamodel.procedure.receive.WithData;
 
-public class WithDataImpl extends StatementsContainerImpl implements WithData {
+public class WithDataImpl extends ScopeImpl implements WithData {
 
 	protected final ReceiveWithDataContext ctx;
 

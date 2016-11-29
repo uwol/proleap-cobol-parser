@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.AddToContext;
 import io.proleap.cobol.Cobol85Parser.AddToGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddToStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.Scope;
 import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.procedure.NotOnSizeError;
 import io.proleap.cobol.parser.metamodel.procedure.OnSizeError;
@@ -45,8 +46,8 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 
 	protected Type type;
 
-	public AddStatementImpl(final ProgramUnit programUnit, final AddStatementContext ctx) {
-		super(programUnit, ctx);
+	public AddStatementImpl(final ProgramUnit programUnit, final Scope scope, final AddStatementContext ctx) {
+		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
 	}
