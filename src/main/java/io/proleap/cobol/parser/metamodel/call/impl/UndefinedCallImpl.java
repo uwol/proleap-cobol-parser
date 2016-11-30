@@ -15,12 +15,14 @@ import io.proleap.cobol.parser.metamodel.call.Call;
 
 public class UndefinedCallImpl extends CallImpl implements Call {
 
+	protected final CallType callType = CallType.UndefinedCall;
+
 	public UndefinedCallImpl(final String name, final ProgramUnit programUnit, final ParseTree ctx) {
 		super(name, programUnit, ctx);
 	}
 
 	@Override
 	public CallType getCallType() {
-		return CallType.UndefinedCall;
+		return callType;
 	}
 }

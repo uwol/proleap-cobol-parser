@@ -16,6 +16,8 @@ import io.proleap.cobol.parser.metamodel.data.communication.CommunicationDescrip
 
 public class CommunicationDescriptionEntryCallImpl extends CallImpl implements CommunicationDescriptionEntryCall {
 
+	protected final CallType callType = CallType.CommunicationDescriptionEntryCall;
+
 	protected CommunicationDescriptionEntry communicationDescriptionEntry;
 
 	public CommunicationDescriptionEntryCallImpl(final String name,
@@ -28,7 +30,7 @@ public class CommunicationDescriptionEntryCallImpl extends CallImpl implements C
 
 	@Override
 	public CallType getCallType() {
-		return CallType.CommunicationDescriptionEntryCall;
+		return callType;
 	}
 
 	@Override

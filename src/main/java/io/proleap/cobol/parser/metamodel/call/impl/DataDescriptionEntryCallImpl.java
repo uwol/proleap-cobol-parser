@@ -16,6 +16,8 @@ import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEnt
 
 public class DataDescriptionEntryCallImpl extends CallImpl implements DataDescriptionEntryCall {
 
+	protected final CallType callType = CallType.DataDescriptionEntryCall;
+
 	protected DataDescriptionEntry dataDescriptionEntry;
 
 	public DataDescriptionEntryCallImpl(final String name, final DataDescriptionEntry dataDescriptionEntry,
@@ -27,7 +29,7 @@ public class DataDescriptionEntryCallImpl extends CallImpl implements DataDescri
 
 	@Override
 	public CallType getCallType() {
-		return CallType.DataDescriptionEntryCall;
+		return callType;
 	}
 
 	@Override

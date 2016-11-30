@@ -16,6 +16,8 @@ import io.proleap.cobol.parser.metamodel.procedure.Paragraph;
 
 public class ProcedureCallImpl extends CallImpl implements ProcedureCall {
 
+	protected final CallType callType = CallType.ProcedureCall;
+
 	protected Paragraph paragraph;
 
 	public ProcedureCallImpl(final String name, final Paragraph paragraph, final ProgramUnit programUnit,
@@ -27,7 +29,7 @@ public class ProcedureCallImpl extends CallImpl implements ProcedureCall {
 
 	@Override
 	public CallType getCallType() {
-		return CallType.ProcedureCall;
+		return callType;
 	}
 
 	@Override

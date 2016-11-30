@@ -16,6 +16,8 @@ import io.proleap.cobol.parser.metamodel.data.report.ReportDescriptionEntry;
 
 public class ReportDescriptionEntryCallImpl extends CallImpl implements ReportDescriptionEntryCall {
 
+	protected final CallType callType = CallType.ReportDescriptionEntryCall;
+
 	protected ReportDescriptionEntry reportDescriptionEntry;
 
 	public ReportDescriptionEntryCallImpl(final String name, final ReportDescriptionEntry reportDescriptionEntry,
@@ -27,7 +29,7 @@ public class ReportDescriptionEntryCallImpl extends CallImpl implements ReportDe
 
 	@Override
 	public CallType getCallType() {
-		return CallType.ReportDescriptionEntryCall;
+		return callType;
 	}
 
 	@Override
