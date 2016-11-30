@@ -53,26 +53,24 @@ Example
 						(sentence
 							(statement
 								(displayStatement Display
-									(literal "Hello world")))) .)
+									(displayOperand 
+										(literal "Hello world")))) .)
 						(sentence
 							(statement
 								(stopStatement STOP RUN))) .)))))) <EOF>)
 ```
 
 
-Execution
----------
+How to use
+----------
 
-### Abstract Semantic Graph (ASG) parsing
+### Simple: Abstract Semantic Graph (ASG) parsing
 
 ```java
 io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
 
 java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/parser/HelloWorld.cbl");
 
-/*
-* semantic analysis
-*/
 io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
 io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, format);
 
@@ -83,56 +81,16 @@ io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry data
 Integer levelNumber = dataDescriptionEntry.getLevelNumber();
 ```
 
-### Abstract Syntax Tree (AST) parsing
-
-```java
-io.proleap.cobol.applicationcontext.CobolGrammarContextFactory.configureDefaultApplicationContext();
-
-java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/HelloWorld.cbl");
-java.io.File libDirectory = inputFile.getParentFile();
-
-/*
-* preprocessor
-*/
-io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.FIXED;
-String preProcessedInput = io.proleap.cobol.applicationcontext.CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile, libDirectory, format);
-
-/*
-* lexer
-*/
-org.antlr.v4.runtime.ANTLRInputStream antlrInputStream = new org.antlr.v4.runtime.ANTLRInputStream(preProcessedInput);
-io.proleap.cobol.Cobol85Lexer lexer = new io.proleap.cobol.Cobol85Lexer(antlrInputStream);
-org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.CommonTokenStream(lexer);
-
-/*
-* parser
-*/
-io.proleap.cobol.Cobol85Parser parser = new io.proleap.cobol.Cobol85Parser(tokens);
-io.proleap.cobol.Cobol85Parser.StartRuleContext ctx = parser.startRule();
-
-/*
-* traverse AST with ANTLR visitor
-*/
-io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>();
-visitor.visit(ctx);
-```
-
-### Abstract Semantic Graph (ASG) parsing with Abstract Syntax Tree (AST) traversal
+### Complex: Abstract Semantic Graph (ASG) parsing with Abstract Syntax Tree (AST) traversal
 
 ```java
 io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
 
 java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/parser/HelloWorld.cbl");
 
-/*
- * semantic analysis
- */
 io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
 io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, format);
 
-/*
-* traverse AST with ANTLR visitor
-*/
 io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>() {
   @Override
   public Boolean visitDataDescriptionEntryFormat1(final io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context ctx) {
@@ -147,13 +105,6 @@ for (final io.proleap.cobol.parser.metamodel.CompilationUnit compilationUnit : p
   visitor.visit(compilationUnit.getCtx());
 }
 ```
-
-
-VM args
--------
-
-* For parsing large Cobol source code files,  VM args have to be set: -Xmx2048m -XX:MaxPermSize=256m
-* Intellij Plugin for ANTLR 4 has to be provided with those VM args in file idea.vmoptions.
 
 
 Build process
@@ -212,6 +163,13 @@ $ mvn clean install
   <version>2.0.0</version>
 </dependency>
 ```
+
+
+VM args
+-------
+
+* For parsing large Cobol source code files,  VM args have to be set: -Xmx2048m -XX:MaxPermSize=256m
+* Intellij Plugin for ANTLR 4 has to be provided with those VM args in file idea.vmoptions.
 
 
 Release process
