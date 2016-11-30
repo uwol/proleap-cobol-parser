@@ -17,9 +17,12 @@ import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
 
 public interface CobolParserRunner {
 
-	Program analyzeDirectory(File inputDirectory, CobolDialect dialect, CobolSourceFormat format)
-			throws IOException;
+	Program analyzeDirectory(File inputDirectory, CobolSourceFormat format) throws IOException;
 
-	Program analyzeFile(File inputFile, CobolDialect dialect, CobolSourceFormat format) throws IOException;
+	Program analyzeDirectory(File inputDirectory, CobolSourceFormat format, CobolDialect dialect) throws IOException;
+
+	Program analyzeFile(File inputFile, CobolSourceFormat format) throws IOException;
+
+	Program analyzeFile(File inputFile, CobolSourceFormat format, CobolDialect dialect) throws IOException;
 
 }

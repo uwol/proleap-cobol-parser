@@ -9,8 +9,6 @@
 package io.proleap.cobol.parser.resolver.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
 import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
@@ -52,8 +50,6 @@ import io.proleap.cobol.Cobol85Parser.SystemNameContext;
 import io.proleap.cobol.parser.resolver.NameResolver;
 
 public class NameResolverImpl implements NameResolver {
-
-	private final static Logger LOG = LogManager.getLogger(NameResolverImpl.class);
 
 	public String determineName(final AlphabetNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;

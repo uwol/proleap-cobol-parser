@@ -8,9 +8,6 @@
 
 package io.proleap.cobol.parser.metamodel.identification.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.AuthorParagraphContext;
 import io.proleap.cobol.Cobol85Parser.DateCompiledParagraphContext;
 import io.proleap.cobol.Cobol85Parser.DateWrittenParagraphContext;
@@ -32,8 +29,6 @@ import io.proleap.cobol.parser.metamodel.identification.SecurityParagraph;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionImpl;
 
 public class IdentificationDivisionImpl extends CobolDivisionImpl implements IdentificationDivision {
-
-	private final static Logger LOG = LogManager.getLogger(IdentificationDivisionImpl.class);
 
 	protected AuthorParagraph authorParagraph;
 

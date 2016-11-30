@@ -30,7 +30,7 @@ public class InitiateStatementTest extends CobolTestSupport {
 	public void test() throws Exception {
 		final File inputFile = new File(
 				"src/test/resources/io/proleap/cobol/gpl/parser/procedure/initiate/InitiateStatement.cbl");
-		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
+		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
 				CobolSourceFormatEnum.TANDEM);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("InitiateStatement");

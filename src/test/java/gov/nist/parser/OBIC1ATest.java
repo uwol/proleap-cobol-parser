@@ -36,7 +36,7 @@ public class OBIC1ATest extends CobolTestSupport {
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File("src/test/resources/gov/nist/OBIC1A.CBL");
-		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
+		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
 				CobolSourceFormatEnum.FIXED);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("OBIC1A");

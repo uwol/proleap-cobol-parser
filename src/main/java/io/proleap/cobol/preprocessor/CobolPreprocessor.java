@@ -113,8 +113,13 @@ public interface CobolPreprocessor {
 		}
 	}
 
-	String process(File cobolFile, File libDirectory, CobolDialect dialect, CobolSourceFormat format)
+	String process(File cobolFile, File libDirectory, CobolSourceFormat format) throws IOException;
+
+	String process(File cobolFile, File libDirectory, CobolSourceFormat format, CobolDialect dialect)
 			throws IOException;
 
-	String process(String cobolSourceCode, File libDirectory, CobolDialect dialect, CobolSourceFormat format);
+	String process(String cobolSourceCode, File libDirectory, CobolSourceFormat format);
+
+	String process(String cobolSourceCode, File libDirectory, CobolSourceFormat format, CobolDialect dialect);
+
 }

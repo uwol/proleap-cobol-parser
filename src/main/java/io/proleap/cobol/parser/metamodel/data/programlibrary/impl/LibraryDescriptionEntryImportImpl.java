@@ -11,9 +11,6 @@ package io.proleap.cobol.parser.metamodel.data.programlibrary.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.LibraryAttributeClauseFormat2Context;
 import io.proleap.cobol.Cobol85Parser.LibraryDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureClauseFormat2Context;
@@ -30,8 +27,6 @@ import io.proleap.cobol.parser.metamodel.data.programlibrary.LibraryDescriptionE
 
 public class LibraryDescriptionEntryImportImpl extends LibraryDescriptionEntryImpl
 		implements LibraryDescriptionEntryImport {
-
-	private final static Logger LOG = LogManager.getLogger(LibraryDescriptionEntryImportImpl.class);
 
 	protected CommonClause commonClause;
 

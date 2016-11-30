@@ -138,7 +138,7 @@ public class TestGenerator {
 			final CobolSourceFormat format = getCobolSourceFormat(parentDirectory);
 
 			final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor()
-					.process(cobolInputFile, parentDirectory, null, format);
+					.process(cobolInputFile, parentDirectory, format);
 
 			final Cobol85Lexer lexer = new Cobol85Lexer(new ANTLRInputStream(preProcessedInput));
 			final CommonTokenStream tokens = new CommonTokenStream(lexer);

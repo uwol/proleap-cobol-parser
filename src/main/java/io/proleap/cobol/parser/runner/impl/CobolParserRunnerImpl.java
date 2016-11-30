@@ -62,12 +62,17 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	@Override
-	public Program analyzeDirectory(final File inputDirectory, final CobolDialect dialect,
-			final CobolSourceFormat format) throws IOException {
+	public Program analyzeDirectory(final File inputDirectory, final CobolSourceFormat format) throws IOException {
+		return analyzeDirectory(inputDirectory, format, null);
+	}
+
+	@Override
+	public Program analyzeDirectory(final File inputDirectory, final CobolSourceFormat format,
+			final CobolDialect dialect) throws IOException {
 		final Program program = new ProgramImpl();
 
 		for (final File inputFile : inputDirectory.listFiles()) {
-			parseFile(inputFile, program, dialect, format);
+			parseFile(inputFile, program, format, dialect);
 		}
 
 		analyze(program);
@@ -85,11 +90,16 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	@Override
-	public Program analyzeFile(final File inputFile, final CobolDialect dialect, final CobolSourceFormat format)
+	public Program analyzeFile(final File inputFile, final CobolSourceFormat format) throws IOException {
+		return analyzeFile(inputFile, format, null);
+	}
+
+	@Override
+	public Program analyzeFile(final File inputFile, final CobolSourceFormat format, final CobolDialect dialect)
 			throws IOException {
 		final Program program = new ProgramImpl();
 
-		parseFile(inputFile, program, dialect, format);
+		parseFile(inputFile, program, format, dialect);
 		analyze(program);
 
 		return program;
@@ -144,14 +154,14 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		return inputFile.isFile() && !inputFile.isHidden() && isCobolFile(inputFile);
 	}
 
-	protected void parseFile(final File inputFile, final Program program, final CobolDialect dialect,
-			final CobolSourceFormat format) throws IOException {
+	protected void parseFile(final File inputFile, final Program program, final CobolSourceFormat format,
+			final CobolDialect dialect) throws IOException {
 		if (isRelevant(inputFile)) {
 			final File libDirectory = inputFile.getParentFile();
 
 			// preprocess input stream
 			final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile,
-					libDirectory, dialect, format);
+					libDirectory, format, dialect);
 
 			LOG.info("Parsing file {}.", inputFile.getName());
 

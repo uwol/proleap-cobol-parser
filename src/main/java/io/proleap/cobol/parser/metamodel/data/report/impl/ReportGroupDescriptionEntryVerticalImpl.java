@@ -8,9 +8,6 @@
 
 package io.proleap.cobol.parser.metamodel.data.report.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.ReportGroupNextGroupClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupTypeClauseContext;
@@ -23,8 +20,6 @@ import io.proleap.cobol.parser.metamodel.data.report.TypeClause;
 
 public class ReportGroupDescriptionEntryVerticalImpl extends ReportGroupDescriptionEntryImpl
 		implements ReportGroupDescriptionEntryVertical {
-
-	private final static Logger LOG = LogManager.getLogger(ReportGroupDescriptionEntryVerticalImpl.class);
 
 	protected final ReportGroupDescriptionEntryFormat1Context ctx;
 

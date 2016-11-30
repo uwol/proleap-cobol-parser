@@ -11,9 +11,6 @@ package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.impl
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.CommitmentControlClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
@@ -32,8 +29,6 @@ import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class IoControlParagraphImpl extends CobolDivisionElementImpl implements IoControlParagraph {
-
-	private final static Logger LOG = LogManager.getLogger(IoControlParagraphImpl.class);
 
 	protected CommitmentControlClause commitmentControlClause;
 

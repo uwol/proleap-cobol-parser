@@ -99,7 +99,7 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 	public void parseFile(final File inputFile, final CobolSourceFormatEnum format) throws IOException {
 		final File libDirectory = inputFile.getParentFile();
 		final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile,
-				libDirectory, null, format);
+				libDirectory, format);
 
 		LOG.info("Parsing file {}.", inputFile.getName());
 

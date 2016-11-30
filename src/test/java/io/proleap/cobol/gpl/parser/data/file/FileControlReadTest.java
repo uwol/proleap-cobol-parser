@@ -36,7 +36,7 @@ public class FileControlReadTest extends CobolTestSupport {
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File("src/test/resources/io/proleap/cobol/gpl/parser/data/file/FileControlRead.cbl");
-		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
+		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
 				CobolSourceFormatEnum.TANDEM);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("FileControlRead");
@@ -78,7 +78,8 @@ public class FileControlReadTest extends CobolTestSupport {
 			assertNotNull(dataDescriptionEntryPersonId);
 			assertEquals("PERSON-ID", dataDescriptionEntryPersonId.getName());
 			assertEquals(new Integer(5), dataDescriptionEntryPersonId.getLevelNumber());
-			assertEquals(dataDescriptionEntryPersonFile, dataDescriptionEntryPersonId.getParentDataDescriptionEntryGroup());
+			assertEquals(dataDescriptionEntryPersonFile,
+					dataDescriptionEntryPersonId.getParentDataDescriptionEntryGroup());
 
 			final DataDescriptionEntry dataDescriptionEntryName = fileDescriptionEntry.getDataDescriptionEntry("NAME");
 			assertNotNull(dataDescriptionEntryName);
@@ -104,14 +105,16 @@ public class FileControlReadTest extends CobolTestSupport {
 			assertNotNull(dataDescriptionEntryWsPersonId);
 			assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
 			assertEquals(new Integer(5), dataDescriptionEntryWsPersonId.getLevelNumber());
-			assertEquals(dataDescriptionEntryWsPerson, dataDescriptionEntryWsPersonId.getParentDataDescriptionEntryGroup());
+			assertEquals(dataDescriptionEntryWsPerson,
+					dataDescriptionEntryWsPersonId.getParentDataDescriptionEntryGroup());
 
 			final DataDescriptionEntry dataDescriptionEntryWsPersonName = workingStorageSection
 					.getDataDescriptionEntry("WS-NAME");
 			assertNotNull(dataDescriptionEntryWsPersonName);
 			assertEquals("WS-NAME", dataDescriptionEntryWsPersonName.getName());
 			assertEquals(new Integer(5), dataDescriptionEntryWsPersonName.getLevelNumber());
-			assertEquals(dataDescriptionEntryWsPerson, dataDescriptionEntryWsPersonName.getParentDataDescriptionEntryGroup());
+			assertEquals(dataDescriptionEntryWsPerson,
+					dataDescriptionEntryWsPersonName.getParentDataDescriptionEntryGroup());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryWsEof = (DataDescriptionEntryGroup) workingStorageSection
 					.getDataDescriptionEntry("WS-EOF");

@@ -194,6 +194,11 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		public String processSourceFormatFixed(final String line, final CobolDialect dialect,
 				final CobolSourceFormat format) {
 			final CobolLine parsedLine = parseCobolLine(line, format);
+
+			if (parsedLine == null) {
+				throwCobolLineParseException(line, format);
+			}
+
 			final boolean foundCommentEntryTriggerInCurrentLine = beginsWithTrigger(parsedLine, triggersStart);
 
 			final String result;
@@ -352,6 +357,11 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		public String processLine(final String line, final int lineNumber, final CobolDialect dialect,
 				final CobolSourceFormat format) {
 			final CobolLine parsedLine = parseCobolLine(line, format);
+
+			if (parsedLine == null) {
+				throwCobolLineParseException(line, format);
+			}
+
 			final boolean isFirstLine = lineNumber == 0;
 			final String result = processLine(parsedLine, isFirstLine);
 			return result;
@@ -808,7 +818,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 			result = null;
 		} else {
 			try {
-				result = process(copyFile, libDirectory, dialect, format);
+				result = process(copyFile, libDirectory, format, dialect);
 			} catch (final IOException e) {
 				result = null;
 				LOG.warn(e.getMessage());
@@ -898,8 +908,14 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 	}
 
 	@Override
-	public String process(final File cobolFile, final File libDirectory, final CobolDialect dialect,
-			final CobolSourceFormat format) throws IOException {
+	public String process(final File cobolFile, final File libDirectory, final CobolSourceFormat format)
+			throws IOException {
+		return process(cobolFile, libDirectory, format, null);
+	}
+
+	@Override
+	public String process(final File cobolFile, final File libDirectory, final CobolSourceFormat format,
+			final CobolDialect dialect) throws IOException {
 		LOG.info("Preprocessing file {}.", cobolFile.getName());
 
 		final InputStream inputStream = new FileInputStream(cobolFile);
@@ -915,13 +931,18 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 
 		bufferedInputStreamReader.close();
 
-		final String result = process(outputBuffer.toString(), libDirectory, dialect, format);
+		final String result = process(outputBuffer.toString(), libDirectory, format, dialect);
 		return result;
 	}
 
 	@Override
-	public String process(final String cobolSourceCode, final File libDirectory, final CobolDialect dialect,
-			final CobolSourceFormat format) {
+	public String process(final String cobolSourceCode, final File libDirectory, final CobolSourceFormat format) {
+		return process(cobolSourceCode, libDirectory, format, null);
+	}
+
+	@Override
+	public String process(final String cobolSourceCode, final File libDirectory, final CobolSourceFormat format,
+			final CobolDialect dialect) {
 		final CobolSubPreprocessor cleanLinesPreprocessor = new CobolCleanLinesSubPreprocessorImpl();
 		final CobolSubPreprocessor markCommentEntriesPreprocessor = new CobolMarkCommentEntriesSubPreprocessorImpl();
 		final CobolSubPreprocessor normalizeLinesPreprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
@@ -935,6 +956,10 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		LOG.debug("Processed input:\n\n{}\n\n", result);
 
 		return result;
+	}
+
+	protected void throwCobolLineParseException(final String line, final CobolSourceFormat format) {
+		throw new RuntimeException("could not parse following line with format " + format + ": " + line);
 	}
 
 }

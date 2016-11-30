@@ -40,7 +40,7 @@ public class CommunicationDescriptionInputOutputTest extends CobolTestSupport {
 	public void test() throws Exception {
 		final File inputFile = new File(
 				"src/test/resources/io/proleap/cobol/gpl/parser/data/communication/CommunicationDescriptionInputOutput.cbl");
-		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
+		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
 				CobolSourceFormatEnum.TANDEM);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("CommunicationDescriptionInputOutput");
@@ -107,7 +107,8 @@ public class CommunicationDescriptionInputOutputTest extends CobolTestSupport {
 			assertNotNull(dataDescriptionEntryWsPersonId);
 			assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
 			assertEquals(new Integer(5), dataDescriptionEntryWsPersonId.getLevelNumber());
-			assertEquals(dataDescriptionEntryWsPerson, dataDescriptionEntryWsPersonId.getParentDataDescriptionEntryGroup());
+			assertEquals(dataDescriptionEntryWsPerson,
+					dataDescriptionEntryWsPersonId.getParentDataDescriptionEntryGroup());
 		}
 	}
 }

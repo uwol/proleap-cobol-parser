@@ -74,7 +74,7 @@ java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/g
 * semantic analysis
 */
 io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
-io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null, format);
+io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, format);
 
 io.proleap.cobol.parser.metamodel.CompilationUnit compilationUnit = program.getCompilationUnit("HelloWorld");
 io.proleap.cobol.parser.metamodel.ProgramUnit programUnit = compilationUnit.getProgramUnit();
@@ -95,7 +95,7 @@ java.io.File libDirectory = inputFile.getParentFile();
 * preprocessor
 */
 io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.FIXED;
-String preProcessedInput = io.proleap.cobol.applicationcontext.CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile, libDirectory, null, format);
+String preProcessedInput = io.proleap.cobol.applicationcontext.CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile, libDirectory, format);
 
 /*
 * lexer
@@ -128,7 +128,7 @@ java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/g
  * semantic analysis
  */
 io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
-io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null, format);
+io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, format);
 
 /*
 * traverse AST with ANTLR visitor

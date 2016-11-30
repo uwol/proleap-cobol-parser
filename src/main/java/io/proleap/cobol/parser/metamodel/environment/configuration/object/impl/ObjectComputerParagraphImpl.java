@@ -8,9 +8,6 @@
 
 package io.proleap.cobol.parser.metamodel.environment.configuration.object.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
 import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
@@ -30,8 +27,6 @@ import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ObjectComputerParagraphImpl extends CobolDivisionElementImpl implements ObjectComputerParagraph {
-
-	private final static Logger LOG = LogManager.getLogger(ObjectComputerParagraphImpl.class);
 
 	protected CharacterSetClause characterSetClause;
 

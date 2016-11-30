@@ -11,9 +11,6 @@ package io.proleap.cobol.parser.metamodel.data.datadescription.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataValueIntervalContext;
 import io.proleap.cobol.Cobol85Parser.DataValueIntervalFromContext;
@@ -25,8 +22,6 @@ import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ValueClauseImpl extends CobolDivisionElementImpl implements ValueClause {
-
-	private final static Logger LOG = LogManager.getLogger(ValueClauseImpl.class);
 
 	protected DataValueClauseContext ctx;
 
