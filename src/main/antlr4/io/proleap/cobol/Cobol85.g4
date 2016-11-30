@@ -2597,91 +2597,89 @@ notOnExceptionClause :
 // arithmetic expression ----------------------------------
 
 arithmeticExpression :
-	timesDiv ((PLUSCHAR | MINUSCHAR) timesDiv)*
+	multDivs plusMinus*
 ;
 
-timesDiv :
-	power ((ASTERISKCHAR | SLASHCHAR) power)*
+plusMinus :
+	(PLUSCHAR | MINUSCHAR) multDivs
+;
+
+multDivs :
+	powers multDiv*
+;
+
+multDiv :
+	(ASTERISKCHAR | SLASHCHAR) powers
+;
+
+powers :
+	(PLUSCHAR | MINUSCHAR)? basis power*
 ;
 
 power :
-	(PLUSCHAR | MINUSCHAR)? basis (DOUBLEASTERISKCHAR basis)*
+	DOUBLEASTERISKCHAR basis
 ;
 
 basis :
-	(identifier | literal | otherKeyword | LPARENCHAR arithmeticExpression RPARENCHAR)
+	identifier | literal | otherKeyword | LPARENCHAR arithmeticExpression RPARENCHAR
 ;
 
 
-// logical expressions ----------------------------------
+// condition ----------------------------------
 
 condition :
-	combinableCondition (
-		(AND | OR) (combinableCondition | abbreviationRest)
-	)*
+	combinableCondition andOrCondition*
+;
+
+andOrCondition :
+	(AND | OR) (combinableCondition | abbreviationRest)
 ;
 
 combinableCondition : NOT? simpleCondition;
 
 simpleCondition :
-	LPARENCHAR condition RPARENCHAR
-	| relationCondition
-	| classCondition
-	| conditionNameCondition
+	LPARENCHAR condition RPARENCHAR | relationCondition | classCondition | conditionNameReference
 ;
 
 classCondition :
-	identifier IS? NOT?
-	(
-		NUMERIC
-		| ALPHABETIC
-		| ALPHABETIC_LOWER
-		| ALPHABETIC_UPPER
-		| className
-		| DBCS
-		| KANJI
-	)
-;
-
-conditionNameCondition :
-	conditionNameReference
+	identifier IS? NOT? (NUMERIC | ALPHABETIC | ALPHABETIC_LOWER | ALPHABETIC_UPPER | className | DBCS | KANJI)
 ;
 
 conditionNameReference :
-	conditionName
-	(
-		((IN | OF) dataName)*
-		((IN | OF) fileName)?
-		(LPARENCHAR subscript RPARENCHAR)*
-		|
-		((IN | OF) mnemonicName)*
-	)
+	conditionName (inData* inFile? conditionNameSubscriptReference* | inMnemonic*)
 ;
+
+conditionNameSubscriptReference :
+	LPARENCHAR subscript+ RPARENCHAR
+;
+
+// relation ----------------------------------
 
 relationCondition :
-	arithmeticExpression (relationalOperator arithmeticExpression | signCondition)
-	| arithmeticExpression relationalOperator LPARENCHAR (arithmeticExpression (OR arithmeticExpression)+) RPARENCHAR
+	relationSignCondition | relationArithmeticComparison | relationCombinedComparison
 ;
 
-signCondition :
-	IS? NOT? (POSITIVE | NEGATIVE | ZERO)
+relationSignCondition :
+	arithmeticExpression IS? NOT? (POSITIVE | NEGATIVE | ZERO)
+;
+
+relationArithmeticComparison :
+	arithmeticExpression relationalOperator arithmeticExpression
+;
+
+relationCombinedComparison :
+	arithmeticExpression relationalOperator LPARENCHAR relationCombinedCondition RPARENCHAR
+;
+
+relationCombinedCondition :
+	arithmeticExpression (OR arithmeticExpression)+
 ;
 
 relationalOperator :
 	(IS | ARE)?
-	(
-		NOT? (
-			GREATER THAN?
-			| MORETHANCHAR
-			| LESS THAN?
-			| LESSTHANCHAR
-			| EQUAL TO?
-			| EQUALCHAR
-		)
-		| GREATER THAN? OR EQUAL TO?
-		| MORETHANOREQUAL
-		| LESS THAN? OR EQUAL TO?
-		| LESSTHANOREQUAL
+	(NOT? 
+		(GREATER THAN? | MORETHANCHAR | LESS THAN? | LESSTHANCHAR | EQUAL TO? | EQUALCHAR)
+		| GREATER THAN? OR EQUAL TO? | MORETHANOREQUAL | LESS THAN? OR EQUAL TO? | LESSTHANOREQUAL
 	)
 ;
 
@@ -2705,11 +2703,11 @@ identifier :
 
 // array access
 tableCall :
-	qualifiedDataName (LPARENCHAR subscript RPARENCHAR)* referenceModifier?
+	qualifiedDataName (LPARENCHAR subscript+ RPARENCHAR)* referenceModifier?
 ;
 
 functionCall :
-	FUNCTION functionName (LPARENCHAR argument RPARENCHAR)* referenceModifier?
+	FUNCTION functionName (LPARENCHAR argument+ RPARENCHAR)* referenceModifier?
 ;
 
 referenceModifier :
@@ -2725,52 +2723,63 @@ length :
 ;
 
 subscript :
-	(
-		integerLiteral
-		| qualifiedDataName integerLiteral?
-		| indexName integerLiteral?
-		| arithmeticExpression
-		| ALL
-	)+
+	integerLiteral | qualifiedDataName integerLiteral? | indexName integerLiteral? | arithmeticExpression | ALL
 ;
 
 argument :
-	(
-		literal
-		| identifier
-		| qualifiedDataName integerLiteral?
-		| indexName integerLiteral?
-		| arithmeticExpression
-	)+
+	literal | identifier | qualifiedDataName integerLiteral? | indexName integerLiteral? | arithmeticExpression
 ;
 
 // qualified data name ----------------------------------
 
 qualifiedDataName :
-	qualifiedDataNameFormat1
-	| qualifiedDataNameFormat2
-	| qualifiedDataNameFormat3
-	| qualifiedDataNameFormat4
+	qualifiedDataNameFormat1 | qualifiedDataNameFormat2 | qualifiedDataNameFormat3 | qualifiedDataNameFormat4
 ;
 
 qualifiedDataNameFormat1 :
-	(dataName | conditionName)
-	(
-		((IN | OF) (dataName | tableCall))+ ((IN | OF) fileName)?
-		| (IN | OF) fileName
-	)?
+	(dataName | conditionName) (qualifiedInData+ inFile? | inFile)?
 ;
 
 qualifiedDataNameFormat2 :
-	paragraphName (IN | OF) sectionName
+	paragraphName inSection
 ;
 
 qualifiedDataNameFormat3 :
-	textName (IN | OF) libraryName
+	textName inLibrary
 ;
 
 qualifiedDataNameFormat4 :
-	LINAGE_COUNTER (IN | OF) fileName
+	LINAGE_COUNTER inFile
+;
+
+qualifiedInData :
+	inData | inTable
+;
+
+// in ----------------------------------
+
+inData :
+	(IN | OF) dataName
+;
+
+inFile :
+	(IN | OF) fileName
+;
+
+inMnemonic :
+	(IN | OF) mnemonicName
+;
+
+inSection :
+	(IN | OF) sectionName
+;
+
+inLibrary :
+	(IN | OF) libraryName
+;
+
+inTable :
+	(IN | OF) tableCall
 ;
 
 // names ----------------------------------
@@ -2820,12 +2829,7 @@ fileName :
 ;
 
 functionName :
-	cobolWord
-	| INTEGER
-	| LENGTH
-	| RANDOM
-	| SUM
-	| WHEN_COMPILED
+	cobolWord | INTEGER | LENGTH | RANDOM | SUM | WHEN_COMPILED
 ;
 
 indexName :
@@ -2853,8 +2857,7 @@ paragraphName :
 ;
 
 procedureName :
-	paragraphName ((IN | OF) sectionName)?
-	| sectionName
+	paragraphName inSection? | sectionName
 ;
 
 programName :
@@ -2922,9 +2925,7 @@ cicsDfhValueLiteral :
 // ;
 
 connective :
-	AND |
-	IN |
-	OF | OR
+	AND | IN | OF | OR
 ;
 
 figurativeConstant :

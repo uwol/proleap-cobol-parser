@@ -15,22 +15,23 @@
 										(combinableCondition 
 											(simpleCondition 
 												(relationCondition 
-													(arithmeticExpression 
-														(timesDiv 
-															(power 
-																(basis 
-																	(identifier 
-																		(qualifiedDataName 
-																			(qualifiedDataNameFormat1 
-																				(dataName 
-																					(cobolWord Obj-Name))))))))) 
-													(relationalOperator >) 
-													(arithmeticExpression 
-														(timesDiv 
-															(power 
-																(basis 
-																	(literal 
-																		(numericLiteral ZERO)))))))))) 
+													(relationArithmeticComparison 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(identifier 
+																			(qualifiedDataName 
+																				(qualifiedDataNameFormat1 
+																					(dataName 
+																						(cobolWord Obj-Name))))))))) 
+														(relationalOperator >) 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(literal 
+																			(numericLiteral ZERO))))))))))) 
 									(ifThen 
 										(statement 
 											(setStatement SET 

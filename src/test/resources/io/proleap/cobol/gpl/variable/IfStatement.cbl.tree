@@ -15,19 +15,20 @@
 										(combinableCondition 
 											(simpleCondition 
 												(relationCondition 
-													(arithmeticExpression 
-														(timesDiv 
-															(power 
-																(basis 
-																	(identifier 
-																		(specialRegister LINE-COUNTER)))))) 
-													(relationalOperator EQUAL TO) 
-													(arithmeticExpression 
-														(timesDiv 
-															(power 
-																(basis 
-																	(literal 
-																		(numericLiteral ZERO)))))))))) 
+													(relationArithmeticComparison 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(identifier 
+																			(specialRegister LINE-COUNTER)))))) 
+														(relationalOperator EQUAL TO) 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(literal 
+																			(numericLiteral ZERO))))))))))) 
 									(ifThen 
 										(statement 
 											(displayStatement Display 
@@ -40,19 +41,20 @@
 										(combinableCondition 
 											(simpleCondition 
 												(relationCondition 
-													(arithmeticExpression 
-														(timesDiv 
-															(power 
-																(basis 
-																	(identifier 
-																		(specialRegister LINE-COUNTER)))))) 
-													(relationalOperator =) 
-													(arithmeticExpression 
-														(timesDiv 
-															(power 
-																(basis 
-																	(literal 
-																		(numericLiteral ZERO)))))))))) 
+													(relationArithmeticComparison 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(identifier 
+																			(specialRegister LINE-COUNTER)))))) 
+														(relationalOperator =) 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(literal 
+																			(numericLiteral ZERO))))))))))) 
 									(ifThen 
 										(statement 
 											(displayStatement Display 
@@ -65,37 +67,39 @@
 										(combinableCondition 
 											(simpleCondition 
 												(relationCondition 
+													(relationArithmeticComparison 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(identifier 
+																			(specialRegister LINE-COUNTER)))))) 
+														(relationalOperator =) 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(literal 
+																			(numericLiteral ZERO)))))))))) 
+										(andOrCondition OR 
+											(abbreviationRest 
+												(abbreviationLeaf 
 													(arithmeticExpression 
-														(timesDiv 
-															(power 
-																(basis 
-																	(identifier 
-																		(specialRegister LINE-COUNTER)))))) 
-													(relationalOperator =) 
-													(arithmeticExpression 
-														(timesDiv 
-															(power 
+														(multDivs 
+															(powers 
 																(basis 
 																	(literal 
-																		(numericLiteral ZERO))))))))) OR 
-										(abbreviationRest 
-											(abbreviationLeaf 
-												(arithmeticExpression 
-													(timesDiv 
-														(power 
-															(basis 
-																(literal 
-																	(numericLiteral 
-																		(integerLiteral 1)))))))) 
-											(abbreviationLeaf 
-												(arithmeticExpression 
-													(timesDiv 
-														(power 
-															(basis 
-																(otherKeyword Display)))))) 
-											(abbreviationLeaf 
-												(arithmeticExpression 
-													(timesDiv 
-														(power 
-															(basis 
-																(literal "Hello world")))))))) ifThen END-IF)) .)))))) <EOF>)
+																		(numericLiteral 
+																			(integerLiteral 1)))))))) 
+												(abbreviationLeaf 
+													(arithmeticExpression 
+														(multDivs 
+															(powers 
+																(basis 
+																	(otherKeyword Display)))))) 
+												(abbreviationLeaf 
+													(arithmeticExpression 
+														(multDivs 
+															(powers 
+																(basis 
+																	(literal "Hello world"))))))))) ifThen END-IF)) .)))))) <EOF>)

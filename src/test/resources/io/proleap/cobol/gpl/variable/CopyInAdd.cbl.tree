@@ -29,23 +29,24 @@
 										(combinableCondition 
 											(simpleCondition 
 												(relationCondition 
-													(arithmeticExpression 
-														(timesDiv 
-															(power 
-																(basis 
-																	(identifier 
-																		(qualifiedDataName 
-																			(qualifiedDataNameFormat1 
-																				(dataName 
-																					(cobolWord Var1))))))))) 
-													(relationalOperator EQUAL TO) 
-													(arithmeticExpression 
-														(timesDiv 
-															(power 
-																(basis 
-																	(literal 
-																		(numericLiteral 
-																			(integerLiteral 12345))))))))))) 
+													(relationArithmeticComparison 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(identifier 
+																			(qualifiedDataName 
+																				(qualifiedDataNameFormat1 
+																					(dataName 
+																						(cobolWord Var1))))))))) 
+														(relationalOperator EQUAL TO) 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(literal 
+																			(numericLiteral 
+																				(integerLiteral 12345)))))))))))) 
 									(ifThen 
 										(statement 
 											(goToStatement GO TO 

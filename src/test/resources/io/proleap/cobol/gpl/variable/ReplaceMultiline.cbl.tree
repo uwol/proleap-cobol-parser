@@ -31,21 +31,22 @@
 										(combinableCondition 
 											(simpleCondition 
 												(relationCondition 
-													(arithmeticExpression 
-														(timesDiv 
-															(power 
-																(basis 
-																	(identifier 
-																		(qualifiedDataName 
-																			(qualifiedDataNameFormat1 
-																				(dataName 
-																					(cobolWord WRK-XN-00001))))))))) 
-													(relationalOperator =) 
-													(arithmeticExpression 
-														(timesDiv 
-															(power 
-																(basis 
-																	(literal "*"))))))))) 
+													(relationArithmeticComparison 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(identifier 
+																			(qualifiedDataName 
+																				(qualifiedDataNameFormat1 
+																					(dataName 
+																						(cobolWord WRK-XN-00001))))))))) 
+														(relationalOperator =) 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(literal "*")))))))))) 
 									(ifThen 
 										(statement 
 											(displayStatement Display 

@@ -25,23 +25,24 @@
 									(evaluateAlsoSelect ALSO 
 										(evaluateSelect 
 											(arithmeticExpression 
-												(timesDiv 
-													(power 
+												(multDivs 
+													(powers 
 														(basis ( 
 															(arithmeticExpression 
-																(timesDiv 
-																	(power 
+																(multDivs 
+																	(powers 
 																		(basis 
 																			(identifier 
 																				(qualifiedDataName 
 																					(qualifiedDataNameFormat1 
 																						(dataName 
-																							(cobolWord SOMEVAR2))))))) * 
-																	(power 
-																		(basis 
-																			(literal 
-																				(numericLiteral 
-																					(integerLiteral 9))))))) ))))))) 
+																							(cobolWord SOMEVAR2))))))) 
+																	(multDiv * 
+																		(powers 
+																			(basis 
+																				(literal 
+																					(numericLiteral 
+																						(integerLiteral 9)))))))) ))))))) 
 									(evaluateAlsoSelect ALSO 
 										(evaluateSelect 
 											(identifier 
@@ -63,19 +64,17 @@
 												(condition 
 													(combinableCondition NOT 
 														(simpleCondition 
-															(conditionNameCondition 
-																(conditionNameReference 
-																	(conditionName 
-																		(cobolWord SOMEVAR3)))))))) 
+															(conditionNameReference 
+																(conditionName 
+																	(cobolWord SOMEVAR3))))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
 													(condition 
 														(combinableCondition 
 															(simpleCondition 
-																(conditionNameCondition 
-																	(conditionNameReference 
-																		(conditionName 
-																			(cobolWord SOMEVAR4))))))))) 
+																(conditionNameReference 
+																	(conditionName 
+																		(cobolWord SOMEVAR4)))))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
 													(evaluateValue 
@@ -91,46 +90,48 @@
 														(combinableCondition 
 															(simpleCondition 
 																(relationCondition 
-																	(arithmeticExpression 
-																		(timesDiv 
-																			(power 
-																				(basis 
-																					(identifier 
-																						(qualifiedDataName 
-																							(qualifiedDataNameFormat1 
-																								(dataName 
-																									(cobolWord SOMEVAR5))))))))) 
-																	(relationalOperator =) 
-																	(arithmeticExpression 
-																		(timesDiv 
-																			(power 
-																				(basis 
-																					(literal 
-																						(numericLiteral 
-																							(integerLiteral 0))))))))))))) 
+																	(relationArithmeticComparison 
+																		(arithmeticExpression 
+																			(multDivs 
+																				(powers 
+																					(basis 
+																						(identifier 
+																							(qualifiedDataName 
+																								(qualifiedDataNameFormat1 
+																									(dataName 
+																										(cobolWord SOMEVAR5))))))))) 
+																		(relationalOperator =) 
+																		(arithmeticExpression 
+																			(multDivs 
+																				(powers 
+																					(basis 
+																						(literal 
+																							(numericLiteral 
+																								(integerLiteral 0)))))))))))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
 													(condition 
 														(combinableCondition 
 															(simpleCondition 
 																(relationCondition 
-																	(arithmeticExpression 
-																		(timesDiv 
-																			(power 
-																				(basis 
-																					(identifier 
-																						(qualifiedDataName 
-																							(qualifiedDataNameFormat1 
-																								(dataName 
-																									(cobolWord SOMEVAR6))))))))) 
-																	(relationalOperator <) 
-																	(arithmeticExpression 
-																		(timesDiv 
-																			(power 
-																				(basis 
-																					(literal 
-																						(numericLiteral 
-																							(integerLiteral 9)))))))))))))) 
+																	(relationArithmeticComparison 
+																		(arithmeticExpression 
+																			(multDivs 
+																				(powers 
+																					(basis 
+																						(identifier 
+																							(qualifiedDataName 
+																								(qualifiedDataNameFormat1 
+																									(dataName 
+																										(cobolWord SOMEVAR6))))))))) 
+																		(relationalOperator <) 
+																		(arithmeticExpression 
+																			(multDivs 
+																				(powers 
+																					(basis 
+																						(literal 
+																							(numericLiteral 
+																								(integerLiteral 9))))))))))))))) 
 										(statement 
 											(moveStatement MOVE 
 												(moveToStatement 
@@ -163,34 +164,35 @@
 													(condition 
 														(combinableCondition 
 															(simpleCondition 
-																(conditionNameCondition 
-																	(conditionNameReference 
-																		(conditionName 
-																			(cobolWord SOMEVAR1))))))))) 
+																(conditionNameReference 
+																	(conditionName 
+																		(cobolWord SOMEVAR1)))))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
 													(evaluateValue 
 														(arithmeticExpression 
-															(timesDiv 
-																(power 
+															(multDivs 
+																(powers 
 																	(basis ( 
 																		(arithmeticExpression 
-																			(timesDiv 
-																				(power 
+																			(multDivs 
+																				(powers 
 																					(basis 
 																						(literal 
 																							(numericLiteral 
-																								(integerLiteral 9))))) * 
-																				(power 
-																					(basis 
-																						(literal 
-																							(numericLiteral 
-																								(integerLiteral 9))))) * 
-																				(power 
-																					(basis 
-																						(literal 
-																							(numericLiteral 
-																								(integerLiteral 9))))))) )))))))) 
+																								(integerLiteral 9))))) 
+																				(multDiv * 
+																					(powers 
+																						(basis 
+																							(literal 
+																								(numericLiteral 
+																									(integerLiteral 9)))))) 
+																				(multDiv * 
+																					(powers 
+																						(basis 
+																							(literal 
+																								(numericLiteral 
+																									(integerLiteral 9)))))))) )))))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
 													(booleanLiteral FALSE))) 
@@ -200,44 +202,46 @@
 														(combinableCondition 
 															(simpleCondition 
 																(relationCondition 
-																	(arithmeticExpression 
-																		(timesDiv 
-																			(power 
-																				(basis 
-																					(identifier 
-																						(qualifiedDataName 
-																							(qualifiedDataNameFormat1 
-																								(dataName 
-																									(cobolWord SOMEVAR1-2))))))))) 
-																	(relationalOperator =) 
-																	(arithmeticExpression 
-																		(timesDiv 
-																			(power 
-																				(basis 
-																					(literal "*"))))))))))) 
+																	(relationArithmeticComparison 
+																		(arithmeticExpression 
+																			(multDivs 
+																				(powers 
+																					(basis 
+																						(identifier 
+																							(qualifiedDataName 
+																								(qualifiedDataNameFormat1 
+																									(dataName 
+																										(cobolWord SOMEVAR1-2))))))))) 
+																		(relationalOperator =) 
+																		(arithmeticExpression 
+																			(multDivs 
+																				(powers 
+																					(basis 
+																						(literal "*")))))))))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
 													(condition 
 														(combinableCondition 
 															(simpleCondition 
 																(relationCondition 
-																	(arithmeticExpression 
-																		(timesDiv 
-																			(power 
-																				(basis 
-																					(identifier 
-																						(qualifiedDataName 
-																							(qualifiedDataNameFormat1 
-																								(dataName 
-																									(cobolWord SOMEVAR))))))))) 
-																	(relationalOperator >) 
-																	(arithmeticExpression 
-																		(timesDiv 
-																			(power 
-																				(basis 
-																					(literal 
-																						(numericLiteral 
-																							(integerLiteral 8)))))))))))))) 
+																	(relationArithmeticComparison 
+																		(arithmeticExpression 
+																			(multDivs 
+																				(powers 
+																					(basis 
+																						(identifier 
+																							(qualifiedDataName 
+																								(qualifiedDataNameFormat1 
+																									(dataName 
+																										(cobolWord SOMEVAR))))))))) 
+																		(relationalOperator >) 
+																		(arithmeticExpression 
+																			(multDivs 
+																				(powers 
+																					(basis 
+																						(literal 
+																							(numericLiteral 
+																								(integerLiteral 8))))))))))))))) 
 										(statement 
 											(moveStatement MOVE 
 												(moveToStatement 
@@ -275,23 +279,24 @@
 														(combinableCondition 
 															(simpleCondition 
 																(relationCondition 
-																	(arithmeticExpression 
-																		(timesDiv 
-																			(power 
-																				(basis 
-																					(identifier 
-																						(qualifiedDataName 
-																							(qualifiedDataNameFormat1 
-																								(dataName 
-																									(cobolWord SOMEVAR))))))))) 
-																	(relationalOperator =) 
-																	(arithmeticExpression 
-																		(timesDiv 
-																			(power 
-																				(basis 
-																					(literal 
-																						(numericLiteral 
-																							(integerLiteral 23)))))))))))))) 
+																	(relationArithmeticComparison 
+																		(arithmeticExpression 
+																			(multDivs 
+																				(powers 
+																					(basis 
+																						(identifier 
+																							(qualifiedDataName 
+																								(qualifiedDataNameFormat1 
+																									(dataName 
+																										(cobolWord SOMEVAR))))))))) 
+																		(relationalOperator =) 
+																		(arithmeticExpression 
+																			(multDivs 
+																				(powers 
+																					(basis 
+																						(literal 
+																							(numericLiteral 
+																								(integerLiteral 23))))))))))))))) 
 										(statement 
 											(moveStatement MOVE 
 												(moveToStatement 

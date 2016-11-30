@@ -19,8 +19,10 @@
 														(dataName 
 															(cobolWord Z)))) ( 
 												(subscript 
-													(integerLiteral 1) 
-													(integerLiteral 2) 
+													(integerLiteral 1)) 
+												(subscript 
+													(integerLiteral 2)) 
+												(subscript 
 													(integerLiteral 3)) )))) 
 									(displayOperand 
 										(otherKeyword DISPLAY)) 
