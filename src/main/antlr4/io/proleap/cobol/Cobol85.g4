@@ -10,7 +10,7 @@
 * Cobol 85 Grammar for ANTLR4
 *
 * This is an approximate grammar for Cobol 85 and the parser at
-* https://github.com/uwol/cobol85parser. It is akin but neither copied from 
+* https://github.com/uwol/cobol85parser. It is akin but neither copied from
 * nor identical to the Cobol.jj, Cobol.kg and VS COBOL II grammars.
 *
 * Characteristics:
@@ -22,7 +22,6 @@
 */
 
 grammar Cobol85;
-
 
 startRule : compilationUnit EOF;
 
@@ -193,7 +192,7 @@ alphabetLiterals
    ;
 
 alphabetThrough
-   : (THROUGH | THRU) literal 
+   : (THROUGH | THRU) literal
    ;
 
 alphabetAlso
@@ -266,7 +265,7 @@ symbolicCharacters
 
 // -- input output section ----------------------------------
 
-inputOutputSection 
+inputOutputSection
    : INPUT_OUTPUT SECTION DOT_FS inputOutputSectionParagraph*
    ;
 
@@ -417,7 +416,7 @@ blockContainsClause
    ;
 
 blockContainsTo
-   : TO integerLiteral 
+   : TO integerLiteral
    ;
 
 recordContainsClause
@@ -1868,7 +1867,7 @@ stringWithPointerPhrase
 
 // subtract statement
 
-subtractStatement 
+subtractStatement
    : SUBTRACT (subtractFromStatement | subtractFromGivingStatement | subtractCorrespondingStatement) onSizeErrorPhrase? notOnSizeErrorPhrase? END_SUBTRACT?
    ;
 
@@ -2427,7 +2426,6 @@ otherKeyword
    | YEAR | YYYYMMDD | YYYYDDD
    ;
 
-
 // lexer rules --------------------------------------------------------------------------------
 
 // keywords
@@ -2933,7 +2931,6 @@ ZERO : Z E R O;
 ZEROS : Z E R O S;
 ZEROES : Z E R O E S;
 
-
 // symbols
 AMPCHAR : '&';
 ASTERISKCHAR : '*';
@@ -2957,7 +2954,6 @@ PLUSCHAR : '+';
 SINGLEQUOTE : '\'';
 RPARENCHAR : ')';
 SLASHCHAR : '/';
-
 
 // literals
 NONNUMERICLITERAL : STRINGLITERAL | DBCSLITERAL | HEXNUMBER;
@@ -2992,8 +2988,6 @@ NEWLINE : '\r'? '\n' -> skip;
 COMMENTLINE : COMMENTTAG ~('\n' | '\r')* -> skip;
 WS : [ \t\f;]+ -> skip;
 SEPARATOR : ', ' -> skip;
-
-
 
 // case insensitive chars
 fragment A:('a'|'A');
