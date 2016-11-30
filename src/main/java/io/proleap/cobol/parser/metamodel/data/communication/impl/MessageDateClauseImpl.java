@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.data.communication.impl;
 
 import io.proleap.cobol.Cobol85Parser.MessageDateClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.communication.MessageDateClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class MessageDateClauseImpl extends CobolDivisionElementImpl implements MessageDateClause {
 
 	protected MessageDateClauseContext ctx;
 
-	protected ValueStmt dataDescValueStmt;
+	protected Call dataDescCall;
 
 	public MessageDateClauseImpl(final ProgramUnit programUnit, final MessageDateClauseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class MessageDateClauseImpl extends CobolDivisionElementImpl implements M
 	}
 
 	@Override
-	public ValueStmt getDataDescValueStmt() {
-		return dataDescValueStmt;
+	public Call getDataDescCall() {
+		return dataDescCall;
 	}
 
 	@Override
-	public void setDataDescValueStmt(final ValueStmt dataDescValueStmt) {
-		this.dataDescValueStmt = dataDescValueStmt;
+	public void setDataDescCall(final Call dataDescCall) {
+		this.dataDescCall = dataDescCall;
 	}
 
 }

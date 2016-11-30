@@ -9,12 +9,12 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface RelativeKeyClause extends CobolDivisionElement {
 
-	ValueStmt getValueStmt();
+	Call getRelativeKeyCall();
 
-	void setValueStmt(ValueStmt valueStmt);
+	void setRelativeKeyCall(Call relativeKeyCall);
 
 }

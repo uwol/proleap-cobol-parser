@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.data.communication.impl;
 
 import io.proleap.cobol.Cobol85Parser.SymbolicSubQueueClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.communication.SymbolicSubQueueClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class SymbolicSubQueueClauseImpl extends CobolDivisionElementImpl implements SymbolicSubQueueClause {
 
 	protected SymbolicSubQueueClauseContext ctx;
 
-	protected ValueStmt dataDescValueStmt;
+	protected Call dataDescCall;
 
 	protected Type type;
 
@@ -29,8 +29,8 @@ public class SymbolicSubQueueClauseImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
-	public ValueStmt getDataDescValueStmt() {
-		return dataDescValueStmt;
+	public Call getDataDescCall() {
+		return dataDescCall;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class SymbolicSubQueueClauseImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
-	public void setDataDescValueStmt(final ValueStmt dataDescValueStmt) {
-		this.dataDescValueStmt = dataDescValueStmt;
+	public void setDataDescCall(final Call dataDescCall) {
+		this.dataDescCall = dataDescCall;
 	}
 
 	@Override

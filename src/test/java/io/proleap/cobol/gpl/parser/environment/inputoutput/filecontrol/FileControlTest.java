@@ -96,40 +96,40 @@ public class FileControlTest extends CobolTestSupport {
 		{
 			final RecordKeyClause recordKeyClause = fileControlEntry.getRecordKeyClause();
 			assertNotNull(recordKeyClause);
-			assertNotNull(recordKeyClause.getValueStmt());
+			assertNotNull(recordKeyClause.getRecordKeyCall());
 
 			final PasswordClause passwordClause = recordKeyClause.getPasswordClause();
 			assertNotNull(passwordClause);
-			assertNotNull(passwordClause.getValueStmt());
+			assertNotNull(passwordClause.getDataCall());
 		}
 
 		{
 			final AlternateRecordKeyClause alternateRecordKeyClause = fileControlEntry.getAlternateRecordKeyClause();
 			assertNotNull(alternateRecordKeyClause);
-			assertNotNull(alternateRecordKeyClause.getValueStmt());
+			assertNotNull(alternateRecordKeyClause.getDataCall());
 
 			final PasswordClause passwordClause = alternateRecordKeyClause.getPasswordClause();
 			assertNotNull(passwordClause);
-			assertNotNull(passwordClause.getValueStmt());
+			assertNotNull(passwordClause.getDataCall());
 		}
 
 		{
 			final PasswordClause passwordClause = fileControlEntry.getPasswordClause();
 			assertNotNull(passwordClause);
-			assertNotNull(passwordClause.getValueStmt());
+			assertNotNull(passwordClause.getDataCall());
 		}
 
 		{
 			final FileStatusClause fileStatusClause = fileControlEntry.getFileStatusClause();
 			assertNotNull(fileStatusClause);
-			assertNotNull(fileStatusClause.getValueStmt());
-			assertNotNull(fileStatusClause.getValueStmt2());
+			assertNotNull(fileStatusClause.getDataCall());
+			assertNotNull(fileStatusClause.getDataCall2());
 		}
 
 		{
 			final RelativeKeyClause relativeKeyClause = fileControlEntry.getRelativeKeyClause();
 			assertNotNull(relativeKeyClause);
-			assertNotNull(relativeKeyClause.getValueStmt());
+			assertNotNull(relativeKeyClause.getRelativeKeyCall());
 		}
 	}
 }

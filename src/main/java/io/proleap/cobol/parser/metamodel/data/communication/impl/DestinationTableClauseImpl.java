@@ -14,15 +14,15 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.DestinationTableClauseContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.communication.DestinationTableClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class DestinationTableClauseImpl extends CobolDivisionElementImpl implements DestinationTableClause {
 
 	protected DestinationTableClauseContext ctx;
 
-	protected List<ValueStmt> indexValueStmts = new ArrayList<ValueStmt>();
+	protected List<Call> indexCalls = new ArrayList<Call>();
 
 	protected IntegerLiteral occursIntegerLiteral;
 
@@ -33,13 +33,13 @@ public class DestinationTableClauseImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
-	public void addIndexValueStmt(final ValueStmt indexValueStmt) {
-		indexValueStmts.add(indexValueStmt);
+	public void addIndexCall(final Call indexCall) {
+		indexCalls.add(indexCall);
 	}
 
 	@Override
-	public List<ValueStmt> getIndexValueStmts() {
-		return indexValueStmts;
+	public List<Call> getIndexCalls() {
+		return indexCalls;
 	}
 
 	@Override

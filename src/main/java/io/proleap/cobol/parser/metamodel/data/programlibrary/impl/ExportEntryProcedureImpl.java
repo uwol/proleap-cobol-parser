@@ -12,10 +12,10 @@ import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureClauseFormat1Context;
 import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureForClauseContext;
 import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
-import io.proleap.cobol.parser.metamodel.data.programlibrary.ForClause;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.ExportEntryProcedure;
+import io.proleap.cobol.parser.metamodel.data.programlibrary.ForClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ExportEntryProcedureImpl extends CobolDivisionElementImpl implements ExportEntryProcedure {
 
@@ -23,7 +23,7 @@ public class ExportEntryProcedureImpl extends CobolDivisionElementImpl implement
 
 	protected ForClause forClause;
 
-	protected ValueStmt programValueStmt;
+	protected Call programCall;
 
 	public ExportEntryProcedureImpl(final ProgramUnit programUnit,
 			final LibraryEntryProcedureClauseFormat1Context ctx) {
@@ -55,13 +55,13 @@ public class ExportEntryProcedureImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
-	public ValueStmt getProgramValueStmt() {
-		return programValueStmt;
+	public Call getProgramCall() {
+		return programCall;
 	}
 
 	@Override
-	public void setProgramValueStmt(final ValueStmt programValueStmt) {
-		this.programValueStmt = programValueStmt;
+	public void setProgramCall(final Call programCall) {
+		this.programCall = programCall;
 	}
 
 }

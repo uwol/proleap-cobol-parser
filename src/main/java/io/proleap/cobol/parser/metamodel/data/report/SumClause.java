@@ -11,15 +11,15 @@ package io.proleap.cobol.parser.metamodel.data.report;
 import java.util.List;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface SumClause extends CobolDivisionElement {
 
-	void addSumValueStmt(ValueStmt sumValueStmt);
+	void addSumCall(Call sumCall);
 
-	void addUponValueStmt(ValueStmt uponValueStmt);
+	void addUponCall(Call uponCall);
 
-	List<ValueStmt> getSumValueStmts();
+	List<Call> getSumCalls();
 
-	List<ValueStmt> getUponValueStmts();
+	List<Call> getUponCalls();
 }

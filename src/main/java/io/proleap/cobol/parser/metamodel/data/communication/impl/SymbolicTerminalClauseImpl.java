@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.data.communication.impl;
 
 import io.proleap.cobol.Cobol85Parser.SymbolicTerminalClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.communication.SymbolicTerminalClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class SymbolicTerminalClauseImpl extends CobolDivisionElementImpl implements SymbolicTerminalClause {
 
 	protected SymbolicTerminalClauseContext ctx;
 
-	protected ValueStmt dataDescValueStmt;
+	protected Call dataDescCall;
 
 	public SymbolicTerminalClauseImpl(final ProgramUnit programUnit, final SymbolicTerminalClauseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class SymbolicTerminalClauseImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
-	public ValueStmt getDataDescValueStmt() {
-		return dataDescValueStmt;
+	public Call getDataDescCall() {
+		return dataDescCall;
 	}
 
 	@Override
-	public void setDataDescValueStmt(final ValueStmt dataDescValueStmt) {
-		this.dataDescValueStmt = dataDescValueStmt;
+	public void setDataDescCall(final Call dataDescCall) {
+		this.dataDescCall = dataDescCall;
 	}
 
 }

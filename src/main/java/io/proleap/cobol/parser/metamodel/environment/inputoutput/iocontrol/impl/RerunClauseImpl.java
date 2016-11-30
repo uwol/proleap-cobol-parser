@@ -17,6 +17,7 @@ import io.proleap.cobol.Cobol85Parser.RerunEveryOfContext;
 import io.proleap.cobol.Cobol85Parser.RerunEveryRecordsContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.RerunClause;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.RerunEveryClock;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.RerunEveryOf;
@@ -87,8 +88,8 @@ public class RerunClauseImpl extends CobolDivisionElementImpl implements RerunCl
 			/*
 			 * file name
 			 */
-			final ValueStmt fileNameValueStmt = createCallValueStmt(ctx.fileName());
-			result.setFileNameValueStmt(fileNameValueStmt);
+			final Call fileCall = createCall(ctx.fileName());
+			result.setFileCall(fileCall);
 
 			rerunEveryOf = result;
 			registerASGElement(result);

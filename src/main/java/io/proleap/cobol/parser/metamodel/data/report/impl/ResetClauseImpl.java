@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.data.report.impl;
 
 import io.proleap.cobol.Cobol85Parser.ReportGroupResetClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.report.ResetClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ResetClauseImpl extends CobolDivisionElementImpl implements ResetClause {
 
 	protected ReportGroupResetClauseContext ctx;
 
-	protected ValueStmt dataValueStmt;
+	protected Call dataCall;
 
 	public ResetClauseImpl(final ProgramUnit programUnit, final ReportGroupResetClauseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class ResetClauseImpl extends CobolDivisionElementImpl implements ResetCl
 	}
 
 	@Override
-	public ValueStmt getDataValueStmt() {
-		return dataValueStmt;
+	public Call getDataCall() {
+		return dataCall;
 	}
 
 	@Override
-	public void setDataValueStmt(final ValueStmt dataValueStmt) {
-		this.dataValueStmt = dataValueStmt;
+	public void setDataCall(final Call dataCall) {
+		this.dataCall = dataCall;
 	}
 
 }

@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.data.communication.impl;
 
 import io.proleap.cobol.Cobol85Parser.SymbolicSourceClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.communication.SymbolicSourceClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class SymbolicSourceClauseImpl extends CobolDivisionElementImpl implements SymbolicSourceClause {
 
 	protected SymbolicSourceClauseContext ctx;
 
-	protected ValueStmt dataDescValueStmt;
+	protected Call dataDescCall;
 
 	public SymbolicSourceClauseImpl(final ProgramUnit programUnit, final SymbolicSourceClauseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class SymbolicSourceClauseImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
-	public ValueStmt getDataDescValueStmt() {
-		return dataDescValueStmt;
+	public Call getDataDescCall() {
+		return dataDescCall;
 	}
 
 	@Override
-	public void setDataDescValueStmt(final ValueStmt dataDescValueStmt) {
-		this.dataDescValueStmt = dataDescValueStmt;
+	public void setDataDescCall(final Call dataDescCall) {
+		this.dataDescCall = dataDescCall;
 	}
 
 }

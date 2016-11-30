@@ -13,15 +13,15 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.DataOccursSortContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.datadescription.OccursSort;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class OccursSortImpl extends CobolDivisionElementImpl implements OccursSort {
 
 	protected DataOccursSortContext ctx;
 
-	protected List<ValueStmt> keyValueStmts = new ArrayList<ValueStmt>();
+	protected List<Call> keyCalls = new ArrayList<Call>();
 
 	protected Order order;
 
@@ -32,13 +32,13 @@ public class OccursSortImpl extends CobolDivisionElementImpl implements OccursSo
 	}
 
 	@Override
-	public void addKeyValueStmt(final ValueStmt keyValueStmt) {
-		keyValueStmts.add(keyValueStmt);
+	public void addKeyCall(final Call keyCall) {
+		keyCalls.add(keyCall);
 	}
 
 	@Override
-	public List<ValueStmt> getKeyValueStmts() {
-		return keyValueStmts;
+	public List<Call> getKeyCalls() {
+		return keyCalls;
 	}
 
 	@Override

@@ -9,7 +9,7 @@
 package io.proleap.cobol.parser.metamodel.environment.specialnames;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface AlphabetClause extends CobolDivisionElement {
 
@@ -17,10 +17,10 @@ public interface AlphabetClause extends CobolDivisionElement {
 		Alphanumeric, National
 	}
 
-	ValueStmt getAlphabetValueStmt();
+	Call getAlphabetCall();
 
 	Type getType();
 
-	void setAlphabetValueStmt(ValueStmt alphabetValueStmt);
+	void setAlphabetCall(Call alphabetCall);
 
 }

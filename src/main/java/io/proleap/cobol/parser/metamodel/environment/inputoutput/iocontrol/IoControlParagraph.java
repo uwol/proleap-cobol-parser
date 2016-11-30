@@ -15,7 +15,7 @@ import io.proleap.cobol.Cobol85Parser.MultipleFileClauseContext;
 import io.proleap.cobol.Cobol85Parser.RerunClauseContext;
 import io.proleap.cobol.Cobol85Parser.SameClauseContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface IoControlParagraph extends CobolDivisionElement {
 
@@ -29,7 +29,7 @@ public interface IoControlParagraph extends CobolDivisionElement {
 
 	CommitmentControlClause getCommitmentControlClause();
 
-	ValueStmt getFileNameValueStmt();
+	Call getFileCall();
 
 	MultipleFileClause getMultipleFileClause();
 
@@ -37,5 +37,5 @@ public interface IoControlParagraph extends CobolDivisionElement {
 
 	List<SameClause> getSameClauses();
 
-	void setFileNameValueStmt(ValueStmt fileNameValueStmt);
+	void setFileCall(Call fileCall);
 }

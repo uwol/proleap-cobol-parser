@@ -15,6 +15,7 @@ import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.MultipleFileClause;
@@ -23,7 +24,6 @@ import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.Rerun
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.RerunEveryRecords;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.SameClause;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class IoControlTest extends CobolTestSupport {
@@ -49,15 +49,15 @@ public class IoControlTest extends CobolTestSupport {
 				.getIoControlParagraph();
 		assertNotNull(ioControlParagraph);
 
-		final ValueStmt fileNameValueStmt = ioControlParagraph.getFileNameValueStmt();
-		assertNotNull(fileNameValueStmt);
+		final Call fileCall = ioControlParagraph.getFileCall();
+		assertNotNull(fileCall);
 
 		{
 			assertFalse(ioControlParagraph.getSameClauses().isEmpty());
 
 			final SameClause sameClause = ioControlParagraph.getSameClauses().get(0);
 
-			assertEquals(2, sameClause.getFileNameValueStmts().size());
+			assertEquals(2, sameClause.getFileCalls().size());
 		}
 
 		{

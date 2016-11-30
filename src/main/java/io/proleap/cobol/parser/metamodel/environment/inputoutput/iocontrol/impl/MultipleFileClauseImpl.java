@@ -14,11 +14,11 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.MultipleFileClauseContext;
 import io.proleap.cobol.Cobol85Parser.MultipleFilePositionContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.MultipleFileClause;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.MultipleFilePosition;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class MultipleFileClauseImpl extends CobolDivisionElementImpl implements MultipleFileClause {
 
@@ -39,8 +39,8 @@ public class MultipleFileClauseImpl extends CobolDivisionElementImpl implements 
 		if (result == null) {
 			result = new MultipleFilePositionImpl(programUnit, ctx);
 
-			final ValueStmt fileNameValueStmt = createCallValueStmt(ctx.fileName());
-			result.setFileNameValueStmt(fileNameValueStmt);
+			final Call fileCall = createCall(ctx.fileName());
+			result.setFileCall(fileCall);
 
 			if (ctx.integerLiteral() != null) {
 				final IntegerLiteralValueStmt integerLiteralValueStmt = createIntegerLiteralValueStmt(

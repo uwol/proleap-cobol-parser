@@ -44,6 +44,7 @@ import io.proleap.cobol.Cobol85Parser.IndexNameContext;
 import io.proleap.cobol.Cobol85Parser.PictureStringContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.datadescription.AlignedClause;
 import io.proleap.cobol.parser.metamodel.data.datadescription.BlankWhenZeroClause;
 import io.proleap.cobol.parser.metamodel.data.datadescription.CommonOwnLocalClause;
@@ -67,7 +68,6 @@ import io.proleap.cobol.parser.metamodel.data.datadescription.UsageClause;
 import io.proleap.cobol.parser.metamodel.data.datadescription.UsingClause;
 import io.proleap.cobol.parser.metamodel.data.datadescription.ValueClause;
 import io.proleap.cobol.parser.metamodel.data.datadescription.WithLowerBoundsClause;
-import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
@@ -319,8 +319,8 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			 * depending on
 			 */
 			if (ctx.qualifiedDataName() != null) {
-				final CallValueStmt qualifiedDataNameValueStmt = createCallValueStmt(ctx.qualifiedDataName());
-				result.setDependingOnValueStmt(qualifiedDataNameValueStmt);
+				final Call dependingOnCall = createCall(ctx.qualifiedDataName());
+				result.setDependingOnCall(dependingOnCall);
 			}
 
 			/*
@@ -334,7 +334,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			 * index names
 			 */
 			for (final IndexNameContext indexNameContext : ctx.indexName()) {
-				result.addIndexNameValueStmt(indexNameContext);
+				result.addIndexCall(indexNameContext);
 			}
 
 			occursClauses.add(result);
@@ -415,8 +415,8 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 		if (result == null) {
 			result = new RedefinesClauseImpl(programUnit, ctx);
 
-			final ValueStmt redefinesValueStmt = createCallValueStmt(ctx.dataName());
-			result.setRedefinesValueStmt(redefinesValueStmt);
+			final Call redefinesCall = createCall(ctx.dataName());
+			result.setRedefinesCall(redefinesCall);
 
 			redefinesClause = result;
 			registerASGElement(result);

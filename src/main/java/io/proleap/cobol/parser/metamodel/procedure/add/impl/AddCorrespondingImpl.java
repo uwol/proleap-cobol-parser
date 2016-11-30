@@ -10,16 +10,16 @@ package io.proleap.cobol.parser.metamodel.procedure.add.impl;
 
 import io.proleap.cobol.Cobol85Parser.AddCorrespondingStatementContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.parser.metamodel.procedure.add.AddCorresponding;
 import io.proleap.cobol.parser.metamodel.procedure.add.To;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class AddCorrespondingImpl extends CobolDivisionElementImpl implements AddCorresponding {
 
 	protected final AddCorrespondingStatementContext ctx;
 
-	protected ValueStmt from;
+	protected Call from;
 
 	protected To to;
 
@@ -30,7 +30,7 @@ public class AddCorrespondingImpl extends CobolDivisionElementImpl implements Ad
 	}
 
 	@Override
-	public ValueStmt getFrom() {
+	public Call getFrom() {
 		return from;
 	}
 
@@ -40,7 +40,7 @@ public class AddCorrespondingImpl extends CobolDivisionElementImpl implements Ad
 	}
 
 	@Override
-	public void setFrom(final ValueStmt from) {
+	public void setFrom(final Call from) {
 		this.from = from;
 	}
 

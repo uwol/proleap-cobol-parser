@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.data.datadescription.impl;
 
 import io.proleap.cobol.Cobol85Parser.DataRedefinesClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.datadescription.RedefinesClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class RedefinesClauseImpl extends CobolDivisionElementImpl implements RedefinesClause {
 
 	protected DataRedefinesClauseContext ctx;
 
-	protected ValueStmt redefinesValueStmt;
+	protected Call redefinesCall;
 
 	public RedefinesClauseImpl(final ProgramUnit programUnit, final DataRedefinesClauseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class RedefinesClauseImpl extends CobolDivisionElementImpl implements Red
 	}
 
 	@Override
-	public ValueStmt getRedefinesValueStmt() {
-		return redefinesValueStmt;
+	public Call getRedefinesCall() {
+		return redefinesCall;
 	}
 
 	@Override
-	public void setRedefinesValueStmt(final ValueStmt redefinesValueStmt) {
-		this.redefinesValueStmt = redefinesValueStmt;
+	public void setRedefinesCall(final Call redefinesCall) {
+		this.redefinesCall = redefinesCall;
 	}
 
 }

@@ -58,7 +58,7 @@ public class ProgramLibraryExportTest extends CobolTestSupport {
 		{
 			final ExportEntryProcedure exportEntryProcedure = libraryDescriptionEntryExport.getExportEntryProcedure();
 			assertNotNull(exportEntryProcedure);
-			assertNotNull(exportEntryProcedure.getProgramValueStmt());
+			assertNotNull(exportEntryProcedure.getProgramCall());
 			assertNotNull(exportEntryProcedure.getForClause());
 			assertEquals("123", exportEntryProcedure.getForClause().getForLiteral().getValue());
 		}

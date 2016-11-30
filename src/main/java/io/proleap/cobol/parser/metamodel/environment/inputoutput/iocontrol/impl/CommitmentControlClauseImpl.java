@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.impl
 
 import io.proleap.cobol.Cobol85Parser.CommitmentControlClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.CommitmentControlClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class CommitmentControlClauseImpl extends CobolDivisionElementImpl implements CommitmentControlClause {
 
 	protected final CommitmentControlClauseContext ctx;
 
-	protected ValueStmt fileNameValueStmt;
+	protected Call fileCall;
 
 	public CommitmentControlClauseImpl(final ProgramUnit programUnit, final CommitmentControlClauseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class CommitmentControlClauseImpl extends CobolDivisionElementImpl implem
 	}
 
 	@Override
-	public ValueStmt getFileNameValueStmt() {
-		return fileNameValueStmt;
+	public Call getFileCall() {
+		return fileCall;
 	}
 
 	@Override
-	public void setFileNameValueStmt(final ValueStmt fileNameValueStmt) {
-		this.fileNameValueStmt = fileNameValueStmt;
+	public void setFileCall(final Call fileCall) {
+		this.fileCall = fileCall;
 	}
 
 }

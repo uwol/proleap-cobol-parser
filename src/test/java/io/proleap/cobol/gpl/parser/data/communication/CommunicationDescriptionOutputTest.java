@@ -59,19 +59,19 @@ public class CommunicationDescriptionOutputTest extends CobolTestSupport {
 			final DestinationCountClause destinationCountClause = communicationDescriptionEntryOutput
 					.getDestinationCountClause();
 			assertNotNull(destinationCountClause);
-			assertNotNull(destinationCountClause.getDataDescValueStmt());
+			assertNotNull(destinationCountClause.getDataDescCall());
 		}
 
 		{
 			final TextLengthClause textLengthClause = communicationDescriptionEntryOutput.getTextLengthClause();
 			assertNotNull(textLengthClause);
-			assertNotNull(textLengthClause.getDataDescValueStmt());
+			assertNotNull(textLengthClause.getDataDescCall());
 		}
 
 		{
 			final StatusKeyClause statusKeyClause = communicationDescriptionEntryOutput.getStatusKeyClause();
 			assertNotNull(statusKeyClause);
-			assertNotNull(statusKeyClause.getDataDescValueStmt());
+			assertNotNull(statusKeyClause.getDataDescCall());
 		}
 
 		{
@@ -79,20 +79,20 @@ public class CommunicationDescriptionOutputTest extends CobolTestSupport {
 					.getDestinationTableClause();
 			assertNotNull(destinationTableClause);
 			assertEquals(new Integer(5), destinationTableClause.getOccursIntegerLiteral().getValue());
-			assertEquals(2, destinationTableClause.getIndexValueStmts().size());
+			assertEquals(2, destinationTableClause.getIndexCalls().size());
 		}
 
 		{
 			final ErrorKeyClause errorKeyClause = communicationDescriptionEntryOutput.getErrorKeyClause();
 			assertNotNull(errorKeyClause);
-			assertNotNull(errorKeyClause.getDataDescValueStmt());
+			assertNotNull(errorKeyClause.getDataDescCall());
 		}
 
 		{
 			final SymbolicDestinationClause symbolicDestinationClause = communicationDescriptionEntryOutput
 					.getSymbolicDestinationClause();
 			assertNotNull(symbolicDestinationClause);
-			assertNotNull(symbolicDestinationClause.getDataDescValueStmt());
+			assertNotNull(symbolicDestinationClause.getDataDescCall());
 		}
 
 		assertEquals(2, communicationSection.getDataDescriptionEntries().size());

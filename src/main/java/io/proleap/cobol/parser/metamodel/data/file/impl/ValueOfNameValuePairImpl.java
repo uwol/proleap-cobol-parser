@@ -8,18 +8,19 @@
 
 package io.proleap.cobol.parser.metamodel.data.file.impl;
 
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.file.ValueOfNameValuePair;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ValueOfNameValuePairImpl implements ValueOfNameValuePair {
 
-	protected ValueStmt name;
+	protected Call nameCall;
 
 	protected ValueStmt value;
 
 	@Override
-	public ValueStmt getName() {
-		return name;
+	public Call getNameCall() {
+		return nameCall;
 	}
 
 	@Override
@@ -28,8 +29,8 @@ public class ValueOfNameValuePairImpl implements ValueOfNameValuePair {
 	}
 
 	@Override
-	public void setName(final ValueStmt name) {
-		this.name = name;
+	public void setNameCall(final Call nameCall) {
+		this.nameCall = nameCall;
 	}
 
 	@Override

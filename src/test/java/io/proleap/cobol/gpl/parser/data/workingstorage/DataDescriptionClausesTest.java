@@ -15,6 +15,7 @@ import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.DataDivision;
 import io.proleap.cobol.parser.metamodel.data.datadescription.CommonOwnLocalClause;
 import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry;
@@ -31,7 +32,6 @@ import io.proleap.cobol.parser.metamodel.data.datadescription.UsageClause;
 import io.proleap.cobol.parser.metamodel.data.datadescription.UsingClause;
 import io.proleap.cobol.parser.metamodel.data.datadescription.ValueInterval;
 import io.proleap.cobol.parser.metamodel.data.workingstorage.WorkingStorageSection;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class DataDescriptionClausesTest extends CobolTestSupport {
@@ -54,7 +54,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 				"src/test/resources/io/proleap/cobol/gpl/parser/data/workingstorage/DataDescriptionClauses.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, null,
 				CobolSourceFormatEnum.TANDEM);
-
 		final CompilationUnit compilationUnit = program.getCompilationUnit("DataDescriptionClauses");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
@@ -71,7 +70,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItem() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEM");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEM", dataDescriptionEntryGroup.getName());
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -80,7 +78,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemAli() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMALI");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMALI", dataDescriptionEntryGroup.getName());
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -92,7 +89,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemBln() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMBLN");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMBLN", dataDescriptionEntryGroup.getName());
 		assertEquals("9(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -104,7 +100,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemCom() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMCOM");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMCOM", dataDescriptionEntryGroup.getName());
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -117,7 +112,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemCon() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMCON");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMCON", dataDescriptionEntryGroup.getName());
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -130,7 +124,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemExt() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMEXT");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMEXT", dataDescriptionEntryGroup.getName());
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -142,7 +135,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemGlbt() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMGLB");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMGLB", dataDescriptionEntryGroup.getName());
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -154,7 +146,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemInt() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMINT");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMINT", dataDescriptionEntryGroup.getName());
 		assertEquals("9(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -167,7 +158,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemJur() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMJUR");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMJUR", dataDescriptionEntryGroup.getName());
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -180,7 +170,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemJus() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMJUS");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMJUS", dataDescriptionEntryGroup.getName());
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -193,7 +182,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemLbd() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMLBD");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMLBD", dataDescriptionEntryGroup.getName());
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -205,7 +193,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemLoc() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMLOC");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMLOC", dataDescriptionEntryGroup.getName());
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -218,47 +205,38 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemOcc() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMOCC");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMOCC", dataDescriptionEntryGroup.getName());
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		final List<OccursClause> occursClauses = dataDescriptionEntryGroup.getOccursClauses();
-
 		assertEquals(1, occursClauses.size());
 
 		final OccursClause occursClause = occursClauses.get(0);
-
 		assertNotNull(occursClause.getFrom());
 		assertEquals(new Integer(1), occursClause.getFrom().getValue());
 		assertNotNull(occursClause.getTo());
 		assertEquals(new Integer(5), occursClause.getTo().getValue());
-
-		assertNotNull(occursClause.getDependingOnValueStmt());
+		assertNotNull(occursClause.getDependingOnCall());
 
 		final List<OccursSort> occursSorts = occursClause.getOccursSorts();
-
 		assertEquals(2, occursSorts.size());
 
 		final OccursSort occursSort1 = occursSorts.get(0);
-
 		assertEquals(OccursSort.Order.Descending, occursSort1.getOrder());
-		assertEquals(2, occursSort1.getKeyValueStmts().size());
+		assertEquals(2, occursSort1.getKeyCalls().size());
 
 		final OccursSort occursSort2 = occursSorts.get(1);
-
 		assertEquals(OccursSort.Order.Ascending, occursSort2.getOrder());
-		assertEquals(1, occursSort2.getKeyValueStmts().size());
+		assertEquals(1, occursSort2.getKeyCalls().size());
 
-		final List<ValueStmt> indexNameValueStmts = occursClause.getIndexNameValueStmts();
-
-		assertEquals(2, indexNameValueStmts.size());
+		final List<Call> indexCalls = occursClause.getIndexCalls();
+		assertEquals(2, indexCalls.size());
 	}
 
 	@Test
 	public void testItemOwn() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMOWN");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMOWN", dataDescriptionEntryGroup.getName());
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -271,7 +249,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemPic() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMPIC");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMPIC", dataDescriptionEntryGroup.getName());
 		assertEquals("999.99", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -280,7 +257,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemRec() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMREC");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMREC", dataDescriptionEntryGroup.getName());
 
@@ -297,13 +273,12 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("X(5)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getRedefinesClause());
-		assertNotNull(dataDescriptionEntryGroup.getRedefinesClause().getRedefinesValueStmt());
+		assertNotNull(dataDescriptionEntryGroup.getRedefinesClause().getRedefinesCall());
 	}
 
 	@Test
 	public void testItemRef() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMREF");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMREF", dataDescriptionEntryGroup.getName());
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -316,7 +291,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemSgn() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMSGN");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMSGN", dataDescriptionEntryGroup.getName());
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -329,7 +303,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemStr() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMSTR");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMSTR", dataDescriptionEntryGroup.getName());
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -355,7 +328,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemThr() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMTHR");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMTHR", dataDescriptionEntryGroup.getName());
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -367,7 +339,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemTpd() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMTPD");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMTPD", dataDescriptionEntryGroup.getName());
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -379,7 +350,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemTyp() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMTYP");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMTYP", dataDescriptionEntryGroup.getName());
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -403,7 +373,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemUsg() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMUSG");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMUSG", dataDescriptionEntryGroup.getName());
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -416,7 +385,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemUsn() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMUSN");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMUSN", dataDescriptionEntryGroup.getName());
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -429,7 +397,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	@Test
 	public void testItemVal() throws Exception {
 		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMVAL");
-
 		assertProperties(dataDescriptionEntryGroup);
 		assertEquals("ITEMVAL", dataDescriptionEntryGroup.getName());
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
@@ -439,7 +406,6 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 
 		final List<ValueInterval> valueIntervals = dataDescriptionEntryGroup.getValueClause().getValueIntervals();
 		final ValueInterval valueInterval = valueIntervals.get(0);
-
 		assertNotNull(valueInterval.getFromValueStmt());
 		assertNotNull(valueInterval.getToValueStmt());
 	}

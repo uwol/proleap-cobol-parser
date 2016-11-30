@@ -11,7 +11,7 @@ package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol;
 import java.util.List;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface SameClause extends CobolDivisionElement {
 
@@ -19,9 +19,9 @@ public interface SameClause extends CobolDivisionElement {
 		Record, Sort, SortMerge
 	}
 
-	void addFileNameValueStmt(ValueStmt fileNameValueStmt);
+	void addFileCall(Call fileCall);
 
-	List<ValueStmt> getFileNameValueStmts();
+	List<Call> getFileCalls();
 
 	Form getForm();
 

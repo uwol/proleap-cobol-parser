@@ -12,9 +12,9 @@ import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.DataRenamesClauseContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntryRename;
 import io.proleap.cobol.parser.metamodel.data.datadescription.RenamesClause;
-import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 
 public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryRename {
 
@@ -40,16 +40,16 @@ public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl imp
 			 * from
 			 */
 			final QualifiedDataNameContext fromContext = ctx.qualifiedDataName(0);
-			final CallValueStmt fromValueStmt = createCallValueStmt(fromContext);
-			result.setFrom(fromValueStmt);
+			final Call fromCall = createCall(fromContext);
+			result.setFrom(fromCall);
 
 			/*
 			 * to
 			 */
 			if (ctx.qualifiedDataName().size() > 1) {
 				final QualifiedDataNameContext toContext = ctx.qualifiedDataName(1);
-				final CallValueStmt toValueStmt = createCallValueStmt(toContext);
-				result.setTo(toValueStmt);
+				final Call toCall = createCall(toContext);
+				result.setTo(toCall);
 			}
 
 			renamesClause = result;

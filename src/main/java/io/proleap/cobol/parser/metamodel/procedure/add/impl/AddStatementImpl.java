@@ -62,8 +62,8 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			/*
 			 * from
 			 */
-			final ValueStmt fromValueStmt = createCallValueStmt(ctx.identifier());
-			result.setFrom(fromValueStmt);
+			final Call fromCall = createCall(ctx.identifier());
+			result.setFrom(fromCall);
 
 			/*
 			 * to

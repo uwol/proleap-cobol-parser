@@ -13,15 +13,15 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.SameClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.SameClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class SameClauseImpl extends CobolDivisionElementImpl implements SameClause {
 
 	protected final SameClauseContext ctx;
 
-	protected List<ValueStmt> fileNameValueStmts = new ArrayList<ValueStmt>();
+	protected List<Call> fileCalls = new ArrayList<Call>();
 
 	protected Form form;
 
@@ -32,13 +32,13 @@ public class SameClauseImpl extends CobolDivisionElementImpl implements SameClau
 	}
 
 	@Override
-	public void addFileNameValueStmt(final ValueStmt fileNameValueStmt) {
-		fileNameValueStmts.add(fileNameValueStmt);
+	public void addFileCall(final Call fileCall) {
+		fileCalls.add(fileCall);
 	}
 
 	@Override
-	public List<ValueStmt> getFileNameValueStmts() {
-		return fileNameValueStmts;
+	public List<Call> getFileCalls() {
+		return fileCalls;
 	}
 
 	@Override

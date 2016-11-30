@@ -72,7 +72,7 @@ public class ReportGroupDescriptionVerticalTest extends CobolTestSupport {
 		{
 			final TypeClause typeClause = reportGroupDescriptionEntryVertical.getTypeClause();
 			assertEquals(TypeClause.Type.ControlHeading, typeClause.getType());
-			assertNotNull(typeClause.getDataValueStmt());
+			assertNotNull(typeClause.getDataCall());
 		}
 
 		{

@@ -9,12 +9,12 @@
 package io.proleap.cobol.parser.metamodel.data.communication;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface MessageTimeClause extends CobolDivisionElement {
 
-	ValueStmt getDataDescValueStmt();
+	Call getDataDescCall();
 
-	void setDataDescValueStmt(ValueStmt dataDescValueStmt);
+	void setDataDescCall(Call dataDescCall);
 
 }

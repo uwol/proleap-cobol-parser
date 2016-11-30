@@ -9,16 +9,16 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface FileStatusClause extends CobolDivisionElement {
 
-	ValueStmt getValueStmt();
+	Call getDataCall();
 
-	ValueStmt getValueStmt2();
+	Call getDataCall2();
 
-	void setValueStmt(ValueStmt valueStmt);
+	void setDataCall(Call dataCall);
 
-	void setValueStmt2(ValueStmt valueStmt);
+	void setDataCall2(Call dataCall2);
 
 }

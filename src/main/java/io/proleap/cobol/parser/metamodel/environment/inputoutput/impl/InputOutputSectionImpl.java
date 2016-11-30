@@ -14,13 +14,13 @@ import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
 import io.proleap.cobol.Cobol85Parser.IoControlClauseContext;
 import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.InputOutputSection;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.impl.FileControlParagraphImpl;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.impl.IoControlParagraphImpl;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class InputOutputSectionImpl extends CobolDivisionElementImpl implements InputOutputSection {
 
@@ -62,8 +62,8 @@ public class InputOutputSectionImpl extends CobolDivisionElementImpl implements 
 			result = new IoControlParagraphImpl(programUnit, ctx);
 
 			if (ctx.fileName() != null) {
-				final ValueStmt fileNameValueStmt = createCallValueStmt(ctx.fileName());
-				result.setFileNameValueStmt(fileNameValueStmt);
+				final Call fileCall = createCall(ctx.fileName());
+				result.setFileCall(fileCall);
 			}
 
 			for (final IoControlClauseContext ioControlClauseContext : ctx.ioControlClause()) {

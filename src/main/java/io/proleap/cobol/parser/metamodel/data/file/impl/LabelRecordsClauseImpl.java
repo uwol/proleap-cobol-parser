@@ -13,15 +13,15 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.LabelRecordsClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.file.LabelRecordsClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class LabelRecordsClauseImpl extends CobolDivisionElementImpl implements LabelRecordsClause {
 
 	protected final LabelRecordsClauseContext ctx;
 
-	protected List<ValueStmt> dataNameValueStmts = new ArrayList<ValueStmt>();
+	protected List<Call> dataCalls = new ArrayList<Call>();
 
 	protected Type type;
 
@@ -32,13 +32,13 @@ public class LabelRecordsClauseImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
-	public void addDataNameValueStmt(final ValueStmt dataNameValueStmt) {
-		dataNameValueStmts.add(dataNameValueStmt);
+	public void addDataCall(final Call dataCall) {
+		dataCalls.add(dataCall);
 	}
 
 	@Override
-	public List<ValueStmt> getDataNameValueStmts() {
-		return dataNameValueStmts;
+	public List<Call> getDataCalls() {
+		return dataCalls;
 	}
 
 	@Override

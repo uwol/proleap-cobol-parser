@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.im
 
 import io.proleap.cobol.Cobol85Parser.PasswordClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.PasswordClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class PasswordClauseImpl extends CobolDivisionElementImpl implements PasswordClause {
 
 	protected final PasswordClauseContext ctx;
 
-	protected ValueStmt valueStmt;
+	protected Call dataCall;
 
 	public PasswordClauseImpl(final ProgramUnit programUnit, final PasswordClauseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class PasswordClauseImpl extends CobolDivisionElementImpl implements Pass
 	}
 
 	@Override
-	public ValueStmt getValueStmt() {
-		return valueStmt;
+	public Call getDataCall() {
+		return dataCall;
 	}
 
 	@Override
-	public void setValueStmt(final ValueStmt valueStmt) {
-		this.valueStmt = valueStmt;
+	public void setDataCall(final Call dataCall) {
+		this.dataCall = dataCall;
 	}
 
 }

@@ -15,10 +15,10 @@ import io.proleap.cobol.Cobol85Parser.LibraryAttributeClauseFormat1Context;
 import io.proleap.cobol.Cobol85Parser.LibraryDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureClauseFormat1Context;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.ExportAttribute;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.ExportEntryProcedure;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.LibraryDescriptionEntryExport;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class LibraryDescriptionEntryExportImpl extends LibraryDescriptionEntryImpl
 		implements LibraryDescriptionEntryExport {
@@ -84,8 +84,8 @@ public class LibraryDescriptionEntryExportImpl extends LibraryDescriptionEntryIm
 			/*
 			 * program name
 			 */
-			final ValueStmt programValueStmt = createCallValueStmt(ctx.programName());
-			result.setProgramValueStmt(programValueStmt);
+			final Call programCall = createCall(ctx.programName());
+			result.setProgramCall(programCall);
 
 			/*
 			 * for

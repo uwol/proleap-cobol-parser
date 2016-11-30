@@ -10,17 +10,17 @@ package io.proleap.cobol.parser.metamodel.data.datadescription.impl;
 
 import io.proleap.cobol.Cobol85Parser.DataRenamesClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.datadescription.RenamesClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class RenamesClauseImpl extends CobolDivisionElementImpl implements RenamesClause {
 
 	protected DataRenamesClauseContext ctx;
 
-	protected ValueStmt from;
+	protected Call from;
 
-	protected ValueStmt to;
+	protected Call to;
 
 	public RenamesClauseImpl(final ProgramUnit programUnit, final DataRenamesClauseContext ctx) {
 		super(programUnit, ctx);
@@ -29,22 +29,22 @@ public class RenamesClauseImpl extends CobolDivisionElementImpl implements Renam
 	}
 
 	@Override
-	public ValueStmt getFrom() {
+	public Call getFrom() {
 		return from;
 	}
 
 	@Override
-	public ValueStmt getTo() {
+	public Call getTo() {
 		return to;
 	}
 
 	@Override
-	public void setFrom(final ValueStmt from) {
+	public void setFrom(final Call from) {
 		this.from = from;
 	}
 
 	@Override
-	public void setTo(final ValueStmt to) {
+	public void setTo(final Call to) {
 		this.to = to;
 	}
 

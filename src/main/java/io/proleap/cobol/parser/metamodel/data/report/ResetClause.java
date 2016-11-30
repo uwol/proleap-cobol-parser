@@ -9,12 +9,12 @@
 package io.proleap.cobol.parser.metamodel.data.report;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface ResetClause extends CobolDivisionElement {
 
-	ValueStmt getDataValueStmt();
+	Call getDataCall();
 
-	void setDataValueStmt(ValueStmt dataValueStmt);
+	void setDataCall(Call dataCall);
 
 }

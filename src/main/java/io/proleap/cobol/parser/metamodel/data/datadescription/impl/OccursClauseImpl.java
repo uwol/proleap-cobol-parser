@@ -17,21 +17,21 @@ import io.proleap.cobol.Cobol85Parser.IndexNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.datadescription.OccursClause;
 import io.proleap.cobol.parser.metamodel.data.datadescription.OccursSort;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class OccursClauseImpl extends CobolDivisionElementImpl implements OccursClause {
 
 	protected DataOccursClauseContext ctx;
 
-	protected ValueStmt dependingOnValueStmt;
+	protected Call dependingOnCall;
 
 	protected IntegerLiteral from;
 
-	protected List<ValueStmt> indexNameValueStmts = new ArrayList<ValueStmt>();
+	protected List<Call> indexCalls = new ArrayList<Call>();
 
 	protected List<OccursSort> occursSorts = new ArrayList<OccursSort>();
 
@@ -44,12 +44,12 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 	}
 
 	@Override
-	public ValueStmt addIndexNameValueStmt(final IndexNameContext ctx) {
+	public ValueStmt addIndexCall(final IndexNameContext ctx) {
 		final ValueStmt result = (ValueStmt) getASGElement(ctx);
 
 		if (result == null) {
-			final ValueStmt indexNameValueStmt = createCallValueStmt(ctx);
-			indexNameValueStmts.add(indexNameValueStmt);
+			final Call indexCall = createCall(ctx);
+			indexCalls.add(indexCall);
 		}
 
 		return result;
@@ -81,8 +81,8 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 			 * qualified data names
 			 */
 			for (final QualifiedDataNameContext qualifiedDataNameContext : ctx.qualifiedDataName()) {
-				final CallValueStmt keyValueStmt = createCallValueStmt(qualifiedDataNameContext);
-				result.addKeyValueStmt(keyValueStmt);
+				final Call keyCall = createCall(qualifiedDataNameContext);
+				result.addKeyCall(keyCall);
 			}
 
 			occursSorts.add(result);
@@ -93,8 +93,8 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 	}
 
 	@Override
-	public ValueStmt getDependingOnValueStmt() {
-		return dependingOnValueStmt;
+	public Call getDependingOnCall() {
+		return dependingOnCall;
 	}
 
 	@Override
@@ -103,8 +103,8 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 	}
 
 	@Override
-	public List<ValueStmt> getIndexNameValueStmts() {
-		return indexNameValueStmts;
+	public List<Call> getIndexCalls() {
+		return indexCalls;
 	}
 
 	@Override
@@ -118,8 +118,8 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 	}
 
 	@Override
-	public void setDependingOnValueStmt(final ValueStmt dependingOnValueStmt) {
-		this.dependingOnValueStmt = dependingOnValueStmt;
+	public void setDependingOnCall(final Call dependingOnCall) {
+		this.dependingOnCall = dependingOnCall;
 	}
 
 	@Override

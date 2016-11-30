@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.data.report.impl;
 
 import io.proleap.cobol.Cobol85Parser.ReportGroupTypeClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.report.TypeClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class TypeClauseImpl extends CobolDivisionElementImpl implements TypeClause {
 
 	protected ReportGroupTypeClauseContext ctx;
 
-	protected ValueStmt dataValueStmt;
+	protected Call dataCall;
 
 	protected Type type;
 
@@ -29,8 +29,8 @@ public class TypeClauseImpl extends CobolDivisionElementImpl implements TypeClau
 	}
 
 	@Override
-	public ValueStmt getDataValueStmt() {
-		return dataValueStmt;
+	public Call getDataCall() {
+		return dataCall;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class TypeClauseImpl extends CobolDivisionElementImpl implements TypeClau
 	}
 
 	@Override
-	public void setDataValueStmt(final ValueStmt dataValueStmt) {
-		this.dataValueStmt = dataValueStmt;
+	public void setDataCall(final Call dataCall) {
+		this.dataCall = dataCall;
 	}
 
 	@Override

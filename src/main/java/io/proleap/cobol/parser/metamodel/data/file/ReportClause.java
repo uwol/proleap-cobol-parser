@@ -11,12 +11,12 @@ package io.proleap.cobol.parser.metamodel.data.file;
 import java.util.List;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface ReportClause extends CobolDivisionElement {
 
-	void addReportNameValueStmt(ValueStmt reportNameValueStmt);
+	void addReportCall(Call reportCall);
 
-	List<ValueStmt> getReportNameValueStmts();
+	List<Call> getReportCalls();
 
 }

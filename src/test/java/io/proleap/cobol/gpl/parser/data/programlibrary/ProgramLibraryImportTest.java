@@ -91,7 +91,7 @@ public class ProgramLibraryImportTest extends CobolTestSupport {
 			assertNotNull(importEntryProcedure.getWithClause());
 			assertEquals(2, importEntryProcedure.getWithClause().getWithValueStmts().size());
 
-			assertNotNull(importEntryProcedure.getGivingClause().getGivingValueStmt());
+			assertNotNull(importEntryProcedure.getGivingClause().getGivingCall());
 		}
 	}
 }

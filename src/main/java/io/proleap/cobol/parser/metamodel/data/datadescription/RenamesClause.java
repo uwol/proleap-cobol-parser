@@ -9,15 +9,15 @@
 package io.proleap.cobol.parser.metamodel.data.datadescription;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface RenamesClause extends CobolDivisionElement {
 
-	ValueStmt getFrom();
+	Call getFrom();
 
-	ValueStmt getTo();
+	Call getTo();
 
-	void setFrom(ValueStmt from);
+	void setFrom(Call from);
 
-	void setTo(ValueStmt to);
+	void setTo(Call to);
 }

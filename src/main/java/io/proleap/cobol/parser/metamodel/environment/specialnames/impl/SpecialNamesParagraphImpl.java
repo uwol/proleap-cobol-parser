@@ -32,6 +32,7 @@ import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.MnemonicName;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClauseAlphanumeric;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClauseNational;
@@ -45,7 +46,6 @@ import io.proleap.cobol.parser.metamodel.environment.specialnames.ReserveNetwork
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SpecialNamesParagraph;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.SymbolicCharactersClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implements SpecialNamesParagraph {
 
@@ -87,8 +87,8 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			/*
 			 * alphabet name
 			 */
-			final ValueStmt alphabetValueStmt = createCallValueStmt(ctx.alphabetName());
-			result.setAlphabetValueStmt(alphabetValueStmt);
+			final Call alphabetCall = createCall(ctx.alphabetName());
+			result.setAlphabetCall(alphabetCall);
 
 			/*
 			 * type
@@ -115,13 +115,13 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			 * character set, collating sequence
 			 */
 			if (ctx.cobolWord() != null) {
-				final ValueStmt characterSetValueStmt = createCallValueStmt(ctx.cobolWord());
-				result.addCharacterSetValueStmt(characterSetValueStmt);
+				final Call characterSetCall = createCall(ctx.cobolWord());
+				result.addCharacterSetCall(characterSetCall);
 			} else if (!ctx.alphabetLiterals().isEmpty()) {
 				final List<AlphabetLiteralsContext> alphabetLiteralsContexts = ctx.alphabetLiterals();
 
 				for (final AlphabetLiteralsContext alphabetLiteralsContext : alphabetLiteralsContexts) {
-					result.addCharacterSetValueStmts(alphabetLiteralsContext);
+					result.addCharacterSetCalls(alphabetLiteralsContext);
 				}
 			}
 
@@ -142,8 +142,8 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			/*
 			 * alphabet name
 			 */
-			final ValueStmt alphabetValueStmt = createCallValueStmt(ctx.alphabetName());
-			result.setAlphabetValueStmt(alphabetValueStmt);
+			final Call alphabetCall = createCall(ctx.alphabetName());
+			result.setAlphabetCall(alphabetCall);
 
 			/*
 			 * type
@@ -206,8 +206,8 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			/*
 			 * class name
 			 */
-			final ValueStmt classNameValueStmt = createCallValueStmt(ctx.className());
-			result.setClassNameValueStmt(classNameValueStmt);
+			final Call classCall = createCall(ctx.className());
+			result.setClassCall(classCall);
 
 			/*
 			 * type

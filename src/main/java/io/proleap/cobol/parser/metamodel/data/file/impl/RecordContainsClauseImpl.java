@@ -11,15 +11,15 @@ package io.proleap.cobol.parser.metamodel.data.file.impl;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.file.RecordContainsClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class RecordContainsClauseImpl extends CobolDivisionElementImpl implements RecordContainsClause {
 
 	protected final RecordContainsClauseContext ctx;
 
-	protected ValueStmt dependingOnValueStmt;
+	protected Call dependingOnCall;
 
 	protected IntegerLiteral from;
 
@@ -34,8 +34,8 @@ public class RecordContainsClauseImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
-	public ValueStmt getDependingOnValueStmt() {
-		return dependingOnValueStmt;
+	public Call getDependingOnCall() {
+		return dependingOnCall;
 	}
 
 	@Override
@@ -54,8 +54,8 @@ public class RecordContainsClauseImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
-	public void setDependingOnValueStmt(final ValueStmt dependingOnValueStmt) {
-		this.dependingOnValueStmt = dependingOnValueStmt;
+	public void setDependingOnCall(final Call dependingOnCall) {
+		this.dependingOnCall = dependingOnCall;
 	}
 
 	@Override

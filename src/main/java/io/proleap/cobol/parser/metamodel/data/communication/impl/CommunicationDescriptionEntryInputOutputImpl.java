@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.StatusKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.SymbolicTerminalClauseContext;
 import io.proleap.cobol.Cobol85Parser.TextLengthClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.communication.CommunicationDescriptionEntryInputOutput;
 import io.proleap.cobol.parser.metamodel.data.communication.EndKeyClause;
 import io.proleap.cobol.parser.metamodel.data.communication.MessageDateClause;
@@ -23,7 +24,6 @@ import io.proleap.cobol.parser.metamodel.data.communication.MessageTimeClause;
 import io.proleap.cobol.parser.metamodel.data.communication.StatusKeyClause;
 import io.proleap.cobol.parser.metamodel.data.communication.SymbolicTerminalClause;
 import io.proleap.cobol.parser.metamodel.data.communication.TextLengthClause;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class CommunicationDescriptionEntryInputOutputImpl extends CommunicationDescriptionEntryImpl
 		implements CommunicationDescriptionEntryInputOutput {
@@ -56,8 +56,8 @@ public class CommunicationDescriptionEntryInputOutputImpl extends CommunicationD
 		if (result == null) {
 			result = new EndKeyClauseImpl(programUnit, ctx);
 
-			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
-			result.setDataDescValueStmt(dataDescValueStmt);
+			final Call dataDescCall = createCall(ctx.dataDescName());
+			result.setDataDescCall(dataDescCall);
 
 			endKeyClause = result;
 			registerASGElement(result);
@@ -73,8 +73,8 @@ public class CommunicationDescriptionEntryInputOutputImpl extends CommunicationD
 		if (result == null) {
 			result = new MessageDateClauseImpl(programUnit, ctx);
 
-			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
-			result.setDataDescValueStmt(dataDescValueStmt);
+			final Call dataDescCall = createCall(ctx.dataDescName());
+			result.setDataDescCall(dataDescCall);
 
 			messageDateClause = result;
 			registerASGElement(result);
@@ -90,8 +90,8 @@ public class CommunicationDescriptionEntryInputOutputImpl extends CommunicationD
 		if (result == null) {
 			result = new MessageTimeClauseImpl(programUnit, ctx);
 
-			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
-			result.setDataDescValueStmt(dataDescValueStmt);
+			final Call dataDescCall = createCall(ctx.dataDescName());
+			result.setDataDescCall(dataDescCall);
 
 			messageTimeClause = result;
 			registerASGElement(result);
@@ -107,8 +107,8 @@ public class CommunicationDescriptionEntryInputOutputImpl extends CommunicationD
 		if (result == null) {
 			result = new StatusKeyClauseImpl(programUnit, ctx);
 
-			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
-			result.setDataDescValueStmt(dataDescValueStmt);
+			final Call dataDescCall = createCall(ctx.dataDescName());
+			result.setDataDescCall(dataDescCall);
 
 			statusKeyClause = result;
 			registerASGElement(result);
@@ -124,8 +124,8 @@ public class CommunicationDescriptionEntryInputOutputImpl extends CommunicationD
 		if (result == null) {
 			result = new SymbolicTerminalClauseImpl(programUnit, ctx);
 
-			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
-			result.setDataDescValueStmt(dataDescValueStmt);
+			final Call dataDescCall = createCall(ctx.dataDescName());
+			result.setDataDescCall(dataDescCall);
 
 			symbolicTerminalClause = result;
 			registerASGElement(result);
@@ -141,8 +141,8 @@ public class CommunicationDescriptionEntryInputOutputImpl extends CommunicationD
 		if (result == null) {
 			result = new TextLengthClauseImpl(programUnit, ctx);
 
-			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
-			result.setDataDescValueStmt(dataDescValueStmt);
+			final Call dataDescCall = createCall(ctx.dataDescName());
+			result.setDataDescCall(dataDescCall);
 
 			textLengthClause = result;
 			registerASGElement(result);

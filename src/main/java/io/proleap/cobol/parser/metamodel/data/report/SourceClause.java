@@ -9,11 +9,11 @@
 package io.proleap.cobol.parser.metamodel.data.report;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface SourceClause extends CobolDivisionElement {
 
-	ValueStmt getSourceValueStmt();
+	Call getSourceCall();
 
-	void setSourceValueStmt(ValueStmt sourceValueStmt);
+	void setSourceCall(Call sourceCall);
 }

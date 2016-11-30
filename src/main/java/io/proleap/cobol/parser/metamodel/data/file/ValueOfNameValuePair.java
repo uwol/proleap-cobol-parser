@@ -8,15 +8,16 @@
 
 package io.proleap.cobol.parser.metamodel.data.file;
 
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface ValueOfNameValuePair {
 
-	ValueStmt getName();
+	Call getNameCall();
 
 	ValueStmt getValue();
 
-	void setName(ValueStmt name);
+	void setNameCall(Call nameCall);
 
 	void setValue(ValueStmt value);
 }

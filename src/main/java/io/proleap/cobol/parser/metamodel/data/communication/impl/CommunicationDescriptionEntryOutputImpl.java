@@ -20,6 +20,7 @@ import io.proleap.cobol.Cobol85Parser.SymbolicDestinationClauseContext;
 import io.proleap.cobol.Cobol85Parser.TextLengthClauseContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.communication.CommunicationDescriptionEntryOutput;
 import io.proleap.cobol.parser.metamodel.data.communication.DestinationCountClause;
 import io.proleap.cobol.parser.metamodel.data.communication.DestinationTableClause;
@@ -27,8 +28,6 @@ import io.proleap.cobol.parser.metamodel.data.communication.ErrorKeyClause;
 import io.proleap.cobol.parser.metamodel.data.communication.StatusKeyClause;
 import io.proleap.cobol.parser.metamodel.data.communication.SymbolicDestinationClause;
 import io.proleap.cobol.parser.metamodel.data.communication.TextLengthClause;
-import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class CommunicationDescriptionEntryOutputImpl extends CommunicationDescriptionEntryImpl
 		implements CommunicationDescriptionEntryOutput {
@@ -61,8 +60,8 @@ public class CommunicationDescriptionEntryOutputImpl extends CommunicationDescri
 		if (result == null) {
 			result = new DestinationCountClauseImpl(programUnit, ctx);
 
-			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
-			result.setDataDescValueStmt(dataDescValueStmt);
+			final Call dataDescCall = createCall(ctx.dataDescName());
+			result.setDataDescCall(dataDescCall);
 
 			destinationCountClause = result;
 			registerASGElement(result);
@@ -90,8 +89,8 @@ public class CommunicationDescriptionEntryOutputImpl extends CommunicationDescri
 			final List<IndexNameContext> indexNameContexts = ctx.indexName();
 
 			for (final IndexNameContext indexNameContext : indexNameContexts) {
-				final CallValueStmt indexValueStmt = createCallValueStmt(indexNameContext);
-				result.addIndexValueStmt(indexValueStmt);
+				final Call indexCall = createCall(indexNameContext);
+				result.addIndexCall(indexCall);
 			}
 
 			destinationTableClause = result;
@@ -108,8 +107,8 @@ public class CommunicationDescriptionEntryOutputImpl extends CommunicationDescri
 		if (result == null) {
 			result = new ErrorKeyClauseImpl(programUnit, ctx);
 
-			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
-			result.setDataDescValueStmt(dataDescValueStmt);
+			final Call dataDescCall = createCall(ctx.dataDescName());
+			result.setDataDescCall(dataDescCall);
 
 			errorKeyClause = result;
 			registerASGElement(result);
@@ -125,8 +124,8 @@ public class CommunicationDescriptionEntryOutputImpl extends CommunicationDescri
 		if (result == null) {
 			result = new StatusKeyClauseImpl(programUnit, ctx);
 
-			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
-			result.setDataDescValueStmt(dataDescValueStmt);
+			final Call dataDescCall = createCall(ctx.dataDescName());
+			result.setDataDescCall(dataDescCall);
 
 			statusKeyClause = result;
 			registerASGElement(result);
@@ -142,8 +141,8 @@ public class CommunicationDescriptionEntryOutputImpl extends CommunicationDescri
 		if (result == null) {
 			result = new SymbolicDestinationClauseImpl(programUnit, ctx);
 
-			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
-			result.setDataDescValueStmt(dataDescValueStmt);
+			final Call dataDescCall = createCall(ctx.dataDescName());
+			result.setDataDescCall(dataDescCall);
 
 			symbolicDestinationClause = result;
 			registerASGElement(result);
@@ -159,8 +158,8 @@ public class CommunicationDescriptionEntryOutputImpl extends CommunicationDescri
 		if (result == null) {
 			result = new TextLengthClauseImpl(programUnit, ctx);
 
-			final ValueStmt dataDescValueStmt = createCallValueStmt(ctx.dataDescName());
-			result.setDataDescValueStmt(dataDescValueStmt);
+			final Call dataDescCall = createCall(ctx.dataDescName());
+			result.setDataDescCall(dataDescCall);
 
 			textLengthClause = result;
 			registerASGElement(result);

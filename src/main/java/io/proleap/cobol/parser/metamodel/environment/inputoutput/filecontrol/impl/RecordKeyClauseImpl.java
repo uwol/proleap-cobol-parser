@@ -10,10 +10,10 @@ package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.im
 
 import io.proleap.cobol.Cobol85Parser.RecordKeyClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.PasswordClause;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.RecordKeyClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class RecordKeyClauseImpl extends CobolDivisionElementImpl implements RecordKeyClause {
 
@@ -21,7 +21,7 @@ public class RecordKeyClauseImpl extends CobolDivisionElementImpl implements Rec
 
 	protected PasswordClause passwordClause;
 
-	protected ValueStmt valueStmt;
+	protected Call recordKeyCall;
 
 	public RecordKeyClauseImpl(final ProgramUnit programUnit, final RecordKeyClauseContext ctx) {
 		super(programUnit, ctx);
@@ -35,8 +35,8 @@ public class RecordKeyClauseImpl extends CobolDivisionElementImpl implements Rec
 	}
 
 	@Override
-	public ValueStmt getValueStmt() {
-		return valueStmt;
+	public Call getRecordKeyCall() {
+		return recordKeyCall;
 	}
 
 	@Override
@@ -45,8 +45,8 @@ public class RecordKeyClauseImpl extends CobolDivisionElementImpl implements Rec
 	}
 
 	@Override
-	public void setValueStmt(final ValueStmt valueStmt) {
-		this.valueStmt = valueStmt;
+	public void setRecordKeyCall(final Call recordKeyCall) {
+		this.recordKeyCall = recordKeyCall;
 	}
 
 }

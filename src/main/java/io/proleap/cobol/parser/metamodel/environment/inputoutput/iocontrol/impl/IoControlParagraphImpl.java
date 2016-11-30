@@ -22,6 +22,7 @@ import io.proleap.cobol.Cobol85Parser.MultipleFilePositionContext;
 import io.proleap.cobol.Cobol85Parser.RerunClauseContext;
 import io.proleap.cobol.Cobol85Parser.SameClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.CommitmentControlClause;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.IoControlParagraph;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.MultipleFileClause;
@@ -38,7 +39,7 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 
 	protected final IoControlParagraphContext ctx;
 
-	protected ValueStmt fileNameValueStmt;
+	protected Call fileCall;
 
 	protected MultipleFileClause multipleFileClause;
 
@@ -60,8 +61,8 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 			result = new CommitmentControlClauseImpl(programUnit, ctx);
 
 			if (ctx.fileName() != null) {
-				final ValueStmt fileNameValueStmt = createCallValueStmt(ctx.fileName());
-				result.setFileNameValueStmt(fileNameValueStmt);
+				final Call fileCall = createCall(ctx.fileName());
+				result.setFileCall(fileCall);
 			}
 
 			commitmentControlClause = result;
@@ -149,8 +150,8 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 			 * file names
 			 */
 			for (final FileNameContext fileNameContext : ctx.fileName()) {
-				final ValueStmt fileNameValueStmt = createCallValueStmt(fileNameContext);
-				result.addFileNameValueStmt(fileNameValueStmt);
+				final Call fileCall = createCall(fileNameContext);
+				result.addFileCall(fileCall);
 			}
 
 			sameClauses.add(result);
@@ -166,8 +167,8 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
-	public ValueStmt getFileNameValueStmt() {
-		return fileNameValueStmt;
+	public Call getFileCall() {
+		return fileCall;
 	}
 
 	@Override
@@ -186,8 +187,8 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
-	public void setFileNameValueStmt(final ValueStmt fileNameValueStmt) {
-		this.fileNameValueStmt = fileNameValueStmt;
+	public void setFileCall(final Call fileCall) {
+		this.fileCall = fileCall;
 	}
 
 }

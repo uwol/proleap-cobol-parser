@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.data.report.impl;
 
 import io.proleap.cobol.Cobol85Parser.ReportGroupSourceClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.report.SourceClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class SourceClauseImpl extends CobolDivisionElementImpl implements SourceClause {
 
 	protected ReportGroupSourceClauseContext ctx;
 
-	protected ValueStmt sourceValueStmt;
+	protected Call sourceCall;
 
 	public SourceClauseImpl(final ProgramUnit programUnit, final ReportGroupSourceClauseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class SourceClauseImpl extends CobolDivisionElementImpl implements Source
 	}
 
 	@Override
-	public ValueStmt getSourceValueStmt() {
-		return sourceValueStmt;
+	public Call getSourceCall() {
+		return sourceCall;
 	}
 
 	@Override
-	public void setSourceValueStmt(final ValueStmt sourceValueStmt) {
-		this.sourceValueStmt = sourceValueStmt;
+	public void setSourceCall(final Call sourceCall) {
+		this.sourceCall = sourceCall;
 	}
 
 }

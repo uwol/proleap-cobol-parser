@@ -58,38 +58,38 @@ public class CommunicationDescriptionInputOutputTest extends CobolTestSupport {
 		{
 			final MessageDateClause messageDateClause = communicationDescriptionEntryInputOutput.getMessageDateClause();
 			assertNotNull(messageDateClause);
-			assertNotNull(messageDateClause.getDataDescValueStmt());
+			assertNotNull(messageDateClause.getDataDescCall());
 		}
 
 		{
 			final MessageTimeClause messageTimeClause = communicationDescriptionEntryInputOutput.getMessageTimeClause();
 			assertNotNull(messageTimeClause);
-			assertNotNull(messageTimeClause.getDataDescValueStmt());
+			assertNotNull(messageTimeClause.getDataDescCall());
 		}
 
 		{
 			final SymbolicTerminalClause symbolicTerminalClause = communicationDescriptionEntryInputOutput
 					.getSymbolicTerminalClause();
 			assertNotNull(symbolicTerminalClause);
-			assertNotNull(symbolicTerminalClause.getDataDescValueStmt());
+			assertNotNull(symbolicTerminalClause.getDataDescCall());
 		}
 
 		{
 			final TextLengthClause textLengthClause = communicationDescriptionEntryInputOutput.getTextLengthClause();
 			assertNotNull(textLengthClause);
-			assertNotNull(textLengthClause.getDataDescValueStmt());
+			assertNotNull(textLengthClause.getDataDescCall());
 		}
 
 		{
 			final EndKeyClause endKeyClause = communicationDescriptionEntryInputOutput.getEndKeyClause();
 			assertNotNull(endKeyClause);
-			assertNotNull(endKeyClause.getDataDescValueStmt());
+			assertNotNull(endKeyClause.getDataDescCall());
 		}
 
 		{
 			final StatusKeyClause statusKeyClause = communicationDescriptionEntryInputOutput.getStatusKeyClause();
 			assertNotNull(statusKeyClause);
-			assertNotNull(statusKeyClause.getDataDescValueStmt());
+			assertNotNull(statusKeyClause.getDataDescCall());
 		}
 
 		assertEquals(2, communicationSection.getDataDescriptionEntries().size());

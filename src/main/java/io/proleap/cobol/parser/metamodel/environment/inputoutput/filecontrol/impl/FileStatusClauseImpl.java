@@ -10,17 +10,17 @@ package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.im
 
 import io.proleap.cobol.Cobol85Parser.FileStatusClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.FileStatusClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class FileStatusClauseImpl extends CobolDivisionElementImpl implements FileStatusClause {
 
 	protected final FileStatusClauseContext ctx;
 
-	protected ValueStmt valueStmt;
+	protected Call dataCall;
 
-	protected ValueStmt valueStmt2;
+	protected Call dataCall2;
 
 	public FileStatusClauseImpl(final ProgramUnit programUnit, final FileStatusClauseContext ctx) {
 		super(programUnit, ctx);
@@ -29,23 +29,23 @@ public class FileStatusClauseImpl extends CobolDivisionElementImpl implements Fi
 	}
 
 	@Override
-	public ValueStmt getValueStmt() {
-		return valueStmt;
+	public Call getDataCall() {
+		return dataCall;
 	}
 
 	@Override
-	public ValueStmt getValueStmt2() {
-		return valueStmt2;
+	public Call getDataCall2() {
+		return dataCall2;
 	}
 
 	@Override
-	public void setValueStmt(final ValueStmt valueStmt) {
-		this.valueStmt = valueStmt;
+	public void setDataCall(final Call dataCall) {
+		this.dataCall = dataCall;
 	}
 
 	@Override
-	public void setValueStmt2(final ValueStmt valueStmt) {
-		valueStmt2 = valueStmt;
+	public void setDataCall2(final Call dataCall2) {
+		this.dataCall2 = dataCall2;
 	}
 
 }

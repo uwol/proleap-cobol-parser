@@ -9,16 +9,16 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.valuestmt.IntegerLiteralValueStmt;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface MultipleFilePosition extends CobolDivisionElement {
 
-	ValueStmt getFileNameValueStmt();
+	Call getFileCall();
 
 	IntegerLiteralValueStmt getIntegerLiteralValueStmt();
 
-	void setFileNameValueStmt(ValueStmt fileNameValueStmt);
+	void setFileCall(Call fileCall);
 
 	void setIntegerLiteralValueStmt(IntegerLiteralValueStmt integerLiteralValueStmt);
 }

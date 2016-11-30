@@ -25,6 +25,7 @@ import io.proleap.cobol.Cobol85Parser.RelativeKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AccessModeClause;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AlternateRecordKeyClause;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AssignClause;
@@ -119,8 +120,8 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new AlternateRecordKeyClauseImpl(programUnit, ctx);
 
-			final ValueStmt valueStmt = createCallValueStmt(ctx.qualifiedDataName());
-			result.setValueStmt(valueStmt);
+			final Call dataCall = createCall(ctx.qualifiedDataName());
+			result.setDataCall(dataCall);
 
 			if (ctx.passwordClause() != null) {
 				final PasswordClause passwordClause = addPasswordClause(ctx.passwordClause());
@@ -158,12 +159,12 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new FileStatusClauseImpl(programUnit, ctx);
 
-			final ValueStmt valueStmt = createCallValueStmt(ctx.qualifiedDataName(0));
-			result.setValueStmt(valueStmt);
+			final Call dataCall = createCall(ctx.qualifiedDataName(0));
+			result.setDataCall(dataCall);
 
 			if (ctx.qualifiedDataName().size() > 1 && ctx.qualifiedDataName(1) != null) {
-				final ValueStmt valueStmt2 = createCallValueStmt(ctx.qualifiedDataName(1));
-				result.setValueStmt2(valueStmt2);
+				final Call dataCall2 = createCall(ctx.qualifiedDataName(1));
+				result.setDataCall2(dataCall2);
 			}
 
 			fileStatusClause = result;
@@ -247,8 +248,8 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new PasswordClauseImpl(programUnit, ctx);
 
-			final ValueStmt valueStmt = createCallValueStmt(ctx.dataName());
-			result.setValueStmt(valueStmt);
+			final Call dataCall = createCall(ctx.dataName());
+			result.setDataCall(dataCall);
 
 			passwordClause = result;
 			registerASGElement(result);
@@ -281,8 +282,8 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new RecordKeyClauseImpl(programUnit, ctx);
 
-			final ValueStmt valueStmt = createCallValueStmt(ctx.qualifiedDataName());
-			result.setValueStmt(valueStmt);
+			final Call recordKeyCall = createCall(ctx.qualifiedDataName());
+			result.setRecordKeyCall(recordKeyCall);
 
 			if (ctx.passwordClause() != null) {
 				final PasswordClause passwordClause = addPasswordClause(ctx.passwordClause());
@@ -303,8 +304,8 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new RelativeKeyClauseImpl(programUnit, ctx);
 
-			final ValueStmt valueStmt = createCallValueStmt(ctx.qualifiedDataName());
-			result.setValueStmt(valueStmt);
+			final Call relativeKeyCall = createCall(ctx.qualifiedDataName());
+			result.setRelativeKeyCall(relativeKeyCall);
 
 			relativeKeyClause = result;
 			registerASGElement(result);

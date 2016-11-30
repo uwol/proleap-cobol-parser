@@ -9,12 +9,12 @@
 package io.proleap.cobol.parser.metamodel.data.datadescription;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface RedefinesClause extends CobolDivisionElement {
 
-	ValueStmt getRedefinesValueStmt();
+	Call getRedefinesCall();
 
-	void setRedefinesValueStmt(ValueStmt redefinesValueStmt);
+	void setRedefinesCall(Call redefinesCall);
 
 }

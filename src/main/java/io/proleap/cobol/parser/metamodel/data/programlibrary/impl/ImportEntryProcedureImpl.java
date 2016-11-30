@@ -17,13 +17,13 @@ import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureWithClauseContext;
 import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureWithNameContext;
 import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.ForClause;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.GivingClause;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.ImportEntryProcedure;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.UsingClause;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.WithClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ImportEntryProcedureImpl extends CobolDivisionElementImpl implements ImportEntryProcedure {
@@ -34,7 +34,7 @@ public class ImportEntryProcedureImpl extends CobolDivisionElementImpl implement
 
 	protected GivingClause givingClause;
 
-	protected ValueStmt programValueStmt;
+	protected Call programCall;
 
 	protected UsingClause usingClause;
 
@@ -71,8 +71,8 @@ public class ImportEntryProcedureImpl extends CobolDivisionElementImpl implement
 		if (result == null) {
 			result = new GivingClauseImpl(programUnit, ctx);
 
-			final CallValueStmt givingValueStmt = createCallValueStmt(ctx.dataName());
-			result.setGivingValueStmt(givingValueStmt);
+			final Call givingCall = createCall(ctx.dataName());
+			result.setGivingCall(givingCall);
 
 			givingClause = result;
 			registerASGElement(result);
@@ -134,8 +134,8 @@ public class ImportEntryProcedureImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
-	public ValueStmt getProgramValueStmt() {
-		return programValueStmt;
+	public Call getProgramCall() {
+		return programCall;
 	}
 
 	@Override
@@ -149,8 +149,8 @@ public class ImportEntryProcedureImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
-	public void setProgramValueStmt(final ValueStmt programValueStmt) {
-		this.programValueStmt = programValueStmt;
+	public void setProgramCall(final Call programCall) {
+		this.programCall = programCall;
 	}
 
 }

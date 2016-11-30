@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.ClassClauseFromContext;
 import io.proleap.cobol.Cobol85Parser.ClassClauseThroughContext;
 import io.proleap.cobol.Cobol85Parser.ClassClauseToContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassClause;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.ClassThrough;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
@@ -23,7 +24,7 @@ import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassClause {
 
-	protected ValueStmt classNameValueStmt;
+	protected Call classCall;
 
 	protected List<ClassThrough> classThroughs = new ArrayList<ClassThrough>();
 
@@ -67,8 +68,8 @@ public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassCl
 	}
 
 	@Override
-	public ValueStmt getClassNameValueStmt() {
-		return classNameValueStmt;
+	public Call getClassCall() {
+		return classCall;
 	}
 
 	@Override
@@ -82,8 +83,8 @@ public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassCl
 	}
 
 	@Override
-	public void setClassNameValueStmt(final ValueStmt classNameValueStmt) {
-		this.classNameValueStmt = classNameValueStmt;
+	public void setClassCall(final Call classCall) {
+		this.classCall = classCall;
 	}
 
 	@Override

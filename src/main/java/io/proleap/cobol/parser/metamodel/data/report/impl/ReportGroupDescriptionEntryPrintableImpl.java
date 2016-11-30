@@ -25,6 +25,7 @@ import io.proleap.cobol.Cobol85Parser.ReportGroupValueClauseContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.report.BlankWhenZeroClause;
 import io.proleap.cobol.parser.metamodel.data.report.ColumnNumberClause;
 import io.proleap.cobol.parser.metamodel.data.report.GroupIndicateClause;
@@ -36,7 +37,6 @@ import io.proleap.cobol.parser.metamodel.data.report.SignClause;
 import io.proleap.cobol.parser.metamodel.data.report.SourceClause;
 import io.proleap.cobol.parser.metamodel.data.report.SumClause;
 import io.proleap.cobol.parser.metamodel.data.report.ValueClause;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescriptionEntryImpl
 		implements ReportGroupDescriptionEntryPrintable {
@@ -170,8 +170,8 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 		if (result == null) {
 			result = new ResetClauseImpl(programUnit, ctx);
 
-			final ValueStmt dataValueStmt = createCallValueStmt(ctx.dataName());
-			result.setDataValueStmt(dataValueStmt);
+			final Call dataCall = createCall(ctx.dataName());
+			result.setDataCall(dataCall);
 
 			resetClause = result;
 			registerASGElement(result);
@@ -223,8 +223,8 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 		if (result == null) {
 			result = new SourceClauseImpl(programUnit, ctx);
 
-			final ValueStmt sourceValueStmt = createCallValueStmt(ctx.identifier());
-			result.setSourceValueStmt(sourceValueStmt);
+			final Call sourceCall = createCall(ctx.identifier());
+			result.setSourceCall(sourceCall);
 
 			sourceClause = result;
 			registerASGElement(result);
@@ -244,16 +244,16 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 			 * sum
 			 */
 			for (final IdentifierContext identifierContext : ctx.identifier()) {
-				final ValueStmt sumValueStmt = createCallValueStmt(identifierContext);
-				result.addSumValueStmt(sumValueStmt);
+				final Call sumCall = createCall(identifierContext);
+				result.addSumCall(sumCall);
 			}
 
 			/*
 			 * upon
 			 */
 			for (final DataNameContext dataNameContext : ctx.dataName()) {
-				final ValueStmt uponValueStmt = createCallValueStmt(dataNameContext);
-				result.addUponValueStmt(uponValueStmt);
+				final Call uponCall = createCall(dataNameContext);
+				result.addUponCall(uponCall);
 			}
 
 			sumClause = result;

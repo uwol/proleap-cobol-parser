@@ -13,15 +13,15 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.ReportClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.file.ReportClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ReportClauseImpl extends CobolDivisionElementImpl implements ReportClause {
 
 	protected final ReportClauseContext ctx;
 
-	protected List<ValueStmt> reportNameValueStmts = new ArrayList<ValueStmt>();
+	protected List<Call> reportCalls = new ArrayList<Call>();
 
 	public ReportClauseImpl(final ProgramUnit programUnit, final ReportClauseContext ctx) {
 		super(programUnit, ctx);
@@ -30,13 +30,13 @@ public class ReportClauseImpl extends CobolDivisionElementImpl implements Report
 	}
 
 	@Override
-	public void addReportNameValueStmt(final ValueStmt dataNameValueStmt) {
-		reportNameValueStmts.add(dataNameValueStmt);
+	public void addReportCall(final Call dataCall) {
+		reportCalls.add(dataCall);
 	}
 
 	@Override
-	public List<ValueStmt> getReportNameValueStmts() {
-		return reportNameValueStmts;
+	public List<Call> getReportCalls() {
+		return reportCalls;
 	}
 
 }

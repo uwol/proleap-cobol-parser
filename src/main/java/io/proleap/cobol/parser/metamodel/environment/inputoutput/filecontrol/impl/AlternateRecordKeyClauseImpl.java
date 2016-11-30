@@ -10,18 +10,18 @@ package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.im
 
 import io.proleap.cobol.Cobol85Parser.AlternateRecordKeyClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AlternateRecordKeyClause;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.PasswordClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class AlternateRecordKeyClauseImpl extends CobolDivisionElementImpl implements AlternateRecordKeyClause {
 
 	protected final AlternateRecordKeyClauseContext ctx;
 
-	protected PasswordClause passwordClause;
+	protected Call dataCall;
 
-	protected ValueStmt valueStmt;
+	protected PasswordClause passwordClause;
 
 	public AlternateRecordKeyClauseImpl(final ProgramUnit programUnit, final AlternateRecordKeyClauseContext ctx) {
 		super(programUnit, ctx);
@@ -30,23 +30,23 @@ public class AlternateRecordKeyClauseImpl extends CobolDivisionElementImpl imple
 	}
 
 	@Override
+	public Call getDataCall() {
+		return dataCall;
+	}
+
+	@Override
 	public PasswordClause getPasswordClause() {
 		return passwordClause;
 	}
 
 	@Override
-	public ValueStmt getValueStmt() {
-		return valueStmt;
+	public void setDataCall(final Call dataCall) {
+		this.dataCall = dataCall;
 	}
 
 	@Override
 	public void setPasswordClause(final PasswordClause passwordClause) {
 		this.passwordClause = passwordClause;
-	}
-
-	@Override
-	public void setValueStmt(final ValueStmt valueStmt) {
-		this.valueStmt = valueStmt;
 	}
 
 }

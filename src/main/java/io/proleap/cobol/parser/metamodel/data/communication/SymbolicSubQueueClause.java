@@ -9,7 +9,7 @@
 package io.proleap.cobol.parser.metamodel.data.communication;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface SymbolicSubQueueClause extends CobolDivisionElement {
 
@@ -17,11 +17,11 @@ public interface SymbolicSubQueueClause extends CobolDivisionElement {
 		SubQueue1, SubQueue2, SubQueue3
 	}
 
-	ValueStmt getDataDescValueStmt();
+	Call getDataDescCall();
 
 	Type getType();
 
-	void setDataDescValueStmt(ValueStmt dataDescValueStmt);
+	void setDataDescCall(Call dataDescCall);
 
 	void setType(Type type);
 

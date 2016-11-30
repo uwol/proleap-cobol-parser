@@ -16,10 +16,10 @@ import io.proleap.cobol.Cobol85Parser.ReportGroupNextGroupClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupTypeClauseContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.report.NextGroupClause;
 import io.proleap.cobol.parser.metamodel.data.report.ReportGroupDescriptionEntryVertical;
 import io.proleap.cobol.parser.metamodel.data.report.TypeClause;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class ReportGroupDescriptionEntryVerticalImpl extends ReportGroupDescriptionEntryImpl
 		implements ReportGroupDescriptionEntryVertical {
@@ -84,36 +84,36 @@ public class ReportGroupDescriptionEntryVerticalImpl extends ReportGroupDescript
 			 * type and data
 			 */
 			final TypeClause.Type type;
-			final ValueStmt dataValueStmt;
+			final Call dataCall;
 
 			if (ctx.reportGroupTypeReportHeading() != null) {
 				type = TypeClause.Type.ReportHeading;
-				dataValueStmt = null;
+				dataCall = null;
 			} else if (ctx.reportGroupTypePageHeading() != null) {
 				type = TypeClause.Type.PageHeading;
-				dataValueStmt = null;
+				dataCall = null;
 			} else if (ctx.reportGroupTypeControlHeading() != null) {
 				type = TypeClause.Type.ControlHeading;
-				dataValueStmt = createCallValueStmt(ctx.reportGroupTypeControlHeading().dataName());
+				dataCall = createCall(ctx.reportGroupTypeControlHeading().dataName());
 			} else if (ctx.reportGroupTypeDetail() != null) {
 				type = TypeClause.Type.Detail;
-				dataValueStmt = null;
+				dataCall = null;
 			} else if (ctx.reportGroupTypeControlFooting() != null) {
 				type = TypeClause.Type.ControlFooting;
-				dataValueStmt = createCallValueStmt(ctx.reportGroupTypeControlFooting().dataName());
+				dataCall = createCall(ctx.reportGroupTypeControlFooting().dataName());
 			} else if (ctx.reportGroupTypePageFooting() != null) {
 				type = TypeClause.Type.PageFooting;
-				dataValueStmt = null;
+				dataCall = null;
 			} else if (ctx.reportGroupTypeReportFooting() != null) {
 				type = TypeClause.Type.ReportFooting;
-				dataValueStmt = null;
+				dataCall = null;
 			} else {
 				type = null;
-				dataValueStmt = null;
+				dataCall = null;
 			}
 
 			result.setType(type);
-			result.setDataValueStmt(dataValueStmt);
+			result.setDataCall(dataCall);
 
 			typeClause = result;
 			registerASGElement(result);

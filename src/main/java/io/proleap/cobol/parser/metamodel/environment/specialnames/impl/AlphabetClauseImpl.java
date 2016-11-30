@@ -11,13 +11,13 @@ package io.proleap.cobol.parser.metamodel.environment.specialnames.impl;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public abstract class AlphabetClauseImpl extends CobolDivisionElementImpl implements AlphabetClause {
 
-	protected ValueStmt alphabetValueStmt;
+	protected Call alphabetCall;
 
 	protected final ParseTree ctx;
 
@@ -28,13 +28,13 @@ public abstract class AlphabetClauseImpl extends CobolDivisionElementImpl implem
 	}
 
 	@Override
-	public ValueStmt getAlphabetValueStmt() {
-		return alphabetValueStmt;
+	public Call getAlphabetCall() {
+		return alphabetCall;
 	}
 
 	@Override
-	public void setAlphabetValueStmt(final ValueStmt alphabetValueStmt) {
-		this.alphabetValueStmt = alphabetValueStmt;
+	public void setAlphabetCall(final Call alphabetCall) {
+		this.alphabetCall = alphabetCall;
 	}
 
 }

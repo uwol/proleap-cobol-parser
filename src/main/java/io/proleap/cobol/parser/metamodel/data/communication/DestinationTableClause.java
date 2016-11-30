@@ -12,13 +12,13 @@ import java.util.List;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface DestinationTableClause extends CobolDivisionElement {
 
-	void addIndexValueStmt(ValueStmt indexValueStmt);
+	void addIndexCall(Call indexCall);
 
-	List<ValueStmt> getIndexValueStmts();
+	List<Call> getIndexCalls();
 
 	IntegerLiteral getOccursIntegerLiteral();
 

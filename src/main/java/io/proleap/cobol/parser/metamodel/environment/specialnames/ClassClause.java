@@ -12,7 +12,7 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.ClassClauseThroughContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface ClassClause extends CobolDivisionElement {
 
@@ -22,13 +22,13 @@ public interface ClassClause extends CobolDivisionElement {
 
 	ClassThrough addClassThrough(ClassClauseThroughContext ctx);
 
-	List<ClassThrough> getClassThroughs();
+	Call getClassCall();
 
-	ValueStmt getClassNameValueStmt();
+	List<ClassThrough> getClassThroughs();
 
 	Type getType();
 
-	void setClassNameValueStmt(ValueStmt classNameValueStmt);
+	void setClassCall(Call classCall);
 
 	void setType(Type type);
 }

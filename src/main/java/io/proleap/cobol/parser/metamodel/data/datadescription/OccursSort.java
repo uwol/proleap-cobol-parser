@@ -11,7 +11,7 @@ package io.proleap.cobol.parser.metamodel.data.datadescription;
 import java.util.List;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface OccursSort extends CobolDivisionElement {
 
@@ -19,9 +19,9 @@ public interface OccursSort extends CobolDivisionElement {
 		Ascending, Descending
 	}
 
-	void addKeyValueStmt(ValueStmt keyValueStmt);
+	void addKeyCall(Call keyCall);
 
-	List<ValueStmt> getKeyValueStmts();
+	List<Call> getKeyCalls();
 
 	Order getOrder();
 

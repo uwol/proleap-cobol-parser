@@ -9,12 +9,12 @@
 package io.proleap.cobol.parser.metamodel.data.programlibrary;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface GivingClause extends CobolDivisionElement {
 
-	ValueStmt getGivingValueStmt();
+	Call getGivingCall();
 
-	void setGivingValueStmt(ValueStmt givingValueStmt);
+	void setGivingCall(Call givingCall);
 
 }

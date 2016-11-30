@@ -32,6 +32,7 @@ import io.proleap.cobol.Cobol85Parser.ValueOfClauseContext;
 import io.proleap.cobol.Cobol85Parser.ValuePairContext;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.datadescription.impl.DataDescriptionEntryContainerImpl;
 import io.proleap.cobol.parser.metamodel.data.file.BlockContainsClause;
 import io.proleap.cobol.parser.metamodel.data.file.CodeSetClause;
@@ -45,7 +46,6 @@ import io.proleap.cobol.parser.metamodel.data.file.RecordContainsClause;
 import io.proleap.cobol.parser.metamodel.data.file.ReportClause;
 import io.proleap.cobol.parser.metamodel.data.file.ValueOfClause;
 import io.proleap.cobol.parser.metamodel.data.file.ValueOfNameValuePair;
-import io.proleap.cobol.parser.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl implements FileDescriptionEntry {
@@ -155,8 +155,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			 * data names
 			 */
 			for (final DataNameContext dataNameContext : ctx.dataName()) {
-				final CallValueStmt dataNameValueStmt = createCallValueStmt(dataNameContext);
-				result.addDataNameValueStmt(dataNameValueStmt);
+				final Call dataCall = createCall(dataNameContext);
+				result.addDataCall(dataCall);
 			}
 
 			dataRecordsClause = result;
@@ -226,8 +226,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			 * data names
 			 */
 			for (final DataNameContext dataNameContext : ctx.dataName()) {
-				final CallValueStmt dataNameValueStmt = createCallValueStmt(dataNameContext);
-				result.addDataNameValueStmt(dataNameValueStmt);
+				final Call dataCall = createCall(dataNameContext);
+				result.addDataCall(dataCall);
 			}
 
 			labelRecordsClause = result;
@@ -360,9 +360,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 				 * depending on
 				 */
 				if (recordContainsClauseFormat2.qualifiedDataName() != null) {
-					final CallValueStmt dependingOnValueStmt = createCallValueStmt(
-							recordContainsClauseFormat2.qualifiedDataName());
-					result.setDependingOnValueStmt(dependingOnValueStmt);
+					final Call dependingOnCall = createCall(recordContainsClauseFormat2.qualifiedDataName());
+					result.setDependingOnCall(dependingOnCall);
 				}
 			} else if (ctx.recordContainsClauseFormat3() != null) {
 				/*
@@ -397,8 +396,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			 * report names
 			 */
 			for (final ReportNameContext reportNameContext : ctx.reportName()) {
-				final CallValueStmt reportNameValueStmt = createCallValueStmt(reportNameContext);
-				result.addReportNameValueStmt(reportNameValueStmt);
+				final Call reportCall = createCall(reportNameContext);
+				result.addReportCall(reportCall);
 			}
 
 			reportClause = result;
@@ -416,12 +415,13 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			result = new ValueOfClauseImpl(programUnit, ctx);
 
 			for (final ValuePairContext valuePairContext : ctx.valuePair()) {
-				final ValueStmt systemName = createCallValueStmt(valuePairContext.systemName());
+				final ValueOfNameValuePair valuePair = new ValueOfNameValuePairImpl();
+
+				final Call systemCall = createCall(valuePairContext.systemName());
+				valuePair.setNameCall(systemCall);
+
 				final ValueStmt value = createValueStmt(valuePairContext.qualifiedDataName(),
 						valuePairContext.literal());
-
-				final ValueOfNameValuePair valuePair = new ValueOfNameValuePairImpl();
-				valuePair.setName(systemName);
 				valuePair.setValue(value);
 
 				result.addValuePair(valuePair);

@@ -10,11 +10,11 @@ package io.proleap.cobol.parser.metamodel.data.file;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
 import io.proleap.cobol.parser.metamodel.IntegerLiteral;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface RecordContainsClause extends CobolDivisionElement {
 
-	ValueStmt getDependingOnValueStmt();
+	Call getDependingOnCall();
 
 	IntegerLiteral getFrom();
 
@@ -22,7 +22,7 @@ public interface RecordContainsClause extends CobolDivisionElement {
 
 	boolean isVarying();
 
-	void setDependingOnValueStmt(ValueStmt dependingOnValueStmt);
+	void setDependingOnCall(Call dependingOnCall);
 
 	void setFrom(IntegerLiteral from);
 

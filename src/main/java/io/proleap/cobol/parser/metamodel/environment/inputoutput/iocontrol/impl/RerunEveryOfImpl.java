@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.impl
 
 import io.proleap.cobol.Cobol85Parser.RerunEveryOfContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol.RerunEveryOf;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class RerunEveryOfImpl extends CobolDivisionElementImpl implements RerunEveryOf {
 
 	protected final RerunEveryOfContext ctx;
 
-	protected ValueStmt fileNameValueStmt;
+	protected Call fileCall;
 
 	protected Type type;
 
@@ -29,8 +29,8 @@ public class RerunEveryOfImpl extends CobolDivisionElementImpl implements RerunE
 	}
 
 	@Override
-	public ValueStmt getFileNameValueStmt() {
-		return fileNameValueStmt;
+	public Call getFileCall() {
+		return fileCall;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class RerunEveryOfImpl extends CobolDivisionElementImpl implements RerunE
 	}
 
 	@Override
-	public void setFileNameValueStmt(final ValueStmt fileNameValueStmt) {
-		this.fileNameValueStmt = fileNameValueStmt;
+	public void setFileCall(final Call fileCall) {
+		this.fileCall = fileCall;
 	}
 
 	@Override

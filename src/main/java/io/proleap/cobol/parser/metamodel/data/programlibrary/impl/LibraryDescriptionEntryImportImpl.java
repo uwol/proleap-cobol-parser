@@ -21,12 +21,12 @@ import io.proleap.cobol.Cobol85Parser.LibraryIsCommonClauseContext;
 import io.proleap.cobol.Cobol85Parser.LibraryIsGlobalClauseContext;
 import io.proleap.cobol.parser.metamodel.Literal;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.CommonClause;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.GlobalClause;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.ImportAttribute;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.ImportEntryProcedure;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.LibraryDescriptionEntryImport;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class LibraryDescriptionEntryImportImpl extends LibraryDescriptionEntryImpl
 		implements LibraryDescriptionEntryImport {
@@ -145,8 +145,8 @@ public class LibraryDescriptionEntryImportImpl extends LibraryDescriptionEntryIm
 			/*
 			 * program name
 			 */
-			final ValueStmt programValueStmt = createCallValueStmt(ctx.programName());
-			result.setProgramValueStmt(programValueStmt);
+			final Call programCall = createCall(ctx.programName());
+			result.setProgramCall(programCall);
 
 			/*
 			 * for

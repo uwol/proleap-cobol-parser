@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.data.programlibrary.impl;
 
 import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureGivingClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.data.programlibrary.GivingClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class GivingClauseImpl extends CobolDivisionElementImpl implements GivingClause {
 
 	protected LibraryEntryProcedureGivingClauseContext ctx;
 
-	protected ValueStmt givingValueStmt;
+	protected Call givingCall;
 
 	public GivingClauseImpl(final ProgramUnit programUnit, final LibraryEntryProcedureGivingClauseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class GivingClauseImpl extends CobolDivisionElementImpl implements Giving
 	}
 
 	@Override
-	public ValueStmt getGivingValueStmt() {
-		return givingValueStmt;
+	public Call getGivingCall() {
+		return givingCall;
 	}
 
 	@Override
-	public void setGivingValueStmt(final ValueStmt givingValueStmt) {
-		this.givingValueStmt = givingValueStmt;
+	public void setGivingCall(final Call givingCall) {
+		this.givingCall = givingCall;
 	}
 
 }

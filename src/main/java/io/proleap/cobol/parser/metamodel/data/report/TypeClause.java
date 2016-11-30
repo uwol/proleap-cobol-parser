@@ -9,7 +9,7 @@
 package io.proleap.cobol.parser.metamodel.data.report;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface TypeClause extends CobolDivisionElement {
 
@@ -17,11 +17,11 @@ public interface TypeClause extends CobolDivisionElement {
 		ControlFooting, ControlHeading, Detail, PageFooting, PageHeading, ReportFooting, ReportHeading
 	}
 
-	ValueStmt getDataValueStmt();
+	Call getDataCall();
 
 	Type getType();
 
-	void setDataValueStmt(ValueStmt dataValueStmt);
+	void setDataCall(Call dataCall);
 
 	void setType(Type type);
 }

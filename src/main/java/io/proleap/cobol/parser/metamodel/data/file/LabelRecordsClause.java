@@ -11,7 +11,7 @@ package io.proleap.cobol.parser.metamodel.data.file;
 import java.util.List;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface LabelRecordsClause extends CobolDivisionElement {
 
@@ -19,9 +19,9 @@ public interface LabelRecordsClause extends CobolDivisionElement {
 		DataNames, Omitted, Standard
 	}
 
-	void addDataNameValueStmt(ValueStmt dataNameValueStmt);
+	void addDataCall(Call dataCall);
 
-	List<ValueStmt> getDataNameValueStmts();
+	List<Call> getDataCalls();
 
 	Type getType();
 

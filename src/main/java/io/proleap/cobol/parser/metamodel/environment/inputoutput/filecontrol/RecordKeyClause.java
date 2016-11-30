@@ -9,16 +9,16 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface RecordKeyClause extends CobolDivisionElement {
 
 	PasswordClause getPasswordClause();
 
-	ValueStmt getValueStmt();
+	Call getRecordKeyCall();
 
 	void setPasswordClause(PasswordClause passwordClause);
 
-	void setValueStmt(ValueStmt valueStmt);
+	void setRecordKeyCall(Call recordKeyCall);
 
 }

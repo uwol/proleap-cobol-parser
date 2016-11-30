@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.data.programlibrary;
 
 import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureForClauseContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public interface ExportEntryProcedure extends CobolDivisionElement {
@@ -18,8 +19,8 @@ public interface ExportEntryProcedure extends CobolDivisionElement {
 
 	ForClause getForClause();
 
-	ValueStmt getProgramValueStmt();
+	Call getProgramCall();
 
-	void setProgramValueStmt(ValueStmt programValueStmt);
+	void setProgramCall(Call programCall);
 
 }

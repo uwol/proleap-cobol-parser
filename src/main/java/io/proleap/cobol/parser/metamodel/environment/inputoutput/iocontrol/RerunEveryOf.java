@@ -9,7 +9,7 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.iocontrol;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface RerunEveryOf extends CobolDivisionElement {
 
@@ -17,11 +17,11 @@ public interface RerunEveryOf extends CobolDivisionElement {
 		Reel, Unit
 	}
 
-	ValueStmt getFileNameValueStmt();
+	Call getFileCall();
 
 	Type getType();
 
-	void setFileNameValueStmt(ValueStmt fileNameValueStmt);
+	void setFileCall(Call fileCall);
 
 	void setType(Type type);
 }

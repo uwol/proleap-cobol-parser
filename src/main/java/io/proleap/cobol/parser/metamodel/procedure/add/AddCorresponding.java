@@ -9,15 +9,15 @@
 package io.proleap.cobol.parser.metamodel.procedure.add;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface AddCorresponding extends CobolDivisionElement {
 
-	ValueStmt getFrom();
+	Call getFrom();
 
 	To getTo();
 
-	void setFrom(ValueStmt from);
+	void setFrom(Call from);
 
 	void setTo(To to);
 

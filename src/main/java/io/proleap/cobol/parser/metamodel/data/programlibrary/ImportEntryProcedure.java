@@ -13,7 +13,7 @@ import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureGivingClauseContext;
 import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureUsingClauseContext;
 import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureWithClauseContext;
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface ImportEntryProcedure extends CobolDivisionElement {
 
@@ -29,11 +29,11 @@ public interface ImportEntryProcedure extends CobolDivisionElement {
 
 	GivingClause getGivingClause();
 
-	ValueStmt getProgramValueStmt();
+	Call getProgramCall();
 
 	UsingClause getUsingClause();
 
 	WithClause getWithClause();
 
-	void setProgramValueStmt(ValueStmt programValueStmt);
+	void setProgramCall(Call programCall);
 }

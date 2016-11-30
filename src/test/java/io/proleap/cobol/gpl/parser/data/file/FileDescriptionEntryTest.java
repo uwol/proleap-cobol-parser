@@ -69,24 +69,24 @@ public class FileDescriptionEntryTest extends CobolTestSupport {
 			assertTrue(recordContainsClause.isVarying());
 			assertEquals(new Integer(1), recordContainsClause.getFrom().getValue());
 			assertEquals(new Integer(5), recordContainsClause.getTo().getValue());
-			assertNotNull(recordContainsClause.getDependingOnValueStmt());
+			assertNotNull(recordContainsClause.getDependingOnCall());
 		}
 
 		{
 			final LabelRecordsClause labelRecordsClause = fileDescriptionEntry.getLabelRecordsClause();
 			assertNotNull(labelRecordsClause);
 			assertEquals(LabelRecordsClause.Type.DataNames, labelRecordsClause.getType());
-			assertEquals(2, labelRecordsClause.getDataNameValueStmts().size());
-			assertNotNull(labelRecordsClause.getDataNameValueStmts().get(0));
-			assertNotNull(labelRecordsClause.getDataNameValueStmts().get(1));
+			assertEquals(2, labelRecordsClause.getDataCalls().size());
+			assertNotNull(labelRecordsClause.getDataCalls().get(0));
+			assertNotNull(labelRecordsClause.getDataCalls().get(1));
 		}
 
 		{
 			final DataRecordsClause dataRecordsClause = fileDescriptionEntry.getDataRecordsClause();
 			assertNotNull(dataRecordsClause);
-			assertEquals(2, dataRecordsClause.getDataNameValueStmts().size());
-			assertNotNull(dataRecordsClause.getDataNameValueStmts().get(0));
-			assertNotNull(dataRecordsClause.getDataNameValueStmts().get(1));
+			assertEquals(2, dataRecordsClause.getDataCalls().size());
+			assertNotNull(dataRecordsClause.getDataCalls().get(0));
+			assertNotNull(dataRecordsClause.getDataCalls().get(1));
 		}
 
 		{
@@ -121,7 +121,7 @@ public class FileDescriptionEntryTest extends CobolTestSupport {
 		{
 			final ReportClause reportClause = fileDescriptionEntry.getReportClause();
 			assertNotNull(reportClause);
-			assertEquals(2, reportClause.getReportNameValueStmts().size());
+			assertEquals(2, reportClause.getReportCalls().size());
 		}
 	}
 }

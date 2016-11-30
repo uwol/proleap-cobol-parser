@@ -10,15 +10,15 @@ package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.im
 
 import io.proleap.cobol.Cobol85Parser.RelativeKeyClauseContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.RelativeKeyClause;
 import io.proleap.cobol.parser.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class RelativeKeyClauseImpl extends CobolDivisionElementImpl implements RelativeKeyClause {
 
 	protected final RelativeKeyClauseContext ctx;
 
-	protected ValueStmt valueStmt;
+	protected Call relativeKeyCall;
 
 	public RelativeKeyClauseImpl(final ProgramUnit programUnit, final RelativeKeyClauseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class RelativeKeyClauseImpl extends CobolDivisionElementImpl implements R
 	}
 
 	@Override
-	public ValueStmt getValueStmt() {
-		return valueStmt;
+	public Call getRelativeKeyCall() {
+		return relativeKeyCall;
 	}
 
 	@Override
-	public void setValueStmt(final ValueStmt valueStmt) {
-		this.valueStmt = valueStmt;
+	public void setRelativeKeyCall(final Call relativeKeyCall) {
+		this.relativeKeyCall = relativeKeyCall;
 	}
 
 }

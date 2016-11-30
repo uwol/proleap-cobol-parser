@@ -95,8 +95,8 @@ public class ReportGroupDescriptionResetTest extends CobolTestSupport {
 
 		{
 			final SumClause sumClause = reportGroupDescriptionEntryPrintable.getSumClause();
-			assertEquals(3, sumClause.getSumValueStmts().size());
-			assertEquals(2, sumClause.getUponValueStmts().size());
+			assertEquals(3, sumClause.getSumCalls().size());
+			assertEquals(2, sumClause.getUponCalls().size());
 		}
 
 		{

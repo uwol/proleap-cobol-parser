@@ -61,7 +61,7 @@ public class CommunicationDescriptionInputTest extends CobolTestSupport {
 		{
 			final SymbolicQueueClause symbolicQueueClause = communicationDescriptionEntryInput.getSymbolicQueueClause();
 			assertNotNull(symbolicQueueClause);
-			assertNotNull(symbolicQueueClause.getDataDescValueStmt());
+			assertNotNull(symbolicQueueClause.getDataDescCall());
 		}
 
 		{
@@ -69,50 +69,50 @@ public class CommunicationDescriptionInputTest extends CobolTestSupport {
 					.getSymbolicSubQueueClause();
 			assertNotNull(symbolicSubQueueClause);
 			assertEquals(SymbolicSubQueueClause.Type.SubQueue2, symbolicSubQueueClause.getType());
-			assertNotNull(symbolicSubQueueClause.getDataDescValueStmt());
+			assertNotNull(symbolicSubQueueClause.getDataDescCall());
 		}
 
 		{
 			final MessageDateClause messageDateClause = communicationDescriptionEntryInput.getMessageDateClause();
 			assertNotNull(messageDateClause);
-			assertNotNull(messageDateClause.getDataDescValueStmt());
+			assertNotNull(messageDateClause.getDataDescCall());
 		}
 
 		{
 			final MessageTimeClause messageTimeClause = communicationDescriptionEntryInput.getMessageTimeClause();
 			assertNotNull(messageTimeClause);
-			assertNotNull(messageTimeClause.getDataDescValueStmt());
+			assertNotNull(messageTimeClause.getDataDescCall());
 		}
 
 		{
 			final SymbolicSourceClause symbolicSourceClause = communicationDescriptionEntryInput
 					.getSymbolicSourceClause();
 			assertNotNull(symbolicSourceClause);
-			assertNotNull(symbolicSourceClause.getDataDescValueStmt());
+			assertNotNull(symbolicSourceClause.getDataDescCall());
 		}
 
 		{
 			final TextLengthClause textLengthClause = communicationDescriptionEntryInput.getTextLengthClause();
 			assertNotNull(textLengthClause);
-			assertNotNull(textLengthClause.getDataDescValueStmt());
+			assertNotNull(textLengthClause.getDataDescCall());
 		}
 
 		{
 			final EndKeyClause endKeyClause = communicationDescriptionEntryInput.getEndKeyClause();
 			assertNotNull(endKeyClause);
-			assertNotNull(endKeyClause.getDataDescValueStmt());
+			assertNotNull(endKeyClause.getDataDescCall());
 		}
 
 		{
 			final StatusKeyClause statusKeyClause = communicationDescriptionEntryInput.getStatusKeyClause();
 			assertNotNull(statusKeyClause);
-			assertNotNull(statusKeyClause.getDataDescValueStmt());
+			assertNotNull(statusKeyClause.getDataDescCall());
 		}
 
 		{
 			final MessageCountClause messageCountClause = communicationDescriptionEntryInput.getMessageCountClause();
 			assertNotNull(messageCountClause);
-			assertNotNull(messageCountClause.getDataDescValueStmt());
+			assertNotNull(messageCountClause.getDataDescCall());
 		}
 
 		assertEquals(2, communicationSection.getDataDescriptionEntries().size());

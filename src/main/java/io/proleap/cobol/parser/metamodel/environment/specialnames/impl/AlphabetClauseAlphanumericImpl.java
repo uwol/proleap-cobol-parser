@@ -16,14 +16,14 @@ import io.proleap.cobol.Cobol85Parser.AlphabetClauseFormat1Context;
 import io.proleap.cobol.Cobol85Parser.AlphabetLiteralsContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.specialnames.AlphabetClauseAlphanumeric;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
 
 public class AlphabetClauseAlphanumericImpl extends AlphabetClauseImpl implements AlphabetClauseAlphanumeric {
 
 	protected AlphabetClauseAlphanumericType alphabetClauseAlphanumericType;
 
-	protected List<ValueStmt> characterSetValueStmts = new ArrayList<ValueStmt>();
+	protected List<Call> characterSetCalls = new ArrayList<Call>();
 
 	protected final AlphabetClauseFormat1Context ctx;
 
@@ -34,22 +34,22 @@ public class AlphabetClauseAlphanumericImpl extends AlphabetClauseImpl implement
 	}
 
 	@Override
-	public void addCharacterSetValueStmt(final ValueStmt characterSetValueStmt) {
-		characterSetValueStmts.add(characterSetValueStmt);
+	public void addCharacterSetCall(final Call characterSetValueStmt) {
+		characterSetCalls.add(characterSetValueStmt);
 	}
 
 	@Override
-	public void addCharacterSetValueStmts(final AlphabetLiteralsContext ctx) {
-		final ValueStmt characterSetValueStmt = createLiteralValueStmt(ctx.literal());
-		characterSetValueStmts.add(characterSetValueStmt);
+	public void addCharacterSetCalls(final AlphabetLiteralsContext ctx) {
+		final Call characterSetCall = createCall(ctx.literal());
+		characterSetCalls.add(characterSetCall);
 
 		/*
 		 * through
 		 */
 		if (ctx.alphabetThrough() != null) {
-			final ValueStmt characterSetThroughValueStmt = createLiteralValueStmt(ctx.alphabetThrough().literal());
+			final Call characterSetThroughCall = createCall(ctx.alphabetThrough().literal());
 			// TODO: add char sets in between
-			characterSetValueStmts.add(characterSetThroughValueStmt);
+			characterSetCalls.add(characterSetThroughCall);
 		}
 
 		/*
@@ -59,8 +59,8 @@ public class AlphabetClauseAlphanumericImpl extends AlphabetClauseImpl implement
 			final List<LiteralContext> literalContexts = alphabetAlsoContext.literal();
 
 			for (final LiteralContext literalContext : literalContexts) {
-				final ValueStmt characterSetAlsoValueStmt = createLiteralValueStmt(literalContext);
-				characterSetValueStmts.add(characterSetAlsoValueStmt);
+				final Call characterSetAlsoCall = createCall(literalContext);
+				characterSetCalls.add(characterSetAlsoCall);
 			}
 		}
 	}
@@ -71,8 +71,8 @@ public class AlphabetClauseAlphanumericImpl extends AlphabetClauseImpl implement
 	}
 
 	@Override
-	public List<ValueStmt> getCharacterSetValueStmts() {
-		return characterSetValueStmts;
+	public List<Call> getCharacterSetCalls() {
+		return characterSetCalls;
 	}
 
 	@Override
