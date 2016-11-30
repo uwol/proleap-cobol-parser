@@ -176,7 +176,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			LOG.info("Collecting units in file {}.", inputFile.getName());
 			visitor.visit(ctx);
 		} else {
-			LOG.info("Ignoring file {}.", inputFile.getName());
+			LOG.info("Ignoring file {}", inputFile.getAbsoluteFile());
 		}
 	}
 }
