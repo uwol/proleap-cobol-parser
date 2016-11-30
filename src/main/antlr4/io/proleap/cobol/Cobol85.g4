@@ -278,7 +278,7 @@ inputOutputSectionParagraph
 // - file control paragraph ----------------------------------
 
 fileControlParagraph
-   : FILE_CONTROL (DOT_FS? fileControlEntry)+ DOT_FS
+   : FILE_CONTROL (DOT_FS? fileControlEntry)* DOT_FS
    ;
 
 fileControlEntry
