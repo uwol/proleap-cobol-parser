@@ -1206,11 +1206,15 @@ disableStatement
 // display statement
 
 displayStatement
-   : DISPLAY displayOperand+ displayUpon? displayWith?
+   : DISPLAY displayOperand+ displayAt? displayUpon? displayWith?
    ;
 
 displayOperand
    : identifier | literal | otherKeyword
+   ;
+
+displayAt
+   : AT (identifier | literal)
    ;
 
 displayUpon

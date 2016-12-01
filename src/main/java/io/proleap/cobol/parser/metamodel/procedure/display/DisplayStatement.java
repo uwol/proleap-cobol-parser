@@ -10,6 +10,7 @@ package io.proleap.cobol.parser.metamodel.procedure.display;
 
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.DisplayAtContext;
 import io.proleap.cobol.Cobol85Parser.DisplayOperandContext;
 import io.proleap.cobol.Cobol85Parser.DisplayUponContext;
 import io.proleap.cobol.Cobol85Parser.DisplayWithContext;
@@ -20,11 +21,15 @@ import io.proleap.cobol.parser.metamodel.procedure.Statement;
  */
 public interface DisplayStatement extends Statement {
 
+	At addAt(DisplayAtContext ctx);
+
 	Operand addOperand(DisplayOperandContext ctx);
 
 	Upon addUpon(DisplayUponContext ctx);
 
 	With addWith(DisplayWithContext ctx);
+
+	At getAt();
 
 	List<Operand> getOperands();
 

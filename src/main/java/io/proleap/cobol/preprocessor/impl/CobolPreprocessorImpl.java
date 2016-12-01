@@ -177,7 +177,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 			final String result;
 
 			if (CobolSourceFormatEnum.FIXED.equals(format)) {
-				result = processSourceFormatFixed(line, dialect, format);
+				result = processSourceFormatFixed(line, lineNumber, dialect, format);
 			} else {
 				result = line + NEWLINE;
 			}
@@ -191,12 +191,12 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		 * is restricted to area B of those lines; the next line commencing in
 		 * area A begins the next non-comment entry.
 		 */
-		public String processSourceFormatFixed(final String line, final CobolDialect dialect,
+		public String processSourceFormatFixed(final String line, final int lineNumber, final CobolDialect dialect,
 				final CobolSourceFormat format) {
 			final CobolLine parsedLine = parseCobolLine(line, format);
 
 			if (parsedLine == null) {
-				throwCobolLineParseException(line, format);
+				throwCobolLineParseException(line, lineNumber, format);
 			}
 
 			final boolean foundCommentEntryTriggerInCurrentLine = beginsWithTrigger(parsedLine, triggersStart);
@@ -359,7 +359,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 			final CobolLine parsedLine = parseCobolLine(line, format);
 
 			if (parsedLine == null) {
-				throwCobolLineParseException(line, format);
+				throwCobolLineParseException(line, lineNumber, format);
 			}
 
 			final boolean isFirstLine = lineNumber == 0;
@@ -958,8 +958,9 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		return result;
 	}
 
-	protected void throwCobolLineParseException(final String line, final CobolSourceFormat format) {
-		throw new RuntimeException("could not parse following line with format " + format + ": " + line);
+	protected void throwCobolLineParseException(final String line, final int lineNumber,
+			final CobolSourceFormat format) {
+		throw new RuntimeException("could not parse line " + (lineNumber + 1) + " with format " + format + ": " + line);
 	}
 
 }

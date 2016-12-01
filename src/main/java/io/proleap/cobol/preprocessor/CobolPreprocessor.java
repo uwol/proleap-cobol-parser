@@ -75,11 +75,22 @@ public interface CobolPreprocessor {
 		FIXED("(.{6})" + indicatorField + "(.{4})(.{61})(.{8,})"),
 
 		/**
+		 * Flexible fixed format. Each line up to 80 chars.<br />
+		 * <br />
+		 * 1-6: sequence area<br />
+		 * 7: indicator field<br />
+		 * 8-12: optional area A<br />
+		 * 13-72: optional area B<br />
+		 * 73-80: optional comments<br />
+		 */
+		FIXED_FLEX("(.{6})" + indicatorField + "(.{0,4})(.{0,61})(.*)"),
+
+		/**
 		 * HP Tandem format.<br />
 		 * <br />
 		 * 1: indicator field<br />
-		 * 2-5: area A<br />
-		 * 6-132: area B<br />
+		 * 2-5: optional area A<br />
+		 * 6-132: optional area B<br />
 		 */
 		TANDEM("()" + indicatorField + "(.{0,4})(.*)()"),
 
@@ -88,8 +99,8 @@ public interface CobolPreprocessor {
 		 * <br />
 		 * 1-6: sequence area<br />
 		 * 7: indicator field<br />
-		 * 8-12: area A<br />
-		 * 13-*: area B<br />
+		 * 8-12: optional area A<br />
+		 * 13-*: optional area B<br />
 		 */
 		VARIABLE("(.{6})(?:" + indicatorField + "(.{0,4})(.*)())?");
 

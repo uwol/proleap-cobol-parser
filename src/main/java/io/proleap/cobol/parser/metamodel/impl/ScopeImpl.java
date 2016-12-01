@@ -538,6 +538,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 				result.addOperand(displayOperandContext);
 			}
 
+			// at
+			if (ctx.displayAt() != null) {
+				result.addAt(ctx.displayAt());
+			}
+
 			// upon
 			if (ctx.displayUpon() != null) {
 				result.addUpon(ctx.displayUpon());
