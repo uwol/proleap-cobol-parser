@@ -155,6 +155,9 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		if (result == null) {
 			result = new LinkageSectionImpl(programUnit, ctx);
 
+			/*
+			 * data descriptions
+			 */
 			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
 
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
@@ -181,6 +184,9 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			final String name = determineName(ctx.localName());
 			result = new LocalStorageSectionImpl(name, programUnit, ctx);
 
+			/*
+			 * data descriptions
+			 */
 			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
 
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
