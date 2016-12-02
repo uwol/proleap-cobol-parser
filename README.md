@@ -56,7 +56,7 @@ Import into Eclipse:
 
 1. Clone or download the repository. 
 2. In Eclipse import the directory as a an `existing Maven project`.
-3. Right click file `src/test/java/io.proleap.cobol.gpl.HelloWorldTest` and `run as JUnit test`.
+3. Right click file `src/test/java/io.proleap.cobol.gpl.HelloWorldTest.class` and `run as JUnit test`.
 
 Use the following code as a starting point for developing own code.
 
