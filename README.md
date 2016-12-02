@@ -3,24 +3,11 @@ ANTLR4-based grammar and parser for Cobol 85
 
 <a href="https://travis-ci.org/uwol/cobol85parser"><img src="https://api.travis-ci.org/uwol/cobol85parser.png"></a>
 
-This is an approximate grammar and parser for Cobol 85, which generates an 
-Abstract Syntax Tree (AST) and Abstract Semantic Graph (ASG) for COBOL 85 code.
-
+This is a grammar and parser for Cobol 85, which generates an 
+Abstract Syntax Tree (AST) and Abstract Semantic Graph (ASG) for COBOL 85 code. 
 The AST represents plain COBOL source code in a syntax tree structure. 
-The ASG is generated from the AST by a semantic analysis and provides data and control 
+The ASG is generated from the AST by semantic analysis and provides data and control 
 flow information (e. g. variable access).
-
-The grammar is akin but neither copied from nor identical to the Cobol.jj, 
-Cobol.kg and VS COBOL II grammars.
-
-
-Characteristics
----------------
-
-1. Passes NIST test suite.
-
-2. To be used in conjunction with the provided preprocessor, which executes
-   COPY and REPLACE statements.
 
 
 Example
@@ -64,16 +51,20 @@ Example
 How to use
 ----------
 
-### Simple: Abstract Semantic Graph (ASG) parsing
+Check out the repository. Then in Eclipse import as a an existing Maven project.
+
+
+### Simple: Generate Abstract Semantic Graph (ASG) from COBOL code
 
 ```java
 io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
 
+// generate ASG from plain COBOL code
 java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/parser/HelloWorld.cbl");
-
 io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
 io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, format);
 
+// navigate on ASG
 io.proleap.cobol.parser.metamodel.CompilationUnit compilationUnit = program.getCompilationUnit("HelloWorld");
 io.proleap.cobol.parser.metamodel.ProgramUnit programUnit = compilationUnit.getProgramUnit();
 io.proleap.cobol.parser.metamodel.data.DataDivision dataDivision = programUnit.getDataDivision();
@@ -81,16 +72,17 @@ io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry data
 Integer levelNumber = dataDescriptionEntry.getLevelNumber();
 ```
 
-### Complex: Abstract Semantic Graph (ASG) parsing with Abstract Syntax Tree (AST) traversal
+### Complex: Generate Abstract Semantic Graph (ASG) an traverse with Abstract Syntax Tree (AST)
 
 ```java
 io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
 
+// generate ASG from plain COBOL code
 java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/parser/HelloWorld.cbl");
-
 io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
 io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, format);
 
+// traverse the AST 
 io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>() {
   @Override
   public Boolean visitDataDescriptionEntryFormat1(final io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context ctx) {
@@ -165,6 +157,12 @@ $ mvn clean install
 ```
 
 
+Release process
+---------------
+
+* Milestones are published in the [ANTLR grammars repo](https://github.com/antlr/grammars-v4).
+
+
 VM args
 -------
 
@@ -172,10 +170,15 @@ VM args
 * Intellij Plugin for ANTLR 4 has to be provided with those VM args in file idea.vmoptions.
 
 
-Release process
+Characteristics
 ---------------
 
-* Milestones are published in the [ANTLR grammars repo](https://github.com/antlr/grammars-v4).
+1. Passes NIST test suite.
+
+2. To be used in conjunction with the provided preprocessor, which executes
+   COPY and REPLACE statements.
+
+3. The ANTLR4 grammar is akin but neither copied from nor identical to the Cobol.jj, Cobol.kg and VS COBOL II grammars.
 
 
 License
