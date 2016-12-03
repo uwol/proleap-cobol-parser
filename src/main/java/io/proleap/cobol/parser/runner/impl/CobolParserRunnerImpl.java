@@ -150,13 +150,15 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		return "cbl".equals(extension);
 	}
 
-	protected boolean isRelevant(final File inputFile) {
-		return inputFile.isFile() && !inputFile.isHidden() && isCobolFile(inputFile);
-	}
-
 	protected void parseFile(final File inputFile, final Program program, final CobolSourceFormat format,
 			final CobolDialect dialect) throws IOException {
-		if (isRelevant(inputFile)) {
+		if (!inputFile.isFile()) {
+			LOG.warn("Could not find file {}", inputFile.getAbsolutePath());
+		} else if (inputFile.isHidden()) {
+			LOG.warn("Ignoring hidden file {}", inputFile.getAbsolutePath());
+		} else if (!isCobolFile(inputFile)) {
+			LOG.info("Ignoring file {} because of file extension.", inputFile.getAbsolutePath());
+		} else {
 			final File libDirectory = inputFile.getParentFile();
 
 			// preprocess input stream
@@ -185,8 +187,6 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 			LOG.info("Collecting units in file {}.", inputFile.getName());
 			visitor.visit(ctx);
-		} else {
-			LOG.info("Ignoring file {}", inputFile.getAbsoluteFile());
 		}
 	}
 }
