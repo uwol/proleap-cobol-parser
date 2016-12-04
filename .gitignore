@@ -17,8 +17,7 @@ Thumbs.db
 bin/
 build/
 lib/
-src/test/java/io/proleap/cobol/ibm/
-src/test/resources/io/proleap/cobol/cics
-src/test/resources/io/proleap/cobol/ibm/
+src/test/java/io/proleap/cobol/proprietary/
+src/test/resources/io/proleap/cobol/proprietary/
 src/test/resources/gov/nist/*.tree
 target/
