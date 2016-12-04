@@ -79,7 +79,7 @@ io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry data
 Integer levelNumber = dataDescriptionEntry.getLevelNumber();
 ```
 
-### Complex: Generate an Abstract Semantic Graph (ASG) an traverse the Abstract Syntax Tree (AST)
+### Complex: Generate an Abstract Semantic Graph (ASG) and traverse the Abstract Syntax Tree (AST)
 
 ```java
 io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
