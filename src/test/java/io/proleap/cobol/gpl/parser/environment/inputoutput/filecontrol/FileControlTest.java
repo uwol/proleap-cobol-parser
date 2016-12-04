@@ -13,6 +13,7 @@ import io.proleap.cobol.parser.applicationcontext.CobolParserContext;
 import io.proleap.cobol.parser.metamodel.CompilationUnit;
 import io.proleap.cobol.parser.metamodel.Program;
 import io.proleap.cobol.parser.metamodel.ProgramUnit;
+import io.proleap.cobol.parser.metamodel.call.Call;
 import io.proleap.cobol.parser.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AccessModeClause;
 import io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol.AlternateRecordKeyClause;
@@ -59,7 +60,8 @@ public class FileControlTest extends CobolTestSupport {
 		{
 			final AssignClause assignClause = fileControlEntry.getAssignClause();
 			assertNotNull(assignClause);
-			assertEquals("'teacher.txt'", assignClause.getValueStmt().getValue());
+			assertEquals(AssignClause.Type.Call, assignClause.getType());
+			assertEquals(Call.CallType.UndefinedCall, assignClause.getToCall().getCallType());
 		}
 
 		{

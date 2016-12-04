@@ -9,12 +9,20 @@
 package io.proleap.cobol.parser.metamodel.environment.inputoutput.filecontrol;
 
 import io.proleap.cobol.parser.metamodel.CobolDivisionElement;
-import io.proleap.cobol.parser.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.parser.metamodel.call.Call;
 
 public interface AssignClause extends CobolDivisionElement {
 
-	ValueStmt getValueStmt();
+	enum Type {
+		Call, Disk, Port, Printer, Reader, Remote, Tape, Virtual
+	}
 
-	void setValueStmt(ValueStmt valueStmt);
+	Call getToCall();
+
+	Type getType();
+
+	void setToCall(Call toCall);
+
+	void setType(Type type);
 
 }

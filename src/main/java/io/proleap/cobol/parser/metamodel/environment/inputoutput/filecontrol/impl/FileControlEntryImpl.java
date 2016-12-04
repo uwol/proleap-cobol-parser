@@ -142,8 +142,36 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new AssignClauseImpl(programUnit, ctx);
 
-			final ValueStmt valueStmt = createValueStmt(ctx.assignmentName(), ctx.literal());
-			result.setValueStmt(valueStmt);
+			// to call
+			final Call toCall = createCall(ctx.assignmentName(), ctx.literal());
+			result.setToCall(toCall);
+
+			// type
+			final AssignClause.Type type;
+
+			if (ctx.DISK() != null) {
+				type = AssignClause.Type.Disk;
+			} else if (ctx.PORT() != null) {
+				type = AssignClause.Type.Port;
+			} else if (ctx.PRINTER() != null) {
+				type = AssignClause.Type.Printer;
+			} else if (ctx.READER() != null) {
+				type = AssignClause.Type.Reader;
+			} else if (ctx.REMOTE() != null) {
+				type = AssignClause.Type.Remote;
+			} else if (ctx.TAPE() != null) {
+				type = AssignClause.Type.Tape;
+			} else if (ctx.VIRTUAL() != null) {
+				type = AssignClause.Type.Virtual;
+			} else if (ctx.assignmentName() != null) {
+				type = AssignClause.Type.Call;
+			} else if (ctx.literal() != null) {
+				type = AssignClause.Type.Call;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
 
 			assignClause = result;
 			registerASGElement(result);

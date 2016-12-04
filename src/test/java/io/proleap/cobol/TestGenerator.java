@@ -56,10 +56,11 @@ public class TestGenerator {
 		final String inputFilename = getInputFilename(cobolInputFile);
 		final File outputFile = new File(outputDirectory + "/" + inputFilename + OUTPUT_FILE_SUFFIX + JAVA_EXTENSION);
 
-		LOG.info("Creating unit test {}.", outputFile);
 		final boolean createdNewFile = outputFile.createNewFile();
 
 		if (createdNewFile) {
+			LOG.info("Creating unit test {}.", outputFile);
+
 			final PrintWriter pWriter = new PrintWriter(new FileWriter(outputFile));
 			final String cobolInputFileName = cobolInputFile.getPath().replace("\\", "/");
 			final CobolSourceFormat format = getCobolSourceFormat(parentDirectory);
@@ -130,10 +131,11 @@ public class TestGenerator {
 	public static void generateTreeFile(final File cobolInputFile, final File outputDirectory) throws IOException {
 		final File outputFile = new File(outputDirectory + "/" + cobolInputFile.getName() + TREE_EXTENSION);
 
-		LOG.info("Creating tree file {}.", outputFile);
 		final boolean createdNewFile = outputFile.createNewFile();
 
 		if (createdNewFile) {
+			LOG.info("Creating tree file {}.", outputFile);
+
 			final File parentDirectory = cobolInputFile.getParentFile();
 			final CobolSourceFormat format = getCobolSourceFormat(parentDirectory);
 
