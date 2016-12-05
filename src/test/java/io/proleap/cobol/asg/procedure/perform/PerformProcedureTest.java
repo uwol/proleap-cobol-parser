@@ -36,6 +36,7 @@ public class PerformProcedureTest extends CobolTestSupport {
 		final CompilationUnit compilationUnit = program.getCompilationUnit("PERFORMPROCEDURE");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(3, procedureDivision.getParagraphs().size());
 		assertEquals(6, procedureDivision.getStatements().size());
 
 		{

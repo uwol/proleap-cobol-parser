@@ -34,14 +34,14 @@ public class GoToStatementTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/procedure/gotostmt/GoToStatement.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/procedure/gotostmt/GoToStatement.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
 				CobolSourceFormatEnum.TANDEM);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("GoToStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(3, procedureDivision.getParagraphs().size());
 		assertEquals(5, procedureDivision.getStatements().size());
 
 		final Paragraph paragraph1 = procedureDivision.getParagraph("SOMEPROC1");

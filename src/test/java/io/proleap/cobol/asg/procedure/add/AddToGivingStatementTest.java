@@ -40,7 +40,7 @@ public class AddToGivingStatementTest extends CobolTestSupport {
 		final CompilationUnit compilationUnit = program.getCompilationUnit("AddToGivingStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
-
+		assertEquals(0, procedureDivision.getParagraphs().size());
 		assertEquals(2, procedureDivision.getStatements().size());
 
 		{

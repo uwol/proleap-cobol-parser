@@ -37,6 +37,7 @@ public class PerformProcedureThroughTest extends CobolTestSupport {
 		final CompilationUnit compilationUnit = program.getCompilationUnit("PERFORMPROCEDURETHROUGH");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(5, procedureDivision.getParagraphs().size());
 		assertEquals(7, procedureDivision.getStatements().size());
 
 		{

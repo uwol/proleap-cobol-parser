@@ -44,7 +44,6 @@ public class InitializeStatementTest extends CobolTestSupport {
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("InitializeStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
-
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
@@ -62,6 +61,8 @@ public class InitializeStatementTest extends CobolTestSupport {
 		assertNotNull(someName);
 
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(0, procedureDivision.getParagraphs().size());
+		assertEquals(2, procedureDivision.getStatements().size());
 
 		{
 			final InitializeStatement initializeStatement = (InitializeStatement) procedureDivision.getStatements()

@@ -42,7 +42,6 @@ public class DisableStatementTest extends CobolTestSupport {
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("DisableStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
-
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final CommunicationSection communicationSection = dataDivision.getCommunicationSection();
 
@@ -62,6 +61,7 @@ public class DisableStatementTest extends CobolTestSupport {
 		assertEquals(CommunicationDescriptionEntry.Type.Output, communicationDescriptionEntry3.getType());
 
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(0, procedureDivision.getParagraphs().size());
 		assertEquals(3, procedureDivision.getStatements().size());
 
 		{

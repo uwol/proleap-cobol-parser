@@ -47,6 +47,7 @@ public class GenerateStatementTest extends CobolTestSupport {
 		assertNotNull(report1);
 
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(0, procedureDivision.getParagraphs().size());
 		assertEquals(1, procedureDivision.getStatements().size());
 
 		{

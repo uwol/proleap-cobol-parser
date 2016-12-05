@@ -29,14 +29,14 @@ public class CancelStatementTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/procedure/cancel/CancelStatement.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/procedure/cancel/CancelStatement.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
 				CobolSourceFormatEnum.TANDEM);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("CancelStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(0, procedureDivision.getParagraphs().size());
 		assertEquals(2, procedureDivision.getStatements().size());
 
 		{

@@ -36,6 +36,7 @@ public class ContinueStatementTest extends CobolTestSupport {
 		final CompilationUnit compilationUnit = program.getCompilationUnit("ContinueStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(0, procedureDivision.getParagraphs().size());
 		assertEquals(1, procedureDivision.getStatements().size());
 
 		{

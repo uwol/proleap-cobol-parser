@@ -45,7 +45,7 @@ public class MoveToImpl extends CobolDivisionElementImpl implements MoveTo {
 		if (result == null) {
 			result = new SendingAreaImpl(programUnit, ctx);
 
-			final Call sendingAreaCall = createCall(ctx.identifier(), ctx.literal(), ctx.nonReservedWord());
+			final Call sendingAreaCall = createCall(ctx.identifier(), ctx.literal());
 			result.setSendingAreaCall(sendingAreaCall);
 
 			sendingArea = result;

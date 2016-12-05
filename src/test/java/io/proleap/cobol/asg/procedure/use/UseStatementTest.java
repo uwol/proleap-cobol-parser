@@ -34,14 +34,15 @@ public class UseStatementTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/procedure/use/UseStatement.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/procedure/use/UseStatement.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
 				CobolSourceFormatEnum.TANDEM);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("UseStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(2, procedureDivision.getParagraphs().size());
+
 		final Declaratives declaratives = procedureDivision.getDeclaratives();
 		assertEquals(2, declaratives.getDeclaratives().size());
 

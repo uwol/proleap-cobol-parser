@@ -32,14 +32,14 @@ public class AddToStatementTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/procedure/add/AddToStatement.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/procedure/add/AddToStatement.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
 				CobolSourceFormatEnum.TANDEM);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("AddToStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(0, procedureDivision.getParagraphs().size());
 		assertEquals(2, procedureDivision.getStatements().size());
 
 		{

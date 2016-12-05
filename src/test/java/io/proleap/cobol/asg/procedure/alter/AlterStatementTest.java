@@ -41,6 +41,7 @@ public class AlterStatementTest extends CobolTestSupport {
 		final CompilationUnit compilationUnit = program.getCompilationUnit("AlterStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(3, procedureDivision.getParagraphs().size());
 		assertEquals(2, procedureDivision.getStatements().size());
 
 		final Paragraph paragraph1 = procedureDivision.getParagraph("Paragraph-1");

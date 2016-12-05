@@ -60,20 +60,20 @@
 												(booleanLiteral FALSE)))) 
 									(evaluateWhenPhrase 
 										(evaluateWhen WHEN 
-											(evaluateCondition 
-												(condition 
-													(combinableCondition NOT 
-														(simpleCondition 
-															(conditionNameReference 
-																(conditionName 
+											(evaluateCondition NOT 
+												(evaluateValue 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
 																	(cobolWord SOMEVAR3))))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
-													(condition 
-														(combinableCondition 
-															(simpleCondition 
-																(conditionNameReference 
-																	(conditionName 
+													(evaluateValue 
+														(identifier 
+															(qualifiedDataName 
+																(qualifiedDataNameFormat1 
+																	(dataName 
 																		(cobolWord SOMEVAR4)))))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
@@ -83,7 +83,9 @@
 																(integerLiteral 234)))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
-													(booleanLiteral TRUE))) 
+													(evaluateValue 
+														(literal 
+															(booleanLiteral TRUE))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
 													(condition 
@@ -161,11 +163,11 @@
 															(integerLiteral 42))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
-													(condition 
-														(combinableCondition 
-															(simpleCondition 
-																(conditionNameReference 
-																	(conditionName 
+													(evaluateValue 
+														(identifier 
+															(qualifiedDataName 
+																(qualifiedDataNameFormat1 
+																	(dataName 
 																		(cobolWord SOMEVAR1)))))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
@@ -195,7 +197,9 @@
 																									(integerLiteral 9)))))))) )))))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
-													(booleanLiteral FALSE))) 
+													(evaluateValue 
+														(literal 
+															(booleanLiteral FALSE))))) 
 											(evaluateAlsoCondition ALSO 
 												(evaluateCondition 
 													(condition 

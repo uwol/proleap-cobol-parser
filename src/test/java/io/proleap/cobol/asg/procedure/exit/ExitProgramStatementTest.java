@@ -1,4 +1,4 @@
-package io.proleap.cobol.asg.procedure.ifstmt;
+package io.proleap.cobol.asg.procedure.exit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -15,12 +15,10 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.ifstmt.Else;
-import io.proleap.cobol.asg.metamodel.procedure.ifstmt.IfStatement;
-import io.proleap.cobol.asg.metamodel.procedure.ifstmt.Then;
+import io.proleap.cobol.asg.metamodel.procedure.exit.ExitStatement;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class IfStatementTest extends CobolTestSupport {
+public class ExitProgramStatementTest extends CobolTestSupport {
 
 	@Override
 	@Before
@@ -30,36 +28,21 @@ public class IfStatementTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/procedure/ifstmt/IfStatement.cbl");
+		final File inputFile = new File(
+				"src/test/resources/io/proleap/cobol/asg/procedure/exit/ExitProgramStatement.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
 				CobolSourceFormatEnum.TANDEM);
 
-		final CompilationUnit compilationUnit = program.getCompilationUnit("IfStatement");
+		final CompilationUnit compilationUnit = program.getCompilationUnit("ExitProgramStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(0, procedureDivision.getParagraphs().size());
 		assertEquals(1, procedureDivision.getStatements().size());
 
 		{
-			final IfStatement ifStatement = (IfStatement) procedureDivision.getStatements().get(0);
-			assertNotNull(ifStatement);
-			assertEquals(StatementTypeEnum.If, ifStatement.getStatementType());
-
-			{
-				assertNotNull(ifStatement.getCondition());
-			}
-
-			{
-				final Then then = ifStatement.getThen();
-				assertNotNull(then);
-				assertEquals(1, then.getStatements().size());
-			}
-
-			{
-				final Else ifElse = ifStatement.getElse();
-				assertNotNull(ifElse);
-				assertEquals(1, ifElse.getStatements().size());
-			}
+			final ExitStatement exitStatement = (ExitStatement) procedureDivision.getStatements().get(0);
+			assertNotNull(exitStatement);
+			assertEquals(StatementTypeEnum.Exit, exitStatement.getStatementType());
 		}
 	}
 }

@@ -73,6 +73,7 @@ public class MoveToStatementTest extends CobolTestSupport {
 		}
 
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(0, procedureDivision.getParagraphs().size());
 		assertEquals(3, procedureDivision.getStatements().size());
 
 		{

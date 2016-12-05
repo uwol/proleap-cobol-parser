@@ -33,14 +33,14 @@ public class SetToStatementTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/procedure/set/SetToStatement.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/procedure/set/SetToStatement.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
 				CobolSourceFormatEnum.TANDEM);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("SetToStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		assertEquals(0, procedureDivision.getParagraphs().size());
 		assertEquals(1, procedureDivision.getStatements().size());
 
 		{
