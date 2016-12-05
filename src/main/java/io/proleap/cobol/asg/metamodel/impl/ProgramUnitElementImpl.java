@@ -143,33 +143,14 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final DataDivision dataDivision = programUnit.getDataDivision();
+			final String name = determineName(ctx);
+			final CommunicationDescriptionEntry communicationDescriptionEntry = findCommunicationDescriptionEntry(name);
 
-			if (dataDivision == null) {
+			if (communicationDescriptionEntry == null) {
+				LOG.warn("call to unknown element {}", name);
 				result = createUndefinedCall(ctx);
 			} else {
-				final CommunicationSection communicationSection = dataDivision.getCommunicationSection();
-
-				if (communicationSection == null) {
-					result = createUndefinedCall(ctx);
-				} else {
-					final String name = determineName(ctx);
-					final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
-							.getCommunicationDescriptionEntry(name);
-
-					if (communicationDescriptionEntry == null) {
-						LOG.warn("call to unknown element {}", name);
-						result = createUndefinedCall(ctx);
-					} else {
-						final CommunicationDescriptionEntryCall call = new CommunicationDescriptionEntryCallImpl(name,
-								communicationDescriptionEntry, programUnit, ctx);
-
-						linkCommunicationDescriptionEntryCallWithCommunicationDescriptionEntry(call,
-								communicationDescriptionEntry);
-
-						result = call;
-					}
-				}
+				result = createCommunicationDescriptionEntryCall(name, communicationDescriptionEntry, ctx);
 			}
 
 			registerASGElement(result);
@@ -212,7 +193,17 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			result = createUndefinedCall(ctx);
+			final String name = determineName(ctx);
+			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
+
+			if (dataDescriptionEntry == null) {
+				LOG.warn("call to unknown element {}", name);
+				result = createUndefinedCall(ctx);
+			} else {
+				result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
+			}
+
+			registerASGElement(result);
 		}
 
 		return result;
@@ -242,32 +233,14 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final DataDivision dataDivision = programUnit.getDataDivision();
+			final String name = determineName(ctx);
+			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
 
-			if (dataDivision == null) {
+			if (dataDescriptionEntry == null) {
+				LOG.warn("call to unknown element {}", name);
 				result = createUndefinedCall(ctx);
 			} else {
-				final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
-
-				if (workingStorageSection == null) {
-					result = createUndefinedCall(ctx);
-				} else {
-					final String name = determineName(ctx);
-					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
-							.getDataDescriptionEntry(name);
-
-					if (dataDescriptionEntry == null) {
-						LOG.warn("call to unknown element {}", name);
-						result = createUndefinedCall(ctx);
-					} else {
-						final DataDescriptionEntryCall call = new DataDescriptionEntryCallImpl(name,
-								dataDescriptionEntry, programUnit, ctx);
-
-						linkDataDescriptionEntryCallWithDataDescriptionEntry(call, dataDescriptionEntry);
-
-						result = call;
-					}
-				}
+				result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
 			}
 
 			registerASGElement(result);
@@ -416,23 +389,13 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+			final String name = determineName(ctx);
+			final Paragraph paragraph = findProcedure(name);
 
-			if (procedureDivision == null) {
+			if (paragraph == null) {
 				result = createUndefinedCall(ctx);
 			} else {
-				final String name = determineName(ctx);
-				final Paragraph paragraph = procedureDivision.getParagraph(name);
-
-				if (paragraph == null) {
-					result = createUndefinedCall(ctx);
-				} else {
-					final ProcedureCall call = new ProcedureCallImpl(name, paragraph, programUnit, ctx);
-
-					linkProcedureCallWithParagraph(call, paragraph);
-
-					result = call;
-				}
+				result = createProcedureCall(name, paragraph, ctx);
 			}
 
 			registerASGElement(result);
@@ -455,7 +418,17 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			result = createUndefinedCall(ctx);
+			final String name = determineName(ctx);
+			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
+
+			if (dataDescriptionEntry == null) {
+				LOG.warn("call to unknown element {}", name);
+				result = createUndefinedCall(ctx);
+			} else {
+				result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
+			}
+
+			registerASGElement(result);
 		}
 
 		return result;
@@ -475,31 +448,13 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final DataDivision dataDivision = programUnit.getDataDivision();
+			final String name = determineName(ctx);
+			final ReportDescriptionEntry reportDescriptionEntry = findReportDescriptionEntry(name);
 
-			if (dataDivision == null) {
+			if (reportDescriptionEntry == null) {
 				result = createUndefinedCall(ctx);
 			} else {
-				final ReportSection reportSection = dataDivision.getReportSection();
-
-				if (reportSection == null) {
-					result = createUndefinedCall(ctx);
-				} else {
-					final String name = determineName(ctx);
-					final Report report = reportSection.getReport(name);
-
-					if (report == null) {
-						result = createUndefinedCall(ctx);
-					} else {
-						final ReportDescriptionEntry reportDescriptionEntry = report.getReportDescriptionEntry();
-						final ReportDescriptionEntryCall call = new ReportDescriptionEntryCallImpl(name,
-								reportDescriptionEntry, programUnit, ctx);
-
-						linkReportDescriptionEntryCallWithReportDescriptionEntry(call, reportDescriptionEntry);
-
-						result = call;
-					}
-				}
+				result = createReportDescriptionEntryCall(name, reportDescriptionEntry, ctx);
 			}
 
 			registerASGElement(result);
@@ -602,8 +557,24 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected CommunicationDescriptionEntryCall createCommunicationDescriptionEntryCall(final String name,
+			final CommunicationDescriptionEntry communicationDescriptionEntry, final CdNameContext ctx) {
+		final CommunicationDescriptionEntryCall result = new CommunicationDescriptionEntryCallImpl(name,
+				communicationDescriptionEntry, programUnit, ctx);
+		linkCommunicationDescriptionEntryCallWithCommunicationDescriptionEntry(result, communicationDescriptionEntry);
+		return result;
+	}
+
 	protected ConditionValueStmt createConditionValueStmt(final ConditionContext ctx) {
 		final ConditionValueStmt result = new ConditionValueStmtImpl(programUnit, ctx);
+		return result;
+	}
+
+	protected DataDescriptionEntryCall createDataDescriptionEntryCall(final String name,
+			final DataDescriptionEntry dataDescriptionEntry, final ParseTree ctx) {
+		final DataDescriptionEntryCall result = new DataDescriptionEntryCallImpl(name, dataDescriptionEntry,
+				programUnit, ctx);
+		linkDataDescriptionEntryCallWithDataDescriptionEntry(result, dataDescriptionEntry);
 		return result;
 	}
 
@@ -658,6 +629,21 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		}
 
 		return result;
+	}
+
+	protected ProcedureCall createProcedureCall(final String name, final Paragraph paragraph,
+			final ProcedureNameContext ctx) {
+		final ProcedureCall result = new ProcedureCallImpl(name, paragraph, programUnit, ctx);
+		linkProcedureCallWithParagraph(result, paragraph);
+		return result;
+	}
+
+	protected ReportDescriptionEntryCall createReportDescriptionEntryCall(final String name,
+			final ReportDescriptionEntry reportDescriptionEntry, final ReportNameContext ctx) {
+		final ReportDescriptionEntryCall call = new ReportDescriptionEntryCallImpl(name, reportDescriptionEntry,
+				programUnit, ctx);
+		linkReportDescriptionEntryCallWithReportDescriptionEntry(call, reportDescriptionEntry);
+		return call;
 	}
 
 	protected TerminalValueStmt createTerminalValueStmt(final TerminalNode ctx) {
@@ -721,6 +707,82 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createTerminalValueStmt((TerminalNode) ctx);
 			} else {
 				LOG.warn("unknown value stmt at {}", ctx);
+			}
+		}
+
+		return result;
+	}
+
+	protected CommunicationDescriptionEntry findCommunicationDescriptionEntry(final String name) {
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final CommunicationDescriptionEntry result;
+
+		if (dataDivision == null) {
+			result = null;
+		} else {
+			final CommunicationSection communicationSection = dataDivision.getCommunicationSection();
+
+			if (communicationSection == null) {
+				result = null;
+			} else {
+				result = communicationSection.getCommunicationDescriptionEntry(name);
+			}
+		}
+
+		return result;
+	}
+
+	protected DataDescriptionEntry findDataDescriptionEntry(final String name) {
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final DataDescriptionEntry result;
+
+		if (dataDivision == null) {
+			result = null;
+		} else {
+			final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
+
+			if (workingStorageSection == null) {
+				result = null;
+			} else {
+				result = workingStorageSection.findDataDescriptionEntry(name);
+			}
+		}
+
+		return result;
+	}
+
+	protected Paragraph findProcedure(final String name) {
+		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		final Paragraph result;
+
+		if (procedureDivision == null) {
+			result = null;
+		} else {
+			result = procedureDivision.getParagraph(name);
+		}
+
+		return result;
+	}
+
+	protected ReportDescriptionEntry findReportDescriptionEntry(final String name) {
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final ReportDescriptionEntry result;
+
+		if (dataDivision == null) {
+			result = null;
+		} else {
+			final ReportSection reportSection = dataDivision.getReportSection();
+
+			if (reportSection == null) {
+				result = null;
+			} else {
+				final Report report = reportSection.getReport(name);
+
+				if (report == null) {
+					result = null;
+				} else {
+					result = report.getReportDescriptionEntry();
+				}
 			}
 		}
 

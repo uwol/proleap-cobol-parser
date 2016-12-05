@@ -3,7 +3,6 @@ package io.proleap.cobol.asg.procedure.move;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.List;
@@ -47,20 +46,21 @@ public class MoveCorrespondingToStatementTest extends CobolTestSupport {
 		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
 		{
-			final DataDescriptionEntry dataDescriptionEntry1 = workingStorageSection
-					.getDataDescriptionEntry("SOME-TEXT");
+			final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
+					.findDataDescriptionEntry("SOME-TEXT");
 
-			assertNotNull(dataDescriptionEntry1);
-			assertTrue(dataDescriptionEntry1.getCalls().isEmpty());
+			assertNotNull(dataDescriptionEntry);
+			assertFalse(dataDescriptionEntry.getCalls().isEmpty());
+			assertEquals(1, dataDescriptionEntry.getCalls().size());
 		}
 
 		{
-			final DataDescriptionEntry dataDescriptionEntry2 = workingStorageSection
-					.getDataDescriptionEntry("SOME-TEXT2");
+			final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
+					.findDataDescriptionEntry("SOME-TEXT2");
 
-			assertNotNull(dataDescriptionEntry2);
-			assertFalse(dataDescriptionEntry2.getCalls().isEmpty());
-			assertEquals(1, dataDescriptionEntry2.getCalls().size());
+			assertNotNull(dataDescriptionEntry);
+			assertFalse(dataDescriptionEntry.getCalls().isEmpty());
+			assertEquals(1, dataDescriptionEntry.getCalls().size());
 		}
 
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
@@ -79,7 +79,7 @@ public class MoveCorrespondingToStatementTest extends CobolTestSupport {
 				{
 					final Call sendingCall = moveCorrespondingTo.getSendingCall();
 					assertNotNull(sendingCall);
-					assertEquals(Call.CallType.UndefinedCall, sendingCall.getCallType());
+					assertEquals(Call.CallType.DataDescriptionEntryCall, sendingCall.getCallType());
 				}
 
 				{

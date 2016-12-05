@@ -49,59 +49,65 @@ public class ReportGroupDescriptionResetTest extends CobolTestSupport {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final ReportSection reportSection = dataDivision.getReportSection();
 
-		assertEquals(1, reportSection.getReports().size());
-
-		final Report report1 = reportSection.getReport("REPORT1");
-		assertNotNull(report1);
-		assertEquals(1, report1.getReportGroupDescriptionEntries().size());
-
-		final ReportGroupDescriptionEntry reportGroupDescriptionEntry = report1.getReportGroupDescriptionEntries()
-				.get(0);
-		assertEquals(ReportGroupDescriptionEntry.Type.Printable, reportGroupDescriptionEntry.getType());
-
-		final ReportGroupDescriptionEntryPrintable reportGroupDescriptionEntryPrintable = (ReportGroupDescriptionEntryPrintable) reportGroupDescriptionEntry;
-		assertEquals(new Integer(1), reportGroupDescriptionEntryPrintable.getLevelNumber());
-
 		{
-			final PictureClause pictureClause = reportGroupDescriptionEntryPrintable.getPictureClause();
-			assertEquals("9(10)", pictureClause.getPictureString());
-		}
+			assertEquals(1, reportSection.getReports().size());
 
-		{
-			final SignClause signClause = reportGroupDescriptionEntryPrintable.getSignClause();
-			assertEquals(SignClause.Type.Trailing, signClause.getType());
-		}
+			final Report report1 = reportSection.getReport("REPORT1");
+			assertNotNull(report1);
+			assertEquals(1, report1.getReportGroupDescriptionEntries().size());
 
-		{
-			final JustifiedClause justifiedClause = reportGroupDescriptionEntryPrintable.getJustifiedClause();
-			assertEquals(JustifiedClause.Justified.JustifiedRight, justifiedClause.getJustified());
-		}
+			{
+				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = report1
+						.getReportGroupDescriptionEntries().get(0);
+				assertEquals(ReportGroupDescriptionEntry.Type.Printable, reportGroupDescriptionEntry.getType());
 
-		{
-			final BlankWhenZeroClause blankWhenZeroClause = reportGroupDescriptionEntryPrintable
-					.getBlankWhenZeroClause();
-			assertTrue(blankWhenZeroClause.isBlankWhenZero());
-		}
+				final ReportGroupDescriptionEntryPrintable reportGroupDescriptionEntryPrintable = (ReportGroupDescriptionEntryPrintable) reportGroupDescriptionEntry;
+				assertEquals(new Integer(1), reportGroupDescriptionEntryPrintable.getLevelNumber());
 
-		{
-			final LineNumberClause lineNumberClause = reportGroupDescriptionEntryPrintable.getLineNumberClause();
-			assertEquals(new Integer(2), lineNumberClause.getIntegerLiteral().getValue());
-		}
+				{
+					final PictureClause pictureClause = reportGroupDescriptionEntryPrintable.getPictureClause();
+					assertEquals("9(10)", pictureClause.getPictureString());
+				}
 
-		{
-			final ColumnNumberClause columnNumberClause = reportGroupDescriptionEntryPrintable.getColumnNumberClause();
-			assertEquals(new Integer(42), columnNumberClause.getIntegerLiteral().getValue());
-		}
+				{
+					final SignClause signClause = reportGroupDescriptionEntryPrintable.getSignClause();
+					assertEquals(SignClause.Type.Trailing, signClause.getType());
+				}
 
-		{
-			final SumClause sumClause = reportGroupDescriptionEntryPrintable.getSumClause();
-			assertEquals(3, sumClause.getSumCalls().size());
-			assertEquals(2, sumClause.getUponCalls().size());
-		}
+				{
+					final JustifiedClause justifiedClause = reportGroupDescriptionEntryPrintable.getJustifiedClause();
+					assertEquals(JustifiedClause.Justified.JustifiedRight, justifiedClause.getJustified());
+				}
 
-		{
-			final UsageClause usageClause = reportGroupDescriptionEntryPrintable.getUsageClause();
-			assertEquals(UsageClause.Type.Display1, usageClause.getType());
+				{
+					final BlankWhenZeroClause blankWhenZeroClause = reportGroupDescriptionEntryPrintable
+							.getBlankWhenZeroClause();
+					assertTrue(blankWhenZeroClause.isBlankWhenZero());
+				}
+
+				{
+					final LineNumberClause lineNumberClause = reportGroupDescriptionEntryPrintable
+							.getLineNumberClause();
+					assertEquals(new Integer(2), lineNumberClause.getIntegerLiteral().getValue());
+				}
+
+				{
+					final ColumnNumberClause columnNumberClause = reportGroupDescriptionEntryPrintable
+							.getColumnNumberClause();
+					assertEquals(new Integer(42), columnNumberClause.getIntegerLiteral().getValue());
+				}
+
+				{
+					final SumClause sumClause = reportGroupDescriptionEntryPrintable.getSumClause();
+					assertEquals(3, sumClause.getSumCalls().size());
+					assertEquals(2, sumClause.getUponCalls().size());
+				}
+
+				{
+					final UsageClause usageClause = reportGroupDescriptionEntryPrintable.getUsageClause();
+					assertEquals(UsageClause.Type.Display1, usageClause.getType());
+				}
+			}
 		}
 	}
 }

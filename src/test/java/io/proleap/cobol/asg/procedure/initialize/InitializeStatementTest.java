@@ -51,13 +51,13 @@ public class InitializeStatementTest extends CobolTestSupport {
 		assertEquals(1, workingStorageSection.getRootDataDescriptionEntries().size());
 
 		final DataDescriptionEntryGroup someGroup = (DataDescriptionEntryGroup) workingStorageSection
-				.getDataDescriptionEntry("SOMEGRP");
+				.findDataDescriptionEntry("SOMEGRP");
 
 		assertNotNull(someGroup);
 		assertEquals("SOMEGRP", someGroup.getName());
 		assertEquals(DataDescriptionEntry.Type.Group, someGroup.getType());
 
-		final DataDescriptionEntry someName = someGroup.getDataDescriptionEntry("SOMENAME");
+		final DataDescriptionEntry someName = someGroup.findDataDescriptionEntry("SOMENAME");
 		assertNotNull(someName);
 
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();

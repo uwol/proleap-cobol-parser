@@ -45,7 +45,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	protected DataDescriptionEntryGroup getDataDescriptionEntryGroup(final String name) throws Exception {
 		final WorkingStorageSection workingStorageSection = getWorkingStorageSection();
 		final DataDescriptionEntryGroup result = (DataDescriptionEntryGroup) workingStorageSection
-				.getDataDescriptionEntry(name);
+				.findDataDescriptionEntry(name);
 		return result;
 	}
 

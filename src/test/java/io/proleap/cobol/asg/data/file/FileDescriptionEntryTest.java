@@ -38,8 +38,7 @@ public class FileDescriptionEntryTest extends CobolTestSupport {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/data/file/FileDescriptionEntry.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/data/file/FileDescriptionEntry.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
 				CobolSourceFormatEnum.TANDEM);
 
@@ -47,81 +46,84 @@ public class FileDescriptionEntryTest extends CobolTestSupport {
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final FileSection fileSection = dataDivision.getFileSection();
-		final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("PERSON");
-		assertNotNull(fileDescriptionEntry);
 
 		{
-			final BlockContainsClause blockContainsClause = fileDescriptionEntry.getBlockContainsClause();
-			assertNotNull(blockContainsClause);
-			assertEquals(new Integer(1), blockContainsClause.getFrom().getValue());
-			assertEquals(new Integer(5), blockContainsClause.getTo().getValue());
-		}
+			final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("PERSON");
+			assertNotNull(fileDescriptionEntry);
 
-		{
-			final GlobalClause globalClause = fileDescriptionEntry.getGlobalClause();
-			assertNotNull(globalClause);
-			assertTrue(globalClause.isGlobal());
-		}
+			{
+				final BlockContainsClause blockContainsClause = fileDescriptionEntry.getBlockContainsClause();
+				assertNotNull(blockContainsClause);
+				assertEquals(new Integer(1), blockContainsClause.getFrom().getValue());
+				assertEquals(new Integer(5), blockContainsClause.getTo().getValue());
+			}
 
-		{
-			final RecordContainsClause recordContainsClause = fileDescriptionEntry.getRecordContainsClause();
-			assertNotNull(recordContainsClause);
-			assertTrue(recordContainsClause.isVarying());
-			assertEquals(new Integer(1), recordContainsClause.getFrom().getValue());
-			assertEquals(new Integer(5), recordContainsClause.getTo().getValue());
-			assertNotNull(recordContainsClause.getDependingOnCall());
-		}
+			{
+				final GlobalClause globalClause = fileDescriptionEntry.getGlobalClause();
+				assertNotNull(globalClause);
+				assertTrue(globalClause.isGlobal());
+			}
 
-		{
-			final LabelRecordsClause labelRecordsClause = fileDescriptionEntry.getLabelRecordsClause();
-			assertNotNull(labelRecordsClause);
-			assertEquals(LabelRecordsClause.Type.DataNames, labelRecordsClause.getType());
-			assertEquals(2, labelRecordsClause.getDataCalls().size());
-			assertNotNull(labelRecordsClause.getDataCalls().get(0));
-			assertNotNull(labelRecordsClause.getDataCalls().get(1));
-		}
+			{
+				final RecordContainsClause recordContainsClause = fileDescriptionEntry.getRecordContainsClause();
+				assertNotNull(recordContainsClause);
+				assertTrue(recordContainsClause.isVarying());
+				assertEquals(new Integer(1), recordContainsClause.getFrom().getValue());
+				assertEquals(new Integer(5), recordContainsClause.getTo().getValue());
+				assertNotNull(recordContainsClause.getDependingOnCall());
+			}
 
-		{
-			final DataRecordsClause dataRecordsClause = fileDescriptionEntry.getDataRecordsClause();
-			assertNotNull(dataRecordsClause);
-			assertEquals(2, dataRecordsClause.getDataCalls().size());
-			assertNotNull(dataRecordsClause.getDataCalls().get(0));
-			assertNotNull(dataRecordsClause.getDataCalls().get(1));
-		}
+			{
+				final LabelRecordsClause labelRecordsClause = fileDescriptionEntry.getLabelRecordsClause();
+				assertNotNull(labelRecordsClause);
+				assertEquals(LabelRecordsClause.Type.DataNames, labelRecordsClause.getType());
+				assertEquals(2, labelRecordsClause.getDataCalls().size());
+				assertNotNull(labelRecordsClause.getDataCalls().get(0));
+				assertNotNull(labelRecordsClause.getDataCalls().get(1));
+			}
 
-		{
-			final ValueOfClause valueOfClause = fileDescriptionEntry.getValueOfClause();
-			assertNotNull(valueOfClause);
-			assertEquals(1, valueOfClause.getValuePairs().size());
-			assertNotNull(valueOfClause.getValuePairs().get(0));
-		}
+			{
+				final DataRecordsClause dataRecordsClause = fileDescriptionEntry.getDataRecordsClause();
+				assertNotNull(dataRecordsClause);
+				assertEquals(2, dataRecordsClause.getDataCalls().size());
+				assertNotNull(dataRecordsClause.getDataCalls().get(0));
+				assertNotNull(dataRecordsClause.getDataCalls().get(1));
+			}
 
-		{
-			final LinageClause linageClause = fileDescriptionEntry.getLinageClause();
-			assertNotNull(linageClause);
+			{
+				final ValueOfClause valueOfClause = fileDescriptionEntry.getValueOfClause();
+				assertNotNull(valueOfClause);
+				assertEquals(1, valueOfClause.getValuePairs().size());
+				assertNotNull(valueOfClause.getValuePairs().get(0));
+			}
 
-			assertNotNull(linageClause.getNumberOfLinesValueStmt());
-			assertEquals(new Integer(30), linageClause.getNumberOfLinesValueStmt().getValue());
+			{
+				final LinageClause linageClause = fileDescriptionEntry.getLinageClause();
+				assertNotNull(linageClause);
 
-			assertNotNull(linageClause.getFootingAtValueStmt());
-			assertEquals(new Integer(5), linageClause.getFootingAtValueStmt().getValue());
+				assertNotNull(linageClause.getNumberOfLinesValueStmt());
+				assertEquals(new Integer(30), linageClause.getNumberOfLinesValueStmt().getValue());
 
-			assertNotNull(linageClause.getLinesAtTopValueStmt());
-			assertEquals(new Integer(2), linageClause.getLinesAtTopValueStmt().getValue());
+				assertNotNull(linageClause.getFootingAtValueStmt());
+				assertEquals(new Integer(5), linageClause.getFootingAtValueStmt().getValue());
 
-			assertNotNull(linageClause.getLinesAtBottomValueStmt());
-		}
+				assertNotNull(linageClause.getLinesAtTopValueStmt());
+				assertEquals(new Integer(2), linageClause.getLinesAtTopValueStmt().getValue());
 
-		{
-			final CodeSetClause codeSetClause = fileDescriptionEntry.getCodeSetClause();
-			assertNotNull(codeSetClause);
-			assertEquals("SomeAlphabet", codeSetClause.getAlphabetName());
-		}
+				assertNotNull(linageClause.getLinesAtBottomValueStmt());
+			}
 
-		{
-			final ReportClause reportClause = fileDescriptionEntry.getReportClause();
-			assertNotNull(reportClause);
-			assertEquals(2, reportClause.getReportCalls().size());
+			{
+				final CodeSetClause codeSetClause = fileDescriptionEntry.getCodeSetClause();
+				assertNotNull(codeSetClause);
+				assertEquals("SomeAlphabet", codeSetClause.getAlphabetName());
+			}
+
+			{
+				final ReportClause reportClause = fileDescriptionEntry.getReportClause();
+				assertNotNull(reportClause);
+				assertEquals(2, reportClause.getReportCalls().size());
+			}
 		}
 	}
 }

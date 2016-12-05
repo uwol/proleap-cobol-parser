@@ -36,7 +36,7 @@ public interface DataDescriptionEntryContainer extends CobolDivisionElement {
 	 * Returns a contained @DataDescriptionEntry for the given name, including
 	 * nested ones.
 	 */
-	DataDescriptionEntry getDataDescriptionEntry(String name);
+	DataDescriptionEntry findDataDescriptionEntry(String name);
 
 	/**
 	 * Returns every root @DataDescriptionEntry excluding nested ones.

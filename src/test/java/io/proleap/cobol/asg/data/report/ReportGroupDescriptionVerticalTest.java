@@ -47,37 +47,41 @@ public class ReportGroupDescriptionVerticalTest extends CobolTestSupport {
 
 		assertEquals(1, reportSection.getReports().size());
 
-		final Report report1 = reportSection.getReport("REPORT1");
-		assertNotNull(report1);
-		assertEquals(1, report1.getReportGroupDescriptionEntries().size());
-
-		final ReportGroupDescriptionEntry reportGroupDescriptionEntry = report1.getReportGroupDescriptionEntries()
-				.get(0);
-		assertEquals(ReportGroupDescriptionEntry.Type.Vertical, reportGroupDescriptionEntry.getType());
-
-		final ReportGroupDescriptionEntryVertical reportGroupDescriptionEntryVertical = (ReportGroupDescriptionEntryVertical) reportGroupDescriptionEntry;
-		assertEquals(new Integer(1), reportGroupDescriptionEntryVertical.getLevelNumber());
-
 		{
-			final LineNumberClause lineNumberClause = reportGroupDescriptionEntryVertical.getLineNumberClause();
-			assertEquals(new Integer(2), lineNumberClause.getIntegerLiteral().getValue());
-		}
+			final Report report1 = reportSection.getReport("REPORT1");
+			assertNotNull(report1);
+			assertEquals(1, report1.getReportGroupDescriptionEntries().size());
 
-		{
-			final NextGroupClause nextGroupClause = reportGroupDescriptionEntryVertical.getNextGroupClause();
-			assertEquals(NextGroupClause.Type.NextPage, nextGroupClause.getType());
-			assertNull(nextGroupClause.getIntegerLiteral());
-		}
+			{
+				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = report1
+						.getReportGroupDescriptionEntries().get(0);
+				assertEquals(ReportGroupDescriptionEntry.Type.Vertical, reportGroupDescriptionEntry.getType());
 
-		{
-			final TypeClause typeClause = reportGroupDescriptionEntryVertical.getTypeClause();
-			assertEquals(TypeClause.Type.ControlHeading, typeClause.getType());
-			assertNotNull(typeClause.getDataCall());
-		}
+				final ReportGroupDescriptionEntryVertical reportGroupDescriptionEntryVertical = (ReportGroupDescriptionEntryVertical) reportGroupDescriptionEntry;
+				assertEquals(new Integer(1), reportGroupDescriptionEntryVertical.getLevelNumber());
 
-		{
-			final UsageClause usageClause = reportGroupDescriptionEntryVertical.getUsageClause();
-			assertEquals(UsageClause.Type.Display1, usageClause.getType());
+				{
+					final LineNumberClause lineNumberClause = reportGroupDescriptionEntryVertical.getLineNumberClause();
+					assertEquals(new Integer(2), lineNumberClause.getIntegerLiteral().getValue());
+				}
+
+				{
+					final NextGroupClause nextGroupClause = reportGroupDescriptionEntryVertical.getNextGroupClause();
+					assertEquals(NextGroupClause.Type.NextPage, nextGroupClause.getType());
+					assertNull(nextGroupClause.getIntegerLiteral());
+				}
+
+				{
+					final TypeClause typeClause = reportGroupDescriptionEntryVertical.getTypeClause();
+					assertEquals(TypeClause.Type.ControlHeading, typeClause.getType());
+					assertNotNull(typeClause.getDataCall());
+				}
+
+				{
+					final UsageClause usageClause = reportGroupDescriptionEntryVertical.getUsageClause();
+					assertEquals(UsageClause.Type.Display1, usageClause.getType());
+				}
+			}
 		}
 	}
 }

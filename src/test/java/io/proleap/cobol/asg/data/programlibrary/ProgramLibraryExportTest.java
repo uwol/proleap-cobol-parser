@@ -41,26 +41,28 @@ public class ProgramLibraryExportTest extends CobolTestSupport {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final ProgramLibrarySection programLibrarySection = dataDivision.getProgramLibrarySection();
 
-		final LibraryDescriptionEntry libraryDescriptionEntry = programLibrarySection
-				.getLibraryDescriptionEntry("SOMELIB");
-
-		assertNotNull(libraryDescriptionEntry);
-		assertEquals(LibraryDescriptionEntry.Type.Export, libraryDescriptionEntry.getType());
-
-		final LibraryDescriptionEntryExport libraryDescriptionEntryExport = (LibraryDescriptionEntryExport) libraryDescriptionEntry;
-
 		{
-			final ExportAttribute exportAttribute = libraryDescriptionEntryExport.getExportAttribute();
-			assertNotNull(exportAttribute);
-			assertEquals(ExportAttribute.Sharing.Private, exportAttribute.getSharing());
-		}
+			final LibraryDescriptionEntry libraryDescriptionEntry = programLibrarySection
+					.getLibraryDescriptionEntry("SOMELIB");
+			assertNotNull(libraryDescriptionEntry);
+			assertEquals(LibraryDescriptionEntry.Type.Export, libraryDescriptionEntry.getType());
 
-		{
-			final ExportEntryProcedure exportEntryProcedure = libraryDescriptionEntryExport.getExportEntryProcedure();
-			assertNotNull(exportEntryProcedure);
-			assertNotNull(exportEntryProcedure.getProgramCall());
-			assertNotNull(exportEntryProcedure.getForClause());
-			assertEquals("123", exportEntryProcedure.getForClause().getForLiteral().getValue());
+			final LibraryDescriptionEntryExport libraryDescriptionEntryExport = (LibraryDescriptionEntryExport) libraryDescriptionEntry;
+
+			{
+				final ExportAttribute exportAttribute = libraryDescriptionEntryExport.getExportAttribute();
+				assertNotNull(exportAttribute);
+				assertEquals(ExportAttribute.Sharing.Private, exportAttribute.getSharing());
+			}
+
+			{
+				final ExportEntryProcedure exportEntryProcedure = libraryDescriptionEntryExport
+						.getExportEntryProcedure();
+				assertNotNull(exportEntryProcedure);
+				assertNotNull(exportEntryProcedure.getProgramCall());
+				assertNotNull(exportEntryProcedure.getForClause());
+				assertEquals("123", exportEntryProcedure.getForClause().getForLiteral().getValue());
+			}
 		}
 	}
 }

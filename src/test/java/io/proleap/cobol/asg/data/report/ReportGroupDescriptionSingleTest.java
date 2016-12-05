@@ -44,25 +44,29 @@ public class ReportGroupDescriptionSingleTest extends CobolTestSupport {
 
 		assertEquals(1, reportSection.getReports().size());
 
-		final Report report1 = reportSection.getReport("REPORT1");
-		assertNotNull(report1);
-		assertEquals(1, report1.getReportGroupDescriptionEntries().size());
-
-		final ReportGroupDescriptionEntry reportGroupDescriptionEntry = report1.getReportGroupDescriptionEntries()
-				.get(0);
-		assertEquals(ReportGroupDescriptionEntry.Type.Single, reportGroupDescriptionEntry.getType());
-
-		final ReportGroupDescriptionEntrySingle reportGroupDescriptionEntrySingle = (ReportGroupDescriptionEntrySingle) reportGroupDescriptionEntry;
-		assertEquals(new Integer(1), reportGroupDescriptionEntrySingle.getLevelNumber());
-
 		{
-			final LineNumberClause lineNumberClause = reportGroupDescriptionEntrySingle.getLineNumberClause();
-			assertEquals(new Integer(2), lineNumberClause.getIntegerLiteral().getValue());
-		}
+			final Report report1 = reportSection.getReport("REPORT1");
+			assertNotNull(report1);
+			assertEquals(1, report1.getReportGroupDescriptionEntries().size());
 
-		{
-			final UsageClause usageClause = reportGroupDescriptionEntrySingle.getUsageClause();
-			assertEquals(UsageClause.Type.Display, usageClause.getType());
+			{
+				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = report1
+						.getReportGroupDescriptionEntries().get(0);
+				assertEquals(ReportGroupDescriptionEntry.Type.Single, reportGroupDescriptionEntry.getType());
+
+				final ReportGroupDescriptionEntrySingle reportGroupDescriptionEntrySingle = (ReportGroupDescriptionEntrySingle) reportGroupDescriptionEntry;
+				assertEquals(new Integer(1), reportGroupDescriptionEntrySingle.getLevelNumber());
+
+				{
+					final LineNumberClause lineNumberClause = reportGroupDescriptionEntrySingle.getLineNumberClause();
+					assertEquals(new Integer(2), lineNumberClause.getIntegerLiteral().getValue());
+				}
+
+				{
+					final UsageClause usageClause = reportGroupDescriptionEntrySingle.getUsageClause();
+					assertEquals(UsageClause.Type.Display, usageClause.getType());
+				}
+			}
 		}
 	}
 }

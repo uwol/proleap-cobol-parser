@@ -38,7 +38,7 @@ public class DataDescriptionPictureTest extends CobolTestSupport {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 		final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-				.getDataDescriptionEntry("ITEM");
+				.findDataDescriptionEntry("ITEM");
 
 		assertNotNull(dataDescriptionEntryItem);
 		assertEquals("X(10)", dataDescriptionEntryItem.getPictureClause().getPictureString());

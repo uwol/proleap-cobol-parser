@@ -42,7 +42,7 @@ public class DataDescription01Test extends CobolTestSupport {
 		assertEquals(3, workingStorageSection.getDataDescriptionEntries().size());
 		assertEquals(1, workingStorageSection.getRootDataDescriptionEntries().size());
 
-		final DataDescriptionEntry dataDescriptionEntryItems = workingStorageSection.getDataDescriptionEntry("ITEMS");
+		final DataDescriptionEntry dataDescriptionEntryItems = workingStorageSection.findDataDescriptionEntry("ITEMS");
 
 		assertNotNull(dataDescriptionEntryItems);
 		assertEquals("ITEMS", dataDescriptionEntryItems.getName());
@@ -50,14 +50,14 @@ public class DataDescription01Test extends CobolTestSupport {
 		assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
 		assertNull(dataDescriptionEntryItems.getParentDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntryItem1 = workingStorageSection.getDataDescriptionEntry("ITEM1");
+		final DataDescriptionEntry dataDescriptionEntryItem1 = workingStorageSection.findDataDescriptionEntry("ITEM1");
 		assertNotNull(dataDescriptionEntryItem1);
 		assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
 		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem1.getType());
 		assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
 		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntryItem2 = workingStorageSection.getDataDescriptionEntry("ITEM2");
+		final DataDescriptionEntry dataDescriptionEntryItem2 = workingStorageSection.findDataDescriptionEntry("ITEM2");
 		assertNotNull(dataDescriptionEntryItem2);
 		assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
 		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem2.getType());

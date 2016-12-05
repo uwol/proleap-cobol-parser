@@ -86,7 +86,7 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 
 	List<DataDescriptionEntry> getDataDescriptionEntries();
 
-	DataDescriptionEntry getDataDescriptionEntry(String name);
+	DataDescriptionEntry findDataDescriptionEntry(String name);
 
 	ExternalClause getExternalClause();
 

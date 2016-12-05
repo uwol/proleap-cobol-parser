@@ -48,71 +48,73 @@ public class CommunicationDescriptionOutputTest extends CobolTestSupport {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final CommunicationSection communicationSection = dataDivision.getCommunicationSection();
 
-		final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
-				.getCommunicationDescriptionEntry("SOMECD");
-		assertNotNull(communicationDescriptionEntry);
-		assertEquals(CommunicationDescriptionEntry.Type.Output, communicationDescriptionEntry.getType());
-
-		final CommunicationDescriptionEntryOutput communicationDescriptionEntryOutput = (CommunicationDescriptionEntryOutput) communicationDescriptionEntry;
-
 		{
-			final DestinationCountClause destinationCountClause = communicationDescriptionEntryOutput
-					.getDestinationCountClause();
-			assertNotNull(destinationCountClause);
-			assertNotNull(destinationCountClause.getDataDescCall());
-		}
+			final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
+					.getCommunicationDescriptionEntry("SOMECD");
+			assertNotNull(communicationDescriptionEntry);
+			assertEquals(CommunicationDescriptionEntry.Type.Output, communicationDescriptionEntry.getType());
 
-		{
-			final TextLengthClause textLengthClause = communicationDescriptionEntryOutput.getTextLengthClause();
-			assertNotNull(textLengthClause);
-			assertNotNull(textLengthClause.getDataDescCall());
-		}
-
-		{
-			final StatusKeyClause statusKeyClause = communicationDescriptionEntryOutput.getStatusKeyClause();
-			assertNotNull(statusKeyClause);
-			assertNotNull(statusKeyClause.getDataDescCall());
-		}
-
-		{
-			final DestinationTableClause destinationTableClause = communicationDescriptionEntryOutput
-					.getDestinationTableClause();
-			assertNotNull(destinationTableClause);
-			assertEquals(new Integer(5), destinationTableClause.getOccursIntegerLiteral().getValue());
-			assertEquals(2, destinationTableClause.getIndexCalls().size());
-		}
-
-		{
-			final ErrorKeyClause errorKeyClause = communicationDescriptionEntryOutput.getErrorKeyClause();
-			assertNotNull(errorKeyClause);
-			assertNotNull(errorKeyClause.getDataDescCall());
-		}
-
-		{
-			final SymbolicDestinationClause symbolicDestinationClause = communicationDescriptionEntryOutput
-					.getSymbolicDestinationClause();
-			assertNotNull(symbolicDestinationClause);
-			assertNotNull(symbolicDestinationClause.getDataDescCall());
-		}
-
-		assertEquals(2, communicationSection.getDataDescriptionEntries().size());
-
-		{
-			final DataDescriptionEntryGroup dataDescriptionEntryWsPerson = (DataDescriptionEntryGroup) communicationSection
-					.getDataDescriptionEntry("WS-PERSON");
-			assertNotNull(dataDescriptionEntryWsPerson);
-			assertEquals("WS-PERSON", dataDescriptionEntryWsPerson.getName());
-			assertEquals(new Integer(1), dataDescriptionEntryWsPerson.getLevelNumber());
-			assertNull(dataDescriptionEntryWsPerson.getParentDataDescriptionEntryGroup());
+			final CommunicationDescriptionEntryOutput communicationDescriptionEntryOutput = (CommunicationDescriptionEntryOutput) communicationDescriptionEntry;
 
 			{
-				final DataDescriptionEntry dataDescriptionEntryWsPersonId = communicationSection
-						.getDataDescriptionEntry("WS-PERSON-ID");
-				assertNotNull(dataDescriptionEntryWsPersonId);
-				assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
-				assertEquals(new Integer(5), dataDescriptionEntryWsPersonId.getLevelNumber());
-				assertEquals(dataDescriptionEntryWsPerson,
-						dataDescriptionEntryWsPersonId.getParentDataDescriptionEntryGroup());
+				final DestinationCountClause destinationCountClause = communicationDescriptionEntryOutput
+						.getDestinationCountClause();
+				assertNotNull(destinationCountClause);
+				assertNotNull(destinationCountClause.getDataDescCall());
+			}
+
+			{
+				final TextLengthClause textLengthClause = communicationDescriptionEntryOutput.getTextLengthClause();
+				assertNotNull(textLengthClause);
+				assertNotNull(textLengthClause.getDataDescCall());
+			}
+
+			{
+				final StatusKeyClause statusKeyClause = communicationDescriptionEntryOutput.getStatusKeyClause();
+				assertNotNull(statusKeyClause);
+				assertNotNull(statusKeyClause.getDataDescCall());
+			}
+
+			{
+				final DestinationTableClause destinationTableClause = communicationDescriptionEntryOutput
+						.getDestinationTableClause();
+				assertNotNull(destinationTableClause);
+				assertEquals(new Integer(5), destinationTableClause.getOccursIntegerLiteral().getValue());
+				assertEquals(2, destinationTableClause.getIndexCalls().size());
+			}
+
+			{
+				final ErrorKeyClause errorKeyClause = communicationDescriptionEntryOutput.getErrorKeyClause();
+				assertNotNull(errorKeyClause);
+				assertNotNull(errorKeyClause.getDataDescCall());
+			}
+
+			{
+				final SymbolicDestinationClause symbolicDestinationClause = communicationDescriptionEntryOutput
+						.getSymbolicDestinationClause();
+				assertNotNull(symbolicDestinationClause);
+				assertNotNull(symbolicDestinationClause.getDataDescCall());
+			}
+
+			assertEquals(2, communicationSection.getDataDescriptionEntries().size());
+
+			{
+				final DataDescriptionEntryGroup dataDescriptionEntryWsPerson = (DataDescriptionEntryGroup) communicationSection
+						.findDataDescriptionEntry("WS-PERSON");
+				assertNotNull(dataDescriptionEntryWsPerson);
+				assertEquals("WS-PERSON", dataDescriptionEntryWsPerson.getName());
+				assertEquals(new Integer(1), dataDescriptionEntryWsPerson.getLevelNumber());
+				assertNull(dataDescriptionEntryWsPerson.getParentDataDescriptionEntryGroup());
+
+				{
+					final DataDescriptionEntry dataDescriptionEntryWsPersonId = communicationSection
+							.findDataDescriptionEntry("WS-PERSON-ID");
+					assertNotNull(dataDescriptionEntryWsPersonId);
+					assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
+					assertEquals(new Integer(5), dataDescriptionEntryWsPersonId.getLevelNumber());
+					assertEquals(dataDescriptionEntryWsPerson,
+							dataDescriptionEntryWsPersonId.getParentDataDescriptionEntryGroup());
+				}
 			}
 		}
 	}

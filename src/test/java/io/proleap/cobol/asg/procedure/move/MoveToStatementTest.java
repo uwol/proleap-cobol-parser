@@ -46,30 +46,30 @@ public class MoveToStatementTest extends CobolTestSupport {
 		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
 		{
-			final DataDescriptionEntry dataDescriptionEntry1 = workingStorageSection
-					.getDataDescriptionEntry("SOME-TEXT");
+			final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
+					.findDataDescriptionEntry("SOME-TEXT");
 
-			assertNotNull(dataDescriptionEntry1);
-			assertFalse(dataDescriptionEntry1.getCalls().isEmpty());
-			assertEquals(2, dataDescriptionEntry1.getCalls().size());
+			assertNotNull(dataDescriptionEntry);
+			assertFalse(dataDescriptionEntry.getCalls().isEmpty());
+			assertEquals(2, dataDescriptionEntry.getCalls().size());
 		}
 
 		{
-			final DataDescriptionEntry dataDescriptionEntry2 = workingStorageSection
-					.getDataDescriptionEntry("SOME-NUMBER");
+			final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
+					.findDataDescriptionEntry("SOME-NUMBER");
 
-			assertNotNull(dataDescriptionEntry2);
-			assertFalse(dataDescriptionEntry2.getCalls().isEmpty());
-			assertEquals(1, dataDescriptionEntry2.getCalls().size());
+			assertNotNull(dataDescriptionEntry);
+			assertFalse(dataDescriptionEntry.getCalls().isEmpty());
+			assertEquals(1, dataDescriptionEntry.getCalls().size());
 		}
 
 		{
-			final DataDescriptionEntry dataDescriptionEntry3 = workingStorageSection
-					.getDataDescriptionEntry("SOME-TEXT2");
+			final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
+					.findDataDescriptionEntry("SOME-TEXT2");
 
-			assertNotNull(dataDescriptionEntry3);
-			assertFalse(dataDescriptionEntry3.getCalls().isEmpty());
-			assertEquals(1, dataDescriptionEntry3.getCalls().size());
+			assertNotNull(dataDescriptionEntry);
+			assertFalse(dataDescriptionEntry.getCalls().isEmpty());
+			assertEquals(1, dataDescriptionEntry.getCalls().size());
 		}
 
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();

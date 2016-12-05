@@ -44,26 +44,34 @@ public class DataDescription01Test extends CobolTestSupport {
 		assertEquals(3, localStorageSection.getDataDescriptionEntries().size());
 		assertEquals(1, localStorageSection.getRootDataDescriptionEntries().size());
 
-		final DataDescriptionEntry dataDescriptionEntryItems = localStorageSection.getDataDescriptionEntry("ITEMS");
+		{
+			final DataDescriptionEntry dataDescriptionEntryItems = localStorageSection
+					.findDataDescriptionEntry("ITEMS");
+			assertNotNull(dataDescriptionEntryItems);
+			assertEquals("ITEMS", dataDescriptionEntryItems.getName());
+			assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItems.getType());
+			assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
+			assertNull(dataDescriptionEntryItems.getParentDataDescriptionEntryGroup());
 
-		assertNotNull(dataDescriptionEntryItems);
-		assertEquals("ITEMS", dataDescriptionEntryItems.getName());
-		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItems.getType());
-		assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
-		assertNull(dataDescriptionEntryItems.getParentDataDescriptionEntryGroup());
+			{
+				final DataDescriptionEntry dataDescriptionEntryItem1 = localStorageSection
+						.findDataDescriptionEntry("ITEM1");
+				assertNotNull(dataDescriptionEntryItem1);
+				assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
+				assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem1.getType());
+				assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
+				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
+			}
 
-		final DataDescriptionEntry dataDescriptionEntryItem1 = localStorageSection.getDataDescriptionEntry("ITEM1");
-		assertNotNull(dataDescriptionEntryItem1);
-		assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
-		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem1.getType());
-		assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
-		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
-
-		final DataDescriptionEntry dataDescriptionEntryItem2 = localStorageSection.getDataDescriptionEntry("ITEM2");
-		assertNotNull(dataDescriptionEntryItem2);
-		assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
-		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem2.getType());
-		assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
-		assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
+			{
+				final DataDescriptionEntry dataDescriptionEntryItem2 = localStorageSection
+						.findDataDescriptionEntry("ITEM2");
+				assertNotNull(dataDescriptionEntryItem2);
+				assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
+				assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem2.getType());
+				assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
+				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
+			}
+		}
 	}
 }

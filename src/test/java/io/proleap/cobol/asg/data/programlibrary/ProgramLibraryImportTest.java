@@ -19,11 +19,11 @@ import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.CommonClause;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.GlobalClause;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.ImportAttribute;
+import io.proleap.cobol.asg.metamodel.data.programlibrary.ImportAttribute.Type;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.ImportEntryProcedure;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.LibraryDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.LibraryDescriptionEntryImport;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.ProgramLibrarySection;
-import io.proleap.cobol.asg.metamodel.data.programlibrary.ImportAttribute.Type;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class ProgramLibraryImportTest extends CobolTestSupport {
@@ -46,52 +46,53 @@ public class ProgramLibraryImportTest extends CobolTestSupport {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final ProgramLibrarySection programLibrarySection = dataDivision.getProgramLibrarySection();
 
-		final LibraryDescriptionEntry libraryDescriptionEntry = programLibrarySection
-				.getLibraryDescriptionEntry("SOMELIB");
-
-		assertNotNull(libraryDescriptionEntry);
-		assertEquals(LibraryDescriptionEntry.Type.Import, libraryDescriptionEntry.getType());
-
-		final LibraryDescriptionEntryImport libraryDescriptionEntryImport = (LibraryDescriptionEntryImport) libraryDescriptionEntry;
-
 		{
-			final GlobalClause globalClause = libraryDescriptionEntryImport.getGlobalClause();
-			assertNotNull(globalClause);
-			assertTrue(globalClause.isGlobal());
-		}
+			final LibraryDescriptionEntry libraryDescriptionEntry = programLibrarySection
+					.getLibraryDescriptionEntry("SOMELIB");
+			assertNotNull(libraryDescriptionEntry);
+			assertEquals(LibraryDescriptionEntry.Type.Import, libraryDescriptionEntry.getType());
 
-		{
-			final CommonClause commonClause = libraryDescriptionEntryImport.getCommonClause();
-			assertNotNull(commonClause);
-			assertTrue(commonClause.isCommon());
-		}
+			final LibraryDescriptionEntryImport libraryDescriptionEntryImport = (LibraryDescriptionEntryImport) libraryDescriptionEntry;
 
-		{
-			final List<ImportAttribute> importAttributes = libraryDescriptionEntryImport.getImportAttributes();
-			assertEquals(1, importAttributes.size());
+			{
+				final GlobalClause globalClause = libraryDescriptionEntryImport.getGlobalClause();
+				assertNotNull(globalClause);
+				assertTrue(globalClause.isGlobal());
+			}
 
-			final ImportAttribute importAttribute = importAttributes.get(0);
-			assertEquals(Type.ByTitle, importAttribute.getType());
-			assertEquals("123", importAttribute.getFunctionLiteral().getValue());
-			assertEquals("234", importAttribute.getParameterLiteral().getValue());
-			assertEquals("'SOMETITLE'", importAttribute.getTitleLiteral().getValue());
-		}
+			{
+				final CommonClause commonClause = libraryDescriptionEntryImport.getCommonClause();
+				assertNotNull(commonClause);
+				assertTrue(commonClause.isCommon());
+			}
 
-		{
-			final List<ImportEntryProcedure> importEntryProcedures = libraryDescriptionEntryImport
-					.getImportEntryProcedures();
-			assertEquals(1, importEntryProcedures.size());
+			{
+				final List<ImportAttribute> importAttributes = libraryDescriptionEntryImport.getImportAttributes();
+				assertEquals(1, importAttributes.size());
 
-			final ImportEntryProcedure importEntryProcedure = importEntryProcedures.get(0);
-			assertEquals("123", importEntryProcedure.getForClause().getForLiteral().getValue());
+				final ImportAttribute importAttribute = importAttributes.get(0);
+				assertEquals(Type.ByTitle, importAttribute.getType());
+				assertEquals("123", importAttribute.getFunctionLiteral().getValue());
+				assertEquals("234", importAttribute.getParameterLiteral().getValue());
+				assertEquals("'SOMETITLE'", importAttribute.getTitleLiteral().getValue());
+			}
 
-			assertNotNull(importEntryProcedure.getUsingClause());
-			assertEquals(2, importEntryProcedure.getUsingClause().getUsingValueStmts().size());
+			{
+				final List<ImportEntryProcedure> importEntryProcedures = libraryDescriptionEntryImport
+						.getImportEntryProcedures();
+				assertEquals(1, importEntryProcedures.size());
 
-			assertNotNull(importEntryProcedure.getWithClause());
-			assertEquals(2, importEntryProcedure.getWithClause().getWithValueStmts().size());
+				final ImportEntryProcedure importEntryProcedure = importEntryProcedures.get(0);
+				assertEquals("123", importEntryProcedure.getForClause().getForLiteral().getValue());
 
-			assertNotNull(importEntryProcedure.getGivingClause().getGivingCall());
+				assertNotNull(importEntryProcedure.getUsingClause());
+				assertEquals(2, importEntryProcedure.getUsingClause().getUsingValueStmts().size());
+
+				assertNotNull(importEntryProcedure.getWithClause());
+				assertEquals(2, importEntryProcedure.getWithClause().getWithValueStmts().size());
+
+				assertNotNull(importEntryProcedure.getGivingClause().getGivingCall());
+			}
 		}
 	}
 }

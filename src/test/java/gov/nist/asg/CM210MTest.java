@@ -71,13 +71,13 @@ public class CM210MTest extends CobolTestSupport {
 
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
-							.getDataDescriptionEntry("MSG-72");
+							.findDataDescriptionEntry("MSG-72");
 					assertEquals(DataDescriptionEntry.Type.Scalar, dataDescriptionEntry.getType());
 				}
 
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
-							.getDataDescriptionEntry("RECOGNITION-MSG-1");
+							.findDataDescriptionEntry("RECOGNITION-MSG-1");
 					assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntry.getType());
 
 					{
@@ -88,7 +88,7 @@ public class CM210MTest extends CobolTestSupport {
 
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
-							.getDataDescriptionEntry("RECOGNITION-MSG-2");
+							.findDataDescriptionEntry("RECOGNITION-MSG-2");
 					assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntry.getType());
 
 					{
@@ -99,7 +99,7 @@ public class CM210MTest extends CobolTestSupport {
 
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
-							.getDataDescriptionEntry("RECOGNITION-MSG-3");
+							.findDataDescriptionEntry("RECOGNITION-MSG-3");
 					assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntry.getType());
 
 					{
@@ -133,7 +133,7 @@ public class CM210MTest extends CobolTestSupport {
 
 				{
 					final DataDescriptionEntry dataDescriptionEntry = communicationSection
-							.getDataDescriptionEntry("INQUE-1-RECORD");
+							.findDataDescriptionEntry("INQUE-1-RECORD");
 					assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntry.getType());
 
 					{
@@ -144,7 +144,7 @@ public class CM210MTest extends CobolTestSupport {
 
 				{
 					final DataDescriptionEntry dataDescriptionEntry = communicationSection
-							.getDataDescriptionEntry("OUTQUE-1-RECORD");
+							.findDataDescriptionEntry("OUTQUE-1-RECORD");
 					assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntry.getType());
 
 					{
