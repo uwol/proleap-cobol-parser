@@ -2,7 +2,7 @@ package io.proleap.cobol;
 
 import org.junit.Before;
 
-import io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory;
+import io.proleap.cobol.asg.applicationcontext.CobolParserContextFactory;
 
 public class CobolTestSupport {
 

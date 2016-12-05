@@ -3,10 +3,10 @@ ANTLR4-based parser and grammar for Cobol 85
 
 <a href="https://travis-ci.org/uwol/cobol85parser"><img src="https://api.travis-ci.org/uwol/cobol85parser.png"></a>
 
-This is a parser and grammar for Cobol 85, which generates an 
-Abstract Syntax Tree (AST) and Abstract Semantic Graph (ASG) for COBOL 85 code. 
-The AST represents plain COBOL source code in a syntax tree structure. 
-The ASG is generated from the AST by semantic analysis and provides data and control 
+This is a parser and grammar for Cobol 85, which generates an
+Abstract Syntax Tree (AST) and Abstract Semantic Graph (ASG) for COBOL 85 code.
+The AST represents plain COBOL source code in a syntax tree structure.
+The ASG is generated from the AST by semantic analysis and provides data and control
 flow information (e. g. variable access).
 
 
@@ -41,7 +41,7 @@ Example
 						(sentence
 							(statement
 								(displayStatement Display
-									(displayOperand 
+									(displayOperand
 										(literal "Hello world")))) .)
 						(sentence
 							(statement
@@ -54,9 +54,9 @@ How to use
 
 Import into [Eclipse](https://eclipse.org):
 
-1. Clone or download the repository. 
+1. Clone or download the repository.
 2. In Eclipse import the directory as a an `existing Maven project`.
-3. Right click file `src/test/java/io.proleap.cobol.gpl.HelloWorldTest.java` and `run as JUnit test`.
+3. Right click file `src/test/java/io.proleap.cobol.ast.HelloWorldTest.java` and `run as JUnit test`.
 
 Use the following code as a starting point for developing own code.
 
@@ -64,43 +64,43 @@ Use the following code as a starting point for developing own code.
 ### Simple: Generate an Abstract Semantic Graph (ASG) from COBOL code
 
 ```java
-io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
+io.proleap.cobol.asg.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
 
 // generate ASG from plain COBOL code
-java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/parser/HelloWorld.cbl");
+java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/asg/HelloWorld.cbl");
 io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
-io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, format);
+io.proleap.cobol.asg.metamodel.Program program = io.proleap.cobol.asg.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, format);
 
 // navigate on ASG
-io.proleap.cobol.parser.metamodel.CompilationUnit compilationUnit = program.getCompilationUnit("HelloWorld");
-io.proleap.cobol.parser.metamodel.ProgramUnit programUnit = compilationUnit.getProgramUnit();
-io.proleap.cobol.parser.metamodel.data.DataDivision dataDivision = programUnit.getDataDivision();
-io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry dataDescriptionEntry = dataDivision.getWorkingStorageSection().getDataDescriptionEntry("ITEMS");
+io.proleap.cobol.asg.metamodel.CompilationUnit compilationUnit = program.getCompilationUnit("HelloWorld");
+io.proleap.cobol.asg.metamodel.ProgramUnit programUnit = compilationUnit.getProgramUnit();
+io.proleap.cobol.asg.metamodel.data.DataDivision dataDivision = programUnit.getDataDivision();
+io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry dataDescriptionEntry = dataDivision.getWorkingStorageSection().getDataDescriptionEntry("ITEMS");
 Integer levelNumber = dataDescriptionEntry.getLevelNumber();
 ```
 
 ### Complex: Generate an Abstract Semantic Graph (ASG) and traverse the Abstract Syntax Tree (AST)
 
 ```java
-io.proleap.cobol.parser.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
+io.proleap.cobol.asg.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
 
 // generate ASG from plain COBOL code
-java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/gpl/parser/HelloWorld.cbl");
+java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/asg/HelloWorld.cbl");
 io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
-io.proleap.cobol.parser.metamodel.Program program = io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, format);
+io.proleap.cobol.asg.metamodel.Program program = io.proleap.cobol.asg.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, format);
 
-// traverse the AST 
+// traverse the AST
 io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>() {
   @Override
   public Boolean visitDataDescriptionEntryFormat1(final io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context ctx) {
-    io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry entry = (io.proleap.cobol.parser.metamodel.data.datadescription.DataDescriptionEntry) io.proleap.cobol.parser.applicationcontext.CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
+    io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry entry = (io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry) io.proleap.cobol.asg.applicationcontext.CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
     String name = entry.getName();
 
     return visitChildren(ctx);
   }
 };
 
-for (final io.proleap.cobol.parser.metamodel.CompilationUnit compilationUnit : program.getCompilationUnits()) {
+for (final io.proleap.cobol.asg.metamodel.CompilationUnit compilationUnit : program.getCompilationUnits()) {
   visitor.visit(compilationUnit.getCtx());
 }
 ```
@@ -140,12 +140,12 @@ $ mvn clean package
 -------------------------------------------------------
  T E S T S
 -------------------------------------------------------
-Running io.proleap.cobol.gpl.fixed.FixedTest
+Running io.proleap.cobol.ast.fixed.FixedTest
 Preprocessing file Fixed.cbl.
 Parsing file Fixed.cbl.
 Comparing parse tree with file Fixed.cbl.tree.
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.202 sec
-Running io.proleap.cobol.gpl.fixed.QuotesInCommentEntryTest
+Running io.proleap.cobol.ast.fixed.QuotesInCommentEntryTest
 ...
 Results :
 
