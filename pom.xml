@@ -25,7 +25,7 @@
 		<profile>
 			<id>skip.nist.tests</id>
 			<properties>
-				<exclude.tests>**/gov/nist/**</exclude.tests>
+				<exclude.tests>**/gov/nist/*.java</exclude.tests>
 			</properties>
 		</profile>
 	</profiles>
