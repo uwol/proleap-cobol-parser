@@ -17,6 +17,8 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.asg.metamodel.procedure.Statement;
+import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class PerformProcedureThroughTest extends CobolTestSupport {
@@ -38,33 +40,79 @@ public class PerformProcedureThroughTest extends CobolTestSupport {
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(5, procedureDivision.getParagraphs().size());
-		assertEquals(7, procedureDivision.getStatements().size());
+		assertEquals(0, procedureDivision.getStatements().size());
 
 		{
-			final Paragraph paragraphProc1 = procedureDivision.getParagraph("PROC1");
-			assertNotNull(paragraphProc1);
-			assertTrue(paragraphProc1.getCalls().isEmpty());
+			final Paragraph paragraph = procedureDivision.getParagraph("INIT");
+			assertNotNull(paragraph);
+			assertEquals(3, paragraph.getStatements().size());
+			assertTrue(paragraph.getCalls().isEmpty());
+
+			{
+				final Statement statement = paragraph.getStatements().get(0);
+				assertEquals(StatementTypeEnum.Perform, statement.getStatementType());
+			}
+
+			{
+				final Statement statement = paragraph.getStatements().get(1);
+				assertEquals(StatementTypeEnum.Perform, statement.getStatementType());
+			}
+
+			{
+				final Statement statement = paragraph.getStatements().get(2);
+				assertEquals(StatementTypeEnum.Stop, statement.getStatementType());
+			}
 		}
 
 		{
-			final Paragraph paragraphProc2 = procedureDivision.getParagraph("PROC2");
-			assertNotNull(paragraphProc2);
-			assertFalse(paragraphProc2.getCalls().isEmpty());
-			assertEquals(1, paragraphProc2.getCalls().size());
+			final Paragraph paragraph = procedureDivision.getParagraph("PROC1");
+			assertNotNull(paragraph);
+			assertEquals(1, paragraph.getStatements().size());
+			assertTrue(paragraph.getCalls().isEmpty());
+
+			{
+				final Statement statement = paragraph.getStatements().get(0);
+				assertEquals(StatementTypeEnum.Display, statement.getStatementType());
+			}
 		}
 
 		{
-			final Paragraph paragraphProc3 = procedureDivision.getParagraph("PROC3");
-			assertNotNull(paragraphProc3);
-			assertFalse(paragraphProc3.getCalls().isEmpty());
-			assertEquals(2, paragraphProc3.getCalls().size());
+			final Paragraph paragraph = procedureDivision.getParagraph("PROC2");
+			assertNotNull(paragraph);
+			assertEquals(1, paragraph.getStatements().size());
+			assertFalse(paragraph.getCalls().isEmpty());
+			assertEquals(1, paragraph.getCalls().size());
+
+			{
+				final Statement statement = paragraph.getStatements().get(0);
+				assertEquals(StatementTypeEnum.Display, statement.getStatementType());
+			}
 		}
 
 		{
-			final Paragraph paragraphProc4 = procedureDivision.getParagraph("PROC4");
-			assertNotNull(paragraphProc4);
-			assertFalse(paragraphProc4.getCalls().isEmpty());
-			assertEquals(1, paragraphProc4.getCalls().size());
+			final Paragraph paragraph = procedureDivision.getParagraph("PROC3");
+			assertNotNull(paragraph);
+			assertEquals(1, paragraph.getStatements().size());
+			assertFalse(paragraph.getCalls().isEmpty());
+			assertEquals(2, paragraph.getCalls().size());
+
+			{
+				final Statement statement = paragraph.getStatements().get(0);
+				assertEquals(StatementTypeEnum.Display, statement.getStatementType());
+			}
+		}
+
+		{
+			final Paragraph paragraph = procedureDivision.getParagraph("PROC4");
+			assertNotNull(paragraph);
+			assertEquals(1, paragraph.getStatements().size());
+			assertFalse(paragraph.getCalls().isEmpty());
+			assertEquals(1, paragraph.getCalls().size());
+
+			{
+				final Statement statement = paragraph.getStatements().get(0);
+				assertEquals(StatementTypeEnum.Display, statement.getStatementType());
+			}
 		}
 	}
 }

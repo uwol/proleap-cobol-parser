@@ -18,6 +18,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.gotostmt.DependingOn;
 import io.proleap.cobol.asg.metamodel.procedure.gotostmt.GoToStatement;
@@ -42,7 +43,7 @@ public class GoToStatementTest extends CobolTestSupport {
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(3, procedureDivision.getParagraphs().size());
-		assertEquals(5, procedureDivision.getStatements().size());
+		assertEquals(0, procedureDivision.getStatements().size());
 
 		final Paragraph paragraph1 = procedureDivision.getParagraph("SOMEPROC1");
 		assertNotNull(paragraph1);
@@ -54,68 +55,90 @@ public class GoToStatementTest extends CobolTestSupport {
 		assertNotNull(paragraph3);
 
 		{
-			final GoToStatement goToStatement = (GoToStatement) procedureDivision.getStatements().get(0);
-			assertNotNull(goToStatement);
-			assertEquals(StatementTypeEnum.GoTo, goToStatement.getStatementType());
-			assertEquals(GoToStatement.Type.Simple, goToStatement.getType());
+			assertEquals(3, paragraph1.getStatements().size());
 
 			{
-				final Simple simple = goToStatement.getSimple();
-				assertEquals(Call.CallType.ProcedureCall, simple.getProcedureCall().getCallType());
+				final GoToStatement statement = (GoToStatement) paragraph1.getStatements().get(0);
+				assertNotNull(statement);
+				assertEquals(StatementTypeEnum.GoTo, statement.getStatementType());
+				assertEquals(GoToStatement.Type.Simple, statement.getType());
 
 				{
-					final ProcedureCall procedureCall = (ProcedureCall) simple.getProcedureCall();
-					assertEquals(paragraph1, procedureCall.getParagraph());
+					final Simple simple = statement.getSimple();
+					assertEquals(Call.CallType.ProcedureCall, simple.getProcedureCall().getCallType());
+
+					{
+						final ProcedureCall procedureCall = (ProcedureCall) simple.getProcedureCall();
+						assertEquals(paragraph1, procedureCall.getParagraph());
+					}
+				}
+			}
+
+			{
+				final GoToStatement statement = (GoToStatement) paragraph1.getStatements().get(1);
+				assertNotNull(statement);
+				assertEquals(StatementTypeEnum.GoTo, statement.getStatementType());
+				assertEquals(GoToStatement.Type.DependingOn, statement.getType());
+
+				{
+					final DependingOn dependingOn = statement.getDependingOn();
+					assertEquals(2, dependingOn.getProcedureCalls().size());
+
+					{
+						final Call call = dependingOn.getProcedureCalls().get(0);
+						assertEquals(Call.CallType.ProcedureCall, call.getCallType());
+
+						{
+							final ProcedureCall procedureCall = (ProcedureCall) call;
+							assertEquals(paragraph2, procedureCall.getParagraph());
+						}
+					}
+
+					{
+						final Call call = dependingOn.getProcedureCalls().get(1);
+						assertEquals(Call.CallType.ProcedureCall, call.getCallType());
+
+						{
+							final ProcedureCall procedureCall = (ProcedureCall) call;
+							assertEquals(paragraph3, procedureCall.getParagraph());
+						}
+					}
+
+					{
+						final Call dependingOnCall = dependingOn.getDependingOnCall();
+						assertEquals(Call.CallType.UndefinedCall, dependingOnCall.getCallType());
+					}
+				}
+			}
+
+			{
+				final GoToStatement statement = (GoToStatement) paragraph1.getStatements().get(2);
+				assertNotNull(statement);
+				assertEquals(StatementTypeEnum.GoTo, statement.getStatementType());
+				assertEquals(GoToStatement.Type.DependingOn, statement.getType());
+
+				{
+					final DependingOn dependingOn = statement.getDependingOn();
+					assertTrue(dependingOn.isMoreLabels());
 				}
 			}
 		}
 
 		{
-			final GoToStatement goToStatement = (GoToStatement) procedureDivision.getStatements().get(1);
-			assertNotNull(goToStatement);
-			assertEquals(StatementTypeEnum.GoTo, goToStatement.getStatementType());
-			assertEquals(GoToStatement.Type.DependingOn, goToStatement.getType());
+			assertEquals(1, paragraph2.getStatements().size());
 
 			{
-				final DependingOn dependingOn = goToStatement.getDependingOn();
-				assertEquals(2, dependingOn.getProcedureCalls().size());
-
-				{
-					final Call call = dependingOn.getProcedureCalls().get(0);
-					assertEquals(Call.CallType.ProcedureCall, call.getCallType());
-
-					{
-						final ProcedureCall procedureCall = (ProcedureCall) call;
-						assertEquals(paragraph2, procedureCall.getParagraph());
-					}
-				}
-
-				{
-					final Call call = dependingOn.getProcedureCalls().get(1);
-					assertEquals(Call.CallType.ProcedureCall, call.getCallType());
-
-					{
-						final ProcedureCall procedureCall = (ProcedureCall) call;
-						assertEquals(paragraph3, procedureCall.getParagraph());
-					}
-				}
-
-				{
-					final Call dependingOnCall = dependingOn.getDependingOnCall();
-					assertEquals(Call.CallType.UndefinedCall, dependingOnCall.getCallType());
-				}
+				final Statement statement = paragraph2.getStatements().get(0);
+				assertEquals(StatementTypeEnum.Display, statement.getStatementType());
 			}
 		}
 
 		{
-			final GoToStatement goToStatement = (GoToStatement) procedureDivision.getStatements().get(2);
-			assertNotNull(goToStatement);
-			assertEquals(StatementTypeEnum.GoTo, goToStatement.getStatementType());
-			assertEquals(GoToStatement.Type.DependingOn, goToStatement.getType());
+			assertEquals(1, paragraph3.getStatements().size());
 
 			{
-				final DependingOn dependingOn = goToStatement.getDependingOn();
-				assertTrue(dependingOn.isMoreLabels());
+				final Statement statement = paragraph3.getStatements().get(0);
+				assertEquals(StatementTypeEnum.Display, statement.getStatementType());
 			}
 		}
 	}

@@ -14,11 +14,11 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
-import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ParagraphName;
 
-public class ParagraphImpl extends CobolDivisionElementImpl implements Paragraph {
+public class ParagraphImpl extends ScopeImpl implements Paragraph {
 
 	protected final List<ProcedureCall> calls = new ArrayList<ProcedureCall>();
 

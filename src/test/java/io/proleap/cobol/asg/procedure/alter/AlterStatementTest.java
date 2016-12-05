@@ -42,10 +42,11 @@ public class AlterStatementTest extends CobolTestSupport {
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(3, procedureDivision.getParagraphs().size());
-		assertEquals(2, procedureDivision.getStatements().size());
+		assertEquals(1, procedureDivision.getStatements().size());
 
 		final Paragraph paragraph1 = procedureDivision.getParagraph("Paragraph-1");
 		final Paragraph paragraph2 = procedureDivision.getParagraph("Paragraph-2");
+		final Paragraph paragraph3 = procedureDivision.getParagraph("Paragraph-3");
 
 		{
 			final AlterStatement alterStatement = (AlterStatement) procedureDivision.getStatements().get(0);
@@ -74,9 +75,21 @@ public class AlterStatementTest extends CobolTestSupport {
 		}
 
 		{
-			final GoToStatement goToStatement = (GoToStatement) procedureDivision.getStatements().get(1);
-			assertNotNull(goToStatement);
-			assertEquals(StatementTypeEnum.GoTo, goToStatement.getStatementType());
+			assertEquals(1, paragraph1.getStatements().size());
+
+			{
+				final GoToStatement statement = (GoToStatement) paragraph1.getStatements().get(0);
+				assertNotNull(statement);
+				assertEquals(StatementTypeEnum.GoTo, statement.getStatementType());
+			}
+		}
+
+		{
+			assertEquals(0, paragraph2.getStatements().size());
+		}
+
+		{
+			assertEquals(0, paragraph3.getStatements().size());
 		}
 	}
 }

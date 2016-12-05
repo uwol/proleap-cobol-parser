@@ -16,6 +16,8 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.asg.metamodel.procedure.Statement;
+import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class PerformProcedureTest extends CobolTestSupport {
@@ -37,20 +39,56 @@ public class PerformProcedureTest extends CobolTestSupport {
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(3, procedureDivision.getParagraphs().size());
-		assertEquals(6, procedureDivision.getStatements().size());
+		assertEquals(0, procedureDivision.getStatements().size());
 
 		{
-			final Paragraph paragraphProc1 = procedureDivision.getParagraph("PROC1");
-			assertNotNull(paragraphProc1);
-			assertFalse(paragraphProc1.getCalls().isEmpty());
-			assertEquals(2, paragraphProc1.getCalls().size());
+			final Paragraph paragraph = procedureDivision.getParagraph("INIT");
+			assertNotNull(paragraph);
+
+			{
+				final Statement statement = paragraph.getStatements().get(0);
+				assertEquals(StatementTypeEnum.Perform, statement.getStatementType());
+			}
+
+			{
+				final Statement statement = paragraph.getStatements().get(1);
+				assertEquals(StatementTypeEnum.Perform, statement.getStatementType());
+			}
+
+			{
+				final Statement statement = paragraph.getStatements().get(2);
+				assertEquals(StatementTypeEnum.Perform, statement.getStatementType());
+			}
+
+			{
+				final Statement statement = paragraph.getStatements().get(3);
+				assertEquals(StatementTypeEnum.Stop, statement.getStatementType());
+			}
 		}
 
 		{
-			final Paragraph paragraphProc2 = procedureDivision.getParagraph("PROC2");
-			assertNotNull(paragraphProc2);
-			assertFalse(paragraphProc2.getCalls().isEmpty());
-			assertEquals(1, paragraphProc2.getCalls().size());
+			final Paragraph paragraph = procedureDivision.getParagraph("PROC1");
+			assertNotNull(paragraph);
+			assertEquals(1, paragraph.getStatements().size());
+			assertFalse(paragraph.getCalls().isEmpty());
+			assertEquals(2, paragraph.getCalls().size());
+
+			{
+				final Statement statement = paragraph.getStatements().get(0);
+				assertEquals(StatementTypeEnum.Display, statement.getStatementType());
+			}
+		}
+
+		{
+			final Paragraph paragraph = procedureDivision.getParagraph("PROC2");
+			assertNotNull(paragraph);
+			assertFalse(paragraph.getCalls().isEmpty());
+			assertEquals(1, paragraph.getCalls().size());
+
+			{
+				final Statement statement = paragraph.getStatements().get(0);
+				assertEquals(StatementTypeEnum.Display, statement.getStatementType());
+			}
 		}
 	}
 }

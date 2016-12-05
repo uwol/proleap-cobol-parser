@@ -10,11 +10,11 @@ package io.proleap.cobol.asg.metamodel.procedure;
 
 import java.util.List;
 
-import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.Declaration;
+import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 
-public interface Paragraph extends CobolDivisionElement, Declaration {
+public interface Paragraph extends Scope, Declaration {
 
 	void addCall(ProcedureCall procedureCall);
 
