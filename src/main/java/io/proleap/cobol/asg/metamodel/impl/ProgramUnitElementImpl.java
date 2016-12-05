@@ -186,32 +186,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final DataDescNameContext ctx) {
-		Call result = (Call) getASGElement(ctx);
-
-		if (result == null) {
-			result = createUndefinedCall(ctx);
-		}
-
+		final Call result = createDataDescriptionEntryCall(ctx);
 		return result;
 	}
 
 	protected Call createCall(final DataNameContext ctx) {
-		Call result = (Call) getASGElement(ctx);
-
-		if (result == null) {
-			final String name = determineName(ctx);
-			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
-
-			if (dataDescriptionEntry == null) {
-				LOG.warn("call to unknown element {}", name);
-				result = createUndefinedCall(ctx);
-			} else {
-				result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
-			}
-
-			registerASGElement(result);
-		}
-
+		final Call result = createDataDescriptionEntryCall(ctx);
 		return result;
 	}
 
@@ -245,32 +225,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final IdentifierContext ctx) {
-		Call result = (Call) getASGElement(ctx);
-
-		if (result == null) {
-			final String name = determineName(ctx);
-			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
-
-			if (dataDescriptionEntry == null) {
-				LOG.warn("call to unknown element {}", name);
-				result = createUndefinedCall(ctx);
-			} else {
-				result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
-			}
-
-			registerASGElement(result);
-		}
-
+		final Call result = createDataDescriptionEntryCall(ctx);
 		return result;
 	}
 
 	protected Call createCall(final IndexNameContext ctx) {
-		Call result = (Call) getASGElement(ctx);
-
-		if (result == null) {
-			result = createUndefinedCall(ctx);
-		}
-
+		final Call result = createDataDescriptionEntryCall(ctx);
 		return result;
 	}
 
@@ -430,22 +390,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final QualifiedDataNameContext ctx) {
-		Call result = (Call) getASGElement(ctx);
-
-		if (result == null) {
-			final String name = determineName(ctx);
-			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
-
-			if (dataDescriptionEntry == null) {
-				LOG.warn("call to unknown element {}", name);
-				result = createUndefinedCall(ctx);
-			} else {
-				result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
-			}
-
-			registerASGElement(result);
-		}
-
+		final Call result = createDataDescriptionEntryCall(ctx);
 		return result;
 	}
 
@@ -585,6 +530,26 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected Call createDataDescriptionEntryCall(final ParseTree ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
+
+			if (dataDescriptionEntry == null) {
+				LOG.warn("call to unknown element {}", name);
+				result = createUndefinedCall(ctx);
+			} else {
+				result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
+			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
 	protected DataDescriptionEntryCall createDataDescriptionEntryCall(final String name,
 			final DataDescriptionEntry dataDescriptionEntry, final ParseTree ctx) {
 		final DataDescriptionEntryCall result = new DataDescriptionEntryCallImpl(name, dataDescriptionEntry,
@@ -661,7 +626,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected ReportCall createReportCall(final String name, final ReportDescription report, final ReportNameContext ctx) {
+	protected ReportCall createReportCall(final String name, final ReportDescription report,
+			final ReportNameContext ctx) {
 		final ReportCall result = new ReportCallImpl(name, report, programUnit, ctx);
 		linkReportCallWithReport(result, report);
 		return result;
