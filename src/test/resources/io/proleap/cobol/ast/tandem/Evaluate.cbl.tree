@@ -135,7 +135,7 @@
 										(statement 
 											(moveStatement MOVE 
 												(moveToStatement 
-													(moveToStatementSendingArea 
+													(moveToSendingArea 
 														(literal "A")) TO 
 													(identifier 
 														(qualifiedDataName 
@@ -145,7 +145,7 @@
 										(statement 
 											(moveStatement MOVE 
 												(moveToStatement 
-													(moveToStatementSendingArea 
+													(moveToSendingArea 
 														(literal "B")) TO 
 													(identifier 
 														(qualifiedDataName 
@@ -245,7 +245,7 @@
 										(statement 
 											(moveStatement MOVE 
 												(moveToStatement 
-													(moveToStatementSendingArea 
+													(moveToSendingArea 
 														(literal "C")) TO 
 													(identifier 
 														(qualifiedDataName 
@@ -255,7 +255,7 @@
 										(statement 
 											(moveStatement MOVE 
 												(moveToStatement 
-													(moveToStatementSendingArea 
+													(moveToSendingArea 
 														(literal "D")) TO 
 													(identifier 
 														(qualifiedDataName 
@@ -300,7 +300,7 @@
 										(statement 
 											(moveStatement MOVE 
 												(moveToStatement 
-													(moveToStatementSendingArea 
+													(moveToSendingArea 
 														(literal "E")) TO 
 													(identifier 
 														(qualifiedDataName 
@@ -310,7 +310,7 @@
 										(statement 
 											(moveStatement MOVE 
 												(moveToStatement 
-													(moveToStatementSendingArea 
+													(moveToSendingArea 
 														(literal "F")) TO 
 													(identifier 
 														(qualifiedDataName 
@@ -321,7 +321,7 @@
 										(statement 
 											(moveStatement MOVE 
 												(moveToStatement 
-													(moveToStatementSendingArea 
+													(moveToSendingArea 
 														(literal "G")) TO 
 													(identifier 
 														(qualifiedDataName 
@@ -331,7 +331,7 @@
 										(statement 
 											(moveStatement MOVE 
 												(moveToStatement 
-													(moveToStatementSendingArea 
+													(moveToSendingArea 
 														(literal "H")) TO 
 													(identifier 
 														(qualifiedDataName 

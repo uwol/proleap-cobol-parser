@@ -34,7 +34,7 @@ import io.proleap.cobol.Cobol85Parser.InitializeStatementContext;
 import io.proleap.cobol.Cobol85Parser.InitiateStatementContext;
 import io.proleap.cobol.Cobol85Parser.InspectStatementContext;
 import io.proleap.cobol.Cobol85Parser.MergeStatementContext;
-import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
+import io.proleap.cobol.Cobol85Parser.MoveStatementContext;
 import io.proleap.cobol.Cobol85Parser.MultiplyStatementContext;
 import io.proleap.cobol.Cobol85Parser.OpenStatementContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
@@ -81,7 +81,7 @@ import io.proleap.cobol.asg.metamodel.procedure.initialize.InitializeStatement;
 import io.proleap.cobol.asg.metamodel.procedure.initiate.InitiateStatement;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.InspectStatement;
 import io.proleap.cobol.asg.metamodel.procedure.merge.MergeStatement;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.MultiplyStatement;
 import io.proleap.cobol.asg.metamodel.procedure.open.OpenStatement;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformStatement;
@@ -153,7 +153,7 @@ public interface Scope extends CobolDivisionElement {
 
 	MergeStatement addMergeStatement(MergeStatementContext ctx);
 
-	MoveToStatement addMoveToStatement(MoveToStatementContext ctx);
+	MoveStatement addMoveStatement(MoveStatementContext ctx);
 
 	MultiplyStatement addMultiplyStatement(MultiplyStatementContext ctx);
 

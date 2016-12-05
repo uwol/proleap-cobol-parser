@@ -1486,10 +1486,10 @@ moveStatement
    ;
 
 moveToStatement
-   : moveToStatementSendingArea TO identifier+
+   : moveToSendingArea TO identifier+
    ;
 
-moveToStatementSendingArea
+moveToSendingArea
    : identifier | literal | nonReservedWord
    ;
 

@@ -48,8 +48,7 @@ import io.proleap.cobol.Cobol85Parser.MergeGivingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.MergeOnKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.MergeStatementContext;
 import io.proleap.cobol.Cobol85Parser.MergeUsingContext;
-import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
-import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
+import io.proleap.cobol.Cobol85Parser.MoveStatementContext;
 import io.proleap.cobol.Cobol85Parser.MultiplyStatementContext;
 import io.proleap.cobol.Cobol85Parser.NotAtEndPhraseContext;
 import io.proleap.cobol.Cobol85Parser.NotInvalidKeyPhraseContext;
@@ -163,8 +162,8 @@ import io.proleap.cobol.asg.metamodel.procedure.inspect.InspectStatement;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.impl.InspectStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.merge.MergeStatement;
 import io.proleap.cobol.asg.metamodel.procedure.merge.impl.MergeStatementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
-import io.proleap.cobol.asg.metamodel.procedure.move.impl.MoveToStatementImpl;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
+import io.proleap.cobol.asg.metamodel.procedure.move.impl.MoveStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.MultiplyStatement;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.impl.MultiplyStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.open.OpenStatement;
@@ -926,23 +925,26 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 	}
 
 	@Override
-	public MoveToStatement addMoveToStatement(final MoveToStatementContext ctx) {
-		MoveToStatement result = (MoveToStatement) getASGElement(ctx);
+	public MoveStatement addMoveStatement(final MoveStatementContext ctx) {
+		MoveStatement result = (MoveStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new MoveToStatementImpl(programUnit, this, ctx);
+			result = new MoveStatementImpl(programUnit, this, ctx);
 
-			final MoveToStatementSendingAreaContext moveToStatementSendingArea = ctx.moveToStatementSendingArea();
-			final List<IdentifierContext> identifierCtxs = ctx.identifier();
+			// type
+			final MoveStatement.Type type;
 
-			// sending area value statement
-			result.addSendingAreaValueStmt(moveToStatementSendingArea);
-
-			// receiving area calls
-			for (final IdentifierContext identifierCtx : identifierCtxs) {
-				final Call receivingAreaCall = createCall(identifierCtx);
-				result.addReceivingAreaCall(receivingAreaCall);
+			if (ctx.moveToStatement() != null) {
+				type = MoveStatement.Type.MoveTo;
+				result.addMoveTo(ctx.moveToStatement());
+			} else if (ctx.moveCorrespondingToStatement() != null) {
+				type = MoveStatement.Type.MoveCorrespondingTo;
+				result.addMoveCorrespondingTo(ctx.moveCorrespondingToStatement());
+			} else {
+				type = null;
 			}
+
+			result.setType(type);
 
 			registerStatement(result);
 		}

@@ -8,18 +8,20 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.move;
 
-import io.proleap.cobol.Cobol85Parser.MoveToStatementSendingAreaContext;
-import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.Statement;
-import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
+import java.util.List;
 
-/**
- * Transfers data from one storage area to another.
- */
-public interface MoveToStatement extends Statement {
+import io.proleap.cobol.Cobol85Parser.MoveToSendingAreaContext;
+import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
+import io.proleap.cobol.asg.metamodel.call.Call;
+
+public interface MoveTo extends CobolDivisionElement {
 
 	void addReceivingAreaCall(Call receivingAreaCall);
 
-	ValueStmt addSendingAreaValueStmt(MoveToStatementSendingAreaContext ctx);
+	SendingArea addSendingArea(MoveToSendingAreaContext ctx);
+
+	List<Call> getReceivingAreaCalls();
+
+	SendingArea getSendingArea();
 
 }

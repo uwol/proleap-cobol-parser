@@ -245,10 +245,10 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitMoveToStatement(@NotNull final Cobol85Parser.MoveToStatementContext ctx) {
+	public Boolean visitMoveStatement(@NotNull final Cobol85Parser.MoveStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
-		scope.addMoveToStatement(ctx);
+		scope.addMoveStatement(ctx);
 
 		return visitChildren(ctx);
 	}

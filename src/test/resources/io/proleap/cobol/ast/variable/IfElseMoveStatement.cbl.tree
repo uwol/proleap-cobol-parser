@@ -54,7 +54,7 @@
 										(statement 
 											(moveStatement MOVE 
 												(moveToStatement 
-													(moveToStatementSendingArea 
+													(moveToSendingArea 
 														(literal 'test')) TO 
 													(identifier 
 														(qualifiedDataName 
