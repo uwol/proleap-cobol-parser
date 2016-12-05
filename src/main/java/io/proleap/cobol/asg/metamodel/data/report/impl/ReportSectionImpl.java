@@ -13,12 +13,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.proleap.cobol.Cobol85Parser.ReportContext;
+import io.proleap.cobol.Cobol85Parser.ReportDescriptionContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.ReportSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.data.report.Report;
+import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.report.ReportSection;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
@@ -27,9 +27,9 @@ public class ReportSectionImpl extends CobolDivisionElementImpl implements Repor
 
 	protected final ReportSectionContext ctx;
 
-	protected List<Report> reports = new ArrayList<Report>();
+	protected List<ReportDescription> reportDescriptions = new ArrayList<ReportDescription>();
 
-	protected Map<String, Report> reportsSymbolTable = new HashMap<String, Report>();
+	protected Map<String, ReportDescription> reportDescriptionsSymbolTable = new HashMap<String, ReportDescription>();
 
 	public ReportSectionImpl(final ProgramUnit programUnit, final ReportSectionContext ctx) {
 		super(programUnit, ctx);
@@ -38,15 +38,15 @@ public class ReportSectionImpl extends CobolDivisionElementImpl implements Repor
 	}
 
 	@Override
-	public Report addReport(final ReportContext ctx) {
-		Report result = (Report) getASGElement(ctx);
+	public ReportDescription addReportDescription(final ReportDescriptionContext ctx) {
+		ReportDescription result = (ReportDescription) getASGElement(ctx);
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new ReportImpl(name, programUnit, ctx);
+			result = new ReportDescriptionImpl(name, programUnit, ctx);
 
 			/*
-			 * report description
+			 * report description entry
 			 */
 			final ReportDescriptionEntryContext reportDescriptionEntryContext = ctx.reportDescriptionEntry();
 			result.addReportDescriptionEntry(reportDescriptionEntryContext);
@@ -64,8 +64,8 @@ public class ReportSectionImpl extends CobolDivisionElementImpl implements Repor
 				lastReportGroupDescriptionEntry = reportGroupDescriptionEntry;
 			}
 
-			reports.add(result);
-			reportsSymbolTable.put(name, result);
+			reportDescriptions.add(result);
+			reportDescriptionsSymbolTable.put(name, result);
 			registerASGElement(result);
 		}
 
@@ -73,13 +73,13 @@ public class ReportSectionImpl extends CobolDivisionElementImpl implements Repor
 	}
 
 	@Override
-	public Report getReport(final String name) {
-		return reportsSymbolTable.get(name);
+	public ReportDescription getReportDescription(final String name) {
+		return reportDescriptionsSymbolTable.get(name);
 	}
 
 	@Override
-	public List<Report> getReports() {
-		return reports;
+	public List<ReportDescription> getReportDescriptions() {
+		return reportDescriptions;
 	}
 
 }

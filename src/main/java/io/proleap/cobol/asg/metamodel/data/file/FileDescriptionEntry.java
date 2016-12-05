@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.data.file;
 
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.CodeSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataRecordsClauseContext;
@@ -19,11 +21,14 @@ import io.proleap.cobol.Cobol85Parser.RecordContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportClauseContext;
 import io.proleap.cobol.Cobol85Parser.ValueOfClauseContext;
 import io.proleap.cobol.asg.metamodel.Declaration;
+import io.proleap.cobol.asg.metamodel.call.FileDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
 
 public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Declaration {
 
 	BlockContainsClause addBlockContainsClause(BlockContainsClauseContext ctx);
+
+	void addCall(FileDescriptionEntryCall call);
 
 	CodeSetClause addCodeSetClause(CodeSetClauseContext ctx);
 
@@ -44,6 +49,8 @@ public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Dec
 	ValueOfClause addValueOfClause(ValueOfClauseContext ctx);
 
 	BlockContainsClause getBlockContainsClause();
+
+	List<FileDescriptionEntryCall> getCalls();
 
 	CodeSetClause getCodeSetClause();
 

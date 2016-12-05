@@ -48,18 +48,24 @@ import io.proleap.cobol.asg.metamodel.ProgramUnitElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.CommunicationDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
+import io.proleap.cobol.asg.metamodel.call.FileDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
+import io.proleap.cobol.asg.metamodel.call.ReportCall;
 import io.proleap.cobol.asg.metamodel.call.ReportDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.impl.CommunicationDescriptionEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.DataDescriptionEntryCallImpl;
+import io.proleap.cobol.asg.metamodel.call.impl.FileDescriptionEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ProcedureCallImpl;
+import io.proleap.cobol.asg.metamodel.call.impl.ReportCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ReportDescriptionEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.UndefinedCallImpl;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationSection;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
-import io.proleap.cobol.asg.metamodel.data.report.Report;
+import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.file.FileSection;
+import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.report.ReportSection;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
@@ -223,7 +229,16 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			result = createUndefinedCall(ctx);
+			final String name = determineName(ctx);
+			final FileDescriptionEntry fileDescriptionEntry = findFileDescriptionEntry(name);
+
+			if (fileDescriptionEntry == null) {
+				result = createUndefinedCall(ctx);
+			} else {
+				result = createFileDescriptionEntryCall(name, fileDescriptionEntry, ctx);
+			}
+
+			registerASGElement(result);
 		}
 
 		return result;
@@ -449,12 +464,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			final ReportDescriptionEntry reportDescriptionEntry = findReportDescriptionEntry(name);
+			final ReportDescription report = findReportDescription(name);
 
-			if (reportDescriptionEntry == null) {
+			if (report == null) {
 				result = createUndefinedCall(ctx);
 			} else {
-				result = createReportDescriptionEntryCall(name, reportDescriptionEntry, ctx);
+				result = createReportCall(name, report, ctx);
 			}
 
 			registerASGElement(result);
@@ -578,6 +593,14 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected FileDescriptionEntryCall createFileDescriptionEntryCall(final String name,
+			final FileDescriptionEntry fileDescriptionEntry, final FileNameContext ctx) {
+		final FileDescriptionEntryCall result = new FileDescriptionEntryCallImpl(name, fileDescriptionEntry,
+				programUnit, ctx);
+		linkFileDescriptionEntryCallWithFileDescriptionEntry(result, fileDescriptionEntry);
+		return result;
+	}
+
 	protected IntegerLiteral createIntegerLiteral(final IntegerLiteralContext ctx) {
 		IntegerLiteral result = (IntegerLiteral) getASGElement(ctx);
 
@@ -638,12 +661,18 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected ReportCall createReportCall(final String name, final ReportDescription report, final ReportNameContext ctx) {
+		final ReportCall result = new ReportCallImpl(name, report, programUnit, ctx);
+		linkReportCallWithReport(result, report);
+		return result;
+	}
+
 	protected ReportDescriptionEntryCall createReportDescriptionEntryCall(final String name,
 			final ReportDescriptionEntry reportDescriptionEntry, final ReportNameContext ctx) {
-		final ReportDescriptionEntryCall call = new ReportDescriptionEntryCallImpl(name, reportDescriptionEntry,
+		final ReportDescriptionEntryCall result = new ReportDescriptionEntryCallImpl(name, reportDescriptionEntry,
 				programUnit, ctx);
-		linkReportDescriptionEntryCallWithReportDescriptionEntry(call, reportDescriptionEntry);
-		return call;
+		linkReportDescriptionEntryCallWithReportDescriptionEntry(result, reportDescriptionEntry);
+		return result;
 	}
 
 	protected TerminalValueStmt createTerminalValueStmt(final TerminalNode ctx) {
@@ -751,6 +780,25 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected FileDescriptionEntry findFileDescriptionEntry(final String name) {
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final FileDescriptionEntry result;
+
+		if (dataDivision == null) {
+			result = null;
+		} else {
+			final FileSection fileSection = dataDivision.getFileSection();
+
+			if (fileSection == null) {
+				result = null;
+			} else {
+				result = fileSection.getFileDescriptionEntry(name);
+			}
+		}
+
+		return result;
+	}
+
 	protected Paragraph findProcedure(final String name) {
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		final Paragraph result;
@@ -759,6 +807,25 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			result = null;
 		} else {
 			result = procedureDivision.getParagraph(name);
+		}
+
+		return result;
+	}
+
+	protected ReportDescription findReportDescription(final String name) {
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final ReportDescription result;
+
+		if (dataDivision == null) {
+			result = null;
+		} else {
+			final ReportSection reportSection = dataDivision.getReportSection();
+
+			if (reportSection == null) {
+				result = null;
+			} else {
+				result = reportSection.getReportDescription(name);
+			}
 		}
 
 		return result;
@@ -776,7 +843,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			if (reportSection == null) {
 				result = null;
 			} else {
-				final Report report = reportSection.getReport(name);
+				final ReportDescription report = reportSection.getReportDescription(name);
 
 				if (report == null) {
 					result = null;
@@ -805,8 +872,17 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		dataDescriptionEntry.addCall(call);
 	}
 
+	protected void linkFileDescriptionEntryCallWithFileDescriptionEntry(final FileDescriptionEntryCall call,
+			final FileDescriptionEntry fileDescriptionEntry) {
+		fileDescriptionEntry.addCall(call);
+	}
+
 	protected void linkProcedureCallWithParagraph(final ProcedureCall call, final Paragraph paragraph) {
 		paragraph.addCall(call);
+	}
+
+	protected void linkReportCallWithReport(final ReportCall reportCall, final ReportDescription report) {
+		report.addCall(reportCall);
 	}
 
 	protected void linkReportDescriptionEntryCallWithReportDescriptionEntry(final ReportDescriptionEntryCall call,

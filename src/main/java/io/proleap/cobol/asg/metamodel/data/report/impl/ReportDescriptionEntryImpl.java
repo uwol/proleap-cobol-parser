@@ -27,7 +27,7 @@ import io.proleap.cobol.asg.metamodel.data.report.GlobalClause;
 import io.proleap.cobol.asg.metamodel.data.report.HeadingClause;
 import io.proleap.cobol.asg.metamodel.data.report.LastDetailClause;
 import io.proleap.cobol.asg.metamodel.data.report.PageLimitClause;
-import io.proleap.cobol.asg.metamodel.data.report.Report;
+import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 
@@ -51,7 +51,7 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 
 	protected PageLimitClause pageLimitClause;
 
-	protected Report report;
+	protected ReportDescription report;
 
 	public ReportDescriptionEntryImpl(final String name, final ProgramUnit programUnit,
 			final ReportDescriptionEntryContext ctx) {
@@ -208,12 +208,12 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
-	public Report getReport() {
+	public ReportDescription getReport() {
 		return report;
 	}
 
 	@Override
-	public void setReport(final Report report) {
+	public void setReport(final ReportDescription report) {
 		this.report = report;
 	}
 

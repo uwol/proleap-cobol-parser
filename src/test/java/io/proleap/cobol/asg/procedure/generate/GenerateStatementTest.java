@@ -14,10 +14,9 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.call.ReportDescriptionEntryCall;
+import io.proleap.cobol.asg.metamodel.call.ReportCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
-import io.proleap.cobol.asg.metamodel.data.report.Report;
-import io.proleap.cobol.asg.metamodel.data.report.ReportDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
 import io.proleap.cobol.asg.metamodel.data.report.ReportSection;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
@@ -42,28 +41,36 @@ public class GenerateStatementTest extends CobolTestSupport {
 		final CompilationUnit compilationUnit = program.getCompilationUnit("GenerateStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
-		final ReportSection reportSection = dataDivision.getReportSection();
-		final Report report1 = reportSection.getReport("REPORT1");
-		assertNotNull(report1);
 
-		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
-		assertEquals(0, procedureDivision.getParagraphs().size());
-		assertEquals(1, procedureDivision.getStatements().size());
+		final ReportDescription reportDescription1;
 
 		{
-			final GenerateStatement generateStatement = (GenerateStatement) procedureDivision.getStatements().get(0);
-			assertNotNull(generateStatement);
-			assertEquals(StatementTypeEnum.Generate, generateStatement.getStatementType());
-			assertEquals(Call.CallType.ReportDescriptionEntryCall,
-					generateStatement.getReportDescriptionCall().getCallType());
+			final ReportSection reportSection = dataDivision.getReportSection();
 
 			{
-				final ReportDescriptionEntryCall reportDescriptionEntryCall = (ReportDescriptionEntryCall) generateStatement
-						.getReportDescriptionCall();
-				final ReportDescriptionEntry reportDescriptionEntry = reportDescriptionEntryCall
-						.getReportDescriptionEntry();
+				reportDescription1 = reportSection.getReportDescription("REPORT1");
+				assertNotNull(reportDescription1);
+				assertEquals(1, reportDescription1.getCalls().size());
+			}
+		}
 
-				assertEquals(report1, reportDescriptionEntry.getReport());
+		{
+			final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+			assertEquals(0, procedureDivision.getParagraphs().size());
+			assertEquals(1, procedureDivision.getStatements().size());
+
+			{
+				final GenerateStatement generateStatement = (GenerateStatement) procedureDivision.getStatements()
+						.get(0);
+				assertNotNull(generateStatement);
+				assertEquals(StatementTypeEnum.Generate, generateStatement.getStatementType());
+				assertEquals(Call.CallType.ReportDescriptionCall,
+						generateStatement.getReportDescriptionCall().getCallType());
+
+				{
+					final ReportCall reportDescriptionCall = (ReportCall) generateStatement.getReportDescriptionCall();
+					assertEquals(reportDescription1, reportDescriptionCall.getReport());
+				}
 			}
 		}
 	}

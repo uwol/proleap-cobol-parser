@@ -15,7 +15,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
-import io.proleap.cobol.asg.metamodel.data.report.Report;
+import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.report.ReportSection;
 import io.proleap.cobol.asg.metamodel.data.report.UsageClause;
@@ -40,7 +40,7 @@ public class ReportDescriptionHierachyTest extends CobolTestSupport {
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final ReportSection reportSection = dataDivision.getReportSection();
-		final Report report = reportSection.getReports().get(0);
+		final ReportDescription report = reportSection.getReportDescriptions().get(0);
 
 		final List<ReportGroupDescriptionEntry> rootReportGroupDescriptionEntries = report
 				.getRootReportGroupDescriptionEntries();

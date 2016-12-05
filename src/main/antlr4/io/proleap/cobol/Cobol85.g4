@@ -606,10 +606,10 @@ screenSection
 // -- report section ----------------------------------
 
 reportSection
-   : REPORT SECTION DOT_FS report*
+   : REPORT SECTION DOT_FS reportDescription*
    ;
 
-report
+reportDescription
    : reportDescriptionEntry reportGroupDescriptionEntry+
    ;
 

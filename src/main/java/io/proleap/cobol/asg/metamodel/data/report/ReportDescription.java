@@ -17,8 +17,11 @@ import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat3Context;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.Declaration;
+import io.proleap.cobol.asg.metamodel.call.ReportCall;
 
-public interface Report extends CobolDivisionElement, Declaration {
+public interface ReportDescription extends CobolDivisionElement, Declaration {
+
+	void addCall(ReportCall call);
 
 	ReportDescriptionEntry addReportDescriptionEntry(ReportDescriptionEntryContext ctx);
 
@@ -33,6 +36,8 @@ public interface Report extends CobolDivisionElement, Declaration {
 
 	ReportGroupDescriptionEntry createReportGroupDescriptionEntry(
 			ReportGroupDescriptionEntry lastReportGroupDescriptionEntry, ReportGroupDescriptionEntryContext ctx);
+
+	List<ReportCall> getCalls();
 
 	ReportDescriptionEntry getReportDescriptionEntry();
 

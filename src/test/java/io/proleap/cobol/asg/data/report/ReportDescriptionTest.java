@@ -21,7 +21,7 @@ import io.proleap.cobol.asg.metamodel.data.report.GlobalClause;
 import io.proleap.cobol.asg.metamodel.data.report.HeadingClause;
 import io.proleap.cobol.asg.metamodel.data.report.LastDetailClause;
 import io.proleap.cobol.asg.metamodel.data.report.PageLimitClause;
-import io.proleap.cobol.asg.metamodel.data.report.Report;
+import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.report.ReportSection;
@@ -46,14 +46,14 @@ public class ReportDescriptionTest extends CobolTestSupport {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final ReportSection reportSection = dataDivision.getReportSection();
 
-		assertEquals(2, reportSection.getReports().size());
+		assertEquals(2, reportSection.getReportDescriptions().size());
 
 		{
-			final Report report = reportSection.getReport("REPORT1");
-			assertNotNull(report);
+			final ReportDescription reportDescription = reportSection.getReportDescription("REPORT1");
+			assertNotNull(reportDescription);
 
 			{
-				final ReportDescriptionEntry reportDescriptionEntry = report.getReportDescriptionEntry();
+				final ReportDescriptionEntry reportDescriptionEntry = reportDescription.getReportDescriptionEntry();
 
 				{
 					final GlobalClause globalClause = reportDescriptionEntry.getGlobalClause();
@@ -92,7 +92,7 @@ public class ReportDescriptionTest extends CobolTestSupport {
 				}
 
 				{
-					final ReportGroupDescriptionEntry reportGroupDescriptionEntry = report
+					final ReportGroupDescriptionEntry reportGroupDescriptionEntry = reportDescription
 							.getReportGroupDescriptionEntry("SOMEDATANAME");
 					assertNotNull(reportGroupDescriptionEntry);
 					assertEquals(new Integer(1), reportGroupDescriptionEntry.getLevelNumber());
@@ -101,7 +101,7 @@ public class ReportDescriptionTest extends CobolTestSupport {
 		}
 
 		{
-			final Report report = reportSection.getReport("REPORT2");
+			final ReportDescription report = reportSection.getReportDescription("REPORT2");
 			assertNotNull(report);
 
 			{

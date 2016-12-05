@@ -14,6 +14,10 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.ReportCall;
+import io.proleap.cobol.asg.metamodel.data.DataDivision;
+import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
+import io.proleap.cobol.asg.metamodel.data.report.ReportSection;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.initiate.InitiateStatement;
@@ -36,26 +40,65 @@ public class InitiateStatementTest extends CobolTestSupport {
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("InitiateStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
-		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
-		assertEquals(0, procedureDivision.getParagraphs().size());
-		assertEquals(1, procedureDivision.getStatements().size());
+
+		final ReportDescription reportDescription1;
+		final ReportDescription reportDescription2;
 
 		{
-			final InitiateStatement initiateStatement = (InitiateStatement) procedureDivision.getStatements().get(0);
-			assertNotNull(initiateStatement);
-			assertEquals(StatementTypeEnum.Initiate, initiateStatement.getStatementType());
-			assertEquals(2, initiateStatement.getReportCalls().size());
+			final DataDivision dataDivision = programUnit.getDataDivision();
+			assertNotNull(dataDivision);
 
 			{
-				final Call reportCall = initiateStatement.getReportCalls().get(0);
-				assertNotNull(reportCall);
-				assertEquals(Call.CallType.UndefinedCall, reportCall.getCallType());
+				final ReportSection reportSection = dataDivision.getReportSection();
+				assertNotNull(reportSection);
+
+				{
+					reportDescription1 = reportSection.getReportDescription("SOMEREPORT1");
+					assertNotNull(reportDescription1);
+					assertEquals(1, reportDescription1.getCalls().size());
+				}
+
+				{
+					reportDescription2 = reportSection.getReportDescription("SOMEREPORT2");
+					assertNotNull(reportDescription2);
+					assertEquals(1, reportDescription2.getCalls().size());
+				}
 			}
+		}
+
+		{
+			final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+			assertEquals(0, procedureDivision.getParagraphs().size());
+			assertEquals(1, procedureDivision.getStatements().size());
 
 			{
-				final Call reportCall = initiateStatement.getReportCalls().get(1);
-				assertNotNull(reportCall);
-				assertEquals(Call.CallType.UndefinedCall, reportCall.getCallType());
+				final InitiateStatement initiateStatement = (InitiateStatement) procedureDivision.getStatements()
+						.get(0);
+				assertNotNull(initiateStatement);
+				assertEquals(StatementTypeEnum.Initiate, initiateStatement.getStatementType());
+				assertEquals(2, initiateStatement.getReportCalls().size());
+
+				{
+					final Call call = initiateStatement.getReportCalls().get(0);
+					assertNotNull(call);
+
+					{
+						final ReportCall reportCall = (ReportCall) call;
+						assertEquals(Call.CallType.ReportDescriptionCall, call.getCallType());
+						assertEquals(reportDescription1, reportCall.getReport());
+					}
+				}
+
+				{
+					final Call call = initiateStatement.getReportCalls().get(1);
+					assertNotNull(call);
+
+					{
+						final ReportCall reportCall = (ReportCall) call;
+						assertEquals(Call.CallType.ReportDescriptionCall, call.getCallType());
+						assertEquals(reportDescription2, reportCall.getReport());
+					}
+				}
 			}
 		}
 	}

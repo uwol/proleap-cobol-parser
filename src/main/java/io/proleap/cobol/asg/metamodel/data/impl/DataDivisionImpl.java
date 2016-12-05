@@ -20,7 +20,7 @@ import io.proleap.cobol.Cobol85Parser.LibraryDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.LinkageSectionContext;
 import io.proleap.cobol.Cobol85Parser.LocalStorageSectionContext;
 import io.proleap.cobol.Cobol85Parser.ProgramLibrarySectionContext;
-import io.proleap.cobol.Cobol85Parser.ReportContext;
+import io.proleap.cobol.Cobol85Parser.ReportDescriptionContext;
 import io.proleap.cobol.Cobol85Parser.ReportSectionContext;
 import io.proleap.cobol.Cobol85Parser.ScreenSectionContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
@@ -230,8 +230,8 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		if (result == null) {
 			result = new ReportSectionImpl(programUnit, ctx);
 
-			for (final ReportContext reportContext : ctx.report()) {
-				result.addReport(reportContext);
+			for (final ReportDescriptionContext reportContext : ctx.reportDescription()) {
+				result.addReportDescription(reportContext);
 			}
 
 			reportSection = result;

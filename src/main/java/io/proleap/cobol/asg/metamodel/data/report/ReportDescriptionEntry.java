@@ -50,7 +50,7 @@ public interface ReportDescriptionEntry extends CobolDivisionElement, Declaratio
 
 	PageLimitClause getPageLimitClause();
 
-	Report getReport();
+	ReportDescription getReport();
 
-	void setReport(Report report);
+	void setReport(ReportDescription report);
 }

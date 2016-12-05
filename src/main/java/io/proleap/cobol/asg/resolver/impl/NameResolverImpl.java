@@ -37,7 +37,7 @@ import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.Cobol85Parser.RecordNameContext;
-import io.proleap.cobol.Cobol85Parser.ReportContext;
+import io.proleap.cobol.Cobol85Parser.ReportDescriptionContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat2Context;
@@ -216,8 +216,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((ProgramNameContext) ctx);
 		} else if (ctx instanceof RecordNameContext) {
 			result = determineName((RecordNameContext) ctx);
-		} else if (ctx instanceof ReportContext) {
-			result = determineName((ReportContext) ctx);
+		} else if (ctx instanceof ReportDescriptionContext) {
+			result = determineName((ReportDescriptionContext) ctx);
 		} else if (ctx instanceof ReportDescriptionEntryContext) {
 			result = determineName((ReportDescriptionEntryContext) ctx);
 		} else if (ctx instanceof ReportGroupDescriptionEntryFormat1Context) {
@@ -268,7 +268,7 @@ public class NameResolverImpl implements NameResolver {
 		return result;
 	}
 
-	public String determineName(final ReportContext ctx) {
+	public String determineName(final ReportDescriptionContext ctx) {
 		final String result = ctx != null ? determineName(ctx.reportDescriptionEntry()) : null;
 		return result;
 	}

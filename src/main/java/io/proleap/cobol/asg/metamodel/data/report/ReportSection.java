@@ -10,14 +10,14 @@ package io.proleap.cobol.asg.metamodel.data.report;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ReportContext;
+import io.proleap.cobol.Cobol85Parser.ReportDescriptionContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface ReportSection extends CobolDivisionElement {
 
-	Report addReport(ReportContext ctx);
+	ReportDescription addReportDescription(ReportDescriptionContext ctx);
 
-	Report getReport(String name);
+	ReportDescription getReportDescription(String name);
 
-	List<Report> getReports();
+	List<ReportDescription> getReportDescriptions();
 }

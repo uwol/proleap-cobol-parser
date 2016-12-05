@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.report.LineNumberClause;
 import io.proleap.cobol.asg.metamodel.data.report.NextGroupClause;
-import io.proleap.cobol.asg.metamodel.data.report.Report;
+import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntryVertical;
 import io.proleap.cobol.asg.metamodel.data.report.ReportSection;
@@ -45,15 +45,15 @@ public class ReportGroupDescriptionVerticalTest extends CobolTestSupport {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final ReportSection reportSection = dataDivision.getReportSection();
 
-		assertEquals(1, reportSection.getReports().size());
+		assertEquals(1, reportSection.getReportDescriptions().size());
 
 		{
-			final Report report1 = reportSection.getReport("REPORT1");
-			assertNotNull(report1);
-			assertEquals(1, report1.getReportGroupDescriptionEntries().size());
+			final ReportDescription reportDescription = reportSection.getReportDescription("REPORT1");
+			assertNotNull(reportDescription);
+			assertEquals(1, reportDescription.getReportGroupDescriptionEntries().size());
 
 			{
-				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = report1
+				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = reportDescription
 						.getReportGroupDescriptionEntries().get(0);
 				assertEquals(ReportGroupDescriptionEntry.Type.Vertical, reportGroupDescriptionEntry.getType());
 

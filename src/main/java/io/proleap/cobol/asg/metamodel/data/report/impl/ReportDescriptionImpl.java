@@ -16,7 +16,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import io.proleap.cobol.Cobol85Parser.ReportContext;
+import io.proleap.cobol.Cobol85Parser.ReportDescriptionContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupBlankWhenZeroClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupColumnNumberClauseContext;
@@ -37,7 +37,8 @@ import io.proleap.cobol.Cobol85Parser.ReportGroupTypeClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupUsageClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupValueClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.data.report.Report;
+import io.proleap.cobol.asg.metamodel.call.ReportCall;
+import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntryPrintable;
@@ -46,11 +47,13 @@ import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntryVer
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.util.StringUtils;
 
-public class ReportImpl extends CobolDivisionElementImpl implements Report {
+public class ReportDescriptionImpl extends CobolDivisionElementImpl implements ReportDescription {
 
-	private final static Logger LOG = LogManager.getLogger(ReportImpl.class);
+	private final static Logger LOG = LogManager.getLogger(ReportDescriptionImpl.class);
 
-	protected final ReportContext ctx;
+	protected List<ReportCall> calls = new ArrayList<ReportCall>();
+
+	protected final ReportDescriptionContext ctx;
 
 	protected String name;
 
@@ -60,11 +63,16 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 
 	protected Map<String, ReportGroupDescriptionEntry> reportGroupDescriptionEntriesSymbolTable = new HashMap<String, ReportGroupDescriptionEntry>();
 
-	public ReportImpl(final String name, final ProgramUnit programUnit, final ReportContext ctx) {
+	public ReportDescriptionImpl(final String name, final ProgramUnit programUnit, final ReportDescriptionContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
 		this.name = name;
+	}
+
+	@Override
+	public void addCall(final ReportCall call) {
+		calls.add(call);
 	}
 
 	@Override
@@ -391,6 +399,11 @@ public class ReportImpl extends CobolDivisionElementImpl implements Report {
 		}
 
 		return result;
+	}
+
+	@Override
+	public List<ReportCall> getCalls() {
+		return calls;
 	}
 
 	@Override

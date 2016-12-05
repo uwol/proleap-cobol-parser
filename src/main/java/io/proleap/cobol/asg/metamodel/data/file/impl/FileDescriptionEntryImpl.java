@@ -8,6 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.data.file.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,6 +36,7 @@ import io.proleap.cobol.Cobol85Parser.ValuePairContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.FileDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.datadescription.impl.DataDescriptionEntryContainerImpl;
 import io.proleap.cobol.asg.metamodel.data.file.BlockContainsClause;
 import io.proleap.cobol.asg.metamodel.data.file.CodeSetClause;
@@ -53,6 +57,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	private final static Logger LOG = LogManager.getLogger(FileDescriptionEntryImpl.class);
 
 	protected BlockContainsClause blockContainsClause;
+
+	protected List<FileDescriptionEntryCall> calls = new ArrayList<FileDescriptionEntryCall>();
 
 	protected CodeSetClause codeSetClause;
 
@@ -125,6 +131,11 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 		}
 
 		return result;
+	}
+
+	@Override
+	public void addCall(final FileDescriptionEntryCall call) {
+		calls.add(call);
 	}
 
 	@Override
@@ -437,6 +448,11 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	@Override
 	public BlockContainsClause getBlockContainsClause() {
 		return blockContainsClause;
+	}
+
+	@Override
+	public List<FileDescriptionEntryCall> getCalls() {
+		return calls;
 	}
 
 	@Override
