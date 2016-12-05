@@ -90,16 +90,9 @@
 																(basis 
 																	(literal 
 																		(numericLiteral 
-																			(integerLiteral 1)))))))) 
-												(abbreviationLeaf 
-													(arithmeticExpression 
-														(multDivs 
-															(powers 
-																(basis 
-																	(otherKeyword Display)))))) 
-												(abbreviationLeaf 
-													(arithmeticExpression 
-														(multDivs 
-															(powers 
-																(basis 
-																	(literal "Hello world"))))))))) ifThen END-IF)) .)))))) <EOF>)
+																			(integerLiteral 1))))))))))) 
+									(ifThen 
+										(statement 
+											(displayStatement Display 
+												(displayOperand 
+													(literal "Hello world"))))) END-IF)) .)))))) <EOF>)

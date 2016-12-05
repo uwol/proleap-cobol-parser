@@ -32,8 +32,8 @@ import io.proleap.cobol.Cobol85Parser.LibraryNameContext;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.LocalNameContext;
 import io.proleap.cobol.Cobol85Parser.MnemonicNameContext;
+import io.proleap.cobol.Cobol85Parser.NonReservedWordContext;
 import io.proleap.cobol.Cobol85Parser.NumericLiteralContext;
-import io.proleap.cobol.Cobol85Parser.OtherKeywordContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
@@ -337,7 +337,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected Call createCall(final NumericLiteralContext ctx) {
+	protected Call createCall(final NonReservedWordContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -347,7 +347,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected Call createCall(final OtherKeywordContext ctx) {
+	protected Call createCall(final NumericLiteralContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -405,8 +405,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCall((MnemonicNameContext) ctx);
 			} else if (ctx instanceof NumericLiteralContext) {
 				result = createCall((NumericLiteralContext) ctx);
-			} else if (ctx instanceof OtherKeywordContext) {
-				result = createCall((OtherKeywordContext) ctx);
+			} else if (ctx instanceof NonReservedWordContext) {
+				result = createCall((NonReservedWordContext) ctx);
 			} else if (ctx instanceof ProgramNameContext) {
 				result = createCall((ProgramNameContext) ctx);
 			} else if (ctx instanceof QualifiedDataNameContext) {

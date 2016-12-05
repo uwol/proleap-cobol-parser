@@ -12,8 +12,6 @@
 							(statement 
 								(displayStatement DISPLAY 
 									(displayOperand 
-										(literal "World")) 
-									(displayOperand 
-										(otherKeyword STOP)) 
-									(displayOperand 
-										(otherKeyword RUN)))) .)))))) <EOF>)
+										(literal "World")))) 
+							(statement 
+								(stopStatement STOP RUN)) .)))))) <EOF>)

@@ -23,12 +23,10 @@
 												(subscript 
 													(integerLiteral 2)) 
 												(subscript 
-													(integerLiteral 3)) )))) 
+													(integerLiteral 3)) )))))) 
+							(statement 
+								(displayStatement DISPLAY 
 									(displayOperand 
-										(otherKeyword DISPLAY)) 
-									(displayOperand 
-										(literal "Hello World")) 
-									(displayOperand 
-										(otherKeyword STOP)) 
-									(displayOperand 
-										(otherKeyword RUN)))) .)))))) <EOF>)
+										(literal "Hello World")))) 
+							(statement 
+								(stopStatement STOP RUN)) .)))))) <EOF>)

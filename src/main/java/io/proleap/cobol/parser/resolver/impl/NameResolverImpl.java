@@ -29,8 +29,8 @@ import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IndexNameContext;
 import io.proleap.cobol.Cobol85Parser.LibraryNameContext;
 import io.proleap.cobol.Cobol85Parser.LocalNameContext;
+import io.proleap.cobol.Cobol85Parser.NonReservedWordContext;
 import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
-import io.proleap.cobol.Cobol85Parser.OtherKeywordContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
@@ -146,13 +146,13 @@ public class NameResolverImpl implements NameResolver {
 		return result;
 	}
 
-	public String determineName(final ObjectComputerParagraphContext ctx) {
-		final String result = ctx != null ? determineName(ctx.computerName()) : null;
+	public String determineName(final NonReservedWordContext ctx) {
+		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}
 
-	public String determineName(final OtherKeywordContext ctx) {
-		final String result = ctx != null ? ctx.getText() : null;
+	public String determineName(final ObjectComputerParagraphContext ctx) {
+		final String result = ctx != null ? determineName(ctx.computerName()) : null;
 		return result;
 	}
 
@@ -210,8 +210,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((LocalNameContext) ctx);
 		} else if (ctx instanceof ObjectComputerParagraphContext) {
 			result = determineName((ObjectComputerParagraphContext) ctx);
-		} else if (ctx instanceof OtherKeywordContext) {
-			result = determineName((OtherKeywordContext) ctx);
+		} else if (ctx instanceof NonReservedWordContext) {
+			result = determineName((NonReservedWordContext) ctx);
 		} else if (ctx instanceof ParagraphContext) {
 			result = determineName((ParagraphContext) ctx);
 		} else if (ctx instanceof ParagraphNameContext) {
