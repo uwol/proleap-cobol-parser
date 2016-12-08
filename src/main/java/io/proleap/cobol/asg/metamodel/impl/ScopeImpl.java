@@ -34,6 +34,8 @@ import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateAlsoSelectContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateStatementContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateWhenPhraseContext;
+import io.proleap.cobol.Cobol85Parser.ExhibitOperandContext;
+import io.proleap.cobol.Cobol85Parser.ExhibitStatementContext;
 import io.proleap.cobol.Cobol85Parser.ExitStatementContext;
 import io.proleap.cobol.Cobol85Parser.GenerateStatementContext;
 import io.proleap.cobol.Cobol85Parser.GoToStatementContext;
@@ -134,6 +136,8 @@ import io.proleap.cobol.asg.metamodel.procedure.entry.EntryStatement;
 import io.proleap.cobol.asg.metamodel.procedure.entry.impl.EntryStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.evaluate.EvaluateStatement;
 import io.proleap.cobol.asg.metamodel.procedure.evaluate.impl.EvaluateStatementImpl;
+import io.proleap.cobol.asg.metamodel.procedure.exhibit.ExhibitStatement;
+import io.proleap.cobol.asg.metamodel.procedure.exhibit.impl.ExhibitStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.exit.ExitStatement;
 import io.proleap.cobol.asg.metamodel.procedure.exit.impl.ExitStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.generate.GenerateStatement;
@@ -240,6 +244,9 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			} else if (ctx.acceptMessageCountStatement() != null) {
 				result.addAcceptMessageCount(ctx.acceptMessageCountStatement());
 				type = Type.MessageCount;
+			} else if (ctx.acceptFromEscapeKeyStatement() != null) {
+				result.addAcceptFromEscapeKey(ctx.acceptFromEscapeKeyStatement());
+				type = Type.FromEscapeKey;
 			} else {
 				LOG.warn("unknown type at {}", ctx);
 				type = null;
@@ -697,6 +704,34 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			// when other
 			if (ctx.evaluateWhenOther() != null) {
 				result.addWhenOther(ctx.evaluateWhenOther());
+			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ExhibitStatement addExhibitStatement(final ExhibitStatementContext ctx) {
+		ExhibitStatement result = (ExhibitStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ExhibitStatementImpl(programUnit, this, ctx);
+
+			// operands
+			for (final ExhibitOperandContext exhibitOperandContext : ctx.exhibitOperand()) {
+				result.addOperand(exhibitOperandContext);
+			}
+
+			// named
+			if (ctx.NAMED() != null) {
+				result.setNamed(true);
+			}
+
+			// changed
+			if (ctx.CHANGED() != null) {
+				result.setChanged(true);
 			}
 
 			registerStatement(result);

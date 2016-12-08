@@ -17,6 +17,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromDate;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromEscapeKey;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromMnemonic;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptMessageCount;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptStatement;
@@ -40,40 +41,64 @@ public class AcceptStatementTest extends CobolTestSupport {
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(0, procedureDivision.getParagraphs().size());
-		assertEquals(3, procedureDivision.getStatements().size());
+		assertEquals(4, procedureDivision.getStatements().size());
 
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(0);
 			assertEquals(StatementTypeEnum.Accept, acceptStatement.getStatementType());
+			assertEquals(AcceptStatement.Type.Date, acceptStatement.getType());
+
 			assertNotNull(acceptStatement.getAcceptCall());
 			assertEquals(Call.CallType.UndefinedCall, acceptStatement.getAcceptCall().getCallType());
-			assertNotNull(acceptStatement.getAcceptFromDate());
 
-			final AcceptFromDate acceptFromDate = acceptStatement.getAcceptFromDate();
-			assertEquals(AcceptFromDate.DateType.TodaysName, acceptFromDate.getDateType());
+			{
+				final AcceptFromDate acceptFromDate = acceptStatement.getAcceptFromDate();
+				assertNotNull(acceptFromDate);
+				assertEquals(AcceptFromDate.DateType.TodaysName, acceptFromDate.getDateType());
+			}
 		}
 
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(1);
 			assertEquals(StatementTypeEnum.Accept, acceptStatement.getStatementType());
+			assertEquals(AcceptStatement.Type.Mnemonic, acceptStatement.getType());
+
 			assertNotNull(acceptStatement.getAcceptCall());
 			assertEquals(Call.CallType.UndefinedCall, acceptStatement.getAcceptCall().getCallType());
-			assertNotNull(acceptStatement.getAcceptFromMnemonic());
 
-			final AcceptFromMnemonic acceptFromMnemonic = acceptStatement.getAcceptFromMnemonic();
-			assertNotNull(acceptFromMnemonic.getMnemonicCall());
-			assertEquals(Call.CallType.UndefinedCall, acceptFromMnemonic.getMnemonicCall().getCallType());
+			{
+				final AcceptFromMnemonic acceptFromMnemonic = acceptStatement.getAcceptFromMnemonic();
+				assertNotNull(acceptFromMnemonic);
+				assertNotNull(acceptFromMnemonic.getMnemonicCall());
+				assertEquals(Call.CallType.UndefinedCall, acceptFromMnemonic.getMnemonicCall().getCallType());
+			}
 		}
 
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(2);
 			assertEquals(StatementTypeEnum.Accept, acceptStatement.getStatementType());
+			assertEquals(AcceptStatement.Type.MessageCount, acceptStatement.getType());
+
 			assertNotNull(acceptStatement.getAcceptCall());
 			assertEquals(Call.CallType.UndefinedCall, acceptStatement.getAcceptCall().getCallType());
-			assertNotNull(acceptStatement.getAcceptMessageCount());
 
-			final AcceptMessageCount acceptMessageCount = acceptStatement.getAcceptMessageCount();
-			assertNotNull(acceptMessageCount);
+			{
+				final AcceptMessageCount acceptMessageCount = acceptStatement.getAcceptMessageCount();
+				assertNotNull(acceptMessageCount);
+			}
+		}
+
+		{
+			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(3);
+			assertEquals(StatementTypeEnum.Accept, acceptStatement.getStatementType());
+			assertEquals(AcceptStatement.Type.FromEscapeKey, acceptStatement.getType());
+
+			assertNotNull(acceptStatement.getAcceptCall());
+
+			{
+				final AcceptFromEscapeKey acceptFromEscapeKey = acceptStatement.getAcceptFromEscapeKey();
+				assertNotNull(acceptFromEscapeKey);
+			}
 		}
 	}
 }

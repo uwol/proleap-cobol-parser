@@ -22,6 +22,7 @@ import io.proleap.cobol.Cobol85Parser.LocalStorageSectionContext;
 import io.proleap.cobol.Cobol85Parser.ProgramLibrarySectionContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionContext;
 import io.proleap.cobol.Cobol85Parser.ReportSectionContext;
+import io.proleap.cobol.Cobol85Parser.ScreenDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.ScreenSectionContext;
 import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -42,6 +43,7 @@ import io.proleap.cobol.asg.metamodel.data.programlibrary.ProgramLibrarySection;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.impl.ProgramLibrarySectionImpl;
 import io.proleap.cobol.asg.metamodel.data.report.ReportSection;
 import io.proleap.cobol.asg.metamodel.data.report.impl.ReportSectionImpl;
+import io.proleap.cobol.asg.metamodel.data.screen.ScreenDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.screen.ScreenSection;
 import io.proleap.cobol.asg.metamodel.data.screen.impl.ScreenSectionImpl;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
@@ -247,8 +249,19 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (result == null) {
 			result = new ScreenSectionImpl(programUnit, ctx);
-
 			screenSection = result;
+
+			/*
+			 * screen description entry
+			 */
+			ScreenDescriptionEntry lastScreenDescriptionEntry = null;
+
+			for (final ScreenDescriptionEntryContext screenDescriptionEntryContext : ctx.screenDescriptionEntry()) {
+				final ScreenDescriptionEntry screenDescriptionEntry = createScreenDescriptionEntry(
+						lastScreenDescriptionEntry, screenDescriptionEntryContext);
+				lastScreenDescriptionEntry = screenDescriptionEntry;
+			}
+
 			registerASGElement(result);
 		}
 
@@ -278,6 +291,18 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 			workingStorageSection = result;
 			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected ScreenDescriptionEntry createScreenDescriptionEntry(
+			final ScreenDescriptionEntry lastScreenDescriptionEntry,
+			final ScreenDescriptionEntryContext screenDescriptionEntryContext) {
+		final ScreenDescriptionEntry result = screenSection.addScreenDescriptionEntry(screenDescriptionEntryContext);
+
+		if (lastScreenDescriptionEntry != null && result != null) {
+			groupScreenDescriptionEntry(lastScreenDescriptionEntry, result);
 		}
 
 		return result;
@@ -326,6 +351,24 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	@Override
 	public WorkingStorageSection getWorkingStorageSection() {
 		return workingStorageSection;
+	}
+
+	protected void groupScreenDescriptionEntry(final ScreenDescriptionEntry lastScreenDescriptionEntry,
+			final ScreenDescriptionEntry screenDescriptionEntry) {
+		final Integer lastLevelNumber = lastScreenDescriptionEntry.getLevelNumber();
+		final Integer levelNumber = screenDescriptionEntry.getLevelNumber();
+
+		if (levelNumber > lastLevelNumber) {
+			lastScreenDescriptionEntry.addScreenDescriptionEntry(screenDescriptionEntry);
+			screenDescriptionEntry.setParentScreenDescriptionEntry(lastScreenDescriptionEntry);
+		} else {
+			final ScreenDescriptionEntry lastSuperScreenDescriptionEntry = lastScreenDescriptionEntry
+					.getParentScreenDescriptionEntry();
+
+			if (lastSuperScreenDescriptionEntry != null) {
+				groupScreenDescriptionEntry(lastSuperScreenDescriptionEntry, screenDescriptionEntry);
+			}
+		}
 	}
 
 }

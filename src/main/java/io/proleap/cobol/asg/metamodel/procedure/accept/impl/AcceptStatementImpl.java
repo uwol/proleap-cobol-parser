@@ -9,6 +9,7 @@
 package io.proleap.cobol.asg.metamodel.procedure.accept.impl;
 
 import io.proleap.cobol.Cobol85Parser.AcceptFromDateStatementContext;
+import io.proleap.cobol.Cobol85Parser.AcceptFromEscapeKeyStatementContext;
 import io.proleap.cobol.Cobol85Parser.AcceptFromMnemonicStatementContext;
 import io.proleap.cobol.Cobol85Parser.AcceptMessageCountStatementContext;
 import io.proleap.cobol.Cobol85Parser.AcceptStatementContext;
@@ -18,6 +19,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromDate;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromEscapeKey;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromMnemonic;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptMessageCount;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptStatement;
@@ -28,6 +30,8 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	protected Call acceptCall;
 
 	protected AcceptFromDate acceptFromDate;
+
+	protected AcceptFromEscapeKey acceptFromEscapeKey;
 
 	protected AcceptFromMnemonic acceptFromMnemonic;
 
@@ -95,6 +99,20 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
+	public AcceptFromEscapeKey addAcceptFromEscapeKey(final AcceptFromEscapeKeyStatementContext ctx) {
+		AcceptFromEscapeKey result = (AcceptFromEscapeKey) getASGElement(ctx);
+
+		if (result == null) {
+			result = new AcceptFromEscapeKeyImpl(programUnit, ctx);
+
+			acceptFromEscapeKey = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public AcceptFromMnemonic addAcceptFromMnemonic(final AcceptFromMnemonicStatementContext ctx) {
 		AcceptFromMnemonic result = (AcceptFromMnemonic) getASGElement(ctx);
 
@@ -133,6 +151,11 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	@Override
 	public AcceptFromDate getAcceptFromDate() {
 		return acceptFromDate;
+	}
+
+	@Override
+	public AcceptFromEscapeKey getAcceptFromEscapeKey() {
+		return acceptFromEscapeKey;
 	}
 
 	@Override

@@ -25,6 +25,7 @@ import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
 import io.proleap.cobol.Cobol85Parser.EnableStatementContext;
 import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateStatementContext;
+import io.proleap.cobol.Cobol85Parser.ExhibitStatementContext;
 import io.proleap.cobol.Cobol85Parser.ExitStatementContext;
 import io.proleap.cobol.Cobol85Parser.GenerateStatementContext;
 import io.proleap.cobol.Cobol85Parser.GoToStatementContext;
@@ -72,6 +73,7 @@ import io.proleap.cobol.asg.metamodel.procedure.divide.DivideStatement;
 import io.proleap.cobol.asg.metamodel.procedure.enable.EnableStatement;
 import io.proleap.cobol.asg.metamodel.procedure.entry.EntryStatement;
 import io.proleap.cobol.asg.metamodel.procedure.evaluate.EvaluateStatement;
+import io.proleap.cobol.asg.metamodel.procedure.exhibit.ExhibitStatement;
 import io.proleap.cobol.asg.metamodel.procedure.exit.ExitStatement;
 import io.proleap.cobol.asg.metamodel.procedure.generate.GenerateStatement;
 import io.proleap.cobol.asg.metamodel.procedure.goback.GobackStatement;
@@ -134,6 +136,8 @@ public interface Scope extends CobolDivisionElement {
 	EntryStatement addEntryStatement(EntryStatementContext ctx);
 
 	EvaluateStatement addEvaluateStatement(EvaluateStatementContext ctx);
+
+	ExhibitStatement addExhibitStatement(ExhibitStatementContext ctx);
 
 	ExitStatement addExitStatement(ExitStatementContext ctx);
 

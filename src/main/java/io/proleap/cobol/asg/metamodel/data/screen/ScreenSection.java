@@ -8,8 +8,18 @@
 
 package io.proleap.cobol.asg.metamodel.data.screen;
 
+import java.util.List;
+
+import io.proleap.cobol.Cobol85Parser.ScreenDescriptionEntryContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface ScreenSection extends CobolDivisionElement {
 
+	ScreenDescriptionEntry addScreenDescriptionEntry(ScreenDescriptionEntryContext ctx);
+
+	List<ScreenDescriptionEntry> getRootScreenDescriptionEntries();
+
+	List<ScreenDescriptionEntry> getScreenDescriptionEntries();
+
+	ScreenDescriptionEntry getScreenDescriptionEntry(String name);
 }

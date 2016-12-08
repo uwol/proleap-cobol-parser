@@ -449,13 +449,12 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 			lastReportGroupDescriptionEntry.addReportGroupDescriptionEntry(reportGroupDescriptionEntry);
 			reportGroupDescriptionEntry.setParentReportGroupDescriptionEntry(lastReportGroupDescriptionEntry);
 		} else {
-			final ReportGroupDescriptionEntry lastSuperReportGroupDescriptionEntry = lastReportGroupDescriptionEntry
+			final ReportGroupDescriptionEntry lastParentReportGroupDescriptionEntry = lastReportGroupDescriptionEntry
 					.getParentReportGroupDescriptionEntry();
 
-			if (lastSuperReportGroupDescriptionEntry != null) {
-				groupReportGroupDescriptionEntry(lastSuperReportGroupDescriptionEntry, reportGroupDescriptionEntry);
+			if (lastParentReportGroupDescriptionEntry != null) {
+				groupReportGroupDescriptionEntry(lastParentReportGroupDescriptionEntry, reportGroupDescriptionEntry);
 			}
 		}
 	}
-
 }

@@ -43,6 +43,8 @@ import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
+import io.proleap.cobol.Cobol85Parser.ScreenDescriptionEntryContext;
+import io.proleap.cobol.Cobol85Parser.ScreenNameContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.SystemNameContext;
@@ -232,6 +234,10 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((QualifiedDataNameContext) ctx);
 		} else if (ctx instanceof SelectClauseContext) {
 			result = determineName((SelectClauseContext) ctx);
+		} else if (ctx instanceof ScreenNameContext) {
+			result = determineName((ScreenNameContext) ctx);
+		} else if (ctx instanceof ScreenDescriptionEntryContext) {
+			result = determineName((ScreenDescriptionEntryContext) ctx);
 		} else if (ctx instanceof SourceComputerParagraphContext) {
 			result = determineName((SourceComputerParagraphContext) ctx);
 		} else if (ctx instanceof SystemNameContext) {
@@ -294,6 +300,16 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final ReportNameContext ctx) {
+		final String result = ctx != null ? ctx.getText() : null;
+		return result;
+	}
+
+	public String determineName(final ScreenDescriptionEntryContext ctx) {
+		final String result = ctx != null ? determineName(ctx.screenName()) : null;
+		return result;
+	}
+
+	public String determineName(final ScreenNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}

@@ -9,6 +9,7 @@
 package io.proleap.cobol.asg.metamodel.procedure.accept;
 
 import io.proleap.cobol.Cobol85Parser.AcceptFromDateStatementContext;
+import io.proleap.cobol.Cobol85Parser.AcceptFromEscapeKeyStatementContext;
 import io.proleap.cobol.Cobol85Parser.AcceptFromMnemonicStatementContext;
 import io.proleap.cobol.Cobol85Parser.AcceptMessageCountStatementContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -21,10 +22,12 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface AcceptStatement extends Statement {
 
 	enum Type {
-		Date, MessageCount, Mnemonic
+		Date, FromEscapeKey, MessageCount, Mnemonic
 	}
 
 	AcceptFromDate addAcceptFromDate(AcceptFromDateStatementContext ctx);
+
+	AcceptFromEscapeKey addAcceptFromEscapeKey(AcceptFromEscapeKeyStatementContext ctx);
 
 	AcceptFromMnemonic addAcceptFromMnemonic(AcceptFromMnemonicStatementContext ctx);
 
@@ -33,6 +36,8 @@ public interface AcceptStatement extends Statement {
 	Call getAcceptCall();
 
 	AcceptFromDate getAcceptFromDate();
+
+	AcceptFromEscapeKey getAcceptFromEscapeKey();
 
 	AcceptFromMnemonic getAcceptFromMnemonic();
 
