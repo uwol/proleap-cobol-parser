@@ -12,28 +12,30 @@ import io.proleap.cobol.Cobol85Parser.MultDivContext;
 import io.proleap.cobol.Cobol85Parser.MultDivsContext;
 import io.proleap.cobol.Cobol85Parser.PlusMinusContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivsValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinusValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinus;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 
-public class PlusMinusValueStmtImpl extends ValueStmtImpl implements PlusMinusValueStmt {
+public class PlusMinusImpl extends ValueStmtImpl implements PlusMinus {
 
 	protected PlusMinusContext ctx;
 
-	protected MultDivsValueStmt multDivs;
+	protected MultDivs multDivs;
 
 	protected Type type;
 
-	public PlusMinusValueStmtImpl(final ProgramUnit programUnit, final PlusMinusContext ctx) {
+	public PlusMinusImpl(final ProgramUnit programUnit, final PlusMinusContext ctx) {
 		super(programUnit, ctx);
+
+		this.ctx = ctx;
 	}
 
 	@Override
-	public MultDivsValueStmt addMultDivs(final MultDivsContext ctx) {
-		MultDivsValueStmt result = (MultDivsValueStmt) getASGElement(ctx);
+	public MultDivs addMultDivs(final MultDivsContext ctx) {
+		MultDivs result = (MultDivs) getASGElement(ctx);
 
 		if (result == null) {
-			result = new MultDivsValueStmtImpl(programUnit, ctx);
+			result = new MultDivsImpl(programUnit, ctx);
 
 			// powers
 			result.addPowers(ctx.powers());
@@ -43,6 +45,7 @@ public class PlusMinusValueStmtImpl extends ValueStmtImpl implements PlusMinusVa
 				result.addMultDiv(multDivContext);
 			}
 
+			multDivs = result;
 			subValueStmts.add(result);
 		}
 
@@ -50,7 +53,7 @@ public class PlusMinusValueStmtImpl extends ValueStmtImpl implements PlusMinusVa
 	}
 
 	@Override
-	public MultDivsValueStmt getMultDivs() {
+	public MultDivs getMultDivs() {
 		return multDivs;
 	}
 

@@ -16,36 +16,40 @@ import io.proleap.cobol.Cobol85Parser.PowerContext;
 import io.proleap.cobol.Cobol85Parser.PowersContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.BasisValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PowerValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PowersValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Basis;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Power;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Powers;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 
-public class PowersValueStmtImpl extends ValueStmtImpl implements PowersValueStmt {
+public class PowersImpl extends ValueStmtImpl implements Powers {
 
-	protected BasisValueStmt basis;
+	protected Basis basis;
 
 	protected PowersContext ctx;
 
-	protected List<PowerValueStmt> powers = new ArrayList<PowerValueStmt>();
+	protected List<Power> powers = new ArrayList<Power>();
 
 	protected Type type;
 
-	public PowersValueStmtImpl(final ProgramUnit programUnit, final PowersContext ctx) {
+	public PowersImpl(final ProgramUnit programUnit, final PowersContext ctx) {
 		super(programUnit, ctx);
+
+		this.ctx = ctx;
 	}
 
 	@Override
-	public BasisValueStmt addBasis(final BasisContext ctx) {
-		BasisValueStmt result = (BasisValueStmt) getASGElement(ctx);
+	public Basis addBasis(final BasisContext ctx) {
+		Basis result = (Basis) getASGElement(ctx);
 
 		if (result == null) {
-			result = new BasisValueStmtImpl(programUnit, ctx);
+			result = new BasisImpl(programUnit, ctx);
 
+			// value stmt
 			final ValueStmt basisValueStmt = createValueStmt(ctx.arithmeticExpression(), ctx.identifier(),
 					ctx.literal());
 			result.setBasisValueStmt(basisValueStmt);
 
+			basis = result;
 			subValueStmts.add(result);
 		}
 
@@ -53,14 +57,16 @@ public class PowersValueStmtImpl extends ValueStmtImpl implements PowersValueStm
 	}
 
 	@Override
-	public PowerValueStmt addPower(final PowerContext ctx) {
-		PowerValueStmt result = (PowerValueStmt) getASGElement(ctx);
+	public Power addPower(final PowerContext ctx) {
+		Power result = (Power) getASGElement(ctx);
 
 		if (result == null) {
-			result = new PowerValueStmtImpl(programUnit, ctx);
+			result = new PowerImpl(programUnit, ctx);
 
+			// basis
 			result.addBasis(ctx.basis());
 
+			powers.add(result);
 			subValueStmts.add(result);
 		}
 
@@ -68,12 +74,12 @@ public class PowersValueStmtImpl extends ValueStmtImpl implements PowersValueStm
 	}
 
 	@Override
-	public BasisValueStmt getBasis() {
+	public Basis getBasis() {
 		return basis;
 	}
 
 	@Override
-	public List<PowerValueStmt> getPowers() {
+	public List<Power> getPowers() {
 		return powers;
 	}
 

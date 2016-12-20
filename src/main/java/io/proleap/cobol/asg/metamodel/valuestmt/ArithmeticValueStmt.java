@@ -10,14 +10,14 @@ package io.proleap.cobol.asg.metamodel.valuestmt;
 
 import io.proleap.cobol.Cobol85Parser.MultDivsContext;
 import io.proleap.cobol.Cobol85Parser.PlusMinusContext;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivsValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinusValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinus;
 
 public interface ArithmeticValueStmt extends ValueStmt {
 
-	MultDivsValueStmt addMultDivs(MultDivsContext ctx);
+	MultDivs addMultDivs(MultDivsContext ctx);
 
-	PlusMinusValueStmt addPlusMinus(PlusMinusContext ctx);
+	PlusMinus addPlusMinus(PlusMinusContext ctx);
 
 	@Override
 	String getValue();

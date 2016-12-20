@@ -11,17 +11,19 @@ package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl;
 import io.proleap.cobol.Cobol85Parser.BasisContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.BasisValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Basis;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 
-public class BasisValueStmtImpl extends ValueStmtImpl implements BasisValueStmt {
+public class BasisImpl extends ValueStmtImpl implements Basis {
 
 	protected ValueStmt basisValueStmt;
 
 	protected BasisContext ctx;
 
-	public BasisValueStmtImpl(final ProgramUnit programUnit, final BasisContext ctx) {
+	public BasisImpl(final ProgramUnit programUnit, final BasisContext ctx) {
 		super(programUnit, ctx);
+
+		this.ctx = ctx;
 	}
 
 	@Override

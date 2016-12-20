@@ -6,16 +6,11 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic;
+package io.proleap.cobol.asg.metamodel.valuestmt.condition;
 
-import io.proleap.cobol.Cobol85Parser.BasisContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public interface PowerValueStmt extends ValueStmt {
-
-	BasisValueStmt addBasis(BasisContext ctx);
-
-	BasisValueStmt getBasis();
+public interface SimpleCondition extends ValueStmt {
 
 	@Override
 	String getValue();

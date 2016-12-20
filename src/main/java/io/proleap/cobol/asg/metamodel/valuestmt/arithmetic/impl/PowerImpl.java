@@ -12,31 +12,35 @@ import io.proleap.cobol.Cobol85Parser.BasisContext;
 import io.proleap.cobol.Cobol85Parser.PowerContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.BasisValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PowerValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Basis;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Power;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 
-public class PowerValueStmtImpl extends ValueStmtImpl implements PowerValueStmt {
+public class PowerImpl extends ValueStmtImpl implements Power {
 
-	protected BasisValueStmt basis;
+	protected Basis basis;
 
 	protected PowerContext ctx;
 
-	public PowerValueStmtImpl(final ProgramUnit programUnit, final PowerContext ctx) {
+	public PowerImpl(final ProgramUnit programUnit, final PowerContext ctx) {
 		super(programUnit, ctx);
+
+		this.ctx = ctx;
 	}
 
 	@Override
-	public BasisValueStmt addBasis(final BasisContext ctx) {
-		BasisValueStmt result = (BasisValueStmt) getASGElement(ctx);
+	public Basis addBasis(final BasisContext ctx) {
+		Basis result = (Basis) getASGElement(ctx);
 
 		if (result == null) {
-			result = new BasisValueStmtImpl(programUnit, ctx);
+			result = new BasisImpl(programUnit, ctx);
 
+			// value stmt
 			final ValueStmt basisValueStmt = createValueStmt(ctx.arithmeticExpression(), ctx.identifier(),
 					ctx.literal());
 			result.setBasisValueStmt(basisValueStmt);
 
+			basis = result;
 			subValueStmts.add(result);
 		}
 
@@ -44,7 +48,7 @@ public class PowerValueStmtImpl extends ValueStmtImpl implements PowerValueStmt 
 	}
 
 	@Override
-	public BasisValueStmt getBasis() {
+	public Basis getBasis() {
 		return basis;
 	}
 

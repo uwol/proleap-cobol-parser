@@ -12,36 +12,38 @@ import io.proleap.cobol.Cobol85Parser.MultDivContext;
 import io.proleap.cobol.Cobol85Parser.PowerContext;
 import io.proleap.cobol.Cobol85Parser.PowersContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PowersValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDiv;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Powers;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 
-public class MultDivValueStmtImpl extends ValueStmtImpl implements MultDivValueStmt {
+public class MultDivImpl extends ValueStmtImpl implements MultDiv {
 
 	protected MultDivContext ctx;
 
-	protected PowersValueStmt powers;
+	protected Powers powers;
 
 	protected Type type;
 
-	public MultDivValueStmtImpl(final ProgramUnit programUnit, final MultDivContext ctx) {
+	public MultDivImpl(final ProgramUnit programUnit, final MultDivContext ctx) {
 		super(programUnit, ctx);
+
+		this.ctx = ctx;
 	}
 
 	@Override
-	public PowersValueStmt addPowers(final PowersContext ctx) {
-		PowersValueStmt result = (PowersValueStmt) getASGElement(ctx);
+	public Powers addPowers(final PowersContext ctx) {
+		Powers result = (Powers) getASGElement(ctx);
 
 		if (result == null) {
-			result = new PowersValueStmtImpl(programUnit, ctx);
+			result = new PowersImpl(programUnit, ctx);
 
 			// type
-			final PowersValueStmt.Type type;
+			final Powers.Type type;
 
 			if (ctx.PLUSCHAR() != null) {
-				type = PowersValueStmt.Type.Plus;
+				type = Powers.Type.Plus;
 			} else if (ctx.MINUSCHAR() != null) {
-				type = PowersValueStmt.Type.Minus;
+				type = Powers.Type.Minus;
 			} else {
 				type = null;
 			}
@@ -56,6 +58,7 @@ public class MultDivValueStmtImpl extends ValueStmtImpl implements MultDivValueS
 				result.addPower(powerContext);
 			}
 
+			powers = result;
 			subValueStmts.add(result);
 		}
 
@@ -63,7 +66,7 @@ public class MultDivValueStmtImpl extends ValueStmtImpl implements MultDivValueS
 	}
 
 	@Override
-	public PowersValueStmt getPowers() {
+	public Powers getPowers() {
 		return powers;
 	}
 

@@ -6,17 +6,13 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic;
+package io.proleap.cobol.asg.metamodel.valuestmt.condition;
 
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public interface BasisValueStmt extends ValueStmt {
-
-	ValueStmt getBasisValueStmt();
+public interface ClassCondition extends ValueStmt {
 
 	@Override
 	String getValue();
-
-	void setBasisValueStmt(ValueStmt basisValueStmt);
 
 }

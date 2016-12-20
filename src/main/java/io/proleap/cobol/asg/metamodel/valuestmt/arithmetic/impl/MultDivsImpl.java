@@ -16,37 +16,39 @@ import io.proleap.cobol.Cobol85Parser.MultDivsContext;
 import io.proleap.cobol.Cobol85Parser.PowerContext;
 import io.proleap.cobol.Cobol85Parser.PowersContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivsValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PowersValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDiv;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Powers;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 
-public class MultDivsValueStmtImpl extends ValueStmtImpl implements MultDivsValueStmt {
+public class MultDivsImpl extends ValueStmtImpl implements MultDivs {
 
 	protected MultDivsContext ctx;
 
-	protected List<MultDivValueStmt> multDivs = new ArrayList<MultDivValueStmt>();
+	protected List<MultDiv> multDivs = new ArrayList<MultDiv>();
 
-	protected PowersValueStmt powers;
+	protected Powers powers;
 
-	public MultDivsValueStmtImpl(final ProgramUnit programUnit, final MultDivsContext ctx) {
+	public MultDivsImpl(final ProgramUnit programUnit, final MultDivsContext ctx) {
 		super(programUnit, ctx);
+
+		this.ctx = ctx;
 	}
 
 	@Override
-	public MultDivValueStmt addMultDiv(final MultDivContext ctx) {
-		MultDivValueStmt result = (MultDivValueStmt) getASGElement(ctx);
+	public MultDiv addMultDiv(final MultDivContext ctx) {
+		MultDiv result = (MultDiv) getASGElement(ctx);
 
 		if (result == null) {
-			result = new MultDivValueStmtImpl(programUnit, ctx);
+			result = new MultDivImpl(programUnit, ctx);
 
 			// type
-			final MultDivValueStmt.Type type;
+			final MultDiv.Type type;
 
 			if (ctx.ASTERISKCHAR() != null) {
-				type = MultDivValueStmt.Type.Mult;
+				type = MultDiv.Type.Mult;
 			} else if (ctx.SLASHCHAR() != null) {
-				type = MultDivValueStmt.Type.Div;
+				type = MultDiv.Type.Div;
 			} else {
 				type = null;
 			}
@@ -56,6 +58,7 @@ public class MultDivsValueStmtImpl extends ValueStmtImpl implements MultDivsValu
 			// powers
 			result.addPowers(ctx.powers());
 
+			multDivs.add(result);
 			subValueStmts.add(result);
 		}
 
@@ -63,19 +66,19 @@ public class MultDivsValueStmtImpl extends ValueStmtImpl implements MultDivsValu
 	}
 
 	@Override
-	public PowersValueStmt addPowers(final PowersContext ctx) {
-		PowersValueStmt result = (PowersValueStmt) getASGElement(ctx);
+	public Powers addPowers(final PowersContext ctx) {
+		Powers result = (Powers) getASGElement(ctx);
 
 		if (result == null) {
-			result = new PowersValueStmtImpl(programUnit, ctx);
+			result = new PowersImpl(programUnit, ctx);
 
 			// type
-			final PowersValueStmt.Type type;
+			final Powers.Type type;
 
 			if (ctx.PLUSCHAR() != null) {
-				type = PowersValueStmt.Type.Plus;
+				type = Powers.Type.Plus;
 			} else if (ctx.MINUSCHAR() != null) {
-				type = PowersValueStmt.Type.Minus;
+				type = Powers.Type.Minus;
 			} else {
 				type = null;
 			}
@@ -90,6 +93,7 @@ public class MultDivsValueStmtImpl extends ValueStmtImpl implements MultDivsValu
 				result.addPower(powerContext);
 			}
 
+			powers = result;
 			subValueStmts.add(result);
 		}
 
@@ -97,12 +101,12 @@ public class MultDivsValueStmtImpl extends ValueStmtImpl implements MultDivsValu
 	}
 
 	@Override
-	public List<MultDivValueStmt> getMultDivs() {
+	public List<MultDiv> getMultDivs() {
 		return multDivs;
 	}
 
 	@Override
-	public PowersValueStmt getPowers() {
+	public Powers getPowers() {
 		return powers;
 	}
 

@@ -6,20 +6,20 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic;
+package io.proleap.cobol.asg.metamodel.valuestmt.condition;
 
-import io.proleap.cobol.Cobol85Parser.PowersContext;
+import io.proleap.cobol.Cobol85Parser.CombinableConditionContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public interface MultDivValueStmt extends ValueStmt {
+public interface AndOrCondition extends ValueStmt {
 
 	enum Type {
-		Div, Mult
+		And, Or
 	}
 
-	PowersValueStmt addPowers(PowersContext ctx);
+	CombinableCondition addCombinableCondition(CombinableConditionContext ctx);
 
-	PowersValueStmt getPowers();
+	CombinableCondition getCombinableCondition();
 
 	Type getType();
 

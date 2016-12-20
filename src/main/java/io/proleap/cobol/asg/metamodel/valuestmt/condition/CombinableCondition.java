@@ -6,25 +6,22 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.asg.metamodel.valuestmt;
+package io.proleap.cobol.asg.metamodel.valuestmt.condition;
 
-import java.util.List;
-
-import io.proleap.cobol.Cobol85Parser.AndOrConditionContext;
 import io.proleap.cobol.Cobol85Parser.CombinableConditionContext;
-import io.proleap.cobol.asg.metamodel.valuestmt.condition.AndOrCondition;
-import io.proleap.cobol.asg.metamodel.valuestmt.condition.CombinableCondition;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public interface ConditionValueStmt extends ValueStmt {
-
-	AndOrCondition addAndOrCondition(AndOrConditionContext ctx);
+public interface CombinableCondition extends ValueStmt {
 
 	CombinableCondition addCombinableCondition(CombinableConditionContext ctx);
-
-	List<AndOrCondition> getAndOrConditions();
 
 	CombinableCondition getCombinableCondition();
 
 	@Override
 	String getValue();
+
+	boolean isNot();
+
+	void setNot(boolean not);
+
 }

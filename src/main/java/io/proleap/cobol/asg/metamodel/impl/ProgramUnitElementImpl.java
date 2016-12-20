@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
+import io.proleap.cobol.Cobol85Parser.AndOrConditionContext;
 import io.proleap.cobol.Cobol85Parser.ArithmeticExpressionContext;
 import io.proleap.cobol.Cobol85Parser.AssignmentNameContext;
 import io.proleap.cobol.Cobol85Parser.BooleanLiteralContext;
@@ -38,6 +39,7 @@ import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.Cobol85Parser.RecordNameContext;
+import io.proleap.cobol.Cobol85Parser.RelationConditionContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.SystemNameContext;
 import io.proleap.cobol.asg.metamodel.BooleanLiteral;
@@ -78,6 +80,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.RelationConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.TerminalValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ArithmeticValueStmtImpl;
@@ -86,6 +89,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.impl.CallValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ConditionValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.IntegerLiteralValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.LiteralValueStmtImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.impl.RelationConditionValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.TerminalValueStmtImpl;
 import io.proleap.cobol.asg.util.StringUtils;
 
@@ -542,7 +546,22 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected ConditionValueStmt createConditionValueStmt(final ConditionContext ctx) {
-		final ConditionValueStmt result = new ConditionValueStmtImpl(programUnit, ctx);
+		ConditionValueStmt result = (ConditionValueStmt) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ConditionValueStmtImpl(programUnit, ctx);
+
+			// combinable condition
+			result.addCombinableCondition(ctx.combinableCondition());
+
+			// and or condition
+			for (final AndOrConditionContext andOrConditionContext : ctx.andOrCondition()) {
+				result.addAndOrCondition(andOrConditionContext);
+			}
+
+			registerASGElement(result);
+		}
+
 		return result;
 	}
 
@@ -642,6 +661,20 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected RelationConditionValueStmt createRelationConditionValueStmt(final RelationConditionContext ctx) {
+		RelationConditionValueStmt result = (RelationConditionValueStmt) getASGElement(ctx);
+
+		if (result == null) {
+			result = new RelationConditionValueStmtImpl(programUnit, ctx);
+
+			// TODO
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
 	protected ReportCall createReportCall(final String name, final ReportDescription report,
 			final ReportNameContext ctx) {
 		final ReportCall result = new ReportCallImpl(name, report, programUnit, ctx);
@@ -710,6 +743,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCallValueStmt((SystemNameContext) ctx);
 			} else if (ctx instanceof ConditionContext) {
 				result = createConditionValueStmt((ConditionContext) ctx);
+			} else if (ctx instanceof RelationConditionContext) {
+				result = createRelationConditionValueStmt((RelationConditionContext) ctx);
 			} else if (ctx instanceof IntegerLiteralContext) {
 				result = createIntegerLiteralValueStmt((IntegerLiteralContext) ctx);
 			} else if (ctx instanceof LiteralContext) {

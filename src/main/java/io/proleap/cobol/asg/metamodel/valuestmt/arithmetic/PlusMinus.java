@@ -8,23 +8,24 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic;
 
-import java.util.List;
-
-import io.proleap.cobol.Cobol85Parser.MultDivContext;
-import io.proleap.cobol.Cobol85Parser.PowersContext;
+import io.proleap.cobol.Cobol85Parser.MultDivsContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public interface MultDivsValueStmt extends ValueStmt {
+public interface PlusMinus extends ValueStmt {
 
-	MultDivValueStmt addMultDiv(MultDivContext ctx);
+	enum Type {
+		Minus, Plus
+	}
 
-	PowersValueStmt addPowers(PowersContext ctx);
+	MultDivs addMultDivs(MultDivsContext ctx);
 
-	List<MultDivValueStmt> getMultDivs();
+	MultDivs getMultDivs();
 
-	PowersValueStmt getPowers();
+	Type getType();
 
 	@Override
 	String getValue();
+
+	void setType(Type type);
 
 }

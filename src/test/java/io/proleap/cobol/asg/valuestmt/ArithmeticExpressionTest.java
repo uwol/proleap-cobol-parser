@@ -20,10 +20,10 @@ import io.proleap.cobol.asg.metamodel.procedure.compute.ComputeStatement;
 import io.proleap.cobol.asg.metamodel.procedure.compute.Store;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.BasisValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivsValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PowersValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Basis;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDiv;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Powers;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class ArithmeticExpressionTest extends CobolTestSupport {
@@ -60,17 +60,17 @@ public class ArithmeticExpressionTest extends CobolTestSupport {
 				assertEquals(1, arithmeticExpression.getSubValueStmts().size());
 
 				{
-					final MultDivsValueStmt multDivsValueStmt = (MultDivsValueStmt) arithmeticExpression
+					final MultDivs multDivsValueStmt = (MultDivs) arithmeticExpression
 							.getSubValueStmts().get(0);
 					assertEquals(2, multDivsValueStmt.getSubValueStmts().size());
 
 					{
-						final PowersValueStmt powersValueStmt = (PowersValueStmt) multDivsValueStmt.getSubValueStmts()
+						final Powers powersValueStmt = (Powers) multDivsValueStmt.getSubValueStmts()
 								.get(0);
 						assertEquals(1, powersValueStmt.getSubValueStmts().size());
 
 						{
-							final BasisValueStmt basisValueStmt = (BasisValueStmt) powersValueStmt.getSubValueStmts()
+							final Basis basisValueStmt = (Basis) powersValueStmt.getSubValueStmts()
 									.get(0);
 							assertNotNull(basisValueStmt.getBasisValueStmt());
 
@@ -83,17 +83,17 @@ public class ArithmeticExpressionTest extends CobolTestSupport {
 					}
 
 					{
-						final MultDivValueStmt multDivValueStmt = (MultDivValueStmt) multDivsValueStmt
+						final MultDiv multDivValueStmt = (MultDiv) multDivsValueStmt
 								.getSubValueStmts().get(1);
-						assertEquals(MultDivValueStmt.Type.Mult, multDivValueStmt.getType());
+						assertEquals(MultDiv.Type.Mult, multDivValueStmt.getType());
 						assertEquals(1, multDivValueStmt.getSubValueStmts().size());
 
 						{
-							final PowersValueStmt powersValueStmt = (PowersValueStmt) multDivValueStmt
+							final Powers powersValueStmt = (Powers) multDivValueStmt
 									.getSubValueStmts().get(0);
 
 							{
-								final BasisValueStmt basisValueStmt = (BasisValueStmt) powersValueStmt
+								final Basis basisValueStmt = (Basis) powersValueStmt
 										.getSubValueStmts().get(0);
 								assertNotNull(basisValueStmt.getBasisValueStmt());
 

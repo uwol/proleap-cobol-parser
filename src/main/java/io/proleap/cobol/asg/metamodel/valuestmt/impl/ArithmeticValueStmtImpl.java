@@ -14,10 +14,10 @@ import io.proleap.cobol.Cobol85Parser.MultDivsContext;
 import io.proleap.cobol.Cobol85Parser.PlusMinusContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivsValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinusValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl.MultDivsValueStmtImpl;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl.PlusMinusValueStmtImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinus;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl.MultDivsImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl.PlusMinusImpl;
 
 public class ArithmeticValueStmtImpl extends ValueStmtImpl implements ArithmeticValueStmt {
 
@@ -30,11 +30,11 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 	}
 
 	@Override
-	public MultDivsValueStmt addMultDivs(final MultDivsContext ctx) {
-		MultDivsValueStmt result = (MultDivsValueStmt) getASGElement(ctx);
+	public MultDivs addMultDivs(final MultDivsContext ctx) {
+		MultDivs result = (MultDivs) getASGElement(ctx);
 
 		if (result == null) {
-			result = new MultDivsValueStmtImpl(programUnit, ctx);
+			result = new MultDivsImpl(programUnit, ctx);
 
 			// powers
 			result.addPowers(ctx.powers());
@@ -51,19 +51,19 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 	}
 
 	@Override
-	public PlusMinusValueStmt addPlusMinus(final PlusMinusContext ctx) {
-		PlusMinusValueStmt result = (PlusMinusValueStmt) getASGElement(ctx);
+	public PlusMinus addPlusMinus(final PlusMinusContext ctx) {
+		PlusMinus result = (PlusMinus) getASGElement(ctx);
 
 		if (result == null) {
-			result = new PlusMinusValueStmtImpl(programUnit, ctx);
+			result = new PlusMinusImpl(programUnit, ctx);
 
 			// type
-			final PlusMinusValueStmt.Type type;
+			final PlusMinus.Type type;
 
 			if (ctx.PLUSCHAR() != null) {
-				type = PlusMinusValueStmt.Type.Plus;
+				type = PlusMinus.Type.Plus;
 			} else if (ctx.MINUSCHAR() != null) {
-				type = PlusMinusValueStmt.Type.Minus;
+				type = PlusMinus.Type.Minus;
 			} else {
 				type = null;
 			}
