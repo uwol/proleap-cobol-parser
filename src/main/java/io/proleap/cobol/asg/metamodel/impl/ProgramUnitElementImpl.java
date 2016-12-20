@@ -33,6 +33,7 @@ import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.Cobol85Parser.LocalNameContext;
 import io.proleap.cobol.Cobol85Parser.MnemonicNameContext;
 import io.proleap.cobol.Cobol85Parser.NumericLiteralContext;
+import io.proleap.cobol.Cobol85Parser.PlusMinusContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
@@ -101,7 +102,22 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected ArithmeticValueStmt createArithmeticValueStmt(final ArithmeticExpressionContext ctx) {
-		final ArithmeticValueStmt result = new ArithmeticValueStmtImpl(programUnit, ctx);
+		ArithmeticValueStmt result = (ArithmeticValueStmt) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ArithmeticValueStmtImpl(programUnit, ctx);
+
+			// mult divs
+			result.addMultDivs(ctx.multDivs());
+
+			// plus minus
+			for (final PlusMinusContext plusMinusContext : ctx.plusMinus()) {
+				result.addPlusMinus(plusMinusContext);
+			}
+
+			registerASGElement(result);
+		}
+
 		return result;
 	}
 

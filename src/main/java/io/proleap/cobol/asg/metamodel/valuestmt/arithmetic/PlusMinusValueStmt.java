@@ -6,20 +6,26 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.asg.metamodel.valuestmt;
+package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic;
 
 import io.proleap.cobol.Cobol85Parser.MultDivsContext;
-import io.proleap.cobol.Cobol85Parser.PlusMinusContext;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivsValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinusValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public interface ArithmeticValueStmt extends ValueStmt {
+public interface PlusMinusValueStmt extends ValueStmt {
+
+	enum Type {
+		Minus, Plus
+	}
 
 	MultDivsValueStmt addMultDivs(MultDivsContext ctx);
 
-	PlusMinusValueStmt addPlusMinus(PlusMinusContext ctx);
+	MultDivsValueStmt getMultDivs();
+
+	Type getType();
 
 	@Override
 	String getValue();
+
+	void setType(Type type);
 
 }
