@@ -8,9 +8,31 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.condition;
 
+import io.proleap.cobol.Cobol85Parser.ClassConditionContext;
+import io.proleap.cobol.Cobol85Parser.ConditionContext;
+import io.proleap.cobol.Cobol85Parser.ConditionNameReferenceContext;
+import io.proleap.cobol.Cobol85Parser.RelationConditionContext;
+import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.RelationConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface SimpleCondition extends ValueStmt {
+
+	ClassCondition addClassCondition(ClassConditionContext ctx);
+
+	ConditionValueStmt addCondition(ConditionContext ctx);
+
+	ConditionNameReference addConditionNameReference(ConditionNameReferenceContext ctx);
+
+	RelationConditionValueStmt addRelationCondition(RelationConditionContext ctx);
+
+	ClassCondition getClassCondition();
+
+	ConditionValueStmt getCondition();
+
+	ConditionNameReference getConditionNameReference();
+
+	RelationConditionValueStmt getRelationCondition();
 
 	@Override
 	String getValue();

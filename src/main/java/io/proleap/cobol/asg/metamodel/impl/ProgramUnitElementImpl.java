@@ -22,6 +22,7 @@ import io.proleap.cobol.Cobol85Parser.CdNameContext;
 import io.proleap.cobol.Cobol85Parser.ClassNameContext;
 import io.proleap.cobol.Cobol85Parser.CobolWordContext;
 import io.proleap.cobol.Cobol85Parser.ConditionContext;
+import io.proleap.cobol.Cobol85Parser.ConditionNameContext;
 import io.proleap.cobol.Cobol85Parser.DataDescNameContext;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentNameContext;
@@ -205,6 +206,16 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected Call createCall(final ConditionNameContext ctx) {
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			result = createUndefinedCall(ctx);
+		}
+
+		return result;
+	}
+
 	protected Call createCall(final DataDescNameContext ctx) {
 		final Call result = createDataDescriptionEntryCall(ctx);
 		return result;
@@ -346,6 +357,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCall((ClassNameContext) ctx);
 			} else if (ctx instanceof CobolWordContext) {
 				result = createCall((CobolWordContext) ctx);
+			} else if (ctx instanceof ConditionNameContext) {
+				result = createCall((ConditionNameContext) ctx);
 			} else if (ctx instanceof DataDescNameContext) {
 				result = createCall((DataDescNameContext) ctx);
 			} else if (ctx instanceof DataNameContext) {
@@ -667,7 +680,20 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (result == null) {
 			result = new RelationConditionValueStmtImpl(programUnit, ctx);
 
-			// TODO
+			// sign condition
+			if (ctx.relationSignCondition() != null) {
+				result.addRelationSignCondition(ctx.relationSignCondition());
+			}
+
+			// arithmetic comparison
+			if (ctx.relationArithmeticComparison() != null) {
+				result.addRelationArithmeticComparison(ctx.relationArithmeticComparison());
+			}
+
+			// combined comparison
+			if (ctx.relationCombinedComparison() != null) {
+				result.addRelationCombinedComparison(ctx.relationCombinedComparison());
+			}
 
 			registerASGElement(result);
 		}

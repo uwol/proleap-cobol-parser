@@ -62,7 +62,7 @@ public class ConditionValueStmtImpl extends ValueStmtImpl implements ConditionVa
 
 			// abbreviation rest
 			if (ctx.abbreviationRest() != null) {
-				// TODO
+				result.addAbbreviationRest(ctx.abbreviationRest());
 			}
 
 			andOrConditions.add(result);
@@ -78,6 +78,13 @@ public class ConditionValueStmtImpl extends ValueStmtImpl implements ConditionVa
 
 		if (result == null) {
 			result = new CombinableConditionImpl(programUnit, ctx);
+
+			// not
+			final boolean not = ctx.NOT() != null;
+			result.setNot(not);
+
+			// simple condition
+			result.addSimpleCondition(ctx.simpleCondition());
 
 			combinableCondition = result;
 			subValueStmts.add(result);

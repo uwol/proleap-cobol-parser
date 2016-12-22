@@ -9,28 +9,50 @@
 package io.proleap.cobol.asg.metamodel.valuestmt.condition.impl;
 
 import io.proleap.cobol.Cobol85Parser.CombinableConditionContext;
+import io.proleap.cobol.Cobol85Parser.SimpleConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.CombinableCondition;
+import io.proleap.cobol.asg.metamodel.valuestmt.condition.SimpleCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 
 public class CombinableConditionImpl extends ValueStmtImpl implements CombinableCondition {
 
-	protected CombinableCondition combinableCondition;
-
 	protected CombinableConditionContext ctx;
 
 	protected boolean not;
+
+	protected SimpleCondition simpleCondition;
 
 	public CombinableConditionImpl(final ProgramUnit programUnit, final CombinableConditionContext ctx) {
 		super(programUnit, ctx);
 	}
 
 	@Override
-	public CombinableCondition addCombinableCondition(final CombinableConditionContext ctx) {
-		CombinableCondition result = (CombinableCondition) getASGElement(ctx);
+	public SimpleCondition addSimpleCondition(final SimpleConditionContext ctx) {
+		SimpleCondition result = (SimpleCondition) getASGElement(ctx);
 
 		if (result == null) {
-			result = new CombinableConditionImpl(programUnit, ctx);
+			result = new SimpleConditionImpl(programUnit, ctx);
+
+			// condition
+			if (ctx.condition() != null) {
+				result.addCondition(ctx.condition());
+			}
+
+			// relation condition
+			if (ctx.relationCondition() != null) {
+				result.addRelationCondition(ctx.relationCondition());
+			}
+
+			// class condition
+			if (ctx.classCondition() != null) {
+				result.addClassCondition(ctx.classCondition());
+			}
+
+			// condition reference
+			if (ctx.conditionNameReference() != null) {
+				result.addConditionNameReference(ctx.conditionNameReference());
+			}
 
 			registerASGElement(result);
 		}
@@ -39,8 +61,8 @@ public class CombinableConditionImpl extends ValueStmtImpl implements Combinable
 	}
 
 	@Override
-	public CombinableCondition getCombinableCondition() {
-		return combinableCondition;
+	public SimpleCondition getSimpleCondition() {
+		return simpleCondition;
 	}
 
 	@Override

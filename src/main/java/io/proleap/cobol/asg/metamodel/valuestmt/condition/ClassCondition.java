@@ -8,11 +8,32 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.condition;
 
+import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface ClassCondition extends ValueStmt {
 
+	enum Type {
+		Alphabetic, AlphabeticLower, AlphabeticUpper, ClassName, Dbcs, Kanji, Numeric
+	}
+
+	Call getClassCall();
+
+	Call getIdentifierCall();
+
+	boolean getNot();
+
+	Type getType();
+
 	@Override
 	String getValue();
+
+	void setClassCall(Call classCall);
+
+	void setIdentifierCall(Call identifierCall);
+
+	void setNot(boolean not);
+
+	void setType(Type type);
 
 }

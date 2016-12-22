@@ -8,7 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 
+import io.proleap.cobol.Cobol85Parser.RelationArithmeticComparisonContext;
+import io.proleap.cobol.Cobol85Parser.RelationCombinedComparisonContext;
 import io.proleap.cobol.Cobol85Parser.RelationConditionContext;
+import io.proleap.cobol.Cobol85Parser.RelationSignConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.RelationConditionValueStmt;
 
@@ -20,6 +23,21 @@ public class RelationConditionValueStmtImpl extends ValueStmtImpl implements Rel
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public void addRelationArithmeticComparison(final RelationArithmeticComparisonContext ctx) {
+		// TODO
+	}
+
+	@Override
+	public void addRelationCombinedComparison(final RelationCombinedComparisonContext ctx) {
+		// TODO
+	}
+
+	@Override
+	public void addRelationSignCondition(final RelationSignConditionContext ctx) {
+		// TODO
 	}
 
 	@Override

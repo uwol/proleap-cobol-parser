@@ -8,9 +8,17 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.condition;
 
+import java.util.List;
+
+import io.proleap.cobol.Cobol85Parser.SubscriptContext;
+import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface ConditionNameSubscriptReference extends ValueStmt {
+
+	Subscript addSubscript(SubscriptContext ctx);
+
+	List<Subscript> getSubscripts();
 
 	@Override
 	String getValue();

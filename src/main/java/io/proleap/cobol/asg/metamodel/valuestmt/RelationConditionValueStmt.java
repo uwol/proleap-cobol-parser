@@ -8,7 +8,17 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt;
 
+import io.proleap.cobol.Cobol85Parser.RelationArithmeticComparisonContext;
+import io.proleap.cobol.Cobol85Parser.RelationCombinedComparisonContext;
+import io.proleap.cobol.Cobol85Parser.RelationSignConditionContext;
+
 public interface RelationConditionValueStmt extends ValueStmt {
+
+	void addRelationArithmeticComparison(RelationArithmeticComparisonContext ctx);
+
+	void addRelationCombinedComparison(RelationCombinedComparisonContext ctx);
+
+	void addRelationSignCondition(RelationSignConditionContext ctx);
 
 	@Override
 	String getValue();
