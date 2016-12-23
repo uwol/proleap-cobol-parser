@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface CloseRelativeStatement extends CobolDivisionElement {
 
 	enum WithType {
-		Lock, NoRewind
+		LOCK, NO_REWIND
 	}
 
 	WithType getWithType();

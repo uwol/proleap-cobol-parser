@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface Using extends CobolDivisionElement {
 
 	enum Type {
-		AssociatedData, AssociatedDataLength, CloseDisposition
+		ASSOCIATED_DATA, ASSOCIATED_DATA_LENGTH, CLOSE_DISPOSITION
 	}
 
 	UsingAssociatedData addUsingAssociatedData(ClosePortFileIOUsingAssociatedDataContext ctx);

@@ -46,9 +46,9 @@ public class OpenInputImpl extends CobolDivisionElementImpl implements OpenInput
 			final Input.Type type;
 
 			if (ctx.REVERSED() != null) {
-				type = Input.Type.Reversed;
+				type = Input.Type.REVERSED;
 			} else if (ctx.REWIND() != null) {
-				type = Input.Type.NoRewind;
+				type = Input.Type.NO_REWIND;
 			} else {
 				type = null;
 			}

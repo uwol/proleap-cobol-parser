@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface DefaultDisplaySignClause extends CobolDivisionElement {
 
 	enum Type {
-		Leading, Trailing
+		LEADING, TRAILING
 	}
 
 	Type getType();

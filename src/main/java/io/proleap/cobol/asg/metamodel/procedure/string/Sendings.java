@@ -18,7 +18,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface Sendings extends CobolDivisionElement {
 
 	enum Type {
-		DelimitedBy, For
+		DELIMITED_BY, FOR
 	}
 
 	DelimitedBy addDelimitedBy(StringDelimitedByPhraseContext ctx);

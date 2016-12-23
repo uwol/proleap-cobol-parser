@@ -40,14 +40,14 @@ public class PrecedenceTest extends CobolTestSupport {
 
 		{
 			final DisplayStatement displayStatement = (DisplayStatement) procedureDivision.getStatements().get(0);
-			assertEquals(StatementTypeEnum.Display, displayStatement.getStatementType());
+			assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 			assertEquals(1, displayStatement.getOperands().size());
 		}
 
 		{
 			final StopStatement stopStatement = (StopStatement) procedureDivision.getStatements().get(1);
-			assertEquals(StatementTypeEnum.Stop, stopStatement.getStatementType());
-			assertEquals(StopStatement.Type.StopRun, stopStatement.getType());
+			assertEquals(StatementTypeEnum.STOP, stopStatement.getStatementType());
+			assertEquals(StopStatement.Type.STOP_RUN, stopStatement.getType());
 		}
 	}
 }

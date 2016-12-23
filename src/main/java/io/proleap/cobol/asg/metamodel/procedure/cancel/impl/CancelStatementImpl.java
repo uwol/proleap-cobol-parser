@@ -28,7 +28,7 @@ public class CancelStatementImpl extends StatementImpl implements CancelStatemen
 
 	protected final CancelStatementContext ctx;
 
-	protected final StatementType statementType = StatementTypeEnum.Cancel;
+	protected final StatementType statementType = StatementTypeEnum.CANCEL;
 
 	public CancelStatementImpl(final ProgramUnit programUnit, final Scope scope, final CancelStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -51,9 +51,9 @@ public class CancelStatementImpl extends StatementImpl implements CancelStatemen
 			final CancelCall.Type type;
 
 			if (ctx.BYTITLE() != null) {
-				type = CancelCall.Type.ByTitle;
+				type = CancelCall.Type.BY_TITLE;
 			} else if (ctx.BYFUNCTION() != null) {
-				type = CancelCall.Type.ByFunction;
+				type = CancelCall.Type.BY_FUNCTION;
 			} else {
 				type = null;
 			}

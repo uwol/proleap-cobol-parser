@@ -25,7 +25,7 @@ public class EnableStatementImpl extends StatementImpl implements EnableStatemen
 
 	protected Call keyCall;
 
-	protected final StatementType statementType = StatementTypeEnum.Enable;
+	protected final StatementType statementType = StatementTypeEnum.ENABLE;
 
 	protected boolean terminal;
 

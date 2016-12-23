@@ -70,12 +70,12 @@ public class NC303MTest extends CobolTestSupport {
 
 				{
 					final Statement statement = paragraph.getStatements().get(0);
-					assertEquals(StatementTypeEnum.Alter, statement.getStatementType());
+					assertEquals(StatementTypeEnum.ALTER, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(1);
-					assertEquals(StatementTypeEnum.Stop, statement.getStatementType());
+					assertEquals(StatementTypeEnum.STOP, statement.getStatementType());
 				}
 			}
 

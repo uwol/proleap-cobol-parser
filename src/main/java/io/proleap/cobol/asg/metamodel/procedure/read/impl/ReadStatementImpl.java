@@ -47,7 +47,7 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 
 	protected NotInvalidKey notInvalidKey;
 
-	protected final StatementType statementType = StatementTypeEnum.Read;
+	protected final StatementType statementType = StatementTypeEnum.READ;
 
 	protected With with;
 
@@ -102,11 +102,11 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 			final With.Type type;
 
 			if (ctx.KEPT() != null) {
-				type = With.Type.KeptLock;
+				type = With.Type.KEPT_LOCK;
 			} else if (ctx.NO() != null) {
-				type = With.Type.NoLock;
+				type = With.Type.NO_LOCK;
 			} else if (ctx.WAIT() != null) {
-				type = With.Type.Wait;
+				type = With.Type.WAIT;
 			} else {
 				type = null;
 			}

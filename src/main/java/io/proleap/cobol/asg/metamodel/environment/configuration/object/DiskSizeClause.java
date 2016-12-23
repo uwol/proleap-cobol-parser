@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 public interface DiskSizeClause extends CobolDivisionElement {
 
 	enum Unit {
-		Modules, Words
+		MODULES, WORDS
 	}
 
 	Unit getUnit();

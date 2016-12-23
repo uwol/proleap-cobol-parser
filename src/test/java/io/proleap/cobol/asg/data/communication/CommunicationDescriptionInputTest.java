@@ -55,7 +55,7 @@ public class CommunicationDescriptionInputTest extends CobolTestSupport {
 			final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
 					.getCommunicationDescriptionEntry("SOMECD");
 			assertNotNull(communicationDescriptionEntry);
-			assertEquals(CommunicationDescriptionEntry.Type.Input, communicationDescriptionEntry.getType());
+			assertEquals(CommunicationDescriptionEntry.Type.INPUT, communicationDescriptionEntry.getType());
 
 			final CommunicationDescriptionEntryInput communicationDescriptionEntryInput = (CommunicationDescriptionEntryInput) communicationDescriptionEntry;
 
@@ -70,7 +70,7 @@ public class CommunicationDescriptionInputTest extends CobolTestSupport {
 				final SymbolicSubQueueClause symbolicSubQueueClause = communicationDescriptionEntryInput
 						.getSymbolicSubQueueClause();
 				assertNotNull(symbolicSubQueueClause);
-				assertEquals(SymbolicSubQueueClause.Type.SubQueue2, symbolicSubQueueClause.getType());
+				assertEquals(SymbolicSubQueueClause.Type.SUB_QUEUE_2, symbolicSubQueueClause.getType());
 				assertNotNull(symbolicSubQueueClause.getDataDescCall());
 			}
 

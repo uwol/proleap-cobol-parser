@@ -42,19 +42,19 @@ public class ClosePortFileIoStatementImpl extends CobolDivisionElementImpl imple
 			// close disposition
 			if (ctx.closePortFileIOUsingCloseDisposition() != null) {
 				result.addUsingCloseDisposition(ctx.closePortFileIOUsingCloseDisposition());
-				result.setType(Using.Type.CloseDisposition);
+				result.setType(Using.Type.CLOSE_DISPOSITION);
 			}
 
 			// associated data
 			if (ctx.closePortFileIOUsingAssociatedData() != null) {
 				result.addUsingAssociatedData(ctx.closePortFileIOUsingAssociatedData());
-				result.setType(Using.Type.AssociatedData);
+				result.setType(Using.Type.ASSOCIATED_DATA);
 			}
 
 			// associated data length
 			if (ctx.closePortFileIOUsingAssociatedDataLength() != null) {
 				result.addUsingAssociatedDataLength(ctx.closePortFileIOUsingAssociatedDataLength());
-				result.setType(Using.Type.AssociatedDataLength);
+				result.setType(Using.Type.ASSOCIATED_DATA_LENGTH);
 			}
 
 			usings.add(result);

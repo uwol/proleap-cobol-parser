@@ -18,7 +18,7 @@ import io.proleap.cobol.asg.metamodel.Declaration;
 public interface ReportGroupDescriptionEntry extends CobolDivisionElement, Declaration {
 
 	enum Type {
-		Printable, Single, Vertical
+		PRINTABLE, SINGLE, VERTICAL
 	}
 
 	UsageClause addGroupUsageClause(ReportGroupUsageClauseContext ctx);

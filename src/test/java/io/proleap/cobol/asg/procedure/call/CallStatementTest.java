@@ -49,12 +49,12 @@ public class CallStatementTest extends CobolTestSupport {
 
 		{
 			final CallStatement callStatement = (CallStatement) procedureDivision.getStatements().get(0);
-			assertEquals(StatementTypeEnum.Call, callStatement.getStatementType());
+			assertEquals(StatementTypeEnum.CALL, callStatement.getStatementType());
 
 			{
 				final Giving giving = callStatement.getGiving();
 				assertNotNull(giving.getGivingCall());
-				assertEquals(Call.CallType.UndefinedCall, giving.getGivingCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, giving.getGivingCall().getCallType());
 			}
 
 			{
@@ -64,14 +64,14 @@ public class CallStatementTest extends CobolTestSupport {
 
 				{
 					final ByReference byReference = callByReferenceStatement.getByReferences().get(0);
-					assertEquals(ByReference.Type.Integer, byReference.getType());
-					assertEquals(Call.CallType.UndefinedCall, byReference.getCall().getCallType());
+					assertEquals(ByReference.Type.INTEGER, byReference.getType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
 				}
 
 				{
 					final ByReference byReference = callByReferenceStatement.getByReferences().get(1);
 					assertNull(byReference.getType());
-					assertEquals(Call.CallType.UndefinedCall, byReference.getCall().getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
 				}
 			}
 
@@ -101,20 +101,20 @@ public class CallStatementTest extends CobolTestSupport {
 
 				{
 					final ByContent byContent = callByContentStatement.getByContents().get(0);
-					assertEquals(ByContent.Type.AddressOf, byContent.getType());
-					assertEquals(Call.CallType.UndefinedCall, byContent.getCall().getCallType());
+					assertEquals(ByContent.Type.ADDRESS_OF, byContent.getType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, byContent.getCall().getCallType());
 				}
 
 				{
 					final ByContent byContent = callByContentStatement.getByContents().get(1);
-					assertEquals(ByContent.Type.LengthOf, byContent.getType());
-					assertEquals(Call.CallType.UndefinedCall, byContent.getCall().getCallType());
+					assertEquals(ByContent.Type.LENGTH_OF, byContent.getType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, byContent.getCall().getCallType());
 				}
 
 				{
 					final ByContent byContent = callByContentStatement.getByContents().get(2);
 					assertNull(byContent.getType());
-					assertEquals(Call.CallType.UndefinedCall, byContent.getCall().getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, byContent.getCall().getCallType());
 				}
 			}
 		}

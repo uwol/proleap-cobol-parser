@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface UsageClause extends CobolDivisionElement {
 
 	enum Type {
-		Display, Display1
+		DISPLAY, DISPLAY_1
 	}
 
 	Type getType();

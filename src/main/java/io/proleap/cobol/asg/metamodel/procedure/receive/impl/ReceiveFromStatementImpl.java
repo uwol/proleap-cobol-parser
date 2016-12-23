@@ -78,11 +78,11 @@ public class ReceiveFromStatementImpl extends CobolDivisionElementImpl implement
 			final From.Type type;
 
 			if (ctx.LAST() != null) {
-				type = From.Type.LastThread;
+				type = From.Type.LAST_THREAD;
 			} else if (ctx.ANY() != null) {
-				type = From.Type.AnyThread;
+				type = From.Type.ANY_THREAD;
 			} else if (ctx.dataName() != null) {
-				type = From.Type.Thread;
+				type = From.Type.THREAD;
 			} else {
 				type = null;
 			}

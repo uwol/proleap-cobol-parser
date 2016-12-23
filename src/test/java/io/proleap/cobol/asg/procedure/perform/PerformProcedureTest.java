@@ -47,22 +47,22 @@ public class PerformProcedureTest extends CobolTestSupport {
 
 			{
 				final Statement statement = paragraph.getStatements().get(0);
-				assertEquals(StatementTypeEnum.Perform, statement.getStatementType());
+				assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
 			}
 
 			{
 				final Statement statement = paragraph.getStatements().get(1);
-				assertEquals(StatementTypeEnum.Perform, statement.getStatementType());
+				assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
 			}
 
 			{
 				final Statement statement = paragraph.getStatements().get(2);
-				assertEquals(StatementTypeEnum.Perform, statement.getStatementType());
+				assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
 			}
 
 			{
 				final Statement statement = paragraph.getStatements().get(3);
-				assertEquals(StatementTypeEnum.Stop, statement.getStatementType());
+				assertEquals(StatementTypeEnum.STOP, statement.getStatementType());
 			}
 		}
 
@@ -75,7 +75,7 @@ public class PerformProcedureTest extends CobolTestSupport {
 
 			{
 				final Statement statement = paragraph.getStatements().get(0);
-				assertEquals(StatementTypeEnum.Display, statement.getStatementType());
+				assertEquals(StatementTypeEnum.DISPLAY, statement.getStatementType());
 			}
 		}
 
@@ -87,7 +87,7 @@ public class PerformProcedureTest extends CobolTestSupport {
 
 			{
 				final Statement statement = paragraph.getStatements().get(0);
-				assertEquals(StatementTypeEnum.Display, statement.getStatementType());
+				assertEquals(StatementTypeEnum.DISPLAY, statement.getStatementType());
 			}
 		}
 	}

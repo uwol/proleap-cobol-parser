@@ -45,14 +45,14 @@ public class ProgramLibraryExportTest extends CobolTestSupport {
 			final LibraryDescriptionEntry libraryDescriptionEntry = programLibrarySection
 					.getLibraryDescriptionEntry("SOMELIB");
 			assertNotNull(libraryDescriptionEntry);
-			assertEquals(LibraryDescriptionEntry.Type.Export, libraryDescriptionEntry.getType());
+			assertEquals(LibraryDescriptionEntry.Type.EXPORT, libraryDescriptionEntry.getType());
 
 			final LibraryDescriptionEntryExport libraryDescriptionEntryExport = (LibraryDescriptionEntryExport) libraryDescriptionEntry;
 
 			{
 				final ExportAttribute exportAttribute = libraryDescriptionEntryExport.getExportAttribute();
 				assertNotNull(exportAttribute);
-				assertEquals(ExportAttribute.Sharing.Private, exportAttribute.getSharing());
+				assertEquals(ExportAttribute.Sharing.PRIVATE, exportAttribute.getSharing());
 			}
 
 			{

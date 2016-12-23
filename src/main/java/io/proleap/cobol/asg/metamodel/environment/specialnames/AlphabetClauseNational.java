@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.Literal;
 public interface AlphabetClauseNational extends AlphabetClause {
 
 	enum AlphabetClauseNationalType {
-		CcsVersion, Native
+		CCS_VERSION, NATIVE
 	}
 
 	AlphabetClauseNationalType getAlphabetClauseType();

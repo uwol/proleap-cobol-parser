@@ -45,31 +45,31 @@ public class WriteStatementTest extends CobolTestSupport {
 		{
 			final WriteStatement writeStatement = (WriteStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(writeStatement);
-			assertEquals(StatementTypeEnum.Write, writeStatement.getStatementType());
+			assertEquals(StatementTypeEnum.WRITE, writeStatement.getStatementType());
 
 			{
 				final Call recordCall = writeStatement.getRecordCall();
 				assertNotNull(recordCall);
-				assertEquals(Call.CallType.UndefinedCall, recordCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, recordCall.getCallType());
 			}
 
 			{
 				final From from = writeStatement.getFrom();
 				assertNotNull(from);
-				assertEquals(Call.CallType.UndefinedCall, from.getFromCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, from.getFromCall().getCallType());
 			}
 
 			{
 				final Advancing advancing = writeStatement.getAdvancing();
 				assertNotNull(advancing);
-				assertEquals(Advancing.PositionType.Before, advancing.getPositionType());
-				assertEquals(Advancing.Type.Lines, advancing.getType());
+				assertEquals(Advancing.PositionType.BEFORE, advancing.getPositionType());
+				assertEquals(Advancing.Type.LINES, advancing.getType());
 
 				{
 					final AdvancingLines advancingLines = advancing.getAdvancingLines();
 					assertNotNull(advancingLines);
 					assertNotNull(advancingLines.getLinesCall());
-					assertEquals(Call.CallType.UndefinedCall, advancingLines.getLinesCall().getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, advancingLines.getLinesCall().getCallType());
 				}
 			}
 		}

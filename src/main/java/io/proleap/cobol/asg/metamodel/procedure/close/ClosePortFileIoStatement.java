@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface ClosePortFileIoStatement extends CobolDivisionElement {
 
 	enum WithType {
-		NoWait, Wait
+		NO_WAIT, WAIT
 	}
 
 	Using addUsing(ClosePortFileIOUsingContext ctx);

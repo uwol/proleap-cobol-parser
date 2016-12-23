@@ -49,7 +49,7 @@ public class DataDescriptionEntryConditionImpl extends DataDescriptionEntryImpl
 
 	@Override
 	public Type getType() {
-		return Type.Condition;
+		return Type.CONDITION;
 	}
 
 	@Override

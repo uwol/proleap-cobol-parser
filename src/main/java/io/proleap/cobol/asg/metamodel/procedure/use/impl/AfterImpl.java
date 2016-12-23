@@ -42,13 +42,13 @@ public class AfterImpl extends CobolDivisionElementImpl implements After {
 			final AfterOn.Type type;
 
 			if (!ctx.fileName().isEmpty()) {
-				type = AfterOn.Type.File;
+				type = AfterOn.Type.FILE;
 			} else if (ctx.INPUT() != null) {
-				type = AfterOn.Type.Input;
+				type = AfterOn.Type.INPUT;
 			} else if (ctx.I_O() != null) {
-				type = AfterOn.Type.InputOutput;
+				type = AfterOn.Type.INPUT_OUTPUT;
 			} else if (ctx.OUTPUT() != null) {
-				type = AfterOn.Type.Output;
+				type = AfterOn.Type.OUTPUT;
 			} else {
 				type = null;
 			}

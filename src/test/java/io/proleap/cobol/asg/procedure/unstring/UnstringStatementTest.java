@@ -53,7 +53,7 @@ public class UnstringStatementTest extends CobolTestSupport {
 		{
 			final UnstringStatement unstringStatement = (UnstringStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(unstringStatement);
-			assertEquals(StatementTypeEnum.Unstring, unstringStatement.getStatementType());
+			assertEquals(StatementTypeEnum.UNSTRING, unstringStatement.getStatementType());
 
 			{
 				final Sending sending = unstringStatement.getSending();
@@ -61,12 +61,12 @@ public class UnstringStatementTest extends CobolTestSupport {
 
 				{
 					final Call sendingCall = sending.getSendingCall();
-					assertEquals(Call.CallType.UndefinedCall, sendingCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, sendingCall.getCallType());
 
 					{
 						final DelimitedBy delimitedBy = sending.getDelimitedBy();
 						final Call delimitedByCall = delimitedBy.getDelimitedByCall();
-						assertEquals(Call.CallType.UndefinedCall, delimitedByCall.getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, delimitedByCall.getCallType());
 					}
 
 					{
@@ -75,13 +75,13 @@ public class UnstringStatementTest extends CobolTestSupport {
 						{
 							final OrAll orAll = sending.getOrAlls().get(0);
 							final Call orAllCall = orAll.getOrAllCall();
-							assertEquals(Call.CallType.UndefinedCall, orAllCall.getCallType());
+							assertEquals(Call.CallType.UNDEFINED_CALL, orAllCall.getCallType());
 						}
 
 						{
 							final OrAll orAll = sending.getOrAlls().get(1);
 							final Call orAllCall = orAll.getOrAllCall();
-							assertEquals(Call.CallType.UndefinedCall, orAllCall.getCallType());
+							assertEquals(Call.CallType.UNDEFINED_CALL, orAllCall.getCallType());
 						}
 					}
 				}
@@ -95,24 +95,24 @@ public class UnstringStatementTest extends CobolTestSupport {
 				{
 					final io.proleap.cobol.asg.metamodel.procedure.unstring.Into into = intos.getIntos().get(0);
 					final Call intoCall = into.getIntoCall();
-					assertEquals(Call.CallType.UndefinedCall, intoCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, intoCall.getCallType());
 
 					{
 						final DelimiterIn delimiterIn = into.getDelimiterIn();
 						final Call delimiterInCall = delimiterIn.getDelimiterInCall();
-						assertEquals(Call.CallType.UndefinedCall, delimiterInCall.getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, delimiterInCall.getCallType());
 					}
 				}
 
 				{
 					final io.proleap.cobol.asg.metamodel.procedure.unstring.Into into = intos.getIntos().get(1);
 					final Call intoCall = into.getIntoCall();
-					assertEquals(Call.CallType.UndefinedCall, intoCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, intoCall.getCallType());
 
 					{
 						final CountIn countIn = into.getCountIn();
 						final Call countInCall = countIn.getCountInCall();
-						assertEquals(Call.CallType.UndefinedCall, countInCall.getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, countInCall.getCallType());
 					}
 				}
 			}
@@ -120,7 +120,7 @@ public class UnstringStatementTest extends CobolTestSupport {
 			{
 				final WithPointer withPointer = unstringStatement.getWithPointer();
 				final Call pointerCall = withPointer.getPointerCall();
-				assertEquals(Call.CallType.UndefinedCall, pointerCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, pointerCall.getCallType());
 			}
 
 			{
@@ -131,7 +131,7 @@ public class UnstringStatementTest extends CobolTestSupport {
 				{
 					final DisplayStatement displayStatement = (DisplayStatement) onOverflow.getStatements().get(0);
 					assertNotNull(displayStatement);
-					assertEquals(StatementTypeEnum.Display, displayStatement.getStatementType());
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 				}
 			}
 
@@ -143,7 +143,7 @@ public class UnstringStatementTest extends CobolTestSupport {
 				{
 					final DisplayStatement displayStatement = (DisplayStatement) notOnOverflow.getStatements().get(0);
 					assertNotNull(displayStatement);
-					assertEquals(StatementTypeEnum.Display, displayStatement.getStatementType());
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 				}
 			}
 		}

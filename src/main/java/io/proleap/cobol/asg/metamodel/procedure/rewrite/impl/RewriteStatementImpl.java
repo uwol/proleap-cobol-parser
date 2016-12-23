@@ -33,7 +33,7 @@ public class RewriteStatementImpl extends StatementImpl implements RewriteStatem
 
 	protected Call recordCall;
 
-	protected final StatementType statementType = StatementTypeEnum.Rewrite;
+	protected final StatementType statementType = StatementTypeEnum.REWRITE;
 
 	public RewriteStatementImpl(final ProgramUnit programUnit, final Scope scope, final RewriteStatementContext ctx) {
 		super(programUnit, scope, ctx);

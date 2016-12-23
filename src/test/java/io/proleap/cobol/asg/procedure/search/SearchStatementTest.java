@@ -44,19 +44,19 @@ public class SearchStatementTest extends CobolTestSupport {
 		{
 			final SearchStatement searchStatement = (SearchStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(searchStatement);
-			assertEquals(StatementTypeEnum.Search, searchStatement.getStatementType());
+			assertEquals(StatementTypeEnum.SEARCH, searchStatement.getStatementType());
 
 			{
 				final Call dataCall = searchStatement.getDataCall();
 				assertNotNull(dataCall);
-				assertEquals(Call.CallType.UndefinedCall, dataCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, dataCall.getCallType());
 			}
 
 			{
 				final Varying varying = searchStatement.getVarying();
 				assertNotNull(varying);
 				assertNotNull(varying.getDataCall());
-				assertEquals(Call.CallType.UndefinedCall, varying.getDataCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, varying.getDataCall().getCallType());
 			}
 
 			assertNotNull(searchStatement.getAtEnd());
@@ -66,12 +66,12 @@ public class SearchStatementTest extends CobolTestSupport {
 
 				{
 					final When when = searchStatement.getWhens().get(0);
-					assertEquals(When.Type.NextSentence, when.getType());
+					assertEquals(When.Type.NEXT_SENTENCE, when.getType());
 				}
 
 				{
 					final When when = searchStatement.getWhens().get(1);
-					assertEquals(When.Type.Statements, when.getType());
+					assertEquals(When.Type.STATEMENTS, when.getType());
 				}
 			}
 		}

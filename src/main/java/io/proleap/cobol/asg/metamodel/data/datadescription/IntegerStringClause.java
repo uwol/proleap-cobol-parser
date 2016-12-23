@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface IntegerStringClause extends CobolDivisionElement {
 
 	enum PrimitiveType {
-		Integer, String
+		INTEGER, STRING
 	}
 
 	PrimitiveType getPrimitiveType();

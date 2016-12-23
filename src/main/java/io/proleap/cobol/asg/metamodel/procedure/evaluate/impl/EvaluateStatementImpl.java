@@ -38,7 +38,7 @@ public class EvaluateStatementImpl extends StatementImpl implements EvaluateStat
 
 	protected Select select;
 
-	protected final StatementType statementType = StatementTypeEnum.Evaluate;
+	protected final StatementType statementType = StatementTypeEnum.EVALUATE;
 
 	protected WhenOther whenOther;
 

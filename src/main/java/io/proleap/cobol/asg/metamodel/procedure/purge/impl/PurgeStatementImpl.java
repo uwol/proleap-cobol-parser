@@ -26,7 +26,7 @@ public class PurgeStatementImpl extends StatementImpl implements PurgeStatement 
 
 	protected final PurgeStatementContext ctx;
 
-	protected final StatementType statementType = StatementTypeEnum.Purge;
+	protected final StatementType statementType = StatementTypeEnum.PURGE;
 
 	public PurgeStatementImpl(final ProgramUnit programUnit, final Scope scope, final PurgeStatementContext ctx) {
 		super(programUnit, scope, ctx);

@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface SynchronizedClause extends CobolDivisionElement {
 
 	enum Synchronized {
-		Left, Right
+		LEFT, RIGHT
 	}
 
 	Synchronized getSynchronized();

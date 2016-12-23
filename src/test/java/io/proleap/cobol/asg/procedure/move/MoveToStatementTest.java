@@ -79,8 +79,8 @@ public class MoveToStatementTest extends CobolTestSupport {
 		{
 			final MoveStatement moveStatement = (MoveStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(moveStatement);
-			assertEquals(StatementTypeEnum.Move, moveStatement.getStatementType());
-			assertEquals(MoveStatement.Type.MoveTo, moveStatement.getType());
+			assertEquals(StatementTypeEnum.MOVE, moveStatement.getStatementType());
+			assertEquals(MoveStatement.Type.MOVE_TO, moveStatement.getType());
 
 			{
 				final MoveTo moveTo = moveStatement.getMoveTo();
@@ -92,7 +92,7 @@ public class MoveToStatementTest extends CobolTestSupport {
 					{
 						final Call sendingAreaCall = sendingArea.getSendingAreaCall();
 						assertNotNull(sendingAreaCall);
-						assertEquals(Call.CallType.UndefinedCall, sendingAreaCall.getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, sendingAreaCall.getCallType());
 					}
 				}
 
@@ -103,7 +103,7 @@ public class MoveToStatementTest extends CobolTestSupport {
 					{
 						final Call receivingAreaCall = receivingAreaCalls.get(0);
 						assertNotNull(receivingAreaCall);
-						assertEquals(Call.CallType.DataDescriptionEntryCall, receivingAreaCall.getCallType());
+						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
 					}
 				}
 			}
@@ -112,8 +112,8 @@ public class MoveToStatementTest extends CobolTestSupport {
 		{
 			final MoveStatement moveStatement = (MoveStatement) procedureDivision.getStatements().get(1);
 			assertNotNull(moveStatement);
-			assertEquals(StatementTypeEnum.Move, moveStatement.getStatementType());
-			assertEquals(MoveStatement.Type.MoveTo, moveStatement.getType());
+			assertEquals(StatementTypeEnum.MOVE, moveStatement.getStatementType());
+			assertEquals(MoveStatement.Type.MOVE_TO, moveStatement.getType());
 
 			{
 				final MoveTo moveTo = moveStatement.getMoveTo();
@@ -125,7 +125,7 @@ public class MoveToStatementTest extends CobolTestSupport {
 					{
 						final Call sendingAreaCall = sendingArea.getSendingAreaCall();
 						assertNotNull(sendingAreaCall);
-						assertEquals(Call.CallType.UndefinedCall, sendingAreaCall.getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, sendingAreaCall.getCallType());
 					}
 				}
 
@@ -136,7 +136,7 @@ public class MoveToStatementTest extends CobolTestSupport {
 					{
 						final Call receivingAreaCall = receivingAreaCalls.get(0);
 						assertNotNull(receivingAreaCall);
-						assertEquals(Call.CallType.DataDescriptionEntryCall, receivingAreaCall.getCallType());
+						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
 					}
 				}
 			}
@@ -145,8 +145,8 @@ public class MoveToStatementTest extends CobolTestSupport {
 		{
 			final MoveStatement moveStatement = (MoveStatement) procedureDivision.getStatements().get(2);
 			assertNotNull(moveStatement);
-			assertEquals(StatementTypeEnum.Move, moveStatement.getStatementType());
-			assertEquals(MoveStatement.Type.MoveTo, moveStatement.getType());
+			assertEquals(StatementTypeEnum.MOVE, moveStatement.getStatementType());
+			assertEquals(MoveStatement.Type.MOVE_TO, moveStatement.getType());
 
 			{
 				final MoveTo moveTo = moveStatement.getMoveTo();
@@ -158,7 +158,7 @@ public class MoveToStatementTest extends CobolTestSupport {
 					{
 						final Call sendingAreaCall = sendingArea.getSendingAreaCall();
 						assertNotNull(sendingAreaCall);
-						assertEquals(Call.CallType.DataDescriptionEntryCall, sendingAreaCall.getCallType());
+						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, sendingAreaCall.getCallType());
 					}
 				}
 
@@ -169,7 +169,7 @@ public class MoveToStatementTest extends CobolTestSupport {
 					{
 						final Call receivingAreaCall = receivingAreaCalls.get(0);
 						assertNotNull(receivingAreaCall);
-						assertEquals(Call.CallType.DataDescriptionEntryCall, receivingAreaCall.getCallType());
+						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
 					}
 				}
 			}

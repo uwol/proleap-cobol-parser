@@ -65,19 +65,19 @@ public class WhenImpl extends CobolDivisionElementImpl implements When {
 			final ValueStmt conditionValueStmt;
 
 			if (ctx.ANY() != null) {
-				type = Condition.Type.Any;
+				type = Condition.Type.ANY;
 				conditionValueStmt = null;
 			} else if (ctx.condition() != null) {
-				type = Condition.Type.Condition;
+				type = Condition.Type.CONDITION;
 				conditionValueStmt = createConditionValueStmt(ctx.condition());
 			} else if (ctx.booleanLiteral() != null) {
-				type = Condition.Type.Boolean;
+				type = Condition.Type.BOOLEAN;
 				conditionValueStmt = createBooleanLiteralValueStmt(ctx.booleanLiteral());
 			} else if (ctx.evaluateThrough() != null) {
-				type = Condition.Type.ValueThrough;
+				type = Condition.Type.VALUE_THROUGH;
 				conditionValueStmt = null;
 			} else if (ctx.evaluateValue() != null) {
-				type = Condition.Type.Value;
+				type = Condition.Type.VALUE;
 				conditionValueStmt = null;
 			} else {
 				type = null;

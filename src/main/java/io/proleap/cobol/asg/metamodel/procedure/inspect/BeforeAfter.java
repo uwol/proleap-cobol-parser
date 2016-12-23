@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface BeforeAfter extends CobolDivisionElement {
 
 	enum Type {
-		After, Before
+		AFTER, BEFORE
 	}
 
 	Call getDataItemCall();

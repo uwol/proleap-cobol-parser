@@ -36,7 +36,7 @@ public class DisplayStatementImpl extends StatementImpl implements DisplayStatem
 
 	protected List<Operand> operands = new ArrayList<Operand>();
 
-	protected final StatementType statementType = StatementTypeEnum.Display;
+	protected final StatementType statementType = StatementTypeEnum.DISPLAY;
 
 	protected Upon upon;
 

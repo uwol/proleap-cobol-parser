@@ -63,11 +63,11 @@ public class SetToImpl extends CobolDivisionElementImpl implements SetTo {
 			final Value.Type type;
 
 			if (ctx.ON() != null) {
-				type = Value.Type.On;
+				type = Value.Type.ON;
 			} else if (ctx.OFF() != null) {
-				type = Value.Type.Off;
+				type = Value.Type.OFF;
 			} else {
-				type = Value.Type.Call;
+				type = Value.Type.CALL;
 
 				// call
 				final Call valueCall = createCall(ctx.identifier(), ctx.literal());

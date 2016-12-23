@@ -237,16 +237,16 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			if (ctx.acceptFromDateStatement() != null) {
 				result.addAcceptFromDate(ctx.acceptFromDateStatement());
-				type = Type.Date;
+				type = Type.DATE;
 			} else if (ctx.acceptFromMnemonicStatement() != null) {
 				result.addAcceptFromMnemonic(ctx.acceptFromMnemonicStatement());
-				type = Type.Mnemonic;
+				type = Type.MNEMONIC;
 			} else if (ctx.acceptMessageCountStatement() != null) {
 				result.addAcceptMessageCount(ctx.acceptMessageCountStatement());
-				type = Type.MessageCount;
+				type = Type.MESSAGE_COUNT;
 			} else if (ctx.acceptFromEscapeKeyStatement() != null) {
 				result.addAcceptFromEscapeKey(ctx.acceptFromEscapeKeyStatement());
-				type = Type.FromEscapeKey;
+				type = Type.FROM_ESCAPE_KEY;
 			} else {
 				LOG.warn("unknown type at {}", ctx);
 				type = null;
@@ -272,13 +272,13 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			if (ctx.addToStatement() != null) {
 				result.addAddTo(ctx.addToStatement());
-				type = AddStatement.Type.To;
+				type = AddStatement.Type.TO;
 			} else if (ctx.addToGivingStatement() != null) {
 				result.addAddToGiving(ctx.addToGivingStatement());
-				type = AddStatement.Type.Giving;
+				type = AddStatement.Type.GIVING;
 			} else if (ctx.addCorrespondingStatement() != null) {
 				result.addAddCorresponding(ctx.addCorrespondingStatement());
-				type = AddStatement.Type.Corresponding;
+				type = AddStatement.Type.CORRESPONDING;
 			} else {
 				LOG.warn("unknown add statement at {}", ctx);
 				type = null;
@@ -502,11 +502,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			final DisableStatement.Type type;
 
 			if (ctx.INPUT() != null) {
-				type = DisableStatement.Type.Input;
+				type = DisableStatement.Type.INPUT;
 			} else if (ctx.I_O() != null) {
-				type = DisableStatement.Type.InputOutput;
+				type = DisableStatement.Type.INPUT_OUTPUT;
 			} else if (ctx.OUTPUT() != null) {
-				type = DisableStatement.Type.Output;
+				type = DisableStatement.Type.OUTPUT;
 			} else {
 				type = null;
 			}
@@ -581,13 +581,13 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			if (ctx.divideIntoStatement() != null) {
 				result.addInto(ctx.divideIntoStatement());
-				type = DivideStatement.Type.Into;
+				type = DivideStatement.Type.INTO;
 			} else if (ctx.divideIntoGivingStatement() != null) {
 				result.addIntoGiving(ctx.divideIntoGivingStatement());
-				type = DivideStatement.Type.IntoGiving;
+				type = DivideStatement.Type.INTO_GIVING;
 			} else if (ctx.divideIntoByGivingStatement() != null) {
 				result.addIntoByGiving(ctx.divideIntoByGivingStatement());
-				type = DivideStatement.Type.IntoByGiving;
+				type = DivideStatement.Type.INTO_BY_GIVING;
 			} else {
 				type = null;
 			}
@@ -628,11 +628,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			final EnableStatement.Type type;
 
 			if (ctx.INPUT() != null) {
-				type = EnableStatement.Type.Input;
+				type = EnableStatement.Type.INPUT;
 			} else if (ctx.I_O() != null) {
-				type = EnableStatement.Type.InputOutput;
+				type = EnableStatement.Type.INPUT_OUTPUT;
 			} else if (ctx.OUTPUT() != null) {
-				type = EnableStatement.Type.Output;
+				type = EnableStatement.Type.OUTPUT;
 			} else {
 				type = null;
 			}
@@ -794,10 +794,10 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			if (ctx.goToStatementSimple() != null) {
 				result.addSimple(ctx.goToStatementSimple());
-				type = GoToStatement.Type.Simple;
+				type = GoToStatement.Type.SIMPLE;
 			} else if (ctx.goToDependingOnStatement() != null) {
 				result.addDependingOn(ctx.goToDependingOnStatement());
-				type = GoToStatement.Type.DependingOn;
+				type = GoToStatement.Type.DEPENDING_ON;
 			} else {
 				type = null;
 			}
@@ -895,16 +895,16 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			if (ctx.inspectTallyingPhrase() != null) {
 				result.addTallying(ctx.inspectTallyingPhrase());
-				type = InspectStatement.Type.Tallying;
+				type = InspectStatement.Type.TALLYING;
 			} else if (ctx.inspectReplacingPhrase() != null) {
 				result.addReplacing(ctx.inspectReplacingPhrase());
-				type = InspectStatement.Type.Replacing;
+				type = InspectStatement.Type.REPLACING;
 			} else if (ctx.inspectTallyingReplacingPhrase() != null) {
 				result.addTallyingReplacing(ctx.inspectTallyingReplacingPhrase());
-				type = InspectStatement.Type.TallyingReplacing;
+				type = InspectStatement.Type.TALLYING_REPLACING;
 			} else if (ctx.inspectConvertingPhrase() != null) {
 				result.addConverting(ctx.inspectConvertingPhrase());
-				type = InspectStatement.Type.Converting;
+				type = InspectStatement.Type.CONVERTING;
 			} else {
 				type = null;
 			}
@@ -970,10 +970,10 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			final MoveStatement.Type type;
 
 			if (ctx.moveToStatement() != null) {
-				type = MoveStatement.Type.MoveTo;
+				type = MoveStatement.Type.MOVE_TO;
 				result.addMoveTo(ctx.moveToStatement());
 			} else if (ctx.moveCorrespondingToStatement() != null) {
-				type = MoveStatement.Type.MoveCorrespondingTo;
+				type = MoveStatement.Type.MOVE_CORRESPONDING_TO;
 				result.addMoveCorrespondingTo(ctx.moveCorrespondingToStatement());
 			} else {
 				type = null;
@@ -1003,10 +1003,10 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			if (ctx.multiplyRegular() != null) {
 				result.addRegular(ctx.multiplyRegular());
-				type = MultiplyStatement.Type.Regular;
+				type = MultiplyStatement.Type.REGULAR;
 			} else if (ctx.multiplyGiving() != null) {
 				result.addGiving(ctx.multiplyGiving());
-				type = MultiplyStatement.Type.Giving;
+				type = MultiplyStatement.Type.GIVING;
 			} else {
 				type = null;
 			}
@@ -1173,10 +1173,10 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			if (ctx.receiveFromStatement() != null) {
 				result.addReceiveFromStatement(ctx.receiveFromStatement());
-				type = ReceiveStatement.Type.From;
+				type = ReceiveStatement.Type.FROM;
 			} else if (ctx.receiveIntoStatement() != null) {
 				result.addReceiveIntoStatement(ctx.receiveIntoStatement());
-				type = ReceiveStatement.Type.Into;
+				type = ReceiveStatement.Type.INTO;
 			} else {
 				type = null;
 			}
@@ -1335,10 +1335,10 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			if (ctx.sendStatementSync() != null) {
 				result.addSync(ctx.sendStatementSync());
-				type = SendStatement.Type.Sync;
+				type = SendStatement.Type.SYNC;
 			} else if (ctx.sendStatementAsync() != null) {
 				result.addAsync(ctx.sendStatementAsync());
-				type = SendStatement.Type.Async;
+				type = SendStatement.Type.ASYNC;
 			} else {
 				type = null;
 			}
@@ -1374,14 +1374,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			final SetStatement.Type type;
 
 			if (!ctx.setToStatement().isEmpty()) {
-				type = SetStatement.Type.To;
+				type = SetStatement.Type.TO;
 
 				for (final SetToStatementContext setToStatementContext : ctx.setToStatement()) {
 					result.addSetTo(setToStatementContext);
 				}
 			} else if (ctx.setUpDownByStatement() != null) {
 				result.addSetBy(ctx.setUpDownByStatement());
-				type = SetStatement.Type.By;
+				type = SetStatement.Type.BY;
 			} else {
 				type = null;
 			}
@@ -1502,9 +1502,9 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			final StopStatement.Type type;
 
 			if (ctx.RUN() != null) {
-				type = StopStatement.Type.StopRun;
+				type = StopStatement.Type.STOP_RUN;
 			} else if (ctx.literal() != null) {
-				type = StopStatement.Type.StopRunAndDisplay;
+				type = StopStatement.Type.STOP_RUN_AND_DISPLAY;
 			} else {
 				LOG.warn("unknown type at {}", ctx);
 				type = null;
@@ -1568,13 +1568,13 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			if (ctx.subtractFromStatement() != null) {
 				result.addSubtractFrom(ctx.subtractFromStatement());
-				type = SubtractStatement.Type.From;
+				type = SubtractStatement.Type.FROM;
 			} else if (ctx.subtractFromGivingStatement() != null) {
 				result.addSubtractFromGiving(ctx.subtractFromGivingStatement());
-				type = SubtractStatement.Type.FromGiving;
+				type = SubtractStatement.Type.FROM_GIVING;
 			} else if (ctx.subtractCorrespondingStatement() != null) {
 				result.addSubtractCorresponding(ctx.subtractCorrespondingStatement());
-				type = SubtractStatement.Type.Corresponding;
+				type = SubtractStatement.Type.CORRESPONDING;
 			} else {
 				type = null;
 			}

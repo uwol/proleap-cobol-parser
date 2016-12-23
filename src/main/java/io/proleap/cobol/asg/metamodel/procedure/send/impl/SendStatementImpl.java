@@ -33,7 +33,7 @@ public class SendStatementImpl extends StatementImpl implements SendStatement {
 
 	protected OnException onException;
 
-	protected final StatementType statementType = StatementTypeEnum.Send;
+	protected final StatementType statementType = StatementTypeEnum.SEND;
 
 	protected Sync sync;
 
@@ -56,9 +56,9 @@ public class SendStatementImpl extends StatementImpl implements SendStatement {
 			final Async.Type type;
 
 			if (ctx.BOTTOM() != null) {
-				type = Async.Type.Bottom;
+				type = Async.Type.BOTTOM;
 			} else if (ctx.TOP() != null) {
-				type = Async.Type.Top;
+				type = Async.Type.TOP;
 			} else {
 				type = null;
 			}

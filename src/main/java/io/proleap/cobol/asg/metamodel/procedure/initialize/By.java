@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface By extends CobolDivisionElement {
 
 	enum Type {
-		Alphabetic, Alphanumeric, AlphanumericEdited, Dbcs, Egcs, National, Numeric, NumericEdited
+		ALPHABETIC, ALPHANUMERIC, ALPHANUMERIC_EDITED, DBCS, EGCS, NATIONAL, NUMERIC, NUMERIC_EDITED
 	}
 
 	Type getType();

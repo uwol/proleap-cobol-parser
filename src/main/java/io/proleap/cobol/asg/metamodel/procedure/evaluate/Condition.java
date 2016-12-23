@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 public interface Condition extends CobolDivisionElement {
 
 	enum Type {
-		Any, Boolean, Condition, Value, ValueThrough
+		ANY, BOOLEAN, CONDITION, VALUE, VALUE_THROUGH
 	}
 
 	Through addThrough(EvaluateThroughContext ctx);

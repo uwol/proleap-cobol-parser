@@ -50,11 +50,11 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 			final DelimitedBy.Type type;
 
 			if (ctx.SIZE() != null) {
-				type = DelimitedBy.Type.Size;
+				type = DelimitedBy.Type.SIZE;
 			} else {
 				final Call charactersCall = createCall(ctx.identifier(), ctx.literal());
 				result.setCharactersCall(charactersCall);
-				type = DelimitedBy.Type.Characters;
+				type = DelimitedBy.Type.CHARACTERS;
 			}
 
 			result.setType(type);

@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface AssignClause extends CobolDivisionElement {
 
 	enum Type {
-		Call, Disk, Port, Printer, Reader, Remote, Tape, Virtual
+		CALL, DISK, PORT, PRINTER, READER, REMOTE, TAPE, VIRTUAL
 	}
 
 	Call getToCall();

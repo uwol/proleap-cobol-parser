@@ -22,7 +22,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface InspectStatement extends Statement {
 
 	enum Type {
-		Converting, Replacing, Tallying, TallyingReplacing
+		CONVERTING, REPLACING, TALLYING, TALLYING_REPLACING
 	}
 
 	Converting addConverting(InspectConvertingPhraseContext ctx);

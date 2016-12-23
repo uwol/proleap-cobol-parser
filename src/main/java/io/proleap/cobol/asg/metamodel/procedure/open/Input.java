@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface Input extends CobolDivisionElement {
 
 	enum Type {
-		NoRewind, Reversed
+		NO_REWIND, REVERSED
 	}
 
 	Call getFileCall();

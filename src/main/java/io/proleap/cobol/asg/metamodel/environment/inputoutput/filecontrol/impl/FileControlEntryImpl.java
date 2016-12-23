@@ -92,13 +92,13 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 			final AccessModeClause.Mode mode;
 
 			if (ctx.SEQUENTIAL() != null) {
-				mode = AccessModeClause.Mode.Sequential;
+				mode = AccessModeClause.Mode.SEQUENTIAL;
 			} else if (ctx.RANDOM() != null) {
-				mode = AccessModeClause.Mode.Random;
+				mode = AccessModeClause.Mode.RANDOM;
 			} else if (ctx.DYNAMIC() != null) {
-				mode = AccessModeClause.Mode.Dynamic;
+				mode = AccessModeClause.Mode.DYNAMIC;
 			} else if (ctx.EXCLUSIVE() != null) {
-				mode = AccessModeClause.Mode.Exclusive;
+				mode = AccessModeClause.Mode.EXCLUSIVE;
 			} else {
 				LOG.warn("unknown mode {}.", ctx);
 				mode = null;
@@ -150,23 +150,23 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 			final AssignClause.Type type;
 
 			if (ctx.DISK() != null) {
-				type = AssignClause.Type.Disk;
+				type = AssignClause.Type.DISK;
 			} else if (ctx.PORT() != null) {
-				type = AssignClause.Type.Port;
+				type = AssignClause.Type.PORT;
 			} else if (ctx.PRINTER() != null) {
-				type = AssignClause.Type.Printer;
+				type = AssignClause.Type.PRINTER;
 			} else if (ctx.READER() != null) {
-				type = AssignClause.Type.Reader;
+				type = AssignClause.Type.READER;
 			} else if (ctx.REMOTE() != null) {
-				type = AssignClause.Type.Remote;
+				type = AssignClause.Type.REMOTE;
 			} else if (ctx.TAPE() != null) {
-				type = AssignClause.Type.Tape;
+				type = AssignClause.Type.TAPE;
 			} else if (ctx.VIRTUAL() != null) {
-				type = AssignClause.Type.Virtual;
+				type = AssignClause.Type.VIRTUAL;
 			} else if (ctx.assignmentName() != null) {
-				type = AssignClause.Type.Call;
+				type = AssignClause.Type.CALL;
 			} else if (ctx.literal() != null) {
-				type = AssignClause.Type.Call;
+				type = AssignClause.Type.CALL;
 			} else {
 				type = null;
 			}
@@ -215,13 +215,13 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 			final OrganizationClause.Type type;
 
 			if (ctx.LINE() != null) {
-				type = OrganizationClause.Type.Line;
+				type = OrganizationClause.Type.LINE;
 			} else if (ctx.RECORD() != null && ctx.BINARY() != null) {
-				type = OrganizationClause.Type.RecordBinary;
+				type = OrganizationClause.Type.RECORD_BINARY;
 			} else if (ctx.BINARY() != null) {
-				type = OrganizationClause.Type.Binary;
+				type = OrganizationClause.Type.BINARY;
 			} else if (ctx.RECORD() != null) {
-				type = OrganizationClause.Type.Record;
+				type = OrganizationClause.Type.RECORD;
 			} else {
 				type = null;
 			}
@@ -234,11 +234,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 			final OrganizationClause.Mode mode;
 
 			if (ctx.SEQUENTIAL() != null) {
-				mode = OrganizationClause.Mode.Sequential;
+				mode = OrganizationClause.Mode.SEQUENTIAL;
 			} else if (ctx.RELATIVE() != null) {
-				mode = OrganizationClause.Mode.Relative;
+				mode = OrganizationClause.Mode.RELATIVE;
 			} else if (ctx.INDEXED() != null) {
-				mode = OrganizationClause.Mode.Indexed;
+				mode = OrganizationClause.Mode.INDEXED;
 			} else {
 				mode = null;
 			}

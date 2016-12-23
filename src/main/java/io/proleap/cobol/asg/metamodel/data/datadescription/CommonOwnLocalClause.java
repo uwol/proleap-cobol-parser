@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface CommonOwnLocalClause extends CobolDivisionElement {
 
 	enum Invariance {
-		Common, Local, Own
+		COMMON, LOCAL, OWN
 	}
 
 	Invariance getInvariance();

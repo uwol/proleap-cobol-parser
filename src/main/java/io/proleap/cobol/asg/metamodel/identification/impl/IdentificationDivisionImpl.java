@@ -120,13 +120,13 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 			final Attribute attribute;
 
 			if (ctx.COMMON() != null) {
-				attribute = Attribute.Common;
+				attribute = Attribute.COMMON;
 			} else if (ctx.INITIAL() != null) {
-				attribute = Attribute.Initial;
+				attribute = Attribute.INITIAL;
 			} else if (ctx.LIBRARY() != null) {
-				attribute = Attribute.Library;
+				attribute = Attribute.LIBRARY;
 			} else if (ctx.DEFINITION() != null) {
-				attribute = Attribute.Definition;
+				attribute = Attribute.DEFINITION;
 			} else {
 				attribute = null;
 			}

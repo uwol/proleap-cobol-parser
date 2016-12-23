@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface ReceivedByClause extends CobolDivisionElement {
 
 	enum ReceivedBy {
-		Content, Reference
+		CONTENT, REFERENCE
 	}
 
 	ReceivedBy getReceivedBy();

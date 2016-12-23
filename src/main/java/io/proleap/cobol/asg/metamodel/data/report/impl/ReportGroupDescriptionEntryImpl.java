@@ -67,9 +67,9 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 			final UsageClause.Type type;
 
 			if (ctx.DISPLAY() != null) {
-				type = UsageClause.Type.Display;
+				type = UsageClause.Type.DISPLAY;
 			} else if (ctx.DISPLAY_1() != null) {
-				type = UsageClause.Type.Display1;
+				type = UsageClause.Type.DISPLAY_1;
 			} else {
 				LOG.warn("unknown usage at {}", ctx);
 				type = null;
@@ -95,10 +95,10 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 			final IntegerLiteral integerLiteral;
 
 			if (ctx.reportGroupLineNumberNextPage() != null) {
-				type = LineNumberClause.Type.NextPage;
+				type = LineNumberClause.Type.NEXT_PAGE;
 				integerLiteral = createIntegerLiteral(ctx.reportGroupLineNumberNextPage().integerLiteral());
 			} else if (ctx.reportGroupLineNumberPlus() != null) {
-				type = LineNumberClause.Type.Plus;
+				type = LineNumberClause.Type.PLUS;
 				integerLiteral = createIntegerLiteral(ctx.reportGroupLineNumberPlus().integerLiteral());
 			} else {
 				LOG.warn("unknown line number at {}", ctx);

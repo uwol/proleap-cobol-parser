@@ -23,7 +23,7 @@ public class TerminateStatementImpl extends StatementImpl implements TerminateSt
 
 	protected Call reportCall;
 
-	protected final StatementType statementType = StatementTypeEnum.Terminate;
+	protected final StatementType statementType = StatementTypeEnum.TERMINATE;
 
 	public TerminateStatementImpl(final ProgramUnit programUnit, final Scope scope,
 			final TerminateStatementContext ctx) {

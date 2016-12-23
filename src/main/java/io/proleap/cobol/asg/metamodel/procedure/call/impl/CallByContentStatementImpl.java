@@ -46,9 +46,9 @@ public class CallByContentStatementImpl extends CobolDivisionElementImpl impleme
 			final ByContent.Type type;
 
 			if (ctx.ADDRESS() != null) {
-				type = ByContent.Type.AddressOf;
+				type = ByContent.Type.ADDRESS_OF;
 			} else if (ctx.LENGTH() != null) {
-				type = ByContent.Type.LengthOf;
+				type = ByContent.Type.LENGTH_OF;
 			} else {
 				type = null;
 			}

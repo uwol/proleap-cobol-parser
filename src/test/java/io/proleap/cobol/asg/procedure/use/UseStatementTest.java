@@ -50,7 +50,7 @@ public class UseStatementTest extends CobolTestSupport {
 			final Declarative declarative = declaratives.getDeclaratives().get(0);
 			final UseStatement useStatement = declarative.getUseStament();
 			assertNotNull(useStatement);
-			assertEquals(UseStatement.Type.Debug, useStatement.getType());
+			assertEquals(UseStatement.Type.DEBUG, useStatement.getType());
 
 			{
 				final Debug debug = useStatement.getDebug();
@@ -58,24 +58,24 @@ public class UseStatementTest extends CobolTestSupport {
 
 				{
 					final DebugOn debugOn = debug.getDebugOns().get(0);
-					assertEquals(DebugOn.Type.AllReferences, debugOn.getType());
+					assertEquals(DebugOn.Type.ALL_REFERENCES, debugOn.getType());
 
 					final Call onCall = debugOn.getOnCall();
-					assertEquals(Call.CallType.UndefinedCall, onCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, onCall.getCallType());
 				}
 
 				{
 					final DebugOn debugOn = debug.getDebugOns().get(1);
-					assertEquals(DebugOn.Type.AllProcedures, debugOn.getType());
+					assertEquals(DebugOn.Type.ALL_PROCEDURES, debugOn.getType());
 					assertNull(debugOn.getOnCall());
 				}
 
 				{
 					final DebugOn debugOn = debug.getDebugOns().get(2);
-					assertEquals(DebugOn.Type.Procedure, debugOn.getType());
+					assertEquals(DebugOn.Type.PROCEDURE, debugOn.getType());
 
 					final Call onCall = debugOn.getOnCall();
-					assertEquals(Call.CallType.UndefinedCall, onCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, onCall.getCallType());
 				}
 			}
 		}
@@ -84,7 +84,7 @@ public class UseStatementTest extends CobolTestSupport {
 			final Declarative declarative = declaratives.getDeclaratives().get(1);
 			final UseStatement useStatement = declarative.getUseStament();
 			assertNotNull(useStatement);
-			assertEquals(UseStatement.Type.After, useStatement.getType());
+			assertEquals(UseStatement.Type.AFTER, useStatement.getType());
 			assertTrue(useStatement.getAfter().isGlobal());
 		}
 	}

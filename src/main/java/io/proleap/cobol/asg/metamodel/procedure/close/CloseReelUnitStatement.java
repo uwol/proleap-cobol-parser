@@ -13,11 +13,11 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface CloseReelUnitStatement extends CobolDivisionElement {
 
 	enum Type {
-		Reel, Unit
+		REEL, UNIT
 	}
 
 	enum WithType {
-		Lock, NoRewind
+		LOCK, NO_REWIND
 	}
 
 	Type getType();

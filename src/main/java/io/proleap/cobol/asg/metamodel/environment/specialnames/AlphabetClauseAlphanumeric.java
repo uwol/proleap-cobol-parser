@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface AlphabetClauseAlphanumeric extends AlphabetClause {
 
 	enum AlphabetClauseAlphanumericType {
-		Ascii, Ebcdic, Native, Standard1, Standard2
+		ASCII, EBCDIC, NATIVE, STANDARD_1, STANDARD_2
 	}
 
 	void addCharacterSetCall(Call characterSetValueStmt);

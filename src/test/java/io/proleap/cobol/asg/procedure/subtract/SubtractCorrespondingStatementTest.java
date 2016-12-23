@@ -46,8 +46,8 @@ public class SubtractCorrespondingStatementTest extends CobolTestSupport {
 		{
 			final SubtractStatement subtractStatement = (SubtractStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(subtractStatement);
-			assertEquals(StatementTypeEnum.Subtract, subtractStatement.getStatementType());
-			assertEquals(SubtractStatement.Type.Corresponding, subtractStatement.getType());
+			assertEquals(StatementTypeEnum.SUBTRACT, subtractStatement.getStatementType());
+			assertEquals(SubtractStatement.Type.CORRESPONDING, subtractStatement.getType());
 			assertNotNull(subtractStatement.getSubtractCorresponding());
 
 			{
@@ -55,7 +55,7 @@ public class SubtractCorrespondingStatementTest extends CobolTestSupport {
 
 				{
 					final Call subtrahendCall = subtractCorresponding.getSubtrahendCall();
-					assertEquals(Call.CallType.UndefinedCall, subtrahendCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, subtrahendCall.getCallType());
 				}
 
 				{
@@ -63,7 +63,7 @@ public class SubtractCorrespondingStatementTest extends CobolTestSupport {
 					assertTrue(minuend.isRounded());
 
 					final Call minuendCall = minuend.getMinuendCall();
-					assertEquals(Call.CallType.UndefinedCall, minuendCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, minuendCall.getCallType());
 				}
 			}
 		}

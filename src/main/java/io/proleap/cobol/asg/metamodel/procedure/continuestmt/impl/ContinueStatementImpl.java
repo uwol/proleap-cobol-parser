@@ -20,7 +20,7 @@ public class ContinueStatementImpl extends StatementImpl implements ContinueStat
 
 	protected final ContinueStatementContext ctx;
 
-	protected final StatementType statementType = StatementTypeEnum.Continue;
+	protected final StatementType statementType = StatementTypeEnum.CONTINUE;
 
 	public ContinueStatementImpl(final ProgramUnit programUnit, final Scope scope, final ContinueStatementContext ctx) {
 		super(programUnit, scope, ctx);

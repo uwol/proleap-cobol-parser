@@ -42,7 +42,7 @@ public class ContinueStatementTest extends CobolTestSupport {
 		{
 			final ContinueStatement continueStatement = (ContinueStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(continueStatement);
-			assertEquals(StatementTypeEnum.Continue, continueStatement.getStatementType());
+			assertEquals(StatementTypeEnum.CONTINUE, continueStatement.getStatementType());
 		}
 	}
 }

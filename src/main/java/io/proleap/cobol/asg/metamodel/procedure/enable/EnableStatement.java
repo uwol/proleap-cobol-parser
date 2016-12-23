@@ -22,7 +22,7 @@ import io.proleap.cobol.asg.metamodel.procedure.disable.DisableStatement;
 public interface EnableStatement extends Statement {
 
 	enum Type {
-		Input, InputOutput, Output
+		INPUT, INPUT_OUTPUT, OUTPUT
 	}
 
 	Call getCommunicationDescriptionCall();

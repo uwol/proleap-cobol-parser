@@ -43,7 +43,7 @@ public class OpenStatementImpl extends StatementImpl implements OpenStatement {
 
 	protected List<OpenOutput> openOutputs = new ArrayList<OpenOutput>();
 
-	protected final StatementType statementType = StatementTypeEnum.Open;
+	protected final StatementType statementType = StatementTypeEnum.OPEN;
 
 	public OpenStatementImpl(final ProgramUnit programUnit, final Scope scope, final OpenStatementContext ctx) {
 		super(programUnit, scope, ctx);

@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 public interface MemorySizeClause extends CobolDivisionElement {
 
 	enum Unit {
-		Characters, Modules, Words
+		CHARACTERS, MODULES, WORDS
 	}
 
 	Unit getUnit();

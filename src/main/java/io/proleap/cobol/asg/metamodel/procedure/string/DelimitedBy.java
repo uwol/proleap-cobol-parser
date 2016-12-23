@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface DelimitedBy extends CobolDivisionElement {
 
 	enum Type {
-		Characters, Size
+		CHARACTERS, SIZE
 	}
 
 	Call getCharactersCall();

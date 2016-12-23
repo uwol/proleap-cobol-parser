@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface UsingCloseDisposition extends CobolDivisionElement {
 
 	enum Type {
-		Abort, Orderly
+		ABORT, ORDERLY
 	}
 
 	Type getType();

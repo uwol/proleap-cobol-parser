@@ -20,7 +20,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface SetStatement extends Statement {
 
 	enum Type {
-		By, To
+		BY, TO
 	}
 
 	SetBy addSetBy(SetUpDownByStatementContext ctx);

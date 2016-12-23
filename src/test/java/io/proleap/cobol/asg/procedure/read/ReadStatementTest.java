@@ -51,11 +51,11 @@ public class ReadStatementTest extends CobolTestSupport {
 		{
 			final ReadStatement readStatement = (ReadStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(readStatement);
-			assertEquals(StatementTypeEnum.Read, readStatement.getStatementType());
+			assertEquals(StatementTypeEnum.READ, readStatement.getStatementType());
 
 			{
 				assertNotNull(readStatement.getFileCall());
-				assertEquals(Call.CallType.UndefinedCall, readStatement.getFileCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, readStatement.getFileCall().getCallType());
 			}
 
 			assertTrue(readStatement.isNextRecord());
@@ -64,20 +64,20 @@ public class ReadStatementTest extends CobolTestSupport {
 				final Into into = readStatement.getInto();
 				assertNotNull(into);
 				assertNotNull(into.getIntoCall());
-				assertEquals(Call.CallType.UndefinedCall, into.getIntoCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, into.getIntoCall().getCallType());
 			}
 
 			{
 				final With with = readStatement.getWith();
 				assertNotNull(with);
 				assertNotNull(with.getType());
-				assertEquals(With.Type.Wait, with.getType());
+				assertEquals(With.Type.WAIT, with.getType());
 			}
 
 			{
 				final Key key = readStatement.getKey();
 				assertNotNull(key.getKeyCall());
-				assertEquals(Call.CallType.UndefinedCall, key.getKeyCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, key.getKeyCall().getCallType());
 			}
 
 			{
@@ -88,7 +88,7 @@ public class ReadStatementTest extends CobolTestSupport {
 				{
 					final DisplayStatement displayStatement = (DisplayStatement) invalidKey.getStatements().get(0);
 					assertNotNull(displayStatement);
-					assertEquals(StatementTypeEnum.Display, displayStatement.getStatementType());
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 				}
 			}
 
@@ -100,7 +100,7 @@ public class ReadStatementTest extends CobolTestSupport {
 				{
 					final DisplayStatement displayStatement = (DisplayStatement) notInvalidKey.getStatements().get(0);
 					assertNotNull(displayStatement);
-					assertEquals(StatementTypeEnum.Display, displayStatement.getStatementType());
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 				}
 			}
 
@@ -112,7 +112,7 @@ public class ReadStatementTest extends CobolTestSupport {
 				{
 					final DisplayStatement displayStatement = (DisplayStatement) atEnd.getStatements().get(0);
 					assertNotNull(displayStatement);
-					assertEquals(StatementTypeEnum.Display, displayStatement.getStatementType());
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 				}
 			}
 
@@ -124,7 +124,7 @@ public class ReadStatementTest extends CobolTestSupport {
 				{
 					final DisplayStatement displayStatement = (DisplayStatement) notAtEnd.getStatements().get(0);
 					assertNotNull(displayStatement);
-					assertEquals(StatementTypeEnum.Display, displayStatement.getStatementType());
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 				}
 			}
 		}

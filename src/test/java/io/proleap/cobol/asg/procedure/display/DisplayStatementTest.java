@@ -45,25 +45,25 @@ public class DisplayStatementTest extends CobolTestSupport {
 		{
 			final DisplayStatement displayStatement = (DisplayStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(displayStatement);
-			assertEquals(StatementTypeEnum.Display, displayStatement.getStatementType());
+			assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 			assertEquals(3, displayStatement.getOperands().size());
 
 			{
 				final Operand operand = displayStatement.getOperands().get(0);
 				assertNotNull(operand.getOperandCall());
-				assertEquals(Call.CallType.UndefinedCall, operand.getOperandCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, operand.getOperandCall().getCallType());
 			}
 
 			{
 				final Operand operand = displayStatement.getOperands().get(1);
 				assertNotNull(operand.getOperandCall());
-				assertEquals(Call.CallType.UndefinedCall, operand.getOperandCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, operand.getOperandCall().getCallType());
 			}
 
 			{
 				final Operand operand = displayStatement.getOperands().get(2);
 				assertNotNull(operand.getOperandCall());
-				assertEquals(Call.CallType.UndefinedCall, operand.getOperandCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, operand.getOperandCall().getCallType());
 			}
 
 			{
@@ -71,7 +71,7 @@ public class DisplayStatementTest extends CobolTestSupport {
 
 				final Call uponCall = displayStatement.getUpon().getUponCall();
 				assertNotNull(uponCall);
-				assertEquals(Call.CallType.UndefinedCall, uponCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, uponCall.getCallType());
 			}
 
 			{

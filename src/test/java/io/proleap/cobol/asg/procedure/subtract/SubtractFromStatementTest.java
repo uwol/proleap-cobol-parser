@@ -48,8 +48,8 @@ public class SubtractFromStatementTest extends CobolTestSupport {
 		{
 			final SubtractStatement subtractStatement = (SubtractStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(subtractStatement);
-			assertEquals(StatementTypeEnum.Subtract, subtractStatement.getStatementType());
-			assertEquals(SubtractStatement.Type.From, subtractStatement.getType());
+			assertEquals(StatementTypeEnum.SUBTRACT, subtractStatement.getStatementType());
+			assertEquals(SubtractStatement.Type.FROM, subtractStatement.getType());
 			assertNotNull(subtractStatement.getSubtractFrom());
 
 			{
@@ -59,13 +59,13 @@ public class SubtractFromStatementTest extends CobolTestSupport {
 				{
 					final Subtrahend subtrahend = subtractFrom.getSubtrahends().get(0);
 					final Call subtrahendCall = subtrahend.getSubtrahendCall();
-					assertEquals(Call.CallType.UndefinedCall, subtrahendCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, subtrahendCall.getCallType());
 				}
 
 				{
 					final Subtrahend subtrahend = subtractFrom.getSubtrahends().get(1);
 					final Call subtrahendCall = subtrahend.getSubtrahendCall();
-					assertEquals(Call.CallType.UndefinedCall, subtrahendCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, subtrahendCall.getCallType());
 				}
 
 				assertEquals(2, subtractFrom.getMinuends().size());
@@ -75,7 +75,7 @@ public class SubtractFromStatementTest extends CobolTestSupport {
 					assertFalse(minuend.isRounded());
 
 					final Call minuendCall = minuend.getMinuendCall();
-					assertEquals(Call.CallType.UndefinedCall, minuendCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, minuendCall.getCallType());
 				}
 
 				{
@@ -83,7 +83,7 @@ public class SubtractFromStatementTest extends CobolTestSupport {
 					assertTrue(minuend.isRounded());
 
 					final Call minuendCall = minuend.getMinuendCall();
-					assertEquals(Call.CallType.UndefinedCall, minuendCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, minuendCall.getCallType());
 				}
 			}
 		}

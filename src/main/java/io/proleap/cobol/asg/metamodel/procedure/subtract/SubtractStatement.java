@@ -21,7 +21,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface SubtractStatement extends Statement {
 
 	enum Type {
-		Corresponding, From, FromGiving
+		CORRESPONDING, FROM, FROM_GIVING
 	}
 
 	SubtractCorresponding addSubtractCorresponding(SubtractCorrespondingStatementContext ctx);

@@ -90,9 +90,9 @@ public class LibraryDescriptionEntryImportImpl extends LibraryDescriptionEntryIm
 			final ImportAttribute.Type type;
 
 			if (ctx.BYFUNCTION() != null) {
-				type = ImportAttribute.Type.ByFunction;
+				type = ImportAttribute.Type.BY_FUNCTION;
 			} else if (ctx.BYTITLE() != null) {
-				type = ImportAttribute.Type.ByTitle;
+				type = ImportAttribute.Type.BY_TITLE;
 			} else {
 				type = null;
 			}
@@ -200,7 +200,7 @@ public class LibraryDescriptionEntryImportImpl extends LibraryDescriptionEntryIm
 
 	@Override
 	public Type getType() {
-		return Type.Import;
+		return Type.IMPORT;
 	}
 
 }

@@ -45,7 +45,7 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 
 	protected Call recordCall;
 
-	protected final StatementType statementType = StatementTypeEnum.Write;
+	protected final StatementType statementType = StatementTypeEnum.WRITE;
 
 	public WriteStatementImpl(final ProgramUnit programUnit, final Scope scope, final WriteStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -64,13 +64,13 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 			final Advancing.Type type;
 
 			if (ctx.writeAdvancingPage() != null) {
-				type = Advancing.Type.Page;
+				type = Advancing.Type.PAGE;
 			} else if (ctx.writeAdvancingLines() != null) {
 				result.addAdvancingLines(ctx.writeAdvancingLines());
-				type = Advancing.Type.Lines;
+				type = Advancing.Type.LINES;
 			} else if (ctx.writeAdvancingMnemonic() != null) {
 				result.addAdvancingMnemonic(ctx.writeAdvancingMnemonic());
-				type = Advancing.Type.Mnemonic;
+				type = Advancing.Type.MNEMONIC;
 			} else {
 				type = null;
 			}
@@ -81,9 +81,9 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 			final Advancing.PositionType positionType;
 
 			if (ctx.AFTER() != null) {
-				positionType = Advancing.PositionType.After;
+				positionType = Advancing.PositionType.AFTER;
 			} else if (ctx.BEFORE() != null) {
-				positionType = Advancing.PositionType.Before;
+				positionType = Advancing.PositionType.BEFORE;
 			} else {
 				positionType = null;
 			}

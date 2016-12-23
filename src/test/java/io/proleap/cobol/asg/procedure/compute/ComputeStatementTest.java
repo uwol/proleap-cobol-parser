@@ -43,18 +43,18 @@ public class ComputeStatementTest extends CobolTestSupport {
 
 		{
 			final ComputeStatement computeStatement = (ComputeStatement) procedureDivision.getStatements().get(0);
-			assertEquals(StatementTypeEnum.Compute, computeStatement.getStatementType());
+			assertEquals(StatementTypeEnum.COMPUTE, computeStatement.getStatementType());
 
 			{
 				final Store store = computeStatement.getStores().get(0);
 				assertNotNull(store.getStoreCall());
-				assertEquals(Call.CallType.UndefinedCall, store.getStoreCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, store.getStoreCall().getCallType());
 			}
 
 			{
 				final Store store = computeStatement.getStores().get(1);
 				assertNotNull(store.getStoreCall());
-				assertEquals(Call.CallType.UndefinedCall, store.getStoreCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, store.getStoreCall().getCallType());
 			}
 		}
 	}

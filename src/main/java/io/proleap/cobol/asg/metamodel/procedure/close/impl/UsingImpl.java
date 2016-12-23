@@ -86,9 +86,9 @@ public class UsingImpl extends CobolDivisionElementImpl implements Using {
 			final UsingCloseDisposition.Type type;
 
 			if (ctx.ABORT() != null) {
-				type = UsingCloseDisposition.Type.Abort;
+				type = UsingCloseDisposition.Type.ABORT;
 			} else if (ctx.ORDERLY() != null) {
-				type = UsingCloseDisposition.Type.Orderly;
+				type = UsingCloseDisposition.Type.ORDERLY;
 			} else {
 				type = null;
 			}

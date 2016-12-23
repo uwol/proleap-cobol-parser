@@ -43,7 +43,7 @@ public class IfStatementTest extends CobolTestSupport {
 		{
 			final IfStatement ifStatement = (IfStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(ifStatement);
-			assertEquals(StatementTypeEnum.If, ifStatement.getStatementType());
+			assertEquals(StatementTypeEnum.IF, ifStatement.getStatementType());
 
 			{
 				assertNotNull(ifStatement.getCondition());

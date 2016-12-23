@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface DebugOn extends CobolDivisionElement {
 
 	enum Type {
-		AllProcedures, AllReferences, File, Procedure
+		ALL_PROCEDURES, ALL_REFERENCES, FILE, PROCEDURE
 	}
 
 	Call getOnCall();

@@ -35,7 +35,7 @@ public class ComputeStatementImpl extends StatementImpl implements ComputeStatem
 
 	protected OnSizeError onSizeError;
 
-	protected final StatementType statementType = StatementTypeEnum.Compute;
+	protected final StatementType statementType = StatementTypeEnum.COMPUTE;
 
 	protected List<Store> stores = new ArrayList<Store>();
 

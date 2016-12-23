@@ -46,8 +46,8 @@ public class SetToStatementTest extends CobolTestSupport {
 		{
 			final SetStatement setStatement = (SetStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(setStatement);
-			assertEquals(StatementTypeEnum.Set, setStatement.getStatementType());
-			assertEquals(SetStatement.Type.To, setStatement.getType());
+			assertEquals(StatementTypeEnum.SET, setStatement.getStatementType());
+			assertEquals(SetStatement.Type.TO, setStatement.getType());
 			assertEquals(2, setStatement.getSetTos().size());
 
 			{
@@ -59,32 +59,32 @@ public class SetToStatementTest extends CobolTestSupport {
 					final To to = setTo.getTos().get(0);
 					final Call toCall = to.getToCall();
 					assertNotNull(toCall);
-					assertEquals(Call.CallType.UndefinedCall, toCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, toCall.getCallType());
 				}
 
 				{
 					final To to = setTo.getTos().get(1);
 					final Call toCall = to.getToCall();
 					assertNotNull(toCall);
-					assertEquals(Call.CallType.UndefinedCall, toCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, toCall.getCallType());
 				}
 
 				{
 					final Value value = setTo.getValues().get(0);
-					assertEquals(Value.Type.Call, value.getType());
+					assertEquals(Value.Type.CALL, value.getType());
 
 					final Call valueCall = value.getValueCall();
 					assertNotNull(valueCall);
-					assertEquals(Call.CallType.UndefinedCall, valueCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, valueCall.getCallType());
 				}
 
 				{
 					final Value value = setTo.getValues().get(1);
-					assertEquals(Value.Type.Call, value.getType());
+					assertEquals(Value.Type.CALL, value.getType());
 
 					final Call valueCall = value.getValueCall();
 					assertNotNull(valueCall);
-					assertEquals(Call.CallType.UndefinedCall, valueCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, valueCall.getCallType());
 				}
 			}
 
@@ -97,21 +97,21 @@ public class SetToStatementTest extends CobolTestSupport {
 					final To to = setTo.getTos().get(0);
 					final Call toCall = to.getToCall();
 					assertNotNull(toCall);
-					assertEquals(Call.CallType.UndefinedCall, toCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, toCall.getCallType());
 				}
 
 				{
 					final Value value = setTo.getValues().get(0);
-					assertEquals(Value.Type.Call, value.getType());
+					assertEquals(Value.Type.CALL, value.getType());
 
 					final Call valueCall = value.getValueCall();
 					assertNotNull(valueCall);
-					assertEquals(Call.CallType.UndefinedCall, valueCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, valueCall.getCallType());
 				}
 
 				{
 					final Value value = setTo.getValues().get(1);
-					assertEquals(Value.Type.On, value.getType());
+					assertEquals(Value.Type.ON, value.getType());
 					assertNull(value.getValueCall());
 				}
 			}

@@ -39,7 +39,7 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 
 	protected Regular regular;
 
-	protected final StatementType statementType = StatementTypeEnum.Multiply;
+	protected final StatementType statementType = StatementTypeEnum.MULTIPLY;
 
 	protected Type type;
 

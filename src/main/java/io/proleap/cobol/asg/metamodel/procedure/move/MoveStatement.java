@@ -18,7 +18,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface MoveStatement extends Statement {
 
 	enum Type {
-		MoveCorrespondingTo, MoveTo
+		MOVE_CORRESPONDING_TO, MOVE_TO
 	}
 
 	MoveCorrespondingTo addMoveCorrespondingTo(MoveCorrespondingToStatementContext ctx);

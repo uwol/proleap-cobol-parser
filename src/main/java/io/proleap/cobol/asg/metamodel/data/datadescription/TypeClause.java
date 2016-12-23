@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface TypeClause extends CobolDivisionElement {
 
 	enum TimeType {
-		LongDate, LongTime, NumericDate, NumericTime, ShortDate
+		LONG_DATE, LONG_TIME, NUMERIC_DATE, NUMERIC_TIME, SHORT_DATE
 	}
 
 	TimeType getTimeType();

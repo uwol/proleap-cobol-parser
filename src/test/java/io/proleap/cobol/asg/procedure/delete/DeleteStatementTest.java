@@ -42,7 +42,7 @@ public class DeleteStatementTest extends CobolTestSupport {
 		{
 			final DeleteStatement deleteStatement = (DeleteStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(deleteStatement);
-			assertEquals(StatementTypeEnum.Delete, deleteStatement.getStatementType());
+			assertEquals(StatementTypeEnum.DELETE, deleteStatement.getStatementType());
 			assertNotNull(deleteStatement.getFileCall());
 			assertTrue(deleteStatement.isRecord());
 		}

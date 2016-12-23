@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface With extends CobolDivisionElement {
 
 	enum Type {
-		Call, Egi, Emi, Esi
+		CALL, EGI, EMI, ESI
 	}
 
 	Type getType();

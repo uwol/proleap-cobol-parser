@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface SecureClause extends CobolDivisionElement {
 
 	enum Type {
-		NoEcho, Secure
+		NO_ECHO, SECURE
 	}
 
 	Type getType();

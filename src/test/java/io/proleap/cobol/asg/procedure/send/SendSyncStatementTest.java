@@ -48,8 +48,8 @@ public class SendSyncStatementTest extends CobolTestSupport {
 		{
 			final SendStatement sendStatement = (SendStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(sendStatement);
-			assertEquals(StatementTypeEnum.Send, sendStatement.getStatementType());
-			assertEquals(SendStatement.Type.Sync, sendStatement.getType());
+			assertEquals(StatementTypeEnum.SEND, sendStatement.getStatementType());
+			assertEquals(SendStatement.Type.SYNC, sendStatement.getType());
 
 			{
 				final Sync sync = sendStatement.getSync();
@@ -58,20 +58,20 @@ public class SendSyncStatementTest extends CobolTestSupport {
 				{
 					final Call receivingProgramCall = sync.getReceivingProgramCall();
 					assertNotNull(receivingProgramCall);
-					assertEquals(Call.CallType.UndefinedCall, receivingProgramCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, receivingProgramCall.getCallType());
 				}
 
 				{
 					final From from = sync.getFrom();
 					assertNotNull(from);
-					assertEquals(Call.CallType.UndefinedCall, from.getFromCall().getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, from.getFromCall().getCallType());
 				}
 
 				{
 					final With with = sync.getWith();
 					assertNotNull(with);
-					assertEquals(With.Type.Call, with.getType());
-					assertEquals(Call.CallType.UndefinedCall, with.getWithCall().getCallType());
+					assertEquals(With.Type.CALL, with.getType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, with.getWithCall().getCallType());
 				}
 
 				assertTrue(sync.isReplacing());
@@ -79,14 +79,14 @@ public class SendSyncStatementTest extends CobolTestSupport {
 				{
 					final Advancing advancing = sync.getAdvancing();
 					assertNotNull(advancing);
-					assertEquals(Advancing.PositionType.Before, advancing.getPositionType());
-					assertEquals(Advancing.Type.Lines, advancing.getType());
+					assertEquals(Advancing.PositionType.BEFORE, advancing.getPositionType());
+					assertEquals(Advancing.Type.LINES, advancing.getType());
 
 					{
 						final AdvancingLines advancingLines = advancing.getAdvancingLines();
 						assertNotNull(advancingLines);
 						assertNotNull(advancingLines.getLinesCall());
-						assertEquals(Call.CallType.UndefinedCall, advancingLines.getLinesCall().getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, advancingLines.getLinesCall().getCallType());
 					}
 				}
 			}

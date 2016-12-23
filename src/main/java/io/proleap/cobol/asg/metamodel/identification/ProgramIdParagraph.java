@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.NamedElement;
 public interface ProgramIdParagraph extends CobolDivisionElement, NamedElement {
 
 	enum Attribute {
-		Common, Definition, Initial, Library
+		COMMON, DEFINITION, INITIAL, LIBRARY
 	}
 
 	Attribute getAttribute();

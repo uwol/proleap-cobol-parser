@@ -60,10 +60,10 @@ public class DeclarativeImpl extends CobolDivisionElementImpl implements Declara
 
 			if (ctx.useAfterClause() != null) {
 				result.addAfter(ctx.useAfterClause());
-				type = UseStatement.Type.After;
+				type = UseStatement.Type.AFTER;
 			} else if (ctx.useDebugClause() != null) {
 				result.addDebug(ctx.useDebugClause());
-				type = UseStatement.Type.Debug;
+				type = UseStatement.Type.DEBUG;
 			} else {
 				type = null;
 			}

@@ -47,12 +47,12 @@ public class RewriteStatementTest extends CobolTestSupport {
 		{
 			final RewriteStatement rewriteStatement = (RewriteStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(rewriteStatement);
-			assertEquals(StatementTypeEnum.Rewrite, rewriteStatement.getStatementType());
+			assertEquals(StatementTypeEnum.REWRITE, rewriteStatement.getStatementType());
 
 			{
 				final Call recordCall = rewriteStatement.getRecordCall();
 				assertNotNull(recordCall);
-				assertEquals(Call.CallType.UndefinedCall, recordCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, recordCall.getCallType());
 			}
 
 			{
@@ -61,7 +61,7 @@ public class RewriteStatementTest extends CobolTestSupport {
 
 				final Call fromCall = from.getFromCall();
 				assertNotNull(fromCall);
-				assertEquals(Call.CallType.UndefinedCall, fromCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, fromCall.getCallType());
 			}
 
 			{

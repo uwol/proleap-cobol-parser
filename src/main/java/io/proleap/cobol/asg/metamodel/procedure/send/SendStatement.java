@@ -20,7 +20,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface SendStatement extends Statement {
 
 	enum Type {
-		Async, Sync
+		ASYNC, SYNC
 	}
 
 	Async addAsync(SendStatementAsyncContext ctx);

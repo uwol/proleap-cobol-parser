@@ -55,7 +55,7 @@ public class InitializeStatementTest extends CobolTestSupport {
 
 		assertNotNull(someGroup);
 		assertEquals("SOMEGRP", someGroup.getName());
-		assertEquals(DataDescriptionEntry.Type.Group, someGroup.getType());
+		assertEquals(DataDescriptionEntry.Type.GROUP, someGroup.getType());
 
 		final DataDescriptionEntry someName = someGroup.findDataDescriptionEntry("SOMENAME");
 		assertNotNull(someName);
@@ -68,12 +68,12 @@ public class InitializeStatementTest extends CobolTestSupport {
 			final InitializeStatement initializeStatement = (InitializeStatement) procedureDivision.getStatements()
 					.get(0);
 			assertNotNull(initializeStatement);
-			assertEquals(StatementTypeEnum.Initialize, initializeStatement.getStatementType());
+			assertEquals(StatementTypeEnum.INITIALIZE, initializeStatement.getStatementType());
 			assertEquals(1, initializeStatement.getDataItemCalls().size());
 
 			{
 				final Call dataItemCall = initializeStatement.getDataItemCalls().get(0);
-				assertEquals(Call.CallType.DataDescriptionEntryCall, dataItemCall.getCallType());
+				assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, dataItemCall.getCallType());
 
 				{
 					final DataDescriptionEntryCall dataItemDataDescriptionEntryCall = (DataDescriptionEntryCall) dataItemCall;
@@ -88,12 +88,12 @@ public class InitializeStatementTest extends CobolTestSupport {
 			final InitializeStatement initializeStatement = (InitializeStatement) procedureDivision.getStatements()
 					.get(1);
 			assertNotNull(initializeStatement);
-			assertEquals(StatementTypeEnum.Initialize, initializeStatement.getStatementType());
+			assertEquals(StatementTypeEnum.INITIALIZE, initializeStatement.getStatementType());
 			assertEquals(1, initializeStatement.getDataItemCalls().size());
 
 			{
 				final Call dataItemCall = initializeStatement.getDataItemCalls().get(0);
-				assertEquals(Call.CallType.DataDescriptionEntryCall, dataItemCall.getCallType());
+				assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, dataItemCall.getCallType());
 
 				{
 					final DataDescriptionEntryCall dataItemDataDescriptionEntryCall = (DataDescriptionEntryCall) dataItemCall;
@@ -108,9 +108,9 @@ public class InitializeStatementTest extends CobolTestSupport {
 
 				{
 					final By by = replacing.getBys().get(0);
-					assertEquals(By.Type.Alphanumeric, by.getType());
+					assertEquals(By.Type.ALPHANUMERIC, by.getType());
 					assertNotNull(by.getValueCall());
-					assertEquals(Call.CallType.UndefinedCall, by.getValueCall().getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, by.getValueCall().getCallType());
 				}
 			}
 		}

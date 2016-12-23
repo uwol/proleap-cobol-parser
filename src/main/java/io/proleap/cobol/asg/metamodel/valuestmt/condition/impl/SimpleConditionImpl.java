@@ -60,19 +60,19 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 			final ClassCondition.Type type;
 
 			if (ctx.NUMERIC() != null) {
-				type = ClassCondition.Type.Numeric;
+				type = ClassCondition.Type.NUMERIC;
 			} else if (ctx.ALPHABETIC() != null) {
-				type = ClassCondition.Type.Alphabetic;
+				type = ClassCondition.Type.ALPHABETIC;
 			} else if (ctx.ALPHABETIC_LOWER() != null) {
-				type = ClassCondition.Type.AlphabeticLower;
+				type = ClassCondition.Type.ALPHABETIC_LOWER;
 			} else if (ctx.ALPHABETIC_UPPER() != null) {
-				type = ClassCondition.Type.AlphabeticUpper;
+				type = ClassCondition.Type.ALPHABETIC_UPPER;
 			} else if (ctx.DBCS() != null) {
-				type = ClassCondition.Type.Dbcs;
+				type = ClassCondition.Type.DBCS;
 			} else if (ctx.KANJI() != null) {
-				type = ClassCondition.Type.Kanji;
+				type = ClassCondition.Type.KANJI;
 			} else if (ctx.className() != null) {
-				type = ClassCondition.Type.ClassName;
+				type = ClassCondition.Type.CLASS_NAME;
 			} else {
 				type = null;
 			}

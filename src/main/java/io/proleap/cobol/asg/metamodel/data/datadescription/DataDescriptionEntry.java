@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 public interface DataDescriptionEntry extends CobolDivisionElement, Declaration {
 
 	enum Type {
-		Condition, Group, Rename, Scalar
+		CONDITION, GROUP, RENAME, SCALAR
 	}
 
 	static final int LEVEL_NUMBER_CONDITION = 88;

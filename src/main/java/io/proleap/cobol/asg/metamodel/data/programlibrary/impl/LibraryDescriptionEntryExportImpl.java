@@ -52,13 +52,13 @@ public class LibraryDescriptionEntryExportImpl extends LibraryDescriptionEntryIm
 				final ExportAttribute.Sharing sharing;
 
 				if (ctx.DONTCARE() != null) {
-					sharing = ExportAttribute.Sharing.DontCare;
+					sharing = ExportAttribute.Sharing.DONT_CARE;
 				} else if (ctx.PRIVATE() != null) {
-					sharing = ExportAttribute.Sharing.Private;
+					sharing = ExportAttribute.Sharing.PRIVATE;
 				} else if (ctx.SHAREDBYRUNUNIT() != null) {
-					sharing = ExportAttribute.Sharing.SharedByRunUnit;
+					sharing = ExportAttribute.Sharing.SHARED_BY_RUN_UNIT;
 				} else if (ctx.SHAREDBYALL() != null) {
-					sharing = ExportAttribute.Sharing.SharedByAll;
+					sharing = ExportAttribute.Sharing.SHARED_BY_ALL;
 				} else {
 					LOG.warn("unknown sharing at {}", ctx);
 					sharing = null;
@@ -113,6 +113,6 @@ public class LibraryDescriptionEntryExportImpl extends LibraryDescriptionEntryIm
 
 	@Override
 	public Type getType() {
-		return Type.Export;
+		return Type.EXPORT;
 	}
 }

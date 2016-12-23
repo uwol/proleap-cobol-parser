@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface SetBy extends CobolDivisionElement {
 
 	enum Type {
-		Down, Up
+		DOWN, UP
 	}
 
 	By addBy(SetByValueContext ctx);

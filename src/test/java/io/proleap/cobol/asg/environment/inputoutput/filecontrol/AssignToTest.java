@@ -44,7 +44,7 @@ public class AssignToTest extends CobolTestSupport {
 
 		final AssignClause assignClause = fileControlEntry.getAssignClause();
 		assertNotNull(assignClause);
-		assertEquals(AssignClause.Type.Disk, assignClause.getType());
+		assertEquals(AssignClause.Type.DISK, assignClause.getType());
 		assertNull(assignClause.getToCall());
 	}
 }

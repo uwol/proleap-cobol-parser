@@ -44,8 +44,8 @@ public class AddToStatementTest extends CobolTestSupport {
 
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(0);
-			assertEquals(StatementTypeEnum.Add, addStatement.getStatementType());
-			assertEquals(AddStatement.Type.To, addStatement.getType());
+			assertEquals(StatementTypeEnum.ADD, addStatement.getStatementType());
+			assertEquals(AddStatement.Type.TO, addStatement.getType());
 			assertNotNull(addStatement.getAddTo());
 
 			final AddTo addTo = addStatement.getAddTo();
@@ -59,13 +59,13 @@ public class AddToStatementTest extends CobolTestSupport {
 			final To to = addTo.getTos().get(0);
 
 			assertNotNull(to.getTo());
-			assertEquals(Call.CallType.DataDescriptionEntryCall, to.getTo().getCallType());
+			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to.getTo().getCallType());
 		}
 
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(1);
-			assertEquals(StatementTypeEnum.Add, addStatement.getStatementType());
-			assertEquals(AddStatement.Type.To, addStatement.getType());
+			assertEquals(StatementTypeEnum.ADD, addStatement.getStatementType());
+			assertEquals(AddStatement.Type.TO, addStatement.getType());
 			assertNotNull(addStatement.getAddTo());
 
 			final AddTo addTo = addStatement.getAddTo();
@@ -82,9 +82,9 @@ public class AddToStatementTest extends CobolTestSupport {
 			final To to2 = addTo.getTos().get(1);
 
 			assertNotNull(to1.getTo());
-			assertEquals(Call.CallType.DataDescriptionEntryCall, to1.getTo().getCallType());
+			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to1.getTo().getCallType());
 			assertNotNull(to2.getTo());
-			assertEquals(Call.CallType.DataDescriptionEntryCall, to2.getTo().getCallType());
+			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to2.getTo().getCallType());
 		}
 	}
 }

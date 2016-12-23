@@ -41,9 +41,9 @@ public class MultDivImpl extends ValueStmtImpl implements MultDiv {
 			final Powers.Type type;
 
 			if (ctx.PLUSCHAR() != null) {
-				type = Powers.Type.Plus;
+				type = Powers.Type.PLUS;
 			} else if (ctx.MINUSCHAR() != null) {
-				type = Powers.Type.Minus;
+				type = Powers.Type.MINUS;
 			} else {
 				type = null;
 			}

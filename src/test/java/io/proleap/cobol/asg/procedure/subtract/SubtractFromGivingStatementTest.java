@@ -49,8 +49,8 @@ public class SubtractFromGivingStatementTest extends CobolTestSupport {
 		{
 			final SubtractStatement subtractStatement = (SubtractStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(subtractStatement);
-			assertEquals(StatementTypeEnum.Subtract, subtractStatement.getStatementType());
-			assertEquals(SubtractStatement.Type.FromGiving, subtractStatement.getType());
+			assertEquals(StatementTypeEnum.SUBTRACT, subtractStatement.getStatementType());
+			assertEquals(SubtractStatement.Type.FROM_GIVING, subtractStatement.getType());
 			assertNotNull(subtractStatement.getSubtractFromGiving());
 
 			{
@@ -60,19 +60,19 @@ public class SubtractFromGivingStatementTest extends CobolTestSupport {
 				{
 					final Subtrahend subtrahend = subtractFromGiving.getSubtrahends().get(0);
 					final Call subtrahendCall = subtrahend.getSubtrahendCall();
-					assertEquals(Call.CallType.UndefinedCall, subtrahendCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, subtrahendCall.getCallType());
 				}
 
 				{
 					final Subtrahend subtrahend = subtractFromGiving.getSubtrahends().get(1);
 					final Call subtrahendCall = subtrahend.getSubtrahendCall();
-					assertEquals(Call.CallType.UndefinedCall, subtrahendCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, subtrahendCall.getCallType());
 				}
 
 				{
 					final MinuendGiving minuend = subtractFromGiving.getMinuend();
 					final Call minuendCall = minuend.getMinuendCall();
-					assertEquals(Call.CallType.UndefinedCall, minuendCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, minuendCall.getCallType());
 				}
 
 				assertEquals(2, subtractFromGiving.getGivings().size());
@@ -82,7 +82,7 @@ public class SubtractFromGivingStatementTest extends CobolTestSupport {
 					assertFalse(giving.isRounded());
 
 					final Call givingCall = giving.getGivingCall();
-					assertEquals(Call.CallType.UndefinedCall, givingCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, givingCall.getCallType());
 				}
 
 				{
@@ -90,7 +90,7 @@ public class SubtractFromGivingStatementTest extends CobolTestSupport {
 					assertTrue(giving.isRounded());
 
 					final Call givingCall = giving.getGivingCall();
-					assertEquals(Call.CallType.UndefinedCall, givingCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, givingCall.getCallType());
 				}
 			}
 		}

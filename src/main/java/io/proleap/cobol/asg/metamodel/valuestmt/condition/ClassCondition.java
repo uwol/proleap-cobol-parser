@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 public interface ClassCondition extends ValueStmt {
 
 	enum Type {
-		Alphabetic, AlphabeticLower, AlphabeticUpper, ClassName, Dbcs, Kanji, Numeric
+		ALPHABETIC, ALPHABETIC_LOWER, ALPHABETIC_UPPER, CLASS_NAME, DBCS, KANJI, NUMERIC
 	}
 
 	Call getClassCall();

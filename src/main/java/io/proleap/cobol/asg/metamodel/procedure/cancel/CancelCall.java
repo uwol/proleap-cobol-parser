@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface CancelCall extends CobolDivisionElement {
 
 	enum Type {
-		ByFunction, ByTitle
+		BY_FUNCTION, BY_TITLE
 	}
 
 	Call getCall();

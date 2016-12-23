@@ -35,7 +35,7 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 
 	protected Call dataCall;
 
-	protected final StatementType statementType = StatementTypeEnum.Search;
+	protected final StatementType statementType = StatementTypeEnum.SEARCH;
 
 	protected Varying varying;
 
@@ -79,13 +79,13 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 			final When.Type type;
 
 			if (ctx.NEXT() != null) {
-				type = When.Type.NextSentence;
+				type = When.Type.NEXT_SENTENCE;
 			} else if (!ctx.statement().isEmpty()) {
 				for (final StatementContext statementContext : ctx.statement()) {
 					result.addStatement(statementContext);
 				}
 
-				type = When.Type.Statements;
+				type = When.Type.STATEMENTS;
 			} else {
 				type = null;
 			}

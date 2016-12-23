@@ -26,7 +26,7 @@ public class EntryStatementImpl extends StatementImpl implements EntryStatement 
 
 	protected Call entryCall;
 
-	protected final StatementType statementType = StatementTypeEnum.Entry;
+	protected final StatementType statementType = StatementTypeEnum.ENTRY;
 
 	protected List<Call> usingCalls = new ArrayList<Call>();
 

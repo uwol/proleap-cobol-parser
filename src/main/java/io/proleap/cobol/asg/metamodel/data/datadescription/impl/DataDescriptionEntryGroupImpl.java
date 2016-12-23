@@ -175,11 +175,11 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			final CommonOwnLocalClause.Invariance invariance;
 
 			if (ctx.COMMON() != null) {
-				invariance = CommonOwnLocalClause.Invariance.Common;
+				invariance = CommonOwnLocalClause.Invariance.COMMON;
 			} else if (ctx.OWN() != null) {
-				invariance = CommonOwnLocalClause.Invariance.Own;
+				invariance = CommonOwnLocalClause.Invariance.OWN;
 			} else if (ctx.LOCAL() != null) {
-				invariance = CommonOwnLocalClause.Invariance.Local;
+				invariance = CommonOwnLocalClause.Invariance.LOCAL;
 			} else {
 				invariance = null;
 			}
@@ -251,9 +251,9 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			final IntegerStringClause.PrimitiveType primitiveType;
 
 			if (ctx.INTEGER() != null) {
-				primitiveType = IntegerStringClause.PrimitiveType.Integer;
+				primitiveType = IntegerStringClause.PrimitiveType.INTEGER;
 			} else if (ctx.STRING() != null) {
-				primitiveType = IntegerStringClause.PrimitiveType.String;
+				primitiveType = IntegerStringClause.PrimitiveType.STRING;
 			} else {
 				primitiveType = null;
 			}
@@ -280,9 +280,9 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			final JustifiedClause.Justified justified;
 
 			if (ctx.RIGHT() != null) {
-				justified = JustifiedClause.Justified.JustifiedRight;
+				justified = JustifiedClause.Justified.JUSTIFIED_RIGHT;
 			} else {
-				justified = JustifiedClause.Justified.Justified;
+				justified = JustifiedClause.Justified.JUSTIFIED;
 			}
 
 			result.setJustified(justified);
@@ -374,11 +374,11 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			final ReceivedByClause.ReceivedBy receivedBy;
 
 			if (ctx.CONTENT() != null) {
-				receivedBy = ReceivedByClause.ReceivedBy.Content;
+				receivedBy = ReceivedByClause.ReceivedBy.CONTENT;
 			} else if (ctx.REFERENCE() != null) {
-				receivedBy = ReceivedByClause.ReceivedBy.Reference;
+				receivedBy = ReceivedByClause.ReceivedBy.REFERENCE;
 			} else if (ctx.REF() != null) {
-				receivedBy = ReceivedByClause.ReceivedBy.Reference;
+				receivedBy = ReceivedByClause.ReceivedBy.REFERENCE;
 			} else {
 				receivedBy = null;
 			}
@@ -438,9 +438,9 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			final SignClause.Type type;
 
 			if (ctx.LEADING() != null) {
-				type = SignClause.Type.Leading;
+				type = SignClause.Type.LEADING;
 			} else if (ctx.TRAILING() != null) {
-				type = SignClause.Type.Trailing;
+				type = SignClause.Type.TRAILING;
 			} else {
 				type = null;
 			}
@@ -471,9 +471,9 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			final SynchronizedClause.Synchronized sync;
 
 			if (ctx.LEFT() != null) {
-				sync = SynchronizedClause.Synchronized.Left;
+				sync = SynchronizedClause.Synchronized.LEFT;
 			} else if (ctx.RIGHT() != null) {
-				sync = SynchronizedClause.Synchronized.Right;
+				sync = SynchronizedClause.Synchronized.RIGHT;
 			} else {
 				sync = null;
 			}
@@ -513,15 +513,15 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			final TypeClause.TimeType timeType;
 
 			if (ctx.SHORT_DATE() != null) {
-				timeType = TypeClause.TimeType.ShortDate;
+				timeType = TypeClause.TimeType.SHORT_DATE;
 			} else if (ctx.LONG_DATE() != null) {
-				timeType = TypeClause.TimeType.LongDate;
+				timeType = TypeClause.TimeType.LONG_DATE;
 			} else if (ctx.NUMERIC_DATE() != null) {
-				timeType = TypeClause.TimeType.NumericDate;
+				timeType = TypeClause.TimeType.NUMERIC_DATE;
 			} else if (ctx.NUMERIC_TIME() != null) {
-				timeType = TypeClause.TimeType.NumericTime;
+				timeType = TypeClause.TimeType.NUMERIC_TIME;
 			} else if (ctx.LONG_TIME() != null) {
-				timeType = TypeClause.TimeType.LongTime;
+				timeType = TypeClause.TimeType.LONG_TIME;
 			} else {
 				timeType = null;
 			}
@@ -564,53 +564,53 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			final UsageClause.Type type;
 
 			if (ctx.BINARY() != null) {
-				type = UsageClause.Type.Binary;
+				type = UsageClause.Type.BINARY;
 			} else if (ctx.BIT() != null) {
-				type = UsageClause.Type.Bit;
+				type = UsageClause.Type.BIT;
 			} else if (ctx.COMP() != null || ctx.COMPUTATIONAL() != null) {
-				type = UsageClause.Type.Comp;
+				type = UsageClause.Type.COMP;
 			} else if (ctx.COMP_1() != null || ctx.COMPUTATIONAL_1() != null) {
-				type = UsageClause.Type.Comp1;
+				type = UsageClause.Type.COMP_1;
 			} else if (ctx.COMP_2() != null || ctx.COMPUTATIONAL_2() != null) {
-				type = UsageClause.Type.Comp2;
+				type = UsageClause.Type.COMP_2;
 			} else if (ctx.COMP_3() != null || ctx.COMPUTATIONAL_3() != null) {
-				type = UsageClause.Type.Comp3;
+				type = UsageClause.Type.COMP_3;
 			} else if (ctx.COMP_4() != null || ctx.COMPUTATIONAL_4() != null) {
-				type = UsageClause.Type.Comp4;
+				type = UsageClause.Type.COMP_4;
 			} else if (ctx.COMP_5() != null || ctx.COMPUTATIONAL_5() != null) {
-				type = UsageClause.Type.Comp5;
+				type = UsageClause.Type.COMP_5;
 			} else if (ctx.CONTROL_POINT() != null) {
-				type = UsageClause.Type.ControlPoint;
+				type = UsageClause.Type.CONTROL_POINT;
 			} else if (ctx.DATE() != null) {
-				type = UsageClause.Type.Date;
+				type = UsageClause.Type.DATE;
 			} else if (ctx.DISPLAY() != null) {
-				type = UsageClause.Type.Display;
+				type = UsageClause.Type.DISPLAY;
 			} else if (ctx.DISPLAY_1() != null) {
-				type = UsageClause.Type.Display1;
+				type = UsageClause.Type.DISPLAY_1;
 			} else if (ctx.DOUBLE() != null) {
-				type = UsageClause.Type.Double;
+				type = UsageClause.Type.DOUBLE;
 			} else if (ctx.EVENT() != null) {
-				type = UsageClause.Type.Event;
+				type = UsageClause.Type.EVENT;
 			} else if (ctx.FUNCTION_POINTER() != null) {
-				type = UsageClause.Type.FunctionPointer;
+				type = UsageClause.Type.FUNCTION_POINTER;
 			} else if (ctx.INDEX() != null) {
-				type = UsageClause.Type.Index;
+				type = UsageClause.Type.INDEX;
 			} else if (ctx.KANJI() != null) {
-				type = UsageClause.Type.Kanji;
+				type = UsageClause.Type.KANJI;
 			} else if (ctx.LOCK() != null) {
-				type = UsageClause.Type.Lock;
+				type = UsageClause.Type.LOCK;
 			} else if (ctx.NATIONAL() != null) {
-				type = UsageClause.Type.National;
+				type = UsageClause.Type.NATIONAL;
 			} else if (ctx.PACKED_DECIMAL() != null) {
-				type = UsageClause.Type.PackedDecimal;
+				type = UsageClause.Type.PACKED_DECIMAL;
 			} else if (ctx.POINTER() != null) {
-				type = UsageClause.Type.Pointer;
+				type = UsageClause.Type.POINTER;
 			} else if (ctx.PROCEDURE_POINTER() != null) {
-				type = UsageClause.Type.ProcedurePointer;
+				type = UsageClause.Type.PROCEDURE_POINTER;
 			} else if (ctx.REAL() != null) {
-				type = UsageClause.Type.Real;
+				type = UsageClause.Type.REAL;
 			} else if (ctx.TASK() != null) {
-				type = UsageClause.Type.Task;
+				type = UsageClause.Type.TASK;
 			} else {
 				LOG.warn("unknown usage at {}", ctx);
 				type = null;
@@ -638,9 +638,9 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			final UsingClause.Type type;
 
 			if (ctx.CONVENTION() != null) {
-				type = UsingClause.Type.Convention;
+				type = UsingClause.Type.CONVENTION;
 			} else if (ctx.LANGUAGE() != null) {
-				type = UsingClause.Type.Language;
+				type = UsingClause.Type.LANGUAGE;
 			} else {
 				LOG.warn("unknown type at {}", ctx);
 				type = null;
@@ -785,9 +785,9 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 		final Type result;
 
 		if (DataDescriptionEntry.LEVEL_NUMBER_SCALAR == levelNumber) {
-			result = Type.Scalar;
+			result = Type.SCALAR;
 		} else {
-			result = Type.Group;
+			result = Type.GROUP;
 		}
 
 		return result;

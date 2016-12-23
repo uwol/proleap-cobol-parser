@@ -21,7 +21,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface MultiplyStatement extends Statement {
 
 	enum Type {
-		Giving, Regular
+		GIVING, REGULAR
 	}
 
 	Giving addGiving(MultiplyGivingContext ctx);

@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 
 public class ProcedureCallImpl extends CallImpl implements ProcedureCall {
 
-	protected final CallType callType = CallType.ProcedureCall;
+	protected final CallType callType = CallType.PROCEDURE_CALL;
 
 	protected Paragraph paragraph;
 

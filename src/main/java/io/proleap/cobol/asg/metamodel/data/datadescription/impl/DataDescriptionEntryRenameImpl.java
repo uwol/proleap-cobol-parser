@@ -66,7 +66,7 @@ public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl imp
 
 	@Override
 	public Type getType() {
-		return Type.Rename;
+		return Type.RENAME;
 	}
 
 }

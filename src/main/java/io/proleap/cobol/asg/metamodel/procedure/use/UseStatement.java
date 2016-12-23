@@ -18,7 +18,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface UseStatement extends Statement {
 
 	enum Type {
-		After, Debug
+		AFTER, DEBUG
 	}
 
 	After addAfter(UseAfterClauseContext ctx);

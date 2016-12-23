@@ -31,7 +31,7 @@ public class DeleteStatementImpl extends StatementImpl implements DeleteStatemen
 
 	protected boolean record;
 
-	protected final StatementType statementType = StatementTypeEnum.Delete;
+	protected final StatementType statementType = StatementTypeEnum.DELETE;
 
 	public DeleteStatementImpl(final ProgramUnit programUnit, final Scope scope, final DeleteStatementContext ctx) {
 		super(programUnit, scope, ctx);

@@ -46,11 +46,11 @@ public class ReplacingImpl extends InspectPhraseImpl implements Replacing {
 			final ReplacingAllLeadings.Type type;
 
 			if (ctx.ALL() != null) {
-				type = ReplacingAllLeadings.Type.All;
+				type = ReplacingAllLeadings.Type.ALL;
 			} else if (ctx.LEADING() != null) {
-				type = ReplacingAllLeadings.Type.Leading;
+				type = ReplacingAllLeadings.Type.LEADING;
 			} else if (ctx.FIRST() != null) {
-				type = ReplacingAllLeadings.Type.First;
+				type = ReplacingAllLeadings.Type.FIRST;
 			} else {
 				type = null;
 			}

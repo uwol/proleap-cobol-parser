@@ -102,7 +102,7 @@ public class OpenStatementTest extends CobolTestSupport {
 			{
 				final OpenStatement openStatement = (OpenStatement) procedureDivision.getStatements().get(0);
 				assertNotNull(openStatement);
-				assertEquals(StatementTypeEnum.Open, openStatement.getStatementType());
+				assertEquals(StatementTypeEnum.OPEN, openStatement.getStatementType());
 
 				assertEquals(1, openStatement.getOpenInputs().size());
 				assertEquals(1, openStatement.getOpenOutputs().size());
@@ -115,12 +115,12 @@ public class OpenStatementTest extends CobolTestSupport {
 
 					{
 						final Input input = openInput.getInputs().get(0);
-						assertEquals(Input.Type.NoRewind, input.getType());
+						assertEquals(Input.Type.NO_REWIND, input.getType());
 
 						{
 							final Call call = input.getFileCall();
 							assertNotNull(call);
-							assertEquals(Call.CallType.FileDescriptionEntryCall, call.getCallType());
+							assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
 
 							{
 								final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
@@ -131,12 +131,12 @@ public class OpenStatementTest extends CobolTestSupport {
 
 					{
 						final Input input = openInput.getInputs().get(1);
-						assertEquals(Input.Type.Reversed, input.getType());
+						assertEquals(Input.Type.REVERSED, input.getType());
 
 						{
 							final Call call = input.getFileCall();
 							assertNotNull(call);
-							assertEquals(Call.CallType.FileDescriptionEntryCall, call.getCallType());
+							assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
 
 							{
 								final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
@@ -157,7 +157,7 @@ public class OpenStatementTest extends CobolTestSupport {
 						{
 							final Call call = output.getFileCall();
 							assertNotNull(call);
-							assertEquals(Call.CallType.FileDescriptionEntryCall, call.getCallType());
+							assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
 
 							{
 								final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
@@ -174,7 +174,7 @@ public class OpenStatementTest extends CobolTestSupport {
 					{
 						final Call call = openInputOutput.getFileCalls().get(0);
 						assertNotNull(call);
-						assertEquals(Call.CallType.FileDescriptionEntryCall, call.getCallType());
+						assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
 
 						{
 							final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
@@ -185,7 +185,7 @@ public class OpenStatementTest extends CobolTestSupport {
 					{
 						final Call call = openInputOutput.getFileCalls().get(1);
 						assertNotNull(call);
-						assertEquals(Call.CallType.FileDescriptionEntryCall, call.getCallType());
+						assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
 
 						{
 							final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
@@ -201,7 +201,7 @@ public class OpenStatementTest extends CobolTestSupport {
 					{
 						final Call call = openExtend.getFileCalls().get(0);
 						assertNotNull(call);
-						assertEquals(Call.CallType.FileDescriptionEntryCall, call.getCallType());
+						assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
 
 						{
 							final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
@@ -212,7 +212,7 @@ public class OpenStatementTest extends CobolTestSupport {
 					{
 						final Call call = openExtend.getFileCalls().get(1);
 						assertNotNull(call);
-						assertEquals(Call.CallType.FileDescriptionEntryCall, call.getCallType());
+						assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
 
 						{
 							final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;

@@ -45,7 +45,7 @@ public class AddToGivingStatementTest extends CobolTestSupport {
 
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(0);
-			assertEquals(AddStatement.Type.Giving, addStatement.getType());
+			assertEquals(AddStatement.Type.GIVING, addStatement.getType());
 			assertNotNull(addStatement.getAddToGiving());
 
 			final AddToGiving addToGiving = addStatement.getAddToGiving();
@@ -58,19 +58,19 @@ public class AddToGivingStatementTest extends CobolTestSupport {
 			final To to = addToGiving.getTos().get(0);
 
 			assertNotNull(to.getTo());
-			assertEquals(Call.CallType.DataDescriptionEntryCall, to.getTo().getCallType());
+			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to.getTo().getCallType());
 
 			assertEquals(1, addToGiving.getGivings().size());
 
 			final Giving giving = addToGiving.getGivings().get(0);
 
 			assertNotNull(giving.getGiving());
-			assertEquals(Call.CallType.DataDescriptionEntryCall, giving.getGiving().getCallType());
+			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getGiving().getCallType());
 		}
 
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(1);
-			assertEquals(AddStatement.Type.Giving, addStatement.getType());
+			assertEquals(AddStatement.Type.GIVING, addStatement.getType());
 			assertNotNull(addStatement.getAddToGiving());
 
 			final AddToGiving addToGiving = addStatement.getAddToGiving();
@@ -87,9 +87,9 @@ public class AddToGivingStatementTest extends CobolTestSupport {
 			final To to2 = addToGiving.getTos().get(1);
 
 			assertNotNull(to1.getTo());
-			assertEquals(Call.CallType.DataDescriptionEntryCall, to1.getTo().getCallType());
+			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to1.getTo().getCallType());
 			assertNotNull(to2.getTo());
-			assertEquals(Call.CallType.DataDescriptionEntryCall, to2.getTo().getCallType());
+			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to2.getTo().getCallType());
 
 			assertEquals(2, addToGiving.getGivings().size());
 
@@ -97,9 +97,9 @@ public class AddToGivingStatementTest extends CobolTestSupport {
 			final Giving giving2 = addToGiving.getGivings().get(1);
 
 			assertNotNull(giving1.getGiving());
-			assertEquals(Call.CallType.DataDescriptionEntryCall, giving1.getGiving().getCallType());
+			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, giving1.getGiving().getCallType());
 			assertNotNull(giving2.getGiving());
-			assertEquals(Call.CallType.DataDescriptionEntryCall, giving2.getGiving().getCallType());
+			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, giving2.getGiving().getCallType());
 		}
 	}
 }

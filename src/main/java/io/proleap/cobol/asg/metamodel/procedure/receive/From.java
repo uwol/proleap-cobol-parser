@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface From extends CobolDivisionElement {
 
 	enum Type {
-		AnyThread, LastThread, Thread
+		ANY_THREAD, LAST_THREAD, THREAD
 	}
 
 	Call getThreadCall();

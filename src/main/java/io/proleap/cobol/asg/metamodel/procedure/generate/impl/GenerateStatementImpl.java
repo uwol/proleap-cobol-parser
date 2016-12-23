@@ -23,7 +23,7 @@ public class GenerateStatementImpl extends StatementImpl implements GenerateStat
 
 	protected Call reportDescriptionCall;
 
-	protected final StatementType statementType = StatementTypeEnum.Generate;
+	protected final StatementType statementType = StatementTypeEnum.GENERATE;
 
 	public GenerateStatementImpl(final ProgramUnit programUnit, final Scope scope, final GenerateStatementContext ctx) {
 		super(programUnit, scope, ctx);

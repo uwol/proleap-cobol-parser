@@ -43,9 +43,9 @@ public class TerminateStatementTest extends CobolTestSupport {
 		{
 			final TerminateStatement terminateStatement = (TerminateStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(terminateStatement);
-			assertEquals(StatementTypeEnum.Terminate, terminateStatement.getStatementType());
+			assertEquals(StatementTypeEnum.TERMINATE, terminateStatement.getStatementType());
 			assertNotNull(terminateStatement.getReportCall());
-			assertEquals(Call.CallType.UndefinedCall, terminateStatement.getReportCall().getCallType());
+			assertEquals(Call.CallType.UNDEFINED_CALL, terminateStatement.getReportCall().getCallType());
 		}
 	}
 }

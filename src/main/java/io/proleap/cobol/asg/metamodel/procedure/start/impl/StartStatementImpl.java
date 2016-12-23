@@ -33,7 +33,7 @@ public class StartStatementImpl extends StatementImpl implements StartStatement 
 
 	protected NotInvalidKey notInvalidKey;
 
-	protected final StatementType statementType = StatementTypeEnum.Start;
+	protected final StatementType statementType = StatementTypeEnum.START;
 
 	public StartStatementImpl(final ProgramUnit programUnit, final Scope scope, final StartStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -52,21 +52,21 @@ public class StartStatementImpl extends StatementImpl implements StartStatement 
 			final Key.Type type;
 
 			if (ctx.MORETHANOREQUAL() != null) {
-				type = Key.Type.GreaterOrEqual;
+				type = Key.Type.GREATER_OR_EQUAL;
 			} else if (ctx.GREATER() != null && ctx.EQUAL() != null) {
-				type = Key.Type.GreaterOrEqual;
+				type = Key.Type.GREATER_OR_EQUAL;
 			} else if (ctx.NOT() != null && ctx.LESSTHANCHAR() != null) {
-				type = Key.Type.GreaterOrEqual;
+				type = Key.Type.GREATER_OR_EQUAL;
 			} else if (ctx.NOT() != null && ctx.LESS() != null) {
-				type = Key.Type.GreaterOrEqual;
+				type = Key.Type.GREATER_OR_EQUAL;
 			} else if (ctx.MORETHANCHAR() != null) {
-				type = Key.Type.Greater;
+				type = Key.Type.GREATER;
 			} else if (ctx.GREATER() != null) {
-				type = Key.Type.Greater;
+				type = Key.Type.GREATER;
 			} else if (ctx.EQUAL() != null) {
-				type = Key.Type.Equal;
+				type = Key.Type.EQUAL;
 			} else if (ctx.EQUALCHAR() != null) {
-				type = Key.Type.Equal;
+				type = Key.Type.EQUAL;
 			} else {
 				type = null;
 			}

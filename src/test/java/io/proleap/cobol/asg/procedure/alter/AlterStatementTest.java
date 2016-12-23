@@ -51,7 +51,7 @@ public class AlterStatementTest extends CobolTestSupport {
 		{
 			final AlterStatement alterStatement = (AlterStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(alterStatement);
-			assertEquals(StatementTypeEnum.Alter, alterStatement.getStatementType());
+			assertEquals(StatementTypeEnum.ALTER, alterStatement.getStatementType());
 
 			final List<AlterProceedTo> alterProceedTos = alterStatement.getAlterProceedTos();
 			assertEquals(1, alterProceedTos.size());
@@ -60,14 +60,14 @@ public class AlterStatementTest extends CobolTestSupport {
 				final AlterProceedTo alterProceedTo = alterProceedTos.get(0);
 				final Call sourceCall = alterProceedTo.getSourceCall();
 				assertNotNull(sourceCall);
-				assertEquals(Call.CallType.ProcedureCall, sourceCall.getCallType());
+				assertEquals(Call.CallType.PROCEDURE_CALL, sourceCall.getCallType());
 
 				final ProcedureCall sourceProcedureCall = (ProcedureCall) sourceCall;
 				assertEquals(paragraph1, sourceProcedureCall.getParagraph());
 
 				final Call targetCall = alterProceedTo.getTargetCall();
 				assertNotNull(targetCall);
-				assertEquals(Call.CallType.ProcedureCall, targetCall.getCallType());
+				assertEquals(Call.CallType.PROCEDURE_CALL, targetCall.getCallType());
 
 				final ProcedureCall targetProcedureCall = (ProcedureCall) targetCall;
 				assertEquals(paragraph2, targetProcedureCall.getParagraph());
@@ -80,7 +80,7 @@ public class AlterStatementTest extends CobolTestSupport {
 			{
 				final GoToStatement statement = (GoToStatement) paragraph1.getStatements().get(0);
 				assertNotNull(statement);
-				assertEquals(StatementTypeEnum.GoTo, statement.getStatementType());
+				assertEquals(StatementTypeEnum.GO_TO, statement.getStatementType());
 			}
 		}
 

@@ -47,12 +47,12 @@ public class ReturnStatementTest extends CobolTestSupport {
 		{
 			final ReturnStatement returnStatement = (ReturnStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(returnStatement);
-			assertEquals(StatementTypeEnum.Return, returnStatement.getStatementType());
+			assertEquals(StatementTypeEnum.RETURN, returnStatement.getStatementType());
 
 			{
 				final Call fileCall = returnStatement.getFileCall();
 				assertNotNull(fileCall);
-				assertEquals(Call.CallType.UndefinedCall, fileCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, fileCall.getCallType());
 			}
 
 			{
@@ -61,7 +61,7 @@ public class ReturnStatementTest extends CobolTestSupport {
 
 				final Call intoCall = into.getIntoCall();
 				assertNotNull(intoCall);
-				assertEquals(Call.CallType.UndefinedCall, intoCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, intoCall.getCallType());
 			}
 
 			{

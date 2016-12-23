@@ -36,7 +36,7 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 
 	protected OnSizeError onSizeError;
 
-	protected final StatementType statementType = StatementTypeEnum.Subtract;
+	protected final StatementType statementType = StatementTypeEnum.SUBTRACT;
 
 	protected SubtractCorresponding subtractCorresponding;
 

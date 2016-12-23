@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface ReplacingAllLeadings extends CobolDivisionElement {
 
 	enum Type {
-		All, First, Leading
+		ALL, FIRST, LEADING
 	}
 
 	ReplacingAllLeading addAllLeading(InspectReplacingAllLeadingContext ctx);

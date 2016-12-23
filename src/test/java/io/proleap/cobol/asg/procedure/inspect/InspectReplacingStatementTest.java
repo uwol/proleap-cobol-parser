@@ -48,8 +48,8 @@ public class InspectReplacingStatementTest extends CobolTestSupport {
 		{
 			final InspectStatement inspectStatement = (InspectStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(inspectStatement);
-			assertEquals(StatementTypeEnum.Inspect, inspectStatement.getStatementType());
-			assertEquals(InspectStatement.Type.Replacing, inspectStatement.getType());
+			assertEquals(StatementTypeEnum.INSPECT, inspectStatement.getStatementType());
+			assertEquals(InspectStatement.Type.REPLACING, inspectStatement.getType());
 
 			{
 				final Replacing replacing = inspectStatement.getReplacing();
@@ -62,25 +62,25 @@ public class InspectReplacingStatementTest extends CobolTestSupport {
 
 					{
 						final BeforeAfter beforeAfter = characters.getBeforeAfters().get(0);
-						assertEquals(BeforeAfter.Type.After, beforeAfter.getType());
+						assertEquals(BeforeAfter.Type.AFTER, beforeAfter.getType());
 					}
 				}
 
 				{
 					final ReplacingAllLeadings allLeadings = replacing.getAllLeadings().get(0);
-					assertEquals(ReplacingAllLeadings.Type.First, allLeadings.getType());
+					assertEquals(ReplacingAllLeadings.Type.FIRST, allLeadings.getType());
 					assertEquals(1, allLeadings.getAllLeadings().size());
 
 					{
 						final ReplacingAllLeading allLeading = allLeadings.getAllLeadings().get(0);
 
 						assertNotNull(allLeading.getPatternDataItemCall());
-						assertEquals(Call.CallType.UndefinedCall, allLeading.getPatternDataItemCall().getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, allLeading.getPatternDataItemCall().getCallType());
 						assertEquals(1, allLeading.getBeforeAfters().size());
 
 						{
 							final BeforeAfter beforeAfter = allLeading.getBeforeAfters().get(0);
-							assertEquals(BeforeAfter.Type.Before, beforeAfter.getType());
+							assertEquals(BeforeAfter.Type.BEFORE, beforeAfter.getType());
 						}
 					}
 				}

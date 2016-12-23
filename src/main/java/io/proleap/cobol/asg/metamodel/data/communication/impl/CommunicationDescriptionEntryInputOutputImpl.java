@@ -183,7 +183,7 @@ public class CommunicationDescriptionEntryInputOutputImpl extends CommunicationD
 
 	@Override
 	public Type getType() {
-		return Type.InputOutput;
+		return Type.INPUT_OUTPUT;
 	}
 
 }

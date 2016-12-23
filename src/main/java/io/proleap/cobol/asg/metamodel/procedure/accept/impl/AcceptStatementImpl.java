@@ -39,7 +39,7 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 
 	protected final AcceptStatementContext ctx;
 
-	protected final StatementType statementType = StatementTypeEnum.Accept;
+	protected final StatementType statementType = StatementTypeEnum.ACCEPT;
 
 	protected Type type;
 
@@ -62,29 +62,29 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 			final AcceptFromDate.DateType dateType;
 
 			if (ctx.DATE() != null && ctx.YYYYMMDD() == null) {
-				dateType = AcceptFromDate.DateType.Date;
+				dateType = AcceptFromDate.DateType.DATE;
 			} else if (ctx.DATE() != null && ctx.YYYYMMDD() != null) {
-				dateType = AcceptFromDate.DateType.DateYyyyMmDd;
+				dateType = AcceptFromDate.DateType.DATE_YYYYMMDD;
 			} else if (ctx.DAY() != null && ctx.YYYYMMDD() == null) {
-				dateType = AcceptFromDate.DateType.Day;
+				dateType = AcceptFromDate.DateType.DAY;
 			} else if (ctx.DAY() != null && ctx.YYYYMMDD() != null) {
-				dateType = AcceptFromDate.DateType.DayYyyyMmDd;
+				dateType = AcceptFromDate.DateType.DAY_YYYYMMDD;
 			} else if (ctx.TIME() != null) {
-				dateType = AcceptFromDate.DateType.Time;
+				dateType = AcceptFromDate.DateType.TIME;
 			} else if (ctx.TIMER() != null) {
-				dateType = AcceptFromDate.DateType.Timer;
+				dateType = AcceptFromDate.DateType.TIMER;
 			} else if (ctx.TODAYS_DATE() != null && ctx.YYYYMMDD() == null) {
-				dateType = AcceptFromDate.DateType.TodaysDate;
+				dateType = AcceptFromDate.DateType.TODAYS_DATE;
 			} else if (ctx.TODAYS_DATE() != null && ctx.YYYYMMDD() != null) {
-				dateType = AcceptFromDate.DateType.TodaysDateMmDdYyyy;
+				dateType = AcceptFromDate.DateType.TODAYS_DATE_MMDDYYYY;
 			} else if (ctx.TODAYS_NAME() != null) {
-				dateType = AcceptFromDate.DateType.TodaysName;
+				dateType = AcceptFromDate.DateType.TODAYS_NAME;
 			} else if (ctx.YEAR() != null) {
-				dateType = AcceptFromDate.DateType.Year;
+				dateType = AcceptFromDate.DateType.YEAR;
 			} else if (ctx.YYYYDDD() != null) {
-				dateType = AcceptFromDate.DateType.YyyyDdd;
+				dateType = AcceptFromDate.DateType.YYYYDDD;
 			} else if (ctx.MMDDYYYY() != null) {
-				dateType = AcceptFromDate.DateType.YyyyMmDd;
+				dateType = AcceptFromDate.DateType.YYYYMMDD;
 			} else {
 				dateType = null;
 			}

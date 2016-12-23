@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.data.report.ReportDescriptionEntry;
 
 public class ReportDescriptionEntryCallImpl extends CallImpl implements ReportDescriptionEntryCall {
 
-	protected final CallType callType = CallType.ReportDescriptionEntryCall;
+	protected final CallType callType = CallType.REPORT_DESCRIPTION_ENTRY_CALL;
 
 	protected ReportDescriptionEntry reportDescriptionEntry;
 

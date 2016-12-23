@@ -70,8 +70,8 @@ public class MoveCorrespondingToStatementTest extends CobolTestSupport {
 		{
 			final MoveStatement moveStatement = (MoveStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(moveStatement);
-			assertEquals(StatementTypeEnum.Move, moveStatement.getStatementType());
-			assertEquals(MoveStatement.Type.MoveCorrespondingTo, moveStatement.getType());
+			assertEquals(StatementTypeEnum.MOVE, moveStatement.getStatementType());
+			assertEquals(MoveStatement.Type.MOVE_CORRESPONDING_TO, moveStatement.getType());
 
 			{
 				final MoveCorrespondingTo moveCorrespondingTo = moveStatement.getMoveCorrespondingTo();
@@ -79,7 +79,7 @@ public class MoveCorrespondingToStatementTest extends CobolTestSupport {
 				{
 					final Call sendingCall = moveCorrespondingTo.getSendingCall();
 					assertNotNull(sendingCall);
-					assertEquals(Call.CallType.DataDescriptionEntryCall, sendingCall.getCallType());
+					assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, sendingCall.getCallType());
 				}
 
 				{
@@ -89,7 +89,7 @@ public class MoveCorrespondingToStatementTest extends CobolTestSupport {
 					{
 						final Call receivingAreaCall = receivingAreaCalls.get(0);
 						assertNotNull(receivingAreaCall);
-						assertEquals(Call.CallType.DataDescriptionEntryCall, receivingAreaCall.getCallType());
+						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
 					}
 				}
 			}

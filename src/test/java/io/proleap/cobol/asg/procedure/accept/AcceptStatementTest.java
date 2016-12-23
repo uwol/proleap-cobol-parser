@@ -45,42 +45,42 @@ public class AcceptStatementTest extends CobolTestSupport {
 
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(0);
-			assertEquals(StatementTypeEnum.Accept, acceptStatement.getStatementType());
-			assertEquals(AcceptStatement.Type.Date, acceptStatement.getType());
+			assertEquals(StatementTypeEnum.ACCEPT, acceptStatement.getStatementType());
+			assertEquals(AcceptStatement.Type.DATE, acceptStatement.getType());
 
 			assertNotNull(acceptStatement.getAcceptCall());
-			assertEquals(Call.CallType.UndefinedCall, acceptStatement.getAcceptCall().getCallType());
+			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
 
 			{
 				final AcceptFromDate acceptFromDate = acceptStatement.getAcceptFromDate();
 				assertNotNull(acceptFromDate);
-				assertEquals(AcceptFromDate.DateType.TodaysName, acceptFromDate.getDateType());
+				assertEquals(AcceptFromDate.DateType.TODAYS_NAME, acceptFromDate.getDateType());
 			}
 		}
 
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(1);
-			assertEquals(StatementTypeEnum.Accept, acceptStatement.getStatementType());
-			assertEquals(AcceptStatement.Type.Mnemonic, acceptStatement.getType());
+			assertEquals(StatementTypeEnum.ACCEPT, acceptStatement.getStatementType());
+			assertEquals(AcceptStatement.Type.MNEMONIC, acceptStatement.getType());
 
 			assertNotNull(acceptStatement.getAcceptCall());
-			assertEquals(Call.CallType.UndefinedCall, acceptStatement.getAcceptCall().getCallType());
+			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
 
 			{
 				final AcceptFromMnemonic acceptFromMnemonic = acceptStatement.getAcceptFromMnemonic();
 				assertNotNull(acceptFromMnemonic);
 				assertNotNull(acceptFromMnemonic.getMnemonicCall());
-				assertEquals(Call.CallType.UndefinedCall, acceptFromMnemonic.getMnemonicCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, acceptFromMnemonic.getMnemonicCall().getCallType());
 			}
 		}
 
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(2);
-			assertEquals(StatementTypeEnum.Accept, acceptStatement.getStatementType());
-			assertEquals(AcceptStatement.Type.MessageCount, acceptStatement.getType());
+			assertEquals(StatementTypeEnum.ACCEPT, acceptStatement.getStatementType());
+			assertEquals(AcceptStatement.Type.MESSAGE_COUNT, acceptStatement.getType());
 
 			assertNotNull(acceptStatement.getAcceptCall());
-			assertEquals(Call.CallType.UndefinedCall, acceptStatement.getAcceptCall().getCallType());
+			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
 
 			{
 				final AcceptMessageCount acceptMessageCount = acceptStatement.getAcceptMessageCount();
@@ -90,8 +90,8 @@ public class AcceptStatementTest extends CobolTestSupport {
 
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(3);
-			assertEquals(StatementTypeEnum.Accept, acceptStatement.getStatementType());
-			assertEquals(AcceptStatement.Type.FromEscapeKey, acceptStatement.getType());
+			assertEquals(StatementTypeEnum.ACCEPT, acceptStatement.getStatementType());
+			assertEquals(AcceptStatement.Type.FROM_ESCAPE_KEY, acceptStatement.getType());
 
 			assertNotNull(acceptStatement.getAcceptCall());
 

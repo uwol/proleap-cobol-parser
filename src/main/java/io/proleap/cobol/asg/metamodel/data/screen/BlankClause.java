@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface BlankClause extends CobolDivisionElement {
 
 	enum Type {
-		Line, Screen
+		LINE, SCREEN
 	}
 
 	Type getType();

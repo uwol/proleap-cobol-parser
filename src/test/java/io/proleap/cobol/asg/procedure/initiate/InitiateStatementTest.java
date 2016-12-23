@@ -75,7 +75,7 @@ public class InitiateStatementTest extends CobolTestSupport {
 				final InitiateStatement initiateStatement = (InitiateStatement) procedureDivision.getStatements()
 						.get(0);
 				assertNotNull(initiateStatement);
-				assertEquals(StatementTypeEnum.Initiate, initiateStatement.getStatementType());
+				assertEquals(StatementTypeEnum.INITIATE, initiateStatement.getStatementType());
 				assertEquals(2, initiateStatement.getReportCalls().size());
 
 				{
@@ -84,7 +84,7 @@ public class InitiateStatementTest extends CobolTestSupport {
 
 					{
 						final ReportCall reportCall = (ReportCall) call;
-						assertEquals(Call.CallType.ReportDescriptionCall, call.getCallType());
+						assertEquals(Call.CallType.REPORT_DESCRIPTION_CALL, call.getCallType());
 						assertEquals(reportDescription1, reportCall.getReport());
 					}
 				}
@@ -95,7 +95,7 @@ public class InitiateStatementTest extends CobolTestSupport {
 
 					{
 						final ReportCall reportCall = (ReportCall) call;
-						assertEquals(Call.CallType.ReportDescriptionCall, call.getCallType());
+						assertEquals(Call.CallType.REPORT_DESCRIPTION_CALL, call.getCallType());
 						assertEquals(reportDescription2, reportCall.getReport());
 					}
 				}

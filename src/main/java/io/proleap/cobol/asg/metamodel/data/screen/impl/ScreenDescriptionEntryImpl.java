@@ -170,9 +170,9 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final AutoClause.Type type;
 
 			if (ctx.AUTO() != null) {
-				type = AutoClause.Type.Auto;
+				type = AutoClause.Type.AUTO;
 			} else if (ctx.AUTO_SKIP() != null) {
-				type = AutoClause.Type.AutoSkip;
+				type = AutoClause.Type.AUTO_SKIP;
 			} else {
 				type = null;
 			}
@@ -214,9 +214,9 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final BellClause.Type type;
 
 			if (ctx.BELL() != null) {
-				type = BellClause.Type.Bell;
+				type = BellClause.Type.BELL;
 			} else if (ctx.BEEP() != null) {
-				type = BellClause.Type.Beep;
+				type = BellClause.Type.BEEP;
 			} else {
 				type = null;
 			}
@@ -241,9 +241,9 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final BlankClause.Type type;
 
 			if (ctx.SCREEN() != null) {
-				type = BlankClause.Type.Screen;
+				type = BlankClause.Type.SCREEN;
 			} else if (ctx.LINE() != null) {
-				type = BlankClause.Type.Line;
+				type = BlankClause.Type.LINE;
 			} else {
 				type = null;
 			}
@@ -305,13 +305,13 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final ColumnNumberClause.Type type;
 
 			if (ctx.PLUS() != null) {
-				type = ColumnNumberClause.Type.Plus;
+				type = ColumnNumberClause.Type.PLUS;
 			} else if (ctx.PLUSCHAR() != null) {
-				type = ColumnNumberClause.Type.Plus;
+				type = ColumnNumberClause.Type.PLUS;
 			} else if (ctx.MINUSCHAR() != null) {
-				type = ColumnNumberClause.Type.Minus;
+				type = ColumnNumberClause.Type.MINUS;
 			} else {
-				type = ColumnNumberClause.Type.Equal;
+				type = ColumnNumberClause.Type.EQUAL;
 			}
 
 			result.setType(type);
@@ -355,9 +355,9 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final EraseClause.Type type;
 
 			if (ctx.EOL() != null) {
-				type = EraseClause.Type.Eol;
+				type = EraseClause.Type.EOL;
 			} else if (ctx.EOS() != null) {
-				type = EraseClause.Type.Eos;
+				type = EraseClause.Type.EOS;
 			} else {
 				type = null;
 			}
@@ -422,9 +422,9 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final FullClause.Type type;
 
 			if (ctx.FULL() != null) {
-				type = FullClause.Type.Full;
+				type = FullClause.Type.FULL;
 			} else if (ctx.LENGTH_CHECK() != null) {
-				type = FullClause.Type.LengthCheck;
+				type = FullClause.Type.LENGTH_CHECK;
 			} else {
 				type = null;
 			}
@@ -449,11 +449,11 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final GridClause.Type type;
 
 			if (ctx.GRID() != null) {
-				type = GridClause.Type.Grid;
+				type = GridClause.Type.GRID;
 			} else if (ctx.LEFTLINE() != null) {
-				type = GridClause.Type.Leftline;
+				type = GridClause.Type.LEFTLINE;
 			} else if (ctx.OVERLINE() != null) {
-				type = GridClause.Type.Overline;
+				type = GridClause.Type.OVERLINE;
 			} else {
 				type = null;
 			}
@@ -478,9 +478,9 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final JustifiedClause.Justified type;
 
 			if (ctx.RIGHT() != null) {
-				type = JustifiedClause.Justified.JustifiedRight;
+				type = JustifiedClause.Justified.JUSTIFIED_RIGHT;
 			} else {
-				type = JustifiedClause.Justified.Justified;
+				type = JustifiedClause.Justified.JUSTIFIED;
 			}
 
 			result.setJustified(type);
@@ -503,9 +503,9 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final LightClause.Type type;
 
 			if (ctx.HIGHLIGHT() != null) {
-				type = LightClause.Type.Highlight;
+				type = LightClause.Type.HIGHLIGHT;
 			} else if (ctx.LOWLIGHT() != null) {
-				type = LightClause.Type.Lowlight;
+				type = LightClause.Type.LOWLIGHT;
 			} else {
 				type = null;
 			}
@@ -530,13 +530,13 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final LineNumberClause.Type type;
 
 			if (ctx.PLUS() != null) {
-				type = LineNumberClause.Type.Plus;
+				type = LineNumberClause.Type.PLUS;
 			} else if (ctx.PLUSCHAR() != null) {
-				type = LineNumberClause.Type.Plus;
+				type = LineNumberClause.Type.PLUS;
 			} else if (ctx.MINUSCHAR() != null) {
-				type = LineNumberClause.Type.Minus;
+				type = LineNumberClause.Type.MINUS;
 			} else {
-				type = LineNumberClause.Type.Equal;
+				type = LineNumberClause.Type.EQUAL;
 			}
 
 			result.setType(type);
@@ -603,9 +603,9 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final RequiredClause.Type type;
 
 			if (ctx.REQUIRED() != null) {
-				type = RequiredClause.Type.Required;
+				type = RequiredClause.Type.REQUIRED;
 			} else if (ctx.EMPTY_CHECK() != null) {
-				type = RequiredClause.Type.EmptyCheck;
+				type = RequiredClause.Type.EMPTY_CHECK;
 			} else {
 				type = null;
 			}
@@ -654,9 +654,9 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final SecureClause.Type type;
 
 			if (ctx.SECURE() != null) {
-				type = SecureClause.Type.Secure;
+				type = SecureClause.Type.SECURE;
 			} else if (ctx.NO_ECHO() != null) {
-				type = SecureClause.Type.NoEcho;
+				type = SecureClause.Type.NO_ECHO;
 			} else {
 				type = null;
 			}
@@ -681,9 +681,9 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final SignClause.Type type;
 
 			if (ctx.LEADING() != null) {
-				type = SignClause.Type.Leading;
+				type = SignClause.Type.LEADING;
 			} else if (ctx.TRAILING() != null) {
-				type = SignClause.Type.Trailing;
+				type = SignClause.Type.TRAILING;
 			} else {
 				type = null;
 			}
@@ -741,9 +741,9 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			final UsageClause.Type type;
 
 			if (ctx.DISPLAY() != null) {
-				type = UsageClause.Type.Display;
+				type = UsageClause.Type.DISPLAY;
 			} else if (ctx.DISPLAY_1() != null) {
-				type = UsageClause.Type.Display1;
+				type = UsageClause.Type.DISPLAY_1;
 			} else {
 				type = null;
 			}

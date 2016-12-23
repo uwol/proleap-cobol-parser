@@ -28,7 +28,7 @@ public class AlterStatementImpl extends StatementImpl implements AlterStatement 
 
 	protected final AlterStatementContext ctx;
 
-	protected final StatementType statementType = StatementTypeEnum.Alter;
+	protected final StatementType statementType = StatementTypeEnum.ALTER;
 
 	public AlterStatementImpl(final ProgramUnit programUnit, final Scope scope, final AlterStatementContext ctx) {
 		super(programUnit, scope, ctx);

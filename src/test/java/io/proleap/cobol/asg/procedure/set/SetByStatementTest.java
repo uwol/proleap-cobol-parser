@@ -45,8 +45,8 @@ public class SetByStatementTest extends CobolTestSupport {
 		{
 			final SetStatement setStatement = (SetStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(setStatement);
-			assertEquals(StatementTypeEnum.Set, setStatement.getStatementType());
-			assertEquals(SetStatement.Type.By, setStatement.getType());
+			assertEquals(StatementTypeEnum.SET, setStatement.getStatementType());
+			assertEquals(SetStatement.Type.BY, setStatement.getType());
 
 			{
 				final SetBy setBy = setStatement.getSetBy();
@@ -58,14 +58,14 @@ public class SetByStatementTest extends CobolTestSupport {
 						final To to = setBy.getTos().get(0);
 						final Call toCall = to.getToCall();
 						assertNotNull(toCall);
-						assertEquals(Call.CallType.UndefinedCall, toCall.getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, toCall.getCallType());
 					}
 
 					{
 						final To to = setBy.getTos().get(1);
 						final Call toCall = to.getToCall();
 						assertNotNull(toCall);
-						assertEquals(Call.CallType.UndefinedCall, toCall.getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, toCall.getCallType());
 					}
 
 					{
@@ -74,7 +74,7 @@ public class SetByStatementTest extends CobolTestSupport {
 
 						final Call valueCall = by.getByCall();
 						assertNotNull(valueCall);
-						assertEquals(Call.CallType.UndefinedCall, valueCall.getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, valueCall.getCallType());
 					}
 				}
 			}

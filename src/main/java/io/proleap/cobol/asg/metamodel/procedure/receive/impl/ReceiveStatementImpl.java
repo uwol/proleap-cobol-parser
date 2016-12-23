@@ -40,7 +40,7 @@ public class ReceiveStatementImpl extends StatementImpl implements ReceiveStatem
 
 	protected ReceiveIntoStatement receiveIntoStatement;
 
-	protected final StatementType statementType = StatementTypeEnum.Receive;
+	protected final StatementType statementType = StatementTypeEnum.RECEIVE;
 
 	protected Type type;
 
@@ -111,9 +111,9 @@ public class ReceiveStatementImpl extends StatementImpl implements ReceiveStatem
 			final ReceiveIntoStatement.Type type;
 
 			if (ctx.MESSAGE() != null) {
-				type = ReceiveIntoStatement.Type.Message;
+				type = ReceiveIntoStatement.Type.MESSAGE;
 			} else if (ctx.SEGMENT() != null) {
-				type = ReceiveIntoStatement.Type.Segment;
+				type = ReceiveIntoStatement.Type.SEGMENT;
 			} else {
 				type = null;
 			}

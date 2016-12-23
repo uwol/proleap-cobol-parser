@@ -38,7 +38,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 
 	protected void assertProperties(final DataDescriptionEntry dataDescriptionEntryItem) {
 		assertNotNull(dataDescriptionEntryItem);
-		assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntryItem.getType());
+		assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem.getType());
 		assertEquals(new Integer(2), dataDescriptionEntryItem.getLevelNumber());
 	}
 
@@ -105,7 +105,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getCommonOwnLocalClause());
-		assertEquals(CommonOwnLocalClause.Invariance.Common,
+		assertEquals(CommonOwnLocalClause.Invariance.COMMON,
 				dataDescriptionEntryGroup.getCommonOwnLocalClause().getInvariance());
 	}
 
@@ -117,7 +117,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getReceivedByClause());
-		assertEquals(ReceivedByClause.ReceivedBy.Content,
+		assertEquals(ReceivedByClause.ReceivedBy.CONTENT,
 				dataDescriptionEntryGroup.getReceivedByClause().getReceivedBy());
 	}
 
@@ -151,7 +151,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("9(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getIntegerStringClause());
-		assertEquals(IntegerStringClause.PrimitiveType.Integer,
+		assertEquals(IntegerStringClause.PrimitiveType.INTEGER,
 				dataDescriptionEntryGroup.getIntegerStringClause().getPrimitiveType());
 	}
 
@@ -163,7 +163,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getJustifiedClause());
-		assertEquals(JustifiedClause.Justified.JustifiedRight,
+		assertEquals(JustifiedClause.Justified.JUSTIFIED_RIGHT,
 				dataDescriptionEntryGroup.getJustifiedClause().getJustified());
 	}
 
@@ -175,7 +175,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getJustifiedClause());
-		assertEquals(JustifiedClause.Justified.Justified,
+		assertEquals(JustifiedClause.Justified.JUSTIFIED,
 				dataDescriptionEntryGroup.getJustifiedClause().getJustified());
 	}
 
@@ -198,7 +198,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getCommonOwnLocalClause());
-		assertEquals(CommonOwnLocalClause.Invariance.Local,
+		assertEquals(CommonOwnLocalClause.Invariance.LOCAL,
 				dataDescriptionEntryGroup.getCommonOwnLocalClause().getInvariance());
 	}
 
@@ -223,11 +223,11 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals(2, occursSorts.size());
 
 		final OccursSort occursSort1 = occursSorts.get(0);
-		assertEquals(OccursSort.Order.Descending, occursSort1.getOrder());
+		assertEquals(OccursSort.Order.DESCENDING, occursSort1.getOrder());
 		assertEquals(2, occursSort1.getKeyCalls().size());
 
 		final OccursSort occursSort2 = occursSorts.get(1);
-		assertEquals(OccursSort.Order.Ascending, occursSort2.getOrder());
+		assertEquals(OccursSort.Order.ASCENDING, occursSort2.getOrder());
 		assertEquals(1, occursSort2.getKeyCalls().size());
 
 		final List<Call> indexCalls = occursClause.getIndexCalls();
@@ -242,7 +242,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getCommonOwnLocalClause());
-		assertEquals(CommonOwnLocalClause.Invariance.Own,
+		assertEquals(CommonOwnLocalClause.Invariance.OWN,
 				dataDescriptionEntryGroup.getCommonOwnLocalClause().getInvariance());
 	}
 
@@ -284,7 +284,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getReceivedByClause());
-		assertEquals(ReceivedByClause.ReceivedBy.Reference,
+		assertEquals(ReceivedByClause.ReceivedBy.REFERENCE,
 				dataDescriptionEntryGroup.getReceivedByClause().getReceivedBy());
 	}
 
@@ -297,7 +297,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 
 		assertNotNull(dataDescriptionEntryGroup.getSignClause());
 		assertTrue(dataDescriptionEntryGroup.getSignClause().isSeparate());
-		assertEquals(SignClause.Type.Trailing, dataDescriptionEntryGroup.getSignClause().getType());
+		assertEquals(SignClause.Type.TRAILING, dataDescriptionEntryGroup.getSignClause().getType());
 	}
 
 	@Test
@@ -308,7 +308,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getIntegerStringClause());
-		assertEquals(IntegerStringClause.PrimitiveType.String,
+		assertEquals(IntegerStringClause.PrimitiveType.STRING,
 				dataDescriptionEntryGroup.getIntegerStringClause().getPrimitiveType());
 	}
 
@@ -321,7 +321,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getSynchronizedClause());
-		assertEquals(SynchronizedClause.Synchronized.Right,
+		assertEquals(SynchronizedClause.Synchronized.RIGHT,
 				dataDescriptionEntryGroup.getSynchronizedClause().getSynchronized());
 	}
 
@@ -355,7 +355,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getTypeClause());
-		assertEquals(TypeClause.TimeType.LongTime, dataDescriptionEntryGroup.getTypeClause().getTimeType());
+		assertEquals(TypeClause.TimeType.LONG_TIME, dataDescriptionEntryGroup.getTypeClause().getTimeType());
 	}
 
 	@Test
@@ -367,7 +367,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getUsageClause());
-		assertEquals(UsageClause.Type.Date, dataDescriptionEntryGroup.getUsageClause().getType());
+		assertEquals(UsageClause.Type.DATE, dataDescriptionEntryGroup.getUsageClause().getType());
 	}
 
 	@Test
@@ -378,7 +378,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getUsingClause());
-		assertEquals(UsingClause.Type.Language, dataDescriptionEntryGroup.getUsingClause().getType());
+		assertEquals(UsingClause.Type.LANGUAGE, dataDescriptionEntryGroup.getUsingClause().getType());
 		assertNotNull(dataDescriptionEntryGroup.getUsingClause().getOfValueStmt());
 	}
 
@@ -390,7 +390,7 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getUsingClause());
-		assertEquals(UsingClause.Type.Convention, dataDescriptionEntryGroup.getUsingClause().getType());
+		assertEquals(UsingClause.Type.CONVENTION, dataDescriptionEntryGroup.getUsingClause().getType());
 		assertNotNull(dataDescriptionEntryGroup.getUsingClause().getOfValueStmt());
 	}
 

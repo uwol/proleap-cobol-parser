@@ -61,9 +61,9 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 			final PlusMinus.Type type;
 
 			if (ctx.PLUSCHAR() != null) {
-				type = PlusMinus.Type.Plus;
+				type = PlusMinus.Type.PLUS;
 			} else if (ctx.MINUSCHAR() != null) {
-				type = PlusMinus.Type.Minus;
+				type = PlusMinus.Type.MINUS;
 			} else {
 				type = null;
 			}

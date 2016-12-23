@@ -42,19 +42,19 @@ public class PurgeStatementTest extends CobolTestSupport {
 		{
 			final PurgeStatement purgeStatement = (PurgeStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(purgeStatement);
-			assertEquals(StatementTypeEnum.Purge, purgeStatement.getStatementType());
+			assertEquals(StatementTypeEnum.PURGE, purgeStatement.getStatementType());
 			assertEquals(2, purgeStatement.getCommunicationDescriptionEntryCalls().size());
 
 			{
 				final Call cdEntryCall = purgeStatement.getCommunicationDescriptionEntryCalls().get(0);
 				assertNotNull(cdEntryCall);
-				assertEquals(Call.CallType.UndefinedCall, cdEntryCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, cdEntryCall.getCallType());
 			}
 
 			{
 				final Call cdEntryCall = purgeStatement.getCommunicationDescriptionEntryCalls().get(1);
 				assertNotNull(cdEntryCall);
-				assertEquals(Call.CallType.UndefinedCall, cdEntryCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, cdEntryCall.getCallType());
 			}
 		}
 	}

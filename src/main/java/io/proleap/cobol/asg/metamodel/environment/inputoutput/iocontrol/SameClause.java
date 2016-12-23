@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface SameClause extends CobolDivisionElement {
 
 	enum Form {
-		Record, Sort, SortMerge
+		RECORD, SORT, SORT_MERGE
 	}
 
 	void addFileCall(Call fileCall);

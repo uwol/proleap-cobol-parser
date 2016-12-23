@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface ByContent extends CobolDivisionElement {
 
 	enum Type {
-		AddressOf, LengthOf
+		ADDRESS_OF, LENGTH_OF
 	}
 
 	Call getCall();

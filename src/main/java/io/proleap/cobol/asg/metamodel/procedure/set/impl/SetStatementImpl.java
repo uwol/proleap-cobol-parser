@@ -33,7 +33,7 @@ public class SetStatementImpl extends StatementImpl implements SetStatement {
 
 	protected List<SetTo> setTos = new ArrayList<SetTo>();
 
-	protected final StatementType statementType = StatementTypeEnum.Set;
+	protected final StatementType statementType = StatementTypeEnum.SET;
 
 	protected Type type;
 
@@ -54,9 +54,9 @@ public class SetStatementImpl extends StatementImpl implements SetStatement {
 			final SetBy.Type type;
 
 			if (ctx.UP() != null) {
-				type = SetBy.Type.Up;
+				type = SetBy.Type.UP;
 			} else if (ctx.DOWN() != null) {
-				type = SetBy.Type.Down;
+				type = SetBy.Type.DOWN;
 			} else {
 				type = null;
 			}

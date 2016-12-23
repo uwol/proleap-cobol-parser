@@ -117,9 +117,9 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			final BlockContainsClause.Unit unit;
 
 			if (ctx.RECORDS() != null) {
-				unit = BlockContainsClause.Unit.Records;
+				unit = BlockContainsClause.Unit.RECORDS;
 			} else if (ctx.CHARACTERS() != null) {
-				unit = BlockContainsClause.Unit.Characters;
+				unit = BlockContainsClause.Unit.CHARACTERS;
 			} else {
 				unit = null;
 			}
@@ -222,11 +222,11 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			final LabelRecordsClause.Type type;
 
 			if (ctx.OMITTED() != null) {
-				type = LabelRecordsClause.Type.Omitted;
+				type = LabelRecordsClause.Type.OMITTED;
 			} else if (ctx.STANDARD() != null) {
-				type = LabelRecordsClause.Type.Standard;
+				type = LabelRecordsClause.Type.STANDARD;
 			} else if (!ctx.dataName().isEmpty()) {
-				type = LabelRecordsClause.Type.DataNames;
+				type = LabelRecordsClause.Type.DATA_NAMES;
 			} else {
 				type = null;
 			}

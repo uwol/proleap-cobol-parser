@@ -50,24 +50,24 @@ public class StringStatementTest extends CobolTestSupport {
 		{
 			final StringStatement stringStatement = (StringStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(stringStatement);
-			assertEquals(StatementTypeEnum.String, stringStatement.getStatementType());
+			assertEquals(StatementTypeEnum.STRING, stringStatement.getStatementType());
 			assertEquals(2, stringStatement.getSendings().size());
 
 			{
 				final Sendings sendings = stringStatement.getSendings().get(0);
-				assertEquals(Sendings.Type.DelimitedBy, sendings.getType());
+				assertEquals(Sendings.Type.DELIMITED_BY, sendings.getType());
 
 				final DelimitedBy delimitedBy = sendings.getDelimitedBy();
-				assertEquals(DelimitedBy.Type.Characters, delimitedBy.getType());
-				assertEquals(Call.CallType.UndefinedCall, delimitedBy.getCharactersCall().getCallType());
+				assertEquals(DelimitedBy.Type.CHARACTERS, delimitedBy.getType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, delimitedBy.getCharactersCall().getCallType());
 			}
 
 			{
 				final Sendings sendings = stringStatement.getSendings().get(1);
-				assertEquals(Sendings.Type.For, sendings.getType());
+				assertEquals(Sendings.Type.FOR, sendings.getType());
 
 				final For sendingFor = sendings.getFor();
-				assertEquals(Call.CallType.UndefinedCall, sendingFor.getForCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, sendingFor.getForCall().getCallType());
 			}
 
 			{
@@ -75,7 +75,7 @@ public class StringStatementTest extends CobolTestSupport {
 				assertNotNull(into);
 
 				final Call intoCall = into.getIntoCall();
-				assertEquals(Call.CallType.UndefinedCall, intoCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, intoCall.getCallType());
 			}
 
 			{
@@ -83,7 +83,7 @@ public class StringStatementTest extends CobolTestSupport {
 				assertNotNull(withPointer);
 
 				final Call pointerCall = withPointer.getPointerCall();
-				assertEquals(Call.CallType.UndefinedCall, pointerCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, pointerCall.getCallType());
 			}
 
 			{

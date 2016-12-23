@@ -39,6 +39,6 @@ public class ProgramIdCommonTest extends CobolTestSupport {
 		final ProgramIdParagraph programIdParagraph = identificationDivision.getProgramIdParagraph();
 
 		assertNotNull(programIdParagraph);
-		assertEquals(Attribute.Common, programIdParagraph.getAttribute());
+		assertEquals(Attribute.COMMON, programIdParagraph.getAttribute());
 	}
 }

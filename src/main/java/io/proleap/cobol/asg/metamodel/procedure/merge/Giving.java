@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface Giving extends CobolDivisionElement {
 
 	enum CloseProcedure {
-		Crunch, Lock, NoRewind, Release, Save, WithRemoveCrunch
+		CRUNCH, LOCK, NO_REWIND, RELEASE, SAVE, WITH_REMOVE_CRUNCH
 	}
 
 	CloseProcedure getCloseProcedure();

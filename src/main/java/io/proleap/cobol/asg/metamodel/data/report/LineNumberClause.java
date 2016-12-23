@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 public interface LineNumberClause extends CobolDivisionElement {
 
 	enum Type {
-		NextPage, Plus
+		NEXT_PAGE, PLUS
 	}
 
 	IntegerLiteral getIntegerLiteral();

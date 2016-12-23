@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface AccessModeClause extends CobolDivisionElement {
 
 	enum Mode {
-		Dynamic, Exclusive, Random, Sequential
+		DYNAMIC, EXCLUSIVE, RANDOM, SEQUENTIAL
 	}
 
 	Mode getMode();

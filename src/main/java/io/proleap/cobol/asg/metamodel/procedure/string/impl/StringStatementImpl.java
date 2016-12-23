@@ -41,7 +41,7 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 
 	protected List<Sendings> sendings = new ArrayList<Sendings>();
 
-	protected final StatementType statementType = StatementTypeEnum.String;
+	protected final StatementType statementType = StatementTypeEnum.STRING;
 
 	protected WithPointer withPointer;
 
@@ -87,10 +87,10 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 
 			if (ctx.stringDelimitedByPhrase() != null) {
 				result.addDelimitedBy(ctx.stringDelimitedByPhrase());
-				type = Sendings.Type.DelimitedBy;
+				type = Sendings.Type.DELIMITED_BY;
 			} else if (ctx.stringForPhrase() != null) {
 				result.addFor(ctx.stringForPhrase());
-				type = Sendings.Type.For;
+				type = Sendings.Type.FOR;
 			} else {
 				type = null;
 			}

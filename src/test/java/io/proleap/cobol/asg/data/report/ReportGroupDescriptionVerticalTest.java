@@ -55,7 +55,7 @@ public class ReportGroupDescriptionVerticalTest extends CobolTestSupport {
 			{
 				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = reportDescription
 						.getReportGroupDescriptionEntries().get(0);
-				assertEquals(ReportGroupDescriptionEntry.Type.Vertical, reportGroupDescriptionEntry.getType());
+				assertEquals(ReportGroupDescriptionEntry.Type.VERTICAL, reportGroupDescriptionEntry.getType());
 
 				final ReportGroupDescriptionEntryVertical reportGroupDescriptionEntryVertical = (ReportGroupDescriptionEntryVertical) reportGroupDescriptionEntry;
 				assertEquals(new Integer(1), reportGroupDescriptionEntryVertical.getLevelNumber());
@@ -67,19 +67,19 @@ public class ReportGroupDescriptionVerticalTest extends CobolTestSupport {
 
 				{
 					final NextGroupClause nextGroupClause = reportGroupDescriptionEntryVertical.getNextGroupClause();
-					assertEquals(NextGroupClause.Type.NextPage, nextGroupClause.getType());
+					assertEquals(NextGroupClause.Type.NEXT_PAGE, nextGroupClause.getType());
 					assertNull(nextGroupClause.getIntegerLiteral());
 				}
 
 				{
 					final TypeClause typeClause = reportGroupDescriptionEntryVertical.getTypeClause();
-					assertEquals(TypeClause.Type.ControlHeading, typeClause.getType());
+					assertEquals(TypeClause.Type.CONTROL_HEADING, typeClause.getType());
 					assertNotNull(typeClause.getDataCall());
 				}
 
 				{
 					final UsageClause usageClause = reportGroupDescriptionEntryVertical.getUsageClause();
-					assertEquals(UsageClause.Type.Display1, usageClause.getType());
+					assertEquals(UsageClause.Type.DISPLAY_1, usageClause.getType());
 				}
 			}
 		}

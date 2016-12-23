@@ -42,7 +42,7 @@ public class ExitStatementTest extends CobolTestSupport {
 		{
 			final ExitStatement exitStatement = (ExitStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(exitStatement);
-			assertEquals(StatementTypeEnum.Exit, exitStatement.getStatementType());
+			assertEquals(StatementTypeEnum.EXIT, exitStatement.getStatementType());
 		}
 	}
 }

@@ -132,9 +132,9 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 			final JustifiedClause.Justified justified;
 
 			if (ctx.RIGHT() != null) {
-				justified = JustifiedClause.Justified.JustifiedRight;
+				justified = JustifiedClause.Justified.JUSTIFIED_RIGHT;
 			} else {
-				justified = JustifiedClause.Justified.Justified;
+				justified = JustifiedClause.Justified.JUSTIFIED;
 			}
 
 			result.setJustified(justified);
@@ -193,9 +193,9 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 			final SignClause.Type type;
 
 			if (ctx.LEADING() != null) {
-				type = SignClause.Type.Leading;
+				type = SignClause.Type.LEADING;
 			} else if (ctx.TRAILING() != null) {
-				type = SignClause.Type.Trailing;
+				type = SignClause.Type.TRAILING;
 			} else {
 				type = null;
 			}
@@ -327,7 +327,7 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 
 	@Override
 	public Type getType() {
-		return Type.Printable;
+		return Type.PRINTABLE;
 	}
 
 	@Override

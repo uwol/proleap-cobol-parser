@@ -96,15 +96,15 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			final AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType alphabetClauseAlphanumericType;
 
 			if (ctx.EBCDIC() != null) {
-				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.Ebcdic;
+				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.EBCDIC;
 			} else if (ctx.ASCII() != null) {
-				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.Ascii;
+				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.ASCII;
 			} else if (ctx.STANDARD_1() != null) {
-				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.Standard1;
+				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.STANDARD_1;
 			} else if (ctx.STANDARD_2() != null) {
-				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.Standard2;
+				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.STANDARD_2;
 			} else if (ctx.NATIVE() != null) {
-				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.Native;
+				alphabetClauseAlphanumericType = AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType.NATIVE;
 			} else {
 				alphabetClauseAlphanumericType = null;
 			}
@@ -151,9 +151,9 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			final AlphabetClauseNational.AlphabetClauseNationalType alphabetClauseNationalType;
 
 			if (ctx.NATIVE() != null) {
-				alphabetClauseNationalType = AlphabetClauseNational.AlphabetClauseNationalType.Native;
+				alphabetClauseNationalType = AlphabetClauseNational.AlphabetClauseNationalType.NATIVE;
 			} else if (ctx.CCSVERSION() != null) {
-				alphabetClauseNationalType = AlphabetClauseNational.AlphabetClauseNationalType.CcsVersion;
+				alphabetClauseNationalType = AlphabetClauseNational.AlphabetClauseNationalType.CCS_VERSION;
 			} else {
 				LOG.warn("unknown type at {}", ctx);
 				alphabetClauseNationalType = null;
@@ -215,9 +215,9 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			final ClassClause.Type type;
 
 			if (ctx.ALPHANUMERIC() != null) {
-				type = ClassClause.Type.AlphaNumeric;
+				type = ClassClause.Type.ALPHA_NUMERIC;
 			} else if (ctx.NATIONAL() != null) {
-				type = ClassClause.Type.National;
+				type = ClassClause.Type.NATIONAL;
 			} else {
 				type = null;
 			}
@@ -287,9 +287,9 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			final DefaultDisplaySignClause.Type type;
 
 			if (ctx.LEADING() != null) {
-				type = DefaultDisplaySignClause.Type.Leading;
+				type = DefaultDisplaySignClause.Type.LEADING;
 			} else if (ctx.TRAILING() != null) {
-				type = DefaultDisplaySignClause.Type.Trailing;
+				type = DefaultDisplaySignClause.Type.TRAILING;
 			} else {
 				type = null;
 			}
@@ -347,9 +347,9 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			final SymbolicCharactersClause.Type type;
 
 			if (ctx.ALPHANUMERIC() != null) {
-				type = SymbolicCharactersClause.Type.AlphaNumeric;
+				type = SymbolicCharactersClause.Type.ALPHA_NUMERIC;
 			} else if (ctx.NATIONAL() != null) {
-				type = SymbolicCharactersClause.Type.National;
+				type = SymbolicCharactersClause.Type.NATIONAL;
 			} else {
 				type = null;
 			}

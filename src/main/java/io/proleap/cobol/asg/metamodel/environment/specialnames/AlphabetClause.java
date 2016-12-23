@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface AlphabetClause extends CobolDivisionElement {
 
 	enum Type {
-		Alphanumeric, National
+		ALPHANUMERIC, NATIONAL
 	}
 
 	Call getAlphabetCall();

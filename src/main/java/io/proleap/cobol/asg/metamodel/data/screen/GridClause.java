@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface GridClause extends CobolDivisionElement {
 
 	enum Type {
-		Grid, Leftline, Overline
+		GRID, LEFTLINE, OVERLINE
 	}
 
 	Type getType();

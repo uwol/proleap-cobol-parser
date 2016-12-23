@@ -29,7 +29,7 @@ public class UseStatementImpl extends StatementImpl implements UseStatement {
 
 	protected After procedure;
 
-	protected final StatementType statementType = StatementTypeEnum.Use;
+	protected final StatementType statementType = StatementTypeEnum.USE;
 
 	protected Type type;
 

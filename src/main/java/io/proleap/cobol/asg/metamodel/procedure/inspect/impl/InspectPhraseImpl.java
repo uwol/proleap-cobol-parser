@@ -38,9 +38,9 @@ public abstract class InspectPhraseImpl extends CobolDivisionElementImpl {
 			final BeforeAfter.Type type;
 
 			if (ctx.BEFORE() != null) {
-				type = BeforeAfter.Type.Before;
+				type = BeforeAfter.Type.BEFORE;
 			} else if (ctx.AFTER() != null) {
-				type = BeforeAfter.Type.After;
+				type = BeforeAfter.Type.AFTER;
 			} else {
 				type = null;
 			}

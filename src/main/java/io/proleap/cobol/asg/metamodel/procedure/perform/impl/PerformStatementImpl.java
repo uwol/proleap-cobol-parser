@@ -37,7 +37,7 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 
 	protected PerformProcedureStatement performProcedureStatement;
 
-	protected final StatementType statementType = StatementTypeEnum.Perform;
+	protected final StatementType statementType = StatementTypeEnum.PERFORM;
 
 	public PerformStatementImpl(final ProgramUnit programUnit, final Scope scope, final PerformStatementContext ctx) {
 		super(programUnit, scope, ctx);

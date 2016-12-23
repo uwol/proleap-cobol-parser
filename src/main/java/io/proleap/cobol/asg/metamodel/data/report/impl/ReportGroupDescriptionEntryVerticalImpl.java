@@ -48,13 +48,13 @@ public class ReportGroupDescriptionEntryVerticalImpl extends ReportGroupDescript
 			final IntegerLiteral integerLiteral;
 
 			if (ctx.reportGroupNextGroupNextPage() != null) {
-				type = NextGroupClause.Type.NextPage;
+				type = NextGroupClause.Type.NEXT_PAGE;
 				integerLiteral = null;
 			} else if (ctx.reportGroupNextGroupPlus() != null) {
-				type = NextGroupClause.Type.Plus;
+				type = NextGroupClause.Type.PLUS;
 				integerLiteral = createIntegerLiteral(ctx.reportGroupNextGroupPlus().integerLiteral());
 			} else {
-				type = NextGroupClause.Type.Absolute;
+				type = NextGroupClause.Type.ABSOLUTE;
 				integerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			}
 
@@ -82,25 +82,25 @@ public class ReportGroupDescriptionEntryVerticalImpl extends ReportGroupDescript
 			final Call dataCall;
 
 			if (ctx.reportGroupTypeReportHeading() != null) {
-				type = TypeClause.Type.ReportHeading;
+				type = TypeClause.Type.REPORT_HEADING;
 				dataCall = null;
 			} else if (ctx.reportGroupTypePageHeading() != null) {
-				type = TypeClause.Type.PageHeading;
+				type = TypeClause.Type.PAGE_HEADING;
 				dataCall = null;
 			} else if (ctx.reportGroupTypeControlHeading() != null) {
-				type = TypeClause.Type.ControlHeading;
+				type = TypeClause.Type.CONTROL_HEADING;
 				dataCall = createCall(ctx.reportGroupTypeControlHeading().dataName());
 			} else if (ctx.reportGroupTypeDetail() != null) {
-				type = TypeClause.Type.Detail;
+				type = TypeClause.Type.DETAIL;
 				dataCall = null;
 			} else if (ctx.reportGroupTypeControlFooting() != null) {
-				type = TypeClause.Type.ControlFooting;
+				type = TypeClause.Type.CONTROL_FOOTING;
 				dataCall = createCall(ctx.reportGroupTypeControlFooting().dataName());
 			} else if (ctx.reportGroupTypePageFooting() != null) {
-				type = TypeClause.Type.PageFooting;
+				type = TypeClause.Type.PAGE_FOOTING;
 				dataCall = null;
 			} else if (ctx.reportGroupTypeReportFooting() != null) {
-				type = TypeClause.Type.ReportFooting;
+				type = TypeClause.Type.REPORT_FOOTING;
 				dataCall = null;
 			} else {
 				type = null;
@@ -124,7 +124,7 @@ public class ReportGroupDescriptionEntryVerticalImpl extends ReportGroupDescript
 
 	@Override
 	public Type getType() {
-		return Type.Vertical;
+		return Type.VERTICAL;
 	}
 
 	@Override

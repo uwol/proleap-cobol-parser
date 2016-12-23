@@ -60,12 +60,12 @@ public class GoToStatementTest extends CobolTestSupport {
 			{
 				final GoToStatement statement = (GoToStatement) paragraph1.getStatements().get(0);
 				assertNotNull(statement);
-				assertEquals(StatementTypeEnum.GoTo, statement.getStatementType());
-				assertEquals(GoToStatement.Type.Simple, statement.getType());
+				assertEquals(StatementTypeEnum.GO_TO, statement.getStatementType());
+				assertEquals(GoToStatement.Type.SIMPLE, statement.getType());
 
 				{
 					final Simple simple = statement.getSimple();
-					assertEquals(Call.CallType.ProcedureCall, simple.getProcedureCall().getCallType());
+					assertEquals(Call.CallType.PROCEDURE_CALL, simple.getProcedureCall().getCallType());
 
 					{
 						final ProcedureCall procedureCall = (ProcedureCall) simple.getProcedureCall();
@@ -77,8 +77,8 @@ public class GoToStatementTest extends CobolTestSupport {
 			{
 				final GoToStatement statement = (GoToStatement) paragraph1.getStatements().get(1);
 				assertNotNull(statement);
-				assertEquals(StatementTypeEnum.GoTo, statement.getStatementType());
-				assertEquals(GoToStatement.Type.DependingOn, statement.getType());
+				assertEquals(StatementTypeEnum.GO_TO, statement.getStatementType());
+				assertEquals(GoToStatement.Type.DEPENDING_ON, statement.getType());
 
 				{
 					final DependingOn dependingOn = statement.getDependingOn();
@@ -86,7 +86,7 @@ public class GoToStatementTest extends CobolTestSupport {
 
 					{
 						final Call call = dependingOn.getProcedureCalls().get(0);
-						assertEquals(Call.CallType.ProcedureCall, call.getCallType());
+						assertEquals(Call.CallType.PROCEDURE_CALL, call.getCallType());
 
 						{
 							final ProcedureCall procedureCall = (ProcedureCall) call;
@@ -96,7 +96,7 @@ public class GoToStatementTest extends CobolTestSupport {
 
 					{
 						final Call call = dependingOn.getProcedureCalls().get(1);
-						assertEquals(Call.CallType.ProcedureCall, call.getCallType());
+						assertEquals(Call.CallType.PROCEDURE_CALL, call.getCallType());
 
 						{
 							final ProcedureCall procedureCall = (ProcedureCall) call;
@@ -106,7 +106,7 @@ public class GoToStatementTest extends CobolTestSupport {
 
 					{
 						final Call dependingOnCall = dependingOn.getDependingOnCall();
-						assertEquals(Call.CallType.UndefinedCall, dependingOnCall.getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, dependingOnCall.getCallType());
 					}
 				}
 			}
@@ -114,8 +114,8 @@ public class GoToStatementTest extends CobolTestSupport {
 			{
 				final GoToStatement statement = (GoToStatement) paragraph1.getStatements().get(2);
 				assertNotNull(statement);
-				assertEquals(StatementTypeEnum.GoTo, statement.getStatementType());
-				assertEquals(GoToStatement.Type.DependingOn, statement.getType());
+				assertEquals(StatementTypeEnum.GO_TO, statement.getStatementType());
+				assertEquals(GoToStatement.Type.DEPENDING_ON, statement.getType());
 
 				{
 					final DependingOn dependingOn = statement.getDependingOn();
@@ -129,7 +129,7 @@ public class GoToStatementTest extends CobolTestSupport {
 
 			{
 				final Statement statement = paragraph2.getStatements().get(0);
-				assertEquals(StatementTypeEnum.Display, statement.getStatementType());
+				assertEquals(StatementTypeEnum.DISPLAY, statement.getStatementType());
 			}
 		}
 
@@ -138,7 +138,7 @@ public class GoToStatementTest extends CobolTestSupport {
 
 			{
 				final Statement statement = paragraph3.getStatements().get(0);
-				assertEquals(StatementTypeEnum.Display, statement.getStatementType());
+				assertEquals(StatementTypeEnum.DISPLAY, statement.getStatementType());
 			}
 		}
 	}

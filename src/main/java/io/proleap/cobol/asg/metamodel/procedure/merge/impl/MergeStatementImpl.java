@@ -48,7 +48,7 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 
 	protected OutputProcedure outputProcedure;
 
-	protected final StatementType statementType = StatementTypeEnum.Merge;
+	protected final StatementType statementType = StatementTypeEnum.MERGE;
 
 	protected List<Using> usings = new ArrayList<Using>();
 
@@ -118,9 +118,9 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 			final OnKey.Type type;
 
 			if (ctx.ASCENDING() != null) {
-				type = OnKey.Type.Ascending;
+				type = OnKey.Type.ASCENDING;
 			} else if (ctx.DESCENDING() != null) {
-				type = OnKey.Type.Descending;
+				type = OnKey.Type.DESCENDING;
 			} else {
 				type = null;
 			}

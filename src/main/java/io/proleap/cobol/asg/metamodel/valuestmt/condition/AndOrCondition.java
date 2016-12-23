@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.relation.AbbreviationRest;
 public interface AndOrCondition extends ValueStmt {
 
 	enum Type {
-		And, Or
+		AND, OR
 	}
 
 	AbbreviationRest addAbbreviationRest(AbbreviationRestContext abbreviationRest);

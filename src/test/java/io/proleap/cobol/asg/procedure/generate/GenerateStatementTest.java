@@ -63,8 +63,8 @@ public class GenerateStatementTest extends CobolTestSupport {
 				final GenerateStatement generateStatement = (GenerateStatement) procedureDivision.getStatements()
 						.get(0);
 				assertNotNull(generateStatement);
-				assertEquals(StatementTypeEnum.Generate, generateStatement.getStatementType());
-				assertEquals(Call.CallType.ReportDescriptionCall,
+				assertEquals(StatementTypeEnum.GENERATE, generateStatement.getStatementType());
+				assertEquals(Call.CallType.REPORT_DESCRIPTION_CALL,
 						generateStatement.getReportDescriptionCall().getCallType());
 
 				{

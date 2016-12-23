@@ -130,11 +130,11 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 			final SameClause.Form form;
 
 			if (ctx.RECORD() != null) {
-				form = SameClause.Form.Record;
+				form = SameClause.Form.RECORD;
 			} else if (ctx.SORT() != null) {
-				form = SameClause.Form.Sort;
+				form = SameClause.Form.SORT;
 			} else if (ctx.SORT_MERGE() != null) {
-				form = SameClause.Form.SortMerge;
+				form = SameClause.Form.SORT_MERGE;
 			} else {
 				form = null;
 			}

@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface UsageClause extends CobolDivisionElement {
 
 	enum Type {
-		Binary, BinaryExtended, BinaryTruncated, Bit, Comp, Comp1, Comp2, Comp3, Comp4, Comp5, ControlPoint, Date, Display, Display1, Double, Event, FunctionPointer, Index, Kanji, Lock, National, PackedDecimal, Pointer, ProcedurePointer, Real, Task
+		BINARY, BINARY_EXTENDED, BINARY_TRUNCATED, BIT, COMP, COMP_1, COMP_2, COMP_3, COMP_4, COMP_5, CONTROL_POINT, DATE, DISPLAY, DISPLAY_1, DOUBLE, EVENT, FUNCTION_POINTER, INDEX, KANJI, LOCK, NATIONAL, PACKED_DECIMAL, POINTER, PROCEDURE_POINTER, REAL, TASK
 	}
 
 	Type getType();

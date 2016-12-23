@@ -41,7 +41,7 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 
 	protected Sending sending;
 
-	protected final StatementType statementType = StatementTypeEnum.Unstring;
+	protected final StatementType statementType = StatementTypeEnum.UNSTRING;
 
 	protected Tallying tallying;
 

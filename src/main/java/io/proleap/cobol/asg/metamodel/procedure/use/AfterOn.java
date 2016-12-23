@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface AfterOn extends CobolDivisionElement {
 
 	enum Type {
-		Extend, File, Input, InputOutput, Output
+		EXTEND, FILE, INPUT, INPUT_OUTPUT, OUTPUT
 	}
 
 	void addFileCall(Call fileCall);

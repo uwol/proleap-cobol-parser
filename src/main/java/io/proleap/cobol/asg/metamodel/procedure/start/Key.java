@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface Key extends CobolDivisionElement {
 
 	enum Type {
-		Equal, Greater, GreaterOrEqual
+		EQUAL, GREATER, GREATER_OR_EQUAL
 	}
 
 	Call getComparisonCall();

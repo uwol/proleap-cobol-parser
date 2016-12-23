@@ -30,7 +30,7 @@ public class IfStatementImpl extends StatementImpl implements IfStatement {
 
 	protected Else ifElse;
 
-	protected final StatementType statementType = StatementTypeEnum.If;
+	protected final StatementType statementType = StatementTypeEnum.IF;
 
 	protected Then then;
 

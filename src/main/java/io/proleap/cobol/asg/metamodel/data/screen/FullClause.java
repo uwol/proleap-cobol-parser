@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface FullClause extends CobolDivisionElement {
 
 	enum Type {
-		Full, LengthCheck
+		FULL, LENGTH_CHECK
 	}
 
 	Type getType();

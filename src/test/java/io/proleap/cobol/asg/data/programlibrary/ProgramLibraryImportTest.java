@@ -50,7 +50,7 @@ public class ProgramLibraryImportTest extends CobolTestSupport {
 			final LibraryDescriptionEntry libraryDescriptionEntry = programLibrarySection
 					.getLibraryDescriptionEntry("SOMELIB");
 			assertNotNull(libraryDescriptionEntry);
-			assertEquals(LibraryDescriptionEntry.Type.Import, libraryDescriptionEntry.getType());
+			assertEquals(LibraryDescriptionEntry.Type.IMPORT, libraryDescriptionEntry.getType());
 
 			final LibraryDescriptionEntryImport libraryDescriptionEntryImport = (LibraryDescriptionEntryImport) libraryDescriptionEntry;
 
@@ -71,7 +71,7 @@ public class ProgramLibraryImportTest extends CobolTestSupport {
 				assertEquals(1, importAttributes.size());
 
 				final ImportAttribute importAttribute = importAttributes.get(0);
-				assertEquals(Type.ByTitle, importAttribute.getType());
+				assertEquals(Type.BY_TITLE, importAttribute.getType());
 				assertEquals("123", importAttribute.getFunctionLiteral().getValue());
 				assertEquals("234", importAttribute.getParameterLiteral().getValue());
 				assertEquals("'SOMETITLE'", importAttribute.getTitleLiteral().getValue());

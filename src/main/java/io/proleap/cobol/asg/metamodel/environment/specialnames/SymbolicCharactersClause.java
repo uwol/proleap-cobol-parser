@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface SymbolicCharactersClause extends CobolDivisionElement {
 
 	enum Type {
-		AlphaNumeric, National
+		ALPHA_NUMERIC, NATIONAL
 	}
 
 	Type getType();

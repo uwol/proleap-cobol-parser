@@ -75,9 +75,9 @@ public class RerunClauseImpl extends CobolDivisionElementImpl implements RerunCl
 			final RerunEveryOf.Type type;
 
 			if (ctx.REEL() != null) {
-				type = RerunEveryOf.Type.Reel;
+				type = RerunEveryOf.Type.REEL;
 			} else if (ctx.UNIT() != null) {
-				type = RerunEveryOf.Type.Unit;
+				type = RerunEveryOf.Type.UNIT;
 			} else {
 				LOG.warn("unknown type {}.", ctx);
 				type = null;

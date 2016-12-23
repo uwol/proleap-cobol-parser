@@ -30,7 +30,7 @@ public class GoToStatementImpl extends StatementImpl implements GoToStatement {
 
 	protected Simple simple;
 
-	protected final StatementType statementType = StatementTypeEnum.GoTo;
+	protected final StatementType statementType = StatementTypeEnum.GO_TO;
 
 	protected Type type;
 

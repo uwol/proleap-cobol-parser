@@ -42,14 +42,14 @@ public class AddCorrespondingStatementTest extends CobolTestSupport {
 
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(0);
-			assertEquals(AddStatement.Type.Corresponding, addStatement.getType());
+			assertEquals(AddStatement.Type.CORRESPONDING, addStatement.getType());
 			assertNotNull(addStatement.getAddCorresponding());
 
 			final AddCorresponding addCorresponding = addStatement.getAddCorresponding();
 			assertNotNull(addCorresponding.getFrom());
 			assertNotNull(addCorresponding.getTo());
 			assertNotNull(addCorresponding.getTo().getTo());
-			assertEquals(Call.CallType.DataDescriptionEntryCall, addCorresponding.getTo().getTo().getCallType());
+			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, addCorresponding.getTo().getTo().getCallType());
 		}
 	}
 }

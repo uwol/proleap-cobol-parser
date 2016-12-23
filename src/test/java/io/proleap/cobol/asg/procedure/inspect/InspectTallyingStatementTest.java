@@ -49,8 +49,8 @@ public class InspectTallyingStatementTest extends CobolTestSupport {
 		{
 			final InspectStatement inspectStatement = (InspectStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(inspectStatement);
-			assertEquals(StatementTypeEnum.Inspect, inspectStatement.getStatementType());
-			assertEquals(InspectStatement.Type.Tallying, inspectStatement.getType());
+			assertEquals(StatementTypeEnum.INSPECT, inspectStatement.getStatementType());
+			assertEquals(InspectStatement.Type.TALLYING, inspectStatement.getType());
 
 			final Tallying tallying = inspectStatement.getTallying();
 			assertEquals(1, tallying.getFors().size());
@@ -59,7 +59,7 @@ public class InspectTallyingStatementTest extends CobolTestSupport {
 				final For for1 = tallying.getFors().get(0);
 
 				assertNotNull(for1.getTallyCountDataItemCall());
-				assertEquals(Call.CallType.UndefinedCall, for1.getTallyCountDataItemCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, for1.getTallyCountDataItemCall().getCallType());
 				assertEquals(1, for1.getCharacters().size());
 				assertEquals(1, for1.getAllLeadings().size());
 
@@ -69,25 +69,25 @@ public class InspectTallyingStatementTest extends CobolTestSupport {
 
 					{
 						final BeforeAfter beforeAfter = characters.getBeforeAfters().get(0);
-						assertEquals(BeforeAfter.Type.After, beforeAfter.getType());
+						assertEquals(BeforeAfter.Type.AFTER, beforeAfter.getType());
 					}
 				}
 
 				{
 					final AllLeadings allLeadings = for1.getAllLeadings().get(0);
-					assertEquals(AllLeadings.Type.All, allLeadings.getType());
+					assertEquals(AllLeadings.Type.ALL, allLeadings.getType());
 					assertEquals(1, allLeadings.getAllLeadings().size());
 
 					{
 						final AllLeading allLeading = allLeadings.getAllLeadings().get(0);
 
 						assertNotNull(allLeading.getPatternDataItemCall());
-						assertEquals(Call.CallType.UndefinedCall, allLeading.getPatternDataItemCall().getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, allLeading.getPatternDataItemCall().getCallType());
 						assertEquals(1, allLeading.getBeforeAfters().size());
 
 						{
 							final BeforeAfter beforeAfter = allLeading.getBeforeAfters().get(0);
-							assertEquals(BeforeAfter.Type.Before, beforeAfter.getType());
+							assertEquals(BeforeAfter.Type.BEFORE, beforeAfter.getType());
 						}
 					}
 				}

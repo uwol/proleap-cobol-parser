@@ -46,7 +46,7 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 
 	protected Remainder remainder;
 
-	protected final StatementType statementType = StatementTypeEnum.Divide;
+	protected final StatementType statementType = StatementTypeEnum.DIVIDE;
 
 	protected Type type;
 

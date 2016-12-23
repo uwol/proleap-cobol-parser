@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
 
 public class FileDescriptionEntryCallImpl extends CallImpl implements FileDescriptionEntryCall {
 
-	protected final CallType callType = CallType.FileDescriptionEntryCall;
+	protected final CallType callType = CallType.FILE_DESCRIPTION_ENTRY_CALL;
 
 	protected FileDescriptionEntry fileDescriptionEntry;
 

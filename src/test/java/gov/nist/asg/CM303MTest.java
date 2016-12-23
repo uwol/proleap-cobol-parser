@@ -73,7 +73,7 @@ public class CM303MTest extends CobolTestSupport {
 					final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
 							.getCommunicationDescriptionEntry("COMMNAME");
 					assertNotNull(communicationDescriptionEntry);
-					assertEquals(CommunicationDescriptionEntry.Type.Input, communicationDescriptionEntry.getType());
+					assertEquals(CommunicationDescriptionEntry.Type.INPUT, communicationDescriptionEntry.getType());
 				}
 
 				{
@@ -83,7 +83,7 @@ public class CM303MTest extends CobolTestSupport {
 						final DataDescriptionEntry dataDescriptionEntry = communicationSection
 								.findDataDescriptionEntry("CREC");
 						assertNotNull(dataDescriptionEntry);
-						assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntry.getType());
+						assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
 						assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
 					}
 
@@ -91,7 +91,7 @@ public class CM303MTest extends CobolTestSupport {
 						final DataDescriptionEntry dataDescriptionEntry = communicationSection
 								.findDataDescriptionEntry("CNAME1");
 						assertNotNull(dataDescriptionEntry);
-						assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntry.getType());
+						assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
 						assertEquals(new Integer(3), dataDescriptionEntry.getLevelNumber());
 					}
 				}
@@ -110,12 +110,12 @@ public class CM303MTest extends CobolTestSupport {
 
 				{
 					final Statement statement = paragraph.getStatements().get(0);
-					assertEquals(StatementTypeEnum.Perform, statement.getStatementType());
+					assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(1);
-					assertEquals(StatementTypeEnum.Stop, statement.getStatementType());
+					assertEquals(StatementTypeEnum.STOP, statement.getStatementType());
 				}
 			}
 
@@ -126,7 +126,7 @@ public class CM303MTest extends CobolTestSupport {
 
 				{
 					final Statement statement = paragraph.getStatements().get(0);
-					assertEquals(StatementTypeEnum.Disable, statement.getStatementType());
+					assertEquals(StatementTypeEnum.DISABLE, statement.getStatementType());
 				}
 			}
 
@@ -137,7 +137,7 @@ public class CM303MTest extends CobolTestSupport {
 
 				{
 					final Statement statement = paragraph.getStatements().get(0);
-					assertEquals(StatementTypeEnum.Enable, statement.getStatementType());
+					assertEquals(StatementTypeEnum.ENABLE, statement.getStatementType());
 				}
 			}
 		}

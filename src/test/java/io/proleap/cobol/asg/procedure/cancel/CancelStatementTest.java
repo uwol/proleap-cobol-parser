@@ -41,27 +41,27 @@ public class CancelStatementTest extends CobolTestSupport {
 
 		{
 			final CancelStatement cancelStatement = (CancelStatement) procedureDivision.getStatements().get(0);
-			assertEquals(StatementTypeEnum.Cancel, cancelStatement.getStatementType());
+			assertEquals(StatementTypeEnum.CANCEL, cancelStatement.getStatementType());
 
 			{
 				final CancelCall cancelCall = cancelStatement.getCancelCalls().get(0);
-				assertEquals(Call.CallType.UndefinedCall, cancelCall.getCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, cancelCall.getCall().getCallType());
 			}
 
 			{
 				final CancelCall cancelCall = cancelStatement.getCancelCalls().get(1);
-				assertEquals(Call.CallType.UndefinedCall, cancelCall.getCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, cancelCall.getCall().getCallType());
 			}
 		}
 
 		{
 			final CancelStatement cancelStatement = (CancelStatement) procedureDivision.getStatements().get(1);
-			assertEquals(StatementTypeEnum.Cancel, cancelStatement.getStatementType());
+			assertEquals(StatementTypeEnum.CANCEL, cancelStatement.getStatementType());
 
 			{
 				final CancelCall cancelCall = cancelStatement.getCancelCalls().get(0);
-				assertEquals(CancelCall.Type.ByFunction, cancelCall.getType());
-				assertEquals(Call.CallType.UndefinedCall, cancelCall.getCall().getCallType());
+				assertEquals(CancelCall.Type.BY_FUNCTION, cancelCall.getType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, cancelCall.getCall().getCallType());
 			}
 		}
 	}

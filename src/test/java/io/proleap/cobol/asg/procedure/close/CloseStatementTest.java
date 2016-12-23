@@ -51,52 +51,52 @@ public class CloseStatementTest extends CobolTestSupport {
 
 		{
 			final CloseStatement closeStatement = (CloseStatement) procedureDivision.getStatements().get(0);
-			assertEquals(StatementTypeEnum.Close, closeStatement.getStatementType());
+			assertEquals(StatementTypeEnum.CLOSE, closeStatement.getStatementType());
 
 			{
 				final CloseFile closeFile = closeStatement.getCloseFiles().get(0);
 				final CloseReelUnitStatement closeReelUnitStatement = closeFile.getCloseReelUnitStatement();
-				assertEquals(CloseReelUnitStatement.Type.Unit, closeReelUnitStatement.getType());
+				assertEquals(CloseReelUnitStatement.Type.UNIT, closeReelUnitStatement.getType());
 				assertTrue(closeReelUnitStatement.isForRemovel());
-				assertEquals(CloseReelUnitStatement.WithType.Lock, closeReelUnitStatement.getWithType());
+				assertEquals(CloseReelUnitStatement.WithType.LOCK, closeReelUnitStatement.getWithType());
 			}
 
 			{
 				final CloseFile closeFile = closeStatement.getCloseFiles().get(1);
 				final CloseReelUnitStatement closeReelUnitStatement = closeFile.getCloseReelUnitStatement();
-				assertEquals(CloseReelUnitStatement.Type.Reel, closeReelUnitStatement.getType());
+				assertEquals(CloseReelUnitStatement.Type.REEL, closeReelUnitStatement.getType());
 				assertFalse(closeReelUnitStatement.isForRemovel());
 			}
 		}
 
 		{
 			final CloseStatement closeStatement = (CloseStatement) procedureDivision.getStatements().get(1);
-			assertEquals(StatementTypeEnum.Close, closeStatement.getStatementType());
+			assertEquals(StatementTypeEnum.CLOSE, closeStatement.getStatementType());
 
 			{
 				final CloseFile closeFile = closeStatement.getCloseFiles().get(0);
 				final CloseRelativeStatement closeRelativeStatement = closeFile.getCloseRelativeStatement();
-				assertEquals(CloseRelativeStatement.WithType.Lock, closeRelativeStatement.getWithType());
+				assertEquals(CloseRelativeStatement.WithType.LOCK, closeRelativeStatement.getWithType());
 			}
 		}
 
 		{
 			final CloseStatement closeStatement = (CloseStatement) procedureDivision.getStatements().get(2);
-			assertEquals(StatementTypeEnum.Close, closeStatement.getStatementType());
+			assertEquals(StatementTypeEnum.CLOSE, closeStatement.getStatementType());
 
 			{
 				final CloseFile closeFile = closeStatement.getCloseFiles().get(0);
 				final ClosePortFileIoStatement closePortFileIOStatement = closeFile.getClosePortFileIOStatement();
-				assertEquals(ClosePortFileIoStatement.WithType.Wait, closePortFileIOStatement.getWithType());
+				assertEquals(ClosePortFileIoStatement.WithType.WAIT, closePortFileIOStatement.getWithType());
 
 				{
 					final List<Using> usings = closePortFileIOStatement.getUsings();
 					final Using using = usings.get(0);
-					assertEquals(Using.Type.CloseDisposition, using.getType());
+					assertEquals(Using.Type.CLOSE_DISPOSITION, using.getType());
 
 					{
 						final UsingCloseDisposition usingCloseDisposition = using.getUsingCloseDisposition();
-						assertEquals(UsingCloseDisposition.Type.Orderly, usingCloseDisposition.getType());
+						assertEquals(UsingCloseDisposition.Type.ORDERLY, usingCloseDisposition.getType());
 					}
 				}
 			}
@@ -104,17 +104,17 @@ public class CloseStatementTest extends CobolTestSupport {
 
 		{
 			final CloseStatement closeStatement = (CloseStatement) procedureDivision.getStatements().get(3);
-			assertEquals(StatementTypeEnum.Close, closeStatement.getStatementType());
+			assertEquals(StatementTypeEnum.CLOSE, closeStatement.getStatementType());
 
 			{
 				final CloseFile closeFile = closeStatement.getCloseFiles().get(0);
 				final ClosePortFileIoStatement closePortFileIOStatement = closeFile.getClosePortFileIOStatement();
-				assertEquals(ClosePortFileIoStatement.WithType.NoWait, closePortFileIOStatement.getWithType());
+				assertEquals(ClosePortFileIoStatement.WithType.NO_WAIT, closePortFileIOStatement.getWithType());
 
 				{
 					final List<Using> usings = closePortFileIOStatement.getUsings();
 					final Using using = usings.get(0);
-					assertEquals(Using.Type.AssociatedData, using.getType());
+					assertEquals(Using.Type.ASSOCIATED_DATA, using.getType());
 
 					{
 						final UsingAssociatedData usingAssociatedData = using.getUsingAssociatedData();
@@ -126,17 +126,17 @@ public class CloseStatementTest extends CobolTestSupport {
 
 		{
 			final CloseStatement closeStatement = (CloseStatement) procedureDivision.getStatements().get(4);
-			assertEquals(StatementTypeEnum.Close, closeStatement.getStatementType());
+			assertEquals(StatementTypeEnum.CLOSE, closeStatement.getStatementType());
 
 			{
 				final CloseFile closeFile = closeStatement.getCloseFiles().get(0);
 				final ClosePortFileIoStatement closePortFileIOStatement = closeFile.getClosePortFileIOStatement();
-				assertEquals(ClosePortFileIoStatement.WithType.NoWait, closePortFileIOStatement.getWithType());
+				assertEquals(ClosePortFileIoStatement.WithType.NO_WAIT, closePortFileIOStatement.getWithType());
 
 				{
 					final List<Using> usings = closePortFileIOStatement.getUsings();
 					final Using using = usings.get(0);
-					assertEquals(Using.Type.AssociatedDataLength, using.getType());
+					assertEquals(Using.Type.ASSOCIATED_DATA_LENGTH, using.getType());
 
 					{
 						final UsingAssociatedDataLength usingAssociatedDataLength = using

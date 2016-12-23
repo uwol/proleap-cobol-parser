@@ -56,7 +56,7 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 
 	protected OutputProcedure outputProcedure;
 
-	protected final StatementType statementType = StatementTypeEnum.Sort;
+	protected final StatementType statementType = StatementTypeEnum.SORT;
 
 	protected List<Using> usings = new ArrayList<Using>();
 
@@ -165,9 +165,9 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 			final OnKey.Type type;
 
 			if (ctx.ASCENDING() != null) {
-				type = OnKey.Type.Ascending;
+				type = OnKey.Type.ASCENDING;
 			} else if (ctx.DESCENDING() != null) {
-				type = OnKey.Type.Descending;
+				type = OnKey.Type.DESCENDING;
 			} else {
 				type = null;
 			}

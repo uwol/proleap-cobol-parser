@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.call.CommunicationDescriptionEntryCall;
 public interface CommunicationDescriptionEntry extends CobolDivisionElement, Declaration {
 
 	enum Type {
-		Input, InputOutput, Output
+		INPUT, INPUT_OUTPUT, OUTPUT
 	}
 
 	void addCall(CommunicationDescriptionEntryCall call);

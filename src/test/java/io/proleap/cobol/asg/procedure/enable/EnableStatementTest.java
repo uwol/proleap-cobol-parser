@@ -47,17 +47,17 @@ public class EnableStatementTest extends CobolTestSupport {
 		final CommunicationDescriptionEntry communicationDescriptionEntry1 = communicationSection
 				.getCommunicationDescriptionEntry("SOMECDNAME1");
 		assertNotNull(communicationDescriptionEntry1);
-		assertEquals(CommunicationDescriptionEntry.Type.Input, communicationDescriptionEntry1.getType());
+		assertEquals(CommunicationDescriptionEntry.Type.INPUT, communicationDescriptionEntry1.getType());
 
 		final CommunicationDescriptionEntry communicationDescriptionEntry2 = communicationSection
 				.getCommunicationDescriptionEntry("SOMECDNAME2");
 		assertNotNull(communicationDescriptionEntry2);
-		assertEquals(CommunicationDescriptionEntry.Type.InputOutput, communicationDescriptionEntry2.getType());
+		assertEquals(CommunicationDescriptionEntry.Type.INPUT_OUTPUT, communicationDescriptionEntry2.getType());
 
 		final CommunicationDescriptionEntry communicationDescriptionEntry3 = communicationSection
 				.getCommunicationDescriptionEntry("SOMECDNAME3");
 		assertNotNull(communicationDescriptionEntry3);
-		assertEquals(CommunicationDescriptionEntry.Type.Output, communicationDescriptionEntry3.getType());
+		assertEquals(CommunicationDescriptionEntry.Type.OUTPUT, communicationDescriptionEntry3.getType());
 
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(0, procedureDivision.getParagraphs().size());
@@ -66,12 +66,12 @@ public class EnableStatementTest extends CobolTestSupport {
 		{
 			final EnableStatement enableStatement = (EnableStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(enableStatement);
-			assertEquals(StatementTypeEnum.Enable, enableStatement.getStatementType());
-			assertEquals(EnableStatement.Type.Input, enableStatement.getType());
+			assertEquals(StatementTypeEnum.ENABLE, enableStatement.getStatementType());
+			assertEquals(EnableStatement.Type.INPUT, enableStatement.getType());
 			assertTrue(enableStatement.isTerminal());
 
 			assertNotNull(enableStatement.getCommunicationDescriptionCall());
-			assertEquals(Call.CallType.CommunicationDescriptionEntryCall,
+			assertEquals(Call.CallType.COMMUNICATION_DESCRIPTION_ENTRY_CALL,
 					enableStatement.getCommunicationDescriptionCall().getCallType());
 
 			{
@@ -81,18 +81,18 @@ public class EnableStatementTest extends CobolTestSupport {
 						communicationDescriptionEntryCall1.getCommunicationDescriptionEntry());
 
 				assertNotNull(enableStatement.getKeyCall());
-				assertEquals(Call.CallType.UndefinedCall, enableStatement.getKeyCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, enableStatement.getKeyCall().getCallType());
 			}
 		}
 
 		{
 			final EnableStatement enableStatement = (EnableStatement) procedureDivision.getStatements().get(1);
 			assertNotNull(enableStatement);
-			assertEquals(EnableStatement.Type.InputOutput, enableStatement.getType());
+			assertEquals(EnableStatement.Type.INPUT_OUTPUT, enableStatement.getType());
 			assertTrue(enableStatement.isTerminal());
 
 			assertNotNull(enableStatement.getCommunicationDescriptionCall());
-			assertEquals(Call.CallType.CommunicationDescriptionEntryCall,
+			assertEquals(Call.CallType.COMMUNICATION_DESCRIPTION_ENTRY_CALL,
 					enableStatement.getCommunicationDescriptionCall().getCallType());
 
 			final CommunicationDescriptionEntryCall communicationDescriptionEntryCall2 = (CommunicationDescriptionEntryCall) enableStatement
@@ -101,18 +101,18 @@ public class EnableStatementTest extends CobolTestSupport {
 					communicationDescriptionEntryCall2.getCommunicationDescriptionEntry());
 
 			assertNotNull(enableStatement.getKeyCall());
-			assertEquals(Call.CallType.UndefinedCall, enableStatement.getKeyCall().getCallType());
+			assertEquals(Call.CallType.UNDEFINED_CALL, enableStatement.getKeyCall().getCallType());
 		}
 
 		{
 			final EnableStatement enableStatement = (EnableStatement) procedureDivision.getStatements().get(2);
 			assertNotNull(enableStatement);
-			assertEquals(StatementTypeEnum.Enable, enableStatement.getStatementType());
-			assertEquals(EnableStatement.Type.Output, enableStatement.getType());
+			assertEquals(StatementTypeEnum.ENABLE, enableStatement.getStatementType());
+			assertEquals(EnableStatement.Type.OUTPUT, enableStatement.getType());
 			assertFalse(enableStatement.isTerminal());
 
 			assertNotNull(enableStatement.getCommunicationDescriptionCall());
-			assertEquals(Call.CallType.CommunicationDescriptionEntryCall,
+			assertEquals(Call.CallType.COMMUNICATION_DESCRIPTION_ENTRY_CALL,
 					enableStatement.getCommunicationDescriptionCall().getCallType());
 
 			{
@@ -122,7 +122,7 @@ public class EnableStatementTest extends CobolTestSupport {
 						communicationDescriptionEntryCall3.getCommunicationDescriptionEntry());
 
 				assertNotNull(enableStatement.getKeyCall());
-				assertEquals(Call.CallType.UndefinedCall, enableStatement.getKeyCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, enableStatement.getKeyCall().getCallType());
 			}
 		}
 	}

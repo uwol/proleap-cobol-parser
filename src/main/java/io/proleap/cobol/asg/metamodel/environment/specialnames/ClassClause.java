@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface ClassClause extends CobolDivisionElement {
 
 	enum Type {
-		AlphaNumeric, National
+		ALPHA_NUMERIC, NATIONAL
 	}
 
 	ClassThrough addClassThrough(ClassClauseThroughContext ctx);

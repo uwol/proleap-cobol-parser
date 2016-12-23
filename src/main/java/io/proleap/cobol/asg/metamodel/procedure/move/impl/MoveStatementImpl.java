@@ -30,7 +30,7 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 
 	protected MoveTo moveTo;
 
-	protected final StatementType statementType = StatementTypeEnum.Move;
+	protected final StatementType statementType = StatementTypeEnum.MOVE;
 
 	protected Type type;
 

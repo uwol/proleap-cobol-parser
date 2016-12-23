@@ -43,16 +43,16 @@ public class ReleaseStatementTest extends CobolTestSupport {
 		{
 			final ReleaseStatement releaseStatement = (ReleaseStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(releaseStatement);
-			assertEquals(StatementTypeEnum.Release, releaseStatement.getStatementType());
+			assertEquals(StatementTypeEnum.RELEASE, releaseStatement.getStatementType());
 
 			{
 				assertNotNull(releaseStatement.getRecordCall());
-				assertEquals(Call.CallType.UndefinedCall, releaseStatement.getRecordCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, releaseStatement.getRecordCall().getCallType());
 			}
 
 			{
 				assertNotNull(releaseStatement.getContentCall());
-				assertEquals(Call.CallType.UndefinedCall, releaseStatement.getContentCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, releaseStatement.getContentCall().getCallType());
 			}
 		}
 	}

@@ -46,8 +46,8 @@ public class ReceiveIntoStatementTest extends CobolTestSupport {
 		{
 			final ReceiveStatement receiveStatement = (ReceiveStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(receiveStatement);
-			assertEquals(StatementTypeEnum.Receive, receiveStatement.getStatementType());
-			assertEquals(ReceiveStatement.Type.Into, receiveStatement.getType());
+			assertEquals(StatementTypeEnum.RECEIVE, receiveStatement.getStatementType());
+			assertEquals(ReceiveStatement.Type.INTO, receiveStatement.getType());
 			assertNotNull(receiveStatement.getReceiveIntoStatement());
 
 			{
@@ -56,17 +56,17 @@ public class ReceiveIntoStatementTest extends CobolTestSupport {
 				{
 					final Call communicationDescriptionCall = receiveIntoStatement.getCommunicationDescriptionCall();
 					assertNotNull(communicationDescriptionCall);
-					assertEquals(Call.CallType.UndefinedCall, communicationDescriptionCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, communicationDescriptionCall.getCallType());
 				}
 
 				{
-					assertEquals(ReceiveIntoStatement.Type.Message, receiveIntoStatement.getType());
+					assertEquals(ReceiveIntoStatement.Type.MESSAGE, receiveIntoStatement.getType());
 				}
 
 				{
 					final Call intoCall = receiveIntoStatement.getIntoCall();
 					assertNotNull(intoCall);
-					assertEquals(Call.CallType.UndefinedCall, intoCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, intoCall.getCallType());
 				}
 
 				{

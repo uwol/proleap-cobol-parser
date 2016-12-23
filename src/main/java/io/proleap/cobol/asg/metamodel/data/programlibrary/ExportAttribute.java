@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface ExportAttribute extends CobolDivisionElement {
 
 	enum Sharing {
-		DontCare, Private, SharedByAll, SharedByRunUnit
+		DONT_CARE, PRIVATE, SHARED_BY_ALL, SHARED_BY_RUN_UNIT
 	}
 
 	Sharing getSharing();

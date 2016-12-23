@@ -15,7 +15,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public class UndefinedCallImpl extends CallImpl implements Call {
 
-	protected final CallType callType = CallType.UndefinedCall;
+	protected final CallType callType = CallType.UNDEFINED_CALL;
 
 	public UndefinedCallImpl(final String name, final ProgramUnit programUnit, final ParseTree ctx) {
 		super(name, programUnit, ctx);

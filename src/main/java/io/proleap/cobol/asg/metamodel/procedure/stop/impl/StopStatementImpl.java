@@ -23,7 +23,7 @@ public class StopStatementImpl extends StatementImpl implements StopStatement {
 
 	protected Call displayCall;
 
-	protected final StatementType statementType = StatementTypeEnum.Stop;
+	protected final StatementType statementType = StatementTypeEnum.STOP;
 
 	protected Type type;
 

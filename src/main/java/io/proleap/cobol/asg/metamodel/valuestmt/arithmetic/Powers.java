@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 public interface Powers extends ValueStmt {
 
 	enum Type {
-		Minus, Plus
+		MINUS, PLUS
 	}
 
 	Basis addBasis(BasisContext ctx);

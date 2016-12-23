@@ -112,9 +112,9 @@ public class ObjectComputerParagraphImpl extends CobolDivisionElementImpl implem
 			final DiskSizeClause.Unit unit;
 
 			if (ctx.WORDS() != null) {
-				unit = DiskSizeClause.Unit.Words;
+				unit = DiskSizeClause.Unit.WORDS;
 			} else if (ctx.MODULES() != null) {
-				unit = DiskSizeClause.Unit.Modules;
+				unit = DiskSizeClause.Unit.MODULES;
 			} else {
 				unit = null;
 			}
@@ -147,11 +147,11 @@ public class ObjectComputerParagraphImpl extends CobolDivisionElementImpl implem
 			final MemorySizeClause.Unit unit;
 
 			if (ctx.WORDS() != null) {
-				unit = MemorySizeClause.Unit.Words;
+				unit = MemorySizeClause.Unit.WORDS;
 			} else if (ctx.CHARACTERS() != null) {
-				unit = MemorySizeClause.Unit.Characters;
+				unit = MemorySizeClause.Unit.CHARACTERS;
 			} else if (ctx.MODULES() != null) {
-				unit = MemorySizeClause.Unit.Modules;
+				unit = MemorySizeClause.Unit.MODULES;
 			} else {
 				unit = null;
 			}

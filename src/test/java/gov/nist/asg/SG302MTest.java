@@ -72,12 +72,12 @@ public class SG302MTest extends CobolTestSupport {
 
 				{
 					final Statement statement = paragraph.getStatements().get(0);
-					assertEquals(StatementTypeEnum.Display, statement.getStatementType());
+					assertEquals(StatementTypeEnum.DISPLAY, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(1);
-					assertEquals(StatementTypeEnum.Stop, statement.getStatementType());
+					assertEquals(StatementTypeEnum.STOP, statement.getStatementType());
 				}
 			}
 		}

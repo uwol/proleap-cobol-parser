@@ -20,7 +20,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface ReceiveStatement extends Statement {
 
 	enum Type {
-		From, Into
+		FROM, INTO
 	}
 
 	ReceiveFromStatement addReceiveFromStatement(ReceiveFromStatementContext ctx);

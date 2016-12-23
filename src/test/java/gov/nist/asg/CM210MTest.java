@@ -72,13 +72,13 @@ public class CM210MTest extends CobolTestSupport {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.findDataDescriptionEntry("MSG-72");
-					assertEquals(DataDescriptionEntry.Type.Scalar, dataDescriptionEntry.getType());
+					assertEquals(DataDescriptionEntry.Type.SCALAR, dataDescriptionEntry.getType());
 				}
 
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.findDataDescriptionEntry("RECOGNITION-MSG-1");
-					assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntry.getType());
+					assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -89,7 +89,7 @@ public class CM210MTest extends CobolTestSupport {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.findDataDescriptionEntry("RECOGNITION-MSG-2");
-					assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntry.getType());
+					assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -100,7 +100,7 @@ public class CM210MTest extends CobolTestSupport {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.findDataDescriptionEntry("RECOGNITION-MSG-3");
-					assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntry.getType());
+					assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -121,20 +121,20 @@ public class CM210MTest extends CobolTestSupport {
 					final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
 							.getCommunicationDescriptionEntry("CM-INQUE-1");
 					assertNotNull(communicationDescriptionEntry);
-					assertEquals(CommunicationDescriptionEntry.Type.Input, communicationDescriptionEntry.getType());
+					assertEquals(CommunicationDescriptionEntry.Type.INPUT, communicationDescriptionEntry.getType());
 				}
 
 				{
 					final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
 							.getCommunicationDescriptionEntry("CM-OUTQUE-1");
 					assertNotNull(communicationDescriptionEntry);
-					assertEquals(CommunicationDescriptionEntry.Type.Output, communicationDescriptionEntry.getType());
+					assertEquals(CommunicationDescriptionEntry.Type.OUTPUT, communicationDescriptionEntry.getType());
 				}
 
 				{
 					final DataDescriptionEntry dataDescriptionEntry = communicationSection
 							.findDataDescriptionEntry("INQUE-1-RECORD");
-					assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntry.getType());
+					assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -145,7 +145,7 @@ public class CM210MTest extends CobolTestSupport {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = communicationSection
 							.findDataDescriptionEntry("OUTQUE-1-RECORD");
-					assertEquals(DataDescriptionEntry.Type.Group, dataDescriptionEntry.getType());
+					assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -167,7 +167,7 @@ public class CM210MTest extends CobolTestSupport {
 
 				{
 					final Statement statement = paragraph.getStatements().get(0);
-					assertEquals(StatementTypeEnum.Enable, statement.getStatementType());
+					assertEquals(StatementTypeEnum.ENABLE, statement.getStatementType());
 				}
 			}
 
@@ -178,57 +178,57 @@ public class CM210MTest extends CobolTestSupport {
 
 				{
 					final Statement statement = paragraph.getStatements().get(0);
-					assertEquals(StatementTypeEnum.Receive, statement.getStatementType());
+					assertEquals(StatementTypeEnum.RECEIVE, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(1);
-					assertEquals(StatementTypeEnum.Move, statement.getStatementType());
+					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(2);
-					assertEquals(StatementTypeEnum.Move, statement.getStatementType());
+					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(3);
-					assertEquals(StatementTypeEnum.Move, statement.getStatementType());
+					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(4);
-					assertEquals(StatementTypeEnum.Send, statement.getStatementType());
+					assertEquals(StatementTypeEnum.SEND, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(5);
-					assertEquals(StatementTypeEnum.Move, statement.getStatementType());
+					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(6);
-					assertEquals(StatementTypeEnum.Send, statement.getStatementType());
+					assertEquals(StatementTypeEnum.SEND, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(7);
-					assertEquals(StatementTypeEnum.Move, statement.getStatementType());
+					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(8);
-					assertEquals(StatementTypeEnum.Send, statement.getStatementType());
+					assertEquals(StatementTypeEnum.SEND, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(9);
-					assertEquals(StatementTypeEnum.Accept, statement.getStatementType());
+					assertEquals(StatementTypeEnum.ACCEPT, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(10);
-					assertEquals(StatementTypeEnum.If, statement.getStatementType());
+					assertEquals(StatementTypeEnum.IF, statement.getStatementType());
 				}
 			}
 
@@ -239,32 +239,32 @@ public class CM210MTest extends CobolTestSupport {
 
 				{
 					final Statement statement = paragraph.getStatements().get(0);
-					assertEquals(StatementTypeEnum.Move, statement.getStatementType());
+					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(1);
-					assertEquals(StatementTypeEnum.Send, statement.getStatementType());
+					assertEquals(StatementTypeEnum.SEND, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(2);
-					assertEquals(StatementTypeEnum.Move, statement.getStatementType());
+					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(3);
-					assertEquals(StatementTypeEnum.Move, statement.getStatementType());
+					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(4);
-					assertEquals(StatementTypeEnum.Send, statement.getStatementType());
+					assertEquals(StatementTypeEnum.SEND, statement.getStatementType());
 				}
 
 				{
 					final Statement statement = paragraph.getStatements().get(5);
-					assertEquals(StatementTypeEnum.Stop, statement.getStatementType());
+					assertEquals(StatementTypeEnum.STOP, statement.getStatementType());
 				}
 			}
 		}

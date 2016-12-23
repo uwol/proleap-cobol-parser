@@ -54,12 +54,12 @@ public class ConfigurationSectionTest extends CobolTestSupport {
 		final MemorySizeClause memorySizeClause = objectComputerParagraph.getMemorySizeClause();
 		final IntegerLiteralValueStmt memorySizeValueStmt = (IntegerLiteralValueStmt) memorySizeClause.getValueStmt();
 		assertEquals(new Integer(8192), memorySizeValueStmt.getValue());
-		assertEquals(MemorySizeClause.Unit.Characters, memorySizeClause.getUnit());
+		assertEquals(MemorySizeClause.Unit.CHARACTERS, memorySizeClause.getUnit());
 
 		final DiskSizeClause diskSizeClause = objectComputerParagraph.getDiskSizeClause();
 		final IntegerLiteralValueStmt diskSizeValueStmt = (IntegerLiteralValueStmt) diskSizeClause.getValueStmt();
 		assertEquals(new Integer(4096), diskSizeValueStmt.getValue());
-		assertEquals(DiskSizeClause.Unit.Words, diskSizeClause.getUnit());
+		assertEquals(DiskSizeClause.Unit.WORDS, diskSizeClause.getUnit());
 
 		final CollatingSequenceClause collatingSequenceClause = objectComputerParagraph.getCollatingSequenceClause();
 		final List<String> alphabetNames = collatingSequenceClause.getAlphabetNames();

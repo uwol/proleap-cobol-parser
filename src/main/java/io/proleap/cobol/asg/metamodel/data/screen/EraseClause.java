@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface EraseClause extends CobolDivisionElement {
 
 	enum Type {
-		Eol, Eos
+		EOL, EOS
 	}
 
 	Type getType();

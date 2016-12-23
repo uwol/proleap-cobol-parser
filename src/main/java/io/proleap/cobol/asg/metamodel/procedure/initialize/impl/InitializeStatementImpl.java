@@ -31,7 +31,7 @@ public class InitializeStatementImpl extends StatementImpl implements Initialize
 
 	protected Replacing replacing;
 
-	protected final StatementType statementType = StatementTypeEnum.Initialize;
+	protected final StatementType statementType = StatementTypeEnum.INITIALIZE;
 
 	public InitializeStatementImpl(final ProgramUnit programUnit, final Scope scope,
 			final InitializeStatementContext ctx) {

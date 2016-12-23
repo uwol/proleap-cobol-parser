@@ -51,7 +51,7 @@ public class EvaluateStatementTest extends CobolTestSupport {
 
 		{
 			final EvaluateStatement evaluateStatement = (EvaluateStatement) procedureDivision.getStatements().get(0);
-			assertEquals(StatementTypeEnum.Evaluate, evaluateStatement.getStatementType());
+			assertEquals(StatementTypeEnum.EVALUATE, evaluateStatement.getStatementType());
 			assertNotNull(evaluateStatement);
 
 			{
@@ -97,7 +97,7 @@ public class EvaluateStatementTest extends CobolTestSupport {
 						final When when = whenPhrase.getWhens().get(0);
 						final Condition condition = when.getCondition();
 						assertNotNull(condition);
-						assertEquals(Condition.Type.ValueThrough, condition.getType());
+						assertEquals(Condition.Type.VALUE_THROUGH, condition.getType());
 
 						{
 							final Value value = condition.getValue();
@@ -128,7 +128,7 @@ public class EvaluateStatementTest extends CobolTestSupport {
 						final When when = whenPhrase.getWhens().get(0);
 						final Condition condition = when.getCondition();
 						assertNotNull(condition);
-						assertEquals(Condition.Type.ValueThrough, condition.getType());
+						assertEquals(Condition.Type.VALUE_THROUGH, condition.getType());
 
 						{
 							final Value value = condition.getValue();
@@ -161,7 +161,7 @@ public class EvaluateStatementTest extends CobolTestSupport {
 						{
 							final Condition condition = when.getCondition();
 							assertNotNull(condition);
-							assertEquals(Condition.Type.ValueThrough, condition.getType());
+							assertEquals(Condition.Type.VALUE_THROUGH, condition.getType());
 
 							{
 								final Value value = condition.getValue();
@@ -190,7 +190,7 @@ public class EvaluateStatementTest extends CobolTestSupport {
 							{
 								final Condition condition = alsoCondition.getCondition();
 								assertNotNull(condition);
-								assertEquals(Condition.Type.Value, condition.getType());
+								assertEquals(Condition.Type.VALUE, condition.getType());
 
 								{
 									final Value value = condition.getValue();

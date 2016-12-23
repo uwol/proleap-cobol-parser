@@ -40,7 +40,7 @@ public class AlphabetClauseNationalImpl extends AlphabetClauseImpl implements Al
 
 	@Override
 	public Type getType() {
-		return AlphabetClause.Type.National;
+		return AlphabetClause.Type.NATIONAL;
 	}
 
 	@Override

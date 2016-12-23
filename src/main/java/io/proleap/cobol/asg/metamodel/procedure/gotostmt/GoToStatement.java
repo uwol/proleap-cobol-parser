@@ -19,7 +19,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface GoToStatement extends Statement {
 
 	enum Type {
-		DependingOn, Simple
+		DEPENDING_ON, SIMPLE
 	}
 
 	DependingOn addDependingOn(GoToDependingOnStatementContext ctx);

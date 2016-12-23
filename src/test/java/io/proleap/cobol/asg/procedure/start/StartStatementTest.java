@@ -46,23 +46,23 @@ public class StartStatementTest extends CobolTestSupport {
 		{
 			final StartStatement startStatement = (StartStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(startStatement);
-			assertEquals(StatementTypeEnum.Start, startStatement.getStatementType());
+			assertEquals(StatementTypeEnum.START, startStatement.getStatementType());
 
 			{
 				final Call fileCall = startStatement.getFileCall();
 				assertNotNull(fileCall);
-				assertEquals(Call.CallType.UndefinedCall, fileCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, fileCall.getCallType());
 			}
 
 			{
 				final Key key = startStatement.getKey();
 				assertNotNull(key);
-				assertEquals(Key.Type.Equal, key.getType());
+				assertEquals(Key.Type.EQUAL, key.getType());
 
 				{
 					final Call comparisonCall = key.getComparisonCall();
 					assertNotNull(comparisonCall);
-					assertEquals(Call.CallType.UndefinedCall, comparisonCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, comparisonCall.getCallType());
 				}
 			}
 
@@ -73,7 +73,7 @@ public class StartStatementTest extends CobolTestSupport {
 
 				final DisplayStatement displayStatement = (DisplayStatement) invalidKey.getStatements().get(0);
 				assertNotNull(displayStatement);
-				assertEquals(StatementTypeEnum.Display, displayStatement.getStatementType());
+				assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 			}
 
 			{
@@ -84,7 +84,7 @@ public class StartStatementTest extends CobolTestSupport {
 				{
 					final DisplayStatement displayStatement = (DisplayStatement) notInvalidKey.getStatements().get(0);
 					assertNotNull(displayStatement);
-					assertEquals(StatementTypeEnum.Display, displayStatement.getStatementType());
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 				}
 			}
 		}

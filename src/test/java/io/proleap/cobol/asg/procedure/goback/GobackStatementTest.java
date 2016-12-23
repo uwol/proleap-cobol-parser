@@ -41,7 +41,7 @@ public class GobackStatementTest extends CobolTestSupport {
 		{
 			final GobackStatement gobackStatement = (GobackStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(gobackStatement);
-			assertEquals(StatementTypeEnum.GoBack, gobackStatement.getStatementType());
+			assertEquals(StatementTypeEnum.GO_BACK, gobackStatement.getStatementType());
 		}
 	}
 }

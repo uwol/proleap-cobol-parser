@@ -203,11 +203,11 @@ public class CommunicationDescriptionEntryInputImpl extends CommunicationDescrip
 			final SymbolicSubQueueClause.Type type;
 
 			if (ctx.SUB_QUEUE_1() != null) {
-				type = SymbolicSubQueueClause.Type.SubQueue1;
+				type = SymbolicSubQueueClause.Type.SUB_QUEUE_1;
 			} else if (ctx.SUB_QUEUE_2() != null) {
-				type = SymbolicSubQueueClause.Type.SubQueue2;
+				type = SymbolicSubQueueClause.Type.SUB_QUEUE_2;
 			} else if (ctx.SUB_QUEUE_3() != null) {
-				type = SymbolicSubQueueClause.Type.SubQueue3;
+				type = SymbolicSubQueueClause.Type.SUB_QUEUE_3;
 			} else {
 				LOG.warn("unknown type at {}", ctx);
 				type = null;
@@ -286,7 +286,7 @@ public class CommunicationDescriptionEntryInputImpl extends CommunicationDescrip
 
 	@Override
 	public Type getType() {
-		return Type.Input;
+		return Type.INPUT;
 	}
 
 }

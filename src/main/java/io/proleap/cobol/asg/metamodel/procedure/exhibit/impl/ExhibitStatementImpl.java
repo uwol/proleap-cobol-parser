@@ -32,7 +32,7 @@ public class ExhibitStatementImpl extends StatementImpl implements ExhibitStatem
 
 	protected List<Operand> operands = new ArrayList<Operand>();
 
-	protected final StatementType statementType = StatementTypeEnum.Exhibit;
+	protected final StatementType statementType = StatementTypeEnum.EXHIBIT;
 
 	public ExhibitStatementImpl(final ProgramUnit programUnit, final Scope scope, final ExhibitStatementContext ctx) {
 		super(programUnit, scope, ctx);

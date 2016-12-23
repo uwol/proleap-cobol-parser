@@ -51,13 +51,13 @@ public class SyncImpl extends CobolDivisionElementImpl implements Sync {
 			final Advancing.Type type;
 
 			if (ctx.sendAdvancingPage() != null) {
-				type = Advancing.Type.Page;
+				type = Advancing.Type.PAGE;
 			} else if (ctx.sendAdvancingLines() != null) {
 				result.addAdvancingLines(ctx.sendAdvancingLines());
-				type = Advancing.Type.Lines;
+				type = Advancing.Type.LINES;
 			} else if (ctx.sendAdvancingMnemonic() != null) {
 				result.addAdvancingMnemonic(ctx.sendAdvancingMnemonic());
-				type = Advancing.Type.Mnemonic;
+				type = Advancing.Type.MNEMONIC;
 			} else {
 				type = null;
 			}
@@ -68,9 +68,9 @@ public class SyncImpl extends CobolDivisionElementImpl implements Sync {
 			final Advancing.PositionType positionType;
 
 			if (ctx.AFTER() != null) {
-				positionType = Advancing.PositionType.After;
+				positionType = Advancing.PositionType.AFTER;
 			} else if (ctx.BEFORE() != null) {
-				positionType = Advancing.PositionType.Before;
+				positionType = Advancing.PositionType.BEFORE;
 			} else {
 				positionType = null;
 			}
@@ -115,13 +115,13 @@ public class SyncImpl extends CobolDivisionElementImpl implements Sync {
 			if (ctx.identifier() != null) {
 				final Call withCall = createCall(ctx.identifier());
 				result.setWithCall(withCall);
-				type = With.Type.Call;
+				type = With.Type.CALL;
 			} else if (ctx.EGI() != null) {
-				type = With.Type.Egi;
+				type = With.Type.EGI;
 			} else if (ctx.EMI() != null) {
-				type = With.Type.Emi;
+				type = With.Type.EMI;
 			} else if (ctx.ESI() != null) {
-				type = With.Type.Esi;
+				type = With.Type.ESI;
 			} else {
 				type = null;
 			}

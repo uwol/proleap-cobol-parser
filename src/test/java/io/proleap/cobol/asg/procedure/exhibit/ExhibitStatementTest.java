@@ -44,25 +44,25 @@ public class ExhibitStatementTest extends CobolTestSupport {
 		{
 			final ExhibitStatement exhibitStatement = (ExhibitStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(exhibitStatement);
-			assertEquals(StatementTypeEnum.Exhibit, exhibitStatement.getStatementType());
+			assertEquals(StatementTypeEnum.EXHIBIT, exhibitStatement.getStatementType());
 			assertEquals(3, exhibitStatement.getOperands().size());
 
 			{
 				final Operand operand = exhibitStatement.getOperands().get(0);
 				assertNotNull(operand.getOperandCall());
-				assertEquals(Call.CallType.UndefinedCall, operand.getOperandCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, operand.getOperandCall().getCallType());
 			}
 
 			{
 				final Operand operand = exhibitStatement.getOperands().get(1);
 				assertNotNull(operand.getOperandCall());
-				assertEquals(Call.CallType.UndefinedCall, operand.getOperandCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, operand.getOperandCall().getCallType());
 			}
 
 			{
 				final Operand operand = exhibitStatement.getOperands().get(2);
 				assertNotNull(operand.getOperandCall());
-				assertEquals(Call.CallType.UndefinedCall, operand.getOperandCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, operand.getOperandCall().getCallType());
 			}
 		}
 	}

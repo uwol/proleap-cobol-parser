@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
 public interface When extends Scope {
 
 	enum Type {
-		NextSentence, Statements
+		NEXT_SENTENCE, STATEMENTS
 	}
 
 	ConditionValueStmt getCondition();

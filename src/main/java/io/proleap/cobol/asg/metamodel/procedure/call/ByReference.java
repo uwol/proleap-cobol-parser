@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface ByReference extends CobolDivisionElement {
 
 	enum Type {
-		AddressOf, Integer, String
+		ADDRESS_OF, INTEGER, STRING
 	}
 
 	Call getCall();

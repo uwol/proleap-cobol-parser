@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface RerunEveryOf extends CobolDivisionElement {
 
 	enum Type {
-		Reel, Unit
+		REEL, UNIT
 	}
 
 	Call getFileCall();

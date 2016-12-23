@@ -39,7 +39,7 @@ public class InspectStatementImpl extends StatementImpl implements InspectStatem
 
 	protected Replacing replacing;
 
-	protected final StatementType statementType = StatementTypeEnum.Inspect;
+	protected final StatementType statementType = StatementTypeEnum.INSPECT;
 
 	protected Tallying tallying;
 

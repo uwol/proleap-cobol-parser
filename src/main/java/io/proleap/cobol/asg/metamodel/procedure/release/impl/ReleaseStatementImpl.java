@@ -25,7 +25,7 @@ public class ReleaseStatementImpl extends StatementImpl implements ReleaseStatem
 
 	protected Call recordCall;
 
-	protected final StatementType statementType = StatementTypeEnum.Release;
+	protected final StatementType statementType = StatementTypeEnum.RELEASE;
 
 	public ReleaseStatementImpl(final ProgramUnit programUnit, final Scope scope, final ReleaseStatementContext ctx) {
 		super(programUnit, scope, ctx);

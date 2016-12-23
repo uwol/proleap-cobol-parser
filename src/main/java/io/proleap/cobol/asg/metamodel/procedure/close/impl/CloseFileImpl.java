@@ -50,9 +50,9 @@ public class CloseFileImpl extends CobolDivisionElementImpl implements CloseFile
 			final ClosePortFileIoStatement.WithType withType;
 
 			if (ctx.NO() != null && ctx.WAIT() != null) {
-				withType = ClosePortFileIoStatement.WithType.NoWait;
+				withType = ClosePortFileIoStatement.WithType.NO_WAIT;
 			} else if (ctx.WITH() != null && ctx.WAIT() != null) {
-				withType = ClosePortFileIoStatement.WithType.Wait;
+				withType = ClosePortFileIoStatement.WithType.WAIT;
 			} else {
 				withType = null;
 			}
@@ -81,9 +81,9 @@ public class CloseFileImpl extends CobolDivisionElementImpl implements CloseFile
 			final CloseReelUnitStatement.Type type;
 
 			if (ctx.REEL() != null) {
-				type = CloseReelUnitStatement.Type.Reel;
+				type = CloseReelUnitStatement.Type.REEL;
 			} else if (ctx.UNIT() != null) {
-				type = CloseReelUnitStatement.Type.Unit;
+				type = CloseReelUnitStatement.Type.UNIT;
 			} else {
 				type = null;
 			}
@@ -99,9 +99,9 @@ public class CloseFileImpl extends CobolDivisionElementImpl implements CloseFile
 			final CloseReelUnitStatement.WithType withType;
 
 			if (ctx.REWIND() != null) {
-				withType = CloseReelUnitStatement.WithType.NoRewind;
+				withType = CloseReelUnitStatement.WithType.NO_REWIND;
 			} else if (ctx.LOCK() != null) {
-				withType = CloseReelUnitStatement.WithType.Lock;
+				withType = CloseReelUnitStatement.WithType.LOCK;
 			} else {
 				withType = null;
 			}
@@ -126,9 +126,9 @@ public class CloseFileImpl extends CobolDivisionElementImpl implements CloseFile
 			final CloseRelativeStatement.WithType withType;
 
 			if (ctx.REWIND() != null) {
-				withType = CloseRelativeStatement.WithType.NoRewind;
+				withType = CloseRelativeStatement.WithType.NO_REWIND;
 			} else if (ctx.LOCK() != null) {
-				withType = CloseRelativeStatement.WithType.Lock;
+				withType = CloseRelativeStatement.WithType.LOCK;
 			} else {
 				withType = null;
 			}

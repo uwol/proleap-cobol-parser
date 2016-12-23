@@ -28,7 +28,7 @@ public class CloseStatementImpl extends StatementImpl implements CloseStatement 
 
 	protected final CloseStatementContext ctx;
 
-	protected final StatementType statementType = StatementTypeEnum.Close;
+	protected final StatementType statementType = StatementTypeEnum.CLOSE;
 
 	public CloseStatementImpl(final ProgramUnit programUnit, final Scope scope, final CloseStatementContext ctx) {
 		super(programUnit, scope, ctx);

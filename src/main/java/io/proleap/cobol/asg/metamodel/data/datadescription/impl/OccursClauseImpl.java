@@ -68,9 +68,9 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 			final OccursSort.Order order;
 
 			if (ctx.ASCENDING() != null) {
-				order = OccursSort.Order.Ascending;
+				order = OccursSort.Order.ASCENDING;
 			} else if (ctx.DESCENDING() != null) {
-				order = OccursSort.Order.Descending;
+				order = OccursSort.Order.DESCENDING;
 			} else {
 				order = null;
 			}

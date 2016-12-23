@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 public interface UsingClause extends CobolDivisionElement {
 
 	enum Type {
-		Convention, Language
+		CONVENTION, LANGUAGE
 	}
 
 	ValueStmt getOfValueStmt();

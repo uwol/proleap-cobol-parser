@@ -18,7 +18,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface StopStatement extends Statement {
 
 	enum Type {
-		StopRun, StopRunAndDisplay
+		STOP_RUN, STOP_RUN_AND_DISPLAY
 	}
 
 	Call getDisplayCall();

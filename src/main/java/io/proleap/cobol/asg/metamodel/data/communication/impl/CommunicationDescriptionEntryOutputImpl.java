@@ -200,7 +200,7 @@ public class CommunicationDescriptionEntryOutputImpl extends CommunicationDescri
 
 	@Override
 	public Type getType() {
-		return Type.Output;
+		return Type.OUTPUT;
 	}
 
 }

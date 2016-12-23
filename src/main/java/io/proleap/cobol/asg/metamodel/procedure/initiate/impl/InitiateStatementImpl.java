@@ -26,7 +26,7 @@ public class InitiateStatementImpl extends StatementImpl implements InitiateStat
 
 	protected List<Call> reportCalls = new ArrayList<Call>();
 
-	protected final StatementType statementType = StatementTypeEnum.Initiate;
+	protected final StatementType statementType = StatementTypeEnum.INITIATE;
 
 	public InitiateStatementImpl(final ProgramUnit programUnit, final Scope scope, final InitiateStatementContext ctx) {
 		super(programUnit, scope, ctx);

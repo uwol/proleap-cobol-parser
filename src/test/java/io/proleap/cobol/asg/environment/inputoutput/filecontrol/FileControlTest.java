@@ -60,8 +60,8 @@ public class FileControlTest extends CobolTestSupport {
 		{
 			final AssignClause assignClause = fileControlEntry.getAssignClause();
 			assertNotNull(assignClause);
-			assertEquals(AssignClause.Type.Call, assignClause.getType());
-			assertEquals(Call.CallType.UndefinedCall, assignClause.getToCall().getCallType());
+			assertEquals(AssignClause.Type.CALL, assignClause.getType());
+			assertEquals(Call.CallType.UNDEFINED_CALL, assignClause.getToCall().getCallType());
 		}
 
 		{
@@ -73,8 +73,8 @@ public class FileControlTest extends CobolTestSupport {
 		{
 			final OrganizationClause organizationClause = fileControlEntry.getOrganizationClause();
 			assertNotNull(organizationClause);
-			assertEquals(OrganizationClause.Type.Record, organizationClause.getType());
-			assertEquals(OrganizationClause.Mode.Indexed, organizationClause.getMode());
+			assertEquals(OrganizationClause.Type.RECORD, organizationClause.getType());
+			assertEquals(OrganizationClause.Mode.INDEXED, organizationClause.getMode());
 		}
 
 		{
@@ -92,7 +92,7 @@ public class FileControlTest extends CobolTestSupport {
 		{
 			final AccessModeClause accessModeClause = fileControlEntry.getAccessModeClause();
 			assertNotNull(accessModeClause);
-			assertEquals(AccessModeClause.Mode.Dynamic, accessModeClause.getMode());
+			assertEquals(AccessModeClause.Mode.DYNAMIC, accessModeClause.getMode());
 		}
 
 		{

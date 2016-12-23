@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptio
 
 public class CommunicationDescriptionEntryCallImpl extends CallImpl implements CommunicationDescriptionEntryCall {
 
-	protected final CallType callType = CallType.CommunicationDescriptionEntryCall;
+	protected final CallType callType = CallType.COMMUNICATION_DESCRIPTION_ENTRY_CALL;
 
 	protected CommunicationDescriptionEntry communicationDescriptionEntry;
 

@@ -54,7 +54,7 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 
 	protected Call programCall;
 
-	protected final StatementType statementType = StatementTypeEnum.Call;
+	protected final StatementType statementType = StatementTypeEnum.CALL;
 
 	public CallStatementImpl(final ProgramUnit programUnit, final Scope scope, final CallStatementContext ctx) {
 		super(programUnit, scope, ctx);

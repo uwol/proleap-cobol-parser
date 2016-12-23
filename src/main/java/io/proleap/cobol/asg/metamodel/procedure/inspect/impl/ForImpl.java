@@ -49,9 +49,9 @@ public class ForImpl extends InspectPhraseImpl implements For {
 			final AllLeadings.Type type;
 
 			if (ctx.ALL() != null) {
-				type = AllLeadings.Type.All;
+				type = AllLeadings.Type.ALL;
 			} else if (ctx.LEADING() != null) {
-				type = AllLeadings.Type.Leading;
+				type = AllLeadings.Type.LEADING;
 			} else {
 				type = null;
 			}

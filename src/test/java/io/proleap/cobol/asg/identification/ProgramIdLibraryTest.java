@@ -39,6 +39,6 @@ public class ProgramIdLibraryTest extends CobolTestSupport {
 		final ProgramIdParagraph programIdParagraph = identificationDivision.getProgramIdParagraph();
 
 		assertNotNull(programIdParagraph);
-		assertEquals(Attribute.Library, programIdParagraph.getAttribute());
+		assertEquals(Attribute.LIBRARY, programIdParagraph.getAttribute());
 	}
 }

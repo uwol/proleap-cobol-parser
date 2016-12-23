@@ -50,13 +50,13 @@ public class MultiplyRegularStatementTest extends CobolTestSupport {
 		{
 			final MultiplyStatement multiplyStatement = (MultiplyStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(multiplyStatement);
-			assertEquals(StatementTypeEnum.Multiply, multiplyStatement.getStatementType());
-			assertEquals(MultiplyStatement.Type.Regular, multiplyStatement.getType());
+			assertEquals(StatementTypeEnum.MULTIPLY, multiplyStatement.getStatementType());
+			assertEquals(MultiplyStatement.Type.REGULAR, multiplyStatement.getType());
 
 			{
 				final Call operandCall = multiplyStatement.getOperandCall();
 				assertNotNull(operandCall);
-				assertEquals(Call.CallType.UndefinedCall, operandCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, operandCall.getCallType());
 			}
 
 			{
@@ -70,7 +70,7 @@ public class MultiplyRegularStatementTest extends CobolTestSupport {
 
 					final Call operandCall = operand.getOperandCall();
 					assertNotNull(operandCall);
-					assertEquals(Call.CallType.UndefinedCall, operandCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, operandCall.getCallType());
 				}
 
 				{
@@ -79,7 +79,7 @@ public class MultiplyRegularStatementTest extends CobolTestSupport {
 
 					final Call operandCall = operand.getOperandCall();
 					assertNotNull(operandCall);
-					assertEquals(Call.CallType.UndefinedCall, operandCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, operandCall.getCallType());
 				}
 			}
 

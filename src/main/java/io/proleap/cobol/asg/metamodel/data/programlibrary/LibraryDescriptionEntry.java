@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.Declaration;
 public interface LibraryDescriptionEntry extends CobolDivisionElement, Declaration {
 
 	enum Type {
-		Export, Import
+		EXPORT, IMPORT
 	}
 
 	Type getType();

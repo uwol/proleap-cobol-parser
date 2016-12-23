@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 public interface MultDiv extends ValueStmt {
 
 	enum Type {
-		Div, Mult
+		DIV, MULT
 	}
 
 	Powers addPowers(PowersContext ctx);

@@ -25,7 +25,7 @@ public class DisableStatementImpl extends StatementImpl implements DisableStatem
 
 	protected Call keyCall;
 
-	protected final StatementType statementType = StatementTypeEnum.Disable;
+	protected final StatementType statementType = StatementTypeEnum.DISABLE;
 
 	protected boolean terminal;
 

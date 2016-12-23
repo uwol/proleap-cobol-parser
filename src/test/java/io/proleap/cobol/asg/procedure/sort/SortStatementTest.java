@@ -53,12 +53,12 @@ public class SortStatementTest extends CobolTestSupport {
 		{
 			final SortStatement sortStatement = (SortStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(sortStatement);
-			assertEquals(StatementTypeEnum.Sort, sortStatement.getStatementType());
+			assertEquals(StatementTypeEnum.SORT, sortStatement.getStatementType());
 
 			{
 				final Call fileCall = sortStatement.getFileCall();
 				assertNotNull(fileCall);
-				assertEquals(Call.CallType.UndefinedCall, fileCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, fileCall.getCallType());
 			}
 
 			{
@@ -66,28 +66,28 @@ public class SortStatementTest extends CobolTestSupport {
 
 				{
 					final OnKey onKey = sortStatement.getOnKeys().get(0);
-					assertEquals(OnKey.Type.Descending, onKey.getType());
+					assertEquals(OnKey.Type.DESCENDING, onKey.getType());
 					assertEquals(1, onKey.getKeyCalls().size());
 
 					{
 						final Call keyCall = onKey.getKeyCalls().get(0);
-						assertEquals(Call.CallType.UndefinedCall, keyCall.getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, keyCall.getCallType());
 					}
 				}
 
 				{
 					final OnKey onKey = sortStatement.getOnKeys().get(1);
-					assertEquals(OnKey.Type.Ascending, onKey.getType());
+					assertEquals(OnKey.Type.ASCENDING, onKey.getType());
 					assertEquals(2, onKey.getKeyCalls().size());
 
 					{
 						final Call keyCall = onKey.getKeyCalls().get(0);
-						assertEquals(Call.CallType.UndefinedCall, keyCall.getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, keyCall.getCallType());
 					}
 
 					{
 						final Call keyCall = onKey.getKeyCalls().get(1);
-						assertEquals(Call.CallType.UndefinedCall, keyCall.getCallType());
+						assertEquals(Call.CallType.UNDEFINED_CALL, keyCall.getCallType());
 					}
 				}
 			}
@@ -101,7 +101,7 @@ public class SortStatementTest extends CobolTestSupport {
 					assertNotNull(alphaNumeric);
 
 					final Call alphabetCall = alphaNumeric.getAlphabetCall();
-					assertEquals(Call.CallType.UndefinedCall, alphabetCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, alphabetCall.getCallType());
 				}
 
 				{
@@ -109,7 +109,7 @@ public class SortStatementTest extends CobolTestSupport {
 					assertNotNull(national);
 
 					final Call alphabetCall = national.getAlphabetCall();
-					assertEquals(Call.CallType.UndefinedCall, alphabetCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, alphabetCall.getCallType());
 				}
 			}
 
@@ -126,7 +126,7 @@ public class SortStatementTest extends CobolTestSupport {
 				assertEquals(1, using.getFileCalls().size());
 
 				final Call fileCall = using.getFileCalls().get(0);
-				assertEquals(Call.CallType.UndefinedCall, fileCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, fileCall.getCallType());
 			}
 
 			{
@@ -136,7 +136,7 @@ public class SortStatementTest extends CobolTestSupport {
 				{
 					final Call procedureCall = outputProcedure.getProcedureCall();
 					assertNotNull(procedureCall);
-					assertEquals(Call.CallType.UndefinedCall, procedureCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, procedureCall.getCallType());
 				}
 
 				{
@@ -145,7 +145,7 @@ public class SortStatementTest extends CobolTestSupport {
 
 					final Call procedureCall = outputThrough.getProcedureCall();
 					assertNotNull(procedureCall);
-					assertEquals(Call.CallType.UndefinedCall, procedureCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, procedureCall.getCallType());
 				}
 			}
 
@@ -159,10 +159,10 @@ public class SortStatementTest extends CobolTestSupport {
 				{
 					final Giving giving = givings.getGivings().get(0);
 					assertNotNull(giving);
-					assertEquals(Giving.CloseProcedure.NoRewind, giving.getCloseProcedure());
+					assertEquals(Giving.CloseProcedure.NO_REWIND, giving.getCloseProcedure());
 
 					final Call fileCall = giving.getFileCall();
-					assertEquals(Call.CallType.UndefinedCall, fileCall.getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, fileCall.getCallType());
 				}
 			}
 		}

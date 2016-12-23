@@ -20,7 +20,7 @@ public class ExitStatementImpl extends StatementImpl implements ExitStatement {
 
 	protected final ExitStatementContext ctx;
 
-	protected final StatementType statementType = StatementTypeEnum.Exit;
+	protected final StatementType statementType = StatementTypeEnum.EXIT;
 
 	public ExitStatementImpl(final ProgramUnit programUnit, final Scope scope, final ExitStatementContext ctx) {
 		super(programUnit, scope, ctx);

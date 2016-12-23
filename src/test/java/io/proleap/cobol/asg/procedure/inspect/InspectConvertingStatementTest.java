@@ -46,22 +46,22 @@ public class InspectConvertingStatementTest extends CobolTestSupport {
 		{
 			final InspectStatement inspectStatement = (InspectStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(inspectStatement);
-			assertEquals(StatementTypeEnum.Inspect, inspectStatement.getStatementType());
-			assertEquals(InspectStatement.Type.Converting, inspectStatement.getType());
+			assertEquals(StatementTypeEnum.INSPECT, inspectStatement.getStatementType());
+			assertEquals(InspectStatement.Type.CONVERTING, inspectStatement.getType());
 
 			{
 				final Converting converting = inspectStatement.getConverting();
 
 				{
 					assertNotNull(converting.getFromCall());
-					assertEquals(Call.CallType.UndefinedCall, converting.getFromCall().getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, converting.getFromCall().getCallType());
 				}
 
 				{
 					final To to = converting.getTo();
 					assertNotNull(to);
 					assertNotNull(to.getToCall());
-					assertEquals(Call.CallType.UndefinedCall, to.getToCall().getCallType());
+					assertEquals(Call.CallType.UNDEFINED_CALL, to.getToCall().getCallType());
 				}
 
 				assertEquals(1, converting.getBeforeAfters().size());
@@ -69,7 +69,7 @@ public class InspectConvertingStatementTest extends CobolTestSupport {
 				{
 					{
 						final BeforeAfter beforeAfter = converting.getBeforeAfters().get(0);
-						assertEquals(BeforeAfter.Type.After, beforeAfter.getType());
+						assertEquals(BeforeAfter.Type.AFTER, beforeAfter.getType());
 					}
 				}
 			}

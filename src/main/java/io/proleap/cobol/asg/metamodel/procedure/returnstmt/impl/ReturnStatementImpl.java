@@ -33,7 +33,7 @@ public class ReturnStatementImpl extends StatementImpl implements ReturnStatemen
 
 	protected NotAtEnd notAtEnd;
 
-	protected final StatementType statementType = StatementTypeEnum.Return;
+	protected final StatementType statementType = StatementTypeEnum.RETURN;
 
 	public ReturnStatementImpl(final ProgramUnit programUnit, final Scope scope, final ReturnStatementContext ctx) {
 		super(programUnit, scope, ctx);

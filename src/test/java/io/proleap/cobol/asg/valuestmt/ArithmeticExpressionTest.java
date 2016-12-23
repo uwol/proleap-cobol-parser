@@ -47,12 +47,12 @@ public class ArithmeticExpressionTest extends CobolTestSupport {
 
 		{
 			final ComputeStatement computeStatement = (ComputeStatement) procedureDivision.getStatements().get(0);
-			assertEquals(StatementTypeEnum.Compute, computeStatement.getStatementType());
+			assertEquals(StatementTypeEnum.COMPUTE, computeStatement.getStatementType());
 
 			{
 				final Store store = computeStatement.getStores().get(0);
 				assertNotNull(store.getStoreCall());
-				assertEquals(Call.CallType.UndefinedCall, store.getStoreCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, store.getStoreCall().getCallType());
 			}
 
 			{
@@ -85,7 +85,7 @@ public class ArithmeticExpressionTest extends CobolTestSupport {
 					{
 						final MultDiv multDivValueStmt = (MultDiv) multDivsValueStmt
 								.getSubValueStmts().get(1);
-						assertEquals(MultDiv.Type.Mult, multDivValueStmt.getType());
+						assertEquals(MultDiv.Type.MULT, multDivValueStmt.getType());
 						assertEquals(1, multDivValueStmt.getSubValueStmts().size());
 
 						{

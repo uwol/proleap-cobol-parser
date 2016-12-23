@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.data.screen.ScreenDescriptionEntry;
 
 public class ScreenDescriptionEntryCallImpl extends CallImpl implements ScreenDescriptionEntryCall {
 
-	protected final CallType callType = CallType.ScreenDescriptionEntryCall;
+	protected final CallType callType = CallType.SCREEN_DESCRIPTION_ENTRY_CALL;
 
 	protected ScreenDescriptionEntry screenDescriptionEntry;
 

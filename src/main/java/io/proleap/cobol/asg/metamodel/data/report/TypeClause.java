@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface TypeClause extends CobolDivisionElement {
 
 	enum Type {
-		ControlFooting, ControlHeading, Detail, PageFooting, PageHeading, ReportFooting, ReportHeading
+		CONTROL_FOOTING, CONTROL_HEADING, DETAIL, PAGE_FOOTING, PAGE_HEADING, REPORT_FOOTING, REPORT_HEADING
 	}
 
 	Call getDataCall();

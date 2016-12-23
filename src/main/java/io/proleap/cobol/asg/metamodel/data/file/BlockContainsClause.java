@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 public interface BlockContainsClause extends CobolDivisionElement {
 
 	enum Unit {
-		Characters, Records
+		CHARACTERS, RECORDS
 	}
 
 	IntegerLiteral getFrom();

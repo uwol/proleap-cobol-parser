@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface ReceiveIntoStatement extends CobolDivisionElement {
 
 	enum Type {
-		Message, Segment
+		MESSAGE, SEGMENT
 	}
 
 	NoData addNoData(ReceiveNoDataContext ctx);

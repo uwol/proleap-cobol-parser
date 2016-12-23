@@ -52,7 +52,7 @@ public class CommunicationDescriptionInputOutputTest extends CobolTestSupport {
 			final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
 					.getCommunicationDescriptionEntry("SOMECD");
 			assertNotNull(communicationDescriptionEntry);
-			assertEquals(CommunicationDescriptionEntry.Type.InputOutput, communicationDescriptionEntry.getType());
+			assertEquals(CommunicationDescriptionEntry.Type.INPUT_OUTPUT, communicationDescriptionEntry.getType());
 
 			final CommunicationDescriptionEntryInputOutput communicationDescriptionEntryInputOutput = (CommunicationDescriptionEntryInputOutput) communicationDescriptionEntry;
 

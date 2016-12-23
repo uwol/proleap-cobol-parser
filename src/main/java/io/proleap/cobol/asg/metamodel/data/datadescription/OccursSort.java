@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface OccursSort extends CobolDivisionElement {
 
 	enum Order {
-		Ascending, Descending
+		ASCENDING, DESCENDING
 	}
 
 	void addKeyCall(Call keyCall);

@@ -46,11 +46,11 @@ public class CallByReferenceStatementImpl extends CobolDivisionElementImpl imple
 			final ByReference.Type type;
 
 			if (ctx.ADDRESS() != null) {
-				type = ByReference.Type.AddressOf;
+				type = ByReference.Type.ADDRESS_OF;
 			} else if (ctx.INTEGER() != null) {
-				type = ByReference.Type.Integer;
+				type = ByReference.Type.INTEGER;
 			} else if (ctx.STRING() != null) {
-				type = ByReference.Type.String;
+				type = ByReference.Type.STRING;
 			} else {
 				type = null;
 			}

@@ -46,17 +46,17 @@ public class GivingsImpl extends CobolDivisionElementImpl implements Givings {
 			final Giving.CloseProcedure closeProcedure;
 
 			if (ctx.WITH() != null && ctx.REMOVE() != null && ctx.CRUNCH() != null) {
-				closeProcedure = Giving.CloseProcedure.WithRemoveCrunch;
+				closeProcedure = Giving.CloseProcedure.WITH_REMOVE_CRUNCH;
 			} else if (ctx.NO() != null && ctx.REWIND() != null) {
-				closeProcedure = Giving.CloseProcedure.NoRewind;
+				closeProcedure = Giving.CloseProcedure.NO_REWIND;
 			} else if (ctx.LOCK() != null) {
-				closeProcedure = Giving.CloseProcedure.Lock;
+				closeProcedure = Giving.CloseProcedure.LOCK;
 			} else if (ctx.SAVE() != null) {
-				closeProcedure = Giving.CloseProcedure.Save;
+				closeProcedure = Giving.CloseProcedure.SAVE;
 			} else if (ctx.RELEASE() != null) {
-				closeProcedure = Giving.CloseProcedure.Release;
+				closeProcedure = Giving.CloseProcedure.RELEASE;
 			} else if (ctx.CRUNCH() != null) {
-				closeProcedure = Giving.CloseProcedure.Crunch;
+				closeProcedure = Giving.CloseProcedure.CRUNCH;
 			} else {
 				closeProcedure = null;
 			}

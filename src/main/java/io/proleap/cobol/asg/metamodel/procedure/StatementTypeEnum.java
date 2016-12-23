@@ -9,5 +9,5 @@
 package io.proleap.cobol.asg.metamodel.procedure;
 
 public enum StatementTypeEnum implements StatementType {
-	Accept, Add, Alter, Call, Cancel, Close, Compute, Continue, Declaratives, Delete, Disable, Display, Divide, Enable, Entry, Evaluate, Exhibit, Exit, Generate, GoBack, GoTo, If, Initialize, Initiate, Inspect, Merge, Move, Multiply, Open, Perform, Purge, Read, Receive, Release, Return, Rewrite, Search, Send, Set, Sort, Start, Stop, String, Subtract, Terminate, Unstring, Use, Write
+	ACCEPT, ADD, ALTER, CALL, CANCEL, CLOSE, COMPUTE, CONTINUE, DECLARATIVES, DELETE, DISABLE, DISPLAY, DIVIDE, ENABLE, ENTRY, EVALUATE, EXHIBIT, EXIT, GENERATE, GO_BACK, GO_TO, IF, INITIALIZE, INITIATE, INSPECT, MERGE, MOVE, MULTIPLY, OPEN, PERFORM, PURGE, READ, RECEIVE, RELEASE, RETURN, REWRITE, SEARCH, SEND, SET, SORT, START, STOP, STRING, SUBTRACT, TERMINATE, UNSTRING, USE, WRITE
 }

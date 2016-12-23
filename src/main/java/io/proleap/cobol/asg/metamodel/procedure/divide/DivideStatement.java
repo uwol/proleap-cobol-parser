@@ -23,7 +23,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface DivideStatement extends Statement {
 
 	enum Type {
-		Into, IntoByGiving, IntoGiving
+		INTO, INTO_BY_GIVING, INTO_GIVING
 	}
 
 	Into addInto(DivideIntoStatementContext ctx);

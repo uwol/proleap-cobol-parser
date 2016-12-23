@@ -44,19 +44,19 @@ public class DisplayAtStatementTest extends CobolTestSupport {
 		{
 			final DisplayStatement displayStatement = (DisplayStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(displayStatement);
-			assertEquals(StatementTypeEnum.Display, displayStatement.getStatementType());
+			assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 			assertEquals(2, displayStatement.getOperands().size());
 
 			{
 				final Operand operand = displayStatement.getOperands().get(0);
 				assertNotNull(operand.getOperandCall());
-				assertEquals(Call.CallType.UndefinedCall, operand.getOperandCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, operand.getOperandCall().getCallType());
 			}
 
 			{
 				final Operand operand = displayStatement.getOperands().get(1);
 				assertNotNull(operand.getOperandCall());
-				assertEquals(Call.CallType.UndefinedCall, operand.getOperandCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, operand.getOperandCall().getCallType());
 			}
 
 			{
@@ -64,7 +64,7 @@ public class DisplayAtStatementTest extends CobolTestSupport {
 
 				final Call atCall = displayStatement.getAt().getAtCall();
 				assertNotNull(atCall);
-				assertEquals(Call.CallType.UndefinedCall, atCall.getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, atCall.getCallType());
 			}
 		}
 	}

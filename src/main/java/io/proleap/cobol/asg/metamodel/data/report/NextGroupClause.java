@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 public interface NextGroupClause extends CobolDivisionElement {
 
 	enum Type {
-		Absolute, NextPage, Plus
+		ABSOLUTE, NEXT_PAGE, PLUS
 	}
 
 	IntegerLiteral getIntegerLiteral();

@@ -46,9 +46,9 @@ public class ConditionValueStmtImpl extends ValueStmtImpl implements ConditionVa
 			final AndOrCondition.Type type;
 
 			if (ctx.AND() != null) {
-				type = AndOrCondition.Type.And;
+				type = AndOrCondition.Type.AND;
 			} else if (ctx.OR() != null) {
-				type = AndOrCondition.Type.Or;
+				type = AndOrCondition.Type.OR;
 			} else {
 				type = null;
 			}

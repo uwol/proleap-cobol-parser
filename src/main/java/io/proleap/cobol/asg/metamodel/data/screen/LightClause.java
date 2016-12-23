@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface LightClause extends CobolDivisionElement {
 
 	enum Type {
-		Highlight, Lowlight
+		HIGHLIGHT, LOWLIGHT
 	}
 
 	Type getType();

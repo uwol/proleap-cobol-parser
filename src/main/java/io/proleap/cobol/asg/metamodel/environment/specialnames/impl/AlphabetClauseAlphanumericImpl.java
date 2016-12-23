@@ -77,7 +77,7 @@ public class AlphabetClauseAlphanumericImpl extends AlphabetClauseImpl implement
 
 	@Override
 	public Type getType() {
-		return Type.Alphanumeric;
+		return Type.ALPHANUMERIC;
 	}
 
 	@Override

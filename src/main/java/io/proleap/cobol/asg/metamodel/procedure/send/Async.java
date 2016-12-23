@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface Async extends CobolDivisionElement {
 
 	enum Type {
-		Bottom, Top
+		BOTTOM, TOP
 	}
 
 	Call getDataDescriptionEntryCall();

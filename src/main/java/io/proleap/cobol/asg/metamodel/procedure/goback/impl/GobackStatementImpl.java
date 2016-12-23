@@ -20,7 +20,7 @@ public class GobackStatementImpl extends StatementImpl implements GobackStatemen
 
 	protected final GobackStatementContext ctx;
 
-	protected final StatementType statementType = StatementTypeEnum.GoBack;
+	protected final StatementType statementType = StatementTypeEnum.GO_BACK;
 
 	public GobackStatementImpl(final ProgramUnit programUnit, final Scope scope, final GobackStatementContext ctx) {
 		super(programUnit, scope, ctx);

@@ -13,11 +13,11 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface OrganizationClause extends CobolDivisionElement {
 
 	enum Mode {
-		Indexed, Relative, Sequential
+		INDEXED, RELATIVE, SEQUENTIAL
 	}
 
 	enum Type {
-		Binary, Line, Record, RecordBinary
+		BINARY, LINE, RECORD, RECORD_BINARY
 	}
 
 	Mode getMode();

@@ -46,7 +46,7 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 
 	protected OnSizeError onSizeError;
 
-	protected final StatementType statementType = StatementTypeEnum.Add;
+	protected final StatementType statementType = StatementTypeEnum.ADD;
 
 	protected Type type;
 

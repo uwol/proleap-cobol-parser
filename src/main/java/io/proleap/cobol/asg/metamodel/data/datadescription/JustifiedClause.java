@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface JustifiedClause extends CobolDivisionElement {
 
 	enum Justified {
-		Justified, JustifiedRight
+		JUSTIFIED, JUSTIFIED_RIGHT
 	}
 
 	Justified getJustified();
