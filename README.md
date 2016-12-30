@@ -49,17 +49,29 @@ Example
 ```
 
 
-How to use
-----------
+Getting started
+---------------
 
-Import into [Eclipse](https://eclipse.org):
+To include the parser in your Maven project edit your `pom.xml` file as follows
 
-1. Clone or download the repository.
-2. In Eclipse import the directory as a an `existing Maven project`.
-3. Right click file `src/test/java/io.proleap.cobol.ast.HelloWorldTest.java` and `run as JUnit test`.
+```
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+```
+<dependency>
+    <groupId>com.github.uwol</groupId>
+    <artifactId>cobol85parser</artifactId>
+    <version>-SNAPSHOT</version>
+</dependency>
+```
 
 Use the following code as a starting point for developing own code.
-
 
 ### Simple: Generate an Abstract Semantic Graph (ASG) from COBOL code
 
@@ -125,6 +137,8 @@ Build process
 
 The build process is based on Maven (version 3 or higher). Building requires a JDK 8 and generates a Maven JAR, which can be used in other Maven projects as a dependency.
 
+* Clone or download the repository.
+* In [Eclipse](https://eclipse.org) import the directory as a an `existing Maven project`.
 * To build, run:
 
 ```
