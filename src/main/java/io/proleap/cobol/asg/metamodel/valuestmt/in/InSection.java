@@ -9,7 +9,11 @@
 package io.proleap.cobol.asg.metamodel.valuestmt.in;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
+import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface InSection extends CobolDivisionElement {
 
+	Call getSectionCall();
+
+	void setSectionCall(Call sectionCall);
 }

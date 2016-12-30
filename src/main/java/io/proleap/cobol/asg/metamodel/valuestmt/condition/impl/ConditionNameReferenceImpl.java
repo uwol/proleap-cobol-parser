@@ -54,7 +54,8 @@ public class ConditionNameReferenceImpl extends ValueStmtImpl implements Conditi
 		if (result == null) {
 			result = new InDataImpl(programUnit, ctx);
 
-			// TODO
+			final Call dataCall = createCall(ctx.dataName());
+			result.setDataCall(dataCall);
 
 			inDatas.add(result);
 			registerASGElement(result);
@@ -70,7 +71,8 @@ public class ConditionNameReferenceImpl extends ValueStmtImpl implements Conditi
 		if (result == null) {
 			result = new InFileImpl(programUnit, ctx);
 
-			// TODO
+			final Call fileCall = createCall(ctx.fileName());
+			result.setFileCall(fileCall);
 
 			inFile = result;
 			registerASGElement(result);
@@ -86,7 +88,8 @@ public class ConditionNameReferenceImpl extends ValueStmtImpl implements Conditi
 		if (result == null) {
 			result = new InMnemonicImpl(programUnit, ctx);
 
-			// TODO
+			final Call mnemonicCall = createCall(ctx.mnemonicName());
+			result.setMnemonicCall(mnemonicCall);
 
 			inMnemonics.add(result);
 			registerASGElement(result);
