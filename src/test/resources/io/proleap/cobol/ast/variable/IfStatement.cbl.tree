@@ -82,15 +82,14 @@
 																		(literal 
 																			(numericLiteral ZERO)))))))))) 
 										(andOrCondition OR 
-											(abbreviationRest 
-												(abbreviationLeaf 
-													(arithmeticExpression 
-														(multDivs 
-															(powers 
-																(basis 
-																	(literal 
-																		(numericLiteral 
-																			(integerLiteral 1))))))))))) 
+											(abbreviation 
+												(arithmeticExpression 
+													(multDivs 
+														(powers 
+															(basis 
+																(literal 
+																	(numericLiteral 
+																		(integerLiteral 1)))))))))) 
 									(ifThen 
 										(statement 
 											(displayStatement Display 

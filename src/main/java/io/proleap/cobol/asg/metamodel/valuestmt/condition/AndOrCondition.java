@@ -8,10 +8,12 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.condition;
 
-import io.proleap.cobol.Cobol85Parser.AbbreviationRestContext;
+import java.util.List;
+
+import io.proleap.cobol.Cobol85Parser.AbbreviationContext;
 import io.proleap.cobol.Cobol85Parser.CombinableConditionContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.relation.AbbreviationRest;
+import io.proleap.cobol.asg.metamodel.valuestmt.relation.Abbreviation;
 
 public interface AndOrCondition extends ValueStmt {
 
@@ -19,11 +21,11 @@ public interface AndOrCondition extends ValueStmt {
 		AND, OR
 	}
 
-	AbbreviationRest addAbbreviationRest(AbbreviationRestContext abbreviationRest);
+	Abbreviation addAbbreviation(AbbreviationContext abbreviationRest);
 
 	CombinableCondition addCombinableCondition(CombinableConditionContext ctx);
 
-	AbbreviationRest getAbbreviationRest();
+	List<Abbreviation> getAbbreviations();
 
 	CombinableCondition getCombinableCondition();
 

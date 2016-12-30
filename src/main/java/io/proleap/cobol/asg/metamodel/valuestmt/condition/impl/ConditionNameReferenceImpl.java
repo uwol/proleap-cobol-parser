@@ -109,6 +109,7 @@ public class ConditionNameReferenceImpl extends ValueStmtImpl implements Conditi
 
 			subscriptReferences.add(result);
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;

@@ -8,6 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.ArithmeticExpressionContext;
 import io.proleap.cobol.Cobol85Parser.MultDivContext;
 import io.proleap.cobol.Cobol85Parser.MultDivsContext;
@@ -22,6 +25,10 @@ import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl.PlusMinusImpl;
 public class ArithmeticValueStmtImpl extends ValueStmtImpl implements ArithmeticValueStmt {
 
 	protected ArithmeticExpressionContext ctx;
+
+	protected MultDivs multDivs;
+
+	protected List<PlusMinus> plusMinus = new ArrayList<PlusMinus>();
 
 	public ArithmeticValueStmtImpl(final ProgramUnit programUnit, final ArithmeticExpressionContext ctx) {
 		super(programUnit, ctx);
@@ -44,7 +51,9 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 				result.addMultDiv(multDivContext);
 			}
 
+			multDivs = result;
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;
@@ -73,10 +82,22 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 			// mult divs
 			result.addMultDivs(ctx.multDivs());
 
+			plusMinus.add(result);
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;
+	}
+
+	@Override
+	public MultDivs getMultDivs() {
+		return multDivs;
+	}
+
+	@Override
+	public List<PlusMinus> getPlusMinus() {
+		return plusMinus;
 	}
 
 	@Override

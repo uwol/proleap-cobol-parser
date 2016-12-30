@@ -55,11 +55,15 @@ public class StartStatementImpl extends StatementImpl implements StartStatement 
 				type = Key.Type.GREATER_OR_EQUAL;
 			} else if (ctx.GREATER() != null && ctx.EQUAL() != null) {
 				type = Key.Type.GREATER_OR_EQUAL;
-			} else if (ctx.NOT() != null && ctx.LESSTHANCHAR() != null) {
+			}
+			// with not
+			else if (ctx.NOT() != null && ctx.LESSTHANCHAR() != null) {
 				type = Key.Type.GREATER_OR_EQUAL;
 			} else if (ctx.NOT() != null && ctx.LESS() != null) {
 				type = Key.Type.GREATER_OR_EQUAL;
-			} else if (ctx.MORETHANCHAR() != null) {
+			}
+			// without not
+			else if (ctx.MORETHANCHAR() != null) {
 				type = Key.Type.GREATER;
 			} else if (ctx.GREATER() != null) {
 				type = Key.Type.GREATER;
@@ -71,13 +75,13 @@ public class StartStatementImpl extends StatementImpl implements StartStatement 
 				type = null;
 			}
 
+			result.setType(type);
+
 			// comparison call
 			if (ctx.qualifiedDataName() != null) {
 				final Call comparisonCall = createCall(ctx.qualifiedDataName());
 				result.setComparisonCall(comparisonCall);
 			}
-
-			result.setType(type);
 
 			key = result;
 			registerASGElement(result);

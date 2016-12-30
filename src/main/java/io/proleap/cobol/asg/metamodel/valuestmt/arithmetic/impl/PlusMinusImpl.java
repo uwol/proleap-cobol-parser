@@ -47,6 +47,7 @@ public class PlusMinusImpl extends ValueStmtImpl implements PlusMinus {
 
 			multDivs = result;
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;

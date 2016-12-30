@@ -37,6 +37,8 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 
 	protected RelationConditionValueStmt relationCondition;
 
+	protected Type type;
+
 	public SimpleConditionImpl(final ProgramUnit programUnit, final SimpleConditionContext ctx) {
 		super(programUnit, ctx);
 	}
@@ -85,6 +87,7 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 
 			classCondition = result;
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;
@@ -99,6 +102,7 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 
 			condition = result;
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;
@@ -138,6 +142,7 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 
 			conditionNameReference = result;
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;
@@ -178,8 +183,18 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 	}
 
 	@Override
+	public Type getType() {
+		return type;
+	}
+
+	@Override
 	public String getValue() {
 		return null;
+	}
+
+	@Override
+	public void setType(final Type type) {
+		this.type = type;
 	}
 
 }

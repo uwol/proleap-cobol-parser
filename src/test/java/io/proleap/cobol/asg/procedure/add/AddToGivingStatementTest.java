@@ -48,24 +48,29 @@ public class AddToGivingStatementTest extends CobolTestSupport {
 			assertEquals(AddStatement.Type.GIVING, addStatement.getType());
 			assertNotNull(addStatement.getAddToGiving());
 
-			final AddToGiving addToGiving = addStatement.getAddToGiving();
-			assertEquals(1, addToGiving.getFroms().size());
+			{
+				final AddToGiving addToGiving = addStatement.getAddToGiving();
+				assertEquals(1, addToGiving.getFroms().size());
 
-			final From from = addToGiving.getFroms().get(0);
-			assertNotNull(from.getFrom());
-			assertEquals(1, addToGiving.getTos().size());
+				{
+					final From from = addToGiving.getFroms().get(0);
+					assertNotNull(from.getFrom());
+					assertEquals(1, addToGiving.getTos().size());
+				}
 
-			final To to = addToGiving.getTos().get(0);
+				{
+					final To to = addToGiving.getTos().get(0);
+					assertNotNull(to.getTo());
+					assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to.getTo().getCallType());
+					assertEquals(1, addToGiving.getGivings().size());
+				}
 
-			assertNotNull(to.getTo());
-			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to.getTo().getCallType());
-
-			assertEquals(1, addToGiving.getGivings().size());
-
-			final Giving giving = addToGiving.getGivings().get(0);
-
-			assertNotNull(giving.getGiving());
-			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getGiving().getCallType());
+				{
+					final Giving giving = addToGiving.getGivings().get(0);
+					assertNotNull(giving.getGiving());
+					assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getGiving().getCallType());
+				}
+			}
 		}
 
 		{
@@ -73,33 +78,48 @@ public class AddToGivingStatementTest extends CobolTestSupport {
 			assertEquals(AddStatement.Type.GIVING, addStatement.getType());
 			assertNotNull(addStatement.getAddToGiving());
 
-			final AddToGiving addToGiving = addStatement.getAddToGiving();
-			assertEquals(2, addToGiving.getFroms().size());
+			{
+				final AddToGiving addToGiving = addStatement.getAddToGiving();
+				assertEquals(2, addToGiving.getFroms().size());
 
-			final From from1 = addToGiving.getFroms().get(0);
-			final From from2 = addToGiving.getFroms().get(1);
+				{
+					final From from1 = addToGiving.getFroms().get(0);
+					assertNotNull(from1.getFrom());
+				}
 
-			assertNotNull(from1.getFrom());
-			assertNotNull(from2.getFrom());
-			assertEquals(2, addToGiving.getTos().size());
+				{
+					final From from2 = addToGiving.getFroms().get(1);
+					assertNotNull(from2.getFrom());
+				}
 
-			final To to1 = addToGiving.getTos().get(0);
-			final To to2 = addToGiving.getTos().get(1);
+				assertEquals(2, addToGiving.getTos().size());
 
-			assertNotNull(to1.getTo());
-			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to1.getTo().getCallType());
-			assertNotNull(to2.getTo());
-			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to2.getTo().getCallType());
+				{
+					final To to1 = addToGiving.getTos().get(0);
+					assertNotNull(to1.getTo());
+					assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to1.getTo().getCallType());
+				}
 
-			assertEquals(2, addToGiving.getGivings().size());
+				{
+					final To to2 = addToGiving.getTos().get(1);
+					assertNotNull(to2.getTo());
+					assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to2.getTo().getCallType());
+				}
 
-			final Giving giving1 = addToGiving.getGivings().get(0);
-			final Giving giving2 = addToGiving.getGivings().get(1);
+				assertEquals(2, addToGiving.getGivings().size());
 
-			assertNotNull(giving1.getGiving());
-			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, giving1.getGiving().getCallType());
-			assertNotNull(giving2.getGiving());
-			assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, giving2.getGiving().getCallType());
+				{
+					final Giving giving1 = addToGiving.getGivings().get(0);
+					assertNotNull(giving1.getGiving());
+					assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, giving1.getGiving().getCallType());
+				}
+
+				{
+					final Giving giving2 = addToGiving.getGivings().get(1);
+					assertNotNull(giving2.getGiving());
+					assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, giving2.getGiving().getCallType());
+				}
+			}
 		}
 	}
 }

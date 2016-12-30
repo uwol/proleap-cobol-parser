@@ -60,6 +60,7 @@ public class MultDivsImpl extends ValueStmtImpl implements MultDivs {
 
 			multDivs.add(result);
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;
@@ -95,6 +96,7 @@ public class MultDivsImpl extends ValueStmtImpl implements MultDivs {
 
 			powers = result;
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;

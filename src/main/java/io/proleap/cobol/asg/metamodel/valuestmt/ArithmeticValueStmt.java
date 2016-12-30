@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt;
 
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.MultDivsContext;
 import io.proleap.cobol.Cobol85Parser.PlusMinusContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
@@ -18,6 +20,10 @@ public interface ArithmeticValueStmt extends ValueStmt {
 	MultDivs addMultDivs(MultDivsContext ctx);
 
 	PlusMinus addPlusMinus(PlusMinusContext ctx);
+
+	MultDivs getMultDivs();
+
+	List<PlusMinus> getPlusMinus();
 
 	@Override
 	String getValue();

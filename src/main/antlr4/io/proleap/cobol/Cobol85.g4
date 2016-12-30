@@ -2230,7 +2230,7 @@ condition
    ;
 
 andOrCondition
-   : (AND | OR) (combinableCondition | abbreviationRest)
+   : (AND | OR) (combinableCondition | abbreviation+)
    ;
 
 combinableCondition
@@ -2279,12 +2279,8 @@ relationalOperator
    : (IS | ARE)? (NOT? (GREATER THAN? | MORETHANCHAR | LESS THAN? | LESSTHANCHAR | EQUAL TO? | EQUALCHAR) | GREATER THAN? OR EQUAL TO? | MORETHANOREQUAL | LESS THAN? OR EQUAL TO? | LESSTHANOREQUAL)
    ;
 
-abbreviationRest
-   : (NOT? relationalOperator? abbreviationLeaf)+
-   ;
-
-abbreviationLeaf
-   : arithmeticExpression | LPARENCHAR arithmeticExpression abbreviationRest RPARENCHAR
+abbreviation
+   : NOT? relationalOperator? (arithmeticExpression | LPARENCHAR arithmeticExpression abbreviation RPARENCHAR)
    ;
 
 // identifier ----------------------------------

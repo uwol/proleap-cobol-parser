@@ -8,19 +8,23 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.condition.impl;
 
-import io.proleap.cobol.Cobol85Parser.AbbreviationRestContext;
+import java.util.ArrayList;
+import java.util.List;
+
+import io.proleap.cobol.Cobol85Parser.AbbreviationContext;
 import io.proleap.cobol.Cobol85Parser.AndOrConditionContext;
 import io.proleap.cobol.Cobol85Parser.CombinableConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.AndOrCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.CombinableCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
-import io.proleap.cobol.asg.metamodel.valuestmt.relation.AbbreviationRest;
-import io.proleap.cobol.asg.metamodel.valuestmt.relation.impl.AbbreviationRestImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.relation.Abbreviation;
+import io.proleap.cobol.asg.metamodel.valuestmt.relation.impl.AbbreviationImpl;
 
 public class AndOrConditionImpl extends ValueStmtImpl implements AndOrCondition {
 
-	protected AbbreviationRest abbreviationRest;
+	protected List<Abbreviation> abbreviations = new ArrayList<Abbreviation>();
 
 	protected CombinableCondition combinableCondition;
 
@@ -33,16 +37,31 @@ public class AndOrConditionImpl extends ValueStmtImpl implements AndOrCondition 
 	}
 
 	@Override
-	public AbbreviationRest addAbbreviationRest(final AbbreviationRestContext ctx) {
-		AbbreviationRest result = (AbbreviationRest) getASGElement(ctx);
+	public Abbreviation addAbbreviation(final AbbreviationContext ctx) {
+		Abbreviation result = (Abbreviation) getASGElement(ctx);
 
 		if (result == null) {
-			result = new AbbreviationRestImpl(programUnit, ctx);
+			result = new AbbreviationImpl(programUnit, ctx);
 
-			// TODO
+			// operator
+			if (ctx.relationalOperator() != null) {
+				result.addOperator(ctx.relationalOperator());
+			}
 
-			abbreviationRest = result;
+			// arithmetic expression
+			if (ctx.arithmeticExpression() != null) {
+				final ArithmeticValueStmt arithmeticExpression = createArithmeticValueStmt(ctx.arithmeticExpression());
+				result.setArithmeticExpression(arithmeticExpression);
+			}
+
+			// abbreviation
+			if (ctx.abbreviation() != null) {
+				result.addAbbreviation(ctx.abbreviation());
+			}
+
+			abbreviations.add(result);
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;
@@ -64,14 +83,15 @@ public class AndOrConditionImpl extends ValueStmtImpl implements AndOrCondition 
 
 			combinableCondition = result;
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;
 	}
 
 	@Override
-	public AbbreviationRest getAbbreviationRest() {
-		return abbreviationRest;
+	public List<Abbreviation> getAbbreviations() {
+		return abbreviations;
 	}
 
 	@Override

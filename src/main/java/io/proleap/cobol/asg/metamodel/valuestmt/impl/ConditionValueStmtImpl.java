@@ -11,6 +11,7 @@ package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.proleap.cobol.Cobol85Parser.AbbreviationContext;
 import io.proleap.cobol.Cobol85Parser.AndOrConditionContext;
 import io.proleap.cobol.Cobol85Parser.CombinableConditionContext;
 import io.proleap.cobol.Cobol85Parser.ConditionContext;
@@ -60,13 +61,14 @@ public class ConditionValueStmtImpl extends ValueStmtImpl implements ConditionVa
 				result.addCombinableCondition(ctx.combinableCondition());
 			}
 
-			// abbreviation rest
-			if (ctx.abbreviationRest() != null) {
-				result.addAbbreviationRest(ctx.abbreviationRest());
+			// abbreviation
+			for (final AbbreviationContext abbreviationContext : ctx.abbreviation()) {
+				result.addAbbreviation(abbreviationContext);
 			}
 
 			andOrConditions.add(result);
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;
@@ -88,6 +90,7 @@ public class ConditionValueStmtImpl extends ValueStmtImpl implements ConditionVa
 
 			combinableCondition = result;
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;

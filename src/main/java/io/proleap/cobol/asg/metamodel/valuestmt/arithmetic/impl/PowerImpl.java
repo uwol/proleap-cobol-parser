@@ -42,6 +42,7 @@ public class PowerImpl extends ValueStmtImpl implements Power {
 
 			basis = result;
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;

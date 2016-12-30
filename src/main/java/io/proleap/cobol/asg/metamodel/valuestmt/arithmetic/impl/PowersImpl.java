@@ -51,6 +51,7 @@ public class PowersImpl extends ValueStmtImpl implements Powers {
 
 			basis = result;
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;
@@ -68,6 +69,7 @@ public class PowersImpl extends ValueStmtImpl implements Powers {
 
 			powers.add(result);
 			subValueStmts.add(result);
+			registerASGElement(result);
 		}
 
 		return result;

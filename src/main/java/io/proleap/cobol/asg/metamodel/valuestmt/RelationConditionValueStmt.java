@@ -11,15 +11,32 @@ package io.proleap.cobol.asg.metamodel.valuestmt;
 import io.proleap.cobol.Cobol85Parser.RelationArithmeticComparisonContext;
 import io.proleap.cobol.Cobol85Parser.RelationCombinedComparisonContext;
 import io.proleap.cobol.Cobol85Parser.RelationSignConditionContext;
+import io.proleap.cobol.asg.metamodel.valuestmt.relation.ArithmeticComparison;
+import io.proleap.cobol.asg.metamodel.valuestmt.relation.CombinedComparison;
+import io.proleap.cobol.asg.metamodel.valuestmt.relation.SignCondition;
 
 public interface RelationConditionValueStmt extends ValueStmt {
 
-	void addRelationArithmeticComparison(RelationArithmeticComparisonContext ctx);
+	enum Type {
+		ARITHMETIC, COMBINED, SIGN
+	}
 
-	void addRelationCombinedComparison(RelationCombinedComparisonContext ctx);
+	ArithmeticComparison addRelationArithmeticComparison(RelationArithmeticComparisonContext ctx);
 
-	void addRelationSignCondition(RelationSignConditionContext ctx);
+	CombinedComparison addRelationCombinedComparison(RelationCombinedComparisonContext ctx);
+
+	SignCondition addRelationSignCondition(RelationSignConditionContext ctx);
+
+	ArithmeticComparison getArithmeticComparison();
+
+	CombinedComparison getCombinedComparison();
+
+	SignCondition getSignCondition();
+
+	Type getType();
 
 	@Override
 	String getValue();
+
+	void setType(Type type);
 }

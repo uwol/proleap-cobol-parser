@@ -207,12 +207,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final ConditionNameContext ctx) {
-		Call result = (Call) getASGElement(ctx);
-
-		if (result == null) {
-			result = createUndefinedCall(ctx);
-		}
-
+		final Call result = createDataDescriptionEntryCall(ctx);
 		return result;
 	}
 
@@ -680,20 +675,22 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (result == null) {
 			result = new RelationConditionValueStmtImpl(programUnit, ctx);
 
-			// sign condition
+			final RelationConditionValueStmt.Type type;
+
 			if (ctx.relationSignCondition() != null) {
 				result.addRelationSignCondition(ctx.relationSignCondition());
-			}
-
-			// arithmetic comparison
-			if (ctx.relationArithmeticComparison() != null) {
+				type = RelationConditionValueStmt.Type.SIGN;
+			} else if (ctx.relationArithmeticComparison() != null) {
 				result.addRelationArithmeticComparison(ctx.relationArithmeticComparison());
+				type = RelationConditionValueStmt.Type.ARITHMETIC;
+			} else if (ctx.relationCombinedComparison() != null) {
+				result.addRelationCombinedComparison(ctx.relationCombinedComparison());
+				type = RelationConditionValueStmt.Type.COMBINED;
+			} else {
+				type = null;
 			}
 
-			// combined comparison
-			if (ctx.relationCombinedComparison() != null) {
-				result.addRelationCombinedComparison(ctx.relationCombinedComparison());
-			}
+			result.setType(type);
 
 			registerASGElement(result);
 		}

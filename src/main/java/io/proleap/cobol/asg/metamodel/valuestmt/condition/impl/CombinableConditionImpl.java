@@ -34,26 +34,28 @@ public class CombinableConditionImpl extends ValueStmtImpl implements Combinable
 		if (result == null) {
 			result = new SimpleConditionImpl(programUnit, ctx);
 
-			// condition
+			// type
+			final SimpleCondition.Type type;
+
 			if (ctx.condition() != null) {
 				result.addCondition(ctx.condition());
-			}
-
-			// relation condition
-			if (ctx.relationCondition() != null) {
+				type = SimpleCondition.Type.CONDITION;
+			} else if (ctx.relationCondition() != null) {
 				result.addRelationCondition(ctx.relationCondition());
-			}
-
-			// class condition
-			if (ctx.classCondition() != null) {
+				type = SimpleCondition.Type.RELATION_CONDITION;
+			} else if (ctx.classCondition() != null) {
 				result.addClassCondition(ctx.classCondition());
-			}
-
-			// condition reference
-			if (ctx.conditionNameReference() != null) {
+				type = SimpleCondition.Type.CLASS_CONDITION;
+			} else if (ctx.conditionNameReference() != null) {
 				result.addConditionNameReference(ctx.conditionNameReference());
+				type = SimpleCondition.Type.CONDITION_NAME_REFERENCE;
+			} else {
+				type = null;
 			}
 
+			result.setType(type);
+
+			simpleCondition = result;
 			registerASGElement(result);
 		}
 
