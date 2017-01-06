@@ -16,6 +16,7 @@
 		</license>
 	</licenses>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<exclude.tests>nothing.to.exclude</exclude.tests>
 	</properties>
 	<profiles>
@@ -88,6 +89,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.4</version>
 				<configuration>
 					<argLine>-Xmx2048m -XX:MaxPermSize=256m -Djava.awt.headless=true</argLine>
 					<excludes>
