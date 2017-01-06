@@ -1,7 +1,8 @@
 ANTLR4-based parser and grammar for Cobol 85
 ============================================
 
-<a href="https://travis-ci.org/uwol/cobol85parser"><img src="https://api.travis-ci.org/uwol/cobol85parser.png"></a>
+[![Build](https://api.travis-ci.org/uwol/cobol85parser.png)](https://travis-ci.org/uwol/cobol85parser)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 This is a parser and grammar for Cobol 85, which generates an
 Abstract Syntax Tree (AST) and Abstract Semantic Graph (ASG) for COBOL 85 code.
