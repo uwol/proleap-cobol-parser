@@ -2,6 +2,7 @@ ANTLR4-based parser and grammar for Cobol 85
 ============================================
 
 [![Build](https://api.travis-ci.org/uwol/cobol85parser.png)](https://travis-ci.org/uwol/cobol85parser)
+[![Coverage](https://coveralls.io/repos/github/uwol/cobol85parser/badge.svg?branch=master)](https://coveralls.io/github/uwol/cobol85parser?branch=master)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 This is a parser and grammar for Cobol 85, which generates an
