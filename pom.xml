@@ -127,6 +127,11 @@
 					<format>xml</format>
 					<maxmem>256m</maxmem>
 					<aggregate>true</aggregate>
+					<instrumentation>
+						<includes>
+							<include>io/proleap/cobol/asg/**/*.class</include>
+						</includes>
+					</instrumentation>
 				</configuration>
 			</plugin>
 			<plugin>
