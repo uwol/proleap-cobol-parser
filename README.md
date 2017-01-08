@@ -209,4 +209,4 @@ Licensed under the BSD 3-Clause License. See LICENSE for details.
 ### And finally...
 
 Patches accepted, or create an issue!
-I'd love, if you could send me a note in which context you're using the grammar. Thank you!
+I'd love, if you could send me a note in which context you're using the parser. Thank you!
