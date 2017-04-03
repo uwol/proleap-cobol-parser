@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.misc.NotNull;
-import org.antlr.v4.runtime.misc.Nullable;
 import org.antlr.v4.runtime.misc.Utils;
 import org.antlr.v4.runtime.tree.Tree;
 import org.antlr.v4.runtime.tree.Trees;
@@ -23,7 +22,7 @@ public class TreeUtils {
 	/**
 	 * @see org.antlr.v4.runtime.tree.Trees.toStringTree(Tree, List<String>)
 	 */
-	public static String toStringTree(@NotNull final Tree t, @Nullable final List<String> ruleNames, final int depth) {
+	public static String toStringTree(@NotNull final Tree t, final List<String> ruleNames, final int depth) {
 		String s = Utils.escapeWhitespace(Trees.getNodeText(t, ruleNames), false);
 
 		if (t.getChildCount() == 0) {
@@ -58,7 +57,7 @@ public class TreeUtils {
 	/**
 	 * @see org.antlr.v4.runtime.tree.Trees.toStringTree(Tree, Parser)
 	 */
-	public static String toStringTree(@NotNull final Tree t, @Nullable final Parser recog) {
+	public static String toStringTree(@NotNull final Tree t, final Parser recog) {
 		final String[] ruleNames = recog != null ? recog.getRuleNames() : null;
 		final List<String> ruleNamesList = ruleNames != null ? Arrays.asList(ruleNames) : null;
 

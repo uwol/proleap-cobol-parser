@@ -12,16 +12,15 @@ import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.misc.NotNull;
-import org.antlr.v4.runtime.misc.Nullable;
 
 public class ThrowingErrorListener extends BaseErrorListener {
 
 	public static final ThrowingErrorListener INSTANCE = new ThrowingErrorListener();
 
 	@Override
-	public void syntaxError(@NotNull final Recognizer<?, ?> recognizer, @Nullable final Object offendingSymbol,
+	public void syntaxError(@NotNull final Recognizer<?, ?> recognizer, final Object offendingSymbol,
 			final int line, final int charPositionInLine, @NotNull final String msg,
-			@Nullable final RecognitionException e) {
+			final RecognitionException e) {
 		throw new RuntimeException("syntax error in line " + line + ":" + charPositionInLine + " " + msg);
 	}
 }

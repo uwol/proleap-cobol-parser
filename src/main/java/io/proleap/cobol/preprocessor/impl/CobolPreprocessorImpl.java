@@ -29,7 +29,6 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.NotNull;
-import org.antlr.v4.runtime.misc.Nullable;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -784,9 +783,9 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 	protected class ThrowingErrorListener extends BaseErrorListener {
 
 		@Override
-		public void syntaxError(@NotNull final Recognizer<?, ?> recognizer, @Nullable final Object offendingSymbol,
+		public void syntaxError(@NotNull final Recognizer<?, ?> recognizer, final Object offendingSymbol,
 				final int line, final int charPositionInLine, @NotNull final String msg,
-				@Nullable final RecognitionException e) {
+				final RecognitionException e) {
 			throw new RuntimeException("syntax error in line " + line + ":" + charPositionInLine + " " + msg);
 		}
 	}
