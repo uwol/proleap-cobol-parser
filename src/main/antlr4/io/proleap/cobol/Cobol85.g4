@@ -594,7 +594,7 @@ textLengthClause
 // -- local storage section ----------------------------------
 
 localStorageSection
-   : LOCAL_STORAGE SECTION DOT_FS LD localName DOT_FS dataDescriptionEntry*
+   : LOCAL_STORAGE SECTION DOT_FS (LD localName DOT_FS)? dataDescriptionEntry*
    ;
 
 // -- screen section ----------------------------------
