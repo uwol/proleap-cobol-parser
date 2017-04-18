@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<name>cobol85parser</name>
-	<description>Cobol 85 Grammar for ANTLR4</description>
+	<description>An ANTLR4-based parser and grammar for Cobol 85</description>
 	<groupId>io.github.uwol</groupId>
 	<artifactId>cobol85parser</artifactId>
 	<version>2.0.0</version>
@@ -19,7 +19,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<exclude.tests>nothing.to.exclude</exclude.tests>
 		<antlr.version>4.7</antlr.version>
-		<log4j.version>2.8</log4j.version>
+		<log4j.version>2.8.2</log4j.version>
 	</properties>
 	<profiles>
 		<profile>
@@ -202,12 +202,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
+			<artifactId>log4j-api</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
+			<artifactId>log4j-core</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
 
