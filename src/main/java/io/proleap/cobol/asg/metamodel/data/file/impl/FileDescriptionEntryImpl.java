@@ -68,6 +68,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 
 	protected ExternalClause externalClause;
 
+	protected Call fileCall;
+
 	protected GlobalClause globalClause;
 
 	protected LabelRecordsClause labelRecordsClause;
@@ -471,6 +473,11 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	}
 
 	@Override
+	public Call getFileCall() {
+		return fileCall;
+	}
+
+	@Override
 	public GlobalClause getGlobalClause() {
 		return globalClause;
 	}
@@ -503,6 +510,11 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	@Override
 	public ValueOfClause getValueOfClause() {
 		return valueOfClause;
+	}
+
+	@Override
+	public void setFileCall(final Call fileCall) {
+		this.fileCall = fileCall;
 	}
 
 }

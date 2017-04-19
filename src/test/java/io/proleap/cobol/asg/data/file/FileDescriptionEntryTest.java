@@ -50,6 +50,8 @@ public class FileDescriptionEntryTest extends CobolTestSupport {
 		{
 			final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("PERSON");
 			assertNotNull(fileDescriptionEntry);
+			assertNotNull(fileDescriptionEntry.getFileCall());
+			assertEquals("PERSON", fileDescriptionEntry.getFileCall().getName());
 
 			{
 				final BlockContainsClause blockContainsClause = fileDescriptionEntry.getBlockContainsClause();

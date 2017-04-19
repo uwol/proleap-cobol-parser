@@ -18,6 +18,7 @@ import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
@@ -45,6 +46,9 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 		if (result == null) {
 			final String name = determineName(ctx);
 			result = new FileDescriptionEntryImpl(name, programUnit, ctx);
+
+			final Call fileCall = createCall(ctx.fileName());
+			result.setFileCall(fileCall);
 
 			/*
 			 * file description entries

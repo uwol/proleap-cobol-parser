@@ -21,6 +21,7 @@ import io.proleap.cobol.Cobol85Parser.RecordContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportClauseContext;
 import io.proleap.cobol.Cobol85Parser.ValueOfClauseContext;
 import io.proleap.cobol.asg.metamodel.Declaration;
+import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.FileDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
 
@@ -58,6 +59,8 @@ public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Dec
 
 	ExternalClause getExternalClause();
 
+	Call getFileCall();
+
 	GlobalClause getGlobalClause();
 
 	LabelRecordsClause getLabelRecordsClause();
@@ -69,5 +72,7 @@ public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Dec
 	ReportClause getReportClause();
 
 	ValueOfClause getValueOfClause();
+
+	void setFileCall(Call fileCall);
 
 }
