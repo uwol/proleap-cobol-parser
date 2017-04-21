@@ -76,6 +76,9 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		}
 	}
 
+	/**
+	 * Preprocessor, which removes problematic chars from lines.
+	 */
 	protected class CobolCleanLinesSubPreprocessorImpl extends AbstractCobolLinesSubPreprocessor {
 
 		@Override
@@ -133,6 +136,10 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		}
 	}
 
+	/**
+	 * Preprocessor, which identifies and marks comment entries depending on the
+	 * COBOL dialect.
+	 */
 	protected class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolLinesSubPreprocessor {
 
 		protected final Pattern commentEntryTriggerLinePattern;
@@ -256,6 +263,9 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		}
 	}
 
+	/**
+	 * Preprocessor, which analyzes and processes line indicators.
+	 */
 	protected class CobolNormalizeLinesSubPreprocessorImpl extends AbstractCobolLinesSubPreprocessor {
 
 		protected final static String COMMENT_TAG = ">*";
@@ -367,6 +377,10 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		}
 	}
 
+	/**
+	 * Preprocessor, which parses and processes COPY REPLACE and EXEC SQL
+	 * statements.
+	 */
 	protected class CobolParseLinesSubPreprocessorImpl implements CobolSubPreprocessor {
 
 		protected final File libDirectory;
@@ -439,7 +453,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 
 	/**
 	 * ANTLR visitor, which preprocesses a given COBOL program by executing COPY
-	 * and REPLACE statemenets.
+	 * and REPLACE statements.
 	 */
 	protected class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBaseListener {
 
@@ -566,6 +580,9 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 				return outputBuffer.toString();
 			}
 
+			/**
+			 * Replaces replaceables with replacements.
+			 */
 			public void replace() {
 				if (currentReplaceableReplacements != null) {
 					Arrays.sort(currentReplaceableReplacements);
@@ -712,7 +729,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 
 		@Override
 		public void exitExecCicsStatement(final Cobol85PreprocessorParser.ExecCicsStatementContext ctx) {
-			// throw away EXEC SQL terminals -> TODO
+			// throw away EXEC CICS terminals -> TODO
 			pop();
 		}
 
@@ -784,8 +801,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 
 		@Override
 		public void syntaxError(@NotNull final Recognizer<?, ?> recognizer, final Object offendingSymbol,
-				final int line, final int charPositionInLine, @NotNull final String msg,
-				final RecognitionException e) {
+				final int line, final int charPositionInLine, @NotNull final String msg, final RecognitionException e) {
 			throw new RuntimeException("syntax error in line " + line + ":" + charPositionInLine + " " + msg);
 		}
 	}
