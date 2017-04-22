@@ -12,13 +12,16 @@ import java.util.List;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import io.proleap.cobol.Cobol85PreprocessorLexer;
+import io.proleap.cobol.preprocessor.sub.tree.impl.CobolHiddenTokenCollectorListenerImpl;
 
 public class TokenUtils {
 
-	public static String getHiddenTokensToLeft(final BufferedTokenStream tokens, final int tokPos) {
+	public static String getHiddenTokensToLeft(final int tokPos, final BufferedTokenStream tokens) {
 		final List<Token> refChannel = tokens.getHiddenTokensToLeft(tokPos, Cobol85PreprocessorLexer.HIDDEN);
 		final StringBuffer sb = new StringBuffer();
 
@@ -30,6 +33,14 @@ public class TokenUtils {
 		}
 
 		return sb.toString();
+	}
+
+	public static String getTextIncludingHiddenTokens(final ParseTree ctx, final BufferedTokenStream tokens) {
+		final CobolHiddenTokenCollectorListenerImpl listener = new CobolHiddenTokenCollectorListenerImpl(tokens);
+		final ParseTreeWalker walker = new ParseTreeWalker();
+		walker.walk(listener, ctx);
+
+		return listener.read();
 	}
 
 	public static boolean isEOF(final TerminalNode node) {

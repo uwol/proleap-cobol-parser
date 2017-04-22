@@ -38,7 +38,7 @@ public class CobolHiddenTokenCollectorListenerImpl extends Cobol85PreprocessorBa
 	public void visitTerminal(final TerminalNode node) {
 		if (!firstTerminal) {
 			final int tokPos = node.getSourceInterval().a;
-			outputBuffer.append(TokenUtils.getHiddenTokensToLeft(tokens, tokPos));
+			outputBuffer.append(TokenUtils.getHiddenTokensToLeft(tokPos, tokens));
 		}
 
 		if (!TokenUtils.isEOF(node)) {
