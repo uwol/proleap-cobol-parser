@@ -101,6 +101,8 @@ public interface CobolPreprocessor {
 		}
 	}
 
+	public final String COMMENT_TAG = ">*";
+
 	public final static String NEWLINE = "\n";
 
 	String process(File cobolFile, File libDirectory, CobolSourceFormat format) throws IOException;

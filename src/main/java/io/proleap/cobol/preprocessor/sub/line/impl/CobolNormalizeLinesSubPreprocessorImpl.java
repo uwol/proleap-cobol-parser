@@ -101,7 +101,7 @@ public class CobolNormalizeLinesSubPreprocessorImpl extends AbstractCobolSubPrep
 		// comment line
 		case charAsterisk:
 		case charSlash:
-			result = linePrefix + COMMENT_TAG + " " + handledContentArea;
+			result = linePrefix + CobolPreprocessor.COMMENT_TAG + " " + handledContentArea;
 			break;
 		case ' ':
 		default:

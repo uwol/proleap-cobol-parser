@@ -28,8 +28,6 @@ public abstract class AbstractCobolSubPreprocessor implements CobolSubPreprocess
 
 	protected final char charSlash = '/';
 
-	protected final String COMMENT_TAG = ">*";
-
 	public CobolLine parseCobolLine(final String line, final CobolSourceFormat format) {
 		CobolLine result = null;
 
