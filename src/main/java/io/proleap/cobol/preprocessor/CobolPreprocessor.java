@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016, Ulrich Wolffgang <u.wol@wwu.de>
+ * Copyright (C) 2017, Ulrich Wolffgang <u.wol@wwu.de>
  * All rights reserved.
  *
  * This software may be modified and distributed under the terms
@@ -16,39 +16,6 @@ public interface CobolPreprocessor {
 
 	public enum CobolDialect {
 		ANSI85, MF, OSVS
-	}
-
-	/**
-	 * Representation of a Cobol line.
-	 */
-	public class CobolLine {
-
-		public String comment;
-
-		public String contentAreaA;
-
-		public String contentAreaB;
-
-		public char indicatorArea;
-
-		public CobolSourceFormat lineFormat;
-
-		public String sequenceArea;
-
-		public CobolLine(final String sequenceArea, final char indicatorArea, final String contentAreaA,
-				final String contentAreaB, final String comment, final CobolSourceFormat lineFormat) {
-			this.sequenceArea = sequenceArea;
-			this.indicatorArea = indicatorArea;
-			this.contentAreaA = contentAreaA;
-			this.contentAreaB = contentAreaB;
-			this.comment = comment;
-			this.lineFormat = lineFormat;
-		}
-
-		@Override
-		public String toString() {
-			return sequenceArea + indicatorArea + contentAreaA + contentAreaB + comment + " [" + lineFormat + "]";
-		}
 	}
 
 	public interface CobolSourceFormat {
@@ -133,6 +100,8 @@ public interface CobolPreprocessor {
 			return commentEntryMultiLine;
 		}
 	}
+
+	public final static String NEWLINE = "\n";
 
 	String process(File cobolFile, File libDirectory, CobolSourceFormat format) throws IOException;
 
