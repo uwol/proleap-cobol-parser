@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.preprocessor.sub.line.impl;
 
+import com.google.common.base.Strings;
+
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
@@ -28,10 +30,10 @@ public class CobolCleanLinesSubPreprocessorImpl extends AbstractCobolSubPreproce
 
 		final String result;
 
-		if (CobolSourceFormatEnum.TANDEM.equals(format) && isLineEmpty) {
+		if (isLineEmpty && CobolSourceFormatEnum.TANDEM.equals(format)) {
 			result = " " + CobolPreprocessor.NEWLINE;
-		} else if (isLineEmpty) {
-			result = "";
+		} else if (isLineEmpty && CobolSourceFormatEnum.VARIABLE.equals(format)) {
+			result = Strings.repeat(" ", 7) + CobolPreprocessor.NEWLINE;
 		} else {
 			result = cleanedLine + CobolPreprocessor.NEWLINE;
 		}
