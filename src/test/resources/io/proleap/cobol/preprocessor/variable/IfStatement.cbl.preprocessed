@@ -1,0 +1,15 @@
+       Identification Division.
+       Program-ID.
+        IFTEST.
+       Procedure Division.
+         IF LINE-COUNTER EQUAL TO ZERO
+           Display "Hello world"
+         END-IF.
+       
+         IF LINE-COUNTER = ZERO
+           Display "Hello world"
+         END-IF.
+       
+         IF LINE-COUNTER = ZERO OR 1
+           Display "Hello world"
+         END-IF.

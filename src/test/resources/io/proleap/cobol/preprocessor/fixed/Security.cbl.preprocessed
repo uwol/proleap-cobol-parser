@@ -1,0 +1,13 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID.
+           SECURITYTEST.
+       SECURITY.
+      >*     NONE.
+      >* 
+      >*     SOME QUOTE"S
+      >* 
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  LEVEL1.
+           02 LEVEL2 PIC X(52) VALUE IS
+           "COPY, TEST.".
