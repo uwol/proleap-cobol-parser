@@ -1,0 +1,11 @@
+       Identification Division.
+         Program-ID.
+           IFELSEMOVETEST.
+       Procedure Division.
+       
+       IF Obj-Name > ZERO
+         SET ADDRESS OF PointerA
+             TO PointerB
+       ELSE
+         MOVE 'test' TO testvar
+       END-IF.

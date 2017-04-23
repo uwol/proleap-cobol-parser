@@ -1,4 +1,4 @@
-package io.proleap.cobol.preprocessor.variable;
+package io.proleap.cobol.preprocessor.fixed;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,19 +11,19 @@ import io.proleap.cobol.applicationcontext.CobolGrammarContext;
 import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class ExecSqlTest {
+public class EmptyLinesTest {
 
 	@Test
 	public void test() throws Exception {
 		CobolGrammarContextFactory.configureDefaultApplicationContext();
 
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/preprocessor/variable/ExecSql.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/preprocessor/fixed/EmptyLines.cbl");
 		final File libDirectory = inputFile.getParentFile();
 		final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile,
-				libDirectory, CobolSourceFormatEnum.VARIABLE);
+				libDirectory, CobolSourceFormatEnum.FIXED);
 
 		final File expectedFile = new File(
-				"src/test/resources/io/proleap/cobol/preprocessor/variable/ExecSql.cbl.preprocessed");
+				"src/test/resources/io/proleap/cobol/preprocessor/fixed/EmptyLines.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile);
 		assertEquals(expected, preProcessedInput);
 	}
