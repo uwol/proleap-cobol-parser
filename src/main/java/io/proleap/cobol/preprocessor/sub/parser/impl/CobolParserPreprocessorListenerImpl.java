@@ -26,6 +26,7 @@ import io.proleap.cobol.applicationcontext.CobolGrammarContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.sub.util.CobolSourceFormatUtils;
 import io.proleap.cobol.preprocessor.sub.util.TokenUtils;
 
 /**
@@ -36,24 +37,26 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 
 	private final static Logger LOG = LogManager.getLogger(CobolParserPreprocessorListenerImpl.class);
 
+	private static final String WS = " ";
+
 	private final Stack<CobolPreprocessingContext> contexts = new Stack<CobolPreprocessingContext>();
 
 	protected final String[] copyFileExtensions = new String[] { "", "CPY", "cpy", "COB", "cob", "CBL", "cbl" };
 
 	private final CobolDialect dialect;
 
-	private final CobolSourceFormat formats;
+	private final CobolSourceFormat format;
 
 	private final File libDirectory;
 
 	private final BufferedTokenStream tokens;
 
 	public CobolParserPreprocessorListenerImpl(final File libDirectory, final CobolDialect dialect,
-			final CobolSourceFormat formats, final BufferedTokenStream tokens) {
+			final CobolSourceFormat format, final BufferedTokenStream tokens) {
 		this.libDirectory = libDirectory;
 		this.dialect = dialect;
 		this.tokens = tokens;
-		this.formats = formats;
+		this.format = format;
 
 		contexts.push(new CobolPreprocessingContext());
 	}
@@ -127,7 +130,7 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 		 * copy the copy file
 		 */
 		final String copyFileIdentifier = ctx.copySource().getText();
-		final String fileContent = getCopyFileContent(copyFileIdentifier, libDirectory, dialect, formats);
+		final String fileContent = getCopyFileContent(copyFileIdentifier, libDirectory, dialect, format);
 
 		if (fileContent != null) {
 			context().write(fileContent + CobolPreprocessor.NEWLINE);
@@ -148,8 +151,29 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 
 	@Override
 	public void exitExecSqlStatement(final Cobol85PreprocessorParser.ExecSqlStatementContext ctx) {
-		// throw away EXEC SQL terminals -> TODO
+		// throw away EXEC SQL terminals
 		pop();
+
+		// a new context for the SQL statement
+		push();
+
+		/*
+		 * text
+		 */
+		final String text = TokenUtils.getTextIncludingHiddenTokens(ctx, tokens);
+		final String prefix = CobolSourceFormatUtils.getBlankSequenceArea(format) + CobolPreprocessor.COMMENT_TAG;
+
+		final String commentedText = prefix + text;
+		final String commentedMultiLineText = commentedText.replace(
+				CobolPreprocessor.NEWLINE + CobolSourceFormatUtils.getBlankIndicatorArea(),
+				CobolPreprocessor.NEWLINE + prefix);
+
+		context().write(commentedMultiLineText);
+
+		final String content = context().read();
+		pop();
+
+		context().write(content);
 	}
 
 	@Override

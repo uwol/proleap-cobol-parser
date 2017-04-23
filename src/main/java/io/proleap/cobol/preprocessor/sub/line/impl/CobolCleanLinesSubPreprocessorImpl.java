@@ -8,14 +8,12 @@
 
 package io.proleap.cobol.preprocessor.sub.line.impl;
 
-import com.google.common.base.Strings;
-
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.impl.AbstractCobolSubPreprocessor;
 import io.proleap.cobol.preprocessor.sub.line.CobolCleanLinesSubPreprocessor;
+import io.proleap.cobol.preprocessor.sub.util.CobolSourceFormatUtils;
 
 public class CobolCleanLinesSubPreprocessorImpl extends AbstractCobolSubPreprocessor
 		implements CobolCleanLinesSubPreprocessor {
@@ -27,13 +25,10 @@ public class CobolCleanLinesSubPreprocessorImpl extends AbstractCobolSubPreproce
 		final int substituteChar = 0x1A;
 		final String cleanedLine = line.replace((char) substituteChar, ' ');
 		final boolean isLineEmpty = cleanedLine.trim().isEmpty();
-
 		final String result;
 
-		if (isLineEmpty && CobolSourceFormatEnum.TANDEM.equals(format)) {
-			result = " " + CobolPreprocessor.NEWLINE;
-		} else if (isLineEmpty && CobolSourceFormatEnum.VARIABLE.equals(format)) {
-			result = Strings.repeat(" ", 7) + CobolPreprocessor.NEWLINE;
+		if (isLineEmpty) {
+			result = CobolSourceFormatUtils.getBlankLine(format) + CobolPreprocessor.NEWLINE;
 		} else {
 			result = cleanedLine + CobolPreprocessor.NEWLINE;
 		}
