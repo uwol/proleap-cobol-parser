@@ -13,5 +13,5 @@ import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
 
 public interface CobolSubPreprocessor {
 
-	String processLines(String line, CobolDialect dialect, CobolSourceFormat formats);
+	String processLines(String lines, CobolDialect dialect, CobolSourceFormat formats);
 }

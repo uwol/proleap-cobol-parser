@@ -57,8 +57,8 @@ public abstract class AbstractCobolSubPreprocessor implements CobolSubPreprocess
 			final CobolSourceFormat format);
 
 	@Override
-	public String processLines(final String line, final CobolDialect dialect, final CobolSourceFormat format) {
-		final Scanner scanner = new Scanner(line);
+	public String processLines(final String lines, final CobolDialect dialect, final CobolSourceFormat format) {
+		final Scanner scanner = new Scanner(lines);
 		final StringBuffer outputBuffer = new StringBuffer();
 
 		String currentLine = null;
@@ -66,8 +66,10 @@ public abstract class AbstractCobolSubPreprocessor implements CobolSubPreprocess
 
 		while (scanner.hasNextLine()) {
 			currentLine = scanner.nextLine();
+
 			final String processedLine = processLine(currentLine, lineNumber, dialect, format);
 			outputBuffer.append(processedLine);
+
 			lineNumber++;
 		}
 

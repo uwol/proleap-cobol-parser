@@ -53,14 +53,14 @@ public class CobolParseLinesSubPreprocessorImpl implements CobolParseLinesSubPre
 	}
 
 	@Override
-	public String processLines(final String line, final CobolDialect dialect, final CobolSourceFormat formats) {
-		final boolean requiresProcessorExecution = containsTrigger(line, triggers);
+	public String processLines(final String lines, final CobolDialect dialect, final CobolSourceFormat formats) {
+		final boolean requiresProcessorExecution = containsTrigger(lines, triggers);
 		final String result;
 
 		if (requiresProcessorExecution) {
-			result = processWithParser(line, libDirectory, dialect, formats);
+			result = processWithParser(lines, libDirectory, dialect, formats);
 		} else {
-			result = line;
+			result = lines;
 		}
 
 		return result;
