@@ -11,6 +11,7 @@ package io.proleap.cobol.preprocessor.sub.line.impl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.impl.AbstractCobolSubPreprocessor;
 import io.proleap.cobol.preprocessor.sub.line.CobolCleanLinesSubPreprocessor;
 
@@ -23,10 +24,13 @@ public class CobolCleanLinesSubPreprocessorImpl extends AbstractCobolSubPreproce
 		// clean line from certain ASCII chars
 		final int substituteChar = 0x1A;
 		final String cleanedLine = line.replace((char) substituteChar, ' ');
+		final boolean isLineEmpty = cleanedLine.trim().isEmpty();
+
 		final String result;
 
-		// if line is empty
-		if (cleanedLine.trim().isEmpty()) {
+		if (CobolSourceFormatEnum.TANDEM.equals(format) && isLineEmpty) {
+			result = " " + CobolPreprocessor.NEWLINE;
+		} else if (isLineEmpty) {
 			result = "";
 		} else {
 			result = cleanedLine + CobolPreprocessor.NEWLINE;
