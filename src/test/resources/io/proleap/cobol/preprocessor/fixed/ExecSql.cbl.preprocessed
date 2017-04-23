@@ -1,0 +1,17 @@
+       Identification Division.
+       Program-ID. ExecSql.
+       
+       Data Division.
+       Working-Storage Section.
+       
+
+       
+       01 userid pic x(8).
+       
+
+       
+       Procedure Division.
+
+       
+        Display "Hello world".
+        STOP RUN.
