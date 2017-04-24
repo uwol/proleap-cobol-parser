@@ -32,7 +32,7 @@ public class CobolNormalizeLinesSubPreprocessorImpl extends AbstractCobolSubPrep
 			final char lastCharAtTrimmedLineArea = contentArea.charAt(contentArea.length() - 1);
 
 			if (lastCharAtTrimmedLineArea == ',' || lastCharAtTrimmedLineArea == ';') {
-				result = contentArea + " ";
+				result = contentArea + CobolPreprocessor.WS;
 			} else {
 				result = contentArea;
 			}
@@ -81,7 +81,7 @@ public class CobolNormalizeLinesSubPreprocessorImpl extends AbstractCobolSubPrep
 		// debugging line
 		case CobolPreprocessor.CHAR_D:
 		case CobolPreprocessor.CHAR_D_:
-			result = linePrefix + ' ' + handledContentArea;
+			result = linePrefix + CobolPreprocessor.WS + handledContentArea;
 			break;
 		// continuation line
 		case CobolPreprocessor.CHAR_MINUS:
@@ -101,11 +101,11 @@ public class CobolNormalizeLinesSubPreprocessorImpl extends AbstractCobolSubPrep
 		// comment line
 		case CobolPreprocessor.CHAR_ASTERISK:
 		case CobolPreprocessor.CHAR_SLASH:
-			result = linePrefix + CobolPreprocessor.COMMENT_TAG + " " + handledContentArea;
+			result = linePrefix + CobolPreprocessor.COMMENT_TAG + CobolPreprocessor.WS + handledContentArea;
 			break;
 		case ' ':
 		default:
-			result = linePrefix + ' ' + handledContentArea;
+			result = linePrefix + CobolPreprocessor.WS + handledContentArea;
 			break;
 		}
 

@@ -129,9 +129,7 @@ Characteristics
 2. To be used in conjunction with the provided preprocessor, which executes
    COPY and REPLACE statements.
 
-3. The ANTLR4 grammar is akin but neither copied from nor identical to the Cobol.jj, Cobol.kg and VS COBOL II grammars.
-
-4. For parsing large Cobol source code files, following VM args have to be set: `-Xmx2048m -XX:MaxPermSize=256m`.
+3. For parsing large Cobol source code files, following VM args have to be set: `-Xmx2048m`.
    Intellij Plugin for ANTLR 4 has to be provided with those VM args in file `idea.vmoptions`.
 
 

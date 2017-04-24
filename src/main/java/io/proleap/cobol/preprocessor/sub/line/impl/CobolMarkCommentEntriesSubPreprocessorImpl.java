@@ -132,7 +132,7 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 		if (matcher.matches()) {
 			final String trigger = matcher.group(1);
 			final String commentEntry = matcher.group(2);
-			final String newContentArea = trigger + StringUtils.repeat(" ", commentEntry.length());
+			final String newContentArea = trigger + StringUtils.repeat(CobolPreprocessor.WS, commentEntry.length());
 
 			result = parsedLine.sequenceArea + parsedLine.indicatorArea + newContentArea + parsedLine.comment
 					+ CobolPreprocessor.NEWLINE;
