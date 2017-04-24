@@ -11,6 +11,7 @@ package io.proleap.cobol.preprocessor.sub.parser.impl;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Stack;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
@@ -161,14 +162,26 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 		 * text
 		 */
 		final String text = TokenUtils.getTextIncludingHiddenTokens(ctx, tokens);
-		final String prefix = CobolSourceFormatUtils.getBlankSequenceArea(format) + CobolPreprocessor.COMMENT_TAG;
+		final String linePrefix = CobolSourceFormatUtils.getBlankSequenceArea(format) + CobolPreprocessor.COMMENT_TAG;
 
-		final String commentedText = prefix + text;
-		final String commentedMultiLineText = commentedText.replace(
-				CobolPreprocessor.NEWLINE + CobolSourceFormatUtils.getBlankIndicatorArea(),
-				CobolPreprocessor.NEWLINE + prefix);
+		final StringBuffer sb = new StringBuffer(text.length());
+		final Scanner scanner = new Scanner(text);
+		boolean firstLine = true;
 
-		context().write(commentedMultiLineText);
+		while (scanner.hasNextLine()) {
+			final String line = scanner.nextLine();
+
+			if (!firstLine) {
+				sb.append(CobolPreprocessor.NEWLINE);
+			}
+
+			sb.append(linePrefix + line.trim());
+			firstLine = false;
+		}
+
+		scanner.close();
+
+		context().write(sb.toString());
 
 		final String content = context().read();
 		pop();
