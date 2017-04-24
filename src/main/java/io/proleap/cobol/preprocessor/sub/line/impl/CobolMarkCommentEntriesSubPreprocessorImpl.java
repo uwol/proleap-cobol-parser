@@ -27,7 +27,7 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 
 	protected boolean foundCommentEntryTriggerInPreviousLine = false;
 
-	protected boolean inCommentEntry = false;
+	protected boolean isInCommentEntry = false;
 
 	protected final String[] triggersEnd = new String[] { "PROGRAM-ID.", "AUTHOR.", "INSTALLATION.", "DATE-WRITTEN.",
 			"DATE-COMPILED.", "SECURITY.", "ENVIRONMENT", "DATA.", "PROCEDURE." };
@@ -40,20 +40,31 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 		commentEntryTriggerLinePattern = Pattern.compile(commentEntryTriggerLineFormat, Pattern.CASE_INSENSITIVE);
 	}
 
-	protected boolean beginsWithTrigger(final CobolLine parsedLine, final String[] triggers) {
-		final String contentAreaUpperCase = new String(parsedLine.contentAreaA + parsedLine.contentAreaB).toUpperCase();
+	protected String buildCommentEntryLine(final CobolLine parsedLine) {
+		return parsedLine.sequenceArea + CobolPreprocessor.CHAR_ASTERISK + parsedLine.contentAreaA
+				+ parsedLine.contentAreaB + parsedLine.comment + CobolPreprocessor.NEWLINE;
+	}
 
-		boolean result = false;
+	protected String buildRegularLine(final String line) {
+		return line + CobolPreprocessor.NEWLINE;
+	}
 
-		for (final String trigger : triggers) {
-			final boolean containsTrigger = contentAreaUpperCase.startsWith(trigger);
+	protected boolean isInCommentEntry(final CobolLine parsedLine, final boolean isContentAreaAEmpty,
+			final boolean isInOsvsCommentEntry) {
+		final boolean result = parsedLine.indicatorArea == CobolPreprocessor.CHAR_ASTERISK
+				|| parsedLine.indicatorArea == CobolPreprocessor.CHAR_SLASH || isContentAreaAEmpty
+				|| isInOsvsCommentEntry;
+		return result;
+	}
 
-			if (containsTrigger) {
-				result = true;
-				break;
-			}
-		}
-
+	/**
+	 * OSVS: The comment-entry can be contained in either area A or area B of
+	 * the comment-entry lines. However, the next occurrence in area A of any
+	 * one of the following COBOL words or phrases terminates the comment-entry
+	 * and begin the next paragraph or division.
+	 */
+	protected boolean isInOsvsCommentEntry(final CobolDialect dialect, final CobolLine parsedLine) {
+		final boolean result = CobolDialect.OSVS.equals(dialect) && !startsWithTrigger(parsedLine, triggersEnd);
 		return result;
 	}
 
@@ -65,7 +76,7 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 		if (format.isCommentEntryMultiLine()) {
 			result = processSourceFormat(line, lineNumber, dialect, format);
 		} else {
-			result = line + CobolPreprocessor.NEWLINE;
+			result = buildRegularLine(line);
 		}
 
 		return result;
@@ -85,37 +96,24 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 			throwCobolLineParseException(line, lineNumber, format);
 		}
 
-		final boolean foundCommentEntryTriggerInCurrentLine = beginsWithTrigger(parsedLine, triggersStart);
-
+		final boolean foundCommentEntryTriggerInCurrentLine = startsWithTrigger(parsedLine, triggersStart);
 		final String result;
 
 		if (foundCommentEntryTriggerInCurrentLine) {
 			result = removeCommentEntry(line, parsedLine);
-		} else if (foundCommentEntryTriggerInPreviousLine || inCommentEntry) {
+		} else if (foundCommentEntryTriggerInPreviousLine || isInCommentEntry) {
 			final boolean isContentAreaAEmpty = parsedLine.contentAreaA.trim().isEmpty();
+			final boolean isInOsvsCommentEntry = isInOsvsCommentEntry(dialect, parsedLine);
 
-			/**
-			 * OSVS: The comment-entry can be contained in either area A or area
-			 * B of the comment-entry lines. However, the next occurrence in
-			 * area A of any one of the following COBOL words or phrases
-			 * terminates the comment-entry and begin the next paragraph or
-			 * division.
-			 */
-			final boolean inOsvsCommentEntry = CobolDialect.OSVS.equals(dialect)
-					&& !beginsWithTrigger(parsedLine, triggersEnd);
+			isInCommentEntry = isInCommentEntry(parsedLine, isContentAreaAEmpty, isInOsvsCommentEntry);
 
-			inCommentEntry = parsedLine.indicatorArea == CobolPreprocessor.CHAR_ASTERISK
-					|| parsedLine.indicatorArea == CobolPreprocessor.CHAR_SLASH || isContentAreaAEmpty
-					|| inOsvsCommentEntry;
-
-			if (inCommentEntry) {
-				result = parsedLine.sequenceArea + CobolPreprocessor.CHAR_ASTERISK + parsedLine.contentAreaA
-						+ parsedLine.contentAreaB + parsedLine.comment + CobolPreprocessor.NEWLINE;
+			if (isInCommentEntry) {
+				result = buildCommentEntryLine(parsedLine);
 			} else {
-				result = line + CobolPreprocessor.NEWLINE;
+				result = buildRegularLine(line);
 			}
 		} else {
-			result = line + CobolPreprocessor.NEWLINE;
+			result = buildRegularLine(line);
 		}
 
 		foundCommentEntryTriggerInPreviousLine = foundCommentEntryTriggerInCurrentLine;
@@ -123,6 +121,9 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 		return result;
 	}
 
+	/**
+	 * Removes from a given line a potential comment entry.
+	 */
 	protected String removeCommentEntry(final String line, final CobolLine parsedLine) {
 		final String result;
 
@@ -137,7 +138,28 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 			result = parsedLine.sequenceArea + parsedLine.indicatorArea + newContentArea + parsedLine.comment
 					+ CobolPreprocessor.NEWLINE;
 		} else {
-			result = line + CobolPreprocessor.NEWLINE;
+			result = buildRegularLine(line);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Checks, whether given line starts with a trigger keyword indicating a
+	 * comment entry.
+	 */
+	protected boolean startsWithTrigger(final CobolLine parsedLine, final String[] triggers) {
+		final String contentAreaUpperCase = new String(parsedLine.contentAreaA + parsedLine.contentAreaB).toUpperCase();
+
+		boolean result = false;
+
+		for (final String trigger : triggers) {
+			final boolean containsTrigger = contentAreaUpperCase.startsWith(trigger);
+
+			if (containsTrigger) {
+				result = true;
+				break;
+			}
 		}
 
 		return result;
