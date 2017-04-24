@@ -18,16 +18,6 @@ import io.proleap.cobol.preprocessor.sub.CobolSubPreprocessor;
 
 public abstract class AbstractCobolSubPreprocessor implements CobolSubPreprocessor {
 
-	protected final char charAsterisk = '*';
-
-	protected final char chard = 'd';
-
-	protected final char charD = 'D';
-
-	protected final char charMinus = '-';
-
-	protected final char charSlash = '/';
-
 	public CobolLine parseCobolLine(final String line, final CobolSourceFormat format) {
 		CobolLine result = null;
 

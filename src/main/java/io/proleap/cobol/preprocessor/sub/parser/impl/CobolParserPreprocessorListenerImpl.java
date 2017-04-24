@@ -38,8 +38,6 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 
 	private final static Logger LOG = LogManager.getLogger(CobolParserPreprocessorListenerImpl.class);
 
-	private static final String WS = " ";
-
 	private final Stack<CobolPreprocessingContext> contexts = new Stack<CobolPreprocessingContext>();
 
 	protected final String[] copyFileExtensions = new String[] { "", "CPY", "cpy", "COB", "cob", "CBL", "cbl" };

@@ -10,23 +10,22 @@ package io.proleap.cobol.preprocessor.sub.util;
 
 import com.google.common.base.Strings;
 
+import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class CobolSourceFormatUtils {
 
-	private static final String WS = " ";
-
 	public static String getBlankComments() {
-		return Strings.repeat(WS, 8);
+		return Strings.repeat(CobolPreprocessor.WS, 8);
 	}
 
 	public static String getBlankContentArea() {
-		return Strings.repeat(WS, 65);
+		return Strings.repeat(CobolPreprocessor.WS, 65);
 	}
 
 	public static String getBlankIndicatorArea() {
-		return WS;
+		return CobolPreprocessor.WS;
 	}
 
 	public static String getBlankLine(final CobolSourceFormat format) {
@@ -65,7 +64,7 @@ public class CobolSourceFormatUtils {
 		} else if (CobolSourceFormatEnum.TANDEM.equals(format)) {
 			result = "";
 		} else {
-			result = Strings.repeat(WS, 6);
+			result = Strings.repeat(CobolPreprocessor.WS, 6);
 		}
 
 		return result;

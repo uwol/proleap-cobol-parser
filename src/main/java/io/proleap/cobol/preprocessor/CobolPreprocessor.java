@@ -101,9 +101,21 @@ public interface CobolPreprocessor {
 		}
 	}
 
-	public final String COMMENT_TAG = ">*";
+	final static char CHAR_ASTERISK = '*';
 
-	public final static String NEWLINE = "\n";
+	final static char CHAR_D = 'D';
+
+	final static char CHAR_D_ = 'd';
+
+	final static char CHAR_MINUS = '-';
+
+	final static char CHAR_SLASH = '/';
+
+	final static String COMMENT_TAG = ">*";
+
+	final static String NEWLINE = "\n";
+
+	final static String WS = " ";
 
 	String process(File cobolFile, File libDirectory, CobolSourceFormat format) throws IOException;
 

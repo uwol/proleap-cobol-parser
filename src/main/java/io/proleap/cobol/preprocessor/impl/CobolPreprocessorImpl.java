@@ -25,8 +25,8 @@ import io.proleap.cobol.preprocessor.sub.line.CobolNormalizeLinesSubPreprocessor
 import io.proleap.cobol.preprocessor.sub.line.impl.CobolCleanLinesSubPreprocessorImpl;
 import io.proleap.cobol.preprocessor.sub.line.impl.CobolMarkCommentEntriesSubPreprocessorImpl;
 import io.proleap.cobol.preprocessor.sub.line.impl.CobolNormalizeLinesSubPreprocessorImpl;
-import io.proleap.cobol.preprocessor.sub.parser.CobolParseLinesSubPreprocessor;
-import io.proleap.cobol.preprocessor.sub.parser.impl.CobolParseLinesSubPreprocessorImpl;
+import io.proleap.cobol.preprocessor.sub.parser.CobolParserPreprocessor;
+import io.proleap.cobol.preprocessor.sub.parser.impl.CobolParserPreprocessorImpl;
 
 public class CobolPreprocessorImpl implements CobolPreprocessor {
 
@@ -71,13 +71,12 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		final CobolCleanLinesSubPreprocessor cleanLinesPreprocessor = new CobolCleanLinesSubPreprocessorImpl();
 		final CobolMarkCommentEntriesSubPreprocessor markCommentEntriesPreprocessor = new CobolMarkCommentEntriesSubPreprocessorImpl();
 		final CobolNormalizeLinesSubPreprocessor normalizeLinesPreprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
-		final CobolParseLinesSubPreprocessor parseLinesPreprocessor = new CobolParseLinesSubPreprocessorImpl(
-				libDirectory);
+		final CobolParserPreprocessor parserPreprocessor = new CobolParserPreprocessorImpl(libDirectory);
 
 		final String cleanedCode = cleanLinesPreprocessor.processLines(cobolSourceCode, dialect, format);
 		final String markedCode = markCommentEntriesPreprocessor.processLines(cleanedCode, dialect, format);
 		final String normalizedCode = normalizeLinesPreprocessor.processLines(markedCode, dialect, format);
-		final String result = parseLinesPreprocessor.processLines(normalizedCode, dialect, format);
+		final String result = parserPreprocessor.processLines(normalizedCode, dialect, format);
 
 		LOG.debug("Processed input:\n\n{}\n\n", result);
 

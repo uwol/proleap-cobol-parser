@@ -10,6 +10,6 @@ package io.proleap.cobol.preprocessor.sub.parser;
 
 import io.proleap.cobol.preprocessor.sub.CobolSubPreprocessor;
 
-public interface CobolParseLinesSubPreprocessor extends CobolSubPreprocessor {
+public interface CobolParserPreprocessor extends CobolSubPreprocessor {
 
 }

@@ -104,12 +104,13 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 			final boolean inOsvsCommentEntry = CobolDialect.OSVS.equals(dialect)
 					&& !beginsWithTrigger(parsedLine, triggersEnd);
 
-			inCommentEntry = parsedLine.indicatorArea == charAsterisk || parsedLine.indicatorArea == charSlash
-					|| isContentAreaAEmpty || inOsvsCommentEntry;
+			inCommentEntry = parsedLine.indicatorArea == CobolPreprocessor.CHAR_ASTERISK
+					|| parsedLine.indicatorArea == CobolPreprocessor.CHAR_SLASH || isContentAreaAEmpty
+					|| inOsvsCommentEntry;
 
 			if (inCommentEntry) {
-				result = parsedLine.sequenceArea + charAsterisk + parsedLine.contentAreaA + parsedLine.contentAreaB
-						+ parsedLine.comment + CobolPreprocessor.NEWLINE;
+				result = parsedLine.sequenceArea + CobolPreprocessor.CHAR_ASTERISK + parsedLine.contentAreaA
+						+ parsedLine.contentAreaB + parsedLine.comment + CobolPreprocessor.NEWLINE;
 			} else {
 				result = line + CobolPreprocessor.NEWLINE;
 			}

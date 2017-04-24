@@ -79,12 +79,12 @@ public class CobolNormalizeLinesSubPreprocessorImpl extends AbstractCobolSubPrep
 		 */
 		switch (line.indicatorArea) {
 		// debugging line
-		case chard:
-		case charD:
+		case CobolPreprocessor.CHAR_D:
+		case CobolPreprocessor.CHAR_D_:
 			result = linePrefix + ' ' + handledContentArea;
 			break;
 		// continuation line
-		case charMinus:
+		case CobolPreprocessor.CHAR_MINUS:
 			final String trimmedContentArea = handledContentArea.trim();
 			final char firstCharOfContentArea = trimmedContentArea.charAt(0);
 
@@ -99,8 +99,8 @@ public class CobolNormalizeLinesSubPreprocessorImpl extends AbstractCobolSubPrep
 			}
 			break;
 		// comment line
-		case charAsterisk:
-		case charSlash:
+		case CobolPreprocessor.CHAR_ASTERISK:
+		case CobolPreprocessor.CHAR_SLASH:
 			result = linePrefix + CobolPreprocessor.COMMENT_TAG + " " + handledContentArea;
 			break;
 		case ' ':

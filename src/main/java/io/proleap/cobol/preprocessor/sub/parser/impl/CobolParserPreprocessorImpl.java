@@ -20,19 +20,19 @@ import io.proleap.cobol.Cobol85PreprocessorParser.StartRuleContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
 import io.proleap.cobol.preprocessor.sub.impl.ThrowingErrorListener;
-import io.proleap.cobol.preprocessor.sub.parser.CobolParseLinesSubPreprocessor;
+import io.proleap.cobol.preprocessor.sub.parser.CobolParserPreprocessor;
 
 /**
  * Preprocessor, which parses and processes COPY REPLACE and EXEC SQL
  * statements.
  */
-public class CobolParseLinesSubPreprocessorImpl implements CobolParseLinesSubPreprocessor {
+public class CobolParserPreprocessorImpl implements CobolParserPreprocessor {
 
 	protected final File libDirectory;
 
 	protected final String[] triggers = new String[] { "copy", "exec sql", "exec cics", "replace" };
 
-	public CobolParseLinesSubPreprocessorImpl(final File libDirectory) {
+	public CobolParserPreprocessorImpl(final File libDirectory) {
 		this.libDirectory = libDirectory;
 	}
 
