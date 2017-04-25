@@ -26,7 +26,7 @@ import io.proleap.cobol.Cobol85PreprocessorParser.ReplacingPhraseContext;
 import io.proleap.cobol.applicationcontext.CobolGrammarContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.util.CobolSourceFormatUtils;
 import io.proleap.cobol.preprocessor.sub.util.TokenUtils;
 
@@ -44,14 +44,14 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 
 	private final CobolDialect dialect;
 
-	private final CobolSourceFormat format;
+	private final CobolSourceFormatEnum format;
 
 	private final File libDirectory;
 
 	private final BufferedTokenStream tokens;
 
 	public CobolParserPreprocessorListenerImpl(final File libDirectory, final CobolDialect dialect,
-			final CobolSourceFormat format, final BufferedTokenStream tokens) {
+			final CobolSourceFormatEnum format, final BufferedTokenStream tokens) {
 		this.libDirectory = libDirectory;
 		this.dialect = dialect;
 		this.tokens = tokens;
@@ -215,7 +215,7 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 	}
 
 	protected String getCopyFileContent(final String filename, final File libDirectory, final CobolDialect dialect,
-			final CobolSourceFormat format) {
+			final CobolSourceFormatEnum format) {
 		final File copyFile = identifyCopyFile(filename, libDirectory);
 		String result;
 

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.preprocessor.sub.impl;
 
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 /**
  * Representation of a Cobol line.
@@ -23,12 +23,12 @@ public class CobolLine {
 
 	public char indicatorArea;
 
-	public CobolSourceFormat lineFormat;
+	public CobolSourceFormatEnum lineFormat;
 
 	public String sequenceArea;
 
 	public CobolLine(final String sequenceArea, final char indicatorArea, final String contentAreaA,
-			final String contentAreaB, final String comment, final CobolSourceFormat lineFormat) {
+			final String contentAreaB, final String comment, final CobolSourceFormatEnum lineFormat) {
 		this.sequenceArea = sequenceArea;
 		this.indicatorArea = indicatorArea;
 		this.contentAreaA = contentAreaA;

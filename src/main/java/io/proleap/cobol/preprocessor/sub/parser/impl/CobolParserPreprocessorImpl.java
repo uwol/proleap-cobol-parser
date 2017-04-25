@@ -18,7 +18,7 @@ import io.proleap.cobol.Cobol85PreprocessorLexer;
 import io.proleap.cobol.Cobol85PreprocessorParser;
 import io.proleap.cobol.Cobol85PreprocessorParser.StartRuleContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.impl.ThrowingErrorListener;
 import io.proleap.cobol.preprocessor.sub.parser.CobolParserPreprocessor;
 
@@ -53,7 +53,7 @@ public class CobolParserPreprocessorImpl implements CobolParserPreprocessor {
 	}
 
 	@Override
-	public String processLines(final String lines, final CobolDialect dialect, final CobolSourceFormat formats) {
+	public String processLines(final String lines, final CobolDialect dialect, final CobolSourceFormatEnum formats) {
 		final boolean requiresProcessorExecution = containsTrigger(lines, triggers);
 		final String result;
 
@@ -67,7 +67,7 @@ public class CobolParserPreprocessorImpl implements CobolParserPreprocessor {
 	}
 
 	protected String processWithParser(final String program, final File libDirectory, final CobolDialect dialect,
-			final CobolSourceFormat formats) {
+			final CobolSourceFormatEnum formats) {
 		// run the lexer
 		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(CharStreams.fromString(program));
 

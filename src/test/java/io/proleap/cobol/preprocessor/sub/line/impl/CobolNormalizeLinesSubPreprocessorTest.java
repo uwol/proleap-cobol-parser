@@ -124,13 +124,13 @@ public class CobolNormalizeLinesSubPreprocessorTest {
 	}
 
 	@Test
-	public void testParseCobol85Line_FIXED_false() throws Exception {
+	public void testParseCobol85Line_FIXED_FLEX_false() throws Exception {
 		final CobolNormalizeLinesSubPreprocessor preprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
 
 		final String line = "000100 Identification Division.                                        ";
 		final CobolLine parseCobol85Line = preprocessor.parseCobolLine(line, CobolSourceFormatEnum.FIXED);
 
-		Assert.assertNull(parseCobol85Line);
+		Assert.assertNotNull(parseCobol85Line);
 	}
 
 	@Test

@@ -13,12 +13,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.CobolSubPreprocessor;
 
 public abstract class AbstractCobolSubPreprocessor implements CobolSubPreprocessor {
 
-	public CobolLine parseCobolLine(final String line, final CobolSourceFormat format) {
+	public CobolLine parseCobolLine(final String line, final CobolSourceFormatEnum format) {
 		CobolLine result = null;
 
 		final Pattern pattern = format.getPattern();
@@ -44,10 +44,10 @@ public abstract class AbstractCobolSubPreprocessor implements CobolSubPreprocess
 	}
 
 	public abstract String processLine(final String line, int lineNumber, final CobolDialect dialect,
-			final CobolSourceFormat format);
+			final CobolSourceFormatEnum format);
 
 	@Override
-	public String processLines(final String lines, final CobolDialect dialect, final CobolSourceFormat format) {
+	public String processLines(final String lines, final CobolDialect dialect, final CobolSourceFormatEnum format) {
 		final Scanner scanner = new Scanner(lines);
 		final StringBuffer outputBuffer = new StringBuffer();
 
@@ -70,7 +70,7 @@ public abstract class AbstractCobolSubPreprocessor implements CobolSubPreprocess
 	}
 
 	protected void throwCobolLineParseException(final String line, final int lineNumber,
-			final CobolSourceFormat format) {
+			final CobolSourceFormatEnum format) {
 		throw new RuntimeException("could not parse line " + (lineNumber + 1) + " with format " + format + ": " + line);
 	}
 }

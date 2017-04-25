@@ -9,7 +9,7 @@
 package io.proleap.cobol.preprocessor.sub.line;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.CobolSubPreprocessor;
 import io.proleap.cobol.preprocessor.sub.impl.CobolLine;
 
@@ -18,7 +18,7 @@ import io.proleap.cobol.preprocessor.sub.impl.CobolLine;
  */
 public interface CobolNormalizeLinesSubPreprocessor extends CobolSubPreprocessor {
 
-	CobolLine parseCobolLine(String line, CobolSourceFormat format);
+	CobolLine parseCobolLine(String line, CobolSourceFormatEnum format);
 
-	String processLine(String line, int lineNumber, CobolDialect dialect, CobolSourceFormat format);
+	String processLine(String line, int lineNumber, CobolDialect dialect, CobolSourceFormatEnum format);
 }

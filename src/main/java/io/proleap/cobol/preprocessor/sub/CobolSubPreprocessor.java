@@ -9,9 +9,9 @@
 package io.proleap.cobol.preprocessor.sub;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public interface CobolSubPreprocessor {
 
-	String processLines(String lines, CobolDialect dialect, CobolSourceFormat formats);
+	String processLines(String lines, CobolDialect dialect, CobolSourceFormatEnum formats);
 }

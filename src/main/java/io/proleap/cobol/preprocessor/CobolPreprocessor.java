@@ -18,21 +18,10 @@ public interface CobolPreprocessor {
 		ANSI85, MF, OSVS
 	}
 
-	public interface CobolSourceFormat {
-
-		String indicatorField = "([ABCdD\\t\\-/* ])";
-
-		Pattern getPattern();
-
-		String getRegex();
-
-		boolean isCommentEntryMultiLine();
-	}
-
-	public enum CobolSourceFormatEnum implements CobolSourceFormat {
+	public enum CobolSourceFormatEnum {
 
 		/**
-		 * Fixed format, standard ANSI / IBM reference. Each line exactly 80
+		 * Fixed format, standard ANSI / IBM reference. Each line 80
 		 * chars.<br />
 		 * <br />
 		 * 1-6: sequence area<br />
@@ -41,18 +30,7 @@ public interface CobolPreprocessor {
 		 * 13-72: area B<br />
 		 * 73-80: comments<br />
 		 */
-		FIXED("(.{6})" + indicatorField + "(.{4})(.{61})(.{8,})", true),
-
-		/**
-		 * Flexible fixed format. Each line up to 80 chars.<br />
-		 * <br />
-		 * 1-6: sequence area<br />
-		 * 7: indicator field<br />
-		 * 8-12: optional area A<br />
-		 * 13-72: optional area B<br />
-		 * 73-80: optional comments<br />
-		 */
-		FIXED_FLEX("(.{6})" + indicatorField + "(.{0,4})(.{0,61})(.*)", true),
+		FIXED("(.{6})" + indicatorField + "(.{0,4})(.{0,61})(.*)", true),
 
 		/**
 		 * HP Tandem format.<br />
@@ -85,17 +63,14 @@ public interface CobolPreprocessor {
 			this.commentEntryMultiLine = commentEntryMultiLine;
 		}
 
-		@Override
 		public Pattern getPattern() {
 			return pattern;
 		}
 
-		@Override
 		public String getRegex() {
 			return regex;
 		}
 
-		@Override
 		public boolean isCommentEntryMultiLine() {
 			return commentEntryMultiLine;
 		}
@@ -113,17 +88,19 @@ public interface CobolPreprocessor {
 
 	final static String COMMENT_TAG = ">*";
 
+	final static String indicatorField = "([ABCdD\\t\\-/* ])";
+
 	final static String NEWLINE = "\n";
 
 	final static String WS = " ";
 
-	String process(File cobolFile, File libDirectory, CobolSourceFormat format) throws IOException;
+	String process(File cobolFile, File libDirectory, CobolSourceFormatEnum format) throws IOException;
 
-	String process(File cobolFile, File libDirectory, CobolSourceFormat format, CobolDialect dialect)
+	String process(File cobolFile, File libDirectory, CobolSourceFormatEnum format, CobolDialect dialect)
 			throws IOException;
 
-	String process(String cobolSourceCode, File libDirectory, CobolSourceFormat format);
+	String process(String cobolSourceCode, File libDirectory, CobolSourceFormatEnum format);
 
-	String process(String cobolSourceCode, File libDirectory, CobolSourceFormat format, CobolDialect dialect);
+	String process(String cobolSourceCode, File libDirectory, CobolSourceFormatEnum format, CobolDialect dialect);
 
 }

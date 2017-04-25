@@ -15,7 +15,7 @@ import org.codehaus.plexus.util.StringUtils;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.impl.AbstractCobolSubPreprocessor;
 import io.proleap.cobol.preprocessor.sub.impl.CobolLine;
 import io.proleap.cobol.preprocessor.sub.line.CobolMarkCommentEntriesSubPreprocessor;
@@ -40,6 +40,29 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 		commentEntryTriggerLinePattern = Pattern.compile(commentEntryTriggerLineFormat, Pattern.CASE_INSENSITIVE);
 	}
 
+	/**
+	 * Blanks in a given line a potential comment entry.
+	 */
+	protected String blankCommentEntry(final String line, final CobolLine parsedLine) {
+		final String result;
+
+		final Matcher matcher = commentEntryTriggerLinePattern
+				.matcher(parsedLine.contentAreaA + parsedLine.contentAreaB);
+
+		if (matcher.matches()) {
+			final String trigger = matcher.group(1);
+			final String commentEntry = matcher.group(2);
+			final String newContentArea = trigger + StringUtils.repeat(CobolPreprocessor.WS, commentEntry.length());
+
+			result = parsedLine.sequenceArea + parsedLine.indicatorArea + newContentArea + parsedLine.comment
+					+ CobolPreprocessor.NEWLINE;
+		} else {
+			result = buildRegularLine(line);
+		}
+
+		return result;
+	}
+
 	protected String buildCommentEntryLine(final CobolLine parsedLine) {
 		return parsedLine.sequenceArea + CobolPreprocessor.CHAR_ASTERISK + parsedLine.contentAreaA
 				+ parsedLine.contentAreaB + parsedLine.comment + CobolPreprocessor.NEWLINE;
@@ -47,6 +70,29 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 
 	protected String buildRegularLine(final String line) {
 		return line + CobolPreprocessor.NEWLINE;
+	}
+
+	/**
+	 * Escapes in a given line a potential comment entry.
+	 */
+	protected String escapeCommentEntry(final String line, final CobolLine parsedLine) {
+		final String result;
+
+		final Matcher matcher = commentEntryTriggerLinePattern
+				.matcher(parsedLine.contentAreaA + parsedLine.contentAreaB);
+
+		if (matcher.matches()) {
+			final String trigger = matcher.group(1);
+			final String commentEntry = matcher.group(2);
+			final String newContentArea = trigger + CobolPreprocessor.WS + CobolPreprocessor.COMMENT_TAG + commentEntry;
+
+			result = parsedLine.sequenceArea + parsedLine.indicatorArea + newContentArea + parsedLine.comment
+					+ CobolPreprocessor.NEWLINE;
+		} else {
+			result = buildRegularLine(line);
+		}
+
+		return result;
 	}
 
 	protected boolean isInCommentEntry(final CobolLine parsedLine, final boolean isContentAreaAEmpty,
@@ -70,13 +116,13 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 
 	@Override
 	public String processLine(final String line, final int lineNumber, final CobolDialect dialect,
-			final CobolSourceFormat format) {
+			final CobolSourceFormatEnum format) {
 		final String result;
 
 		if (format.isCommentEntryMultiLine()) {
-			result = processSourceFormat(line, lineNumber, dialect, format);
+			result = processMultiLineCommentEntry(line, lineNumber, dialect, format);
 		} else {
-			result = buildRegularLine(line);
+			result = processSingleLineCommentEntry(line, lineNumber, dialect, format);
 		}
 
 		return result;
@@ -88,8 +134,8 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 	 * restricted to area B of those lines; the next line commencing in area A
 	 * begins the next non-comment entry.
 	 */
-	protected String processSourceFormat(final String line, final int lineNumber, final CobolDialect dialect,
-			final CobolSourceFormat format) {
+	protected String processMultiLineCommentEntry(final String line, final int lineNumber, final CobolDialect dialect,
+			final CobolSourceFormatEnum format) {
 		final CobolLine parsedLine = parseCobolLine(line, format);
 
 		if (parsedLine == null) {
@@ -100,7 +146,7 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 		final String result;
 
 		if (foundCommentEntryTriggerInCurrentLine) {
-			result = removeCommentEntry(line, parsedLine);
+			result = blankCommentEntry(line, parsedLine);
 		} else if (foundCommentEntryTriggerInPreviousLine || isInCommentEntry) {
 			final boolean isContentAreaAEmpty = parsedLine.contentAreaA.trim().isEmpty();
 			final boolean isInOsvsCommentEntry = isInOsvsCommentEntry(dialect, parsedLine);
@@ -121,22 +167,19 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 		return result;
 	}
 
-	/**
-	 * Removes from a given line a potential comment entry.
-	 */
-	protected String removeCommentEntry(final String line, final CobolLine parsedLine) {
+	protected String processSingleLineCommentEntry(final String line, final int lineNumber, final CobolDialect dialect,
+			final CobolSourceFormatEnum format) {
+		final CobolLine parsedLine = parseCobolLine(line, format);
+
+		if (parsedLine == null) {
+			throwCobolLineParseException(line, lineNumber, format);
+		}
+
+		final boolean foundCommentEntryTriggerInCurrentLine = startsWithTrigger(parsedLine, triggersStart);
 		final String result;
 
-		final Matcher matcher = commentEntryTriggerLinePattern
-				.matcher(parsedLine.contentAreaA + parsedLine.contentAreaB);
-
-		if (matcher.matches()) {
-			final String trigger = matcher.group(1);
-			final String commentEntry = matcher.group(2);
-			final String newContentArea = trigger + StringUtils.repeat(CobolPreprocessor.WS, commentEntry.length());
-
-			result = parsedLine.sequenceArea + parsedLine.indicatorArea + newContentArea + parsedLine.comment
-					+ CobolPreprocessor.NEWLINE;
+		if (foundCommentEntryTriggerInCurrentLine) {
+			result = escapeCommentEntry(line, parsedLine);
 		} else {
 			result = buildRegularLine(line);
 		}

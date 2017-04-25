@@ -35,7 +35,7 @@ import io.proleap.cobol.asg.visitor.impl.CobolProcedureDivisionVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProcedureStatementVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProgramUnitVisitorImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class CobolParserRunnerImpl implements CobolParserRunner {
 
@@ -62,12 +62,12 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	@Override
-	public Program analyzeDirectory(final File inputDirectory, final CobolSourceFormat format) throws IOException {
+	public Program analyzeDirectory(final File inputDirectory, final CobolSourceFormatEnum format) throws IOException {
 		return analyzeDirectory(inputDirectory, format, null);
 	}
 
 	@Override
-	public Program analyzeDirectory(final File inputDirectory, final CobolSourceFormat format,
+	public Program analyzeDirectory(final File inputDirectory, final CobolSourceFormatEnum format,
 			final CobolDialect dialect) throws IOException {
 		final Program program = new ProgramImpl();
 
@@ -90,12 +90,12 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	@Override
-	public Program analyzeFile(final File inputFile, final CobolSourceFormat format) throws IOException {
+	public Program analyzeFile(final File inputFile, final CobolSourceFormatEnum format) throws IOException {
 		return analyzeFile(inputFile, format, null);
 	}
 
 	@Override
-	public Program analyzeFile(final File inputFile, final CobolSourceFormat format, final CobolDialect dialect)
+	public Program analyzeFile(final File inputFile, final CobolSourceFormatEnum format, final CobolDialect dialect)
 			throws IOException {
 		final Program program = new ProgramImpl();
 
@@ -150,7 +150,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		return "cbl".equals(extension);
 	}
 
-	protected void parseFile(final File inputFile, final Program program, final CobolSourceFormat format,
+	protected void parseFile(final File inputFile, final Program program, final CobolSourceFormatEnum format,
 			final CobolDialect dialect) throws IOException {
 		if (!inputFile.isFile()) {
 			LOG.warn("Could not find file {}", inputFile.getAbsolutePath());

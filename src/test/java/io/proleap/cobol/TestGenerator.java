@@ -24,7 +24,7 @@ import org.apache.logging.log4j.util.Strings;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
 import io.proleap.cobol.applicationcontext.CobolGrammarContext;
 import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.util.TreeUtils;
 
@@ -63,7 +63,7 @@ public class TestGenerator {
 
 			final PrintWriter pWriter = new PrintWriter(new FileWriter(outputFile));
 			final String cobolInputFileName = cobolInputFile.getPath().replace("\\", "/");
-			final CobolSourceFormat format = getCobolSourceFormat(parentDirectory);
+			final CobolSourceFormatEnum format = getCobolSourceFormat(parentDirectory);
 
 			pWriter.write("package " + packageName + ";\n");
 			pWriter.write("\n");
@@ -137,7 +137,7 @@ public class TestGenerator {
 			LOG.info("Creating tree file {}.", outputFile);
 
 			final File parentDirectory = cobolInputFile.getParentFile();
-			final CobolSourceFormat format = getCobolSourceFormat(parentDirectory);
+			final CobolSourceFormatEnum format = getCobolSourceFormat(parentDirectory);
 
 			final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor()
 					.process(cobolInputFile, parentDirectory, format);
@@ -156,9 +156,9 @@ public class TestGenerator {
 		}
 	}
 
-	protected static CobolSourceFormat getCobolSourceFormat(final File directory) {
+	protected static CobolSourceFormatEnum getCobolSourceFormat(final File directory) {
 		final String parentDirectoryName = directory.getName();
-		final CobolSourceFormat result;
+		final CobolSourceFormatEnum result;
 
 		switch (parentDirectoryName) {
 		case "fixed":

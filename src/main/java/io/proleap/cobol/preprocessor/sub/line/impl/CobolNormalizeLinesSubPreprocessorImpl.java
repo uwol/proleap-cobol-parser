@@ -12,7 +12,7 @@ import org.codehaus.plexus.util.StringUtils;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.impl.AbstractCobolSubPreprocessor;
 import io.proleap.cobol.preprocessor.sub.impl.CobolLine;
 import io.proleap.cobol.preprocessor.sub.line.CobolNormalizeLinesSubPreprocessor;
@@ -114,7 +114,7 @@ public class CobolNormalizeLinesSubPreprocessorImpl extends AbstractCobolSubPrep
 
 	@Override
 	public String processLine(final String line, final int lineNumber, final CobolDialect dialect,
-			final CobolSourceFormat format) {
+			final CobolSourceFormatEnum format) {
 		final CobolLine parsedLine = parseCobolLine(line, format);
 
 		if (parsedLine == null) {

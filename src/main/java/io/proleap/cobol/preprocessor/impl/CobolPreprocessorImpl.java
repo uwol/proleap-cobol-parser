@@ -33,13 +33,13 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 	private final static Logger LOG = LogManager.getLogger(CobolPreprocessorImpl.class);
 
 	@Override
-	public String process(final File cobolFile, final File libDirectory, final CobolSourceFormat format)
+	public String process(final File cobolFile, final File libDirectory, final CobolSourceFormatEnum format)
 			throws IOException {
 		return process(cobolFile, libDirectory, format, null);
 	}
 
 	@Override
-	public String process(final File cobolFile, final File libDirectory, final CobolSourceFormat format,
+	public String process(final File cobolFile, final File libDirectory, final CobolSourceFormatEnum format,
 			final CobolDialect dialect) throws IOException {
 		LOG.info("Preprocessing file {}.", cobolFile.getName());
 
@@ -61,12 +61,12 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 	}
 
 	@Override
-	public String process(final String cobolSourceCode, final File libDirectory, final CobolSourceFormat format) {
+	public String process(final String cobolSourceCode, final File libDirectory, final CobolSourceFormatEnum format) {
 		return process(cobolSourceCode, libDirectory, format, null);
 	}
 
 	@Override
-	public String process(final String cobolSourceCode, final File libDirectory, final CobolSourceFormat format,
+	public String process(final String cobolSourceCode, final File libDirectory, final CobolSourceFormatEnum format,
 			final CobolDialect dialect) {
 		final CobolCleanLinesSubPreprocessor cleanLinesPreprocessor = new CobolCleanLinesSubPreprocessorImpl();
 		final CobolMarkCommentEntriesSubPreprocessor markCommentEntriesPreprocessor = new CobolMarkCommentEntriesSubPreprocessorImpl();

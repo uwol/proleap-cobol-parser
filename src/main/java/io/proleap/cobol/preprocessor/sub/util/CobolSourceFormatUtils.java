@@ -11,7 +11,7 @@ package io.proleap.cobol.preprocessor.sub.util;
 import com.google.common.base.Strings;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class CobolSourceFormatUtils {
@@ -28,7 +28,7 @@ public class CobolSourceFormatUtils {
 		return CobolPreprocessor.WS;
 	}
 
-	public static String getBlankLine(final CobolSourceFormat format) {
+	public static String getBlankLine(final CobolSourceFormatEnum format) {
 		final String result;
 
 		if (format == null) {
@@ -44,7 +44,7 @@ public class CobolSourceFormatUtils {
 		return result;
 	}
 
-	public static String getBlankSequenceAndIndicatorArea(final CobolSourceFormat format) {
+	public static String getBlankSequenceAndIndicatorArea(final CobolSourceFormatEnum format) {
 		final String result;
 
 		if (format == null) {
@@ -56,7 +56,7 @@ public class CobolSourceFormatUtils {
 		return result;
 	}
 
-	public static String getBlankSequenceArea(final CobolSourceFormat format) {
+	public static String getBlankSequenceArea(final CobolSourceFormatEnum format) {
 		final String result;
 
 		if (format == null) {

@@ -26,12 +26,6 @@ public class CobolSourceFormatUtilsTest {
 	}
 
 	@Test
-	public void testGetBlankLineFixedFlex() throws Exception {
-		final CobolSourceFormatEnum format = CobolSourceFormatEnum.FIXED_FLEX;
-		Assert.assertEquals(Strings.repeat(WS, 80), CobolSourceFormatUtils.getBlankLine(format));
-	}
-
-	@Test
 	public void testGetBlankLineTandem() throws Exception {
 		final CobolSourceFormatEnum format = CobolSourceFormatEnum.TANDEM;
 		Assert.assertEquals(WS, CobolSourceFormatUtils.getBlankLine(format));
@@ -46,12 +40,6 @@ public class CobolSourceFormatUtilsTest {
 	@Test
 	public void testGetBlankSequenceAreaFixed() throws Exception {
 		final CobolSourceFormatEnum format = CobolSourceFormatEnum.FIXED;
-		Assert.assertEquals(Strings.repeat(WS, 6), CobolSourceFormatUtils.getBlankSequenceArea(format));
-	}
-
-	@Test
-	public void testGetBlankSequenceAreaFixedFlex() throws Exception {
-		final CobolSourceFormatEnum format = CobolSourceFormatEnum.FIXED_FLEX;
 		Assert.assertEquals(Strings.repeat(WS, 6), CobolSourceFormatUtils.getBlankSequenceArea(format));
 	}
 

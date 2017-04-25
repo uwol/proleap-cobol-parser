@@ -10,7 +10,7 @@ package io.proleap.cobol.preprocessor.sub.line.impl;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormat;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.impl.AbstractCobolSubPreprocessor;
 import io.proleap.cobol.preprocessor.sub.line.CobolCleanLinesSubPreprocessor;
 import io.proleap.cobol.preprocessor.sub.util.CobolSourceFormatUtils;
@@ -20,7 +20,7 @@ public class CobolCleanLinesSubPreprocessorImpl extends AbstractCobolSubPreproce
 
 	@Override
 	public String processLine(final String line, final int lineNumber, final CobolDialect dialect,
-			final CobolSourceFormat format) {
+			final CobolSourceFormatEnum format) {
 		// clean line from certain ASCII chars
 		final int substituteChar = 0x1A;
 		final String cleanedLine = line.replace((char) substituteChar, ' ');
