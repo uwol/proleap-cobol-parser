@@ -8,6 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.identification.impl;
 
+import java.util.List;
+
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 import io.proleap.cobol.Cobol85Parser.AuthorParagraphContext;
 import io.proleap.cobol.Cobol85Parser.DateCompiledParagraphContext;
 import io.proleap.cobol.Cobol85Parser.DateWrittenParagraphContext;
@@ -23,10 +27,11 @@ import io.proleap.cobol.asg.metamodel.identification.DateWrittenParagraph;
 import io.proleap.cobol.asg.metamodel.identification.IdentificationDivision;
 import io.proleap.cobol.asg.metamodel.identification.InstallationParagraph;
 import io.proleap.cobol.asg.metamodel.identification.ProgramIdParagraph;
+import io.proleap.cobol.asg.metamodel.identification.ProgramIdParagraph.Attribute;
 import io.proleap.cobol.asg.metamodel.identification.RemarksParagraph;
 import io.proleap.cobol.asg.metamodel.identification.SecurityParagraph;
-import io.proleap.cobol.asg.metamodel.identification.ProgramIdParagraph.Attribute;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionImpl;
+import io.proleap.cobol.preprocessor.CobolPreprocessor;
 
 public class IdentificationDivisionImpl extends CobolDivisionImpl implements IdentificationDivision {
 
@@ -59,6 +64,11 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new AuthorParagraphImpl(programUnit, ctx);
 
+			if (!ctx.COMMENTENTRYLINE().isEmpty()) {
+				final String author = getCommentEntry(ctx.COMMENTENTRYLINE());
+				result.setAuthor(author);
+			}
+
 			authorParagraph = result;
 			registerASGElement(result);
 		}
@@ -72,6 +82,11 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 
 		if (result == null) {
 			result = new DateCompiledParagraphImpl(programUnit, ctx);
+
+			if (!ctx.COMMENTENTRYLINE().isEmpty()) {
+				final String dateCompiled = getCommentEntry(ctx.COMMENTENTRYLINE());
+				result.setDateCompiled(dateCompiled);
+			}
 
 			dateCompiledParagraph = result;
 			registerASGElement(result);
@@ -87,6 +102,11 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new DateWrittenParagraphImpl(programUnit, ctx);
 
+			if (!ctx.COMMENTENTRYLINE().isEmpty()) {
+				final String dateWritten = getCommentEntry(ctx.COMMENTENTRYLINE());
+				result.setDateWritten(dateWritten);
+			}
+
 			dateWrittenParagraph = result;
 			registerASGElement(result);
 		}
@@ -100,6 +120,11 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 
 		if (result == null) {
 			result = new InstallationParagraphImpl(programUnit, ctx);
+
+			if (!ctx.COMMENTENTRYLINE().isEmpty()) {
+				final String installation = getCommentEntry(ctx.COMMENTENTRYLINE());
+				result.setInstallation(installation);
+			}
 
 			installationParagraph = result;
 			registerASGElement(result);
@@ -147,6 +172,11 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new RemarksParagraphImpl(programUnit, ctx);
 
+			if (!ctx.COMMENTENTRYLINE().isEmpty()) {
+				final String remarks = getCommentEntry(ctx.COMMENTENTRYLINE());
+				result.setRemarks(remarks);
+			}
+
 			remarksParagraph = result;
 			registerASGElement(result);
 		}
@@ -161,6 +191,11 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new SecurityParagraphImpl(programUnit, ctx);
 
+			if (!ctx.COMMENTENTRYLINE().isEmpty()) {
+				final String security = getCommentEntry(ctx.COMMENTENTRYLINE());
+				result.setSecurity(security);
+			}
+
 			securityParagraph = result;
 			registerASGElement(result);
 		}
@@ -171,6 +206,20 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 	@Override
 	public AuthorParagraph getAuthorParagraph() {
 		return authorParagraph;
+	}
+
+	protected String getCommentEntry(final List<TerminalNode> commentEntries) {
+		final StringBuffer sb = new StringBuffer();
+
+		for (final TerminalNode terminalNode : commentEntries) {
+			final String commentEntry = terminalNode.getText();
+			final String commentEntryText = commentEntry.replace(CobolPreprocessor.COMMENT_ENTRY_TAG, "");
+			final String commentEntryTextCleaned = commentEntryText.trim() + CobolPreprocessor.WS;
+
+			sb.append(commentEntryTextCleaned);
+		}
+
+		return sb.toString().trim();
 	}
 
 	@Override

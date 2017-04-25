@@ -15,12 +15,24 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 
 public class AuthorParagraphImpl extends CobolDivisionElementImpl implements AuthorParagraph {
 
+	protected String author;
+
 	protected final AuthorParagraphContext ctx;
 
 	public AuthorParagraphImpl(final ProgramUnit programUnit, final AuthorParagraphContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public String getAuthor() {
+		return author;
+	}
+
+	@Override
+	public void setAuthor(final String author) {
+		this.author = author;
 	}
 
 }

@@ -63,8 +63,8 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 		return result;
 	}
 
-	protected String buildCommentEntryLine(final CobolLine parsedLine) {
-		return parsedLine.sequenceArea + CobolPreprocessor.CHAR_ASTERISK + parsedLine.contentAreaA
+	protected String buildMultiLineCommentEntryLine(final CobolLine parsedLine) {
+		return parsedLine.sequenceArea + CobolPreprocessor.CHAR_SHARP + parsedLine.contentAreaA
 				+ parsedLine.contentAreaB + parsedLine.comment + CobolPreprocessor.NEWLINE;
 	}
 
@@ -84,7 +84,8 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 		if (matcher.matches()) {
 			final String trigger = matcher.group(1);
 			final String commentEntry = matcher.group(2);
-			final String newContentArea = trigger + CobolPreprocessor.WS + CobolPreprocessor.COMMENT_TAG + commentEntry;
+			final String newContentArea = trigger + CobolPreprocessor.WS + CobolPreprocessor.COMMENT_ENTRY_TAG
+					+ commentEntry;
 
 			result = parsedLine.sequenceArea + parsedLine.indicatorArea + newContentArea + parsedLine.comment
 					+ CobolPreprocessor.NEWLINE;
@@ -154,7 +155,7 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 			isInCommentEntry = isInCommentEntry(parsedLine, isContentAreaAEmpty, isInOsvsCommentEntry);
 
 			if (isInCommentEntry) {
-				result = buildCommentEntryLine(parsedLine);
+				result = buildMultiLineCommentEntryLine(parsedLine);
 			} else {
 				result = buildRegularLine(line);
 			}

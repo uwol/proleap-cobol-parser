@@ -15,4 +15,8 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
  */
 public interface SecurityParagraph extends CobolDivisionElement {
 
+	String getSecurity();
+
+	void setSecurity(String security);
+
 }

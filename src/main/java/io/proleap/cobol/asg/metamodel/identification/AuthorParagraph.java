@@ -15,4 +15,8 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
  */
 public interface AuthorParagraph extends CobolDivisionElement {
 
+	String getAuthor();
+
+	void setAuthor(String author);
+
 }

@@ -2,7 +2,7 @@
        Program-ID.
            HELLOWORLD.
        Author.
-      >*     Test " Author '".
+      >**     Test " Author '".
        Procedure Division.
            Display "Hello world".
            STOP RUN.

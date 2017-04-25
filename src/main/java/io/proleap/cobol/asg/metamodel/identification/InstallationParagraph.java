@@ -15,4 +15,8 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
  */
 public interface InstallationParagraph extends CobolDivisionElement {
 
+	String getInstallation();
+
+	void setInstallation(String installation);
+
 }

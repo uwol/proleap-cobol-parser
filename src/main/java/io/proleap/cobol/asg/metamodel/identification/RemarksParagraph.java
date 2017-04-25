@@ -15,4 +15,8 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
  */
 public interface RemarksParagraph extends CobolDivisionElement {
 
+	String getRemarks();
+
+	void setRemarks(String remarks);
+
 }

@@ -1,5 +1,6 @@
-package io.proleap.cobol.asg.identification;
+package io.proleap.cobol.asg.identification.fixed;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
@@ -26,9 +27,9 @@ public class IdentificationDivisionTest extends CobolTestSupport {
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/identification/IdentificationDivision.cbl");
+				"src/test/resources/io/proleap/cobol/asg/identification/fixed/IdentificationDivision.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
-				CobolSourceFormatEnum.VARIABLE);
+				CobolSourceFormatEnum.FIXED);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("IdentificationDivision");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
@@ -37,10 +38,21 @@ public class IdentificationDivisionTest extends CobolTestSupport {
 		assertNotNull(identificationDivision.getProgramIdParagraph());
 
 		assertNotNull(identificationDivision.getAuthorParagraph());
+		assertEquals("SOMEAUTH.", identificationDivision.getAuthorParagraph().getAuthor());
+
 		assertNotNull(identificationDivision.getInstallationParagraph());
+		assertEquals("SOMEINSTALL.", identificationDivision.getInstallationParagraph().getInstallation());
+
 		assertNotNull(identificationDivision.getDateCompiledParagraph());
+		assertEquals("SOMECOMPILED.", identificationDivision.getDateCompiledParagraph().getDateCompiled());
+
 		assertNotNull(identificationDivision.getDateWrittenParagraph());
+		assertEquals("SOMEWRITTEN.", identificationDivision.getDateWrittenParagraph().getDateWritten());
+
 		assertNotNull(identificationDivision.getRemarksParagraph());
+		assertEquals("SOMEREM.", identificationDivision.getRemarksParagraph().getRemarks());
+
 		assertNotNull(identificationDivision.getSecurityParagraph());
+		assertEquals("SOMESEC.", identificationDivision.getSecurityParagraph().getSecurity());
 	}
 }

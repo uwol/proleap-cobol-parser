@@ -17,10 +17,22 @@ public class RemarksParagraphImpl extends CobolDivisionElementImpl implements Re
 
 	protected final RemarksParagraphContext ctx;
 
+	protected String remarks;
+
 	public RemarksParagraphImpl(final ProgramUnit programUnit, final RemarksParagraphContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public String getRemarks() {
+		return remarks;
+	}
+
+	@Override
+	public void setRemarks(final String remarks) {
+		this.remarks = remarks;
 	}
 
 }

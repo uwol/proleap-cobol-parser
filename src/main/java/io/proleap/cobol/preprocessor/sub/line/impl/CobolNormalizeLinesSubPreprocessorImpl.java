@@ -103,6 +103,10 @@ public class CobolNormalizeLinesSubPreprocessorImpl extends AbstractCobolSubPrep
 		case CobolPreprocessor.CHAR_SLASH:
 			result = linePrefix + CobolPreprocessor.COMMENT_TAG + CobolPreprocessor.WS + handledContentArea;
 			break;
+		// comment entry
+		case CobolPreprocessor.CHAR_SHARP:
+			result = linePrefix + CobolPreprocessor.COMMENT_ENTRY_TAG + CobolPreprocessor.WS + handledContentArea;
+			break;
 		case ' ':
 		default:
 			result = linePrefix + CobolPreprocessor.WS + handledContentArea;

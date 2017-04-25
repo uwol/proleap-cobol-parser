@@ -15,4 +15,8 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
  */
 public interface DateWrittenParagraph extends CobolDivisionElement {
 
+	String getDateWritten();
+
+	void setDateWritten(String dateWritten);
+
 }

@@ -17,10 +17,22 @@ public class SecurityParagraphImpl extends CobolDivisionElementImpl implements S
 
 	protected final SecurityParagraphContext ctx;
 
+	protected String security;
+
 	public SecurityParagraphImpl(final ProgramUnit programUnit, final SecurityParagraphContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public String getSecurity() {
+		return security;
+	}
+
+	@Override
+	public void setSecurity(final String security) {
+		this.security = security;
 	}
 
 }

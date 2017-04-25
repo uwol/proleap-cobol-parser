@@ -70,37 +70,37 @@ programIdParagraph
 // - author paragraph ----------------------------------
 
 authorParagraph
-   : AUTHOR DOT_FS
+   : AUTHOR DOT_FS COMMENTENTRYLINE*
    ;
 
 // - installation paragraph ----------------------------------
 
 installationParagraph
-   : INSTALLATION DOT_FS
+   : INSTALLATION DOT_FS COMMENTENTRYLINE*
    ;
 
 // - date written paragraph ----------------------------------
 
 dateWrittenParagraph
-   : DATE_WRITTEN DOT_FS
+   : DATE_WRITTEN DOT_FS COMMENTENTRYLINE*
    ;
 
 // - date compiled paragraph ----------------------------------
 
 dateCompiledParagraph
-   : DATE_COMPILED DOT_FS
+   : DATE_COMPILED DOT_FS COMMENTENTRYLINE*
    ;
 
 // - security paragraph ----------------------------------
 
 securityParagraph
-   : SECURITY DOT_FS
+   : SECURITY DOT_FS COMMENTENTRYLINE*
    ;
 
 // - remarks paragraph ----------------------------------
 
 remarksParagraph
-   : REMARKS DOT_FS
+   : REMARKS DOT_FS COMMENTENTRYLINE*
    ;
 
 // --- environment division --------------------------------------------------------------------
@@ -3095,6 +3095,7 @@ ASTERISKCHAR : '*';
 DOUBLEASTERISKCHAR : '**';
 COLONCHAR : ':';
 COMMACHAR : ',';
+COMMENTENTRYTAG : '>**';
 COMMENTTAG : '>*';
 DOLLARCHAR : '$';
 DOUBLEQUOTE : '"';
@@ -3143,6 +3144,7 @@ IDENTIFIER : [a-zA-Z0-9]+ ([-_]+ [a-zA-Z0-9]+)*;
 
 // whitespace, line breaks, comments, ...
 NEWLINE : '\r'? '\n' -> skip;
+COMMENTENTRYLINE : COMMENTENTRYTAG ~('\n' | '\r')*;
 COMMENTLINE : COMMENTTAG ~('\n' | '\r')* -> skip;
 WS : [ \t\f;]+ -> skip;
 SEPARATOR : ', ' -> skip;

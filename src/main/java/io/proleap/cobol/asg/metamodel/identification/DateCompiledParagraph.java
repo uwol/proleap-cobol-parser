@@ -15,4 +15,8 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
  */
 public interface DateCompiledParagraph extends CobolDivisionElement {
 
+	String getDateCompiled();
+
+	void setDateCompiled(String dateCompiled);
+
 }

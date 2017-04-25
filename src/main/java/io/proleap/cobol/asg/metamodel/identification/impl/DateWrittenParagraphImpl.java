@@ -17,10 +17,22 @@ public class DateWrittenParagraphImpl extends CobolDivisionElementImpl implement
 
 	protected final DateWrittenParagraphContext ctx;
 
+	protected String dateWritten;
+
 	public DateWrittenParagraphImpl(final ProgramUnit programUnit, final DateWrittenParagraphContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public String getDateWritten() {
+		return dateWritten;
+	}
+
+	@Override
+	public void setDateWritten(final String dateWritten) {
+		this.dateWritten = dateWritten;
 	}
 
 }

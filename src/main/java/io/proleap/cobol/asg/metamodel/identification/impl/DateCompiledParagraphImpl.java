@@ -17,10 +17,22 @@ public class DateCompiledParagraphImpl extends CobolDivisionElementImpl implemen
 
 	protected final DateCompiledParagraphContext ctx;
 
+	protected String dateCompiled;
+
 	public DateCompiledParagraphImpl(final ProgramUnit programUnit, final DateCompiledParagraphContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public String getDateCompiled() {
+		return dateCompiled;
+	}
+
+	@Override
+	public void setDateCompiled(final String dateCompiled) {
+		this.dateCompiled = dateCompiled;
 	}
 
 }

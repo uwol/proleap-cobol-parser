@@ -17,10 +17,22 @@ public class InstallationParagraphImpl extends CobolDivisionElementImpl implemen
 
 	protected final InstallationParagraphContext ctx;
 
+	protected String installation;
+
 	public InstallationParagraphImpl(final ProgramUnit programUnit, final InstallationParagraphContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public String getInstallation() {
+		return installation;
+	}
+
+	@Override
+	public void setInstallation(final String installation) {
+		this.installation = installation;
 	}
 
 }
