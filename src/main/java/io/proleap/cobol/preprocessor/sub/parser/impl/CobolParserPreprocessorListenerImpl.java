@@ -60,6 +60,26 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 		contexts.push(new CobolPreprocessingContext());
 	}
 
+	private String buildLines(final String text, final String linePrefix) {
+		final StringBuffer sb = new StringBuffer(text.length());
+		final Scanner scanner = new Scanner(text);
+		boolean firstLine = true;
+
+		while (scanner.hasNextLine()) {
+			final String line = scanner.nextLine();
+
+			if (!firstLine) {
+				sb.append(CobolPreprocessor.NEWLINE);
+			}
+
+			sb.append(linePrefix + line.trim());
+			firstLine = false;
+		}
+
+		scanner.close();
+		return sb.toString();
+	}
+
 	public CobolPreprocessingContext context() {
 		return contexts.peek();
 	}
@@ -106,7 +126,7 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 	public void exitControlSpacingStatement(final Cobol85PreprocessorParser.ControlSpacingStatementContext ctx) {
 		// throw away control spacing statement
 		pop();
-	}
+	};
 
 	@Override
 	public void exitCopyStatement(final Cobol85PreprocessorParser.CopyStatementContext ctx) {
@@ -140,12 +160,29 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 		pop();
 
 		context().write(content);
-	};
+	}
 
 	@Override
 	public void exitExecCicsStatement(final Cobol85PreprocessorParser.ExecCicsStatementContext ctx) {
-		// throw away EXEC CICS terminals -> TODO
+		// throw away EXEC CICS terminals
 		pop();
+
+		// a new context for the CICS statement
+		push();
+
+		/*
+		 * text
+		 */
+		final String text = TokenUtils.getTextIncludingHiddenTokens(ctx, tokens);
+		final String linePrefix = CobolSourceFormatUtils.getBlankSequenceArea(format) + CobolPreprocessor.COMMENT_TAG;
+		final String lines = buildLines(text, linePrefix);
+
+		context().write(lines);
+
+		final String content = context().read();
+		pop();
+
+		context().write(content);
 	}
 
 	@Override
@@ -161,25 +198,9 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 		 */
 		final String text = TokenUtils.getTextIncludingHiddenTokens(ctx, tokens);
 		final String linePrefix = CobolSourceFormatUtils.getBlankSequenceArea(format) + CobolPreprocessor.COMMENT_TAG;
+		final String lines = buildLines(text, linePrefix);
 
-		final StringBuffer sb = new StringBuffer(text.length());
-		final Scanner scanner = new Scanner(text);
-		boolean firstLine = true;
-
-		while (scanner.hasNextLine()) {
-			final String line = scanner.nextLine();
-
-			if (!firstLine) {
-				sb.append(CobolPreprocessor.NEWLINE);
-			}
-
-			sb.append(linePrefix + line.trim());
-			firstLine = false;
-		}
-
-		scanner.close();
-
-		context().write(sb.toString());
+		context().write(lines);
 
 		final String content = context().read();
 		pop();

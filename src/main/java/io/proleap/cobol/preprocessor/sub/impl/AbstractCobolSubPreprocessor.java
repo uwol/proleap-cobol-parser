@@ -71,6 +71,7 @@ public abstract class AbstractCobolSubPreprocessor implements CobolSubPreprocess
 
 	protected void throwCobolLineParseException(final String line, final int lineNumber,
 			final CobolSourceFormatEnum format) {
-		throw new RuntimeException("could not parse line " + (lineNumber + 1) + " with format " + format + ": " + line);
+		throw new RuntimeException(
+				"Is " + format + " the correct line format? Could not parse line " + (lineNumber + 1) + ": " + line);
 	}
 }
