@@ -8,11 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.identification.impl;
 
-import java.util.List;
-
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import io.proleap.cobol.Cobol85Parser.AuthorParagraphContext;
+import io.proleap.cobol.Cobol85Parser.CommentEntryContext;
 import io.proleap.cobol.Cobol85Parser.DateCompiledParagraphContext;
 import io.proleap.cobol.Cobol85Parser.DateWrittenParagraphContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
@@ -64,8 +63,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new AuthorParagraphImpl(programUnit, ctx);
 
-			if (!ctx.COMMENTENTRYLINE().isEmpty()) {
-				final String author = getCommentEntry(ctx.COMMENTENTRYLINE());
+			if (ctx.commentEntry() != null) {
+				final String author = getCommentEntry(ctx.commentEntry());
 				result.setAuthor(author);
 			}
 
@@ -83,8 +82,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new DateCompiledParagraphImpl(programUnit, ctx);
 
-			if (!ctx.COMMENTENTRYLINE().isEmpty()) {
-				final String dateCompiled = getCommentEntry(ctx.COMMENTENTRYLINE());
+			if (ctx.commentEntry() != null) {
+				final String dateCompiled = getCommentEntry(ctx.commentEntry());
 				result.setDateCompiled(dateCompiled);
 			}
 
@@ -102,8 +101,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new DateWrittenParagraphImpl(programUnit, ctx);
 
-			if (!ctx.COMMENTENTRYLINE().isEmpty()) {
-				final String dateWritten = getCommentEntry(ctx.COMMENTENTRYLINE());
+			if (ctx.commentEntry() != null) {
+				final String dateWritten = getCommentEntry(ctx.commentEntry());
 				result.setDateWritten(dateWritten);
 			}
 
@@ -121,8 +120,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new InstallationParagraphImpl(programUnit, ctx);
 
-			if (!ctx.COMMENTENTRYLINE().isEmpty()) {
-				final String installation = getCommentEntry(ctx.COMMENTENTRYLINE());
+			if (ctx.commentEntry() != null) {
+				final String installation = getCommentEntry(ctx.commentEntry());
 				result.setInstallation(installation);
 			}
 
@@ -172,8 +171,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new RemarksParagraphImpl(programUnit, ctx);
 
-			if (!ctx.COMMENTENTRYLINE().isEmpty()) {
-				final String remarks = getCommentEntry(ctx.COMMENTENTRYLINE());
+			if (ctx.commentEntry() != null) {
+				final String remarks = getCommentEntry(ctx.commentEntry());
 				result.setRemarks(remarks);
 			}
 
@@ -191,8 +190,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		if (result == null) {
 			result = new SecurityParagraphImpl(programUnit, ctx);
 
-			if (!ctx.COMMENTENTRYLINE().isEmpty()) {
-				final String security = getCommentEntry(ctx.COMMENTENTRYLINE());
+			if (ctx.commentEntry() != null) {
+				final String security = getCommentEntry(ctx.commentEntry());
 				result.setSecurity(security);
 			}
 
@@ -208,10 +207,10 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 		return authorParagraph;
 	}
 
-	protected String getCommentEntry(final List<TerminalNode> commentEntries) {
+	protected String getCommentEntry(final CommentEntryContext ctx) {
 		final StringBuffer sb = new StringBuffer();
 
-		for (final TerminalNode terminalNode : commentEntries) {
+		for (final TerminalNode terminalNode : ctx.COMMENTENTRYLINE()) {
 			final String commentEntry = terminalNode.getText();
 			final String commentEntryText = commentEntry.replace(CobolPreprocessor.COMMENT_ENTRY_TAG, "");
 			final String commentEntryTextCleaned = commentEntryText.trim() + CobolPreprocessor.WS;

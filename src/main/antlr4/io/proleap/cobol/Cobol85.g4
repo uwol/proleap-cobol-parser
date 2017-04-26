@@ -70,37 +70,37 @@ programIdParagraph
 // - author paragraph ----------------------------------
 
 authorParagraph
-   : AUTHOR DOT_FS COMMENTENTRYLINE*
+   : AUTHOR DOT_FS commentEntry?
    ;
 
 // - installation paragraph ----------------------------------
 
 installationParagraph
-   : INSTALLATION DOT_FS COMMENTENTRYLINE*
+   : INSTALLATION DOT_FS commentEntry?
    ;
 
 // - date written paragraph ----------------------------------
 
 dateWrittenParagraph
-   : DATE_WRITTEN DOT_FS COMMENTENTRYLINE*
+   : DATE_WRITTEN DOT_FS commentEntry?
    ;
 
 // - date compiled paragraph ----------------------------------
 
 dateCompiledParagraph
-   : DATE_COMPILED DOT_FS COMMENTENTRYLINE*
+   : DATE_COMPILED DOT_FS commentEntry?
    ;
 
 // - security paragraph ----------------------------------
 
 securityParagraph
-   : SECURITY DOT_FS COMMENTENTRYLINE*
+   : SECURITY DOT_FS commentEntry?
    ;
 
 // - remarks paragraph ----------------------------------
 
 remarksParagraph
-   : REMARKS DOT_FS COMMENTENTRYLINE*
+   : REMARKS DOT_FS commentEntry?
    ;
 
 // --- environment division --------------------------------------------------------------------
@@ -962,7 +962,7 @@ libraryIsGlobalClause
 // data description entry ----------------------------------
 
 dataDescriptionEntry
-   : dataDescriptionEntryFormat1 | dataDescriptionEntryFormat2 | dataDescriptionEntryFormat3
+   : dataDescriptionEntryFormat1 | dataDescriptionEntryFormat2 | dataDescriptionEntryFormat3 | execSql
    ;
 
 dataDescriptionEntryFormat1
@@ -1150,7 +1150,7 @@ sentence
    ;
 
 statement
-   : acceptStatement | addStatement | alterStatement | callStatement | cancelStatement | closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement | displayStatement | divideStatement | enableStatement | entryStatement | evaluateStatement | exhibitStatement | exitStatement | generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement | inspectStatement | mergeStatement | moveStatement | multiplyStatement | openStatement | performStatement | purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement | searchStatement | sendStatement | setStatement | sortStatement | startStatement | stopStatement | stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
+   : acceptStatement | addStatement | alterStatement | callStatement | cancelStatement | closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement | displayStatement | divideStatement | enableStatement | entryStatement | evaluateStatement | exhibitStatement | execCics | execSql | execSqlIms | exitStatement | generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement | inspectStatement | mergeStatement | moveStatement | multiplyStatement | openStatement | performStatement | purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement | searchStatement | sendStatement | setStatement | sortStatement | startStatement | stopStatement | stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
    ;
 
 // accept statement
@@ -2556,6 +2556,26 @@ specialRegister
    | WHEN_COMPILED
    ;
 
+// comment entry
+
+commentEntry
+   : COMMENTENTRYLINE+
+   ;
+
+// exec rules
+
+execCics
+   : EXECCICSLINE+
+   ;
+
+execSql
+   : EXECSQLLINE+
+   ;
+
+execSqlIms
+   : EXECSQLIMSLINE+
+   ;
+
 // lexer rules --------------------------------------------------------------------------------
 
 // keywords
@@ -3147,9 +3167,9 @@ IDENTIFIER : [a-zA-Z0-9]+ ([-_]+ [a-zA-Z0-9]+)*;
 
 // whitespace, line breaks, comments, ...
 NEWLINE : '\r'? '\n' -> skip;
-EXECCICSLINE : EXECCICSTAG ~('\n' | '\r')* -> skip;
-EXECSQLLINE : EXECSQLTAG ~('\n' | '\r')* -> skip;
-EXECSQLIMSLINE : EXECSQLIMSTAG ~('\n' | '\r')* -> skip;
+EXECCICSLINE : EXECCICSTAG ~('\n' | '\r' | '.')*;
+EXECSQLLINE : EXECSQLTAG ~('\n' | '\r' | '.')*;
+EXECSQLIMSLINE : EXECSQLIMSTAG ~('\n' | '\r' | '.')*;
 COMMENTENTRYLINE : COMMENTENTRYTAG ~('\n' | '\r')*;
 COMMENTLINE : COMMENTTAG ~('\n' | '\r')* -> skip;
 WS : [ \t\f;]+ -> skip;

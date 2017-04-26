@@ -4,10 +4,10 @@
 			(identificationDivision Identification Division .\n        
 				(programIdParagraph Program-ID .  
 					(programName 
-						(cobolWord ExecSql)) .\n       )) 
+						(cobolWord ExecSql)) .\n       \n       )) 
 			(dataDivision Data Division .\n        
 				(dataDivisionBody 
-					(workingStorageSection Working-Storage Section .\n\n        
+					(workingStorageSection Working-Storage Section .\n       \n       
 						(dataDescriptionEntry 
 							(dataDescriptionEntryFormat1 01 
 								(dataName 
@@ -18,11 +18,13 @@
 										(pictureChars () 
 										(pictureChars 
 											(integerLiteral 8)) 
-										(pictureChars )))) .\n\n       ))))) 
-			(procedureDivision Procedure Division .\n\n         
+										(pictureChars )))) .\n       \n      ))))) 
+			(procedureDivision Procedure Division .\n       
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
+							(statement 
+								(execSql >*EXECSQL EXEC SQL CONNECT TO demo END-EXEC)) 
 							(statement 
 								(displayStatement Display 
 									(displayOperand 

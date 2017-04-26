@@ -30,7 +30,7 @@ public class CobolParserPreprocessorImpl implements CobolParserPreprocessor {
 
 	protected final File libDirectory;
 
-	protected final String[] triggers = new String[] { "copy", "exec sql", "exec cics", "replace" };
+	protected final String[] triggers = new String[] { "copy", "exec sql", "exec sqlims", "exec cics", "replace" };
 
 	public CobolParserPreprocessorImpl(final File libDirectory) {
 		this.libDirectory = libDirectory;

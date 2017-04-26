@@ -6,7 +6,8 @@
 					(programName 
 						(cobolWord HELLOWORLD)) .\n       ) 
 				(identificationDivisionBody 
-					(authorParagraph Author .\n       >*CE     Test " Author '".))) 
+					(authorParagraph Author .\n       
+						(commentEntry >*CE     Test " Author '".)))) 
 			(procedureDivision Procedure Division .\n            
 				(procedureDivisionBody 
 					(paragraphs 
