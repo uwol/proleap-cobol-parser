@@ -20,5 +20,5 @@ public interface CobolNormalizeLinesSubPreprocessor extends CobolSubPreprocessor
 
 	CobolLine parseCobolLine(String line, CobolSourceFormatEnum format);
 
-	String processLine(String line, int lineNumber, CobolDialect dialect, CobolSourceFormatEnum format);
+	String processLine(String line, int lineNumber, CobolSourceFormatEnum format, CobolDialect dialect);
 }

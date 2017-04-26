@@ -50,8 +50,8 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 
 	private final BufferedTokenStream tokens;
 
-	public CobolParserPreprocessorListenerImpl(final File libDirectory, final CobolDialect dialect,
-			final CobolSourceFormatEnum format, final BufferedTokenStream tokens) {
+	public CobolParserPreprocessorListenerImpl(final File libDirectory, final CobolSourceFormatEnum format,
+			final CobolDialect dialect, final BufferedTokenStream tokens) {
 		this.libDirectory = libDirectory;
 		this.dialect = dialect;
 		this.tokens = tokens;

@@ -45,11 +45,11 @@ public abstract class AbstractCobolSubPreprocessor implements CobolSubPreprocess
 		return result;
 	}
 
-	public abstract String processLine(final String line, int lineNumber, final CobolDialect dialect,
-			final CobolSourceFormatEnum format);
+	public abstract String processLine(final String line, int lineNumber, final CobolSourceFormatEnum format,
+			final CobolDialect dialect);
 
 	@Override
-	public String processLines(final String lines, final CobolDialect dialect, final CobolSourceFormatEnum format) {
+	public String processLines(final String lines, final CobolSourceFormatEnum format, final CobolDialect dialect) {
 		final Scanner scanner = new Scanner(lines);
 		final StringBuffer outputBuffer = new StringBuffer();
 
@@ -59,7 +59,7 @@ public abstract class AbstractCobolSubPreprocessor implements CobolSubPreprocess
 		while (scanner.hasNextLine()) {
 			currentLine = scanner.nextLine();
 
-			final String processedLine = processLine(currentLine, lineNumber, dialect, format);
+			final String processedLine = processLine(currentLine, lineNumber, format, dialect);
 			outputBuffer.append(processedLine);
 
 			lineNumber++;

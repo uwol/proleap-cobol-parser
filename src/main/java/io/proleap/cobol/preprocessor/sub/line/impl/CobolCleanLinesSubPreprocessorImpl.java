@@ -19,8 +19,8 @@ public class CobolCleanLinesSubPreprocessorImpl extends AbstractCobolSubPreproce
 		implements CobolCleanLinesSubPreprocessor {
 
 	@Override
-	public String processLine(final String line, final int lineNumber, final CobolDialect dialect,
-			final CobolSourceFormatEnum format) {
+	public String processLine(final String line, final int lineNumber, final CobolSourceFormatEnum format,
+			final CobolDialect dialect) {
 		// clean line from certain ASCII chars
 		final int substituteChar = 0x1A;
 		final String cleanedLine = line.replace((char) substituteChar, ' ');

@@ -22,7 +22,7 @@ public class CobolNormalizeLinesSubPreprocessorTest {
 		final CobolNormalizeLinesSubPreprocessor linesPreprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456 ABC .";
-		final String normalizeLine = linesPreprocessor.processLines(line, null, CobolSourceFormatEnum.VARIABLE);
+		final String normalizeLine = linesPreprocessor.processLines(line, CobolSourceFormatEnum.VARIABLE, null);
 
 		Assert.assertEquals("      " + " " + "ABC .", normalizeLine);
 	}
@@ -32,7 +32,7 @@ public class CobolNormalizeLinesSubPreprocessorTest {
 		final CobolNormalizeLinesSubPreprocessor linesPreprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456-***";
-		final String normalizeLine = linesPreprocessor.processLines(line, null, CobolSourceFormatEnum.VARIABLE);
+		final String normalizeLine = linesPreprocessor.processLines(line, CobolSourceFormatEnum.VARIABLE, null);
 
 		Assert.assertEquals("***", normalizeLine);
 	}
@@ -42,7 +42,7 @@ public class CobolNormalizeLinesSubPreprocessorTest {
 		final CobolNormalizeLinesSubPreprocessor linesPreprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456-\"***";
-		final String normalizeLine = linesPreprocessor.processLines(line, null, CobolSourceFormatEnum.VARIABLE);
+		final String normalizeLine = linesPreprocessor.processLines(line, CobolSourceFormatEnum.VARIABLE, null);
 
 		Assert.assertEquals("***", normalizeLine);
 	}
@@ -52,7 +52,7 @@ public class CobolNormalizeLinesSubPreprocessorTest {
 		final CobolNormalizeLinesSubPreprocessor linesPreprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456-\"  ***";
-		final String normalizeLine = linesPreprocessor.processLines(line, null, CobolSourceFormatEnum.VARIABLE);
+		final String normalizeLine = linesPreprocessor.processLines(line, CobolSourceFormatEnum.VARIABLE, null);
 
 		Assert.assertEquals("  ***", normalizeLine);
 	}
@@ -62,7 +62,7 @@ public class CobolNormalizeLinesSubPreprocessorTest {
 		final CobolNormalizeLinesSubPreprocessor linesPreprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456-  ***";
-		final String normalizeLine = linesPreprocessor.processLines(line, null, CobolSourceFormatEnum.VARIABLE);
+		final String normalizeLine = linesPreprocessor.processLines(line, CobolSourceFormatEnum.VARIABLE, null);
 
 		Assert.assertEquals("***", normalizeLine);
 	}
@@ -72,7 +72,7 @@ public class CobolNormalizeLinesSubPreprocessorTest {
 		final CobolNormalizeLinesSubPreprocessor linesPreprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456   ABC .";
-		final String normalizeLine = linesPreprocessor.processLines(line, null, CobolSourceFormatEnum.VARIABLE);
+		final String normalizeLine = linesPreprocessor.processLines(line, CobolSourceFormatEnum.VARIABLE, null);
 
 		Assert.assertEquals("      " + " " + "  ABC .", normalizeLine);
 	}
@@ -82,7 +82,7 @@ public class CobolNormalizeLinesSubPreprocessorTest {
 		final CobolNormalizeLinesSubPreprocessor linesPreprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456 ABC ,";
-		final String normalizeLine = linesPreprocessor.processLines(line, null, CobolSourceFormatEnum.VARIABLE);
+		final String normalizeLine = linesPreprocessor.processLines(line, CobolSourceFormatEnum.VARIABLE, null);
 
 		Assert.assertEquals("      " + " " + "ABC , ", normalizeLine);
 	}
@@ -92,7 +92,7 @@ public class CobolNormalizeLinesSubPreprocessorTest {
 		final CobolNormalizeLinesSubPreprocessor linesPreprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456 ABC ;";
-		final String normalizeLine = linesPreprocessor.processLines(line, null, CobolSourceFormatEnum.VARIABLE);
+		final String normalizeLine = linesPreprocessor.processLines(line, CobolSourceFormatEnum.VARIABLE, null);
 
 		Assert.assertEquals("      " + " " + "ABC ; ", normalizeLine);
 	}
@@ -102,7 +102,7 @@ public class CobolNormalizeLinesSubPreprocessorTest {
 		final CobolNormalizeLinesSubPreprocessor linesPreprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
 
 		final String line = "123456 ABC .  ";
-		final String normalizeLine = linesPreprocessor.processLines(line, null, CobolSourceFormatEnum.VARIABLE);
+		final String normalizeLine = linesPreprocessor.processLines(line, CobolSourceFormatEnum.VARIABLE, null);
 
 		Assert.assertEquals("      " + " " + "ABC .", normalizeLine);
 	}

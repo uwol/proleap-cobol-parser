@@ -116,14 +116,14 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 	}
 
 	@Override
-	public String processLine(final String line, final int lineNumber, final CobolDialect dialect,
-			final CobolSourceFormatEnum format) {
+	public String processLine(final String line, final int lineNumber, final CobolSourceFormatEnum format,
+			final CobolDialect dialect) {
 		final String result;
 
 		if (format.isCommentEntryMultiLine()) {
-			result = processMultiLineCommentEntry(line, lineNumber, dialect, format);
+			result = processMultiLineCommentEntry(line, lineNumber, format, dialect);
 		} else {
-			result = processSingleLineCommentEntry(line, lineNumber, dialect, format);
+			result = processSingleLineCommentEntry(line, lineNumber, format, dialect);
 		}
 
 		return result;
@@ -135,8 +135,8 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 	 * restricted to area B of those lines; the next line commencing in area A
 	 * begins the next non-comment entry.
 	 */
-	protected String processMultiLineCommentEntry(final String line, final int lineNumber, final CobolDialect dialect,
-			final CobolSourceFormatEnum format) {
+	protected String processMultiLineCommentEntry(final String line, final int lineNumber,
+			final CobolSourceFormatEnum format, final CobolDialect dialect) {
 		final CobolLine parsedLine = parseCobolLine(line, format);
 
 		if (parsedLine == null) {
@@ -168,8 +168,8 @@ public class CobolMarkCommentEntriesSubPreprocessorImpl extends AbstractCobolSub
 		return result;
 	}
 
-	protected String processSingleLineCommentEntry(final String line, final int lineNumber, final CobolDialect dialect,
-			final CobolSourceFormatEnum format) {
+	protected String processSingleLineCommentEntry(final String line, final int lineNumber,
+			final CobolSourceFormatEnum format, final CobolDialect dialect) {
 		final CobolLine parsedLine = parseCobolLine(line, format);
 
 		if (parsedLine == null) {

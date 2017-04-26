@@ -117,8 +117,8 @@ public class CobolNormalizeLinesSubPreprocessorImpl extends AbstractCobolSubPrep
 	}
 
 	@Override
-	public String processLine(final String line, final int lineNumber, final CobolDialect dialect,
-			final CobolSourceFormatEnum format) {
+	public String processLine(final String line, final int lineNumber, final CobolSourceFormatEnum format,
+			final CobolDialect dialect) {
 		final CobolLine parsedLine = parseCobolLine(line, format);
 
 		if (parsedLine == null) {
