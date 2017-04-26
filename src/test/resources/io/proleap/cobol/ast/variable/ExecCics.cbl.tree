@@ -1,0 +1,90 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision IDENTIFICATION DIVISION .\n        
+				(programIdParagraph PROGRAM-ID .  
+					(programName 
+						(cobolWord ExecCics)) .\n       \n       )) 
+			(dataDivision DATA DIVISION .\n        
+				(dataDivisionBody 
+					(workingStorageSection WORKING-STORAGE SECTION .\n       \n          
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 01 
+								(dataName 
+									(cobolWord ws-length)) 
+								(dataPictureClause PICTURE 
+									(pictureString 
+										(pictureChars 
+											(integerLiteral 9)) 
+										(pictureChars () 
+										(pictureChars 
+											(integerLiteral 4)) 
+										(pictureChars )))) .\n       \n         )) 
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 01 
+								(dataName 
+									(cobolWord ws-input)) .\n           )) 
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 05 
+								(dataName 
+									(cobolWord ws-message-in)) 
+								(dataPictureClause PICTURE 
+									(pictureString 
+										(pictureChars x) 
+										(pictureChars () 
+										(pictureChars 
+											(integerLiteral 100)) 
+										(pictureChars )))) .\n       \n         )) 
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 01 
+								(dataName 
+									(cobolWord ws-output)) .\n           )) 
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 05 
+								(dataName 
+									(cobolWord ws-message-out)) 
+								(dataPictureClause PICTURE 
+									(pictureString 
+										(pictureChars x) 
+										(pictureChars () 
+										(pictureChars 
+											(integerLiteral 100)) 
+										(pictureChars )))) .\n       \n       \n       ))))) 
+			(procedureDivision PROCEDURE DIVISION .\n       \n          
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statement 
+								(moveStatement MOVE 
+									(moveToStatement 
+										(moveToSendingArea 
+											(literal 
+												(numericLiteral 
+													(integerLiteral 50)))) TO 
+										(identifier 
+											(qualifiedDataName 
+												(qualifiedDataNameFormat1 
+													(dataName 
+														(cobolWord ws-length)))))))) .\n       \n      ) 
+						(sentence 
+							(statement 
+								(execCics >*EXECCICS EXEC CICS RECEIVE >*EXECCICS INTO(ws-input) >*EXECCICS LENGTH(ws-length))) 
+							(statement 
+								(moveStatement MOVE 
+									(moveToStatement 
+										(moveToSendingArea 
+											(identifier 
+												(qualifiedDataName 
+													(qualifiedDataNameFormat1 
+														(dataName 
+															(cobolWord ws-message-in)))))) TO 
+										(identifier 
+											(qualifiedDataName 
+												(qualifiedDataNameFormat1 
+													(dataName 
+														(cobolWord ws-message-out)))))))) .\n       \n      ) 
+						(sentence 
+							(statement 
+								(execCics >*EXECCICS EXEC CICS SEND >*EXECCICS FROM(ws-output) >*EXECCICS LENGTH(ws-length))) 
+							(statement 
+								(exitStatement Exit)) .)))))) <EOF>)

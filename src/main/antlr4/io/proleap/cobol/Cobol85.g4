@@ -3167,9 +3167,9 @@ IDENTIFIER : [a-zA-Z0-9]+ ([-_]+ [a-zA-Z0-9]+)*;
 
 // whitespace, line breaks, comments, ...
 NEWLINE : '\r'? '\n' -> skip;
-EXECCICSLINE : EXECCICSTAG ~('\n' | '\r' | '.')*;
-EXECSQLLINE : EXECSQLTAG ~('\n' | '\r' | '.')*;
-EXECSQLIMSLINE : EXECSQLIMSTAG ~('\n' | '\r' | '.')*;
+EXECCICSLINE : EXECCICSTAG ~('\n' | '\r' | '.')+;
+EXECSQLIMSLINE : EXECSQLIMSTAG ~('\n' | '\r' | '.')+;
+EXECSQLLINE : EXECSQLTAG ~('\n' | '\r' | '.')+;
 COMMENTENTRYLINE : COMMENTENTRYTAG ~('\n' | '\r')*;
 COMMENTLINE : COMMENTTAG ~('\n' | '\r')* -> skip;
 WS : [ \t\f;]+ -> skip;
