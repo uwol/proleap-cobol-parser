@@ -17,16 +17,16 @@
        
          MOVE 50 TO ws-length.
        
-      >*EXEC CICS RECEIVE
-      >*INTO(ws-input)
-      >*LENGTH(ws-length)
-      >*END-EXEC.
+      >*EXECCICS EXEC CICS RECEIVE
+      >*EXECCICS INTO(ws-input)
+      >*EXECCICS LENGTH(ws-length)
+      >*EXECCICS END-EXEC.
        
          MOVE ws-message-in TO ws-message-out.
        
-      >*EXEC CICS SEND
-      >*FROM(ws-output)
-      >*LENGTH(ws-length)
-      >*END-EXEC.
+      >*EXECCICS EXEC CICS SEND
+      >*EXECCICS FROM(ws-output)
+      >*EXECCICS LENGTH(ws-length)
+      >*EXECCICS END-EXEC.
        
-      >*EXEC CICS RETURN END-EXEC.
+      >*EXECCICS EXEC CICS RETURN END-EXEC.

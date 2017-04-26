@@ -13,7 +13,8 @@ import org.junit.Test;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.impl.CobolLine;
-import io.proleap.cobol.preprocessor.sub.line.CobolNormalizeLinesSubPreprocessor;
+import io.proleap.cobol.preprocessor.sub.normalizer.CobolNormalizeLinesSubPreprocessor;
+import io.proleap.cobol.preprocessor.sub.normalizer.impl.CobolNormalizeLinesSubPreprocessorImpl;
 
 public class CobolNormalizeLinesSubPreprocessorTest {
 

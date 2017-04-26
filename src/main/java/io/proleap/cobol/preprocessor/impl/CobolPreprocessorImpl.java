@@ -19,12 +19,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
-import io.proleap.cobol.preprocessor.sub.line.CobolCleanLinesSubPreprocessor;
-import io.proleap.cobol.preprocessor.sub.line.CobolMarkCommentEntriesSubPreprocessor;
-import io.proleap.cobol.preprocessor.sub.line.CobolNormalizeLinesSubPreprocessor;
-import io.proleap.cobol.preprocessor.sub.line.impl.CobolCleanLinesSubPreprocessorImpl;
-import io.proleap.cobol.preprocessor.sub.line.impl.CobolMarkCommentEntriesSubPreprocessorImpl;
-import io.proleap.cobol.preprocessor.sub.line.impl.CobolNormalizeLinesSubPreprocessorImpl;
+import io.proleap.cobol.preprocessor.sub.normalizer.CobolCleanLinesSubPreprocessor;
+import io.proleap.cobol.preprocessor.sub.normalizer.CobolMarkCommentEntriesSubPreprocessor;
+import io.proleap.cobol.preprocessor.sub.normalizer.CobolNormalizeLinesSubPreprocessor;
+import io.proleap.cobol.preprocessor.sub.normalizer.impl.CobolCleanLinesSubPreprocessorImpl;
+import io.proleap.cobol.preprocessor.sub.normalizer.impl.CobolMarkCommentEntriesSubPreprocessorImpl;
+import io.proleap.cobol.preprocessor.sub.normalizer.impl.CobolNormalizeLinesSubPreprocessorImpl;
 import io.proleap.cobol.preprocessor.sub.parser.CobolParserPreprocessor;
 import io.proleap.cobol.preprocessor.sub.parser.impl.CobolParserPreprocessorImpl;
 

@@ -6,7 +6,7 @@
 					(programName 
 						(cobolWord SECURITYTEST)) .\n       ) 
 				(identificationDivisionBody 
-					(securityParagraph SECURITY .\n       >**     NONE. >**  >**     SOME QUOTE"S >** ))) 
+					(securityParagraph SECURITY .\n       >*CE     NONE. >*CE  >*CE     SOME QUOTE"S >*CE ))) 
 			(dataDivision DATA DIVISION .\n        
 				(dataDivisionBody 
 					(workingStorageSection WORKING-STORAGE SECTION .\n        

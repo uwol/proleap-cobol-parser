@@ -3095,7 +3095,7 @@ ASTERISKCHAR : '*';
 DOUBLEASTERISKCHAR : '**';
 COLONCHAR : ':';
 COMMACHAR : ',';
-COMMENTENTRYTAG : '>**';
+COMMENTENTRYTAG : '>*CE';
 COMMENTTAG : '>*';
 DOLLARCHAR : '$';
 DOUBLEQUOTE : '"';
@@ -3103,6 +3103,9 @@ DOUBLEQUOTE : '"';
 DOT_FS : '.' ('\r' | '\n' | '\f' | '\t' | ' ')+ | '.' EOF;
 DOT : '.';
 EQUALCHAR : '=';
+EXECCICSTAG : '>*EXECCICS';
+EXECSQLTAG : '>*EXECSQL';
+EXECSQLIMSTAG : '>*EXECSQLIMS';
 LESSTHANCHAR : '<';
 LESSTHANOREQUAL : '<=';
 LPARENCHAR : '(';
@@ -3144,6 +3147,9 @@ IDENTIFIER : [a-zA-Z0-9]+ ([-_]+ [a-zA-Z0-9]+)*;
 
 // whitespace, line breaks, comments, ...
 NEWLINE : '\r'? '\n' -> skip;
+EXECCICSLINE : EXECCICSTAG ~('\n' | '\r')* -> skip;
+EXECSQLLINE : EXECSQLTAG ~('\n' | '\r')* -> skip;
+EXECSQLIMSLINE : EXECSQLIMSTAG ~('\n' | '\r')* -> skip;
 COMMENTENTRYLINE : COMMENTENTRYTAG ~('\n' | '\r')*;
 COMMENTLINE : COMMENTTAG ~('\n' | '\r')* -> skip;
 WS : [ \t\f;]+ -> skip;

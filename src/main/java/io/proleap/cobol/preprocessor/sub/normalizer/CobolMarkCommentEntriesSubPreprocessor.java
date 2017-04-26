@@ -6,16 +6,17 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.preprocessor.sub.line;
+package io.proleap.cobol.preprocessor.sub.normalizer;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.CobolSubPreprocessor;
 
 /**
- * Preprocessor, which removes problematic chars from lines.
+ * Preprocessor, which identifies and marks comment entries depending on the
+ * COBOL dialect.
  */
-public interface CobolCleanLinesSubPreprocessor extends CobolSubPreprocessor {
+public interface CobolMarkCommentEntriesSubPreprocessor extends CobolSubPreprocessor {
 
 	String processLine(String line, int lineNumber, CobolSourceFormatEnum format, CobolDialect dialect);
 }
