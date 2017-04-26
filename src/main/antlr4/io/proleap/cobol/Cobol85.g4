@@ -962,7 +962,7 @@ libraryIsGlobalClause
 // data description entry ----------------------------------
 
 dataDescriptionEntry
-   : dataDescriptionEntryFormat1 | dataDescriptionEntryFormat2 | dataDescriptionEntryFormat3 | execSql
+   : dataDescriptionEntryFormat1 | dataDescriptionEntryFormat2 | dataDescriptionEntryFormat3 | dataDescriptionEntryExecSql
    ;
 
 dataDescriptionEntryFormat1
@@ -975,6 +975,10 @@ dataDescriptionEntryFormat2
 
 dataDescriptionEntryFormat3
    : LEVEL_NUMBER_88 conditionName dataValueClause DOT_FS
+   ;
+
+dataDescriptionEntryExecSql
+   : execSql DOT_FS
    ;
 
 dataAlignedClause
@@ -3171,7 +3175,7 @@ EXECCICSLINE : EXECCICSTAG ~('\n' | '\r' | '.')+;
 EXECSQLIMSLINE : EXECSQLIMSTAG ~('\n' | '\r' | '.')+;
 EXECSQLLINE : EXECSQLTAG ~('\n' | '\r' | '.')+;
 COMMENTENTRYLINE : COMMENTENTRYTAG ~('\n' | '\r')*;
-COMMENTLINE : COMMENTTAG ~('\n' | '\r')* -> skip;
+COMMENTLINE : COMMENTTAG WS ~('\n' | '\r')* -> skip;
 WS : [ \t\f;]+ -> skip;
 SEPARATOR : ', ' -> skip;
 

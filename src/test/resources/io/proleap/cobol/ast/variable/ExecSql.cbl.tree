@@ -9,6 +9,9 @@
 				(dataDivisionBody 
 					(workingStorageSection Working-Storage Section .\n       \n       
 						(dataDescriptionEntry 
+							(dataDescriptionEntryExecSql 
+								(execSql >*EXECSQL EXEC SQL BEGIN DECLARE SECTION END-EXEC) .\n       \n       )) 
+						(dataDescriptionEntry 
 							(dataDescriptionEntryFormat1 01 
 								(dataName 
 									(cobolWord userid)) 
@@ -18,7 +21,10 @@
 										(pictureChars () 
 										(pictureChars 
 											(integerLiteral 8)) 
-										(pictureChars )))) .\n       \n      ))))) 
+										(pictureChars )))) .\n       \n      )) 
+						(dataDescriptionEntry 
+							(dataDescriptionEntryExecSql 
+								(execSql >*EXECSQL EXEC SQL END DECLARE SECTION END-EXEC) .\n       \n       ))))) 
 			(procedureDivision Procedure Division .\n       
 				(procedureDivisionBody 
 					(paragraphs 

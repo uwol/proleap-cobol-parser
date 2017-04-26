@@ -1,0 +1,13 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision IDENTIFICATION DIVISION .\n        
+				(programIdParagraph PROGRAM-ID .  
+					(programName 
+						(cobolWord ExecCics)) .\n       )) 
+			(procedureDivision PROCEDURE DIVISION .\n       
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statement 
+								(execCics >*EXECCICS EXEC CICS RETURN END-EXEC)) .)))))) <EOF>)
