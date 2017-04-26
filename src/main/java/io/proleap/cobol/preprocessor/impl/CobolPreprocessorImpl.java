@@ -36,7 +36,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 	 * Normalizes lines of given COBOL source code, so that comment entries can
 	 * be parsed and lines have a unified line format.
 	 */
-	protected String normalize(final String cobolSourceCode, final CobolSourceFormatEnum format,
+	protected String normalizeLines(final String cobolSourceCode, final CobolSourceFormatEnum format,
 			final CobolDialect dialect) {
 		final CobolCleanLinesSubPreprocessor cleanLinesPreprocessor = new CobolCleanLinesSubPreprocessorImpl();
 		final CobolMarkCommentEntriesSubPreprocessor markCommentEntriesPreprocessor = new CobolMarkCommentEntriesSubPreprocessorImpl();
@@ -84,7 +84,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 	@Override
 	public String process(final String cobolSourceCode, final File libDirectory, final CobolSourceFormatEnum format,
 			final CobolDialect dialect) {
-		final String normalizedCobolSourceCode = normalize(cobolSourceCode, format, dialect);
+		final String normalizedCobolSourceCode = normalizeLines(cobolSourceCode, format, dialect);
 
 		final CobolParserPreprocessor parserPreprocessor = new CobolParserPreprocessorImpl(libDirectory);
 		final String result = parserPreprocessor.processLines(normalizedCobolSourceCode, format, dialect);

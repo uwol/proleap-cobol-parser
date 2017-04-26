@@ -60,7 +60,7 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 		contexts.push(new CobolPreprocessingContext());
 	}
 
-	private String buildLines(final String text, final String linePrefix) {
+	protected String buildLines(final String text, final String linePrefix) {
 		final StringBuffer sb = new StringBuffer(text.length());
 		final Scanner scanner = new Scanner(text);
 		boolean firstLine = true;
@@ -98,6 +98,12 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 	@Override
 	public void enterExecCicsStatement(final Cobol85PreprocessorParser.ExecCicsStatementContext ctx) {
 		// push a new context for SQL terminals
+		push();
+	}
+
+	@Override
+	public void enterExecSqlImsStatement(final Cobol85PreprocessorParser.ExecSqlImsStatementContext ctx) {
+		// push a new context for SQL IMS terminals
 		push();
 	}
 
@@ -168,6 +174,29 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 		pop();
 
 		// a new context for the CICS statement
+		push();
+
+		/*
+		 * text
+		 */
+		final String text = TokenUtils.getTextIncludingHiddenTokens(ctx, tokens);
+		final String linePrefix = CobolSourceFormatUtils.getBlankSequenceArea(format) + CobolPreprocessor.COMMENT_TAG;
+		final String lines = buildLines(text, linePrefix);
+
+		context().write(lines);
+
+		final String content = context().read();
+		pop();
+
+		context().write(content);
+	}
+
+	@Override
+	public void exitExecSqlImsStatement(final Cobol85PreprocessorParser.ExecSqlImsStatementContext ctx) {
+		// throw away EXEC SQLIMS terminals
+		pop();
+
+		// a new context for the SQLIMS statement
 		push();
 
 		/*
@@ -287,14 +316,14 @@ public class CobolParserPreprocessorListenerImpl extends Cobol85PreprocessorBase
 	/**
 	 * Pops the current preprocessing context from the stack.
 	 */
-	private CobolPreprocessingContext pop() {
+	protected CobolPreprocessingContext pop() {
 		return contexts.pop();
 	}
 
 	/**
 	 * Pushes a new preprocessing context onto the stack.
 	 */
-	private CobolPreprocessingContext push() {
+	protected CobolPreprocessingContext push() {
 		return contexts.push(new CobolPreprocessingContext());
 	}
 
