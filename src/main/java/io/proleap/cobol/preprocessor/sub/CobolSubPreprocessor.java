@@ -13,5 +13,5 @@ import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public interface CobolSubPreprocessor {
 
-	String processLines(String lines, CobolDialect dialect, CobolSourceFormatEnum formats);
+	String processLines(String lines, CobolDialect dialect, CobolSourceFormatEnum format);
 }

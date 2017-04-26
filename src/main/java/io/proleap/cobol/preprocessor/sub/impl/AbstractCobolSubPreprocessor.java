@@ -19,12 +19,14 @@ import io.proleap.cobol.preprocessor.sub.CobolSubPreprocessor;
 public abstract class AbstractCobolSubPreprocessor implements CobolSubPreprocessor {
 
 	public CobolLine parseCobolLine(final String line, final CobolSourceFormatEnum format) {
-		CobolLine result = null;
-
 		final Pattern pattern = format.getPattern();
 		final Matcher matcher = pattern.matcher(line);
 
-		if (matcher.matches()) {
+		final CobolLine result;
+
+		if (!matcher.matches()) {
+			result = null;
+		} else {
 			final String sequenceAreaGroup = matcher.group(1);
 			final String indicatorAreaGroup = matcher.group(2);
 			final String contentAreaAGroup = matcher.group(3);

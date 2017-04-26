@@ -53,12 +53,12 @@ public class CobolParserPreprocessorImpl implements CobolParserPreprocessor {
 	}
 
 	@Override
-	public String processLines(final String lines, final CobolDialect dialect, final CobolSourceFormatEnum formats) {
+	public String processLines(final String lines, final CobolDialect dialect, final CobolSourceFormatEnum format) {
 		final boolean requiresProcessorExecution = containsTrigger(lines, triggers);
 		final String result;
 
 		if (requiresProcessorExecution) {
-			result = processWithParser(lines, libDirectory, dialect, formats);
+			result = processWithParser(lines, libDirectory, dialect, format);
 		} else {
 			result = lines;
 		}
@@ -67,7 +67,7 @@ public class CobolParserPreprocessorImpl implements CobolParserPreprocessor {
 	}
 
 	protected String processWithParser(final String program, final File libDirectory, final CobolDialect dialect,
-			final CobolSourceFormatEnum formats) {
+			final CobolSourceFormatEnum format) {
 		// run the lexer
 		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(CharStreams.fromString(program));
 
@@ -86,7 +86,7 @@ public class CobolParserPreprocessorImpl implements CobolParserPreprocessor {
 
 		// analyze contained copy books
 		final CobolParserPreprocessorListenerImpl listener = new CobolParserPreprocessorListenerImpl(libDirectory,
-				dialect, formats, tokens);
+				dialect, format, tokens);
 		final ParseTreeWalker walker = new ParseTreeWalker();
 
 		walker.walk(listener, startRule);
