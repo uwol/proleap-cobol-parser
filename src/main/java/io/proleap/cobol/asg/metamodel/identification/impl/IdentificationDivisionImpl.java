@@ -8,10 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.identification.impl;
 
-import org.antlr.v4.runtime.tree.TerminalNode;
-
 import io.proleap.cobol.Cobol85Parser.AuthorParagraphContext;
-import io.proleap.cobol.Cobol85Parser.CommentEntryContext;
 import io.proleap.cobol.Cobol85Parser.DateCompiledParagraphContext;
 import io.proleap.cobol.Cobol85Parser.DateWrittenParagraphContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
@@ -30,6 +27,7 @@ import io.proleap.cobol.asg.metamodel.identification.ProgramIdParagraph.Attribut
 import io.proleap.cobol.asg.metamodel.identification.RemarksParagraph;
 import io.proleap.cobol.asg.metamodel.identification.SecurityParagraph;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionImpl;
+import io.proleap.cobol.asg.util.TagUtils;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 
 public class IdentificationDivisionImpl extends CobolDivisionImpl implements IdentificationDivision {
@@ -64,7 +62,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 			result = new AuthorParagraphImpl(programUnit, ctx);
 
 			if (ctx.commentEntry() != null) {
-				final String author = getCommentEntry(ctx.commentEntry());
+				final String author = TagUtils.getUntaggedText(CobolPreprocessor.COMMENT_ENTRY_TAG,
+						ctx.commentEntry().COMMENTENTRYLINE());
 				result.setAuthor(author);
 			}
 
@@ -83,7 +82,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 			result = new DateCompiledParagraphImpl(programUnit, ctx);
 
 			if (ctx.commentEntry() != null) {
-				final String dateCompiled = getCommentEntry(ctx.commentEntry());
+				final String dateCompiled = TagUtils.getUntaggedText(CobolPreprocessor.COMMENT_ENTRY_TAG,
+						ctx.commentEntry().COMMENTENTRYLINE());
 				result.setDateCompiled(dateCompiled);
 			}
 
@@ -102,7 +102,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 			result = new DateWrittenParagraphImpl(programUnit, ctx);
 
 			if (ctx.commentEntry() != null) {
-				final String dateWritten = getCommentEntry(ctx.commentEntry());
+				final String dateWritten = TagUtils.getUntaggedText(CobolPreprocessor.COMMENT_ENTRY_TAG,
+						ctx.commentEntry().COMMENTENTRYLINE());
 				result.setDateWritten(dateWritten);
 			}
 
@@ -121,7 +122,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 			result = new InstallationParagraphImpl(programUnit, ctx);
 
 			if (ctx.commentEntry() != null) {
-				final String installation = getCommentEntry(ctx.commentEntry());
+				final String installation = TagUtils.getUntaggedText(CobolPreprocessor.COMMENT_ENTRY_TAG,
+						ctx.commentEntry().COMMENTENTRYLINE());
 				result.setInstallation(installation);
 			}
 
@@ -172,7 +174,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 			result = new RemarksParagraphImpl(programUnit, ctx);
 
 			if (ctx.commentEntry() != null) {
-				final String remarks = getCommentEntry(ctx.commentEntry());
+				final String remarks = TagUtils.getUntaggedText(CobolPreprocessor.COMMENT_ENTRY_TAG,
+						ctx.commentEntry().COMMENTENTRYLINE());
 				result.setRemarks(remarks);
 			}
 
@@ -191,7 +194,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 			result = new SecurityParagraphImpl(programUnit, ctx);
 
 			if (ctx.commentEntry() != null) {
-				final String security = getCommentEntry(ctx.commentEntry());
+				final String security = TagUtils.getUntaggedText(CobolPreprocessor.COMMENT_ENTRY_TAG,
+						ctx.commentEntry().COMMENTENTRYLINE());
 				result.setSecurity(security);
 			}
 
@@ -205,20 +209,6 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 	@Override
 	public AuthorParagraph getAuthorParagraph() {
 		return authorParagraph;
-	}
-
-	protected String getCommentEntry(final CommentEntryContext ctx) {
-		final StringBuffer sb = new StringBuffer();
-
-		for (final TerminalNode terminalNode : ctx.COMMENTENTRYLINE()) {
-			final String commentEntry = terminalNode.getText();
-			final String commentEntryText = commentEntry.replace(CobolPreprocessor.COMMENT_ENTRY_TAG, "");
-			final String commentEntryTextCleaned = commentEntryText.trim() + CobolPreprocessor.WS;
-
-			sb.append(commentEntryTextCleaned);
-		}
-
-		return sb.toString().trim();
 	}
 
 	@Override

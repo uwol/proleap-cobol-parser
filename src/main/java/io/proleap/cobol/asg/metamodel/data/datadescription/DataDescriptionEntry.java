@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016, Ulrich Wolffgang <u.wol@wwu.de>
+ * Copyright (C) 2017, Ulrich Wolffgang <u.wol@wwu.de>
  * All rights reserved.
  *
  * This software may be modified and distributed under the terms
@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 public interface DataDescriptionEntry extends CobolDivisionElement, Declaration {
 
 	enum Type {
-		CONDITION, GROUP, RENAME, SCALAR
+		CONDITION, EXEC_SQL, GROUP, RENAME, SCALAR
 	}
 
 	static final int LEVEL_NUMBER_CONDITION = 88;

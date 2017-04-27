@@ -10,4 +10,4 @@
 					(paragraphs 
 						(sentence 
 							(statement 
-								(execCics >*EXECCICS EXEC CICS RETURN END-EXEC)) .)))))) <EOF>)
+								(execCicsStatement >*EXECCICS EXEC CICS RETURN END-EXEC)) .)))))) <EOF>)

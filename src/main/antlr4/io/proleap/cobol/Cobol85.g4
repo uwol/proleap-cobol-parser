@@ -978,7 +978,7 @@ dataDescriptionEntryFormat3
    ;
 
 dataDescriptionEntryExecSql
-   : execSql DOT_FS
+   : EXECSQLLINE+ DOT_FS
    ;
 
 dataAlignedClause
@@ -1154,7 +1154,7 @@ sentence
    ;
 
 statement
-   : acceptStatement | addStatement | alterStatement | callStatement | cancelStatement | closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement | displayStatement | divideStatement | enableStatement | entryStatement | evaluateStatement | exhibitStatement | execCics | execSql | execSqlIms | exitStatement | generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement | inspectStatement | mergeStatement | moveStatement | multiplyStatement | openStatement | performStatement | purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement | searchStatement | sendStatement | setStatement | sortStatement | startStatement | stopStatement | stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
+   : acceptStatement | addStatement | alterStatement | callStatement | cancelStatement | closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement | displayStatement | divideStatement | enableStatement | entryStatement | evaluateStatement | exhibitStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | exitStatement | generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement | inspectStatement | mergeStatement | moveStatement | multiplyStatement | openStatement | performStatement | purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement | searchStatement | sendStatement | setStatement | sortStatement | startStatement | stopStatement | stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
    ;
 
 // accept statement
@@ -1439,6 +1439,24 @@ evaluateWhenOther
 
 evaluateValue
    : identifier | literal | arithmeticExpression
+   ;
+
+// exec cics statement
+
+execCicsStatement
+   : EXECCICSLINE+
+   ;
+
+// exec sql statement
+
+execSqlStatement
+   : EXECSQLLINE+
+   ;
+
+// exec sql ims statement
+
+execSqlImsStatement
+   : EXECSQLIMSLINE+
    ;
 
 // exhibit statement
@@ -2564,20 +2582,6 @@ specialRegister
 
 commentEntry
    : COMMENTENTRYLINE+
-   ;
-
-// exec rules
-
-execCics
-   : EXECCICSLINE+
-   ;
-
-execSql
-   : EXECSQLLINE+
-   ;
-
-execSqlIms
-   : EXECSQLIMSLINE+
    ;
 
 // lexer rules --------------------------------------------------------------------------------

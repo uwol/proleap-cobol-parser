@@ -42,22 +42,26 @@ public class DataDescription77Test extends CobolTestSupport {
 		assertEquals(2, workingStorageSection.getDataDescriptionEntries().size());
 		assertEquals(2, workingStorageSection.getRootDataDescriptionEntries().size());
 
-		final DataDescriptionEntry dataDescriptionEntrySomeText = workingStorageSection
-				.findDataDescriptionEntry("SOME-TEXT");
+		{
+			final DataDescriptionEntry dataDescriptionEntrySomeText = workingStorageSection
+					.findDataDescriptionEntry("SOME-TEXT");
 
-		assertNotNull(dataDescriptionEntrySomeText);
-		assertEquals("SOME-TEXT", dataDescriptionEntrySomeText.getName());
-		assertEquals(DataDescriptionEntry.Type.SCALAR, dataDescriptionEntrySomeText.getType());
-		assertEquals(new Integer(77), dataDescriptionEntrySomeText.getLevelNumber());
-		assertNull(dataDescriptionEntrySomeText.getParentDataDescriptionEntryGroup());
+			assertNotNull(dataDescriptionEntrySomeText);
+			assertEquals("SOME-TEXT", dataDescriptionEntrySomeText.getName());
+			assertEquals(DataDescriptionEntry.Type.SCALAR, dataDescriptionEntrySomeText.getType());
+			assertEquals(new Integer(77), dataDescriptionEntrySomeText.getLevelNumber());
+			assertNull(dataDescriptionEntrySomeText.getParentDataDescriptionEntryGroup());
+		}
 
-		final DataDescriptionEntry dataDescriptionEntrySomeNumber = workingStorageSection
-				.findDataDescriptionEntry("SOME-NUMBER");
+		{
+			final DataDescriptionEntry dataDescriptionEntrySomeNumber = workingStorageSection
+					.findDataDescriptionEntry("SOME-NUMBER");
 
-		assertNotNull(dataDescriptionEntrySomeNumber);
-		assertEquals("SOME-NUMBER", dataDescriptionEntrySomeNumber.getName());
-		assertEquals(DataDescriptionEntry.Type.SCALAR, dataDescriptionEntrySomeText.getType());
-		assertEquals(new Integer(77), dataDescriptionEntrySomeNumber.getLevelNumber());
-		assertNull(dataDescriptionEntrySomeNumber.getParentDataDescriptionEntryGroup());
+			assertNotNull(dataDescriptionEntrySomeNumber);
+			assertEquals("SOME-NUMBER", dataDescriptionEntrySomeNumber.getName());
+			assertEquals(DataDescriptionEntry.Type.SCALAR, dataDescriptionEntrySomeNumber.getType());
+			assertEquals(new Integer(77), dataDescriptionEntrySomeNumber.getLevelNumber());
+			assertNull(dataDescriptionEntrySomeNumber.getParentDataDescriptionEntryGroup());
+		}
 	}
 }

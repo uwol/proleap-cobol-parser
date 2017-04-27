@@ -42,28 +42,38 @@ public class DataDescription88Test extends CobolTestSupport {
 		assertEquals(3, workingStorageSection.getDataDescriptionEntries().size());
 		assertEquals(1, workingStorageSection.getRootDataDescriptionEntries().size());
 
-		final DataDescriptionEntry dataDescriptionEntryGender = workingStorageSection.findDataDescriptionEntry("GENDER");
+		{
+			final DataDescriptionEntry dataDescriptionEntryGender = workingStorageSection
+					.findDataDescriptionEntry("GENDER");
 
-		assertNotNull(dataDescriptionEntryGender);
-		assertEquals("GENDER", dataDescriptionEntryGender.getName());
-		assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryGender.getType());
-		assertEquals(new Integer(1), dataDescriptionEntryGender.getLevelNumber());
-		assertNull(dataDescriptionEntryGender.getParentDataDescriptionEntryGroup());
+			assertNotNull(dataDescriptionEntryGender);
+			assertEquals("GENDER", dataDescriptionEntryGender.getName());
+			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryGender.getType());
+			assertEquals(new Integer(1), dataDescriptionEntryGender.getLevelNumber());
+			assertNull(dataDescriptionEntryGender.getParentDataDescriptionEntryGroup());
 
-		final DataDescriptionEntry dataDescriptionEntryMale = workingStorageSection.findDataDescriptionEntry("MALE");
+			{
+				final DataDescriptionEntry dataDescriptionEntryMale = workingStorageSection
+						.findDataDescriptionEntry("MALE");
 
-		assertNotNull(dataDescriptionEntryMale);
-		assertEquals("MALE", dataDescriptionEntryMale.getName());
-		assertEquals(DataDescriptionEntry.Type.CONDITION, dataDescriptionEntryMale.getType());
-		assertEquals(new Integer(88), dataDescriptionEntryMale.getLevelNumber());
-		assertEquals(dataDescriptionEntryGender, dataDescriptionEntryMale.getParentDataDescriptionEntryGroup());
+				assertNotNull(dataDescriptionEntryMale);
+				assertEquals("MALE", dataDescriptionEntryMale.getName());
+				assertEquals(DataDescriptionEntry.Type.CONDITION, dataDescriptionEntryMale.getType());
+				assertEquals(new Integer(88), dataDescriptionEntryMale.getLevelNumber());
+				assertEquals(dataDescriptionEntryGender, dataDescriptionEntryMale.getParentDataDescriptionEntryGroup());
+			}
 
-		final DataDescriptionEntry dataDescriptionEntryFemale = workingStorageSection.findDataDescriptionEntry("FEMALE");
+			{
+				final DataDescriptionEntry dataDescriptionEntryFemale = workingStorageSection
+						.findDataDescriptionEntry("FEMALE");
 
-		assertNotNull(dataDescriptionEntryFemale);
-		assertEquals("FEMALE", dataDescriptionEntryFemale.getName());
-		assertEquals(DataDescriptionEntry.Type.CONDITION, dataDescriptionEntryFemale.getType());
-		assertEquals(new Integer(88), dataDescriptionEntryFemale.getLevelNumber());
-		assertEquals(dataDescriptionEntryGender, dataDescriptionEntryFemale.getParentDataDescriptionEntryGroup());
+				assertNotNull(dataDescriptionEntryFemale);
+				assertEquals("FEMALE", dataDescriptionEntryFemale.getName());
+				assertEquals(DataDescriptionEntry.Type.CONDITION, dataDescriptionEntryFemale.getType());
+				assertEquals(new Integer(88), dataDescriptionEntryFemale.getLevelNumber());
+				assertEquals(dataDescriptionEntryGender,
+						dataDescriptionEntryFemale.getParentDataDescriptionEntryGroup());
+			}
+		}
 	}
 }

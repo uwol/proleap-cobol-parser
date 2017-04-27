@@ -21,6 +21,7 @@ import io.proleap.cobol.Cobol85Parser.DataAlignedClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataBlankWhenZeroClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataCommonOwnLocalClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryContext;
+import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryExecSqlContext;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
@@ -46,10 +47,13 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryCondition;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryExecSql;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryRename;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.util.StringUtils;
+import io.proleap.cobol.asg.util.TagUtils;
+import io.proleap.cobol.preprocessor.CobolPreprocessor;
 
 public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 		implements DataDescriptionEntryContainer {
@@ -80,6 +84,24 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 
 			dataDescriptionEntries.add(result);
 			dataDescriptionEntriesSymbolTable.put(name, result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public DataDescriptionEntryExecSql addDataDescriptionEntryExecSql(final DataDescriptionEntryExecSqlContext ctx) {
+		DataDescriptionEntryExecSql result = (DataDescriptionEntryExecSql) getASGElement(ctx);
+
+		if (result == null) {
+			result = new DataDescriptionEntryExecSqlImpl(programUnit, ctx);
+
+			final String execSqlText = TagUtils.getUntaggedText(CobolPreprocessor.EXEC_SQL_TAG, ctx.EXECSQLLINE());
+			result.setExecSqlText(execSqlText);
+
+			registerASGElement(result);
+
+			dataDescriptionEntries.add(result);
 		}
 
 		return result;
@@ -352,6 +374,8 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 			result = addDataDescriptionEntryRename(ctx.dataDescriptionEntryFormat2());
 		} else if (ctx.dataDescriptionEntryFormat3() != null) {
 			result = addDataDescriptionEntryCondition(ctx.dataDescriptionEntryFormat3());
+		} else if (ctx.dataDescriptionEntryExecSql() != null) {
+			result = addDataDescriptionEntryExecSql(ctx.dataDescriptionEntryExecSql());
 		} else {
 			LOG.warn("unknown data description entry {}", ctx);
 			result = null;
@@ -365,13 +389,13 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 	}
 
 	@Override
-	public List<DataDescriptionEntry> getDataDescriptionEntries() {
-		return dataDescriptionEntries;
+	public DataDescriptionEntry findDataDescriptionEntry(final String name) {
+		return dataDescriptionEntriesSymbolTable.get(name);
 	}
 
 	@Override
-	public DataDescriptionEntry findDataDescriptionEntry(final String name) {
-		return dataDescriptionEntriesSymbolTable.get(name);
+	public List<DataDescriptionEntry> getDataDescriptionEntries() {
+		return dataDescriptionEntries;
 	}
 
 	@Override
@@ -393,7 +417,7 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 		final Integer lastLevelNumber = lastDataDescriptionEntryGroup.getLevelNumber();
 		final Integer levelNumber = dataDescriptionEntry.getLevelNumber();
 
-		if (DataDescriptionEntry.LEVEL_NUMBER_SCALAR == levelNumber
+		if (levelNumber == null || DataDescriptionEntry.LEVEL_NUMBER_SCALAR == levelNumber
 				|| DataDescriptionEntry.LEVEL_NUMBER_RENAME == levelNumber) {
 		} else if (levelNumber > lastLevelNumber) {
 			lastDataDescriptionEntryGroup.addDataDescriptionEntry(dataDescriptionEntry);

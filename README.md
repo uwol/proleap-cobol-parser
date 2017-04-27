@@ -9,7 +9,8 @@ This is a parser and grammar for Cobol 85, which generates an
 Abstract Syntax Tree (AST) and Abstract Semantic Graph (ASG) for COBOL 85 code.
 The AST represents plain COBOL source code in a syntax tree structure.
 The ASG is generated from the AST by semantic analysis and provides data and control
-flow information (e. g. variable access).
+flow information (e. g. variable access). Also, the ASG provides EXEC SQL, 
+EXEC SQLIMS and EXEC CICS statements as texts.
 
 
 
@@ -129,7 +130,10 @@ Characteristics
 2. To be used in conjunction with the provided preprocessor, which executes
    COPY and REPLACE statements.
 
-3. For parsing large Cobol source code files, following VM args have to be set: `-Xmx2048m`.
+3. EXEC SQL statements, EXEC SQLIMS statements and EXEC CICS statements are extracted by 
+   the preprocessor and provided as texts in the ASG.
+
+4. For parsing large Cobol source code files, following VM args have to be set: `-Xmx2048m`.
    Intellij Plugin for ANTLR 4 has to be provided with those VM args in file `idea.vmoptions`.
 
 

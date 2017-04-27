@@ -1,3 +1,11 @@
+/*
+ * Copyright (C) 2017, Ulrich Wolffgang <u.wol@wwu.de>
+ * All rights reserved.
+ *
+ * This software may be modified and distributed under the terms
+ * of the BSD 3-clause license. See the LICENSE file for details.
+ */
+
 package io.proleap.cobol.asg.metamodel.impl;
 
 import java.util.ArrayList;
@@ -34,6 +42,9 @@ import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateAlsoSelectContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateStatementContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateWhenPhraseContext;
+import io.proleap.cobol.Cobol85Parser.ExecCicsStatementContext;
+import io.proleap.cobol.Cobol85Parser.ExecSqlImsStatementContext;
+import io.proleap.cobol.Cobol85Parser.ExecSqlStatementContext;
 import io.proleap.cobol.Cobol85Parser.ExhibitOperandContext;
 import io.proleap.cobol.Cobol85Parser.ExhibitStatementContext;
 import io.proleap.cobol.Cobol85Parser.ExitStatementContext;
@@ -136,6 +147,12 @@ import io.proleap.cobol.asg.metamodel.procedure.entry.EntryStatement;
 import io.proleap.cobol.asg.metamodel.procedure.entry.impl.EntryStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.evaluate.EvaluateStatement;
 import io.proleap.cobol.asg.metamodel.procedure.evaluate.impl.EvaluateStatementImpl;
+import io.proleap.cobol.asg.metamodel.procedure.execcics.ExecCicsStatement;
+import io.proleap.cobol.asg.metamodel.procedure.execcics.impl.ExecCicsStatementImpl;
+import io.proleap.cobol.asg.metamodel.procedure.execsql.ExecSqlStatement;
+import io.proleap.cobol.asg.metamodel.procedure.execsql.impl.ExecSqlStatementImpl;
+import io.proleap.cobol.asg.metamodel.procedure.execsqlims.ExecSqlImsStatement;
+import io.proleap.cobol.asg.metamodel.procedure.execsqlims.impl.ExecSqlImsStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.exhibit.ExhibitStatement;
 import io.proleap.cobol.asg.metamodel.procedure.exhibit.impl.ExhibitStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.exit.ExitStatement;
@@ -210,6 +227,8 @@ import io.proleap.cobol.asg.metamodel.procedure.write.WriteStatement;
 import io.proleap.cobol.asg.metamodel.procedure.write.impl.WriteStatementImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
+import io.proleap.cobol.asg.util.TagUtils;
+import io.proleap.cobol.preprocessor.CobolPreprocessor;
 
 public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
@@ -705,6 +724,55 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			if (ctx.evaluateWhenOther() != null) {
 				result.addWhenOther(ctx.evaluateWhenOther());
 			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ExecCicsStatement addExecCicsStatement(final ExecCicsStatementContext ctx) {
+		ExecCicsStatement result = (ExecCicsStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ExecCicsStatementImpl(programUnit, this, ctx);
+
+			final String execCicsText = TagUtils.getUntaggedText(CobolPreprocessor.EXEC_CICS_TAG, ctx.EXECCICSLINE());
+			result.setExecCicsText(execCicsText);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ExecSqlImsStatement addExecSqlImsStatement(final ExecSqlImsStatementContext ctx) {
+		ExecSqlImsStatement result = (ExecSqlImsStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ExecSqlImsStatementImpl(programUnit, this, ctx);
+
+			final String execSqlImsText = TagUtils.getUntaggedText(CobolPreprocessor.EXEC_SQLIMS_TAG,
+					ctx.EXECSQLIMSLINE());
+			result.setExecSqlImsText(execSqlImsText);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ExecSqlStatement addExecSqlStatement(final ExecSqlStatementContext ctx) {
+		ExecSqlStatement result = (ExecSqlStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ExecSqlStatementImpl(programUnit, this, ctx);
+
+			final String execSqlText = TagUtils.getUntaggedText(CobolPreprocessor.EXEC_SQL_TAG, ctx.EXECSQLLINE());
+			result.setExecSqlText(execSqlText);
 
 			registerStatement(result);
 		}

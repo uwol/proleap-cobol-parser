@@ -25,6 +25,9 @@ import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
 import io.proleap.cobol.Cobol85Parser.EnableStatementContext;
 import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateStatementContext;
+import io.proleap.cobol.Cobol85Parser.ExecCicsStatementContext;
+import io.proleap.cobol.Cobol85Parser.ExecSqlImsStatementContext;
+import io.proleap.cobol.Cobol85Parser.ExecSqlStatementContext;
 import io.proleap.cobol.Cobol85Parser.ExhibitStatementContext;
 import io.proleap.cobol.Cobol85Parser.ExitStatementContext;
 import io.proleap.cobol.Cobol85Parser.GenerateStatementContext;
@@ -73,6 +76,9 @@ import io.proleap.cobol.asg.metamodel.procedure.divide.DivideStatement;
 import io.proleap.cobol.asg.metamodel.procedure.enable.EnableStatement;
 import io.proleap.cobol.asg.metamodel.procedure.entry.EntryStatement;
 import io.proleap.cobol.asg.metamodel.procedure.evaluate.EvaluateStatement;
+import io.proleap.cobol.asg.metamodel.procedure.execcics.ExecCicsStatement;
+import io.proleap.cobol.asg.metamodel.procedure.execsql.ExecSqlStatement;
+import io.proleap.cobol.asg.metamodel.procedure.execsqlims.ExecSqlImsStatement;
 import io.proleap.cobol.asg.metamodel.procedure.exhibit.ExhibitStatement;
 import io.proleap.cobol.asg.metamodel.procedure.exit.ExitStatement;
 import io.proleap.cobol.asg.metamodel.procedure.generate.GenerateStatement;
@@ -136,6 +142,12 @@ public interface Scope extends CobolDivisionElement {
 	EntryStatement addEntryStatement(EntryStatementContext ctx);
 
 	EvaluateStatement addEvaluateStatement(EvaluateStatementContext ctx);
+
+	ExecCicsStatement addExecCicsStatement(ExecCicsStatementContext ctx);
+
+	ExecSqlImsStatement addExecSqlImsStatement(ExecSqlImsStatementContext ctx);
+
+	ExecSqlStatement addExecSqlStatement(ExecSqlStatementContext ctx);
 
 	ExhibitStatement addExhibitStatement(ExhibitStatementContext ctx);
 
