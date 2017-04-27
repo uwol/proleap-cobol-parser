@@ -78,6 +78,8 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 
 	WithLowerBoundsClause addWithLowerBoundClause(DataWithLowerBoundsClauseContext ctx);
 
+	DataDescriptionEntry findDataDescriptionEntry(String name);
+
 	AlignedClause getAlignedClause();
 
 	BlankWhenZeroClause getBlankWhenZeroClause();
@@ -86,9 +88,9 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 
 	List<DataDescriptionEntry> getDataDescriptionEntries();
 
-	DataDescriptionEntry findDataDescriptionEntry(String name);
-
 	ExternalClause getExternalClause();
+
+	Boolean getFiller();
 
 	GlobalClause getGlobalClause();
 
@@ -123,5 +125,7 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 	ValueClause getValueClause();
 
 	WithLowerBoundsClause getWithLowerBoundsClause();
+
+	void setFiller(Boolean filler);
 
 }

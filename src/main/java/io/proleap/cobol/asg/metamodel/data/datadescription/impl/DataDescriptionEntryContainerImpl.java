@@ -131,6 +131,13 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 			result.setLevelNumber(levelNumber);
 
 			/*
+			 * filler
+			 */
+			if (ctx.FILLER() != null) {
+				result.setFiller(true);
+			}
+
+			/*
 			 * aligned clause
 			 */
 			final DataAlignedClauseContext dataAlignedClauseContext = ctx.dataAlignedClause();

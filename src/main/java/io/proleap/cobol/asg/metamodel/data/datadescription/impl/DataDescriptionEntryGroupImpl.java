@@ -89,6 +89,8 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 
 	protected ExternalClause externalClause;
 
+	protected Boolean filler;
+
 	protected GlobalClause globalClause;
 
 	protected IntegerStringClause integerStringClause;
@@ -696,6 +698,11 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
+	public DataDescriptionEntry findDataDescriptionEntry(final String name) {
+		return dataDescriptionEntriesSymbolTable.get(name);
+	}
+
+	@Override
 	public AlignedClause getAlignedClause() {
 		return alignedClause;
 	}
@@ -716,13 +723,13 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
-	public DataDescriptionEntry findDataDescriptionEntry(final String name) {
-		return dataDescriptionEntriesSymbolTable.get(name);
+	public ExternalClause getExternalClause() {
+		return externalClause;
 	}
 
 	@Override
-	public ExternalClause getExternalClause() {
-		return externalClause;
+	public Boolean getFiller() {
+		return filler;
 	}
 
 	@Override
@@ -821,6 +828,11 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	@Override
 	public WithLowerBoundsClause getWithLowerBoundsClause() {
 		return withLowerBoundsClause;
+	}
+
+	@Override
+	public void setFiller(final Boolean filler) {
+		this.filler = filler;
 	}
 
 }

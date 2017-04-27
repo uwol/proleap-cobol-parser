@@ -84,6 +84,11 @@ public class ScreenSectionImpl extends CobolDivisionElementImpl implements Scree
 
 			result.setLevelNumber(levelNumber);
 
+			// filler
+			if (ctx.FILLER() != null) {
+				result.setFiller(true);
+			}
+
 			// blank
 			for (final ScreenDescriptionBlankClauseContext blankClauseContext : ctx.screenDescriptionBlankClause()) {
 				result.addBlankClause(blankClauseContext);

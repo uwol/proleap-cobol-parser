@@ -124,6 +124,8 @@ public interface ScreenDescriptionEntry extends CobolDivisionElement, Declaratio
 
 	EraseClause getEraseClause();
 
+	Boolean getFiller();
+
 	ForegroundColorClause getForegroundColorClause();
 
 	FromClause getFromClause();
@@ -169,6 +171,8 @@ public interface ScreenDescriptionEntry extends CobolDivisionElement, Declaratio
 	ValueClause getValueClause();
 
 	ZeroFillClause getZeroFillClause();
+
+	void setFiller(Boolean filler);
 
 	void setLevelNumber(Integer levelNumber);
 

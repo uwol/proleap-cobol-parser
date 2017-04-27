@@ -103,6 +103,8 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 
 	protected EraseClause eraseClause;
 
+	protected Boolean filler;
+
 	protected ForegroundColorClause foregroundColorClause;
 
 	protected FromClause fromClause;
@@ -858,6 +860,11 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
+	public Boolean getFiller() {
+		return filler;
+	}
+
+	@Override
 	public ForegroundColorClause getForegroundColorClause() {
 		return foregroundColorClause;
 	}
@@ -975,6 +982,11 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 	@Override
 	public ZeroFillClause getZeroFillClause() {
 		return zeroFillClause;
+	}
+
+	@Override
+	public void setFiller(final Boolean filler) {
+		this.filler = filler;
 	}
 
 	@Override
