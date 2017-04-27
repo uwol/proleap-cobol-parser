@@ -168,7 +168,7 @@ Running io.proleap.cobol.ast.fixed.QuotesInCommentEntryTest
 ...
 Results :
 
-Tests run: 622, Failures: 0, Errors: 0, Skipped: 0
+Tests run: 680, Failures: 0, Errors: 0, Skipped: 0
 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
