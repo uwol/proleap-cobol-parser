@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -168,7 +169,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			LOG.info("Parsing file {}.", inputFile.getName());
 
 			// run the lexer
-			final Cobol85Lexer lexer = new Cobol85Lexer(new ANTLRInputStream(preProcessedInput));
+			final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
 
 			// get a list of matched tokens
 			final CommonTokenStream tokens = new CommonTokenStream(lexer);

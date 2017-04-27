@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.Trees;
 import org.apache.commons.io.FileUtils;
@@ -65,7 +65,7 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 	}
 
 	protected void doParse(final String preProcessedInput, final File inputFile) throws IOException {
-		final Cobol85Lexer lexer = new Cobol85Lexer(new ANTLRInputStream(preProcessedInput));
+		final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
 
 		lexer.removeErrorListeners();
 		lexer.addErrorListener(ThrowingErrorListener.INSTANCE);

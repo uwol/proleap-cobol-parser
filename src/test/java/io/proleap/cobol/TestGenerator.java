@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
@@ -24,7 +24,6 @@ import org.apache.logging.log4j.util.Strings;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
 import io.proleap.cobol.applicationcontext.CobolGrammarContext;
 import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.util.TreeUtils;
 
@@ -142,7 +141,7 @@ public class TestGenerator {
 			final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor()
 					.process(cobolInputFile, parentDirectory, format);
 
-			final Cobol85Lexer lexer = new Cobol85Lexer(new ANTLRInputStream(preProcessedInput));
+			final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
 			final CommonTokenStream tokens = new CommonTokenStream(lexer);
 			final Cobol85Parser parser = new Cobol85Parser(tokens);
 			final StartRuleContext startRule = parser.startRule();
