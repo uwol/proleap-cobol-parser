@@ -31,10 +31,9 @@ public class CobolLineWriterImpl implements CobolLineWriter {
 
 				sb.append(line.blankSequenceArea());
 				sb.append(line.indicatorArea);
-				sb.append(line.getContentArea());
-			} else {
-				sb.append(line.getContentArea());
 			}
+
+			sb.append(line.getContentArea());
 		}
 
 		return sb.toString();
