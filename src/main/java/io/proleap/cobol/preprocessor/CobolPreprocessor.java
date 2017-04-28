@@ -76,17 +76,15 @@ public interface CobolPreprocessor {
 		}
 	}
 
-	final static char CHAR_ASTERISK = '*';
+	final static String CHAR_ASTERISK = "*";
 
-	final static char CHAR_D = 'D';
+	final static String CHAR_D = "D";
 
-	final static char CHAR_D_ = 'd';
+	final static String CHAR_D_ = "d";
 
-	final static char CHAR_MINUS = '-';
+	final static String CHAR_MINUS = "-";
 
-	final static char CHAR_SHARP = '#';
-
-	final static char CHAR_SLASH = '/';
+	final static String CHAR_SLASH = "/";
 
 	final static String COMMENT_ENTRY_TAG = ">*CE";
 
@@ -109,8 +107,8 @@ public interface CobolPreprocessor {
 	String process(File cobolFile, File libDirectory, CobolSourceFormatEnum format, CobolDialect dialect)
 			throws IOException;
 
-	String process(String cobolSourceCode, File libDirectory, CobolSourceFormatEnum format);
+	String process(String cobolCode, File libDirectory, CobolSourceFormatEnum format);
 
-	String process(String cobolSourceCode, File libDirectory, CobolSourceFormatEnum format, CobolDialect dialect);
+	String process(String cobolCode, File libDirectory, CobolSourceFormatEnum format, CobolDialect dialect);
 
 }

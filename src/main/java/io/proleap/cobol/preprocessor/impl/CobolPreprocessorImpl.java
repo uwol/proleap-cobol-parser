@@ -14,37 +14,48 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
-import io.proleap.cobol.preprocessor.sub.normalizer.CobolCleanLinesSubPreprocessor;
-import io.proleap.cobol.preprocessor.sub.normalizer.CobolMarkCommentEntriesSubPreprocessor;
-import io.proleap.cobol.preprocessor.sub.normalizer.CobolNormalizeLinesSubPreprocessor;
-import io.proleap.cobol.preprocessor.sub.normalizer.impl.CobolCleanLinesSubPreprocessorImpl;
-import io.proleap.cobol.preprocessor.sub.normalizer.impl.CobolMarkCommentEntriesSubPreprocessorImpl;
-import io.proleap.cobol.preprocessor.sub.normalizer.impl.CobolNormalizeLinesSubPreprocessorImpl;
-import io.proleap.cobol.preprocessor.sub.parser.CobolParserPreprocessor;
-import io.proleap.cobol.preprocessor.sub.parser.impl.CobolParserPreprocessorImpl;
+import io.proleap.cobol.preprocessor.sub.CobolLine;
+import io.proleap.cobol.preprocessor.sub.document.impl.CobolDocumentParserImpl;
+import io.proleap.cobol.preprocessor.sub.line.reader.impl.CobolLineReaderImpl;
+import io.proleap.cobol.preprocessor.sub.line.rewriter.impl.CobolCommentEntriesMarkerImpl;
+import io.proleap.cobol.preprocessor.sub.line.rewriter.impl.CobolLineIndicatorProcessorImpl;
+import io.proleap.cobol.preprocessor.sub.line.writer.CobolLineWriter;
+import io.proleap.cobol.preprocessor.sub.line.writer.impl.CobolLineWriterImpl;
 
 public class CobolPreprocessorImpl implements CobolPreprocessor {
 
 	private final static Logger LOG = LogManager.getLogger(CobolPreprocessorImpl.class);
 
-	/**
-	 * Normalizes lines of given COBOL source code, so that comment entries can
-	 * be parsed and lines have a unified line format.
-	 */
-	protected String normalizeLines(final String cobolSourceCode, final CobolSourceFormatEnum format,
-			final CobolDialect dialect) {
-		final CobolCleanLinesSubPreprocessor cleanLinesPreprocessor = new CobolCleanLinesSubPreprocessorImpl();
-		final CobolMarkCommentEntriesSubPreprocessor markCommentEntriesPreprocessor = new CobolMarkCommentEntriesSubPreprocessorImpl();
-		final CobolNormalizeLinesSubPreprocessor normalizeLinesPreprocessor = new CobolNormalizeLinesSubPreprocessorImpl();
+	protected CobolCommentEntriesMarkerImpl createCommentEntriesMarker() {
+		return new CobolCommentEntriesMarkerImpl();
+	}
 
-		final String cleanedCode = cleanLinesPreprocessor.processLines(cobolSourceCode, format, dialect);
-		final String markedCode = markCommentEntriesPreprocessor.processLines(cleanedCode, format, dialect);
-		final String result = normalizeLinesPreprocessor.processLines(markedCode, format, dialect);
+	protected CobolDocumentParserImpl createDocumentParser(final File libDirectory) {
+		return new CobolDocumentParserImpl(libDirectory);
+	}
+
+	protected CobolLineIndicatorProcessorImpl createLineIndicatorProcessor() {
+		return new CobolLineIndicatorProcessorImpl();
+	}
+
+	protected CobolLineReaderImpl createLineReader() {
+		return new CobolLineReaderImpl();
+	}
+
+	protected CobolLineWriter createLineWriter() {
+		return new CobolLineWriterImpl();
+	}
+
+	protected String parseDocument(final List<CobolLine> lines, final File libDirectory,
+			final CobolSourceFormatEnum format, final CobolDialect dialect) {
+		final String code = createLineWriter().serialize(lines);
+		final String result = createDocumentParser(libDirectory).processLines(code, format, dialect);
 		return result;
 	}
 
@@ -82,16 +93,30 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 	}
 
 	@Override
-	public String process(final String cobolSourceCode, final File libDirectory, final CobolSourceFormatEnum format,
+	public String process(final String cobolCode, final File libDirectory, final CobolSourceFormatEnum format,
 			final CobolDialect dialect) {
-		final String normalizedCobolSourceCode = normalizeLines(cobolSourceCode, format, dialect);
-
-		final CobolParserPreprocessor parserPreprocessor = new CobolParserPreprocessorImpl(libDirectory);
-		final String result = parserPreprocessor.processLines(normalizedCobolSourceCode, format, dialect);
+		final List<CobolLine> lines = readLines(cobolCode, format, dialect);
+		final List<CobolLine> rewrittenLines = rewriteLines(lines);
+		final String result = parseDocument(rewrittenLines, libDirectory, format, dialect);
 
 		LOG.debug("Processed input:\n\n{}\n\n", result);
 
 		return result;
 	}
 
+	protected List<CobolLine> readLines(final String cobolCode, final CobolSourceFormatEnum format,
+			final CobolDialect dialect) {
+		final List<CobolLine> lines = createLineReader().processLines(cobolCode, format, dialect);
+		return lines;
+	}
+
+	/**
+	 * Normalizes lines of given COBOL source code, so that comment entries can
+	 * be parsed and lines have a unified line format.
+	 */
+	protected List<CobolLine> rewriteLines(final List<CobolLine> lines) {
+		final List<CobolLine> lineIndicatorProcessedLines = createLineIndicatorProcessor().processLines(lines);
+		final List<CobolLine> result = createCommentEntriesMarker().processLines(lineIndicatorProcessedLines);
+		return result;
+	}
 }
