@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.codehaus.plexus.util.StringUtils;
-
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
@@ -38,27 +36,6 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 	public CobolCommentEntriesMarkerImpl() {
 		final String commentEntryTriggerLineFormat = new String("(" + String.join("|", triggersStart) + ")(.+)");
 		commentEntryTriggerLinePattern = Pattern.compile(commentEntryTriggerLineFormat, Pattern.CASE_INSENSITIVE);
-	}
-
-	/**
-	 * Blanks in a given line a potential comment entry.
-	 */
-	protected CobolLine blankCommentEntry(final CobolLine line) {
-		final CobolLine result;
-
-		final Matcher matcher = commentEntryTriggerLinePattern.matcher(line.getContentArea());
-
-		if (matcher.matches()) {
-			final String trigger = matcher.group(1);
-			final String commentEntry = matcher.group(2);
-			final String newContentArea = trigger + StringUtils.repeat(CobolPreprocessor.WS, commentEntry.length());
-
-			result = CobolLine.withContentArea(line, newContentArea);
-		} else {
-			result = line;
-		}
-
-		return result;
 	}
 
 	protected CobolLine buildMultiLineCommentEntryLine(final CobolLine line) {
@@ -142,7 +119,7 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 		final CobolLine result;
 
 		if (foundCommentEntryTriggerInCurrentLine) {
-			result = blankCommentEntry(line);
+			result = escapeCommentEntry(line);
 		} else if (foundCommentEntryTriggerInPreviousLine || isInCommentEntry) {
 			final boolean isContentAreaAEmpty = line.contentAreaA.trim().isEmpty();
 			final boolean isInOsvsCommentEntry = isInOsvsCommentEntry(line);
