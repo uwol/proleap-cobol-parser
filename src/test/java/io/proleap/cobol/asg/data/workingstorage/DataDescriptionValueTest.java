@@ -11,6 +11,7 @@ import org.junit.Test;
 import io.proleap.cobol.CobolTestSupport;
 import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.FigurativeConstant;
 import io.proleap.cobol.asg.metamodel.FigurativeConstant.Type;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
@@ -45,7 +46,224 @@ public class DataDescriptionValueTest extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMSPAC");
+					.findDataDescriptionEntry("ITEMALL");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals("ALL2", literal.getValue());
+
+				{
+					final FigurativeConstant figurativeConstant = literal.getFigurativeConstant();
+					assertNotNull(figurativeConstant);
+					assertEquals(Type.ALL, figurativeConstant.getType());
+
+					final Literal allLiteral = figurativeConstant.getLiteral();
+					assertNotNull(allLiteral);
+					assertEquals("2", allLiteral.getValue());
+				}
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMHIGHVALUE");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals("HIGH-VALUE", literal.getValue());
+
+				assertNotNull(literal.getFigurativeConstant());
+				assertEquals(Type.HIGH_VALUE, literal.getFigurativeConstant().getType());
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMHIGHVALUES");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals("HIGH-VALUES", literal.getValue());
+
+				assertNotNull(literal.getFigurativeConstant());
+				assertEquals(Type.HIGH_VALUES, literal.getFigurativeConstant().getType());
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMLOWVALUE");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals("LOW-VALUE", literal.getValue());
+
+				assertNotNull(literal.getFigurativeConstant());
+				assertEquals(Type.LOW_VALUE, literal.getFigurativeConstant().getType());
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMLOWVALUES");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals("LOW-VALUES", literal.getValue());
+
+				assertNotNull(literal.getFigurativeConstant());
+				assertEquals(Type.LOW_VALUES, literal.getFigurativeConstant().getType());
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMNULL");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals("NULL", literal.getValue());
+
+				assertNotNull(literal.getFigurativeConstant());
+				assertEquals(Type.NULL, literal.getFigurativeConstant().getType());
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMNULLS");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals("NULLS", literal.getValue());
+
+				assertNotNull(literal.getFigurativeConstant());
+				assertEquals(Type.NULLS, literal.getFigurativeConstant().getType());
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMQUOTE");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals("QUOTE", literal.getValue());
+
+				assertNotNull(literal.getFigurativeConstant());
+				assertEquals(Type.QUOTE, literal.getFigurativeConstant().getType());
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMQUOTES");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals("QUOTES", literal.getValue());
+
+				assertNotNull(literal.getFigurativeConstant());
+				assertEquals(Type.QUOTES, literal.getFigurativeConstant().getType());
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMSPACE");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals("SPACE", literal.getValue());
+
+				assertNotNull(literal.getFigurativeConstant());
+				assertEquals(Type.SPACE, literal.getFigurativeConstant().getType());
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMSPACES");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getPictureClause());
@@ -121,6 +339,27 @@ public class DataDescriptionValueTest extends CobolTestSupport {
 					assertNotNull(literal.getFigurativeConstant());
 					assertEquals(Type.ZEROS, literal.getFigurativeConstant().getType());
 				}
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMZEROES");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals("ZEROES", literal.getValue());
+
+				assertNotNull(literal.getFigurativeConstant());
+				assertEquals(Type.ZEROES, literal.getFigurativeConstant().getType());
 			}
 		}
 	}

@@ -10,11 +10,14 @@ package io.proleap.cobol.asg.metamodel.impl;
 
 import io.proleap.cobol.Cobol85Parser.FigurativeConstantContext;
 import io.proleap.cobol.asg.metamodel.FigurativeConstant;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 
 public class FigurativeConstantImpl extends CobolDivisionElementImpl implements FigurativeConstant {
 
 	protected final FigurativeConstantContext ctx;
+
+	protected Literal literal;
 
 	protected final Type type;
 
@@ -31,8 +34,18 @@ public class FigurativeConstantImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
+	public Literal getLiteral() {
+		return literal;
+	}
+
+	@Override
 	public Type getType() {
 		return type;
+	}
+
+	@Override
+	public void setLiteral(final Literal literal) {
+		this.literal = literal;
 	}
 
 	@Override

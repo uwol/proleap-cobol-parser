@@ -608,6 +608,9 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		FigurativeConstant result = (FigurativeConstant) getASGElement(ctx);
 
 		if (result == null) {
+			/*
+			 * type
+			 */
 			final Type type;
 
 			if (ctx.ALL() != null) {
@@ -643,6 +646,14 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			}
 
 			result = new FigurativeConstantImpl(type, programUnit, ctx);
+
+			/*
+			 * literal
+			 */
+			if (ctx.literal() != null) {
+				final Literal literal = createLiteral(ctx.literal());
+				result.setLiteral(literal);
+			}
 
 			registerASGElement(result);
 		}

@@ -19,5 +19,9 @@ public interface FigurativeConstant extends CobolDivisionElement {
 	@Override
 	FigurativeConstantContext getCtx();
 
+	Literal getLiteral();
+
 	Type getType();
+
+	void setLiteral(Literal literal);
 }
