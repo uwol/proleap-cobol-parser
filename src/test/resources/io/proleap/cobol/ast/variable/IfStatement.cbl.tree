@@ -28,7 +28,7 @@
 																(powers 
 																	(basis 
 																		(literal 
-																			(numericLiteral ZERO))))))))))) 
+																			(figurativeConstant ZERO))))))))))) 
 									(ifThen 
 										(statement 
 											(displayStatement Display 
@@ -54,7 +54,7 @@
 																(powers 
 																	(basis 
 																		(literal 
-																			(numericLiteral ZERO))))))))))) 
+																			(figurativeConstant ZERO))))))))))) 
 									(ifThen 
 										(statement 
 											(displayStatement Display 
@@ -80,7 +80,7 @@
 																(powers 
 																	(basis 
 																		(literal 
-																			(numericLiteral ZERO)))))))))) 
+																			(figurativeConstant ZERO)))))))))) 
 										(andOrCondition OR 
 											(abbreviation 
 												(arithmeticExpression 

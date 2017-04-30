@@ -31,7 +31,7 @@
 																(powers 
 																	(basis 
 																		(literal 
-																			(numericLiteral ZERO))))))))))) 
+																			(figurativeConstant ZERO))))))))))) 
 									(ifThen 
 										(statement 
 											(setStatement SET 
@@ -60,4 +60,4 @@
 														(qualifiedDataName 
 															(qualifiedDataNameFormat1 
 																(dataName 
-																	(cobolWord testvar))))))))) END-IF)) .)))))) <EOF>)
+																	(cobolWord testvar))))))))) END-IF)) .\n       \n       )))))) <EOF>)

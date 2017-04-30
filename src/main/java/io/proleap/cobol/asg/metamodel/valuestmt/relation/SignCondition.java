@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 public interface SignCondition extends ValueStmt {
 
 	enum Type {
-		Negative, Positive, Zero
+		NEGATIVE, POSITIVE, ZERO
 	}
 
 	ArithmeticValueStmt getArithmeticExpression();

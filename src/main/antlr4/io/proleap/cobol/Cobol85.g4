@@ -2538,7 +2538,7 @@ cobolWord
    ;
 
 literal
-   : NONNUMERICLITERAL | numericLiteral | booleanLiteral | figurativeConstant | cicsDfhRespLiteral | cicsDfhValueLiteral
+   : NONNUMERICLITERAL | figurativeConstant | numericLiteral | booleanLiteral | cicsDfhRespLiteral | cicsDfhValueLiteral
    ;
 
 booleanLiteral

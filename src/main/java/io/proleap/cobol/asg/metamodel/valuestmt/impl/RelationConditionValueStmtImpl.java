@@ -103,11 +103,11 @@ public class RelationConditionValueStmtImpl extends ValueStmtImpl implements Rel
 			final SignCondition.Type type;
 
 			if (ctx.POSITIVE() != null) {
-				type = SignCondition.Type.Positive;
+				type = SignCondition.Type.POSITIVE;
 			} else if (ctx.NEGATIVE() != null) {
-				type = SignCondition.Type.Negative;
+				type = SignCondition.Type.NEGATIVE;
 			} else if (ctx.ZERO() != null) {
-				type = SignCondition.Type.Zero;
+				type = SignCondition.Type.ZERO;
 			} else {
 				type = null;
 			}

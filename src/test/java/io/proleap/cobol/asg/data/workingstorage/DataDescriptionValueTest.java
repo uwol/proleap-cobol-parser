@@ -72,7 +72,34 @@ public class DataDescriptionValueTest extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMZER");
+					.findDataDescriptionEntry("ITEMZERO");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getPictureClause());
+			assertEquals("9(10)", dataDescriptionEntryItem.getPictureClause().getPictureString());
+
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			{
+				final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals()
+						.get(0);
+				assertNotNull(valueInterval);
+
+				{
+					final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+					final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+					final Literal literal = literalFromValueStmt.getLiteral();
+					assertEquals("ZERO", literal.getValue());
+
+					assertNotNull(literal.getFigurativeConstant());
+					assertEquals(Type.ZERO, literal.getFigurativeConstant().getType());
+				}
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMZEROS");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getPictureClause());
