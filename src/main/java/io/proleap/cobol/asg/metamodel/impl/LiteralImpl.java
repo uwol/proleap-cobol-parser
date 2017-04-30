@@ -9,12 +9,15 @@
 package io.proleap.cobol.asg.metamodel.impl;
 
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.asg.metamodel.FigurativeConstant;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 
 public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 
 	protected final LiteralContext ctx;
+
+	protected FigurativeConstant figurativeConstant;
 
 	protected final String value;
 
@@ -31,8 +34,18 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 	}
 
 	@Override
+	public FigurativeConstant getFigurativeConstant() {
+		return figurativeConstant;
+	}
+
+	@Override
 	public String getValue() {
 		return value;
+	}
+
+	@Override
+	public void setFigurativeConstant(final FigurativeConstant figurativeConstant) {
+		this.figurativeConstant = figurativeConstant;
 	}
 
 	@Override

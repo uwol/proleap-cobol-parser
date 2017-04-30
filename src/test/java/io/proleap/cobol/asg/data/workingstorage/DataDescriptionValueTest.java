@@ -11,6 +11,7 @@ import org.junit.Test;
 import io.proleap.cobol.CobolTestSupport;
 import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.FigurativeConstant.Type;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -62,6 +63,9 @@ public class DataDescriptionValueTest extends CobolTestSupport {
 					final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 					final Literal literal = literalFromValueStmt.getLiteral();
 					assertEquals("SPACES", literal.getValue());
+
+					assertNotNull(literal.getFigurativeConstant());
+					assertEquals(Type.SPACES, literal.getFigurativeConstant().getType());
 				}
 			}
 		}
@@ -86,6 +90,9 @@ public class DataDescriptionValueTest extends CobolTestSupport {
 					final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 					final Literal literal = literalFromValueStmt.getLiteral();
 					assertEquals("ZEROS", literal.getValue());
+
+					assertNotNull(literal.getFigurativeConstant());
+					assertEquals(Type.ZEROS, literal.getFigurativeConstant().getType());
 				}
 			}
 		}

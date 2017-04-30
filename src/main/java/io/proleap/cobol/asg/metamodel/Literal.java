@@ -15,5 +15,9 @@ public interface Literal extends CobolDivisionElement {
 	@Override
 	LiteralContext getCtx();
 
+	FigurativeConstant getFigurativeConstant();
+
 	String getValue();
+
+	void setFigurativeConstant(FigurativeConstant figurativeConstant);
 }
