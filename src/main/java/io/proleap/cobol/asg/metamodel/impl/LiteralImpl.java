@@ -9,15 +9,20 @@
 package io.proleap.cobol.asg.metamodel.impl;
 
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.asg.metamodel.BooleanLiteral;
 import io.proleap.cobol.asg.metamodel.FigurativeConstant;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 
 public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 
+	protected BooleanLiteral booleanLiteral;
+
 	protected final LiteralContext ctx;
 
 	protected FigurativeConstant figurativeConstant;
+
+	protected Type type;
 
 	protected final String value;
 
@@ -26,6 +31,11 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 
 		this.ctx = ctx;
 		this.value = value;
+	}
+
+	@Override
+	public BooleanLiteral getBooleanLiteral() {
+		return booleanLiteral;
 	}
 
 	@Override
@@ -39,13 +49,28 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 	}
 
 	@Override
+	public Type getType() {
+		return type;
+	}
+
+	@Override
 	public String getValue() {
 		return value;
 	}
 
 	@Override
+	public void setBooleanLiteral(final BooleanLiteral booleanLiteral) {
+		this.booleanLiteral = booleanLiteral;
+	}
+
+	@Override
 	public void setFigurativeConstant(final FigurativeConstant figurativeConstant) {
 		this.figurativeConstant = figurativeConstant;
+	}
+
+	@Override
+	public void setType(final Type type) {
+		this.type = type;
 	}
 
 	@Override

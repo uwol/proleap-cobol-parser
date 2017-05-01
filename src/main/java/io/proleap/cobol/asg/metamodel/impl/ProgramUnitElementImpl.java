@@ -46,7 +46,6 @@ import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.SystemNameContext;
 import io.proleap.cobol.asg.metamodel.BooleanLiteral;
 import io.proleap.cobol.asg.metamodel.FigurativeConstant;
-import io.proleap.cobol.asg.metamodel.FigurativeConstant.Type;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.MnemonicName;
@@ -611,36 +610,36 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			/*
 			 * type
 			 */
-			final Type type;
+			final FigurativeConstant.Type type;
 
 			if (ctx.ALL() != null) {
-				type = Type.ALL;
+				type = FigurativeConstant.Type.ALL;
 			} else if (ctx.HIGH_VALUE() != null) {
-				type = Type.HIGH_VALUE;
+				type = FigurativeConstant.Type.HIGH_VALUE;
 			} else if (ctx.HIGH_VALUES() != null) {
-				type = Type.HIGH_VALUES;
+				type = FigurativeConstant.Type.HIGH_VALUES;
 			} else if (ctx.LOW_VALUE() != null) {
-				type = Type.LOW_VALUE;
+				type = FigurativeConstant.Type.LOW_VALUE;
 			} else if (ctx.LOW_VALUES() != null) {
-				type = Type.LOW_VALUES;
+				type = FigurativeConstant.Type.LOW_VALUES;
 			} else if (ctx.NULL() != null) {
-				type = Type.NULL;
+				type = FigurativeConstant.Type.NULL;
 			} else if (ctx.NULLS() != null) {
-				type = Type.NULLS;
+				type = FigurativeConstant.Type.NULLS;
 			} else if (ctx.QUOTE() != null) {
-				type = Type.QUOTE;
+				type = FigurativeConstant.Type.QUOTE;
 			} else if (ctx.QUOTES() != null) {
-				type = Type.QUOTES;
+				type = FigurativeConstant.Type.QUOTES;
 			} else if (ctx.SPACE() != null) {
-				type = Type.SPACE;
+				type = FigurativeConstant.Type.SPACE;
 			} else if (ctx.SPACES() != null) {
-				type = Type.SPACES;
+				type = FigurativeConstant.Type.SPACES;
 			} else if (ctx.ZERO() != null) {
-				type = Type.ZERO;
+				type = FigurativeConstant.Type.ZERO;
 			} else if (ctx.ZEROS() != null) {
-				type = Type.ZEROS;
+				type = FigurativeConstant.Type.ZEROS;
 			} else if (ctx.ZEROES() != null) {
-				type = Type.ZEROES;
+				type = FigurativeConstant.Type.ZEROES;
 			} else {
 				type = null;
 			}
@@ -696,10 +695,31 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final String value = ctx.getText();
 			result = new LiteralImpl(value, programUnit, ctx);
 
-			if (ctx.figurativeConstant() != null) {
+			final Literal.Type type;
+
+			if (ctx.NONNUMERICLITERAL() != null) {
+				type = Literal.Type.NON_NUMERIC;
+			} else if (ctx.numericLiteral() != null) {
+				type = Literal.Type.NUMERIC;
+			} else if (ctx.booleanLiteral() != null) {
+				final BooleanLiteral booleanLiteral = createBooleanLiteral(ctx.booleanLiteral());
+				result.setBooleanLiteral(booleanLiteral);
+
+				type = Literal.Type.BOOLEAN;
+			} else if (ctx.figurativeConstant() != null) {
 				final FigurativeConstant figurativeConstant = createFigurativeConstant(ctx.figurativeConstant());
 				result.setFigurativeConstant(figurativeConstant);
+
+				type = Literal.Type.FIGURATIVE_CONSTANT;
+			} else if (ctx.cicsDfhRespLiteral() != null) {
+				type = Literal.Type.CICS_DFH_RESP;
+			} else if (ctx.cicsDfhValueLiteral() != null) {
+				type = Literal.Type.CICS_DFH_VALUE;
+			} else {
+				type = null;
 			}
+
+			result.setType(type);
 
 			registerASGElement(result);
 		}
