@@ -60,47 +60,41 @@ public class ArithmeticExpressionTest extends CobolTestSupport {
 				assertEquals(1, arithmeticExpression.getSubValueStmts().size());
 
 				{
-					final MultDivs multDivsValueStmt = (MultDivs) arithmeticExpression
-							.getSubValueStmts().get(0);
+					final MultDivs multDivsValueStmt = (MultDivs) arithmeticExpression.getSubValueStmts().get(0);
 					assertEquals(2, multDivsValueStmt.getSubValueStmts().size());
 
 					{
-						final Powers powersValueStmt = (Powers) multDivsValueStmt.getSubValueStmts()
-								.get(0);
+						final Powers powersValueStmt = (Powers) multDivsValueStmt.getSubValueStmts().get(0);
 						assertEquals(1, powersValueStmt.getSubValueStmts().size());
 
 						{
-							final Basis basisValueStmt = (Basis) powersValueStmt.getSubValueStmts()
-									.get(0);
+							final Basis basisValueStmt = (Basis) powersValueStmt.getSubValueStmts().get(0);
 							assertNotNull(basisValueStmt.getBasisValueStmt());
 
 							{
 								final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt
 										.getBasisValueStmt();
-								assertEquals("2", literalValueStmt.getValue());
+								assertEquals(2, (Double) literalValueStmt.getValue(), EPSILON);
 							}
 						}
 					}
 
 					{
-						final MultDiv multDivValueStmt = (MultDiv) multDivsValueStmt
-								.getSubValueStmts().get(1);
+						final MultDiv multDivValueStmt = (MultDiv) multDivsValueStmt.getSubValueStmts().get(1);
 						assertEquals(MultDiv.Type.MULT, multDivValueStmt.getType());
 						assertEquals(1, multDivValueStmt.getSubValueStmts().size());
 
 						{
-							final Powers powersValueStmt = (Powers) multDivValueStmt
-									.getSubValueStmts().get(0);
+							final Powers powersValueStmt = (Powers) multDivValueStmt.getSubValueStmts().get(0);
 
 							{
-								final Basis basisValueStmt = (Basis) powersValueStmt
-										.getSubValueStmts().get(0);
+								final Basis basisValueStmt = (Basis) powersValueStmt.getSubValueStmts().get(0);
 								assertNotNull(basisValueStmt.getBasisValueStmt());
 
 								{
 									final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt
 											.getBasisValueStmt();
-									assertEquals("2", literalValueStmt.getValue());
+									assertEquals(2, (Double) literalValueStmt.getValue(), EPSILON);
 								}
 							}
 						}

@@ -16,7 +16,9 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.AlphabetClause;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.AlphabetClauseAlphanumeric;
+import io.proleap.cobol.asg.metamodel.environment.specialnames.AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.AlphabetClauseNational;
+import io.proleap.cobol.asg.metamodel.environment.specialnames.AlphabetClauseNational.AlphabetClauseNationalType;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.ChannelClause;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.ClassClause;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.ClassThrough;
@@ -27,8 +29,6 @@ import io.proleap.cobol.asg.metamodel.environment.specialnames.OdtClause;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.ReserveNetworkClause;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.SpecialNamesParagraph;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.SymbolicCharactersClause;
-import io.proleap.cobol.asg.metamodel.environment.specialnames.AlphabetClauseAlphanumeric.AlphabetClauseAlphanumericType;
-import io.proleap.cobol.asg.metamodel.environment.specialnames.AlphabetClauseNational.AlphabetClauseNationalType;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -91,8 +91,8 @@ public class SpecialNamesTest extends CobolTestSupport {
 		{
 			final CurrencySignClause currencySignClause = specialNamesParagraph.getCurrencySignClause();
 			assertNotNull(currencySignClause);
-			assertEquals("'E'", currencySignClause.getCurrencyLiteral().getValue());
-			assertEquals("'-'", currencySignClause.getPictureSymbolLiteral().getValue());
+			assertEquals("'E'", currencySignClause.getCurrencyLiteral().getNonNumericLiteral());
+			assertEquals("'-'", currencySignClause.getPictureSymbolLiteral().getNonNumericLiteral());
 		}
 
 		{
@@ -147,7 +147,8 @@ public class SpecialNamesTest extends CobolTestSupport {
 				final AlphabetClauseNational alphabetClauseNational = (AlphabetClauseNational) alphabetClause;
 
 				assertEquals(AlphabetClauseNationalType.CCS_VERSION, alphabetClauseNational.getAlphabetClauseType());
-				assertEquals("123", alphabetClauseNational.getCcsVersion().getValue());
+				assertEquals(new Double(123), alphabetClauseNational.getCcsVersion().getNumericLiteral().getValue(),
+						EPSILON);
 			}
 
 			{

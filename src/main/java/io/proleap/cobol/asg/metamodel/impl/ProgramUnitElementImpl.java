@@ -49,6 +49,7 @@ import io.proleap.cobol.asg.metamodel.FigurativeConstant;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.MnemonicName;
+import io.proleap.cobol.asg.metamodel.NumericLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.ProgramUnitElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -312,16 +313,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected Call createCall(final NumericLiteralContext ctx) {
-		Call result = (Call) getASGElement(ctx);
-
-		if (result == null) {
-			result = createUndefinedCall(ctx);
-		}
-
-		return result;
-	}
-
 	protected Call createCall(final ParseTree... ctxs) {
 		Call result = null;
 
@@ -370,8 +361,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCall((LocalNameContext) ctx);
 			} else if (ctx instanceof MnemonicNameContext) {
 				result = createCall((MnemonicNameContext) ctx);
-			} else if (ctx instanceof NumericLiteralContext) {
-				result = createCall((NumericLiteralContext) ctx);
 			} else if (ctx instanceof ProgramNameContext) {
 				result = createCall((ProgramNameContext) ctx);
 			} else if (ctx instanceof QualifiedDataNameContext) {
@@ -692,14 +681,19 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Literal result = (Literal) getASGElement(ctx);
 
 		if (result == null) {
-			final String value = ctx.getText();
-			result = new LiteralImpl(value, programUnit, ctx);
+			result = new LiteralImpl(programUnit, ctx);
 
 			final Literal.Type type;
 
 			if (ctx.NONNUMERICLITERAL() != null) {
+				final String nonNumericLiteral = ctx.getText();
+				result.setNonNumericLiteral(nonNumericLiteral);
+
 				type = Literal.Type.NON_NUMERIC;
 			} else if (ctx.numericLiteral() != null) {
+				final NumericLiteral numericLiteral = createNumericLiteral(ctx.numericLiteral());
+				result.setNumericLiteral(numericLiteral);
+
 				type = Literal.Type.NUMERIC;
 			} else if (ctx.booleanLiteral() != null) {
 				final BooleanLiteral booleanLiteral = createBooleanLiteral(ctx.booleanLiteral());
@@ -740,6 +734,19 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (result == null) {
 			final String value = ctx.getText();
 			result = new MnemonicNameImpl(value, programUnit, ctx);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected NumericLiteral createNumericLiteral(final NumericLiteralContext ctx) {
+		NumericLiteral result = (NumericLiteral) getASGElement(ctx);
+
+		if (result == null) {
+			final Double value = StringUtils.parseDouble(ctx.getText());
+			result = new NumericLiteralImpl(value, programUnit, ctx);
 
 			registerASGElement(result);
 		}

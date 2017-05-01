@@ -24,7 +24,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
+public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport {
 
 	@Override
 	@Before
@@ -35,11 +35,11 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/data/workingstorage/DataDescriptionFigurativeConstant.cbl");
+				"src/test/resources/io/proleap/cobol/asg/data/workingstorage/DataDescriptionValueFigurativeConstant.cbl");
 		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
 				CobolSourceFormatEnum.TANDEM);
 
-		final CompilationUnit compilationUnit = program.getCompilationUnit("DataDescriptionFigurativeConstant");
+		final CompilationUnit compilationUnit = program.getCompilationUnit("DataDescriptionValueFigurativeConstant");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
@@ -58,7 +58,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals("ALL2", literal.getValue());
 				assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 				{
@@ -68,7 +67,8 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 
 					final Literal allLiteral = figurativeConstant.getLiteral();
 					assertNotNull(allLiteral);
-					assertEquals("2", allLiteral.getValue());
+					assertEquals(Literal.Type.NUMERIC, allLiteral.getType());
+					assertEquals(new Double(2), allLiteral.getNumericLiteral().getValue(), EPSILON);
 				}
 			}
 		}
@@ -87,7 +87,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals("HIGH-VALUE", literal.getValue());
 				assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 				assertNotNull(literal.getFigurativeConstant());
@@ -109,7 +108,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals("HIGH-VALUES", literal.getValue());
 				assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 				assertNotNull(literal.getFigurativeConstant());
@@ -131,7 +129,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals("LOW-VALUE", literal.getValue());
 				assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 				assertNotNull(literal.getFigurativeConstant());
@@ -153,7 +150,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals("LOW-VALUES", literal.getValue());
 				assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 				assertNotNull(literal.getFigurativeConstant());
@@ -175,7 +171,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals("NULL", literal.getValue());
 				assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 				assertNotNull(literal.getFigurativeConstant());
@@ -197,7 +192,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals("NULLS", literal.getValue());
 				assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 				assertNotNull(literal.getFigurativeConstant());
@@ -219,7 +213,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals("QUOTE", literal.getValue());
 				assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 				assertNotNull(literal.getFigurativeConstant());
@@ -241,7 +234,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals("QUOTES", literal.getValue());
 				assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 				assertNotNull(literal.getFigurativeConstant());
@@ -263,7 +255,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals("SPACE", literal.getValue());
 				assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 				assertNotNull(literal.getFigurativeConstant());
@@ -290,7 +281,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 					final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 					final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 					final Literal literal = literalFromValueStmt.getLiteral();
-					assertEquals("SPACES", literal.getValue());
 					assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 					assertNotNull(literal.getFigurativeConstant());
@@ -318,7 +308,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 					final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 					final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 					final Literal literal = literalFromValueStmt.getLiteral();
-					assertEquals("ZERO", literal.getValue());
 					assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 					assertNotNull(literal.getFigurativeConstant());
@@ -346,7 +335,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 					final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 					final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 					final Literal literal = literalFromValueStmt.getLiteral();
-					assertEquals("ZEROS", literal.getValue());
 					assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 					assertNotNull(literal.getFigurativeConstant());
@@ -369,7 +357,6 @@ public class DataDescriptionFigurativeConstantTest extends CobolTestSupport {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals("ZEROES", literal.getValue());
 				assertEquals(Literal.Type.FIGURATIVE_CONSTANT, literal.getType());
 
 				assertNotNull(literal.getFigurativeConstant());

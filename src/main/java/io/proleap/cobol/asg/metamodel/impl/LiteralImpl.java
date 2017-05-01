@@ -12,6 +12,7 @@ import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.asg.metamodel.BooleanLiteral;
 import io.proleap.cobol.asg.metamodel.FigurativeConstant;
 import io.proleap.cobol.asg.metamodel.Literal;
+import io.proleap.cobol.asg.metamodel.NumericLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 
 public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
@@ -22,15 +23,16 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 
 	protected FigurativeConstant figurativeConstant;
 
+	protected String nonNumericLiteral;
+
+	protected NumericLiteral numericLiteral;
+
 	protected Type type;
 
-	protected final String value;
-
-	public LiteralImpl(final String value, final ProgramUnit programUnit, final LiteralContext ctx) {
+	public LiteralImpl(final ProgramUnit programUnit, final LiteralContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
-		this.value = value;
 	}
 
 	@Override
@@ -49,13 +51,18 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public String getNonNumericLiteral() {
+		return nonNumericLiteral;
 	}
 
 	@Override
-	public String getValue() {
-		return value;
+	public NumericLiteral getNumericLiteral() {
+		return numericLiteral;
+	}
+
+	@Override
+	public Type getType() {
+		return type;
 	}
 
 	@Override
@@ -69,12 +76,22 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 	}
 
 	@Override
+	public void setNonNumericLiteral(final String nonNumericLiteral) {
+		this.nonNumericLiteral = nonNumericLiteral;
+	}
+
+	@Override
+	public void setNumericLiteral(final NumericLiteral numericLiteral) {
+		this.numericLiteral = numericLiteral;
+	}
+
+	@Override
 	public void setType(final Type type) {
 		this.type = type;
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + ", value=[" + value + "]";
+		return super.toString() + ", type=[" + type + "]";
 	}
 }

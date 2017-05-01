@@ -27,8 +27,32 @@ public class LiteralValueStmtImpl extends ValueStmtImpl implements LiteralValueS
 	}
 
 	@Override
-	public String getValue() {
-		final String result = literal != null ? literal.getValue() : null;
+	public Object getValue() {
+		final Object result;
+
+		if (literal == null) {
+			result = null;
+		} else {
+			final Literal.Type type = literal.getType();
+
+			switch (type) {
+			case NON_NUMERIC:
+				result = literal.getNonNumericLiteral();
+				break;
+			case NUMERIC:
+				result = literal.getNumericLiteral().getValue();
+				break;
+			case BOOLEAN:
+				result = literal.getBooleanLiteral().getValue();
+				break;
+			case FIGURATIVE_CONSTANT:
+				result = literal.getFigurativeConstant();
+				break;
+			default:
+				result = null;
+			}
+		}
+
 		return result;
 	}
 

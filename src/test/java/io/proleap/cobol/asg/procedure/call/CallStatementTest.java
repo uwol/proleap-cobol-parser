@@ -81,12 +81,12 @@ public class CallStatementTest extends CobolTestSupport {
 
 				{
 					final ValueStmt valueStmt = callByValueStatement.getValueStmts().get(0);
-					assertEquals("1", valueStmt.getValue());
+					assertEquals(1, (Double) valueStmt.getValue(), EPSILON);
 				}
 
 				{
 					final ValueStmt valueStmt = callByValueStatement.getValueStmts().get(1);
-					assertEquals("2", valueStmt.getValue());
+					assertEquals(2, (Double) valueStmt.getValue(), EPSILON);
 				}
 
 				{

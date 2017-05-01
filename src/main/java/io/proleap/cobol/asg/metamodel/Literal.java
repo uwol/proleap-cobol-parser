@@ -23,13 +23,19 @@ public interface Literal extends CobolDivisionElement {
 
 	FigurativeConstant getFigurativeConstant();
 
-	Type getType();
+	String getNonNumericLiteral();
 
-	String getValue();
+	NumericLiteral getNumericLiteral();
+
+	Type getType();
 
 	void setBooleanLiteral(BooleanLiteral booleanLiteral);
 
 	void setFigurativeConstant(FigurativeConstant figurativeConstant);
+
+	void setNonNumericLiteral(String nonNumericLiteral);
+
+	void setNumericLiteral(NumericLiteral numericLiteral);
 
 	void setType(Type type);
 }

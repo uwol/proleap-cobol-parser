@@ -14,7 +14,5 @@ public interface LiteralValueStmt extends ValueStmt {
 
 	Literal getLiteral();
 
-	String getValue();
-
 	void setLiteral(Literal literal);
 }
