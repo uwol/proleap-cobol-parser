@@ -66,6 +66,30 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 	}
 
 	@Override
+	public Object getValue() {
+		final Object result;
+
+		switch (type) {
+		case NON_NUMERIC:
+			result = nonNumericLiteral;
+			break;
+		case NUMERIC:
+			result = numericLiteral.getValue();
+			break;
+		case BOOLEAN:
+			result = booleanLiteral.getValue();
+			break;
+		case FIGURATIVE_CONSTANT:
+			result = figurativeConstant;
+			break;
+		default:
+			result = null;
+		}
+
+		return result;
+	}
+
+	@Override
 	public void setBooleanLiteral(final BooleanLiteral booleanLiteral) {
 		this.booleanLiteral = booleanLiteral;
 	}

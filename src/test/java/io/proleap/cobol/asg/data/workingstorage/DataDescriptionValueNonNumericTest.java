@@ -60,5 +60,24 @@ public class DataDescriptionValueNonNumericTest extends CobolTestSupport {
 				assertEquals("\"SOMESTRING\"", literal.getNonNumericLiteral());
 			}
 		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMHEX");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals(Literal.Type.NON_NUMERIC, literal.getType());
+				assertEquals("X\"02AD\"", literal.getNonNumericLiteral());
+			}
+		}
 	}
 }

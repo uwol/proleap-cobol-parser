@@ -33,24 +33,7 @@ public class LiteralValueStmtImpl extends ValueStmtImpl implements LiteralValueS
 		if (literal == null) {
 			result = null;
 		} else {
-			final Literal.Type type = literal.getType();
-
-			switch (type) {
-			case NON_NUMERIC:
-				result = literal.getNonNumericLiteral();
-				break;
-			case NUMERIC:
-				result = literal.getNumericLiteral().getValue();
-				break;
-			case BOOLEAN:
-				result = literal.getBooleanLiteral().getValue();
-				break;
-			case FIGURATIVE_CONSTANT:
-				result = literal.getFigurativeConstant();
-				break;
-			default:
-				result = null;
-			}
+			result = literal.getValue();
 		}
 
 		return result;

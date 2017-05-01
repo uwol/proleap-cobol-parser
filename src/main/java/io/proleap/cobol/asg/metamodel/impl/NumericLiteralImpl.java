@@ -16,13 +16,16 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 
 	protected final NumericLiteralContext ctx;
 
-	protected final Double value;
+	protected Double doubleValue;
 
-	public NumericLiteralImpl(final Double value, final ProgramUnit programUnit, final NumericLiteralContext ctx) {
+	protected Integer integerValue;
+
+	protected Type type;
+
+	public NumericLiteralImpl(final ProgramUnit programUnit, final NumericLiteralContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
-		this.value = value;
 	}
 
 	@Override
@@ -31,12 +34,54 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 	}
 
 	@Override
+	public Double getDoubleValue() {
+		return doubleValue;
+	}
+
+	@Override
+	public Integer getIntegerValue() {
+		return integerValue;
+	}
+
+	@Override
+	public Type getType() {
+		return type;
+	}
+
+	@Override
 	public Double getValue() {
-		return value;
+		final Double result;
+
+		switch (type) {
+		case INTEGER:
+			result = integerValue.doubleValue();
+			break;
+		case DOUBLE:
+		default:
+			result = doubleValue;
+			break;
+		}
+
+		return result;
+	}
+
+	@Override
+	public void setDoubleValue(final Double doubleValue) {
+		this.doubleValue = doubleValue;
+	}
+
+	@Override
+	public void setIntegerValue(final Integer integerValue) {
+		this.integerValue = integerValue;
+	}
+
+	@Override
+	public void setType(final Type type) {
+		this.type = type;
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + ", value=[" + value + "]";
+		return super.toString() + ", value=[" + getValue() + "]";
 	}
 }

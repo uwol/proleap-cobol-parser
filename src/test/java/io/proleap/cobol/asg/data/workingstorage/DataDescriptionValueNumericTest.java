@@ -12,6 +12,7 @@ import io.proleap.cobol.CobolTestSupport;
 import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Literal;
+import io.proleap.cobol.asg.metamodel.NumericLiteral;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
@@ -44,6 +45,26 @@ public class DataDescriptionValueNumericTest extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
+					.findDataDescriptionEntry("ITEMNUMERIC");
+
+			assertNotNull(dataDescriptionEntryItem);
+			assertNotNull(dataDescriptionEntryItem.getValueClause());
+
+			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
+			assertNotNull(valueInterval);
+
+			{
+				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
+				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
+				final Literal literal = literalFromValueStmt.getLiteral();
+				assertEquals(Literal.Type.NUMERIC, literal.getType());
+				assertEquals(NumericLiteral.Type.DOUBLE, literal.getNumericLiteral().getType());
+				assertEquals(23.4, literal.getNumericLiteral().getValue(), EPSILON);
+			}
+		}
+
+		{
+			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
 					.findDataDescriptionEntry("ITEMINTEGER");
 
 			assertNotNull(dataDescriptionEntryItem);
@@ -57,26 +78,8 @@ public class DataDescriptionValueNumericTest extends CobolTestSupport {
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
 				assertEquals(Literal.Type.NUMERIC, literal.getType());
+				assertEquals(NumericLiteral.Type.INTEGER, literal.getNumericLiteral().getType());
 				assertEquals(42, literal.getNumericLiteral().getValue(), EPSILON);
-			}
-		}
-
-		{
-			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMFLOAT");
-
-			assertNotNull(dataDescriptionEntryItem);
-			assertNotNull(dataDescriptionEntryItem.getValueClause());
-
-			final ValueInterval valueInterval = dataDescriptionEntryItem.getValueClause().getValueIntervals().get(0);
-			assertNotNull(valueInterval);
-
-			{
-				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
-				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
-				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals(Literal.Type.NUMERIC, literal.getType());
-				assertEquals(23.4, literal.getNumericLiteral().getValue(), EPSILON);
 			}
 		}
 	}

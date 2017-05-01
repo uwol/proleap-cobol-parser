@@ -12,8 +12,24 @@ import io.proleap.cobol.Cobol85Parser.NumericLiteralContext;
 
 public interface NumericLiteral extends CobolDivisionElement {
 
+	enum Type {
+		DOUBLE, INTEGER
+	}
+
 	@Override
 	NumericLiteralContext getCtx();
 
+	Double getDoubleValue();
+
+	Integer getIntegerValue();
+
+	Type getType();
+
 	Double getValue();
+
+	void setDoubleValue(Double doubleValue);
+
+	void setIntegerValue(Integer integerValue);
+
+	void setType(Type type);
 }

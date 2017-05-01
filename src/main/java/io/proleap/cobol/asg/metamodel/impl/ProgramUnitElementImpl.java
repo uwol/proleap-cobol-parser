@@ -745,8 +745,29 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		NumericLiteral result = (NumericLiteral) getASGElement(ctx);
 
 		if (result == null) {
-			final Double value = StringUtils.parseDouble(ctx.getText());
-			result = new NumericLiteralImpl(value, programUnit, ctx);
+			result = new NumericLiteralImpl(programUnit, ctx);
+
+			final NumericLiteral.Type type;
+
+			if (ctx.integerLiteral() != null) {
+				final Integer integerValue = StringUtils.parseInteger(ctx.getText());
+				result.setIntegerValue(integerValue);
+
+				type = NumericLiteral.Type.INTEGER;
+			} else if (ctx.ZERO() != null) {
+				result.setIntegerValue(0);
+
+				type = NumericLiteral.Type.INTEGER;
+			} else if (ctx.NUMERICLITERAL() != null) {
+				final Double doubleValue = StringUtils.parseDouble(ctx.NUMERICLITERAL().getText());
+				result.setDoubleValue(doubleValue);
+
+				type = NumericLiteral.Type.DOUBLE;
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
 
 			registerASGElement(result);
 		}

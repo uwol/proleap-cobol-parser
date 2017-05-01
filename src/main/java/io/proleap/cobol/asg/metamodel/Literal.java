@@ -29,6 +29,8 @@ public interface Literal extends CobolDivisionElement {
 
 	Type getType();
 
+	Object getValue();
+
 	void setBooleanLiteral(BooleanLiteral booleanLiteral);
 
 	void setFigurativeConstant(FigurativeConstant figurativeConstant);
