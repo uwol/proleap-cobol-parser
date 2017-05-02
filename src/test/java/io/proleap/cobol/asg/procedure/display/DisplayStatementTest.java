@@ -71,7 +71,7 @@ public class DisplayStatementTest extends CobolTestSupport {
 
 				final Call uponCall = displayStatement.getUpon().getUponCall();
 				assertNotNull(uponCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, uponCall.getCallType());
+				assertEquals(Call.CallType.MNEMONIC_CALL, uponCall.getCallType());
 			}
 
 			{

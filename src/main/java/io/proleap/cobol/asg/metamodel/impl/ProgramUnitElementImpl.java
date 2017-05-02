@@ -61,7 +61,9 @@ import io.proleap.cobol.asg.metamodel.call.ReportCall;
 import io.proleap.cobol.asg.metamodel.call.ReportDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.impl.CommunicationDescriptionEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.DataDescriptionEntryCallImpl;
+import io.proleap.cobol.asg.metamodel.call.impl.EnvironmentCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.FileDescriptionEntryCallImpl;
+import io.proleap.cobol.asg.metamodel.call.impl.MnemonicCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ProcedureCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ReportCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ReportDescriptionEntryCallImpl;
@@ -228,7 +230,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			result = createUndefinedCall(ctx);
+			final String name = determineName(ctx);
+			result = new EnvironmentCallImpl(name, programUnit, ctx);
 		}
 
 		return result;
@@ -307,7 +310,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			result = createUndefinedCall(ctx);
+			final String name = determineName(ctx);
+			result = new MnemonicCallImpl(name, programUnit, ctx);
 		}
 
 		return result;

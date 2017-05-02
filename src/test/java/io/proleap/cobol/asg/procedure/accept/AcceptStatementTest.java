@@ -70,7 +70,7 @@ public class AcceptStatementTest extends CobolTestSupport {
 				final AcceptFromMnemonic acceptFromMnemonic = acceptStatement.getAcceptFromMnemonic();
 				assertNotNull(acceptFromMnemonic);
 				assertNotNull(acceptFromMnemonic.getMnemonicCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, acceptFromMnemonic.getMnemonicCall().getCallType());
+				assertEquals(Call.CallType.MNEMONIC_CALL, acceptFromMnemonic.getMnemonicCall().getCallType());
 			}
 		}
 
