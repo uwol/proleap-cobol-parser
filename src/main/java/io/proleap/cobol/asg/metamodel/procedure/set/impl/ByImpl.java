@@ -10,13 +10,13 @@ package io.proleap.cobol.asg.metamodel.procedure.set.impl;
 
 import io.proleap.cobol.Cobol85Parser.SetByValueContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.set.By;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ByImpl extends CobolDivisionElementImpl implements By {
 
-	protected Call byCall;
+	protected ValueStmt byValueStmt;
 
 	protected SetByValueContext ctx;
 
@@ -27,13 +27,13 @@ public class ByImpl extends CobolDivisionElementImpl implements By {
 	}
 
 	@Override
-	public Call getByCall() {
-		return byCall;
+	public ValueStmt getByValueStmt() {
+		return byValueStmt;
 	}
 
 	@Override
-	public void setByCall(final Call byCall) {
-		this.byCall = byCall;
+	public void setByValueStmt(final ValueStmt byValueStmt) {
+		this.byValueStmt = byValueStmt;
 	}
 
 }

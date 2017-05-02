@@ -86,9 +86,8 @@ public class InspectTallyingReplacingStatementTest extends CobolTestSupport {
 						{
 							final AllLeading allLeading = allLeadings.getAllLeadings().get(0);
 
-							assertNotNull(allLeading.getPatternDataItemCall());
-							assertEquals(Call.CallType.UNDEFINED_CALL,
-									allLeading.getPatternDataItemCall().getCallType());
+							assertNotNull(allLeading.getPatternDataItemValueStmt());
+							assertEquals("'B'", allLeading.getPatternDataItemValueStmt().getValue());
 							assertEquals(1, allLeading.getBeforeAfters().size());
 
 							{
@@ -120,9 +119,8 @@ public class InspectTallyingReplacingStatementTest extends CobolTestSupport {
 						{
 							final ReplacingAllLeading allLeading = allLeadings.getAllLeadings().get(0);
 
-							assertNotNull(allLeading.getPatternDataItemCall());
-							assertEquals(Call.CallType.UNDEFINED_CALL,
-									allLeading.getPatternDataItemCall().getCallType());
+							assertNotNull(allLeading.getPatternDataItemValueStmt());
+							assertEquals("'B'", allLeading.getPatternDataItemValueStmt().getValue());
 							assertEquals(1, allLeading.getBeforeAfters().size());
 
 							{

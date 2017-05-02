@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.procedure.unstring.impl;
 
 import io.proleap.cobol.Cobol85Parser.UnstringOrAllPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.OrAll;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class OrAllImpl extends CobolDivisionElementImpl implements OrAll {
 
 	protected final UnstringOrAllPhraseContext ctx;
 
-	protected Call orAllCall;
+	protected ValueStmt orAllValueStmt;
 
 	public OrAllImpl(final ProgramUnit programUnit, final UnstringOrAllPhraseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class OrAllImpl extends CobolDivisionElementImpl implements OrAll {
 	}
 
 	@Override
-	public Call getOrAllCall() {
-		return orAllCall;
+	public ValueStmt getOrAllValueStmt() {
+		return orAllValueStmt;
 	}
 
 	@Override
-	public void setOrAllCall(final Call orAllCall) {
-		this.orAllCall = orAllCall;
+	public void setOrAllValueStmt(final ValueStmt orAllValueStmt) {
+		this.orAllValueStmt = orAllValueStmt;
 	}
 
 }

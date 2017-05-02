@@ -27,6 +27,8 @@ import io.proleap.cobol.asg.metamodel.procedure.unstring.OrAll;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.Sending;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.UnstringStatement;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.WithPointer;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class UnstringStatementTest extends CobolTestSupport {
@@ -65,8 +67,8 @@ public class UnstringStatementTest extends CobolTestSupport {
 
 					{
 						final DelimitedBy delimitedBy = sending.getDelimitedBy();
-						final Call delimitedByCall = delimitedBy.getDelimitedByCall();
-						assertEquals(Call.CallType.UNDEFINED_CALL, delimitedByCall.getCallType());
+						final ValueStmt delimitedByValueStmt = delimitedBy.getDelimitedByValueStmt();
+						assertEquals("'1'", delimitedByValueStmt.getValue());
 					}
 
 					{
@@ -74,14 +76,18 @@ public class UnstringStatementTest extends CobolTestSupport {
 
 						{
 							final OrAll orAll = sending.getOrAlls().get(0);
-							final Call orAllCall = orAll.getOrAllCall();
-							assertEquals(Call.CallType.UNDEFINED_CALL, orAllCall.getCallType());
+							final ValueStmt orAllValueStmt = orAll.getOrAllValueStmt();
+
+							final CallValueStmt orAllCallValueStmt = (CallValueStmt) orAllValueStmt;
+							assertEquals(Call.CallType.UNDEFINED_CALL, orAllCallValueStmt.getCall().getCallType());
 						}
 
 						{
 							final OrAll orAll = sending.getOrAlls().get(1);
-							final Call orAllCall = orAll.getOrAllCall();
-							assertEquals(Call.CallType.UNDEFINED_CALL, orAllCall.getCallType());
+							final ValueStmt orAllValueStmt = orAll.getOrAllValueStmt();
+
+							final CallValueStmt orAllCallValueStmt = (CallValueStmt) orAllValueStmt;
+							assertEquals(Call.CallType.UNDEFINED_CALL, orAllCallValueStmt.getCall().getCallType());
 						}
 					}
 				}

@@ -18,6 +18,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveTo;
 import io.proleap.cobol.asg.metamodel.procedure.move.SendingArea;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class MoveToImpl extends CobolDivisionElementImpl implements MoveTo {
 
@@ -45,8 +46,8 @@ public class MoveToImpl extends CobolDivisionElementImpl implements MoveTo {
 		if (result == null) {
 			result = new SendingAreaImpl(programUnit, ctx);
 
-			final Call sendingAreaCall = createCall(ctx.identifier(), ctx.literal());
-			result.setSendingAreaCall(sendingAreaCall);
+			final ValueStmt sendingAreaValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setSendingAreaValueStmt(sendingAreaValueStmt);
 
 			sendingArea = result;
 			registerASGElement(result);

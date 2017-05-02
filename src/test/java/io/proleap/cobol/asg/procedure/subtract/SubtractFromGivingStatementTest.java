@@ -23,6 +23,8 @@ import io.proleap.cobol.asg.metamodel.procedure.subtract.MinuendGiving;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFromGiving;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractStatement;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Subtrahend;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class SubtractFromGivingStatementTest extends CobolTestSupport {
@@ -59,14 +61,16 @@ public class SubtractFromGivingStatementTest extends CobolTestSupport {
 
 				{
 					final Subtrahend subtrahend = subtractFromGiving.getSubtrahends().get(0);
-					final Call subtrahendCall = subtrahend.getSubtrahendCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, subtrahendCall.getCallType());
+					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
+
+					final CallValueStmt subtrahendCallValueStmt = (CallValueStmt) subtrahendValueStmt;
+					assertEquals(Call.CallType.UNDEFINED_CALL, subtrahendCallValueStmt.getCall().getCallType());
 				}
 
 				{
 					final Subtrahend subtrahend = subtractFromGiving.getSubtrahends().get(1);
-					final Call subtrahendCall = subtrahend.getSubtrahendCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, subtrahendCall.getCallType());
+					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
+					assertEquals("'1'", subtrahendValueStmt.getValue());
 				}
 
 				{

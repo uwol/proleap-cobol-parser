@@ -9,7 +9,7 @@
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface AssignClause extends CobolDivisionElement {
 
@@ -17,11 +17,11 @@ public interface AssignClause extends CobolDivisionElement {
 		CALL, DISK, PORT, PRINTER, READER, REMOTE, TAPE, VIRTUAL
 	}
 
-	Call getToCall();
+	ValueStmt getToValueStmt();
 
 	Type getType();
 
-	void setToCall(Call toCall);
+	void setToValueStmt(ValueStmt toValueStmt);
 
 	void setType(Type type);
 

@@ -21,6 +21,8 @@ import io.proleap.cobol.asg.metamodel.procedure.set.SetStatement;
 import io.proleap.cobol.asg.metamodel.procedure.set.SetTo;
 import io.proleap.cobol.asg.metamodel.procedure.set.To;
 import io.proleap.cobol.asg.metamodel.procedure.set.Value;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class SetToStatementTest extends CobolTestSupport {
@@ -73,18 +75,22 @@ public class SetToStatementTest extends CobolTestSupport {
 					final Value value = setTo.getValues().get(0);
 					assertEquals(Value.Type.CALL, value.getType());
 
-					final Call valueCall = value.getValueCall();
-					assertNotNull(valueCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, valueCall.getCallType());
+					final ValueStmt valueStmt = value.getValueStmt();
+					assertNotNull(valueStmt);
+
+					final CallValueStmt callValueStmt = (CallValueStmt) valueStmt;
+					assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 				}
 
 				{
 					final Value value = setTo.getValues().get(1);
 					assertEquals(Value.Type.CALL, value.getType());
 
-					final Call valueCall = value.getValueCall();
-					assertNotNull(valueCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, valueCall.getCallType());
+					final ValueStmt valueStmt = value.getValueStmt();
+					assertNotNull(valueStmt);
+
+					final CallValueStmt callValueStmt = (CallValueStmt) valueStmt;
+					assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 				}
 			}
 
@@ -104,15 +110,17 @@ public class SetToStatementTest extends CobolTestSupport {
 					final Value value = setTo.getValues().get(0);
 					assertEquals(Value.Type.CALL, value.getType());
 
-					final Call valueCall = value.getValueCall();
-					assertNotNull(valueCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, valueCall.getCallType());
+					final ValueStmt valueStmt = value.getValueStmt();
+					assertNotNull(valueStmt);
+
+					final CallValueStmt callValueStmt = (CallValueStmt) valueStmt;
+					assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 				}
 
 				{
 					final Value value = setTo.getValues().get(1);
 					assertEquals(Value.Type.ON, value.getType());
-					assertNull(value.getValueCall());
+					assertNull(value.getValueStmt());
 				}
 			}
 		}

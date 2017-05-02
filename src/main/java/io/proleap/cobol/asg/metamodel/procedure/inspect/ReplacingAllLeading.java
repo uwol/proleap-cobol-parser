@@ -13,7 +13,7 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
 import io.proleap.cobol.Cobol85Parser.InspectByContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface ReplacingAllLeading extends CobolDivisionElement {
 
@@ -25,8 +25,8 @@ public interface ReplacingAllLeading extends CobolDivisionElement {
 
 	By getBy();
 
-	Call getPatternDataItemCall();
+	ValueStmt getPatternDataItemValueStmt();
 
-	void setPatternDataItemCall(Call patternDataItemCall);
+	void setPatternDataItemValueStmt(ValueStmt patternDataItemValueStmt);
 
 }

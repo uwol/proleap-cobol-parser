@@ -20,6 +20,7 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.set.SetTo;
 import io.proleap.cobol.asg.metamodel.procedure.set.To;
 import io.proleap.cobol.asg.metamodel.procedure.set.Value;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class SetToImpl extends CobolDivisionElementImpl implements SetTo {
 
@@ -70,8 +71,8 @@ public class SetToImpl extends CobolDivisionElementImpl implements SetTo {
 				type = Value.Type.CALL;
 
 				// call
-				final Call valueCall = createCall(ctx.identifier(), ctx.literal());
-				result.setValueCall(valueCall);
+				final ValueStmt valueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+				result.setValueStmt(valueStmt);
 			}
 
 			result.setType(type);

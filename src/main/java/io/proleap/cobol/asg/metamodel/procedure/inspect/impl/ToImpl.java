@@ -10,14 +10,14 @@ package io.proleap.cobol.asg.metamodel.procedure.inspect.impl;
 
 import io.proleap.cobol.Cobol85Parser.InspectToContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.To;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ToImpl extends InspectPhraseImpl implements To {
 
 	protected final InspectToContext ctx;
 
-	protected Call to;
+	protected ValueStmt toValueStmt;
 
 	public ToImpl(final ProgramUnit programUnit, final InspectToContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class ToImpl extends InspectPhraseImpl implements To {
 	}
 
 	@Override
-	public Call getToCall() {
-		return to;
+	public ValueStmt getToValueStmt() {
+		return toValueStmt;
 	}
 
 	@Override
-	public void setToCall(final Call to) {
-		this.to = to;
+	public void setToValueStmt(final ValueStmt toValueStmt) {
+		this.toValueStmt = toValueStmt;
 	}
 
 }

@@ -10,17 +10,17 @@ package io.proleap.cobol.asg.metamodel.procedure.cancel.impl;
 
 import io.proleap.cobol.Cobol85Parser.CancelCallContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.cancel.CancelCall;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class CancelCallImpl extends CobolDivisionElementImpl implements CancelCall {
-
-	protected Call call;
 
 	protected CancelCallContext ctx;
 
 	protected Type type;
+
+	protected ValueStmt valueStmt;
 
 	public CancelCallImpl(final ProgramUnit programUnit, final CancelCallContext ctx) {
 		super(programUnit, ctx);
@@ -29,23 +29,23 @@ public class CancelCallImpl extends CobolDivisionElementImpl implements CancelCa
 	}
 
 	@Override
-	public Call getCall() {
-		return call;
-	}
-
-	@Override
 	public Type getType() {
 		return type;
 	}
 
 	@Override
-	public void setCall(final Call call) {
-		this.call = call;
+	public ValueStmt getValueStmt() {
+		return valueStmt;
 	}
 
 	@Override
 	public void setType(final Type type) {
 		this.type = type;
+	}
+
+	@Override
+	public void setValueStmt(final ValueStmt valueStmt) {
+		this.valueStmt = valueStmt;
 	}
 
 }

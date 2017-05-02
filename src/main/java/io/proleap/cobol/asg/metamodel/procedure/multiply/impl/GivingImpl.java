@@ -20,6 +20,7 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.GivingOperand;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.GivingResult;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 
@@ -43,8 +44,8 @@ public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 			result = new GivingOperandImpl(programUnit, ctx);
 
 			// operand call
-			final Call operandCall = createCall(ctx.identifier(), ctx.literal());
-			result.setOperandCall(operandCall);
+			final ValueStmt operandValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setOperandValueStmt(operandValueStmt);
 
 			operand = result;
 			registerASGElement(result);

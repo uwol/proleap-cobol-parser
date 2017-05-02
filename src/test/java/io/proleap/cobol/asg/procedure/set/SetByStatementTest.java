@@ -20,6 +20,8 @@ import io.proleap.cobol.asg.metamodel.procedure.set.By;
 import io.proleap.cobol.asg.metamodel.procedure.set.SetBy;
 import io.proleap.cobol.asg.metamodel.procedure.set.SetStatement;
 import io.proleap.cobol.asg.metamodel.procedure.set.To;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class SetByStatementTest extends CobolTestSupport {
@@ -72,9 +74,11 @@ public class SetByStatementTest extends CobolTestSupport {
 						final By by = setBy.getBy();
 						assertNotNull(by);
 
-						final Call valueCall = by.getByCall();
-						assertNotNull(valueCall);
-						assertEquals(Call.CallType.UNDEFINED_CALL, valueCall.getCallType());
+						final ValueStmt valueValueStmt = by.getByValueStmt();
+						assertNotNull(valueValueStmt);
+
+						final CallValueStmt callValueStmt = (CallValueStmt) valueValueStmt;
+						assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 					}
 				}
 			}

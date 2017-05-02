@@ -227,6 +227,7 @@ import io.proleap.cobol.asg.metamodel.procedure.write.WriteStatement;
 import io.proleap.cobol.asg.metamodel.procedure.write.impl.WriteStatementImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.util.TagUtils;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 
@@ -348,8 +349,8 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new CallStatementImpl(programUnit, this, ctx);
 
 			// called program
-			final Call programCall = createCall(ctx.literal(), ctx.identifier());
-			result.setProgramCall(programCall);
+			final ValueStmt programValueStmt = createValueStmt(ctx.literal(), ctx.identifier());
+			result.setProgramValueStmt(programValueStmt);
 
 			// using call by reference
 			for (final CallByReferenceStatementContext callByReferenceStatementContext : ctx
@@ -542,8 +543,8 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result.setCommunicationDescriptionCall(cdNameCall);
 
 			// key
-			final Call keyCall = createCall(ctx.identifier(), ctx.literal());
-			result.setKeyCall(keyCall);
+			final ValueStmt keyValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setKeyValueStmt(keyValueStmt);
 
 			registerStatement(result);
 		}
@@ -592,8 +593,8 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new DivideStatementImpl(programUnit, this, ctx);
 
 			// divisor
-			final Call divisorCall = createCall(ctx.identifier(), ctx.literal());
-			result.setDivisorCall(divisorCall);
+			final ValueStmt divisorValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setDivisorValueStmt(divisorValueStmt);
 
 			// giving
 			final DivideStatement.Type type;
@@ -668,8 +669,8 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result.setCommunicationDescriptionCall(cdNameCall);
 
 			// key
-			final Call keyCall = createCall(ctx.identifier(), ctx.literal());
-			result.setKeyCall(keyCall);
+			final ValueStmt keyValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setKeyValueStmt(keyValueStmt);
 
 			registerStatement(result);
 		}
@@ -685,8 +686,8 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new EntryStatementImpl(programUnit, this, ctx);
 
 			// entry
-			final Call entryCall = createCall(ctx.literal());
-			result.setEntryCall(entryCall);
+			final ValueStmt entryValueStmt = createValueStmt(ctx.literal());
+			result.setEntryValueStmt(entryValueStmt);
 
 			// using
 			for (final IdentifierContext identifierContext : ctx.identifier()) {
@@ -1063,8 +1064,8 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new MultiplyStatementImpl(programUnit, this, ctx);
 
 			// operand
-			final Call operandCall = createCall(ctx.identifier(), ctx.literal());
-			result.setOperandCall(operandCall);
+			final ValueStmt operandValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setOperandValueStmt(operandValueStmt);
 
 			// type
 			final MultiplyStatement.Type type;
@@ -1562,8 +1563,8 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new StopStatementImpl(programUnit, this, ctx);
 
 			if (ctx.literal() != null) {
-				final Call displayCall = createCall(ctx.literal());
-				result.setDisplayCall(displayCall);
+				final ValueStmt displayValueStmt = createValueStmt(ctx.literal());
+				result.setDisplayValueStmt(displayValueStmt);
 			}
 
 			// type

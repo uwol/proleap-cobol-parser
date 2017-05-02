@@ -49,12 +49,12 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 	}
 
 	@Override
-	public Double getValue() {
-		final Double result;
+	public Object getValue() {
+		final Object result;
 
 		switch (type) {
 		case INTEGER:
-			result = integerValue.doubleValue();
+			result = integerValue;
 			break;
 		case DOUBLE:
 		default:

@@ -11,17 +11,17 @@ package io.proleap.cobol.asg.metamodel.procedure.stop.impl;
 import io.proleap.cobol.Cobol85Parser.StopStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.stop.StopStatement;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class StopStatementImpl extends StatementImpl implements StopStatement {
 
 	protected final StopStatementContext ctx;
 
-	protected Call displayCall;
+	protected ValueStmt displayValueStmt;
 
 	protected final StatementType statementType = StatementTypeEnum.STOP;
 
@@ -34,8 +34,8 @@ public class StopStatementImpl extends StatementImpl implements StopStatement {
 	}
 
 	@Override
-	public Call getDisplayCall() {
-		return displayCall;
+	public ValueStmt getDisplayValueStmt() {
+		return displayValueStmt;
 	}
 
 	@Override
@@ -49,8 +49,8 @@ public class StopStatementImpl extends StatementImpl implements StopStatement {
 	}
 
 	@Override
-	public void setDisplayCall(final Call displayCall) {
-		this.displayCall = displayCall;
+	public void setDisplayValueStmt(final ValueStmt displayValueStmt) {
+		this.displayValueStmt = displayValueStmt;
 	}
 
 	@Override

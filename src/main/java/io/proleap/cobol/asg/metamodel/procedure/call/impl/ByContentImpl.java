@@ -10,17 +10,17 @@ package io.proleap.cobol.asg.metamodel.procedure.call.impl;
 
 import io.proleap.cobol.Cobol85Parser.CallByContentContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByContent;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ByContentImpl extends CobolDivisionElementImpl implements ByContent {
-
-	protected Call call;
 
 	protected final CallByContentContext ctx;
 
 	protected Type type;
+
+	protected ValueStmt valueStmt;
 
 	public ByContentImpl(final ProgramUnit programUnit, final CallByContentContext ctx) {
 		super(programUnit, ctx);
@@ -29,23 +29,23 @@ public class ByContentImpl extends CobolDivisionElementImpl implements ByContent
 	}
 
 	@Override
-	public Call getCall() {
-		return call;
-	}
-
-	@Override
 	public Type getType() {
 		return type;
 	}
 
 	@Override
-	public void setCall(final Call call) {
-		this.call = call;
+	public ValueStmt getValueStmt() {
+		return valueStmt;
 	}
 
 	@Override
 	public void setType(final Type type) {
 		this.type = type;
+	}
+
+	@Override
+	public void setValueStmt(final ValueStmt valueStmt) {
+		this.valueStmt = valueStmt;
 	}
 
 }

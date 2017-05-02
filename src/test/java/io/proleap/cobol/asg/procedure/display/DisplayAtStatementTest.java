@@ -18,6 +18,8 @@ import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.asg.metamodel.procedure.display.Operand;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class DisplayAtStatementTest extends CobolTestSupport {
@@ -49,22 +51,26 @@ public class DisplayAtStatementTest extends CobolTestSupport {
 
 			{
 				final Operand operand = displayStatement.getOperands().get(0);
-				assertNotNull(operand.getOperandCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, operand.getOperandCall().getCallType());
+				assertNotNull(operand.getOperandValueStmt());
+
+				final CallValueStmt operandCallValueStmt = (CallValueStmt) operand.getOperandValueStmt();
+				assertEquals(Call.CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
 			}
 
 			{
 				final Operand operand = displayStatement.getOperands().get(1);
-				assertNotNull(operand.getOperandCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, operand.getOperandCall().getCallType());
+				assertNotNull(operand.getOperandValueStmt());
+				assertEquals("'2'", operand.getOperandValueStmt().getValue());
 			}
 
 			{
 				assertNotNull(displayStatement.getAt());
 
-				final Call atCall = displayStatement.getAt().getAtCall();
-				assertNotNull(atCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, atCall.getCallType());
+				final ValueStmt atValueStmt = displayStatement.getAt().getAtValueStmt();
+				assertNotNull(atValueStmt);
+
+				final CallValueStmt atCallValueStmt = (CallValueStmt) atValueStmt;
+				assertEquals(Call.CallType.UNDEFINED_CALL, atCallValueStmt.getCall().getCallType());
 			}
 		}
 	}

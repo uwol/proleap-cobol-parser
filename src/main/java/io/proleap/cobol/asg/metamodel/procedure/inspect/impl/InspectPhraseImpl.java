@@ -21,6 +21,7 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfter;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.By;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.For;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public abstract class InspectPhraseImpl extends CobolDivisionElementImpl {
 
@@ -48,8 +49,8 @@ public abstract class InspectPhraseImpl extends CobolDivisionElementImpl {
 			result.setType(type);
 
 			// data item
-			final Call dataItemCall = createCall(ctx.identifier(), ctx.literal());
-			result.setDataItemCall(dataItemCall);
+			final ValueStmt dataItemValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setDataItemValueStmt(dataItemValueStmt);
 
 			registerASGElement(result);
 		}
@@ -63,9 +64,9 @@ public abstract class InspectPhraseImpl extends CobolDivisionElementImpl {
 		if (result == null) {
 			result = new ByImpl(programUnit, ctx);
 
-			// by call
-			final Call byCall = createCall(ctx.identifier(), ctx.literal());
-			result.setByCall(byCall);
+			// by
+			final ValueStmt byValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setByValueStmt(byValueStmt);
 
 			registerASGElement(result);
 		}

@@ -9,7 +9,7 @@
 package io.proleap.cobol.asg.metamodel.procedure.cancel;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface CancelCall extends CobolDivisionElement {
 
@@ -17,11 +17,11 @@ public interface CancelCall extends CobolDivisionElement {
 		BY_FUNCTION, BY_TITLE
 	}
 
-	Call getCall();
-
 	Type getType();
 
-	void setCall(Call call);
+	ValueStmt getValueStmt();
 
 	void setType(Type type);
+
+	void setValueStmt(ValueStmt valueStmt);
 }

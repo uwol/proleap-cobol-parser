@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.impl;
 
 import io.proleap.cobol.Cobol85Parser.AssignClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.AssignClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class AssignClauseImpl extends CobolDivisionElementImpl implements AssignClause {
 
 	protected final AssignClauseContext ctx;
 
-	protected Call toCall;
+	protected ValueStmt toValueStmt;
 
 	protected Type type;
 
@@ -29,8 +29,8 @@ public class AssignClauseImpl extends CobolDivisionElementImpl implements Assign
 	}
 
 	@Override
-	public Call getToCall() {
-		return toCall;
+	public ValueStmt getToValueStmt() {
+		return toValueStmt;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class AssignClauseImpl extends CobolDivisionElementImpl implements Assign
 	}
 
 	@Override
-	public void setToCall(final Call toCall) {
-		this.toCall = toCall;
+	public void setToValueStmt(final ValueStmt toValueStmt) {
+		this.toValueStmt = toValueStmt;
 	}
 
 	@Override

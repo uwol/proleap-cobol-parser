@@ -9,12 +9,12 @@
 package io.proleap.cobol.asg.metamodel.procedure.receive;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface Before extends CobolDivisionElement {
 
-	Call getTimeCall();
+	ValueStmt getTimeValueStmt();
 
-	void setTimeCall(Call timeCall);
+	void setTimeValueStmt(ValueStmt timeValueStmt);
 
 }

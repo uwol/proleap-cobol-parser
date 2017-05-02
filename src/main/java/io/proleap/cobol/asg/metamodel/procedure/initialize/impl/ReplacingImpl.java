@@ -17,10 +17,10 @@ import org.apache.logging.log4j.Logger;
 import io.proleap.cobol.Cobol85Parser.InitializeReplacingByContext;
 import io.proleap.cobol.Cobol85Parser.InitializeReplacingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.By;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.Replacing;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ReplacingImpl extends CobolDivisionElementImpl implements Replacing {
 
@@ -69,18 +69,9 @@ public class ReplacingImpl extends CobolDivisionElementImpl implements Replacing
 
 			result.setType(type);
 
-			// value call
-			final Call valueCall;
-
-			if (ctx.identifier() != null) {
-				valueCall = createCall(ctx.identifier());
-			} else if (ctx.literal() != null) {
-				valueCall = createCall(ctx.literal());
-			} else {
-				valueCall = null;
-			}
-
-			result.setValueCall(valueCall);
+			// value
+			final ValueStmt valueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setValueStmt(valueStmt);
 
 			bys.add(result);
 			registerASGElement(result);

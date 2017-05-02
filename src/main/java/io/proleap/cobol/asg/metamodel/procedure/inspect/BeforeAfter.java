@@ -9,7 +9,7 @@
 package io.proleap.cobol.asg.metamodel.procedure.inspect;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface BeforeAfter extends CobolDivisionElement {
 
@@ -17,11 +17,11 @@ public interface BeforeAfter extends CobolDivisionElement {
 		AFTER, BEFORE
 	}
 
-	Call getDataItemCall();
+	ValueStmt getDataItemValueStmt();
 
 	Type getType();
 
-	void setDataItemCall(Call dataItemCall);
+	void setDataItemValueStmt(ValueStmt dataItemValueStmt);
 
 	void setType(Type type);
 }

@@ -10,13 +10,13 @@ package io.proleap.cobol.asg.metamodel.procedure.display.impl;
 
 import io.proleap.cobol.Cobol85Parser.DisplayAtContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.display.At;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class AtImpl extends CobolDivisionElementImpl implements At {
 
-	protected Call atCall;
+	protected ValueStmt atValueStmt;
 
 	protected DisplayAtContext ctx;
 
@@ -27,13 +27,13 @@ public class AtImpl extends CobolDivisionElementImpl implements At {
 	}
 
 	@Override
-	public Call getAtCall() {
-		return atCall;
+	public ValueStmt getAtValueStmt() {
+		return atValueStmt;
 	}
 
 	@Override
-	public void setAtCall(final Call atCall) {
-		this.atCall = atCall;
+	public void setAtValueStmt(final ValueStmt atValueStmt) {
+		this.atValueStmt = atValueStmt;
 	}
 
 }

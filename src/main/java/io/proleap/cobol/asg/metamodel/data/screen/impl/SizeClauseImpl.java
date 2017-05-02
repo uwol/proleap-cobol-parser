@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.data.screen.impl;
 
 import io.proleap.cobol.Cobol85Parser.ScreenDescriptionSizeClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.screen.SizeClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class SizeClauseImpl extends CobolDivisionElementImpl implements SizeClause {
 
 	protected ScreenDescriptionSizeClauseContext ctx;
 
-	protected Call sizeCall;
+	protected ValueStmt sizeValueStmt;
 
 	public SizeClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionSizeClauseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class SizeClauseImpl extends CobolDivisionElementImpl implements SizeClau
 	}
 
 	@Override
-	public Call getSizeCall() {
-		return sizeCall;
+	public ValueStmt getSizeValueStmt() {
+		return sizeValueStmt;
 	}
 
 	@Override
-	public void setSizeCall(final Call sizeCall) {
-		this.sizeCall = sizeCall;
+	public void setSizeValueStmt(final ValueStmt sizeValueStmt) {
+		this.sizeValueStmt = sizeValueStmt;
 	}
 
 }

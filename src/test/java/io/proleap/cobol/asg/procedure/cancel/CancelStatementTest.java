@@ -17,6 +17,7 @@ import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.cancel.CancelCall;
 import io.proleap.cobol.asg.metamodel.procedure.cancel.CancelStatement;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class CancelStatementTest extends CobolTestSupport {
@@ -45,12 +46,14 @@ public class CancelStatementTest extends CobolTestSupport {
 
 			{
 				final CancelCall cancelCall = cancelStatement.getCancelCalls().get(0);
-				assertEquals(Call.CallType.UNDEFINED_CALL, cancelCall.getCall().getCallType());
+				final CallValueStmt callValueStmt = (CallValueStmt) cancelCall.getValueStmt();
+
+				assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 			}
 
 			{
 				final CancelCall cancelCall = cancelStatement.getCancelCalls().get(1);
-				assertEquals(Call.CallType.UNDEFINED_CALL, cancelCall.getCall().getCallType());
+				assertEquals("'123'", cancelCall.getValueStmt().getValue());
 			}
 		}
 
@@ -60,8 +63,10 @@ public class CancelStatementTest extends CobolTestSupport {
 
 			{
 				final CancelCall cancelCall = cancelStatement.getCancelCalls().get(0);
+				final CallValueStmt callValueStmt = (CallValueStmt) cancelCall.getValueStmt();
+
 				assertEquals(CancelCall.Type.BY_FUNCTION, cancelCall.getType());
-				assertEquals(Call.CallType.UNDEFINED_CALL, cancelCall.getCall().getCallType());
+				assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 			}
 		}
 	}

@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.data.screen;
 
 import io.proleap.cobol.Cobol85Parser.ScreenDescriptionToClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface FromClause extends CobolDivisionElement {
 
 	To addTo(ScreenDescriptionToClauseContext ctx);
 
-	Call getFromCall();
+	ValueStmt getFromValueStmt();
 
 	To getTo();
 
-	void setFromCall(Call fromCall);
+	void setFromValueStmt(ValueStmt fromValueStmt);
 }

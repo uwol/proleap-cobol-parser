@@ -24,6 +24,7 @@ import io.proleap.cobol.asg.metamodel.procedure.divide.Into;
 import io.proleap.cobol.asg.metamodel.procedure.divide.IntoByGiving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.IntoGiving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.Remainder;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class DivideStatementTest extends CobolTestSupport {
@@ -51,13 +52,20 @@ public class DivideStatementTest extends CobolTestSupport {
 			assertNotNull(divideStatement);
 			assertEquals(StatementTypeEnum.DIVIDE, divideStatement.getStatementType());
 			assertEquals(DivideStatement.Type.INTO, divideStatement.getType());
-			assertNotNull(divideStatement.getDivisorCall());
+
+			{
+				assertNotNull(divideStatement.getDivisorValueStmt());
+				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getDivisorValueStmt();
+				assertEquals(Call.CallType.UNDEFINED_CALL, divisorCallValueStmt.getCall().getCallType());
+			}
 
 			{
 				final Into into = divideStatement.getInto();
 				assertNotNull(into);
-				assertNotNull(into.getIntoCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, into.getIntoCall().getCallType());
+				assertNotNull(into.getIntoValueStmt());
+
+				final CallValueStmt intoCallValueStmt = (CallValueStmt) into.getIntoValueStmt();
+				assertEquals(Call.CallType.UNDEFINED_CALL, intoCallValueStmt.getCall().getCallType());
 
 				assertNotNull(into.getGivings());
 				assertEquals(1, into.getGivings().getGivings().size());
@@ -83,7 +91,11 @@ public class DivideStatementTest extends CobolTestSupport {
 			assertEquals(StatementTypeEnum.DIVIDE, divideStatement.getStatementType());
 
 			assertEquals(DivideStatement.Type.INTO_GIVING, divideStatement.getType());
-			assertNotNull(divideStatement.getDivisorCall());
+			{
+				assertNotNull(divideStatement.getDivisorValueStmt());
+				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getDivisorValueStmt();
+				assertEquals(Call.CallType.UNDEFINED_CALL, divisorCallValueStmt.getCall().getCallType());
+			}
 
 			{
 				final IntoGiving intoGiving = divideStatement.getIntoGiving();
@@ -116,13 +128,20 @@ public class DivideStatementTest extends CobolTestSupport {
 			assertNotNull(divideStatement);
 			assertEquals(StatementTypeEnum.DIVIDE, divideStatement.getStatementType());
 			assertEquals(DivideStatement.Type.INTO_BY_GIVING, divideStatement.getType());
-			assertNotNull(divideStatement.getDivisorCall());
+
+			{
+				assertNotNull(divideStatement.getDivisorValueStmt());
+				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getDivisorValueStmt();
+				assertEquals(Call.CallType.UNDEFINED_CALL, divisorCallValueStmt.getCall().getCallType());
+			}
 
 			{
 				final IntoByGiving intoByGiving = divideStatement.getIntoByGiving();
 				assertNotNull(intoByGiving);
-				assertNotNull(intoByGiving.getIntoCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, intoByGiving.getIntoCall().getCallType());
+				assertNotNull(intoByGiving.getIntoValueStmt());
+
+				final CallValueStmt intoByGivingCallValueStmt = (CallValueStmt) intoByGiving.getIntoValueStmt();
+				assertEquals(Call.CallType.UNDEFINED_CALL, intoByGivingCallValueStmt.getCall().getCallType());
 
 				assertNotNull(intoByGiving.getGivings());
 				assertEquals(1, intoByGiving.getGivings().getGivings().size());

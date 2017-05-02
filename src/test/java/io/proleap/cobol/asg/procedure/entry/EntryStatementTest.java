@@ -43,8 +43,8 @@ public class EntryStatementTest extends CobolTestSupport {
 			final EntryStatement entryStatement = (EntryStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(entryStatement);
 			assertEquals(StatementTypeEnum.ENTRY, entryStatement.getStatementType());
-			assertNotNull(entryStatement.getEntryCall());
-			assertEquals(Call.CallType.UNDEFINED_CALL, entryStatement.getEntryCall().getCallType());
+			assertNotNull(entryStatement.getEntryValueStmt());
+			assertEquals("'SOMEPROG'", entryStatement.getEntryValueStmt().getValue());
 			assertEquals(2, entryStatement.getUsingCalls().size());
 
 			{

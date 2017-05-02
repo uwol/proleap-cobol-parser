@@ -10,9 +10,9 @@ package io.proleap.cobol.asg.metamodel.procedure.set.impl;
 
 import io.proleap.cobol.Cobol85Parser.SetToValueContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.set.Value;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ValueImpl extends CobolDivisionElementImpl implements Value {
 
@@ -20,7 +20,7 @@ public class ValueImpl extends CobolDivisionElementImpl implements Value {
 
 	protected Type type;
 
-	protected Call valueCall;
+	protected ValueStmt valueStmt;
 
 	public ValueImpl(final ProgramUnit programUnit, final SetToValueContext ctx) {
 		super(programUnit, ctx);
@@ -34,8 +34,8 @@ public class ValueImpl extends CobolDivisionElementImpl implements Value {
 	}
 
 	@Override
-	public Call getValueCall() {
-		return valueCall;
+	public ValueStmt getValueStmt() {
+		return valueStmt;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class ValueImpl extends CobolDivisionElementImpl implements Value {
 	}
 
 	@Override
-	public void setValueCall(final Call valueCall) {
-		this.valueCall = valueCall;
+	public void setValueStmt(final ValueStmt valueStmt) {
+		this.valueStmt = valueStmt;
 	}
 
 }

@@ -9,12 +9,12 @@
 package io.proleap.cobol.asg.metamodel.procedure.multiply;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface GivingOperand extends CobolDivisionElement {
 
-	Call getOperandCall();
+	ValueStmt getOperandValueStmt();
 
-	void setOperandCall(Call operandCall);
+	void setOperandValueStmt(ValueStmt operandValueStmt);
 
 }

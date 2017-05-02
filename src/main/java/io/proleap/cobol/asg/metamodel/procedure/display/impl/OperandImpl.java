@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.procedure.display.impl;
 
 import io.proleap.cobol.Cobol85Parser.DisplayOperandContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.display.Operand;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class OperandImpl extends CobolDivisionElementImpl implements Operand {
 
 	protected DisplayOperandContext ctx;
 
-	protected Call operandCall;
+	protected ValueStmt operandValueStmt;
 
 	public OperandImpl(final ProgramUnit programUnit, final DisplayOperandContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class OperandImpl extends CobolDivisionElementImpl implements Operand {
 	}
 
 	@Override
-	public Call getOperandCall() {
-		return operandCall;
+	public ValueStmt getOperandValueStmt() {
+		return operandValueStmt;
 	}
 
 	@Override
-	public void setOperandCall(final Call operandCall) {
-		this.operandCall = operandCall;
+	public void setOperandValueStmt(final ValueStmt operandValueStmt) {
+		this.operandValueStmt = operandValueStmt;
 	}
 
 }

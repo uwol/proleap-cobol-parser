@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.procedure.subtract.impl;
 
 import io.proleap.cobol.Cobol85Parser.SubtractSubtrahendContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Subtrahend;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class SubtrahendImpl extends CobolDivisionElementImpl implements Subtrahend {
 
 	protected final SubtractSubtrahendContext ctx;
 
-	protected Call subtrahendCall;
+	protected ValueStmt subtrahendValueStmt;
 
 	public SubtrahendImpl(final ProgramUnit programUnit, final SubtractSubtrahendContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class SubtrahendImpl extends CobolDivisionElementImpl implements Subtrahe
 	}
 
 	@Override
-	public Call getSubtrahendCall() {
-		return subtrahendCall;
+	public ValueStmt getSubtrahendValueStmt() {
+		return subtrahendValueStmt;
 	}
 
 	@Override
-	public void setSubtrahendCall(final Call subtrahendCall) {
-		this.subtrahendCall = subtrahendCall;
+	public void setSubtrahendValueStmt(final ValueStmt subtrahendValueStmt) {
+		this.subtrahendValueStmt = subtrahendValueStmt;
 	}
 
 }

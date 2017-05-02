@@ -12,14 +12,14 @@ import io.proleap.cobol.Cobol85Parser.ScreenDescriptionPromptClauseContext;
 import io.proleap.cobol.Cobol85Parser.ScreenDescriptionPromptOccursClauseContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.screen.Occurs;
 import io.proleap.cobol.asg.metamodel.data.screen.PromptClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class PromptClauseImpl extends CobolDivisionElementImpl implements PromptClause {
 
-	protected Call characterCall;
+	protected ValueStmt characterValueStmt;
 
 	protected ScreenDescriptionPromptClauseContext ctx;
 
@@ -49,8 +49,8 @@ public class PromptClauseImpl extends CobolDivisionElementImpl implements Prompt
 	}
 
 	@Override
-	public Call getCharacterCall() {
-		return characterCall;
+	public ValueStmt getCharacterValueStmt() {
+		return characterValueStmt;
 	}
 
 	@Override
@@ -59,8 +59,8 @@ public class PromptClauseImpl extends CobolDivisionElementImpl implements Prompt
 	}
 
 	@Override
-	public void setCharacterCall(final Call characterCall) {
-		this.characterCall = characterCall;
+	public void setCharacterValueStmt(final ValueStmt characterValueStmt) {
+		this.characterValueStmt = characterValueStmt;
 	}
 
 }

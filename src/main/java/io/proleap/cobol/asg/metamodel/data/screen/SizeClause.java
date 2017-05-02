@@ -9,12 +9,12 @@
 package io.proleap.cobol.asg.metamodel.data.screen;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface SizeClause extends CobolDivisionElement {
 
-	Call getSizeCall();
+	ValueStmt getSizeValueStmt();
 
-	void setSizeCall(Call sizeCall);
+	void setSizeValueStmt(ValueStmt sizeValueStmt);
 
 }

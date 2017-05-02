@@ -9,12 +9,12 @@
 package io.proleap.cobol.asg.metamodel.procedure.string;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface For extends CobolDivisionElement {
 
-	Call getForCall();
+	ValueStmt getForValueStmt();
 
-	void setForCall(Call forCall);
+	void setForValueStmt(ValueStmt forValueStmt);
 
 }

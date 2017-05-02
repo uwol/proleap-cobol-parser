@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.environment.specialnames;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.AlphabetLiteralsContext;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface AlphabetClauseAlphanumeric extends AlphabetClause {
 
@@ -19,13 +19,13 @@ public interface AlphabetClauseAlphanumeric extends AlphabetClause {
 		ASCII, EBCDIC, NATIVE, STANDARD_1, STANDARD_2
 	}
 
-	void addCharacterSetCall(Call characterSetValueStmt);
+	void addCharacterSetValueStmt(ValueStmt characterSetValueStmt);
 
-	void addCharacterSetCalls(AlphabetLiteralsContext ctx);
+	void addCharacterSetValueStmts(AlphabetLiteralsContext ctx);
 
 	AlphabetClauseAlphanumericType getAlphabetClauseType();
 
-	List<Call> getCharacterSetCalls();
+	List<ValueStmt> getCharacterSetValueStmts();
 
 	void setAlphabetClauseAlphanumericType(AlphabetClauseAlphanumericType alphabetClauseAlphanumericType);
 }

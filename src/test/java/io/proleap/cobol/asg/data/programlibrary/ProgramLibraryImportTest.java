@@ -72,10 +72,8 @@ public class ProgramLibraryImportTest extends CobolTestSupport {
 
 				final ImportAttribute importAttribute = importAttributes.get(0);
 				assertEquals(Type.BY_TITLE, importAttribute.getType());
-				assertEquals(new Double(123), importAttribute.getFunctionLiteral().getNumericLiteral().getValue(),
-						EPSILON);
-				assertEquals(new Double(234), importAttribute.getParameterLiteral().getNumericLiteral().getValue(),
-						EPSILON);
+				assertEquals(123, importAttribute.getFunctionLiteral().getNumericLiteral().getValue());
+				assertEquals(234, importAttribute.getParameterLiteral().getNumericLiteral().getValue());
 				assertEquals("'SOMETITLE'", importAttribute.getTitleLiteral().getNonNumericLiteral());
 			}
 
@@ -85,8 +83,7 @@ public class ProgramLibraryImportTest extends CobolTestSupport {
 				assertEquals(1, importEntryProcedures.size());
 
 				final ImportEntryProcedure importEntryProcedure = importEntryProcedures.get(0);
-				assertEquals(new Double(123),
-						importEntryProcedure.getForClause().getForLiteral().getNumericLiteral().getValue(), EPSILON);
+				assertEquals(123, importEntryProcedure.getForClause().getForLiteral().getNumericLiteral().getValue());
 
 				assertNotNull(importEntryProcedure.getUsingClause());
 				assertEquals(2, importEntryProcedure.getUsingClause().getUsingValueStmts().size());

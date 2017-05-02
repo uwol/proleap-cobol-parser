@@ -16,6 +16,7 @@ import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.close.CloseFile;
@@ -27,6 +28,7 @@ import io.proleap.cobol.asg.metamodel.procedure.close.Using;
 import io.proleap.cobol.asg.metamodel.procedure.close.UsingAssociatedData;
 import io.proleap.cobol.asg.metamodel.procedure.close.UsingAssociatedDataLength;
 import io.proleap.cobol.asg.metamodel.procedure.close.UsingCloseDisposition;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class CloseStatementTest extends CobolTestSupport {
@@ -118,7 +120,8 @@ public class CloseStatementTest extends CobolTestSupport {
 
 					{
 						final UsingAssociatedData usingAssociatedData = using.getUsingAssociatedData();
-						assertNotNull(usingAssociatedData.getDataCall());
+						assertNotNull(usingAssociatedData.getDataValueStmt());
+						assertEquals(4, usingAssociatedData.getDataValueStmt().getValue());
 					}
 				}
 			}
@@ -141,7 +144,11 @@ public class CloseStatementTest extends CobolTestSupport {
 					{
 						final UsingAssociatedDataLength usingAssociatedDataLength = using
 								.getUsingAssociatedDataLength();
-						assertNotNull(usingAssociatedDataLength.getDataLengthCall());
+						assertNotNull(usingAssociatedDataLength.getDataLengthValueStmt());
+
+						final CallValueStmt dataLengthCallValueStmt = (CallValueStmt) usingAssociatedDataLength
+								.getDataLengthValueStmt();
+						assertEquals(CallType.UNDEFINED_CALL, dataLengthCallValueStmt.getCall().getCallType());
 					}
 				}
 			}

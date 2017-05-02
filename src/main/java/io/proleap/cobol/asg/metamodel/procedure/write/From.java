@@ -9,12 +9,12 @@
 package io.proleap.cobol.asg.metamodel.procedure.write;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface From extends CobolDivisionElement {
 
-	Call getFromCall();
+	ValueStmt getFromValueStmt();
 
-	void setFromCall(Call fromCall);
+	void setFromValueStmt(ValueStmt fromValueStmt);
 
 }

@@ -143,8 +143,8 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 			result = new AssignClauseImpl(programUnit, ctx);
 
 			// to call
-			final Call toCall = createCall(ctx.assignmentName(), ctx.literal());
-			result.setToCall(toCall);
+			final ValueStmt toValueStmt = createValueStmt(ctx.assignmentName(), ctx.literal());
+			result.setToValueStmt(toValueStmt);
 
 			// type
 			final AssignClause.Type type;

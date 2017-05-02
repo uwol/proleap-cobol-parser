@@ -15,9 +15,9 @@ import io.proleap.cobol.Cobol85Parser.InspectAllLeadingContext;
 import io.proleap.cobol.Cobol85Parser.InspectAllLeadingsContext;
 import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.AllLeading;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.AllLeadings;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class AllLeadingsImpl extends InspectPhraseImpl implements AllLeadings {
 
@@ -41,8 +41,8 @@ public class AllLeadingsImpl extends InspectPhraseImpl implements AllLeadings {
 			result = new AllLeadingImpl(programUnit, ctx);
 
 			// pattern
-			final Call patterndDataItemCall = createCall(ctx.identifier(), ctx.literal());
-			result.setPatternDataItemCall(patterndDataItemCall);
+			final ValueStmt patterndDataItemValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setPatternDataItemValueStmt(patterndDataItemValueStmt);
 
 			// before / after
 			for (final InspectBeforeAfterContext inspectBeforeAfterContext : ctx.inspectBeforeAfter()) {

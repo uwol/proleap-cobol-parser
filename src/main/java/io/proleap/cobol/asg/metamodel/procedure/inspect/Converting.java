@@ -13,7 +13,7 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
 import io.proleap.cobol.Cobol85Parser.InspectToContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface Converting extends CobolDivisionElement {
 
@@ -23,10 +23,10 @@ public interface Converting extends CobolDivisionElement {
 
 	List<BeforeAfter> getBeforeAfters();
 
-	Call getFromCall();
+	ValueStmt getFromValueStmt();
 
 	To getTo();
 
-	void setFromCall(Call fromCall);
+	void setFromValueStmt(ValueStmt fromValueStmt);
 
 }

@@ -14,9 +14,9 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.InspectAllLeadingContext;
 import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.AllLeading;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfter;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class AllLeadingImpl extends InspectPhraseImpl implements AllLeading {
 
@@ -24,7 +24,7 @@ public class AllLeadingImpl extends InspectPhraseImpl implements AllLeading {
 
 	protected final InspectAllLeadingContext ctx;
 
-	protected Call patternDataItemCall;
+	protected ValueStmt patternDataItemValueStmt;
 
 	public AllLeadingImpl(final ProgramUnit programUnit, final InspectAllLeadingContext ctx) {
 		super(programUnit, ctx);
@@ -50,13 +50,13 @@ public class AllLeadingImpl extends InspectPhraseImpl implements AllLeading {
 	}
 
 	@Override
-	public Call getPatternDataItemCall() {
-		return patternDataItemCall;
+	public ValueStmt getPatternDataItemValueStmt() {
+		return patternDataItemValueStmt;
 	}
 
 	@Override
-	public void setPatternDataItemCall(final Call patternDataItemCall) {
-		this.patternDataItemCall = patternDataItemCall;
+	public void setPatternDataItemValueStmt(final ValueStmt patternDataItemValueStmt) {
+		this.patternDataItemValueStmt = patternDataItemValueStmt;
 	}
 
 }

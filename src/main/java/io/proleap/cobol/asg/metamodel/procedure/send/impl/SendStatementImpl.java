@@ -22,6 +22,7 @@ import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.send.Async;
 import io.proleap.cobol.asg.metamodel.procedure.send.SendStatement;
 import io.proleap.cobol.asg.metamodel.procedure.send.Sync;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class SendStatementImpl extends StatementImpl implements SendStatement {
 
@@ -83,9 +84,9 @@ public class SendStatementImpl extends StatementImpl implements SendStatement {
 		if (result == null) {
 			result = new SyncImpl(programUnit, ctx);
 
-			// receiving program call
-			final Call receivingProgramCall = createCall(ctx.identifier(), ctx.literal());
-			result.setReceivingProgramCall(receivingProgramCall);
+			// receiving program
+			final ValueStmt receivingProgramValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setReceivingProgramValueStmt(receivingProgramValueStmt);
 
 			// from
 			if (ctx.sendFromPhrase() != null) {

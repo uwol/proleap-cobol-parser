@@ -9,12 +9,12 @@
 package io.proleap.cobol.asg.metamodel.procedure.subtract;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface Subtrahend extends CobolDivisionElement {
 
-	Call getSubtrahendCall();
+	ValueStmt getSubtrahendValueStmt();
 
-	void setSubtrahendCall(Call subtrahendCall);
+	void setSubtrahendValueStmt(ValueStmt subtrahendValueStmt);
 
 }

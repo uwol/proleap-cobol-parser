@@ -10,9 +10,9 @@ package io.proleap.cobol.asg.metamodel.procedure.initialize.impl;
 
 import io.proleap.cobol.Cobol85Parser.InitializeReplacingByContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.By;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ByImpl extends CobolDivisionElementImpl implements By {
 
@@ -20,7 +20,7 @@ public class ByImpl extends CobolDivisionElementImpl implements By {
 
 	protected Type type;
 
-	protected Call valueCall;
+	protected ValueStmt valueStmt;
 
 	public ByImpl(final ProgramUnit programUnit, final InitializeReplacingByContext ctx) {
 		super(programUnit, ctx);
@@ -34,8 +34,8 @@ public class ByImpl extends CobolDivisionElementImpl implements By {
 	}
 
 	@Override
-	public Call getValueCall() {
-		return valueCall;
+	public ValueStmt getValueStmt() {
+		return valueStmt;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class ByImpl extends CobolDivisionElementImpl implements By {
 	}
 
 	@Override
-	public void setValueCall(final Call valueCall) {
-		this.valueCall = valueCall;
+	public void setValueStmt(final ValueStmt valueStmt) {
+		this.valueStmt = valueStmt;
 	}
 
 }

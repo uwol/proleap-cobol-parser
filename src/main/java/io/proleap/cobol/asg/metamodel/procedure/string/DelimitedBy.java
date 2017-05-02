@@ -9,7 +9,7 @@
 package io.proleap.cobol.asg.metamodel.procedure.string;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface DelimitedBy extends CobolDivisionElement {
 
@@ -17,11 +17,11 @@ public interface DelimitedBy extends CobolDivisionElement {
 		CHARACTERS, SIZE
 	}
 
-	Call getCharactersCall();
+	ValueStmt getCharactersValueStmt();
 
 	Type getType();
 
-	void setCharactersCall(Call charactersCall);
+	void setCharactersValueStmt(ValueStmt charactersValueStmt);
 
 	void setType(Type type);
 }

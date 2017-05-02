@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.divide;
 
 import io.proleap.cobol.Cobol85Parser.DivideGivingPhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface IntoByGiving extends CobolDivisionElement {
 
@@ -18,8 +18,8 @@ public interface IntoByGiving extends CobolDivisionElement {
 
 	Givings getGivings();
 
-	Call getIntoCall();
+	ValueStmt getIntoValueStmt();
 
-	void setIntoCall(Call intoCall);
+	void setIntoValueStmt(ValueStmt intoValueStmt);
 
 }

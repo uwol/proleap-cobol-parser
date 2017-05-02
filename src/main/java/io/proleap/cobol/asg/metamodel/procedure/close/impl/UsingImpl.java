@@ -13,12 +13,12 @@ import io.proleap.cobol.Cobol85Parser.ClosePortFileIOUsingAssociatedDataLengthCo
 import io.proleap.cobol.Cobol85Parser.ClosePortFileIOUsingCloseDispositionContext;
 import io.proleap.cobol.Cobol85Parser.ClosePortFileIOUsingContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.close.Using;
 import io.proleap.cobol.asg.metamodel.procedure.close.UsingAssociatedData;
 import io.proleap.cobol.asg.metamodel.procedure.close.UsingAssociatedDataLength;
 import io.proleap.cobol.asg.metamodel.procedure.close.UsingCloseDisposition;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class UsingImpl extends CobolDivisionElementImpl implements Using {
 
@@ -45,9 +45,9 @@ public class UsingImpl extends CobolDivisionElementImpl implements Using {
 		if (result == null) {
 			result = new UsingAssociatedDataImpl(programUnit, ctx);
 
-			// data call
-			final Call dataCall = createCall(ctx.identifier(), ctx.integerLiteral());
-			result.setDataCall(dataCall);
+			// data
+			final ValueStmt dataValueStmt = createValueStmt(ctx.identifier(), ctx.integerLiteral());
+			result.setDataValueStmt(dataValueStmt);
 
 			usingAssociatedData = result;
 			registerASGElement(result);
@@ -65,8 +65,8 @@ public class UsingImpl extends CobolDivisionElementImpl implements Using {
 			result = new UsingAssociatedDataLengthImpl(programUnit, ctx);
 
 			// data call
-			final Call dataLengthCall = createCall(ctx.identifier(), ctx.integerLiteral());
-			result.setDataLengthCall(dataLengthCall);
+			final ValueStmt dataLengthValueStmt = createValueStmt(ctx.identifier(), ctx.integerLiteral());
+			result.setDataLengthValueStmt(dataLengthValueStmt);
 
 			usingAssociatedDataLength = result;
 			registerASGElement(result);

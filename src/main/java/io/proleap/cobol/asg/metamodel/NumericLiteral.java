@@ -25,7 +25,7 @@ public interface NumericLiteral extends CobolDivisionElement {
 
 	Type getType();
 
-	Double getValue();
+	Object getValue();
 
 	void setDoubleValue(Double doubleValue);
 

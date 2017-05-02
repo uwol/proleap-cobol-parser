@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.procedure.write.impl;
 
 import io.proleap.cobol.Cobol85Parser.WriteAdvancingLinesContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.write.AdvancingLines;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class AdvancingLinesImpl extends CobolDivisionElementImpl implements AdvancingLines {
 
 	protected WriteAdvancingLinesContext ctx;
 
-	protected Call linesCall;
+	protected ValueStmt linesValueStmt;
 
 	public AdvancingLinesImpl(final ProgramUnit programUnit, final WriteAdvancingLinesContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class AdvancingLinesImpl extends CobolDivisionElementImpl implements Adva
 	}
 
 	@Override
-	public Call getLinesCall() {
-		return linesCall;
+	public ValueStmt getLinesValueStmt() {
+		return linesValueStmt;
 	}
 
 	@Override
-	public void setLinesCall(final Call linesCall) {
-		this.linesCall = linesCall;
+	public void setLinesValueStmt(final ValueStmt linesValueStmt) {
+		this.linesValueStmt = linesValueStmt;
 	}
 
 }

@@ -25,6 +25,8 @@ import io.proleap.cobol.asg.metamodel.procedure.multiply.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.GivingOperand;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.GivingResult;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.MultiplyStatement;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class MultiplyGivingStatementTest extends CobolTestSupport {
@@ -55,9 +57,11 @@ public class MultiplyGivingStatementTest extends CobolTestSupport {
 			assertEquals(MultiplyStatement.Type.GIVING, multiplyStatement.getType());
 
 			{
-				final Call operandCall = multiplyStatement.getOperandCall();
-				assertNotNull(operandCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, operandCall.getCallType());
+				final ValueStmt operandValueStmt = multiplyStatement.getOperandValueStmt();
+				assertNotNull(operandValueStmt);
+
+				final CallValueStmt operandCallValueStmt = (CallValueStmt) operandValueStmt;
+				assertEquals(Call.CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
 			}
 
 			{
@@ -68,9 +72,11 @@ public class MultiplyGivingStatementTest extends CobolTestSupport {
 					final GivingOperand operand = giving.getOperand();
 					assertNotNull(operand);
 
-					final Call operandCall = operand.getOperandCall();
-					assertNotNull(operandCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, operandCall.getCallType());
+					final ValueStmt operandValueStmt = operand.getOperandValueStmt();
+					assertNotNull(operandValueStmt);
+
+					final CallValueStmt operandCallValueStmt = (CallValueStmt) operandValueStmt;
+					assertEquals(Call.CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
 				}
 
 				assertEquals(2, giving.getResults().size());

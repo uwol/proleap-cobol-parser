@@ -61,8 +61,7 @@ public class ProgramLibraryExportTest extends CobolTestSupport {
 				assertNotNull(exportEntryProcedure);
 				assertNotNull(exportEntryProcedure.getProgramCall());
 				assertNotNull(exportEntryProcedure.getForClause());
-				assertEquals(new Double(123),
-						exportEntryProcedure.getForClause().getForLiteral().getNumericLiteral().getValue(), EPSILON);
+				assertEquals(123, exportEntryProcedure.getForClause().getForLiteral().getNumericLiteral().getValue());
 			}
 		}
 	}

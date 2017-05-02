@@ -13,7 +13,7 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.StringDelimitedByPhraseContext;
 import io.proleap.cobol.Cobol85Parser.StringForPhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface Sendings extends CobolDivisionElement {
 
@@ -25,13 +25,13 @@ public interface Sendings extends CobolDivisionElement {
 
 	For addFor(StringForPhraseContext ctx);
 
-	void addSendingCall(Call sendingCall);
+	void addSendingValueStmt(ValueStmt sendingValueStmt);
 
 	DelimitedBy getDelimitedBy();
 
 	For getFor();
 
-	List<Call> getSendingCalls();
+	List<ValueStmt> getSendingValueStmts();
 
 	Type getType();
 

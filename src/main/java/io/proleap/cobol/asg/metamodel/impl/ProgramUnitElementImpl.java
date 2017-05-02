@@ -266,27 +266,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected Call createCall(final IntegerLiteralContext ctx) {
-		Call result = (Call) getASGElement(ctx);
-
-		if (result == null) {
-			result = createUndefinedCall(ctx);
-		}
-
-		return result;
-	}
-
 	protected Call createCall(final LibraryNameContext ctx) {
-		Call result = (Call) getASGElement(ctx);
-
-		if (result == null) {
-			result = createUndefinedCall(ctx);
-		}
-
-		return result;
-	}
-
-	protected Call createCall(final LiteralContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -331,10 +311,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 			if (ctx instanceof IdentifierContext) {
 				result = createCall((IdentifierContext) ctx);
-			} else if (ctx instanceof LiteralContext) {
-				result = createCall((LiteralContext) ctx);
-			} else if (ctx instanceof IntegerLiteralContext) {
-				result = createCall((IntegerLiteralContext) ctx);
 			} else if (ctx instanceof MnemonicNameContext) {
 				result = createCall((MnemonicNameContext) ctx);
 			} else if (ctx instanceof ProcedureNameContext) {
@@ -505,6 +481,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected CallValueStmt createCallValueStmt(final IndexNameContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
+	protected CallValueStmt createCallValueStmt(final LibraryNameContext ctx) {
 		final Call delegatedCall = createCall(ctx);
 		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
 		return result;
@@ -871,6 +853,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCallValueStmt((FileNameContext) ctx);
 			} else if (ctx instanceof IndexNameContext) {
 				result = createCallValueStmt((IndexNameContext) ctx);
+			} else if (ctx instanceof LibraryNameContext) {
+				result = createCallValueStmt((LibraryNameContext) ctx);
 			} else if (ctx instanceof LocalNameContext) {
 				result = createCallValueStmt((LocalNameContext) ctx);
 			} else if (ctx instanceof ProgramNameContext) {

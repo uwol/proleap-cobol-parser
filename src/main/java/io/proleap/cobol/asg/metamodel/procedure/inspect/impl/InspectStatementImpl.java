@@ -28,6 +28,7 @@ import io.proleap.cobol.asg.metamodel.procedure.inspect.InspectStatement;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.Replacing;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.Tallying;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.TallyingReplacing;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class InspectStatementImpl extends StatementImpl implements InspectStatement {
 
@@ -61,8 +62,8 @@ public class InspectStatementImpl extends StatementImpl implements InspectStatem
 			result = new ConvertingImpl(programUnit, ctx);
 
 			// from
-			final Call fromCall = createCall(ctx.identifier(), ctx.literal());
-			result.setFromCall(fromCall);
+			final ValueStmt fromValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setFromValueStmt(fromValueStmt);
 
 			// to
 			result.addTo(ctx.inspectTo());

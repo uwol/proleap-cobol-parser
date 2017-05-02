@@ -9,12 +9,12 @@
 package io.proleap.cobol.asg.metamodel.procedure.unstring;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface DelimitedBy extends CobolDivisionElement {
 
-	Call getDelimitedByCall();
+	ValueStmt getDelimitedByValueStmt();
 
-	void setDelimitedByCall(Call delimitedByCall);
+	void setDelimitedByValueStmt(ValueStmt delimitedByValueStmt);
 
 }

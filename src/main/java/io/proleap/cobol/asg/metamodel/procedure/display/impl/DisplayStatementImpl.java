@@ -27,6 +27,7 @@ import io.proleap.cobol.asg.metamodel.procedure.display.Operand;
 import io.proleap.cobol.asg.metamodel.procedure.display.Upon;
 import io.proleap.cobol.asg.metamodel.procedure.display.With;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class DisplayStatementImpl extends StatementImpl implements DisplayStatement {
 
@@ -55,8 +56,8 @@ public class DisplayStatementImpl extends StatementImpl implements DisplayStatem
 		if (result == null) {
 			result = new AtImpl(programUnit, ctx);
 
-			final Call atCall = createCall(ctx.identifier(), ctx.literal());
-			result.setAtCall(atCall);
+			final ValueStmt atValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setAtValueStmt(atValueStmt);
 
 			at = result;
 			registerASGElement(result);
@@ -72,8 +73,8 @@ public class DisplayStatementImpl extends StatementImpl implements DisplayStatem
 		if (result == null) {
 			result = new OperandImpl(programUnit, ctx);
 
-			final Call operandCall = createCall(ctx.identifier(), ctx.literal());
-			result.setOperandCall(operandCall);
+			final ValueStmt operandValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setOperandValueStmt(operandValueStmt);
 
 			operands.add(result);
 			registerASGElement(result);
@@ -89,7 +90,7 @@ public class DisplayStatementImpl extends StatementImpl implements DisplayStatem
 		if (result == null) {
 			result = new UponImpl(programUnit, ctx);
 
-			final Call uponCall = createCall(ctx.mnemonicName(), ctx.mnemonicName());
+			final Call uponCall = createCall(ctx.mnemonicName());
 			result.setUponCall(uponCall);
 
 			upon = result;

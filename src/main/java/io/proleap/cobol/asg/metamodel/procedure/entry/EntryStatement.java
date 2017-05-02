@@ -12,6 +12,7 @@ import java.util.List;
 
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 /**
  * Establishes an alternate entry point into a COBOL program.
@@ -20,10 +21,10 @@ public interface EntryStatement extends Statement {
 
 	void addUsingCall(Call usingCall);
 
-	Call getEntryCall();
+	ValueStmt getEntryValueStmt();
 
 	List<Call> getUsingCalls();
 
-	void setEntryCall(Call entryCall);
+	void setEntryValueStmt(ValueStmt entryValueStmt);
 
 }

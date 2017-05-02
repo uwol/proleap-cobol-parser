@@ -15,6 +15,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByContent;
@@ -24,6 +25,7 @@ import io.proleap.cobol.asg.metamodel.procedure.call.CallByReferenceStatement;
 import io.proleap.cobol.asg.metamodel.procedure.call.CallByValueStatement;
 import io.proleap.cobol.asg.metamodel.procedure.call.CallStatement;
 import io.proleap.cobol.asg.metamodel.procedure.call.Giving;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -50,6 +52,14 @@ public class CallStatementTest extends CobolTestSupport {
 		{
 			final CallStatement callStatement = (CallStatement) procedureDivision.getStatements().get(0);
 			assertEquals(StatementTypeEnum.CALL, callStatement.getStatementType());
+
+			{
+				final ValueStmt programValueStmt = callStatement.getProgramValueStmt();
+				assertNotNull(programValueStmt);
+
+				final CallValueStmt programCallValueStmt = (CallValueStmt) programValueStmt;
+				assertEquals(CallType.UNDEFINED_CALL, programCallValueStmt.getCall().getCallType());
+			}
 
 			{
 				final Giving giving = callStatement.getGiving();
@@ -81,12 +91,12 @@ public class CallStatementTest extends CobolTestSupport {
 
 				{
 					final ValueStmt valueStmt = callByValueStatement.getValueStmts().get(0);
-					assertEquals(1, (Double) valueStmt.getValue(), EPSILON);
+					assertEquals(1, valueStmt.getValue());
 				}
 
 				{
 					final ValueStmt valueStmt = callByValueStatement.getValueStmts().get(1);
-					assertEquals(2, (Double) valueStmt.getValue(), EPSILON);
+					assertEquals(2, valueStmt.getValue());
 				}
 
 				{
@@ -102,19 +112,27 @@ public class CallStatementTest extends CobolTestSupport {
 				{
 					final ByContent byContent = callByContentStatement.getByContents().get(0);
 					assertEquals(ByContent.Type.ADDRESS_OF, byContent.getType());
-					assertEquals(Call.CallType.UNDEFINED_CALL, byContent.getCall().getCallType());
+					assertNotNull(byContent.getValueStmt());
+
+					final CallValueStmt callValueStmt = (CallValueStmt) byContent.getValueStmt();
+					assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 				}
 
 				{
 					final ByContent byContent = callByContentStatement.getByContents().get(1);
 					assertEquals(ByContent.Type.LENGTH_OF, byContent.getType());
-					assertEquals(Call.CallType.UNDEFINED_CALL, byContent.getCall().getCallType());
+					assertNotNull(byContent.getValueStmt());
+
+					final CallValueStmt callValueStmt = (CallValueStmt) byContent.getValueStmt();
+					assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 				}
 
 				{
 					final ByContent byContent = callByContentStatement.getByContents().get(2);
 					assertNull(byContent.getType());
-					assertEquals(Call.CallType.UNDEFINED_CALL, byContent.getCall().getCallType());
+					assertNotNull(byContent.getValueStmt());
+
+					assertEquals(4, byContent.getValueStmt().getValue());
 				}
 			}
 		}

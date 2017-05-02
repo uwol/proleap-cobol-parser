@@ -26,6 +26,7 @@ import io.proleap.cobol.asg.metamodel.procedure.write.AtEndOfPage;
 import io.proleap.cobol.asg.metamodel.procedure.write.From;
 import io.proleap.cobol.asg.metamodel.procedure.write.NotAtEndOfPage;
 import io.proleap.cobol.asg.metamodel.procedure.write.WriteStatement;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class WriteStatementImpl extends StatementImpl implements WriteStatement {
 
@@ -121,8 +122,8 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 			result = new FromImpl(programUnit, ctx);
 
 			// from
-			final Call fromCall = createCall(ctx.identifier(), ctx.literal());
-			result.setFromCall(fromCall);
+			final ValueStmt fromValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setFromValueStmt(fromValueStmt);
 
 			from = result;
 			registerASGElement(result);

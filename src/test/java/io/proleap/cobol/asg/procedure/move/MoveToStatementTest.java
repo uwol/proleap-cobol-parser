@@ -24,6 +24,8 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveTo;
 import io.proleap.cobol.asg.metamodel.procedure.move.SendingArea;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class MoveToStatementTest extends CobolTestSupport {
@@ -90,9 +92,9 @@ public class MoveToStatementTest extends CobolTestSupport {
 					assertNotNull(sendingArea);
 
 					{
-						final Call sendingAreaCall = sendingArea.getSendingAreaCall();
-						assertNotNull(sendingAreaCall);
-						assertEquals(Call.CallType.UNDEFINED_CALL, sendingAreaCall.getCallType());
+						final ValueStmt sendingAreaValueStmt = sendingArea.getSendingAreaValueStmt();
+						assertNotNull(sendingAreaValueStmt);
+						assertEquals("\"Test\"", sendingAreaValueStmt.getValue());
 					}
 				}
 
@@ -123,9 +125,9 @@ public class MoveToStatementTest extends CobolTestSupport {
 					assertNotNull(sendingArea);
 
 					{
-						final Call sendingAreaCall = sendingArea.getSendingAreaCall();
-						assertNotNull(sendingAreaCall);
-						assertEquals(Call.CallType.UNDEFINED_CALL, sendingAreaCall.getCallType());
+						final ValueStmt sendingAreaValueStmt = sendingArea.getSendingAreaValueStmt();
+						assertNotNull(sendingAreaValueStmt);
+						assertEquals(1, sendingAreaValueStmt.getValue());
 					}
 				}
 
@@ -156,9 +158,12 @@ public class MoveToStatementTest extends CobolTestSupport {
 					assertNotNull(sendingArea);
 
 					{
-						final Call sendingAreaCall = sendingArea.getSendingAreaCall();
-						assertNotNull(sendingAreaCall);
-						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, sendingAreaCall.getCallType());
+						final ValueStmt sendingAreaValueStmt = sendingArea.getSendingAreaValueStmt();
+						assertNotNull(sendingAreaValueStmt);
+
+						final CallValueStmt sendingAreaCallValueStmt = (CallValueStmt) sendingAreaValueStmt;
+						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL,
+								sendingAreaCallValueStmt.getCall().getCallType());
 					}
 				}
 

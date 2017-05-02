@@ -23,6 +23,7 @@ import io.proleap.cobol.asg.metamodel.data.communication.CommunicationSection;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.disable.DisableStatement;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class DisableStatementTest extends CobolTestSupport {
@@ -81,8 +82,11 @@ public class DisableStatementTest extends CobolTestSupport {
 				assertEquals(communicationDescriptionEntry1,
 						communicationDescriptionEntryCall1.getCommunicationDescriptionEntry());
 
-				assertNotNull(disableStatement.getKeyCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, disableStatement.getKeyCall().getCallType());
+				{
+					assertNotNull(disableStatement.getKeyValueStmt());
+					final CallValueStmt keyCallValueStmt = (CallValueStmt) disableStatement.getKeyValueStmt();
+					assertEquals(Call.CallType.UNDEFINED_CALL, keyCallValueStmt.getCall().getCallType());
+				}
 			}
 		}
 
@@ -103,8 +107,11 @@ public class DisableStatementTest extends CobolTestSupport {
 				assertEquals(communicationDescriptionEntry2,
 						communicationDescriptionEntryCall2.getCommunicationDescriptionEntry());
 
-				assertNotNull(disableStatement.getKeyCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, disableStatement.getKeyCall().getCallType());
+				{
+					assertNotNull(disableStatement.getKeyValueStmt());
+					final CallValueStmt keyCallValueStmt = (CallValueStmt) disableStatement.getKeyValueStmt();
+					assertEquals(Call.CallType.UNDEFINED_CALL, keyCallValueStmt.getCall().getCallType());
+				}
 			}
 		}
 
@@ -125,8 +132,11 @@ public class DisableStatementTest extends CobolTestSupport {
 				assertEquals(communicationDescriptionEntry3,
 						communicationDescriptionEntryCall3.getCommunicationDescriptionEntry());
 
-				assertNotNull(disableStatement.getKeyCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, disableStatement.getKeyCall().getCallType());
+				{
+					assertNotNull(disableStatement.getKeyValueStmt());
+					final CallValueStmt keyCallValueStmt = (CallValueStmt) disableStatement.getKeyValueStmt();
+					assertEquals(Call.CallType.UNDEFINED_CALL, keyCallValueStmt.getCall().getCallType());
+				}
 			}
 		}
 	}

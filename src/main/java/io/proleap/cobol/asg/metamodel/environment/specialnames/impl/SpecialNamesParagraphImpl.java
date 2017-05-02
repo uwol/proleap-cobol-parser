@@ -46,6 +46,7 @@ import io.proleap.cobol.asg.metamodel.environment.specialnames.ReserveNetworkCla
 import io.proleap.cobol.asg.metamodel.environment.specialnames.SpecialNamesParagraph;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.SymbolicCharactersClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implements SpecialNamesParagraph {
 
@@ -115,13 +116,13 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			 * character set, collating sequence
 			 */
 			if (ctx.cobolWord() != null) {
-				final Call characterSetCall = createCall(ctx.cobolWord());
-				result.addCharacterSetCall(characterSetCall);
+				final ValueStmt characterSetValueStmt = createValueStmt(ctx.cobolWord());
+				result.addCharacterSetValueStmt(characterSetValueStmt);
 			} else if (!ctx.alphabetLiterals().isEmpty()) {
 				final List<AlphabetLiteralsContext> alphabetLiteralsContexts = ctx.alphabetLiterals();
 
 				for (final AlphabetLiteralsContext alphabetLiteralsContext : alphabetLiteralsContexts) {
-					result.addCharacterSetCalls(alphabetLiteralsContext);
+					result.addCharacterSetValueStmts(alphabetLiteralsContext);
 				}
 			}
 

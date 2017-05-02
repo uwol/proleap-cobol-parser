@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.procedure.receive.impl;
 
 import io.proleap.cobol.Cobol85Parser.ReceiveSizeContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.receive.Size;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class SizeImpl extends CobolDivisionElementImpl implements Size {
 
 	protected final ReceiveSizeContext ctx;
 
-	protected Call sizeCall;
+	protected ValueStmt sizeValueStmt;
 
 	public SizeImpl(final ProgramUnit programUnit, final ReceiveSizeContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class SizeImpl extends CobolDivisionElementImpl implements Size {
 	}
 
 	@Override
-	public Call getSizeCall() {
-		return sizeCall;
+	public ValueStmt getSizeValueStmt() {
+		return sizeValueStmt;
 	}
 
 	@Override
-	public void setSizeCall(final Call sizeCall) {
-		this.sizeCall = sizeCall;
+	public void setSizeValueStmt(final ValueStmt sizeValueStmt) {
+		this.sizeValueStmt = sizeValueStmt;
 	}
 
 }

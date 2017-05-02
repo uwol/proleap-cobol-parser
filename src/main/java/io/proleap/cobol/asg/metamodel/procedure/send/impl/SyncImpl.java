@@ -19,6 +19,7 @@ import io.proleap.cobol.asg.metamodel.procedure.send.Advancing;
 import io.proleap.cobol.asg.metamodel.procedure.send.From;
 import io.proleap.cobol.asg.metamodel.procedure.send.Sync;
 import io.proleap.cobol.asg.metamodel.procedure.send.With;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class SyncImpl extends CobolDivisionElementImpl implements Sync {
 
@@ -28,7 +29,7 @@ public class SyncImpl extends CobolDivisionElementImpl implements Sync {
 
 	protected From from;
 
-	protected Call receivingProgramCall;
+	protected ValueStmt receivingProgramValueStmt;
 
 	protected boolean replacing;
 
@@ -146,13 +147,8 @@ public class SyncImpl extends CobolDivisionElementImpl implements Sync {
 	}
 
 	@Override
-	public Call getReceivingProgramCall() {
-		return receivingProgramCall;
-	}
-
-	@Override
-	public boolean isReplacing() {
-		return replacing;
+	public ValueStmt getReceivingProgramValueStmt() {
+		return receivingProgramValueStmt;
 	}
 
 	@Override
@@ -161,8 +157,13 @@ public class SyncImpl extends CobolDivisionElementImpl implements Sync {
 	}
 
 	@Override
-	public void setReceivingProgramCall(final Call receivingProgramCall) {
-		this.receivingProgramCall = receivingProgramCall;
+	public boolean isReplacing() {
+		return replacing;
+	}
+
+	@Override
+	public void setReceivingProgramValueStmt(final ValueStmt receivingProgramValueStmt) {
+		this.receivingProgramValueStmt = receivingProgramValueStmt;
 	}
 
 	@Override

@@ -14,10 +14,10 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.CallByContentContext;
 import io.proleap.cobol.Cobol85Parser.CallByContentStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByContent;
 import io.proleap.cobol.asg.metamodel.procedure.call.CallByContentStatement;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class CallByContentStatementImpl extends CobolDivisionElementImpl implements CallByContentStatement {
 
@@ -39,8 +39,8 @@ public class CallByContentStatementImpl extends CobolDivisionElementImpl impleme
 			result = new ByContentImpl(programUnit, ctx);
 
 			// call and type
-			final Call call = createCall(ctx.literal(), ctx.identifier());
-			result.setCall(call);
+			final ValueStmt valueStmt = createValueStmt(ctx.literal(), ctx.identifier());
+			result.setValueStmt(valueStmt);
 
 			// type
 			final ByContent.Type type;

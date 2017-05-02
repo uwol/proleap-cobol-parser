@@ -15,11 +15,11 @@ import io.proleap.cobol.Cobol85Parser.StringDelimitedByPhraseContext;
 import io.proleap.cobol.Cobol85Parser.StringForPhraseContext;
 import io.proleap.cobol.Cobol85Parser.StringSendingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.string.DelimitedBy;
 import io.proleap.cobol.asg.metamodel.procedure.string.For;
 import io.proleap.cobol.asg.metamodel.procedure.string.Sendings;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 
@@ -27,9 +27,9 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 
 	protected DelimitedBy delimitedBy;
 
-	protected List<Call> sendingCalls = new ArrayList<Call>();
-
 	protected For sendingFor;
+
+	protected List<ValueStmt> sendingValueStmts = new ArrayList<ValueStmt>();
 
 	protected Type type;
 
@@ -52,8 +52,8 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 			if (ctx.SIZE() != null) {
 				type = DelimitedBy.Type.SIZE;
 			} else {
-				final Call charactersCall = createCall(ctx.identifier(), ctx.literal());
-				result.setCharactersCall(charactersCall);
+				final ValueStmt charactersValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+				result.setCharactersValueStmt(charactersValueStmt);
 				type = DelimitedBy.Type.CHARACTERS;
 			}
 
@@ -73,8 +73,8 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 		if (result == null) {
 			result = new ForImpl(programUnit, ctx);
 
-			final Call forCall = createCall(ctx.identifier(), ctx.literal());
-			result.setForCall(forCall);
+			final ValueStmt forValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setForValueStmt(forValueStmt);
 
 			sendingFor = result;
 			registerASGElement(result);
@@ -84,8 +84,8 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 	}
 
 	@Override
-	public void addSendingCall(final Call sendingCall) {
-		sendingCalls.add(sendingCall);
+	public void addSendingValueStmt(final ValueStmt sendingValueStmt) {
+		sendingValueStmts.add(sendingValueStmt);
 	}
 
 	@Override
@@ -99,8 +99,8 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 	}
 
 	@Override
-	public List<Call> getSendingCalls() {
-		return sendingCalls;
+	public List<ValueStmt> getSendingValueStmts() {
+		return sendingValueStmts;
 	}
 
 	@Override

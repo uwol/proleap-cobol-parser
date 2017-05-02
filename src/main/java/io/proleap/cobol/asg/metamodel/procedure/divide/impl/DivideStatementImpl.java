@@ -27,12 +27,13 @@ import io.proleap.cobol.asg.metamodel.procedure.divide.IntoByGiving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.IntoGiving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.Remainder;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class DivideStatementImpl extends StatementImpl implements DivideStatement {
 
 	protected final DivideStatementContext ctx;
 
-	protected Call divisorCall;
+	protected ValueStmt divisorValueStmt;
 
 	protected Into into;
 
@@ -63,9 +64,9 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 		if (result == null) {
 			result = new IntoImpl(programUnit, ctx);
 
-			// into call
-			final Call intoCall = createCall(ctx.identifier(), ctx.literal());
-			result.setIntoCall(intoCall);
+			// into
+			final ValueStmt intoValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setIntoValueStmt(intoValueStmt);
 
 			// givings
 			if (ctx.divideGivingPhrase() != null) {
@@ -86,9 +87,9 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 		if (result == null) {
 			result = new IntoByGivingImpl(programUnit, ctx);
 
-			// into call
-			final Call intoCall = createCall(ctx.identifier(), ctx.literal());
-			result.setIntoCall(intoCall);
+			// into
+			final ValueStmt intoValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setIntoValueStmt(intoValueStmt);
 
 			// giving
 			if (ctx.divideGivingPhrase() != null) {
@@ -139,8 +140,8 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	}
 
 	@Override
-	public Call getDivisorCall() {
-		return divisorCall;
+	public ValueStmt getDivisorValueStmt() {
+		return divisorValueStmt;
 	}
 
 	@Override
@@ -184,8 +185,8 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	}
 
 	@Override
-	public void setDivisorCall(final Call divisorCall) {
-		this.divisorCall = divisorCall;
+	public void setDivisorValueStmt(final ValueStmt divisorValueStmt) {
+		this.divisorValueStmt = divisorValueStmt;
 	}
 
 	@Override

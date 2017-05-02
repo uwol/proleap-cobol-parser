@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.procedure.unstring.impl;
 
 import io.proleap.cobol.Cobol85Parser.UnstringDelimitedByPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.DelimitedBy;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class DelimitedByImpl extends CobolDivisionElementImpl implements DelimitedBy {
 
 	protected final UnstringDelimitedByPhraseContext ctx;
 
-	protected Call delimitedByCall;
+	protected ValueStmt delimitedByValueStmt;
 
 	public DelimitedByImpl(final ProgramUnit programUnit, final UnstringDelimitedByPhraseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class DelimitedByImpl extends CobolDivisionElementImpl implements Delimit
 	}
 
 	@Override
-	public Call getDelimitedByCall() {
-		return delimitedByCall;
+	public ValueStmt getDelimitedByValueStmt() {
+		return delimitedByValueStmt;
 	}
 
 	@Override
-	public void setDelimitedByCall(final Call delimitedByCall) {
-		this.delimitedByCall = delimitedByCall;
+	public void setDelimitedByValueStmt(final ValueStmt delimitedByValueStmt) {
+		this.delimitedByValueStmt = delimitedByValueStmt;
 	}
 
 }

@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.procedure.string.impl;
 
 import io.proleap.cobol.Cobol85Parser.StringForPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.string.For;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ForImpl extends CobolDivisionElementImpl implements For {
 
 	protected final StringForPhraseContext ctx;
 
-	protected Call forCall;
+	protected ValueStmt forValueStmt;
 
 	public ForImpl(final ProgramUnit programUnit, final StringForPhraseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class ForImpl extends CobolDivisionElementImpl implements For {
 	}
 
 	@Override
-	public Call getForCall() {
-		return forCall;
+	public ValueStmt getForValueStmt() {
+		return forValueStmt;
 	}
 
 	@Override
-	public void setForCall(final Call forCall) {
-		this.forCall = forCall;
+	public void setForValueStmt(final ValueStmt forValueStmt) {
+		this.forValueStmt = forValueStmt;
 	}
 
 }

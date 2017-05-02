@@ -74,7 +74,7 @@ public class ArithmeticExpressionTest extends CobolTestSupport {
 							{
 								final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt
 										.getBasisValueStmt();
-								assertEquals(2, (Double) literalValueStmt.getValue(), EPSILON);
+								assertEquals(2, literalValueStmt.getValue());
 							}
 						}
 					}
@@ -94,7 +94,7 @@ public class ArithmeticExpressionTest extends CobolTestSupport {
 								{
 									final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt
 											.getBasisValueStmt();
-									assertEquals(2, (Double) literalValueStmt.getValue(), EPSILON);
+									assertEquals(2, literalValueStmt.getValue());
 								}
 							}
 						}

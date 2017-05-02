@@ -10,10 +10,10 @@ package io.proleap.cobol.asg.metamodel.procedure.multiply;
 
 import io.proleap.cobol.Cobol85Parser.MultiplyGivingContext;
 import io.proleap.cobol.Cobol85Parser.MultiplyRegularContext;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeError;
 import io.proleap.cobol.asg.metamodel.procedure.OnSizeError;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 /**
  * Multiplies numerics and stores the result
@@ -34,7 +34,7 @@ public interface MultiplyStatement extends Statement {
 
 	OnSizeError getOnSizeError();
 
-	Call getOperandCall();
+	ValueStmt getOperandValueStmt();
 
 	Regular getRegular();
 
@@ -44,7 +44,7 @@ public interface MultiplyStatement extends Statement {
 
 	void setOnSizeError(OnSizeError onSizeError);
 
-	void setOperandCall(Call operandCall);
+	void setOperandValueStmt(ValueStmt operandValueStmt);
 
 	void setType(Type type);
 

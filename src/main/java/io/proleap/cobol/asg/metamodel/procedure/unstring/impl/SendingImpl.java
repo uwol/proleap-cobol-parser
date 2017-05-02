@@ -20,6 +20,7 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.DelimitedBy;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.OrAll;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.Sending;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class SendingImpl extends CobolDivisionElementImpl implements Sending {
 
@@ -44,8 +45,8 @@ public class SendingImpl extends CobolDivisionElementImpl implements Sending {
 		if (result == null) {
 			result = new DelimitedByImpl(programUnit, ctx);
 
-			final Call delimitedByCall = createCall(ctx.identifier(), ctx.literal());
-			result.setDelimitedByCall(delimitedByCall);
+			final ValueStmt delimitedByValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setDelimitedByValueStmt(delimitedByValueStmt);
 
 			delimitedBy = result;
 			registerASGElement(result);
@@ -61,8 +62,8 @@ public class SendingImpl extends CobolDivisionElementImpl implements Sending {
 		if (result == null) {
 			result = new OrAllImpl(programUnit, ctx);
 
-			final Call orAllCall = createCall(ctx.identifier(), ctx.literal());
-			result.setOrAllCall(orAllCall);
+			final ValueStmt orAllValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setOrAllValueStmt(orAllValueStmt);
 
 			orAlls.add(result);
 			registerASGElement(result);

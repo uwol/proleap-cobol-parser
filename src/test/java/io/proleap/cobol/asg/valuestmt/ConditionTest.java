@@ -116,8 +116,7 @@ public class ConditionTest extends CobolTestSupport {
 
 													{
 														final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt;
-														assertEquals(1.0, (Double) literalValueStmt.getValue(),
-																EPSILON);
+														assertEquals(1, literalValueStmt.getValue());
 													}
 												}
 											}
@@ -148,7 +147,7 @@ public class ConditionTest extends CobolTestSupport {
 
 													{
 														final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt;
-														assertEquals(2, (Double) literalValueStmt.getValue(), EPSILON);
+														assertEquals(2, literalValueStmt.getValue());
 													}
 												}
 											}

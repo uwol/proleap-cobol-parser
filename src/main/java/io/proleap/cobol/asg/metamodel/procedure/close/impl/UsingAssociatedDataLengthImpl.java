@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.procedure.close.impl;
 
 import io.proleap.cobol.Cobol85Parser.ClosePortFileIOUsingAssociatedDataLengthContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.close.UsingAssociatedDataLength;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class UsingAssociatedDataLengthImpl extends CobolDivisionElementImpl implements UsingAssociatedDataLength {
 
 	protected ClosePortFileIOUsingAssociatedDataLengthContext ctx;
 
-	protected Call dataLengthCall;
+	protected ValueStmt dataLengthValueStmt;
 
 	public UsingAssociatedDataLengthImpl(final ProgramUnit programUnit,
 			final ClosePortFileIOUsingAssociatedDataLengthContext ctx) {
@@ -28,13 +28,13 @@ public class UsingAssociatedDataLengthImpl extends CobolDivisionElementImpl impl
 	}
 
 	@Override
-	public Call getDataLengthCall() {
-		return dataLengthCall;
+	public ValueStmt getDataLengthValueStmt() {
+		return dataLengthValueStmt;
 	}
 
 	@Override
-	public void setDataLengthCall(final Call dataLengthCall) {
-		this.dataLengthCall = dataLengthCall;
+	public void setDataLengthValueStmt(final ValueStmt dataLengthValueStmt) {
+		this.dataLengthValueStmt = dataLengthValueStmt;
 	}
 
 }

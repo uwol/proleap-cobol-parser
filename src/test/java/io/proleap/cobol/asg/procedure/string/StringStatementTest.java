@@ -25,6 +25,7 @@ import io.proleap.cobol.asg.metamodel.procedure.string.Into;
 import io.proleap.cobol.asg.metamodel.procedure.string.Sendings;
 import io.proleap.cobol.asg.metamodel.procedure.string.StringStatement;
 import io.proleap.cobol.asg.metamodel.procedure.string.WithPointer;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class StringStatementTest extends CobolTestSupport {
@@ -59,7 +60,7 @@ public class StringStatementTest extends CobolTestSupport {
 
 				final DelimitedBy delimitedBy = sendings.getDelimitedBy();
 				assertEquals(DelimitedBy.Type.CHARACTERS, delimitedBy.getType());
-				assertEquals(Call.CallType.UNDEFINED_CALL, delimitedBy.getCharactersCall().getCallType());
+				assertEquals("'1'", delimitedBy.getCharactersValueStmt().getValue());
 			}
 
 			{
@@ -67,7 +68,8 @@ public class StringStatementTest extends CobolTestSupport {
 				assertEquals(Sendings.Type.FOR, sendings.getType());
 
 				final For sendingFor = sendings.getFor();
-				assertEquals(Call.CallType.UNDEFINED_CALL, sendingFor.getForCall().getCallType());
+				final CallValueStmt forCallValueStmt = (CallValueStmt) sendingFor.getForValueStmt();
+				assertEquals(Call.CallType.UNDEFINED_CALL, forCallValueStmt.getCall().getCallType());
 			}
 
 			{

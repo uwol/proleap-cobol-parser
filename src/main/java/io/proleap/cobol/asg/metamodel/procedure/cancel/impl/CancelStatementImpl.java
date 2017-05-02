@@ -15,12 +15,12 @@ import io.proleap.cobol.Cobol85Parser.CancelCallContext;
 import io.proleap.cobol.Cobol85Parser.CancelStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.cancel.CancelCall;
 import io.proleap.cobol.asg.metamodel.procedure.cancel.CancelStatement;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class CancelStatementImpl extends StatementImpl implements CancelStatement {
 
@@ -44,8 +44,8 @@ public class CancelStatementImpl extends StatementImpl implements CancelStatemen
 			result = new CancelCallImpl(programUnit, ctx);
 
 			// call
-			final Call call = createCall(ctx.identifier(), ctx.literal(), ctx.libraryName());
-			result.setCall(call);
+			final ValueStmt valueStmt = createValueStmt(ctx.identifier(), ctx.literal(), ctx.libraryName());
+			result.setValueStmt(valueStmt);
 
 			// type
 			final CancelCall.Type type;

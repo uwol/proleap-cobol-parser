@@ -9,11 +9,11 @@
 package io.proleap.cobol.asg.metamodel.procedure.inspect;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface To extends CobolDivisionElement {
 
-	Call getToCall();
+	ValueStmt getToValueStmt();
 
-	void setToCall(Call to);
+	void setToValueStmt(ValueStmt to);
 }

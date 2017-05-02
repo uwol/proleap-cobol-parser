@@ -28,6 +28,7 @@ import io.proleap.cobol.asg.metamodel.procedure.string.Into;
 import io.proleap.cobol.asg.metamodel.procedure.string.Sendings;
 import io.proleap.cobol.asg.metamodel.procedure.string.StringStatement;
 import io.proleap.cobol.asg.metamodel.procedure.string.WithPointer;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class StringStatementImpl extends StatementImpl implements StringStatement {
 
@@ -76,10 +77,11 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 		if (result == null) {
 			result = new SendingsImpl(programUnit, ctx);
 
-			// sending calls
+			// sending
 			for (final StringSendingContext stringSendingContext : ctx.stringSending()) {
-				final Call sendingCall = createCall(stringSendingContext.tableCall(), stringSendingContext.literal());
-				result.addSendingCall(sendingCall);
+				final ValueStmt sendingValueStmt = createValueStmt(stringSendingContext.tableCall(),
+						stringSendingContext.literal());
+				result.addSendingValueStmt(sendingValueStmt);
 			}
 
 			// type

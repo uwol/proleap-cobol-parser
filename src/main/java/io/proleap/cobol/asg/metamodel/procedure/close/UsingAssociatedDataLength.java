@@ -9,11 +9,11 @@
 package io.proleap.cobol.asg.metamodel.procedure.close;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface UsingAssociatedDataLength extends CobolDivisionElement {
 
-	Call getDataLengthCall();
+	ValueStmt getDataLengthValueStmt();
 
-	void setDataLengthCall(Call dataLengthCall);
+	void setDataLengthValueStmt(ValueStmt dataLengthValueStmt);
 }

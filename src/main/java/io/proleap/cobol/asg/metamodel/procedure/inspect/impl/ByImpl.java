@@ -10,12 +10,12 @@ package io.proleap.cobol.asg.metamodel.procedure.inspect.impl;
 
 import io.proleap.cobol.Cobol85Parser.InspectByContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.By;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ByImpl extends InspectPhraseImpl implements By {
 
-	protected Call by;
+	protected ValueStmt byValueStmt;
 
 	protected final InspectByContext ctx;
 
@@ -26,13 +26,13 @@ public class ByImpl extends InspectPhraseImpl implements By {
 	}
 
 	@Override
-	public Call getByCall() {
-		return by;
+	public ValueStmt getByValueStmt() {
+		return byValueStmt;
 	}
 
 	@Override
-	public void setByCall(final Call by) {
-		this.by = by;
+	public void setByValueStmt(final ValueStmt byValueStmt) {
+		this.byValueStmt = byValueStmt;
 	}
 
 }

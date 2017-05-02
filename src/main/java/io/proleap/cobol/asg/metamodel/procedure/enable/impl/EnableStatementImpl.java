@@ -16,6 +16,7 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.enable.EnableStatement;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class EnableStatementImpl extends StatementImpl implements EnableStatement {
 
@@ -23,7 +24,7 @@ public class EnableStatementImpl extends StatementImpl implements EnableStatemen
 
 	protected final EnableStatementContext ctx;
 
-	protected Call keyCall;
+	protected ValueStmt keyValueStmt;
 
 	protected final StatementType statementType = StatementTypeEnum.ENABLE;
 
@@ -43,8 +44,8 @@ public class EnableStatementImpl extends StatementImpl implements EnableStatemen
 	}
 
 	@Override
-	public Call getKeyCall() {
-		return keyCall;
+	public ValueStmt getKeyValueStmt() {
+		return keyValueStmt;
 	}
 
 	@Override
@@ -68,8 +69,8 @@ public class EnableStatementImpl extends StatementImpl implements EnableStatemen
 	}
 
 	@Override
-	public void setKeyCall(final Call keyCall) {
-		this.keyCall = keyCall;
+	public void setKeyValueStmt(final ValueStmt keyValueStmt) {
+		this.keyValueStmt = keyValueStmt;
 	}
 
 	@Override

@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.procedure.multiply.impl;
 
 import io.proleap.cobol.Cobol85Parser.MultiplyGivingOperandContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.GivingOperand;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class GivingOperandImpl extends CobolDivisionElementImpl implements GivingOperand {
 
 	protected final MultiplyGivingOperandContext ctx;
 
-	protected Call operandCall;
+	protected ValueStmt operandValueStmt;
 
 	public GivingOperandImpl(final ProgramUnit programUnit, final MultiplyGivingOperandContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class GivingOperandImpl extends CobolDivisionElementImpl implements Givin
 	}
 
 	@Override
-	public Call getOperandCall() {
-		return operandCall;
+	public ValueStmt getOperandValueStmt() {
+		return operandValueStmt;
 	}
 
 	@Override
-	public void setOperandCall(final Call operandCall) {
-		this.operandCall = operandCall;
+	public void setOperandValueStmt(final ValueStmt operandValueStmt) {
+		this.operandValueStmt = operandValueStmt;
 	}
 
 }

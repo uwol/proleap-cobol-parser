@@ -15,12 +15,13 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.screen.FromClause;
 import io.proleap.cobol.asg.metamodel.data.screen.To;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class FromClauseImpl extends CobolDivisionElementImpl implements FromClause {
 
 	protected ScreenDescriptionFromClauseContext ctx;
 
-	protected Call fromCall;
+	protected ValueStmt fromValueStmt;
 
 	protected To to;
 
@@ -48,8 +49,8 @@ public class FromClauseImpl extends CobolDivisionElementImpl implements FromClau
 	}
 
 	@Override
-	public Call getFromCall() {
-		return fromCall;
+	public ValueStmt getFromValueStmt() {
+		return fromValueStmt;
 	}
 
 	@Override
@@ -58,8 +59,8 @@ public class FromClauseImpl extends CobolDivisionElementImpl implements FromClau
 	}
 
 	@Override
-	public void setFromCall(final Call fromCall) {
-		this.fromCall = fromCall;
+	public void setFromValueStmt(final ValueStmt fromValueStmt) {
+		this.fromValueStmt = fromValueStmt;
 	}
 
 }

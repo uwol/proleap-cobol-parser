@@ -20,6 +20,7 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.set.By;
 import io.proleap.cobol.asg.metamodel.procedure.set.SetBy;
 import io.proleap.cobol.asg.metamodel.procedure.set.To;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class SetByImpl extends CobolDivisionElementImpl implements SetBy {
 
@@ -44,8 +45,8 @@ public class SetByImpl extends CobolDivisionElementImpl implements SetBy {
 		if (result == null) {
 			result = new ByImpl(programUnit, ctx);
 
-			final Call byCall = createCall(ctx.identifier(), ctx.literal());
-			result.setByCall(byCall);
+			final ValueStmt byValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setByValueStmt(byValueStmt);
 
 			by = result;
 			registerASGElement(result);

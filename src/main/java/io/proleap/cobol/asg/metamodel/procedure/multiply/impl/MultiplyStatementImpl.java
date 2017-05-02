@@ -15,7 +15,6 @@ import io.proleap.cobol.Cobol85Parser.MultiplyRegularOperandContext;
 import io.proleap.cobol.Cobol85Parser.MultiplyStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeError;
 import io.proleap.cobol.asg.metamodel.procedure.OnSizeError;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
@@ -24,6 +23,7 @@ import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.MultiplyStatement;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.Regular;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class MultiplyStatementImpl extends StatementImpl implements MultiplyStatement {
 
@@ -35,7 +35,7 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 
 	protected OnSizeError onSizeError;
 
-	protected Call operandCall;
+	protected ValueStmt operandValueStmt;
 
 	protected Regular regular;
 
@@ -105,8 +105,8 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 	}
 
 	@Override
-	public Call getOperandCall() {
-		return operandCall;
+	public ValueStmt getOperandValueStmt() {
+		return operandValueStmt;
 	}
 
 	@Override
@@ -135,8 +135,8 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 	}
 
 	@Override
-	public void setOperandCall(final Call operandCall) {
-		this.operandCall = operandCall;
+	public void setOperandValueStmt(final ValueStmt operandValueStmt) {
+		this.operandValueStmt = operandValueStmt;
 	}
 
 	@Override

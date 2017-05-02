@@ -9,12 +9,12 @@
 package io.proleap.cobol.asg.metamodel.procedure.set;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface By extends CobolDivisionElement {
 
-	Call getByCall();
+	ValueStmt getByValueStmt();
 
-	void setByCall(Call byCall);
+	void setByValueStmt(ValueStmt byValueStmtl);
 
 }

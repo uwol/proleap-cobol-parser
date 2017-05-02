@@ -25,6 +25,7 @@ import io.proleap.cobol.asg.metamodel.procedure.receive.Size;
 import io.proleap.cobol.asg.metamodel.procedure.receive.Status;
 import io.proleap.cobol.asg.metamodel.procedure.receive.Thread;
 import io.proleap.cobol.asg.metamodel.procedure.receive.With;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ReceiveFromStatementImpl extends CobolDivisionElementImpl implements ReceiveFromStatement {
 
@@ -57,8 +58,8 @@ public class ReceiveFromStatementImpl extends CobolDivisionElementImpl implement
 		if (result == null) {
 			result = new BeforeImpl(programUnit, ctx);
 
-			final Call timeCall = createCall(ctx.identifier(), ctx.numericLiteral());
-			result.setTimeCall(timeCall);
+			final ValueStmt timeValueStmt = createValueStmt(ctx.identifier(), ctx.numericLiteral());
+			result.setTimeValueStmt(timeValueStmt);
 
 			before = result;
 			registerASGElement(result);
@@ -107,8 +108,8 @@ public class ReceiveFromStatementImpl extends CobolDivisionElementImpl implement
 		if (result == null) {
 			result = new SizeImpl(programUnit, ctx);
 
-			final Call sizeCall = createCall(ctx.numericLiteral(), ctx.identifier());
-			result.setSizeCall(sizeCall);
+			final ValueStmt sizeValueStmt = createValueStmt(ctx.numericLiteral(), ctx.identifier());
+			result.setSizeValueStmt(sizeValueStmt);
 
 			size = result;
 			registerASGElement(result);

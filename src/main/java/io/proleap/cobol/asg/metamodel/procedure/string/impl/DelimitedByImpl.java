@@ -10,13 +10,13 @@ package io.proleap.cobol.asg.metamodel.procedure.string.impl;
 
 import io.proleap.cobol.Cobol85Parser.StringDelimitedByPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.string.DelimitedBy;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class DelimitedByImpl extends CobolDivisionElementImpl implements DelimitedBy {
 
-	protected Call charactersCall;
+	protected ValueStmt charactersValueStmt;
 
 	protected final StringDelimitedByPhraseContext ctx;
 
@@ -29,8 +29,8 @@ public class DelimitedByImpl extends CobolDivisionElementImpl implements Delimit
 	}
 
 	@Override
-	public Call getCharactersCall() {
-		return charactersCall;
+	public ValueStmt getCharactersValueStmt() {
+		return charactersValueStmt;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class DelimitedByImpl extends CobolDivisionElementImpl implements Delimit
 	}
 
 	@Override
-	public void setCharactersCall(final Call charactersCall) {
-		this.charactersCall = charactersCall;
+	public void setCharactersValueStmt(final ValueStmt charactersValueStmt) {
+		this.charactersValueStmt = charactersValueStmt;
 	}
 
 	@Override

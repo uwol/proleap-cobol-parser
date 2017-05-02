@@ -17,6 +17,7 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.send.Advancing;
 import io.proleap.cobol.asg.metamodel.procedure.send.AdvancingLines;
 import io.proleap.cobol.asg.metamodel.procedure.send.AdvancingMnemonic;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class AdvancingImpl extends CobolDivisionElementImpl implements Advancing {
 
@@ -43,8 +44,8 @@ public class AdvancingImpl extends CobolDivisionElementImpl implements Advancing
 		if (result == null) {
 			result = new AdvancingLinesImpl(programUnit, ctx);
 
-			final Call linesCall = createCall(ctx.identifier(), ctx.literal());
-			result.setLinesCall(linesCall);
+			final ValueStmt linesValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setLinesValueStmt(linesValueStmt);
 
 			advancingLines = result;
 			registerASGElement(result);

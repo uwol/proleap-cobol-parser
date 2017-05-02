@@ -59,7 +59,7 @@ public class DataDescriptionValueNumericTest extends CobolTestSupport {
 				final Literal literal = literalFromValueStmt.getLiteral();
 				assertEquals(Literal.Type.NUMERIC, literal.getType());
 				assertEquals(NumericLiteral.Type.DOUBLE, literal.getNumericLiteral().getType());
-				assertEquals(23.4, literal.getNumericLiteral().getValue(), EPSILON);
+				assertEquals(23.4, literal.getNumericLiteral().getDoubleValue(), EPSILON);
 			}
 		}
 
@@ -79,7 +79,7 @@ public class DataDescriptionValueNumericTest extends CobolTestSupport {
 				final Literal literal = literalFromValueStmt.getLiteral();
 				assertEquals(Literal.Type.NUMERIC, literal.getType());
 				assertEquals(NumericLiteral.Type.INTEGER, literal.getNumericLiteral().getType());
-				assertEquals(42, literal.getNumericLiteral().getValue(), EPSILON);
+				assertEquals(42, literal.getNumericLiteral().getValue());
 			}
 		}
 	}

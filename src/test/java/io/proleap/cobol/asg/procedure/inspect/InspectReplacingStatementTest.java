@@ -13,7 +13,6 @@ import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfter;
@@ -74,8 +73,8 @@ public class InspectReplacingStatementTest extends CobolTestSupport {
 					{
 						final ReplacingAllLeading allLeading = allLeadings.getAllLeadings().get(0);
 
-						assertNotNull(allLeading.getPatternDataItemCall());
-						assertEquals(Call.CallType.UNDEFINED_CALL, allLeading.getPatternDataItemCall().getCallType());
+						assertNotNull(allLeading.getPatternDataItemValueStmt());
+						assertEquals("'B'", allLeading.getPatternDataItemValueStmt().getValue());
 						assertEquals(1, allLeading.getBeforeAfters().size());
 
 						{

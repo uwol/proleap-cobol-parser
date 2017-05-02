@@ -13,7 +13,6 @@ import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.stop.StopStatement;
@@ -51,8 +50,8 @@ public class StopStatementTest extends CobolTestSupport {
 			assertNotNull(stopStatement);
 			assertEquals(StatementTypeEnum.STOP, stopStatement.getStatementType());
 			assertEquals(StopStatement.Type.STOP_RUN_AND_DISPLAY, stopStatement.getType());
-			assertNotNull(stopStatement.getDisplayCall());
-			assertEquals(Call.CallType.UNDEFINED_CALL, stopStatement.getDisplayCall().getCallType());
+			assertNotNull(stopStatement.getDisplayValueStmt());
+			assertEquals("'someliteral'", stopStatement.getDisplayValueStmt().getValue());
 		}
 	}
 }

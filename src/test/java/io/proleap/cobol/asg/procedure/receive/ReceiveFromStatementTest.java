@@ -24,6 +24,8 @@ import io.proleap.cobol.asg.metamodel.procedure.receive.Size;
 import io.proleap.cobol.asg.metamodel.procedure.receive.Status;
 import io.proleap.cobol.asg.metamodel.procedure.receive.Thread;
 import io.proleap.cobol.asg.metamodel.procedure.receive.With;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class ReceiveFromStatementTest extends CobolTestSupport {
@@ -80,10 +82,11 @@ public class ReceiveFromStatementTest extends CobolTestSupport {
 				{
 					final io.proleap.cobol.asg.metamodel.procedure.receive.Before before = receiveFromStatement
 							.getBefore();
-					final Call timeCall = before.getTimeCall();
+					final ValueStmt timeValueStmt = before.getTimeValueStmt();
+					assertNotNull(timeValueStmt);
 
-					assertNotNull(timeCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, timeCall.getCallType());
+					final CallValueStmt timeCallValueStmt = (CallValueStmt) timeValueStmt;
+					assertEquals(Call.CallType.UNDEFINED_CALL, timeCallValueStmt.getCall().getCallType());
 				}
 
 				{
@@ -101,10 +104,12 @@ public class ReceiveFromStatementTest extends CobolTestSupport {
 
 				{
 					final Size size = receiveFromStatement.getSize();
-					final Call sizeCall = size.getSizeCall();
+					final ValueStmt sizeValueStmt = size.getSizeValueStmt();
 
-					assertNotNull(sizeCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, sizeCall.getCallType());
+					assertNotNull(sizeValueStmt);
+
+					final CallValueStmt sizeCallValueStmt = (CallValueStmt) sizeValueStmt;
+					assertEquals(Call.CallType.UNDEFINED_CALL, sizeCallValueStmt.getCall().getCallType());
 				}
 
 				{

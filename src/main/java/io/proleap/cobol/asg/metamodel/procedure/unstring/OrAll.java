@@ -9,12 +9,12 @@
 package io.proleap.cobol.asg.metamodel.procedure.unstring;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface OrAll extends CobolDivisionElement {
 
-	Call getOrAllCall();
+	ValueStmt getOrAllValueStmt();
 
-	void setOrAllCall(Call orAllCall);
+	void setOrAllValueStmt(ValueStmt orAllValueStmt);
 
 }

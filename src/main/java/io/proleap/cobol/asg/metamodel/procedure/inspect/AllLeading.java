@@ -12,7 +12,7 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface AllLeading extends CobolDivisionElement {
 
@@ -20,8 +20,8 @@ public interface AllLeading extends CobolDivisionElement {
 
 	List<BeforeAfter> getBeforeAfters();
 
-	Call getPatternDataItemCall();
+	ValueStmt getPatternDataItemValueStmt();
 
-	void setPatternDataItemCall(Call patternDataItemCall);
+	void setPatternDataItemValueStmt(ValueStmt patternDataItemValueStmt);
 
 }

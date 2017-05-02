@@ -9,12 +9,12 @@
 package io.proleap.cobol.asg.metamodel.data.screen;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface ForegroundColorClause extends CobolDivisionElement {
 
-	Call getColorCall();
+	ValueStmt getColorValueStmt();
 
-	void setColorCall(Call colorCall);
+	void setColorValueStmt(ValueStmt colorValueStmt);
 
 }

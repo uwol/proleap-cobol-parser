@@ -14,11 +14,11 @@ import io.proleap.cobol.Cobol85Parser.CallByContentStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallByValueStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallGivingPhraseContext;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnException;
 import io.proleap.cobol.asg.metamodel.procedure.OnException;
 import io.proleap.cobol.asg.metamodel.procedure.OnOverflow;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 /**
  * Transfers control to another program.
@@ -47,7 +47,7 @@ public interface CallStatement extends Statement {
 
 	OnOverflow getOnOverflow();
 
-	Call getProgramCall();
+	ValueStmt getProgramValueStmt();
 
 	void setNotOnException(NotOnException notOnExceptionClause);
 
@@ -55,5 +55,5 @@ public interface CallStatement extends Statement {
 
 	void setOnOverflow(OnOverflow onOverflowPhrase);
 
-	void setProgramCall(Call programCall);
+	void setProgramValueStmt(ValueStmt programValueStmt);
 }

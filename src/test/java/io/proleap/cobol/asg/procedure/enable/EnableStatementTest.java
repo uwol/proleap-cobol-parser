@@ -23,6 +23,7 @@ import io.proleap.cobol.asg.metamodel.data.communication.CommunicationSection;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.enable.EnableStatement;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class EnableStatementTest extends CobolTestSupport {
@@ -80,8 +81,10 @@ public class EnableStatementTest extends CobolTestSupport {
 				assertEquals(communicationDescriptionEntry1,
 						communicationDescriptionEntryCall1.getCommunicationDescriptionEntry());
 
-				assertNotNull(enableStatement.getKeyCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, enableStatement.getKeyCall().getCallType());
+				assertNotNull(enableStatement.getKeyValueStmt());
+
+				final CallValueStmt keyCallValueStmt = (CallValueStmt) enableStatement.getKeyValueStmt();
+				assertEquals(Call.CallType.UNDEFINED_CALL, keyCallValueStmt.getCall().getCallType());
 			}
 		}
 
@@ -95,13 +98,17 @@ public class EnableStatementTest extends CobolTestSupport {
 			assertEquals(Call.CallType.COMMUNICATION_DESCRIPTION_ENTRY_CALL,
 					enableStatement.getCommunicationDescriptionCall().getCallType());
 
-			final CommunicationDescriptionEntryCall communicationDescriptionEntryCall2 = (CommunicationDescriptionEntryCall) enableStatement
-					.getCommunicationDescriptionCall();
-			assertEquals(communicationDescriptionEntry2,
-					communicationDescriptionEntryCall2.getCommunicationDescriptionEntry());
+			{
+				final CommunicationDescriptionEntryCall communicationDescriptionEntryCall2 = (CommunicationDescriptionEntryCall) enableStatement
+						.getCommunicationDescriptionCall();
+				assertEquals(communicationDescriptionEntry2,
+						communicationDescriptionEntryCall2.getCommunicationDescriptionEntry());
 
-			assertNotNull(enableStatement.getKeyCall());
-			assertEquals(Call.CallType.UNDEFINED_CALL, enableStatement.getKeyCall().getCallType());
+				assertNotNull(enableStatement.getKeyValueStmt());
+
+				final CallValueStmt keyCallValueStmt = (CallValueStmt) enableStatement.getKeyValueStmt();
+				assertEquals(Call.CallType.UNDEFINED_CALL, keyCallValueStmt.getCall().getCallType());
+			}
 		}
 
 		{
@@ -121,8 +128,10 @@ public class EnableStatementTest extends CobolTestSupport {
 				assertEquals(communicationDescriptionEntry3,
 						communicationDescriptionEntryCall3.getCommunicationDescriptionEntry());
 
-				assertNotNull(enableStatement.getKeyCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, enableStatement.getKeyCall().getCallType());
+				assertNotNull(enableStatement.getKeyValueStmt());
+
+				final CallValueStmt keyCallValueStmt = (CallValueStmt) enableStatement.getKeyValueStmt();
+				assertEquals(Call.CallType.UNDEFINED_CALL, keyCallValueStmt.getCall().getCallType());
 			}
 		}
 	}

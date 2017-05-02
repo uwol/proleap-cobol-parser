@@ -19,12 +19,13 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.entry.EntryStatement;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class EntryStatementImpl extends StatementImpl implements EntryStatement {
 
 	protected final EntryStatementContext ctx;
 
-	protected Call entryCall;
+	protected ValueStmt entryValueStmt;
 
 	protected final StatementType statementType = StatementTypeEnum.ENTRY;
 
@@ -42,8 +43,8 @@ public class EntryStatementImpl extends StatementImpl implements EntryStatement 
 	}
 
 	@Override
-	public Call getEntryCall() {
-		return entryCall;
+	public ValueStmt getEntryValueStmt() {
+		return entryValueStmt;
 	}
 
 	@Override
@@ -57,8 +58,8 @@ public class EntryStatementImpl extends StatementImpl implements EntryStatement 
 	}
 
 	@Override
-	public void setEntryCall(final Call entryCall) {
-		this.entryCall = entryCall;
+	public void setEntryValueStmt(final ValueStmt entryValueStmt) {
+		this.entryValueStmt = entryValueStmt;
 	}
 
 }

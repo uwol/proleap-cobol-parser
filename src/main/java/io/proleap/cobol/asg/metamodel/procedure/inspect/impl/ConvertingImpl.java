@@ -15,10 +15,10 @@ import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
 import io.proleap.cobol.Cobol85Parser.InspectConvertingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.InspectToContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfter;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.Converting;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.To;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ConvertingImpl extends InspectPhraseImpl implements Converting {
 
@@ -26,7 +26,7 @@ public class ConvertingImpl extends InspectPhraseImpl implements Converting {
 
 	protected final InspectConvertingPhraseContext ctx;
 
-	protected Call fromCall;
+	protected ValueStmt fromValueStmt;
 
 	protected To to;
 
@@ -55,8 +55,8 @@ public class ConvertingImpl extends InspectPhraseImpl implements Converting {
 		if (result == null) {
 			result = new ToImpl(programUnit, ctx);
 
-			final Call toCall = createCall(ctx.identifier(), ctx.literal());
-			result.setToCall(toCall);
+			final ValueStmt toValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setToValueStmt(toValueStmt);
 
 			to = result;
 			registerASGElement(result);
@@ -71,8 +71,8 @@ public class ConvertingImpl extends InspectPhraseImpl implements Converting {
 	}
 
 	@Override
-	public Call getFromCall() {
-		return fromCall;
+	public ValueStmt getFromValueStmt() {
+		return fromValueStmt;
 	}
 
 	@Override
@@ -81,8 +81,8 @@ public class ConvertingImpl extends InspectPhraseImpl implements Converting {
 	}
 
 	@Override
-	public void setFromCall(final Call fromCall) {
-		this.fromCall = fromCall;
+	public void setFromValueStmt(final ValueStmt fromValueStmt) {
+		this.fromValueStmt = fromValueStmt;
 	}
 
 }

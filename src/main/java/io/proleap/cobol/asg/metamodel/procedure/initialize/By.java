@@ -9,7 +9,7 @@
 package io.proleap.cobol.asg.metamodel.procedure.initialize;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface By extends CobolDivisionElement {
 
@@ -19,9 +19,9 @@ public interface By extends CobolDivisionElement {
 
 	Type getType();
 
-	Call getValueCall();
+	ValueStmt getValueStmt();
 
 	void setType(Type type);
 
-	void setValueCall(Call valueCall);
+	void setValueStmt(ValueStmt valueStmt);
 }

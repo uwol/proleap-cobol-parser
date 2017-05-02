@@ -10,14 +10,14 @@ package io.proleap.cobol.asg.metamodel.procedure.inspect.impl;
 
 import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfter;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class BeforeAfterImpl extends InspectPhraseImpl implements BeforeAfter {
 
 	protected final InspectBeforeAfterContext ctx;
 
-	protected Call dataItemCall;
+	protected ValueStmt dataItemValueStmt;
 
 	protected Type type;
 
@@ -28,8 +28,8 @@ public class BeforeAfterImpl extends InspectPhraseImpl implements BeforeAfter {
 	}
 
 	@Override
-	public Call getDataItemCall() {
-		return dataItemCall;
+	public ValueStmt getDataItemValueStmt() {
+		return dataItemValueStmt;
 	}
 
 	@Override
@@ -38,8 +38,8 @@ public class BeforeAfterImpl extends InspectPhraseImpl implements BeforeAfter {
 	}
 
 	@Override
-	public void setDataItemCall(final Call dataItemCall) {
-		this.dataItemCall = dataItemCall;
+	public void setDataItemValueStmt(final ValueStmt dataItemValueStmt) {
+		this.dataItemValueStmt = dataItemValueStmt;
 	}
 
 	@Override

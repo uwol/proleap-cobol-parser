@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.stop;
 
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 /**
  * Halts execution of the program permanently or temporarily and optionally
@@ -21,11 +21,11 @@ public interface StopStatement extends Statement {
 		STOP_RUN, STOP_RUN_AND_DISPLAY
 	}
 
-	Call getDisplayCall();
+	ValueStmt getDisplayValueStmt();
 
 	Type getType();
 
-	void setDisplayCall(Call displayCall);
+	void setDisplayValueStmt(ValueStmt displayValueStmt);
 
 	void setType(Type type);
 

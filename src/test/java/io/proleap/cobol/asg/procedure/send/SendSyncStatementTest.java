@@ -23,6 +23,8 @@ import io.proleap.cobol.asg.metamodel.procedure.send.From;
 import io.proleap.cobol.asg.metamodel.procedure.send.SendStatement;
 import io.proleap.cobol.asg.metamodel.procedure.send.Sync;
 import io.proleap.cobol.asg.metamodel.procedure.send.With;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class SendSyncStatementTest extends CobolTestSupport {
@@ -56,9 +58,11 @@ public class SendSyncStatementTest extends CobolTestSupport {
 				assertNotNull(sync);
 
 				{
-					final Call receivingProgramCall = sync.getReceivingProgramCall();
-					assertNotNull(receivingProgramCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, receivingProgramCall.getCallType());
+					final ValueStmt receivingProgramValueStmt = sync.getReceivingProgramValueStmt();
+					assertNotNull(receivingProgramValueStmt);
+
+					final CallValueStmt receivingProgramCallValueStmt = (CallValueStmt) receivingProgramValueStmt;
+					assertEquals(Call.CallType.UNDEFINED_CALL, receivingProgramCallValueStmt.getCall().getCallType());
 				}
 
 				{
@@ -85,8 +89,8 @@ public class SendSyncStatementTest extends CobolTestSupport {
 					{
 						final AdvancingLines advancingLines = advancing.getAdvancingLines();
 						assertNotNull(advancingLines);
-						assertNotNull(advancingLines.getLinesCall());
-						assertEquals(Call.CallType.UNDEFINED_CALL, advancingLines.getLinesCall().getCallType());
+						assertNotNull(advancingLines.getLinesValueStmt());
+						assertEquals(3, advancingLines.getLinesValueStmt().getValue());
 					}
 				}
 			}

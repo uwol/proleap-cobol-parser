@@ -15,9 +15,9 @@ import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
 import io.proleap.cobol.Cobol85Parser.InspectReplacingAllLeadingContext;
 import io.proleap.cobol.Cobol85Parser.InspectReplacingAllLeadingsContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.ReplacingAllLeading;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.ReplacingAllLeadings;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ReplacingAllLeadingsImpl extends InspectPhraseImpl implements ReplacingAllLeadings {
 
@@ -41,8 +41,8 @@ public class ReplacingAllLeadingsImpl extends InspectPhraseImpl implements Repla
 			result = new ReplacingAllLeadingImpl(programUnit, ctx);
 
 			// pattern
-			final Call patterndDataItemCall = createCall(ctx.identifier(), ctx.literal());
-			result.setPatternDataItemCall(patterndDataItemCall);
+			final ValueStmt patterndDataItemValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setPatternDataItemValueStmt(patterndDataItemValueStmt);
 
 			// by
 			result.addBy(ctx.inspectBy());

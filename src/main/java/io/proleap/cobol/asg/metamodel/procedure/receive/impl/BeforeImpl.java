@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.procedure.receive.impl;
 
 import io.proleap.cobol.Cobol85Parser.ReceiveBeforeContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.receive.Before;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class BeforeImpl extends CobolDivisionElementImpl implements Before {
 
 	protected final ReceiveBeforeContext ctx;
 
-	protected Call timeCall;
+	protected ValueStmt timeValueStmt;
 
 	public BeforeImpl(final ProgramUnit programUnit, final ReceiveBeforeContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class BeforeImpl extends CobolDivisionElementImpl implements Before {
 	}
 
 	@Override
-	public Call getTimeCall() {
-		return timeCall;
+	public ValueStmt getTimeValueStmt() {
+		return timeValueStmt;
 	}
 
 	@Override
-	public void setTimeCall(final Call timeCall) {
-		this.timeCall = timeCall;
+	public void setTimeValueStmt(final ValueStmt timeValueStmt) {
+		this.timeValueStmt = timeValueStmt;
 	}
 
 }

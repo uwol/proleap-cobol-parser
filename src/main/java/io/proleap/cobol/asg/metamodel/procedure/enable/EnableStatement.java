@@ -11,6 +11,7 @@ package io.proleap.cobol.asg.metamodel.procedure.enable;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.procedure.disable.DisableStatement;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 /**
  * Notifies the MCS to allow data transfer between specified output queues and
@@ -27,7 +28,7 @@ public interface EnableStatement extends Statement {
 
 	Call getCommunicationDescriptionCall();
 
-	Call getKeyCall();
+	ValueStmt getKeyValueStmt();
 
 	Type getType();
 
@@ -35,7 +36,7 @@ public interface EnableStatement extends Statement {
 
 	void setCommunicationDescriptionCall(Call communicationDescriptionCall);
 
-	void setKeyCall(Call keyCall);
+	void setKeyValueStmt(ValueStmt keyValueStmt);
 
 	void setTerminal(boolean terminal);
 

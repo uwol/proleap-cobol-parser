@@ -20,6 +20,7 @@ import io.proleap.cobol.asg.metamodel.procedure.write.Advancing;
 import io.proleap.cobol.asg.metamodel.procedure.write.AdvancingLines;
 import io.proleap.cobol.asg.metamodel.procedure.write.From;
 import io.proleap.cobol.asg.metamodel.procedure.write.WriteStatement;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class WriteStatementTest extends CobolTestSupport {
@@ -56,7 +57,9 @@ public class WriteStatementTest extends CobolTestSupport {
 			{
 				final From from = writeStatement.getFrom();
 				assertNotNull(from);
-				assertEquals(Call.CallType.UNDEFINED_CALL, from.getFromCall().getCallType());
+
+				final CallValueStmt fromCallValueStmt = (CallValueStmt) from.getFromValueStmt();
+				assertEquals(Call.CallType.UNDEFINED_CALL, fromCallValueStmt.getCall().getCallType());
 			}
 
 			{
@@ -68,8 +71,8 @@ public class WriteStatementTest extends CobolTestSupport {
 				{
 					final AdvancingLines advancingLines = advancing.getAdvancingLines();
 					assertNotNull(advancingLines);
-					assertNotNull(advancingLines.getLinesCall());
-					assertEquals(Call.CallType.UNDEFINED_CALL, advancingLines.getLinesCall().getCallType());
+					assertNotNull(advancingLines.getLinesValueStmt());
+					assertEquals(3, advancingLines.getLinesValueStmt().getValue());
 				}
 			}
 		}

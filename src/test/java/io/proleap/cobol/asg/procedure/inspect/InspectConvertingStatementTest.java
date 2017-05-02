@@ -20,6 +20,7 @@ import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfter;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.Converting;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.InspectStatement;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.To;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class InspectConvertingStatementTest extends CobolTestSupport {
@@ -53,15 +54,19 @@ public class InspectConvertingStatementTest extends CobolTestSupport {
 				final Converting converting = inspectStatement.getConverting();
 
 				{
-					assertNotNull(converting.getFromCall());
-					assertEquals(Call.CallType.UNDEFINED_CALL, converting.getFromCall().getCallType());
+					assertNotNull(converting.getFromValueStmt());
+
+					final CallValueStmt fromCallValueStmt = (CallValueStmt) converting.getFromValueStmt();
+					assertEquals(Call.CallType.UNDEFINED_CALL, fromCallValueStmt.getCall().getCallType());
 				}
 
 				{
 					final To to = converting.getTo();
 					assertNotNull(to);
-					assertNotNull(to.getToCall());
-					assertEquals(Call.CallType.UNDEFINED_CALL, to.getToCall().getCallType());
+					assertNotNull(to.getToValueStmt());
+
+					final CallValueStmt toCallValueStmt = (CallValueStmt) to.getToValueStmt();
+					assertEquals(Call.CallType.UNDEFINED_CALL, toCallValueStmt.getCall().getCallType());
 				}
 
 				assertEquals(1, converting.getBeforeAfters().size());

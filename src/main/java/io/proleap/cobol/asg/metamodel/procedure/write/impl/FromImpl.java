@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.procedure.write.impl;
 
 import io.proleap.cobol.Cobol85Parser.WriteFromPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.write.From;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class FromImpl extends CobolDivisionElementImpl implements From {
 
 	protected WriteFromPhraseContext ctx;
 
-	protected Call fromCall;
+	protected ValueStmt fromValueStmt;
 
 	public FromImpl(final ProgramUnit programUnit, final WriteFromPhraseContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,13 @@ public class FromImpl extends CobolDivisionElementImpl implements From {
 	}
 
 	@Override
-	public Call getFromCall() {
-		return fromCall;
+	public ValueStmt getFromValueStmt() {
+		return fromValueStmt;
 	}
 
 	@Override
-	public void setFromCall(final Call fromCall) {
-		this.fromCall = fromCall;
+	public void setFromValueStmt(final ValueStmt fromValueStmt) {
+		this.fromValueStmt = fromValueStmt;
 	}
 
 }

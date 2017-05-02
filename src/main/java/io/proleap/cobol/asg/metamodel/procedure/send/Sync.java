@@ -12,7 +12,7 @@ import io.proleap.cobol.Cobol85Parser.SendAdvancingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.SendFromPhraseContext;
 import io.proleap.cobol.Cobol85Parser.SendWithPhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface Sync extends CobolDivisionElement {
 
@@ -26,13 +26,13 @@ public interface Sync extends CobolDivisionElement {
 
 	From getFrom();
 
-	Call getReceivingProgramCall();
-
-	boolean isReplacing();
+	ValueStmt getReceivingProgramValueStmt();
 
 	With getWith();
 
-	void setReceivingProgramCall(Call receivingProgramCall);
+	boolean isReplacing();
+
+	void setReceivingProgramValueStmt(ValueStmt receivingProgramValueStmt);
 
 	void setReplacing(boolean replacing);
 

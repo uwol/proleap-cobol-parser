@@ -12,10 +12,10 @@ import io.proleap.cobol.Cobol85Parser.DivideGivingContext;
 import io.proleap.cobol.Cobol85Parser.DivideGivingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.DivideIntoStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.divide.Givings;
 import io.proleap.cobol.asg.metamodel.procedure.divide.Into;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class IntoImpl extends CobolDivisionElementImpl implements Into {
 
@@ -23,7 +23,7 @@ public class IntoImpl extends CobolDivisionElementImpl implements Into {
 
 	protected Givings givings;
 
-	protected Call intoCall;
+	protected ValueStmt intoValueStmt;
 
 	public IntoImpl(final ProgramUnit programUnit, final DivideIntoStatementContext ctx) {
 		super(programUnit, ctx);
@@ -56,13 +56,13 @@ public class IntoImpl extends CobolDivisionElementImpl implements Into {
 	}
 
 	@Override
-	public Call getIntoCall() {
-		return intoCall;
+	public ValueStmt getIntoValueStmt() {
+		return intoValueStmt;
 	}
 
 	@Override
-	public void setIntoCall(final Call intoCall) {
-		this.intoCall = intoCall;
+	public void setIntoValueStmt(final ValueStmt intoValueStmt) {
+		this.intoValueStmt = intoValueStmt;
 	}
 
 }

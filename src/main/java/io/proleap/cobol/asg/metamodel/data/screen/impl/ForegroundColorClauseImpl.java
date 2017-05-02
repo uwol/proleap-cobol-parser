@@ -10,13 +10,13 @@ package io.proleap.cobol.asg.metamodel.data.screen.impl;
 
 import io.proleap.cobol.Cobol85Parser.ScreenDescriptionForegroundColorClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.screen.ForegroundColorClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ForegroundColorClauseImpl extends CobolDivisionElementImpl implements ForegroundColorClause {
 
-	protected Call colorCall;
+	protected ValueStmt colorValueStmt;
 
 	protected ScreenDescriptionForegroundColorClauseContext ctx;
 
@@ -28,13 +28,13 @@ public class ForegroundColorClauseImpl extends CobolDivisionElementImpl implemen
 	}
 
 	@Override
-	public Call getColorCall() {
-		return colorCall;
+	public ValueStmt getColorValueStmt() {
+		return colorValueStmt;
 	}
 
 	@Override
-	public void setColorCall(final Call colorCall) {
-		this.colorCall = colorCall;
+	public void setColorValueStmt(final ValueStmt colorValueStmt) {
+		this.colorValueStmt = colorValueStmt;
 	}
 
 }

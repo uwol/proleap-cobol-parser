@@ -33,6 +33,7 @@ import io.proleap.cobol.asg.metamodel.procedure.call.CallByValueStatement;
 import io.proleap.cobol.asg.metamodel.procedure.call.CallStatement;
 import io.proleap.cobol.asg.metamodel.procedure.call.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class CallStatementImpl extends StatementImpl implements CallStatement {
 
@@ -52,7 +53,7 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 
 	protected OnOverflow onOverflow;
 
-	protected Call programCall;
+	protected ValueStmt programValueStmt;
 
 	protected final StatementType statementType = StatementTypeEnum.CALL;
 
@@ -169,8 +170,8 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 	}
 
 	@Override
-	public Call getProgramCall() {
-		return programCall;
+	public ValueStmt getProgramValueStmt() {
+		return programValueStmt;
 	}
 
 	@Override
@@ -194,8 +195,8 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 	}
 
 	@Override
-	public void setProgramCall(final Call programCall) {
-		this.programCall = programCall;
+	public void setProgramValueStmt(final ValueStmt programValueStmt) {
+		this.programValueStmt = programValueStmt;
 	}
 
 }

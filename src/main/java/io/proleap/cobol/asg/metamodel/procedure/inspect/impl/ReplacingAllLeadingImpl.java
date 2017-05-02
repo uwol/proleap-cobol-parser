@@ -15,10 +15,10 @@ import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
 import io.proleap.cobol.Cobol85Parser.InspectByContext;
 import io.proleap.cobol.Cobol85Parser.InspectReplacingAllLeadingContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfter;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.By;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.ReplacingAllLeading;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ReplacingAllLeadingImpl extends InspectPhraseImpl implements ReplacingAllLeading {
 
@@ -28,7 +28,7 @@ public class ReplacingAllLeadingImpl extends InspectPhraseImpl implements Replac
 
 	protected final InspectReplacingAllLeadingContext ctx;
 
-	protected Call patternDataItemCall;
+	protected ValueStmt patternDataItemValueStmt;
 
 	public ReplacingAllLeadingImpl(final ProgramUnit programUnit, final InspectReplacingAllLeadingContext ctx) {
 		super(programUnit, ctx);
@@ -71,13 +71,13 @@ public class ReplacingAllLeadingImpl extends InspectPhraseImpl implements Replac
 	}
 
 	@Override
-	public Call getPatternDataItemCall() {
-		return patternDataItemCall;
+	public ValueStmt getPatternDataItemValueStmt() {
+		return patternDataItemValueStmt;
 	}
 
 	@Override
-	public void setPatternDataItemCall(final Call patternDataItemCall) {
-		this.patternDataItemCall = patternDataItemCall;
+	public void setPatternDataItemValueStmt(final ValueStmt patternDataItemValueStmt) {
+		this.patternDataItemValueStmt = patternDataItemValueStmt;
 	}
 
 }

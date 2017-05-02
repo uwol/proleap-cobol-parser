@@ -78,6 +78,7 @@ import io.proleap.cobol.asg.metamodel.data.screen.UsingClause;
 import io.proleap.cobol.asg.metamodel.data.screen.ValueClause;
 import io.proleap.cobol.asg.metamodel.data.screen.ZeroFillClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl implements ScreenDescriptionEntry {
 
@@ -195,8 +196,8 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new BackgroundColorClauseImpl(programUnit, ctx);
 
-			final Call colorCall = createCall(ctx.identifier(), ctx.integerLiteral());
-			result.setColorCall(colorCall);
+			final ValueStmt colorValueStmt = createValueStmt(ctx.identifier(), ctx.integerLiteral());
+			result.setColorValueStmt(colorValueStmt);
 
 			backgroundColorClause = result;
 			registerASGElement(result);
@@ -380,8 +381,8 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new ForegroundColorClauseImpl(programUnit, ctx);
 
-			final Call colorCall = createCall(ctx.identifier(), ctx.integerLiteral());
-			result.setColorCall(colorCall);
+			final ValueStmt colorValueStmt = createValueStmt(ctx.identifier(), ctx.integerLiteral());
+			result.setColorValueStmt(colorValueStmt);
 
 			foregroundColorClause = result;
 			registerASGElement(result);
@@ -398,8 +399,8 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new FromClauseImpl(programUnit, ctx);
 
 			// from
-			final Call fromCall = createCall(ctx.identifier(), ctx.literal());
-			result.setFromCall(fromCall);
+			final ValueStmt fromValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setFromValueStmt(fromValueStmt);
 
 			// to
 			if (ctx.screenDescriptionToClause() != null) {
@@ -578,9 +579,9 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new PromptClauseImpl(programUnit, ctx);
 
-			// character call
-			final Call characterCall = createCall(ctx.identifier(), ctx.literal());
-			result.setCharacterCall(characterCall);
+			// character
+			final ValueStmt characterValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setCharacterValueStmt(characterValueStmt);
 
 			// occurs
 			if (ctx.screenDescriptionPromptOccursClause() != null) {
@@ -706,8 +707,8 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new SizeClauseImpl(programUnit, ctx);
 
-			final Call sizeCall = createCall(ctx.identifier(), ctx.integerLiteral());
-			result.setSizeCall(sizeCall);
+			final ValueStmt sizeValueStmt = createValueStmt(ctx.identifier(), ctx.integerLiteral());
+			result.setSizeValueStmt(sizeValueStmt);
 
 			sizeClause = result;
 			registerASGElement(result);

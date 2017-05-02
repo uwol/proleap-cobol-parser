@@ -10,16 +10,16 @@ package io.proleap.cobol.asg.metamodel.data.screen;
 
 import io.proleap.cobol.Cobol85Parser.ScreenDescriptionPromptOccursClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface PromptClause extends CobolDivisionElement {
 
 	Occurs addOccurs(ScreenDescriptionPromptOccursClauseContext ctx);
 
-	Call getCharacterCall();
+	ValueStmt getCharacterValueStmt();
 
 	Occurs getOccurs();
 
-	void setCharacterCall(Call characterCall);
+	void setCharacterValueStmt(ValueStmt characterValueStmt);
 
 }

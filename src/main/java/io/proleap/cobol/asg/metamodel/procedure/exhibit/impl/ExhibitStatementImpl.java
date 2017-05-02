@@ -15,12 +15,12 @@ import io.proleap.cobol.Cobol85Parser.ExhibitOperandContext;
 import io.proleap.cobol.Cobol85Parser.ExhibitStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.exhibit.ExhibitStatement;
 import io.proleap.cobol.asg.metamodel.procedure.exhibit.Operand;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ExhibitStatementImpl extends StatementImpl implements ExhibitStatement {
 
@@ -47,8 +47,8 @@ public class ExhibitStatementImpl extends StatementImpl implements ExhibitStatem
 		if (result == null) {
 			result = new OperandImpl(programUnit, ctx);
 
-			final Call operandCall = createCall(ctx.identifier(), ctx.literal());
-			result.setOperandCall(operandCall);
+			final ValueStmt operandValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setOperandValueStmt(operandValueStmt);
 
 			operands.add(result);
 			registerASGElement(result);

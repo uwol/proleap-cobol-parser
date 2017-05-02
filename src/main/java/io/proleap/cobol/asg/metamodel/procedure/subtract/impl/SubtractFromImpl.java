@@ -20,6 +20,7 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Minuend;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFrom;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Subtrahend;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class SubtractFromImpl extends CobolDivisionElementImpl implements SubtractFrom {
 
@@ -66,8 +67,8 @@ public class SubtractFromImpl extends CobolDivisionElementImpl implements Subtra
 			result = new SubtrahendImpl(programUnit, ctx);
 
 			// subtrahend
-			final Call subtrahendCall = createCall(ctx.identifier(), ctx.literal());
-			result.setSubtrahendCall(subtrahendCall);
+			final ValueStmt subtrahendValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setSubtrahendValueStmt(subtrahendValueStmt);
 
 			subtrahends.add(result);
 			registerASGElement(result);
