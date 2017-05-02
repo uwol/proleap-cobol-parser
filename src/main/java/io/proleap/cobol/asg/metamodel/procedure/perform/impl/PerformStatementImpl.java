@@ -18,6 +18,7 @@ import io.proleap.cobol.Cobol85Parser.PerformInlineStatementContext;
 import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
+import io.proleap.cobol.Cobol85Parser.StatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -87,13 +88,17 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 		if (result == null) {
 			result = new PerformInlineStatementImpl(programUnit, ctx);
 
-			/*
-			 * type
-			 */
+			// type
 			if (ctx.performType() != null) {
 				result.addPerformType(ctx.performType());
 			}
 
+			// statements
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
+
+			performInlineStatement = result;
 			registerASGElement(result);
 		}
 
@@ -134,6 +139,7 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 				result.addPerformType(ctx.performType());
 			}
 
+			performProcedureStatement = result;
 			registerASGElement(result);
 		}
 

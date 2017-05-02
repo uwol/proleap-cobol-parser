@@ -11,11 +11,11 @@ package io.proleap.cobol.asg.metamodel.procedure.perform.impl;
 import io.proleap.cobol.Cobol85Parser.PerformInlineStatementContext;
 import io.proleap.cobol.Cobol85Parser.PerformTypeContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformInlineStatement;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformType;
 
-public class PerformInlineStatementImpl extends CobolDivisionElementImpl implements PerformInlineStatement {
+public class PerformInlineStatementImpl extends ScopeImpl implements PerformInlineStatement {
 
 	protected final PerformInlineStatementContext ctx;
 
