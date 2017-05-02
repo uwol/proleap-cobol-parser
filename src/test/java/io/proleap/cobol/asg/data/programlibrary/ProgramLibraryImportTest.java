@@ -74,7 +74,7 @@ public class ProgramLibraryImportTest extends CobolTestSupport {
 				assertEquals(Type.BY_TITLE, importAttribute.getType());
 				assertEquals(123, importAttribute.getFunctionLiteral().getNumericLiteral().getValue());
 				assertEquals(234, importAttribute.getParameterLiteral().getNumericLiteral().getValue());
-				assertEquals("'SOMETITLE'", importAttribute.getTitleLiteral().getNonNumericLiteral());
+				assertEquals("SOMETITLE", importAttribute.getTitleLiteral().getNonNumericLiteral());
 			}
 
 			{

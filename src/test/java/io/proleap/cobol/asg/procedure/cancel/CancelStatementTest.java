@@ -53,7 +53,7 @@ public class CancelStatementTest extends CobolTestSupport {
 
 			{
 				final CancelCall cancelCall = cancelStatement.getCancelCalls().get(1);
-				assertEquals("'123'", cancelCall.getValueStmt().getValue());
+				assertEquals("123", cancelCall.getValueStmt().getValue());
 			}
 		}
 

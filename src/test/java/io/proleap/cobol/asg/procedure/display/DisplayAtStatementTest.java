@@ -60,7 +60,7 @@ public class DisplayAtStatementTest extends CobolTestSupport {
 			{
 				final Operand operand = displayStatement.getOperands().get(1);
 				assertNotNull(operand.getOperandValueStmt());
-				assertEquals("'2'", operand.getOperandValueStmt().getValue());
+				assertEquals("2", operand.getOperandValueStmt().getValue());
 			}
 
 			{

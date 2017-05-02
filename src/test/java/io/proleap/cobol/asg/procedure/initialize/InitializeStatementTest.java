@@ -110,7 +110,7 @@ public class InitializeStatementTest extends CobolTestSupport {
 					final By by = replacing.getBys().get(0);
 					assertEquals(By.Type.ALPHANUMERIC, by.getType());
 					assertNotNull(by.getValueStmt());
-					assertEquals("\"ABC\"", by.getValueStmt().getValue());
+					assertEquals("ABC", by.getValueStmt().getValue());
 				}
 			}
 		}

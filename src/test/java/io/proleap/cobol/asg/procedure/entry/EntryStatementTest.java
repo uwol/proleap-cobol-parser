@@ -44,7 +44,7 @@ public class EntryStatementTest extends CobolTestSupport {
 			assertNotNull(entryStatement);
 			assertEquals(StatementTypeEnum.ENTRY, entryStatement.getStatementType());
 			assertNotNull(entryStatement.getEntryValueStmt());
-			assertEquals("'SOMEPROG'", entryStatement.getEntryValueStmt().getValue());
+			assertEquals("SOMEPROG", entryStatement.getEntryValueStmt().getValue());
 			assertEquals(2, entryStatement.getUsingCalls().size());
 
 			{

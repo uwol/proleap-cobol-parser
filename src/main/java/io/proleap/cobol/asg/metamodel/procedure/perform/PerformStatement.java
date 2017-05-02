@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform;
 
+import io.proleap.cobol.Cobol85Parser.PerformInlineStatementContext;
 import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
@@ -18,8 +19,20 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface PerformStatement extends Statement {
 
+	enum Type {
+		INLINE, PROCEDURE
+	}
+
+	PerformInlineStatement addPerformInlineStatement(PerformInlineStatementContext ctx);
+
 	PerformProcedureStatement addPerformProcedureStatement(PerformProcedureStatementContext ctx);
 
+	PerformInlineStatement getPerformInlineStatement();
+
 	PerformProcedureStatement getPerformProcedureStatement();
+
+	Type getType();
+
+	void setType(Type type);
 
 }

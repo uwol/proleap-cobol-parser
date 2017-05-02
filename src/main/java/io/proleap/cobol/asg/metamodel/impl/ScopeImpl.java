@@ -1140,10 +1140,21 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		if (result == null) {
 			result = new PerformStatementImpl(programUnit, this, ctx);
 
-			// perform procedure
-			if (ctx.performProcedureStatement() != null) {
+			final PerformStatement.Type type;
+
+			if (ctx.performInlineStatement() != null) {
+				type = PerformStatement.Type.INLINE;
+
+				result.addPerformInlineStatement(ctx.performInlineStatement());
+			} else if (ctx.performProcedureStatement() != null) {
+				type = PerformStatement.Type.PROCEDURE;
+
 				result.addPerformProcedureStatement(ctx.performProcedureStatement());
+			} else {
+				type = null;
 			}
+
+			result.setType(type);
 
 			registerStatement(result);
 		}

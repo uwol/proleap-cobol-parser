@@ -91,8 +91,8 @@ public class SpecialNamesTest extends CobolTestSupport {
 		{
 			final CurrencySignClause currencySignClause = specialNamesParagraph.getCurrencySignClause();
 			assertNotNull(currencySignClause);
-			assertEquals("'E'", currencySignClause.getCurrencyLiteral().getNonNumericLiteral());
-			assertEquals("'-'", currencySignClause.getPictureSymbolLiteral().getNonNumericLiteral());
+			assertEquals("E", currencySignClause.getCurrencyLiteral().getNonNumericLiteral());
+			assertEquals("-", currencySignClause.getPictureSymbolLiteral().getNonNumericLiteral());
 		}
 
 		{

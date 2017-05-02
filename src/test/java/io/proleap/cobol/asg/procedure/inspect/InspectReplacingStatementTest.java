@@ -74,7 +74,7 @@ public class InspectReplacingStatementTest extends CobolTestSupport {
 						final ReplacingAllLeading allLeading = allLeadings.getAllLeadings().get(0);
 
 						assertNotNull(allLeading.getPatternDataItemValueStmt());
-						assertEquals("'B'", allLeading.getPatternDataItemValueStmt().getValue());
+						assertEquals("B", allLeading.getPatternDataItemValueStmt().getValue());
 						assertEquals(1, allLeading.getBeforeAfters().size());
 
 						{

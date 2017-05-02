@@ -60,7 +60,7 @@ public class FileControlTest extends CobolTestSupport {
 			final AssignClause assignClause = fileControlEntry.getAssignClause();
 			assertNotNull(assignClause);
 			assertEquals(AssignClause.Type.CALL, assignClause.getType());
-			assertEquals("'teacher.txt'", assignClause.getToValueStmt().getValue());
+			assertEquals("teacher.txt", assignClause.getToValueStmt().getValue());
 		}
 
 		{
@@ -79,7 +79,7 @@ public class FileControlTest extends CobolTestSupport {
 		{
 			final PaddingCharacterClause paddingCharacterClause = fileControlEntry.getPaddingCharacterClause();
 			assertNotNull(paddingCharacterClause);
-			assertEquals("'-'", paddingCharacterClause.getValueStmt().getValue());
+			assertEquals("-", paddingCharacterClause.getValueStmt().getValue());
 		}
 
 		{

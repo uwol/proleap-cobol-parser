@@ -68,7 +68,7 @@ public class UnstringStatementTest extends CobolTestSupport {
 					{
 						final DelimitedBy delimitedBy = sending.getDelimitedBy();
 						final ValueStmt delimitedByValueStmt = delimitedBy.getDelimitedByValueStmt();
-						assertEquals("'1'", delimitedByValueStmt.getValue());
+						assertEquals("1", delimitedByValueStmt.getValue());
 					}
 
 					{

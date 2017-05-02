@@ -14,6 +14,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.proleap.cobol.Cobol85Parser.PerformInlineStatementContext;
 import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
 import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
@@ -26,6 +27,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
+import io.proleap.cobol.asg.metamodel.procedure.perform.PerformInlineStatement;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformProcedureStatement;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformStatement;
 
@@ -35,9 +37,13 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 
 	protected final PerformStatementContext ctx;
 
+	protected PerformInlineStatement performInlineStatement;
+
 	protected PerformProcedureStatement performProcedureStatement;
 
 	protected final StatementType statementType = StatementTypeEnum.PERFORM;
+
+	protected Type type;
 
 	public PerformStatementImpl(final ProgramUnit programUnit, final Scope scope, final PerformStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -75,12 +81,35 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 	}
 
 	@Override
+	public PerformInlineStatement addPerformInlineStatement(final PerformInlineStatementContext ctx) {
+		PerformInlineStatement result = (PerformInlineStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new PerformInlineStatementImpl(programUnit, ctx);
+
+			/*
+			 * type
+			 */
+			if (ctx.performType() != null) {
+				result.addPerformType(ctx.performType());
+			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public PerformProcedureStatement addPerformProcedureStatement(final PerformProcedureStatementContext ctx) {
 		PerformProcedureStatement result = (PerformProcedureStatement) getASGElement(ctx);
 
 		if (result == null) {
 			result = new PerformProcedureStatementImpl(programUnit, ctx);
 
+			/*
+			 * procedures
+			 */
 			final List<ProcedureNameContext> procedureNames = ctx.procedureName();
 
 			if (procedureNames.isEmpty()) {
@@ -98,10 +127,22 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 				}
 			}
 
+			/*
+			 * type
+			 */
+			if (ctx.performType() != null) {
+				result.addPerformType(ctx.performType());
+			}
+
 			registerASGElement(result);
 		}
 
 		return result;
+	}
+
+	@Override
+	public PerformInlineStatement getPerformInlineStatement() {
+		return performInlineStatement;
 	}
 
 	@Override
@@ -112,6 +153,16 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 	@Override
 	public StatementType getStatementType() {
 		return statementType;
+	}
+
+	@Override
+	public Type getType() {
+		return type;
+	}
+
+	@Override
+	public void setType(final Type type) {
+		this.type = type;
 	}
 
 }

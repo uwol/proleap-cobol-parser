@@ -82,7 +82,7 @@ public class InspectTallyingStatementTest extends CobolTestSupport {
 						final AllLeading allLeading = allLeadings.getAllLeadings().get(0);
 
 						assertNotNull(allLeading.getPatternDataItemValueStmt());
-						assertEquals("'B'", allLeading.getPatternDataItemValueStmt().getValue());
+						assertEquals("B", allLeading.getPatternDataItemValueStmt().getValue());
 						assertEquals(1, allLeading.getBeforeAfters().size());
 
 						{

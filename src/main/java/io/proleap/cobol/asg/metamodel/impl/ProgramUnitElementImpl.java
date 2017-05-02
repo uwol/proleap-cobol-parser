@@ -101,6 +101,8 @@ import io.proleap.cobol.asg.util.StringUtils;
 
 public class ProgramUnitElementImpl extends CompilationUnitElementImpl implements ProgramUnitElement {
 
+	private static final String HEX_PREFIX = "X\"";
+
 	private final static Logger LOG = LogManager.getLogger(ProgramUnitElementImpl.class);
 
 	protected ProgramUnit programUnit;
@@ -672,7 +674,9 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final Literal.Type type;
 
 			if (ctx.NONNUMERICLITERAL() != null) {
-				final String nonNumericLiteral = ctx.getText();
+				final String text = ctx.getText();
+				final boolean isHex = text.startsWith(HEX_PREFIX);
+				final String nonNumericLiteral = isHex ? text : text.substring(1, text.length() - 1);
 				result.setNonNumericLiteral(nonNumericLiteral);
 
 				type = Literal.Type.NON_NUMERIC;

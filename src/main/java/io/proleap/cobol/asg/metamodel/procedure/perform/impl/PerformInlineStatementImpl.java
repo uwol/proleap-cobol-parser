@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016, Ulrich Wolffgang <u.wol@wwu.de>
+ * Copyright (C) 2017, Ulrich Wolffgang <u.wol@wwu.de>
  * All rights reserved.
  *
  * This software may be modified and distributed under the terms
@@ -8,39 +8,23 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
+import io.proleap.cobol.Cobol85Parser.PerformInlineStatementContext;
 import io.proleap.cobol.Cobol85Parser.PerformTypeContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.perform.PerformProcedureStatement;
+import io.proleap.cobol.asg.metamodel.procedure.perform.PerformInlineStatement;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformType;
 
-public class PerformProcedureStatementImpl extends CobolDivisionElementImpl implements PerformProcedureStatement {
+public class PerformInlineStatementImpl extends CobolDivisionElementImpl implements PerformInlineStatement {
 
-	protected final List<Call> calls = new ArrayList<Call>();
-
-	protected final PerformProcedureStatementContext ctx;
+	protected final PerformInlineStatementContext ctx;
 
 	protected PerformType performType;
 
-	public PerformProcedureStatementImpl(final ProgramUnit programUnit, final PerformProcedureStatementContext ctx) {
+	public PerformInlineStatementImpl(final ProgramUnit programUnit, final PerformInlineStatementContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
-	}
-
-	@Override
-	public void addCall(final Call call) {
-		calls.add(call);
-	}
-
-	@Override
-	public void addCalls(final List<Call> calls) {
-		this.calls.addAll(calls);
 	}
 
 	@Override
@@ -75,11 +59,6 @@ public class PerformProcedureStatementImpl extends CobolDivisionElementImpl impl
 		}
 
 		return result;
-	}
-
-	@Override
-	public List<Call> getCalls() {
-		return calls;
 	}
 
 	@Override

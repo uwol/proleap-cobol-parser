@@ -88,7 +88,7 @@ public class ScreenTest extends CobolTestSupport {
 				{
 					final ValueClause valueClause = subScreenDescriptionEntry.getValueClause();
 					assertNotNull(valueClause);
-					assertEquals("\"E M P L O Y E E\"", valueClause.getLiteral().getNonNumericLiteral());
+					assertEquals("E M P L O Y E E", valueClause.getLiteral().getNonNumericLiteral());
 				}
 
 				{
@@ -119,7 +119,7 @@ public class ScreenTest extends CobolTestSupport {
 				{
 					final ValueClause valueClause = subScreenDescriptionEntry.getValueClause();
 					assertNotNull(valueClause);
-					assertEquals("\"A D D R E S S\"", valueClause.getLiteral().getNonNumericLiteral());
+					assertEquals("A D D R E S S", valueClause.getLiteral().getNonNumericLiteral());
 				}
 
 				{

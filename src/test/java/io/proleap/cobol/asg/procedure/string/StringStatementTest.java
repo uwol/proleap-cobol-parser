@@ -60,7 +60,7 @@ public class StringStatementTest extends CobolTestSupport {
 
 				final DelimitedBy delimitedBy = sendings.getDelimitedBy();
 				assertEquals(DelimitedBy.Type.CHARACTERS, delimitedBy.getType());
-				assertEquals("'1'", delimitedBy.getCharactersValueStmt().getValue());
+				assertEquals("1", delimitedBy.getCharactersValueStmt().getValue());
 			}
 
 			{

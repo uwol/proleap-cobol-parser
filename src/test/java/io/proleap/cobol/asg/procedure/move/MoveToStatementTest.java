@@ -94,7 +94,7 @@ public class MoveToStatementTest extends CobolTestSupport {
 					{
 						final ValueStmt sendingAreaValueStmt = sendingArea.getSendingAreaValueStmt();
 						assertNotNull(sendingAreaValueStmt);
-						assertEquals("\"Test\"", sendingAreaValueStmt.getValue());
+						assertEquals("Test", sendingAreaValueStmt.getValue());
 					}
 				}
 

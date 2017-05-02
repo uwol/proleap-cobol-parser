@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016, Ulrich Wolffgang <u.wol@wwu.de>
+ * Copyright (C) 2017, Ulrich Wolffgang <u.wol@wwu.de>
  * All rights reserved.
  *
  * This software may be modified and distributed under the terms
@@ -8,21 +8,13 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform;
 
-import java.util.List;
-
 import io.proleap.cobol.Cobol85Parser.PerformTypeContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
 
-public interface PerformProcedureStatement extends CobolDivisionElement {
-
-	void addCall(Call call);
-
-	void addCalls(List<Call> calls);
+public interface PerformInlineStatement extends CobolDivisionElement {
 
 	PerformType addPerformType(PerformTypeContext ctx);
 
-	List<Call> getCalls();
-
 	PerformType getPerformType();
+
 }

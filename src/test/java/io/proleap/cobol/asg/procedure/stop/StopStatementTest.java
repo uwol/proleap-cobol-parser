@@ -51,7 +51,7 @@ public class StopStatementTest extends CobolTestSupport {
 			assertEquals(StatementTypeEnum.STOP, stopStatement.getStatementType());
 			assertEquals(StopStatement.Type.STOP_RUN_AND_DISPLAY, stopStatement.getType());
 			assertNotNull(stopStatement.getDisplayValueStmt());
-			assertEquals("'someliteral'", stopStatement.getDisplayValueStmt().getValue());
+			assertEquals("someliteral", stopStatement.getDisplayValueStmt().getValue());
 		}
 	}
 }

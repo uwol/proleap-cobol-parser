@@ -57,7 +57,7 @@ public class DataDescriptionValueNonNumericTest extends CobolTestSupport {
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
 				assertEquals(Literal.Type.NON_NUMERIC, literal.getType());
-				assertEquals("\"SOMESTRING\"", literal.getNonNumericLiteral());
+				assertEquals("SOMESTRING", literal.getNonNumericLiteral());
 			}
 		}
 
