@@ -38,7 +38,7 @@ public class CombinedConditionImpl extends ValueStmtImpl implements CombinedCond
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

@@ -147,7 +147,7 @@ public class RelationConditionValueStmtImpl extends ValueStmtImpl implements Rel
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

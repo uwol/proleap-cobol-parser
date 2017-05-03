@@ -10,14 +10,11 @@ package io.proleap.cobol.asg.metamodel.valuestmt.relation;
 
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 
-public interface ArithmeticComparison extends ComparisonValueStmt {
+public interface ArithmeticComparison extends ComparisonStmt {
 
 	ArithmeticValueStmt getArithmeticExpressionLeft();
 
 	ArithmeticValueStmt getArithmeticExpressionRight();
-
-	@Override
-	String getValue();
 
 	void setArithmeticExpressionLeft(ArithmeticValueStmt arithmeticExpressionLeft);
 

@@ -25,6 +25,4 @@ public interface ConditionValueStmt extends ValueStmt {
 
 	CombinableCondition getCombinableCondition();
 
-	@Override
-	String getValue();
 }

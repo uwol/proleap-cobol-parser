@@ -32,7 +32,7 @@ public class BasisImpl extends ValueStmtImpl implements Basis {
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

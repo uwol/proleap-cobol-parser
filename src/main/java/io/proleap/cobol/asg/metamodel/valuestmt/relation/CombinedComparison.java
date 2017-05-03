@@ -11,16 +11,13 @@ package io.proleap.cobol.asg.metamodel.valuestmt.relation;
 import io.proleap.cobol.Cobol85Parser.RelationCombinedConditionContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 
-public interface CombinedComparison extends ComparisonValueStmt {
+public interface CombinedComparison extends ComparisonStmt {
 
 	CombinedCondition addCombinedCondition(RelationCombinedConditionContext ctx);
 
 	ArithmeticValueStmt getArithmeticExpression();
 
 	CombinedCondition getCombinedCondition();
-
-	@Override
-	String getValue();
 
 	void setArithmeticExpression(ArithmeticValueStmt arithmeticExpression);
 

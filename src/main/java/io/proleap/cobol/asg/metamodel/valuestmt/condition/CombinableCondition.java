@@ -17,9 +17,6 @@ public interface CombinableCondition extends ValueStmt {
 
 	SimpleCondition getSimpleCondition();
 
-	@Override
-	String getValue();
-
 	boolean isNot();
 
 	void setNot(boolean not);

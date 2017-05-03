@@ -64,7 +64,7 @@ public class PlusMinusImpl extends ValueStmtImpl implements PlusMinus {
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

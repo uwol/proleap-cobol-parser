@@ -17,7 +17,4 @@ public interface Power extends ValueStmt {
 
 	Basis getBasis();
 
-	@Override
-	String getValue();
-
 }

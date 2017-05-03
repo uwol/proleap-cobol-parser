@@ -54,7 +54,7 @@ public class PowerImpl extends ValueStmtImpl implements Power {
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

@@ -51,7 +51,7 @@ public class ClassConditionImpl extends ValueStmtImpl implements ClassCondition 
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

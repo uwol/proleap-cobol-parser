@@ -25,9 +25,6 @@ public interface ClassCondition extends ValueStmt {
 
 	Type getType();
 
-	@Override
-	String getValue();
-
 	void setClassCall(Call classCall);
 
 	void setIdentifierCall(Call identifierCall);

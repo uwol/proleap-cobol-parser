@@ -13,10 +13,10 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import io.proleap.cobol.Cobol85Parser.RelationalOperatorContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
-import io.proleap.cobol.asg.metamodel.valuestmt.relation.ComparisonValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.relation.ComparisonStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.RelationalOperator;
 
-public abstract class AbstractComparisonValueStmtImpl extends ValueStmtImpl implements ComparisonValueStmt {
+public abstract class AbstractComparisonValueStmtImpl extends ValueStmtImpl implements ComparisonStmt {
 
 	protected RelationalOperator operator;
 

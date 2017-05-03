@@ -62,7 +62,7 @@ public class CombinedComparisonImpl extends AbstractComparisonValueStmtImpl impl
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

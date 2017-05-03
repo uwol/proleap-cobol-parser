@@ -20,7 +20,4 @@ public interface ConditionNameSubscriptReference extends ValueStmt {
 
 	List<Subscript> getSubscripts();
 
-	@Override
-	String getValue();
-
 }

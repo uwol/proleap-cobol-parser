@@ -40,9 +40,6 @@ public interface ConditionNameReference extends ValueStmt {
 
 	List<InMnemonic> getInMnemonics();
 
-	@Override
-	String getValue();
-
 	void setConditionCall(Call conditionCall);
 
 }

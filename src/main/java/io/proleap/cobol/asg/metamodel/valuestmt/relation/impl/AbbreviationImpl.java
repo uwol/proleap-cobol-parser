@@ -67,7 +67,7 @@ public class AbbreviationImpl extends AbstractComparisonValueStmtImpl implements
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

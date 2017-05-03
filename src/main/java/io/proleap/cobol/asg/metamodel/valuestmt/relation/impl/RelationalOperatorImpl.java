@@ -29,7 +29,7 @@ public class RelationalOperatorImpl extends ValueStmtImpl implements RelationalO
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

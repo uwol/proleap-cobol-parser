@@ -37,7 +37,7 @@ public class SignConditionImpl extends ValueStmtImpl implements SignCondition {
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

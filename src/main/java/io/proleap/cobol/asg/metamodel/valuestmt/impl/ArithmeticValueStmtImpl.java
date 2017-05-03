@@ -101,7 +101,7 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

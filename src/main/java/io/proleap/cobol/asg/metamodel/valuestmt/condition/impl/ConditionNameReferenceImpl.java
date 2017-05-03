@@ -144,7 +144,7 @@ public class ConditionNameReferenceImpl extends ValueStmtImpl implements Conditi
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

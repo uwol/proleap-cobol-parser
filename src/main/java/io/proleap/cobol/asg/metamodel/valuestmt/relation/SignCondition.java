@@ -21,9 +21,6 @@ public interface SignCondition extends ValueStmt {
 
 	Type getType();
 
-	@Override
-	String getValue();
-
 	void setArithmeticExpression(ArithmeticValueStmt arithmeticExpression);
 
 	void setType(Type type);

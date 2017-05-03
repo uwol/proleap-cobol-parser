@@ -91,7 +91,7 @@ public class PowersImpl extends ValueStmtImpl implements Powers {
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

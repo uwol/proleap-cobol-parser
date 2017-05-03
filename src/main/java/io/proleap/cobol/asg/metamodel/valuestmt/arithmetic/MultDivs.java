@@ -24,7 +24,4 @@ public interface MultDivs extends ValueStmt {
 
 	Powers getPowers();
 
-	@Override
-	String getValue();
-
 }

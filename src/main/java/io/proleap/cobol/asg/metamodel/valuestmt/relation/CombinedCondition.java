@@ -19,7 +19,4 @@ public interface CombinedCondition extends ValueStmt {
 
 	List<ArithmeticValueStmt> getArithmeticExpressions();
 
-	@Override
-	String getValue();
-
 }

@@ -18,9 +18,6 @@ public interface RelationalOperator extends ValueStmt {
 
 	Type getType();
 
-	@Override
-	String getValue();
-
 	void setType(Type type);
 
 }

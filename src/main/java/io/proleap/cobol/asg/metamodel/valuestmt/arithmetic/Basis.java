@@ -14,9 +14,6 @@ public interface Basis extends ValueStmt {
 
 	ValueStmt getBasisValueStmt();
 
-	@Override
-	String getValue();
-
 	void setBasisValueStmt(ValueStmt basisValueStmt);
 
 }

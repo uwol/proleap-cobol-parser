@@ -68,7 +68,7 @@ public class CombinableConditionImpl extends ValueStmtImpl implements Combinable
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

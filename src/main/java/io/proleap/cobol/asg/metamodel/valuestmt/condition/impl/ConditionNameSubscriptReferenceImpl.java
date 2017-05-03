@@ -52,7 +52,7 @@ public class ConditionNameSubscriptReferenceImpl extends ValueStmtImpl implement
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

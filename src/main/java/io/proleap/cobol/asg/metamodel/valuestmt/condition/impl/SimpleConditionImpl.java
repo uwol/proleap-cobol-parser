@@ -188,7 +188,7 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

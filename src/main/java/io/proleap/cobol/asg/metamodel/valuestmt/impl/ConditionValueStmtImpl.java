@@ -107,7 +107,7 @@ public class ConditionValueStmtImpl extends ValueStmtImpl implements ConditionVa
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

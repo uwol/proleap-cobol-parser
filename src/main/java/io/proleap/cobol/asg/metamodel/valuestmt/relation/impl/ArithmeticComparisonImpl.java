@@ -36,7 +36,7 @@ public class ArithmeticComparisonImpl extends AbstractComparisonValueStmtImpl im
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

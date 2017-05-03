@@ -113,7 +113,7 @@ public class MultDivsImpl extends ValueStmtImpl implements MultDivs {
 	}
 
 	@Override
-	public String getValue() {
+	public Object getValue() {
 		return null;
 	}
 

@@ -25,7 +25,4 @@ public interface ArithmeticValueStmt extends ValueStmt {
 
 	List<PlusMinus> getPlusMinus();
 
-	@Override
-	String getValue();
-
 }

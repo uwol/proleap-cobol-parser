@@ -30,9 +30,6 @@ public interface Powers extends ValueStmt {
 
 	Type getType();
 
-	@Override
-	String getValue();
-
 	void setType(Type type);
 
 }
