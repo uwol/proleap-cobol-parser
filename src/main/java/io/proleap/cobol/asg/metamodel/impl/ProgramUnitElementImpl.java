@@ -186,8 +186,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			} else {
 				result = createCommunicationDescriptionEntryCall(name, communicationDescriptionEntry, ctx);
 			}
-
-			registerASGElement(result);
 		}
 
 		return result;
@@ -234,6 +232,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (result == null) {
 			final String name = determineName(ctx);
 			result = new EnvironmentCallImpl(name, programUnit, ctx);
+
+			registerASGElement(result);
 		}
 
 		return result;
@@ -251,8 +251,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			} else {
 				result = createFileDescriptionEntryCall(name, fileDescriptionEntry, ctx);
 			}
-
-			registerASGElement(result);
 		}
 
 		return result;
@@ -294,6 +292,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (result == null) {
 			final String name = determineName(ctx);
 			result = new MnemonicCallImpl(name, programUnit, ctx);
+
+			registerASGElement(result);
 		}
 
 		return result;
@@ -313,10 +313,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 			if (ctx instanceof IdentifierContext) {
 				result = createCall((IdentifierContext) ctx);
-			} else if (ctx instanceof MnemonicNameContext) {
-				result = createCall((MnemonicNameContext) ctx);
-			} else if (ctx instanceof ProcedureNameContext) {
-				result = createCall((ProcedureNameContext) ctx);
 			} else if (ctx instanceof CdNameContext) {
 				result = createCall((CdNameContext) ctx);
 			} else if (ctx instanceof AlphabetNameContext) {
@@ -343,6 +339,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCall((LocalNameContext) ctx);
 			} else if (ctx instanceof MnemonicNameContext) {
 				result = createCall((MnemonicNameContext) ctx);
+			} else if (ctx instanceof ProcedureNameContext) {
+				result = createCall((ProcedureNameContext) ctx);
 			} else if (ctx instanceof ProgramNameContext) {
 				result = createCall((ProgramNameContext) ctx);
 			} else if (ctx instanceof QualifiedDataNameContext) {
@@ -373,8 +371,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			} else {
 				result = createProcedureCall(name, paragraph, ctx);
 			}
-
-			registerASGElement(result);
 		}
 
 		return result;
@@ -417,8 +413,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			} else {
 				result = createReportCall(name, report, ctx);
 			}
-
-			registerASGElement(result);
 		}
 
 		return result;
@@ -526,9 +520,16 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected CommunicationDescriptionEntryCall createCommunicationDescriptionEntryCall(final String name,
 			final CommunicationDescriptionEntry communicationDescriptionEntry, final CdNameContext ctx) {
-		final CommunicationDescriptionEntryCall result = new CommunicationDescriptionEntryCallImpl(name,
-				communicationDescriptionEntry, programUnit, ctx);
-		linkCommunicationDescriptionEntryCallWithCommunicationDescriptionEntry(result, communicationDescriptionEntry);
+		CommunicationDescriptionEntryCall result = (CommunicationDescriptionEntryCall) getASGElement(ctx);
+
+		if (result == null) {
+			result = new CommunicationDescriptionEntryCallImpl(name, communicationDescriptionEntry, programUnit, ctx);
+			linkCommunicationDescriptionEntryCallWithCommunicationDescriptionEntry(result,
+					communicationDescriptionEntry);
+
+			registerASGElement(result);
+		}
+
 		return result;
 	}
 
@@ -565,8 +566,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			} else {
 				result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
 			}
-
-			registerASGElement(result);
 		}
 
 		return result;
@@ -574,9 +573,15 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected DataDescriptionEntryCall createDataDescriptionEntryCall(final String name,
 			final DataDescriptionEntry dataDescriptionEntry, final ParseTree ctx) {
-		final DataDescriptionEntryCall result = new DataDescriptionEntryCallImpl(name, dataDescriptionEntry,
-				programUnit, ctx);
-		linkDataDescriptionEntryCallWithDataDescriptionEntry(result, dataDescriptionEntry);
+		DataDescriptionEntryCall result = (DataDescriptionEntryCall) getASGElement(ctx);
+
+		if (result == null) {
+			result = new DataDescriptionEntryCallImpl(name, dataDescriptionEntry, programUnit, ctx);
+			linkDataDescriptionEntryCallWithDataDescriptionEntry(result, dataDescriptionEntry);
+
+			registerASGElement(result);
+		}
+
 		return result;
 	}
 
@@ -639,9 +644,15 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected FileDescriptionEntryCall createFileDescriptionEntryCall(final String name,
 			final FileDescriptionEntry fileDescriptionEntry, final FileNameContext ctx) {
-		final FileDescriptionEntryCall result = new FileDescriptionEntryCallImpl(name, fileDescriptionEntry,
-				programUnit, ctx);
-		linkFileDescriptionEntryCallWithFileDescriptionEntry(result, fileDescriptionEntry);
+		FileDescriptionEntryCall result = (FileDescriptionEntryCall) getASGElement(ctx);
+
+		if (result == null) {
+			result = new FileDescriptionEntryCallImpl(name, fileDescriptionEntry, programUnit, ctx);
+			linkFileDescriptionEntryCallWithFileDescriptionEntry(result, fileDescriptionEntry);
+
+			registerASGElement(result);
+		}
+
 		return result;
 	}
 
@@ -767,8 +778,15 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected ProcedureCall createProcedureCall(final String name, final Paragraph paragraph,
 			final ProcedureNameContext ctx) {
-		final ProcedureCall result = new ProcedureCallImpl(name, paragraph, programUnit, ctx);
-		linkProcedureCallWithParagraph(result, paragraph);
+		ProcedureCall result = (ProcedureCall) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ProcedureCallImpl(name, paragraph, programUnit, ctx);
+			linkProcedureCallWithParagraph(result, paragraph);
+
+			registerASGElement(result);
+		}
+
 		return result;
 	}
 
@@ -803,16 +821,29 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected ReportCall createReportCall(final String name, final ReportDescription report,
 			final ReportNameContext ctx) {
-		final ReportCall result = new ReportCallImpl(name, report, programUnit, ctx);
-		linkReportCallWithReport(result, report);
+		ReportCall result = (ReportCall) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ReportCallImpl(name, report, programUnit, ctx);
+			linkReportCallWithReport(result, report);
+
+			registerASGElement(result);
+		}
+
 		return result;
 	}
 
 	protected ReportDescriptionEntryCall createReportDescriptionEntryCall(final String name,
 			final ReportDescriptionEntry reportDescriptionEntry, final ReportNameContext ctx) {
-		final ReportDescriptionEntryCall result = new ReportDescriptionEntryCallImpl(name, reportDescriptionEntry,
-				programUnit, ctx);
-		linkReportDescriptionEntryCallWithReportDescriptionEntry(result, reportDescriptionEntry);
+		ReportDescriptionEntryCall result = (ReportDescriptionEntryCall) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ReportDescriptionEntryCallImpl(name, reportDescriptionEntry, programUnit, ctx);
+			linkReportDescriptionEntryCallWithReportDescriptionEntry(result, reportDescriptionEntry);
+
+			registerASGElement(result);
+		}
+
 		return result;
 	}
 
@@ -822,8 +853,15 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createUndefinedCall(final ParseTree ctx) {
-		final String name = determineName(ctx);
-		final Call result = new UndefinedCallImpl(name, programUnit, ctx);
+		Call result = (Call) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new UndefinedCallImpl(name, programUnit, ctx);
+
+			registerASGElement(result);
+		}
+
 		return result;
 	}
 
