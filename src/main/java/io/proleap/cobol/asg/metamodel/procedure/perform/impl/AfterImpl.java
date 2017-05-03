@@ -8,46 +8,24 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform.impl;
 
-import java.util.List;
-
 import io.proleap.cobol.Cobol85Parser.PerformAfterContext;
-import io.proleap.cobol.Cobol85Parser.PerformVaryingClauseContext;
 import io.proleap.cobol.Cobol85Parser.PerformVaryingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.perform.After;
-import io.proleap.cobol.asg.metamodel.procedure.perform.VaryingClause;
 import io.proleap.cobol.asg.metamodel.procedure.perform.VaryingPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public class VaryingClauseImpl extends CobolDivisionElementImpl implements VaryingClause {
+public class AfterImpl extends CobolDivisionElementImpl implements After {
 
-	protected List<After> afters;
-
-	protected final PerformVaryingClauseContext ctx;
+	protected final PerformAfterContext ctx;
 
 	protected VaryingPhrase varyingPhrase;
 
-	public VaryingClauseImpl(final ProgramUnit programUnit, final PerformVaryingClauseContext ctx) {
+	public AfterImpl(final ProgramUnit programUnit, final PerformAfterContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
-	}
-
-	@Override
-	public After addAfter(final PerformAfterContext ctx) {
-		After result = (After) getASGElement(ctx);
-
-		if (result == null) {
-			result = new AfterImpl(programUnit, ctx);
-
-			result.addVaryingPhrase(ctx.performVaryingPhrase());
-
-			afters.add(result);
-			registerASGElement(result);
-		}
-
-		return result;
 	}
 
 	@Override
@@ -75,11 +53,6 @@ public class VaryingClauseImpl extends CobolDivisionElementImpl implements Varyi
 		}
 
 		return result;
-	}
-
-	@Override
-	public List<After> getAfters() {
-		return afters;
 	}
 
 	@Override

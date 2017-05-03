@@ -8,19 +8,12 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform;
 
-import java.util.List;
-
-import io.proleap.cobol.Cobol85Parser.PerformAfterContext;
 import io.proleap.cobol.Cobol85Parser.PerformVaryingPhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
-public interface VaryingClause extends CobolDivisionElement {
-
-	After addAfter(PerformAfterContext ctx);
+public interface After extends CobolDivisionElement {
 
 	VaryingPhrase addVaryingPhrase(PerformVaryingPhraseContext ctx);
-
-	List<After> getAfters();
 
 	VaryingPhrase getVaryingPhrase();
 

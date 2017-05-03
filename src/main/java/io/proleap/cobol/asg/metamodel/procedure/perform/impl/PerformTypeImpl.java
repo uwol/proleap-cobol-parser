@@ -63,6 +63,7 @@ public class PerformTypeImpl extends CobolDivisionElementImpl implements Perform
 		if (result == null) {
 			result = new UntilImpl(programUnit, ctx);
 
+			// test clause
 			if (ctx.performTestClause() != null) {
 				result.addTestClause(ctx.performTestClause());
 			}

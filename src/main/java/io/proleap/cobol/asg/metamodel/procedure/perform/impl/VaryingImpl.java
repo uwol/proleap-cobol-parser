@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform.impl;
 
+import io.proleap.cobol.Cobol85Parser.PerformAfterContext;
 import io.proleap.cobol.Cobol85Parser.PerformTestClauseContext;
 import io.proleap.cobol.Cobol85Parser.PerformVaryingClauseContext;
 import io.proleap.cobol.Cobol85Parser.PerformVaryingContext;
@@ -63,6 +64,14 @@ public class VaryingImpl extends CobolDivisionElementImpl implements Varying {
 
 		if (result == null) {
 			result = new VaryingClauseImpl(programUnit, ctx);
+
+			// varying
+			result.addVaryingPhrase(ctx.performVaryingPhrase());
+
+			// after
+			for (final PerformAfterContext performAfterContext : ctx.performAfter()) {
+				result.addAfter(performAfterContext);
+			}
 
 			varyingClause = result;
 			registerASGElement(result);

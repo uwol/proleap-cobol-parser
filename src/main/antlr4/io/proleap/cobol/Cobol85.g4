@@ -1744,7 +1744,23 @@ performVarying
    ;
 
 performVaryingClause
-   : VARYING (identifier | literal) FROM (identifier | literal | arithmeticExpression) BY (identifier | literal | arithmeticExpression) performUntil (AFTER (identifier) FROM (identifier | literal | arithmeticExpression) BY (identifier | literal | arithmeticExpression) performUntil)* (statement+ END_PERFORM)?
+   : VARYING performVaryingPhrase performAfter*
+   ;
+
+performVaryingPhrase
+   : (identifier | literal) performFrom performBy performUntil
+   ;
+
+performAfter
+   : AFTER performVaryingPhrase
+   ;
+
+performFrom
+   : FROM (identifier | literal | arithmeticExpression)
+   ;
+
+performBy
+   : BY (identifier | literal | arithmeticExpression)
    ;
 
 performTestClause
