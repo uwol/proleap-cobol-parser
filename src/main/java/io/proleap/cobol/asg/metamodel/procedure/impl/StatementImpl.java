@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
@@ -19,7 +19,7 @@ public abstract class StatementImpl extends CobolDivisionElementImpl implements 
 
 	protected final Scope scope;
 
-	public StatementImpl(final ProgramUnit programUnit, final Scope scope, final ParseTree ctx) {
+	public StatementImpl(final ProgramUnit programUnit, final Scope scope, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 
 		this.scope = scope;

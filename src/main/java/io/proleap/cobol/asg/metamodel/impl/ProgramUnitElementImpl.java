@@ -8,8 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.TerminalNode;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -87,7 +86,6 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.RelationConditionValueStmt;
-import io.proleap.cobol.asg.metamodel.valuestmt.TerminalValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ArithmeticValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.BooleanLiteralValueStmtImpl;
@@ -96,7 +94,6 @@ import io.proleap.cobol.asg.metamodel.valuestmt.impl.ConditionValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.IntegerLiteralValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.LiteralValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.RelationConditionValueStmtImpl;
-import io.proleap.cobol.asg.metamodel.valuestmt.impl.TerminalValueStmtImpl;
 import io.proleap.cobol.asg.util.StringUtils;
 
 public class ProgramUnitElementImpl extends CompilationUnitElementImpl implements ProgramUnitElement {
@@ -107,7 +104,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected ProgramUnit programUnit;
 
-	public ProgramUnitElementImpl(final ProgramUnit programUnit, final ParseTree ctx) {
+	public ProgramUnitElementImpl(final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(ctx);
 
 		this.programUnit = programUnit;
@@ -299,10 +296,10 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected Call createCall(final ParseTree... ctxs) {
+	protected Call createCall(final ParserRuleContext... ctxs) {
 		Call result = null;
 
-		for (final ParseTree ctx : ctxs) {
+		for (final ParserRuleContext ctx : ctxs) {
 			if (result != null) {
 				break;
 			}
@@ -553,7 +550,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected Call createDataDescriptionEntryCall(final ParseTree ctx) {
+	protected Call createDataDescriptionEntryCall(final ParserRuleContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -572,7 +569,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected DataDescriptionEntryCall createDataDescriptionEntryCall(final String name,
-			final DataDescriptionEntry dataDescriptionEntry, final ParseTree ctx) {
+			final DataDescriptionEntry dataDescriptionEntry, final ParserRuleContext ctx) {
 		DataDescriptionEntryCall result = (DataDescriptionEntryCall) getASGElement(ctx);
 
 		if (result == null) {
@@ -847,12 +844,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected TerminalValueStmt createTerminalValueStmt(final TerminalNode ctx) {
-		final TerminalValueStmt result = new TerminalValueStmtImpl(programUnit, ctx);
-		return result;
-	}
-
-	protected Call createUndefinedCall(final ParseTree ctx) {
+	protected Call createUndefinedCall(final ParserRuleContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
@@ -865,10 +857,10 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected ValueStmt createValueStmt(final ParseTree... ctxs) {
+	protected ValueStmt createValueStmt(final ParserRuleContext... ctxs) {
 		ValueStmt result = null;
 
-		for (final ParseTree ctx : ctxs) {
+		for (final ParserRuleContext ctx : ctxs) {
 			if (result != null) {
 				break;
 			}
@@ -915,8 +907,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createIntegerLiteralValueStmt((IntegerLiteralContext) ctx);
 			} else if (ctx instanceof LiteralContext) {
 				result = createLiteralValueStmt((LiteralContext) ctx);
-			} else if (ctx instanceof TerminalNode) {
-				result = createTerminalValueStmt((TerminalNode) ctx);
 			} else {
 				LOG.warn("unknown value stmt at {}", ctx);
 			}

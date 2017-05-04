@@ -85,7 +85,7 @@ public class FileControlTest extends CobolTestSupport {
 		{
 			final RecordDelimiterClause recordDelimiterClause = fileControlEntry.getRecordDelimiterClause();
 			assertNotNull(recordDelimiterClause);
-			assertEquals("IMPLICIT", recordDelimiterClause.getValueStmt().getValue());
+			assertEquals(RecordDelimiterClause.Type.IMPLICIT, recordDelimiterClause.getType());
 		}
 
 		{

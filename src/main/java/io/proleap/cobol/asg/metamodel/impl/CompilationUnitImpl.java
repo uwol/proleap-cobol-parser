@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.Cobol85Parser.CompilationUnitContext;
 import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
@@ -74,7 +74,7 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 		return result;
 	}
 
-	protected ASGElement getASGElement(final ParseTree ctx) {
+	protected ASGElement getASGElement(final ParserRuleContext ctx) {
 		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
 		return result;
 	}
@@ -87,6 +87,11 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public Program getProgram() {
+		return program;
 	}
 
 	@Override

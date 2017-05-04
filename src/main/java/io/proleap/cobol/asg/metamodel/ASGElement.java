@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel;
 
 import java.util.Collection;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 /**
  * an element of the ASG that corresponds to an element in the AST.
@@ -19,7 +19,7 @@ public interface ASGElement extends ModelElement {
 
 	Collection<ASGElement> getChildren();
 
-	ParseTree getCtx();
+	ParserRuleContext getCtx();
 
 	ASGElement getParent();
 }

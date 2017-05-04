@@ -16,6 +16,8 @@ public interface CompilationUnit extends ASGElement, NamedElement {
 
 	ProgramUnit addProgramUnit(ProgramUnitContext ctx);
 
+	Program getProgram();
+
 	ProgramUnit getProgramUnit();
 
 	List<ProgramUnit> getProgramUnits();

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.call.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.ScreenDescriptionEntryCall;
@@ -21,7 +21,7 @@ public class ScreenDescriptionEntryCallImpl extends CallImpl implements ScreenDe
 	protected ScreenDescriptionEntry screenDescriptionEntry;
 
 	public ScreenDescriptionEntryCallImpl(final String name, final ScreenDescriptionEntry screenDescriptionEntry,
-			final ProgramUnit programUnit, final ParseTree ctx) {
+			final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(name, programUnit, ctx);
 
 		this.screenDescriptionEntry = screenDescriptionEntry;

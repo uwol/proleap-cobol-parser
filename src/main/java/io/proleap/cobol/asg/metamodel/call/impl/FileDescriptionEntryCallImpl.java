@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.call.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.FileDescriptionEntryCall;
@@ -21,7 +21,7 @@ public class FileDescriptionEntryCallImpl extends CallImpl implements FileDescri
 	protected FileDescriptionEntry fileDescriptionEntry;
 
 	public FileDescriptionEntryCallImpl(final String name, final FileDescriptionEntry fileDescriptionEntry,
-			final ProgramUnit programUnit, final ParseTree ctx) {
+			final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(name, programUnit, ctx);
 
 		this.fileDescriptionEntry = fileDescriptionEntry;

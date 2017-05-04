@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.call.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.MnemonicCall;
@@ -17,7 +17,7 @@ public class MnemonicCallImpl extends CallImpl implements MnemonicCall {
 
 	protected final CallType callType = CallType.MNEMONIC_CALL;
 
-	public MnemonicCallImpl(final String name, final ProgramUnit programUnit, final ParseTree ctx) {
+	public MnemonicCallImpl(final String name, final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(name, programUnit, ctx);
 	}
 

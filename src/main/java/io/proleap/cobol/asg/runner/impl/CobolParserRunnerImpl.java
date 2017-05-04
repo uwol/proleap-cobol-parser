@@ -10,8 +10,10 @@ package io.proleap.cobol.asg.runner.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.commons.io.FilenameUtils;
@@ -166,6 +168,9 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile,
 					libDirectory, format, dialect);
 
+			final List<String> lines = splitLines(preProcessedInput);
+			program.setLines(lines);
+
 			LOG.info("Parsing file {}.", inputFile.getName());
 
 			// run the lexer
@@ -189,5 +194,17 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			LOG.info("Collecting units in file {}.", inputFile.getName());
 			visitor.visit(ctx);
 		}
+	}
+
+	public List<String> splitLines(final String preProcessedInput) {
+		final Scanner scanner = new Scanner(preProcessedInput);
+		final List<String> result = new ArrayList<String>();
+
+		while (scanner.hasNextLine()) {
+			result.add(scanner.nextLine());
+		}
+
+		scanner.close();
+		return result;
 	}
 }

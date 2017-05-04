@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,7 +31,7 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 
 	private final static Logger LOG = LogManager.getLogger(ReportGroupDescriptionEntryImpl.class);
 
-	protected final ParseTree ctx;
+	protected final ParserRuleContext ctx;
 
 	protected Integer levelNumber;
 
@@ -47,7 +47,7 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 
 	protected UsageClause usageClause;
 
-	public ReportGroupDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final ParseTree ctx) {
+	public ReportGroupDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.inspect.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.Cobol85Parser.InspectAllLeadingsContext;
 import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
@@ -25,7 +25,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public abstract class InspectPhraseImpl extends CobolDivisionElementImpl {
 
-	public InspectPhraseImpl(final ProgramUnit programUnit, final ParseTree ctx) {
+	public InspectPhraseImpl(final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 	}
 

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.call.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.EnvironmentCall;
@@ -17,7 +17,7 @@ public class EnvironmentCallImpl extends CallImpl implements EnvironmentCall {
 
 	protected final CallType callType = CallType.ENVIRONMENT_CALL;
 
-	public EnvironmentCallImpl(final String name, final ProgramUnit programUnit, final ParseTree ctx) {
+	public EnvironmentCallImpl(final String name, final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(name, programUnit, ctx);
 	}
 

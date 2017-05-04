@@ -8,7 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.ASGElement;
@@ -16,15 +17,15 @@ import io.proleap.cobol.asg.metamodel.CompilationUnitElement;
 
 public class CompilationUnitElementImpl extends ASGElementImpl implements CompilationUnitElement {
 
-	public CompilationUnitElementImpl(final ParseTree ctx) {
+	public CompilationUnitElementImpl(final ParserRuleContext ctx) {
 		super(ctx);
 	}
 
-	protected String determineName(final ParseTree ctx) {
+	protected String determineName(final ParserRuleContext ctx) {
 		return CobolParserContext.getInstance().getNameResolver().determineName(ctx);
 	}
 
-	protected ASGElement getASGElement(final ParseTree ctx) {
+	protected ASGElement getASGElement(final ParserRuleContext ctx) {
 		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
 		return result;
 	}

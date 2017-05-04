@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.relation.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.Cobol85Parser.RelationalOperatorContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -20,7 +20,7 @@ public abstract class AbstractComparisonValueStmtImpl extends ValueStmtImpl impl
 
 	protected RelationalOperator operator;
 
-	public AbstractComparisonValueStmtImpl(final ProgramUnit programUnit, final ParseTree ctx) {
+	public AbstractComparisonValueStmtImpl(final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 	}
 

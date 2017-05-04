@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.specialnames.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -19,9 +19,9 @@ public abstract class AlphabetClauseImpl extends CobolDivisionElementImpl implem
 
 	protected Call alphabetCall;
 
-	protected final ParseTree ctx;
+	protected final ParserRuleContext ctx;
 
-	public AlphabetClauseImpl(final ProgramUnit programUnit, final ParseTree ctx) {
+	public AlphabetClauseImpl(final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

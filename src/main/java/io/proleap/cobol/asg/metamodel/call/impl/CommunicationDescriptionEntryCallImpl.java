@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.call.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.CommunicationDescriptionEntryCall;
@@ -22,7 +22,7 @@ public class CommunicationDescriptionEntryCallImpl extends CallImpl implements C
 
 	public CommunicationDescriptionEntryCallImpl(final String name,
 			final CommunicationDescriptionEntry communicationDescriptionEntry, final ProgramUnit programUnit,
-			final ParseTree ctx) {
+			final ParserRuleContext ctx) {
 		super(name, programUnit, ctx);
 
 		this.communicationDescriptionEntry = communicationDescriptionEntry;

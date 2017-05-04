@@ -8,7 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.ASGElement;
@@ -17,17 +18,17 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 
 public abstract class CobolDivisionElementImpl extends ProgramUnitElementImpl implements CobolDivisionElement {
 
-	public CobolDivisionElementImpl(final ProgramUnit programUnit, final ParseTree ctx) {
+	public CobolDivisionElementImpl(final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 	}
 
 	@Override
-	protected String determineName(final ParseTree ctx) {
+	protected String determineName(final ParserRuleContext ctx) {
 		return CobolParserContext.getInstance().getNameResolver().determineName(ctx);
 	}
 
 	@Override
-	protected ASGElement getASGElement(final ParseTree ctx) {
+	protected ASGElement getASGElement(final ParserRuleContext ctx) {
 		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
 		return result;
 	}

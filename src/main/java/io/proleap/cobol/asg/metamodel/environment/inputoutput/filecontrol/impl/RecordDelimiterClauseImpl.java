@@ -18,6 +18,8 @@ public class RecordDelimiterClauseImpl extends CobolDivisionElementImpl implemen
 
 	protected final RecordDelimiterClauseContext ctx;
 
+	protected Type type;
+
 	protected ValueStmt valueStmt;
 
 	public RecordDelimiterClauseImpl(final ProgramUnit programUnit, final RecordDelimiterClauseContext ctx) {
@@ -27,8 +29,18 @@ public class RecordDelimiterClauseImpl extends CobolDivisionElementImpl implemen
 	}
 
 	@Override
+	public Type getType() {
+		return type;
+	}
+
+	@Override
 	public ValueStmt getValueStmt() {
 		return valueStmt;
+	}
+
+	@Override
+	public void setType(final Type type) {
+		this.type = type;
 	}
 
 	@Override

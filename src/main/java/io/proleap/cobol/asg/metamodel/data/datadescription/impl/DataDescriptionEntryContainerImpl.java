@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -64,7 +64,7 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 
 	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesSymbolTable = new HashMap<String, DataDescriptionEntry>();
 
-	public DataDescriptionEntryContainerImpl(final ProgramUnit programUnit, final ParseTree ctx) {
+	public DataDescriptionEntryContainerImpl(final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 	}
 

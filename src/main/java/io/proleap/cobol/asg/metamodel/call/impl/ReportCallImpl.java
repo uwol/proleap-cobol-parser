@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.call.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.ReportCall;
@@ -20,7 +20,7 @@ public class ReportCallImpl extends CallImpl implements ReportCall {
 
 	protected ReportDescription report;
 
-	public ReportCallImpl(final String name, final ReportDescription report, final ProgramUnit programUnit, final ParseTree ctx) {
+	public ReportCallImpl(final String name, final ReportDescription report, final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(name, programUnit, ctx);
 
 		this.report = report;

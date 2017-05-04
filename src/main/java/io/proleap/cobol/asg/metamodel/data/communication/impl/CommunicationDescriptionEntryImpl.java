@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.data.communication.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.CommunicationDescriptionEntryCall;
@@ -25,7 +25,7 @@ public abstract class CommunicationDescriptionEntryImpl extends CobolDivisionEle
 
 	protected final String name;
 
-	public CommunicationDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final ParseTree ctx) {
+	public CommunicationDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 
 		this.name = name;

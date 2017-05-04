@@ -293,8 +293,22 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new RecordDelimiterClauseImpl(programUnit, ctx);
 
-			final ValueStmt valueStmt = createValueStmt(ctx.assignmentName(), ctx.STANDARD_1(), ctx.IMPLICIT());
-			result.setValueStmt(valueStmt);
+			final RecordDelimiterClause.Type type;
+
+			if (ctx.STANDARD_1() != null) {
+				type = RecordDelimiterClause.Type.STANDARD_1;
+			} else if (ctx.IMPLICIT() != null) {
+				type = RecordDelimiterClause.Type.IMPLICIT;
+			} else if (ctx.assignmentName() != null) {
+				type = RecordDelimiterClause.Type.ASSIGNMENT;
+
+				final ValueStmt valueStmt = createValueStmt(ctx.assignmentName());
+				result.setValueStmt(valueStmt);
+			} else {
+				type = null;
+			}
+
+			result.setType(type);
 
 			recordDelimiterClause = result;
 			registerASGElement(result);

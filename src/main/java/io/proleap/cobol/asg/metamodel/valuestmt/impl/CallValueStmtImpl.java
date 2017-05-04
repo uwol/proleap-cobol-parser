@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -18,7 +18,7 @@ public class CallValueStmtImpl extends ValueStmtImpl implements CallValueStmt {
 
 	protected Call call;
 
-	public CallValueStmtImpl(final Call call, final ProgramUnit programUnit, final ParseTree ctx) {
+	public CallValueStmtImpl(final Call call, final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 
 		this.call = call;

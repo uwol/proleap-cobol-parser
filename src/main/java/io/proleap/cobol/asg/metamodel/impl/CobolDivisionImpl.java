@@ -8,14 +8,14 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.CobolDivision;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 
 public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implements CobolDivision {
 
-	public CobolDivisionImpl(final ProgramUnit programUnit, final ParseTree ctx) {
+	public CobolDivisionImpl(final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 	}
 

@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
@@ -19,11 +19,11 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public abstract class ValueStmtImpl extends CobolDivisionElementImpl implements ValueStmt {
 
-	protected final ParseTree ctx;
+	protected final ParserRuleContext ctx;
 
 	protected final List<ValueStmt> subValueStmts = new ArrayList<ValueStmt>();
 
-	public ValueStmtImpl(final ProgramUnit programUnit, final ParseTree ctx) {
+	public ValueStmtImpl(final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

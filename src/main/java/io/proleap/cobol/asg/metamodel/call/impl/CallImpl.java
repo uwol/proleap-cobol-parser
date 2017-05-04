@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.call.impl;
 
-import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -18,7 +18,7 @@ public abstract class CallImpl extends CobolDivisionElementImpl implements Call 
 
 	protected final String name;
 
-	public CallImpl(final String name, final ProgramUnit programUnit, final ParseTree ctx) {
+	public CallImpl(final String name, final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 
 		this.name = name;
