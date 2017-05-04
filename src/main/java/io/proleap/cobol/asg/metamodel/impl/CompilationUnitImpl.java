@@ -25,6 +25,8 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 
 	protected CompilationUnitContext ctx;
 
+	protected List<String> lines;
+
 	protected final String name;
 
 	protected final Program program;
@@ -85,6 +87,11 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 	}
 
 	@Override
+	public List<String> getLines() {
+		return lines;
+	}
+
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -117,6 +124,11 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 		assert asgElement.getCtx() != null;
 
 		CobolParserContext.getInstance().getASGElementRegistry().addASGElement(asgElement);
+	}
+
+	@Override
+	public void setLines(final List<String> lines) {
+		this.lines = lines;
 	}
 
 	@Override

@@ -10,7 +10,6 @@ package io.proleap.cobol.asg.metamodel.impl;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
@@ -19,8 +18,6 @@ import io.proleap.cobol.asg.metamodel.Program;
 public class ProgramImpl extends ASGElementImpl implements Program {
 
 	protected final Map<String, CompilationUnit> compilationUnits = new LinkedHashMap<String, CompilationUnit>();
-
-	protected List<String> lines;
 
 	public ProgramImpl() {
 		super(null);
@@ -42,18 +39,9 @@ public class ProgramImpl extends ASGElementImpl implements Program {
 	}
 
 	@Override
-	public List<String> getLines() {
-		return lines;
-	}
-
-	@Override
 	public void registerCompilationUnit(final CompilationUnit compilationUnit) {
 		final String compilationUnitKey = getCompilationUnitKey(compilationUnit.getName());
 		compilationUnits.put(compilationUnitKey, compilationUnit);
 	}
 
-	@Override
-	public void setLines(final List<String> lines) {
-		this.lines = lines;
-	}
 }

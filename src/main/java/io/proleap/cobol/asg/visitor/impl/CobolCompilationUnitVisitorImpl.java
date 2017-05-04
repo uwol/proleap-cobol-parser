@@ -8,9 +8,10 @@
 
 package io.proleap.cobol.asg.visitor.impl;
 
-import org.antlr.v4.runtime.misc.NotNull;
+import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser;
+import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.impl.CompilationUnitImpl;
 
@@ -21,16 +22,21 @@ public class CobolCompilationUnitVisitorImpl extends AbstractCobolParserVisitorI
 
 	protected final String compilationUnitName;
 
+	protected final List<String> lines;
+
 	protected final Program program;
 
-	public CobolCompilationUnitVisitorImpl(final Program program, final String compilationUnitName) {
+	public CobolCompilationUnitVisitorImpl(final Program program, final String compilationUnitName,
+			final List<String> lines) {
 		this.program = program;
 		this.compilationUnitName = compilationUnitName;
+		this.lines = lines;
 	}
 
 	@Override
-	public Boolean visitCompilationUnit(@NotNull final Cobol85Parser.CompilationUnitContext ctx) {
-		new CompilationUnitImpl(compilationUnitName, program, ctx);
+	public Boolean visitCompilationUnit(final Cobol85Parser.CompilationUnitContext ctx) {
+		final CompilationUnit compilationUnit = new CompilationUnitImpl(compilationUnitName, program, ctx);
+		compilationUnit.setLines(lines);
 
 		return visitChildren(ctx);
 	}

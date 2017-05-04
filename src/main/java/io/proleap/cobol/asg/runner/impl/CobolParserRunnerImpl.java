@@ -168,9 +168,6 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile,
 					libDirectory, format, dialect);
 
-			final List<String> lines = splitLines(preProcessedInput);
-			program.setLines(lines);
-
 			LOG.info("Parsing file {}.", inputFile.getName());
 
 			// run the lexer
@@ -188,8 +185,9 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			// determine the copy book name
 			final String compilationUnitName = getCompilationUnitName(inputFile);
 
-			// analyze contained copy books
-			final ParserVisitor visitor = new CobolCompilationUnitVisitorImpl(program, compilationUnitName);
+			// analyze contained compilation units
+			final List<String> lines = splitLines(preProcessedInput);
+			final ParserVisitor visitor = new CobolCompilationUnitVisitorImpl(program, compilationUnitName, lines);
 
 			LOG.info("Collecting units in file {}.", inputFile.getName());
 			visitor.visit(ctx);

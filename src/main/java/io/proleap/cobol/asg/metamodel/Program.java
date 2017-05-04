@@ -9,7 +9,6 @@
 package io.proleap.cobol.asg.metamodel;
 
 import java.util.Collection;
-import java.util.List;
 
 public interface Program extends ASGElement {
 
@@ -17,9 +16,6 @@ public interface Program extends ASGElement {
 
 	Collection<CompilationUnit> getCompilationUnits();
 
-	List<String> getLines();
-
 	void registerCompilationUnit(CompilationUnit compilationUnit);
 
-	void setLines(List<String> lines);
 }

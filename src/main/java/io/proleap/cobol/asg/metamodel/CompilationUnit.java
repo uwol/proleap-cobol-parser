@@ -16,9 +16,13 @@ public interface CompilationUnit extends ASGElement, NamedElement {
 
 	ProgramUnit addProgramUnit(ProgramUnitContext ctx);
 
+	List<String> getLines();
+
 	Program getProgram();
 
 	ProgramUnit getProgramUnit();
 
 	List<ProgramUnit> getProgramUnits();
+
+	void setLines(List<String> lines);
 }
