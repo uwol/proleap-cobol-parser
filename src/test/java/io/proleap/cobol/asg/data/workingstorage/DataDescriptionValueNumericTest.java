@@ -7,7 +7,7 @@ import java.io.File;
 
 import org.junit.Test;
 
-import io.proleap.cobol.CobolTestSupport;
+import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.NumericLiteral;
@@ -22,7 +22,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class DataDescriptionValueNumericTest extends CobolTestSupport {
+public class DataDescriptionValueNumericTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {

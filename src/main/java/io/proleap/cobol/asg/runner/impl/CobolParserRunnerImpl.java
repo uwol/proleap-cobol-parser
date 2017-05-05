@@ -137,7 +137,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	protected void analyzeProgramUnits(final Program program) {
 		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
-			final ParserVisitor visitor = new CobolProgramUnitVisitorImpl(program, compilationUnit);
+			final ParserVisitor visitor = new CobolProgramUnitVisitorImpl(compilationUnit);
 
 			LOG.info("Analyzing program units of compilation unit {}.", compilationUnit.getName());
 			visitor.visit(compilationUnit.getCtx());
@@ -187,7 +187,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 			// analyze contained compilation units
 			final List<String> lines = splitLines(preProcessedInput);
-			final ParserVisitor visitor = new CobolCompilationUnitVisitorImpl(program, compilationUnitName, lines);
+			final ParserVisitor visitor = new CobolCompilationUnitVisitorImpl(compilationUnitName, lines, program);
 
 			LOG.info("Collecting units in file {}.", inputFile.getName());
 			visitor.visit(ctx);

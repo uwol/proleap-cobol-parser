@@ -6,7 +6,7 @@ import java.io.File;
 
 import org.junit.Test;
 
-import io.proleap.cobol.CobolTestSupport;
+import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -19,7 +19,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class CancelStatementTest extends CobolTestSupport {
+public class CancelStatementTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {

@@ -1,6 +1,6 @@
 package io.proleap.cobol;
 
-public class CobolTestSupport {
+public class CobolTestBase {
 
 	protected final static Double EPSILON = 0.000001;
 

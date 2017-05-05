@@ -10,7 +10,6 @@ package io.proleap.cobol.asg.visitor.impl;
 
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
-import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 
 /**
@@ -20,8 +19,8 @@ public class CobolProgramUnitVisitorImpl extends AbstractCobolParserVisitorImpl 
 
 	protected final CompilationUnit compilationUnit;
 
-	public CobolProgramUnitVisitorImpl(final Program program, final CompilationUnit compilationUnit) {
-		super(program);
+	public CobolProgramUnitVisitorImpl(final CompilationUnit compilationUnit) {
+		super(compilationUnit.getProgram());
 
 		this.compilationUnit = compilationUnit;
 	}

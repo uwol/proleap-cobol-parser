@@ -8,7 +8,7 @@ import java.io.File;
 
 import org.junit.Test;
 
-import io.proleap.cobol.CobolTestSupport;
+import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -27,7 +27,7 @@ import io.proleap.cobol.asg.metamodel.data.file.ValueOfClause;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class FileDescriptionEntryTest extends CobolTestSupport {
+public class FileDescriptionEntryTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {

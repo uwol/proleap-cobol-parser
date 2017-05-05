@@ -24,8 +24,8 @@ public class CobolCompilationUnitVisitorImpl extends AbstractCobolParserVisitorI
 
 	protected final List<String> lines;
 
-	public CobolCompilationUnitVisitorImpl(final Program program, final String compilationUnitName,
-			final List<String> lines) {
+	public CobolCompilationUnitVisitorImpl(final String compilationUnitName, final List<String> lines,
+			final Program program) {
 		super(program);
 
 		this.compilationUnitName = compilationUnitName;
