@@ -36,7 +36,7 @@ public class DataDescriptionValueNonNumericTest extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMSTRING");
+					.getDataDescriptionEntry("ITEMSTRING");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());
@@ -55,7 +55,7 @@ public class DataDescriptionValueNonNumericTest extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMHEX");
+					.getDataDescriptionEntry("ITEMHEX");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());

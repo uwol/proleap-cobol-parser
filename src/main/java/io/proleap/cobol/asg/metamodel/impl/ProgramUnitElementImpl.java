@@ -556,7 +556,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
+			final DataDescriptionEntry dataDescriptionEntry = getDataDescriptionEntry(name);
 
 			if (dataDescriptionEntry == null) {
 				LOG.warn("call to unknown element {}", name);
@@ -935,7 +935,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected DataDescriptionEntry findDataDescriptionEntry(final String name) {
+	protected DataDescriptionEntry getDataDescriptionEntry(final String name) {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final DataDescriptionEntry result;
 
@@ -947,7 +947,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			if (workingStorageSection == null) {
 				result = null;
 			} else {
-				result = workingStorageSection.findDataDescriptionEntry(name);
+				result = workingStorageSection.getDataDescriptionEntry(name);
 			}
 		}
 

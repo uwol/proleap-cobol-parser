@@ -38,7 +38,7 @@ public class DataDescriptionValueBooleanTest extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMTRUE");
+					.getDataDescriptionEntry("ITEMTRUE");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());
@@ -57,7 +57,7 @@ public class DataDescriptionValueBooleanTest extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMFALSE");
+					.getDataDescriptionEntry("ITEMFALSE");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());

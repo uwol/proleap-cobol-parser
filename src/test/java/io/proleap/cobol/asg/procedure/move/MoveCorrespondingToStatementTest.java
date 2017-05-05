@@ -39,7 +39,7 @@ public class MoveCorrespondingToStatementTest extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
-					.findDataDescriptionEntry("SOME-TEXT");
+					.getDataDescriptionEntry("SOME-TEXT");
 
 			assertNotNull(dataDescriptionEntry);
 			assertFalse(dataDescriptionEntry.getCalls().isEmpty());
@@ -48,7 +48,7 @@ public class MoveCorrespondingToStatementTest extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
-					.findDataDescriptionEntry("SOME-TEXT2");
+					.getDataDescriptionEntry("SOME-TEXT2");
 
 			assertNotNull(dataDescriptionEntry);
 			assertFalse(dataDescriptionEntry.getCalls().isEmpty());

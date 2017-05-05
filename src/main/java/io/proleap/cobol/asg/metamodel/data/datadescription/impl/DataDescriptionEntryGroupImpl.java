@@ -698,7 +698,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
-	public DataDescriptionEntry findDataDescriptionEntry(final String name) {
+	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
 		return dataDescriptionEntriesSymbolTable.get(name);
 	}
 

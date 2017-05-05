@@ -57,7 +57,7 @@ public class OBIC1ATest extends CobolTestSupport {
 				final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
 				{
-					final DataDescriptionEntry sortLink = workingStorageSection.findDataDescriptionEntry("SORT-LINK");
+					final DataDescriptionEntry sortLink = workingStorageSection.getDataDescriptionEntry("SORT-LINK");
 					assertEquals(new Integer(1), sortLink.getLevelNumber());
 					assertEquals(DataDescriptionEntry.Type.GROUP, sortLink.getType());
 
@@ -70,7 +70,7 @@ public class OBIC1ATest extends CobolTestSupport {
 
 				{
 					final DataDescriptionEntry printLineValues = workingStorageSection
-							.findDataDescriptionEntry("PRINT-LINE-VALUES");
+							.getDataDescriptionEntry("PRINT-LINE-VALUES");
 					assertEquals(new Integer(1), printLineValues.getLevelNumber());
 					assertEquals(DataDescriptionEntry.Type.GROUP, printLineValues.getType());
 
@@ -78,7 +78,7 @@ public class OBIC1ATest extends CobolTestSupport {
 
 					{
 						final DataDescriptionEntry passOrFail = printLineValuesGroup
-								.findDataDescriptionEntry("PASS-OR-FAIL");
+								.getDataDescriptionEntry("PASS-OR-FAIL");
 						assertEquals(new Integer(2), passOrFail.getLevelNumber());
 						assertEquals(DataDescriptionEntry.Type.GROUP, passOrFail.getType());
 
@@ -90,7 +90,7 @@ public class OBIC1ATest extends CobolTestSupport {
 					}
 
 					{
-						final DataDescriptionEntry rCount = printLineValuesGroup.findDataDescriptionEntry("R-COUNT");
+						final DataDescriptionEntry rCount = printLineValuesGroup.getDataDescriptionEntry("R-COUNT");
 						assertEquals(new Integer(2), rCount.getLevelNumber());
 						assertEquals(DataDescriptionEntry.Type.GROUP, rCount.getType());
 
@@ -103,7 +103,7 @@ public class OBIC1ATest extends CobolTestSupport {
 
 					{
 						final DataDescriptionEntry featureTested = printLineValuesGroup
-								.findDataDescriptionEntry("FEATURE-TESTED");
+								.getDataDescriptionEntry("FEATURE-TESTED");
 						assertEquals(new Integer(2), featureTested.getLevelNumber());
 						assertEquals(DataDescriptionEntry.Type.GROUP, featureTested.getType());
 
@@ -116,7 +116,7 @@ public class OBIC1ATest extends CobolTestSupport {
 
 					{
 						final DataDescriptionEntry computedSortKey = printLineValuesGroup
-								.findDataDescriptionEntry("COMPUTED-SORT-KEY");
+								.getDataDescriptionEntry("COMPUTED-SORT-KEY");
 						assertEquals(new Integer(2), computedSortKey.getLevelNumber());
 						assertEquals(DataDescriptionEntry.Type.GROUP, computedSortKey.getType());
 
@@ -129,7 +129,7 @@ public class OBIC1ATest extends CobolTestSupport {
 
 					{
 						final DataDescriptionEntry correctSortKey = printLineValuesGroup
-								.findDataDescriptionEntry("CORRECT-SORT-KEY");
+								.getDataDescriptionEntry("CORRECT-SORT-KEY");
 						assertEquals(new Integer(2), correctSortKey.getLevelNumber());
 						assertEquals(DataDescriptionEntry.Type.GROUP, correctSortKey.getType());
 
@@ -142,7 +142,7 @@ public class OBIC1ATest extends CobolTestSupport {
 
 					{
 						final DataDescriptionEntry paragraphName = printLineValuesGroup
-								.findDataDescriptionEntry("PARAGRAPH-NAME");
+								.getDataDescriptionEntry("PARAGRAPH-NAME");
 						assertEquals(new Integer(2), paragraphName.getLevelNumber());
 						assertEquals(DataDescriptionEntry.Type.GROUP, paragraphName.getType());
 
@@ -155,7 +155,7 @@ public class OBIC1ATest extends CobolTestSupport {
 				}
 
 				{
-					final DataDescriptionEntry printFlag = workingStorageSection.findDataDescriptionEntry("PRINT-FLAG");
+					final DataDescriptionEntry printFlag = workingStorageSection.getDataDescriptionEntry("PRINT-FLAG");
 					assertEquals(new Integer(1), printFlag.getLevelNumber());
 					assertEquals(DataDescriptionEntry.Type.GROUP, printFlag.getType());
 

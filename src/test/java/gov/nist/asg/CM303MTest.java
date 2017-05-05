@@ -73,7 +73,7 @@ public class CM303MTest extends CobolTestSupport {
 
 					{
 						final DataDescriptionEntry dataDescriptionEntry = communicationSection
-								.findDataDescriptionEntry("CREC");
+								.getDataDescriptionEntry("CREC");
 						assertNotNull(dataDescriptionEntry);
 						assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
 						assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
@@ -81,7 +81,7 @@ public class CM303MTest extends CobolTestSupport {
 
 					{
 						final DataDescriptionEntry dataDescriptionEntry = communicationSection
-								.findDataDescriptionEntry("CNAME1");
+								.getDataDescriptionEntry("CNAME1");
 						assertNotNull(dataDescriptionEntry);
 						assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
 						assertEquals(new Integer(3), dataDescriptionEntry.getLevelNumber());

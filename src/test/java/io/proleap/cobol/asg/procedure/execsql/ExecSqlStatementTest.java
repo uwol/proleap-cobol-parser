@@ -52,7 +52,7 @@ public class ExecSqlStatementTest extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntry dataDescriptionEntryUserId = workingStorageSection
-					.findDataDescriptionEntry("userid");
+					.getDataDescriptionEntry("userid");
 
 			assertNotNull(dataDescriptionEntryUserId);
 			assertEquals("userid", dataDescriptionEntryUserId.getName());

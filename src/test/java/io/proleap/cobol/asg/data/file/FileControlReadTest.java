@@ -59,7 +59,7 @@ public class FileControlReadTest extends CobolTestSupport {
 
 			{
 				final DataDescriptionEntry dataDescriptionEntryPersonFile = fileDescriptionEntry
-						.findDataDescriptionEntry("PERSON-FILE");
+						.getDataDescriptionEntry("PERSON-FILE");
 				assertNotNull(dataDescriptionEntryPersonFile);
 				assertEquals("PERSON-FILE", dataDescriptionEntryPersonFile.getName());
 				assertEquals(new Integer(1), dataDescriptionEntryPersonFile.getLevelNumber());
@@ -68,7 +68,7 @@ public class FileControlReadTest extends CobolTestSupport {
 
 				{
 					final DataDescriptionEntry dataDescriptionEntryPersonId = fileDescriptionEntry
-							.findDataDescriptionEntry("PERSON-ID");
+							.getDataDescriptionEntry("PERSON-ID");
 					assertNotNull(dataDescriptionEntryPersonId);
 					assertEquals("PERSON-ID", dataDescriptionEntryPersonId.getName());
 					assertEquals(new Integer(5), dataDescriptionEntryPersonId.getLevelNumber());
@@ -78,7 +78,7 @@ public class FileControlReadTest extends CobolTestSupport {
 
 				{
 					final DataDescriptionEntry dataDescriptionEntryName = fileDescriptionEntry
-							.findDataDescriptionEntry("NAME");
+							.getDataDescriptionEntry("NAME");
 					assertNotNull(dataDescriptionEntryName);
 					assertEquals("NAME", dataDescriptionEntryName.getName());
 					assertEquals(new Integer(5), dataDescriptionEntryName.getLevelNumber());
@@ -94,7 +94,7 @@ public class FileControlReadTest extends CobolTestSupport {
 		 */
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryWsPerson = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("WS-PERSON");
+					.getDataDescriptionEntry("WS-PERSON");
 			assertNotNull(dataDescriptionEntryWsPerson);
 			assertEquals("WS-PERSON", dataDescriptionEntryWsPerson.getName());
 			assertEquals(new Integer(1), dataDescriptionEntryWsPerson.getLevelNumber());
@@ -102,7 +102,7 @@ public class FileControlReadTest extends CobolTestSupport {
 
 			{
 				final DataDescriptionEntry dataDescriptionEntryWsPersonId = workingStorageSection
-						.findDataDescriptionEntry("WS-PERSON-ID");
+						.getDataDescriptionEntry("WS-PERSON-ID");
 				assertNotNull(dataDescriptionEntryWsPersonId);
 				assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
 				assertEquals(new Integer(5), dataDescriptionEntryWsPersonId.getLevelNumber());
@@ -112,7 +112,7 @@ public class FileControlReadTest extends CobolTestSupport {
 
 			{
 				final DataDescriptionEntry dataDescriptionEntryWsPersonName = workingStorageSection
-						.findDataDescriptionEntry("WS-NAME");
+						.getDataDescriptionEntry("WS-NAME");
 				assertNotNull(dataDescriptionEntryWsPersonName);
 				assertEquals("WS-NAME", dataDescriptionEntryWsPersonName.getName());
 				assertEquals(new Integer(5), dataDescriptionEntryWsPersonName.getLevelNumber());
@@ -122,7 +122,7 @@ public class FileControlReadTest extends CobolTestSupport {
 
 			{
 				final DataDescriptionEntryGroup dataDescriptionEntryWsEof = (DataDescriptionEntryGroup) workingStorageSection
-						.findDataDescriptionEntry("WS-EOF");
+						.getDataDescriptionEntry("WS-EOF");
 				assertNotNull(dataDescriptionEntryWsEof);
 				assertEquals("WS-EOF", dataDescriptionEntryWsEof.getName());
 				assertEquals(new Integer(1), dataDescriptionEntryWsEof.getLevelNumber());

@@ -36,7 +36,7 @@ public class DataDescription77Test extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntry dataDescriptionEntrySomeText = workingStorageSection
-					.findDataDescriptionEntry("SOME-TEXT");
+					.getDataDescriptionEntry("SOME-TEXT");
 
 			assertNotNull(dataDescriptionEntrySomeText);
 			assertEquals("SOME-TEXT", dataDescriptionEntrySomeText.getName());
@@ -47,7 +47,7 @@ public class DataDescription77Test extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntry dataDescriptionEntrySomeNumber = workingStorageSection
-					.findDataDescriptionEntry("SOME-NUMBER");
+					.getDataDescriptionEntry("SOME-NUMBER");
 
 			assertNotNull(dataDescriptionEntrySomeNumber);
 			assertEquals("SOME-NUMBER", dataDescriptionEntrySomeNumber.getName());

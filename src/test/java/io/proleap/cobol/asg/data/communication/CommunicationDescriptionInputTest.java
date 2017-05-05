@@ -114,7 +114,7 @@ public class CommunicationDescriptionInputTest extends CobolTestSupport {
 
 			{
 				final DataDescriptionEntryGroup dataDescriptionEntryWsPerson = (DataDescriptionEntryGroup) communicationSection
-						.findDataDescriptionEntry("WS-PERSON");
+						.getDataDescriptionEntry("WS-PERSON");
 				assertNotNull(dataDescriptionEntryWsPerson);
 				assertEquals("WS-PERSON", dataDescriptionEntryWsPerson.getName());
 				assertEquals(new Integer(1), dataDescriptionEntryWsPerson.getLevelNumber());
@@ -122,7 +122,7 @@ public class CommunicationDescriptionInputTest extends CobolTestSupport {
 
 				{
 					final DataDescriptionEntry dataDescriptionEntryWsPersonId = communicationSection
-							.findDataDescriptionEntry("WS-PERSON-ID");
+							.getDataDescriptionEntry("WS-PERSON-ID");
 					assertNotNull(dataDescriptionEntryWsPersonId);
 					assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
 					assertEquals(new Integer(5), dataDescriptionEntryWsPersonId.getLevelNumber());

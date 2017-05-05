@@ -34,7 +34,7 @@ public class DataDescription01Test extends CobolTestSupport {
 		assertEquals(1, linkageSection.getRootDataDescriptionEntries().size());
 
 		{
-			final DataDescriptionEntry dataDescriptionEntryItems = linkageSection.findDataDescriptionEntry("ITEMS");
+			final DataDescriptionEntry dataDescriptionEntryItems = linkageSection.getDataDescriptionEntry("ITEMS");
 			assertNotNull(dataDescriptionEntryItems);
 			assertEquals("ITEMS", dataDescriptionEntryItems.getName());
 			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItems.getType());
@@ -42,7 +42,7 @@ public class DataDescription01Test extends CobolTestSupport {
 			assertNull(dataDescriptionEntryItems.getParentDataDescriptionEntryGroup());
 
 			{
-				final DataDescriptionEntry dataDescriptionEntryItem1 = linkageSection.findDataDescriptionEntry("ITEM1");
+				final DataDescriptionEntry dataDescriptionEntryItem1 = linkageSection.getDataDescriptionEntry("ITEM1");
 				assertNotNull(dataDescriptionEntryItem1);
 				assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
 				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem1.getType());
@@ -51,7 +51,7 @@ public class DataDescription01Test extends CobolTestSupport {
 			}
 
 			{
-				final DataDescriptionEntry dataDescriptionEntryItem2 = linkageSection.findDataDescriptionEntry("ITEM2");
+				final DataDescriptionEntry dataDescriptionEntryItem2 = linkageSection.getDataDescriptionEntry("ITEM2");
 				assertNotNull(dataDescriptionEntryItem2);
 				assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
 				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem2.getType());

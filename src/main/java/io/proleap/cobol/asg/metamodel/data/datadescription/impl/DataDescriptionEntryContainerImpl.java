@@ -396,13 +396,13 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 	}
 
 	@Override
-	public DataDescriptionEntry findDataDescriptionEntry(final String name) {
-		return dataDescriptionEntriesSymbolTable.get(name);
+	public List<DataDescriptionEntry> getDataDescriptionEntries() {
+		return dataDescriptionEntries;
 	}
 
 	@Override
-	public List<DataDescriptionEntry> getDataDescriptionEntries() {
-		return dataDescriptionEntries;
+	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
+		return dataDescriptionEntriesSymbolTable.get(name);
 	}
 
 	@Override

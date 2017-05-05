@@ -36,7 +36,7 @@ public class DataDescription88Test extends CobolTestSupport {
 
 		{
 			final DataDescriptionEntry dataDescriptionEntryGender = workingStorageSection
-					.findDataDescriptionEntry("GENDER");
+					.getDataDescriptionEntry("GENDER");
 
 			assertNotNull(dataDescriptionEntryGender);
 			assertEquals("GENDER", dataDescriptionEntryGender.getName());
@@ -46,7 +46,7 @@ public class DataDescription88Test extends CobolTestSupport {
 
 			{
 				final DataDescriptionEntry dataDescriptionEntryMale = workingStorageSection
-						.findDataDescriptionEntry("MALE");
+						.getDataDescriptionEntry("MALE");
 
 				assertNotNull(dataDescriptionEntryMale);
 				assertEquals("MALE", dataDescriptionEntryMale.getName());
@@ -57,7 +57,7 @@ public class DataDescription88Test extends CobolTestSupport {
 
 			{
 				final DataDescriptionEntry dataDescriptionEntryFemale = workingStorageSection
-						.findDataDescriptionEntry("FEMALE");
+						.getDataDescriptionEntry("FEMALE");
 
 				assertNotNull(dataDescriptionEntryFemale);
 				assertEquals("FEMALE", dataDescriptionEntryFemale.getName());

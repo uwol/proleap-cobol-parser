@@ -38,7 +38,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMALL");
+					.getDataDescriptionEntry("ITEMALL");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());
@@ -67,7 +67,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMHIGHVALUE");
+					.getDataDescriptionEntry("ITEMHIGHVALUE");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());
@@ -88,7 +88,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMHIGHVALUES");
+					.getDataDescriptionEntry("ITEMHIGHVALUES");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());
@@ -109,7 +109,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMLOWVALUE");
+					.getDataDescriptionEntry("ITEMLOWVALUE");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());
@@ -130,7 +130,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMLOWVALUES");
+					.getDataDescriptionEntry("ITEMLOWVALUES");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());
@@ -151,7 +151,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMNULL");
+					.getDataDescriptionEntry("ITEMNULL");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());
@@ -172,7 +172,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMNULLS");
+					.getDataDescriptionEntry("ITEMNULLS");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());
@@ -193,7 +193,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMQUOTE");
+					.getDataDescriptionEntry("ITEMQUOTE");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());
@@ -214,7 +214,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMQUOTES");
+					.getDataDescriptionEntry("ITEMQUOTES");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());
@@ -235,7 +235,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMSPACE");
+					.getDataDescriptionEntry("ITEMSPACE");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());
@@ -256,7 +256,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMSPACES");
+					.getDataDescriptionEntry("ITEMSPACES");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getPictureClause());
@@ -283,7 +283,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMZERO");
+					.getDataDescriptionEntry("ITEMZERO");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getPictureClause());
@@ -310,7 +310,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMZEROS");
+					.getDataDescriptionEntry("ITEMZEROS");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getPictureClause());
@@ -337,7 +337,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestSupport
 
 		{
 			final DataDescriptionEntryGroup dataDescriptionEntryItem = (DataDescriptionEntryGroup) workingStorageSection
-					.findDataDescriptionEntry("ITEMZEROES");
+					.getDataDescriptionEntry("ITEMZEROES");
 
 			assertNotNull(dataDescriptionEntryItem);
 			assertNotNull(dataDescriptionEntryItem.getValueClause());

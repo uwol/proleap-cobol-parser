@@ -78,7 +78,7 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 
 	WithLowerBoundsClause addWithLowerBoundClause(DataWithLowerBoundsClauseContext ctx);
 
-	DataDescriptionEntry findDataDescriptionEntry(String name);
+	DataDescriptionEntry getDataDescriptionEntry(String name);
 
 	AlignedClause getAlignedClause();
 
