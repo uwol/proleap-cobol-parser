@@ -6,7 +6,7 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.asg.registry.impl;
+package io.proleap.cobol.asg.metamodel.registry.impl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ import java.util.Map;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.asg.metamodel.ASGElement;
-import io.proleap.cobol.asg.registry.ASGElementRegistry;
+import io.proleap.cobol.asg.metamodel.registry.ASGElementRegistry;
 
 public class ASGElementRegistryImpl implements ASGElementRegistry {
 

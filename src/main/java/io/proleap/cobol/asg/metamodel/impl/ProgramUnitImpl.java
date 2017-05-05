@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,6 +20,7 @@ import io.proleap.cobol.Cobol85Parser.IdentificationDivisionBodyContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
 import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
+import io.proleap.cobol.asg.metamodel.ASGElement;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
@@ -181,6 +183,11 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 		return result;
 	}
 
+	protected ASGElement getASGElement(final ParserRuleContext ctx) {
+		final ASGElement result = compilationUnit.getProgram().getASGElementRegistry().getASGElement(ctx);
+		return result;
+	}
+
 	@Override
 	public CompilationUnit getCompilationUnit() {
 		return compilationUnit;
@@ -204,6 +211,10 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 	@Override
 	public ProcedureDivision getProcedureDivision() {
 		return procedureDivision;
+	}
+
+	protected void registerASGElement(final ASGElement asgElement) {
+		compilationUnit.getProgram().getASGElementRegistry().addASGElement(asgElement);
 	}
 
 }

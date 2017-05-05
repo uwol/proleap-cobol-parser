@@ -7,11 +7,9 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import io.proleap.cobol.CobolTestSupport;
-import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -32,6 +30,7 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.UsageClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.UsingClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.ValueInterval;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
+import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class DataDescriptionClausesTest extends CobolTestSupport {
@@ -52,19 +51,12 @@ public class DataDescriptionClausesTest extends CobolTestSupport {
 	protected WorkingStorageSection getWorkingStorageSection() throws Exception {
 		final File inputFile = new File(
 				"src/test/resources/io/proleap/cobol/asg/data/workingstorage/DataDescriptionClauses.cbl");
-		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
-				CobolSourceFormatEnum.TANDEM);
+		final Program program = new CobolParserRunnerImpl().analyzeFile(inputFile, CobolSourceFormatEnum.TANDEM);
 		final CompilationUnit compilationUnit = program.getCompilationUnit("DataDescriptionClauses");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final WorkingStorageSection result = dataDivision.getWorkingStorageSection();
 		return result;
-	}
-
-	@Override
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
 	}
 
 	@Test

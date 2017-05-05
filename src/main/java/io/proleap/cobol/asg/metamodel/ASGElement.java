@@ -8,8 +8,6 @@
 
 package io.proleap.cobol.asg.metamodel;
 
-import java.util.Collection;
-
 import org.antlr.v4.runtime.ParserRuleContext;
 
 /**
@@ -17,9 +15,6 @@ import org.antlr.v4.runtime.ParserRuleContext;
  */
 public interface ASGElement extends ModelElement {
 
-	Collection<ASGElement> getChildren();
-
 	ParserRuleContext getCtx();
 
-	ASGElement getParent();
 }

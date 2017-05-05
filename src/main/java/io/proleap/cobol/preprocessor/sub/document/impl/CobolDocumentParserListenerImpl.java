@@ -23,10 +23,10 @@ import io.proleap.cobol.Cobol85PreprocessorBaseListener;
 import io.proleap.cobol.Cobol85PreprocessorParser;
 import io.proleap.cobol.Cobol85PreprocessorParser.ReplaceClauseContext;
 import io.proleap.cobol.Cobol85PreprocessorParser.ReplacingPhraseContext;
-import io.proleap.cobol.applicationcontext.CobolGrammarContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.util.TokenUtils;
 
@@ -275,8 +275,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 			result = null;
 		} else {
 			try {
-				result = CobolGrammarContext.getInstance().getCobolPreprocessor().process(copyFile, libDirectory,
-						format, dialect);
+				result = new CobolPreprocessorImpl().process(copyFile, libDirectory, format, dialect);
 			} catch (final IOException e) {
 				result = null;
 				LOG.warn(e.getMessage());

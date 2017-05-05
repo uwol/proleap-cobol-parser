@@ -24,11 +24,10 @@ public class CobolCompilationUnitVisitorImpl extends AbstractCobolParserVisitorI
 
 	protected final List<String> lines;
 
-	protected final Program program;
-
 	public CobolCompilationUnitVisitorImpl(final Program program, final String compilationUnitName,
 			final List<String> lines) {
-		this.program = program;
+		super(program);
+
 		this.compilationUnitName = compilationUnitName;
 		this.lines = lines;
 	}

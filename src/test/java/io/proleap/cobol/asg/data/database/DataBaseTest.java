@@ -4,32 +4,24 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import io.proleap.cobol.CobolTestSupport;
-import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.database.DataBaseSection;
 import io.proleap.cobol.asg.metamodel.data.database.DataBaseSectionEntry;
+import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class DataBaseTest extends CobolTestSupport {
 
-	@Override
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
-	}
-
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/data/database/Database.cbl");
-		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
-				CobolSourceFormatEnum.TANDEM);
+		final Program program = new CobolParserRunnerImpl().analyzeFile(inputFile, CobolSourceFormatEnum.TANDEM);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("Database");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();

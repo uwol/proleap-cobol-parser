@@ -6,11 +6,9 @@ import static org.junit.Assert.assertNull;
 
 import java.io.File;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import io.proleap.cobol.CobolTestSupport;
-import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -25,22 +23,16 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.By;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.InitializeStatement;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.Replacing;
+import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class InitializeStatementTest extends CobolTestSupport {
-
-	@Override
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
-	}
 
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
 				"src/test/resources/io/proleap/cobol/asg/procedure/initialize/InitializeStatement.cbl");
-		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
-				CobolSourceFormatEnum.TANDEM);
+		final Program program = new CobolParserRunnerImpl().analyzeFile(inputFile, CobolSourceFormatEnum.TANDEM);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("InitializeStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();

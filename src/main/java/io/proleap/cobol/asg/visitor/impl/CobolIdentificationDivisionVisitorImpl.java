@@ -12,9 +12,8 @@ import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.Cobol85Parser;
-import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
+import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.identification.IdentificationDivision;
-import io.proleap.cobol.asg.registry.ASGElementRegistry;
 import io.proleap.cobol.asg.util.ANTLRUtils;
 
 /**
@@ -22,9 +21,12 @@ import io.proleap.cobol.asg.util.ANTLRUtils;
  */
 public class CobolIdentificationDivisionVisitorImpl extends AbstractCobolParserVisitorImpl {
 
+	public CobolIdentificationDivisionVisitorImpl(final Program program) {
+		super(program);
+	}
+
 	protected IdentificationDivision findIdentificationDivision(final ParseTree ctx) {
-		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
-		return ANTLRUtils.findParent(IdentificationDivision.class, ctx, registry);
+		return ANTLRUtils.findParent(IdentificationDivision.class, ctx, program.getASGElementRegistry());
 	}
 
 	@Override

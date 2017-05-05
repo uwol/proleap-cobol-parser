@@ -2,7 +2,6 @@ package gov.nist;
 
 import java.io.File;
 
-import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.runner.CobolParseTestRunner;
 import io.proleap.cobol.runner.impl.CobolParseTestRunnerImpl;
@@ -12,8 +11,6 @@ public class NC125ATest {
 
 	@Test
 	public void test() throws Exception {
-		CobolGrammarContextFactory.configureDefaultApplicationContext();
-
 		final File inputFile = new File("src/test/resources/gov/nist/NC125A.CBL");
 		final CobolParseTestRunner runner = new CobolParseTestRunnerImpl();
 		runner.parseFile(inputFile, CobolSourceFormatEnum.FIXED);

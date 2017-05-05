@@ -6,11 +6,9 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import io.proleap.cobol.CobolTestSupport;
-import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.Program;
@@ -24,22 +22,16 @@ import io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.RerunCla
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.RerunEveryRecords;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.SameClause;
 import io.proleap.cobol.asg.metamodel.valuestmt.IntegerLiteralValueStmt;
+import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class IoControlTest extends CobolTestSupport {
-
-	@Override
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
-	}
 
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
 				"src/test/resources/io/proleap/cobol/asg/environment/inputoutput/iocontrol/IoControl.cbl");
-		final Program program = CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile,
-				CobolSourceFormatEnum.TANDEM);
+		final Program program = new CobolParserRunnerImpl().analyzeFile(inputFile, CobolSourceFormatEnum.TANDEM);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("IoControl");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();

@@ -10,7 +10,11 @@ package io.proleap.cobol.asg.metamodel;
 
 import java.util.Collection;
 
+import io.proleap.cobol.asg.metamodel.registry.ASGElementRegistry;
+
 public interface Program extends ASGElement {
+
+	ASGElementRegistry getASGElementRegistry();
 
 	CompilationUnit getCompilationUnit(String name);
 

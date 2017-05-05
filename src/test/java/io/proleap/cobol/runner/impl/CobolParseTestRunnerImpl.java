@@ -27,8 +27,8 @@ import io.proleap.cobol.Cobol85Lexer;
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
 import io.proleap.cobol.ThrowingErrorListener;
-import io.proleap.cobol.applicationcontext.CobolGrammarContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.runner.CobolParseTestRunner;
 
 /**
@@ -98,8 +98,7 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 	@Override
 	public void parseFile(final File inputFile, final CobolSourceFormatEnum format) throws IOException {
 		final File libDirectory = inputFile.getParentFile();
-		final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile,
-				libDirectory, format);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, libDirectory, format);
 
 		LOG.info("Parsing file {}.", inputFile.getName());
 

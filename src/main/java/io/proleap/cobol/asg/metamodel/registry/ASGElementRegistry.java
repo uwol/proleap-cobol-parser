@@ -6,7 +6,7 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.asg.registry;
+package io.proleap.cobol.asg.metamodel.registry;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 

@@ -11,34 +11,36 @@ package io.proleap.cobol.asg.visitor.impl;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.Cobol85BaseVisitor;
-import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.ASGElement;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
-import io.proleap.cobol.asg.registry.ASGElementRegistry;
 import io.proleap.cobol.asg.util.ANTLRUtils;
 import io.proleap.cobol.asg.visitor.ParserVisitor;
 
 public abstract class AbstractCobolParserVisitorImpl extends Cobol85BaseVisitor<Boolean> implements ParserVisitor {
 
+	protected Program program;
+
+	public AbstractCobolParserVisitorImpl(final Program program) {
+		this.program = program;
+	}
+
 	protected CompilationUnit findCompilationUnit(final ParseTree ctx) {
-		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
-		return ANTLRUtils.findParent(CompilationUnit.class, ctx, registry);
+		return ANTLRUtils.findParent(CompilationUnit.class, ctx, program.getASGElementRegistry());
 	}
 
 	protected ProgramUnit findProgramUnit(final ParseTree ctx) {
-		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
-		return ANTLRUtils.findParent(ProgramUnit.class, ctx, registry);
+		return ANTLRUtils.findParent(ProgramUnit.class, ctx, program.getASGElementRegistry());
 	}
 
 	protected Scope findScope(final ParseTree ctx) {
-		final ASGElementRegistry registry = CobolParserContext.getInstance().getASGElementRegistry();
-		return ANTLRUtils.findParent(Scope.class, ctx, registry);
+		return ANTLRUtils.findParent(Scope.class, ctx, program.getASGElementRegistry());
 	}
 
 	protected ASGElement getASGElement(final ParseTree ctx) {
-		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
+		final ASGElement result = program.getASGElementRegistry().getASGElement(ctx);
 		return result;
 	}
 }

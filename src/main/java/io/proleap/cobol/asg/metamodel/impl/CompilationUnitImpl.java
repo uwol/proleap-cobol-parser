@@ -15,7 +15,6 @@ import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.Cobol85Parser.CompilationUnitContext;
 import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
-import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.ASGElement;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
@@ -77,7 +76,7 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 	}
 
 	protected ASGElement getASGElement(final ParserRuleContext ctx) {
-		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
+		final ASGElement result = program.getASGElementRegistry().getASGElement(ctx);
 		return result;
 	}
 
@@ -123,7 +122,7 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 		assert asgElement != null;
 		assert asgElement.getCtx() != null;
 
-		CobolParserContext.getInstance().getASGElementRegistry().addASGElement(asgElement);
+		program.getASGElementRegistry().addASGElement(asgElement);
 	}
 
 	@Override

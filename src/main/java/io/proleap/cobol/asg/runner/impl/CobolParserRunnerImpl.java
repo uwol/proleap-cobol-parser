@@ -24,7 +24,6 @@ import org.apache.logging.log4j.Logger;
 import io.proleap.cobol.Cobol85Lexer;
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
-import io.proleap.cobol.applicationcontext.CobolGrammarContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.impl.ProgramImpl;
@@ -39,6 +38,7 @@ import io.proleap.cobol.asg.visitor.impl.CobolProcedureStatementVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProgramUnitVisitorImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 
 public class CobolParserRunnerImpl implements CobolParserRunner {
 
@@ -57,7 +57,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	protected void analyzeDataDivisions(final Program program) {
 		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
-			final ParserVisitor visitor = new CobolDataDivisionVisitorImpl();
+			final ParserVisitor visitor = new CobolDataDivisionVisitorImpl(program);
 
 			LOG.info("Analyzing data divisions of compilation unit {}.", compilationUnit.getName());
 			visitor.visit(compilationUnit.getCtx());
@@ -85,7 +85,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	protected void analyzeEnvironmentDivisions(final Program program) {
 		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
-			final ParserVisitor visitor = new CobolEnvironmentDivisionVisitorImpl();
+			final ParserVisitor visitor = new CobolEnvironmentDivisionVisitorImpl(program);
 
 			LOG.info("Analyzing environment divisions of compilation unit {}.", compilationUnit.getName());
 			visitor.visit(compilationUnit.getCtx());
@@ -110,7 +110,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	protected void analyzeIdentificationDivisions(final Program program) {
 		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
-			final ParserVisitor visitor = new CobolIdentificationDivisionVisitorImpl();
+			final ParserVisitor visitor = new CobolIdentificationDivisionVisitorImpl(program);
 
 			LOG.info("Analyzing identification divisions of compilation unit {}.", compilationUnit.getName());
 			visitor.visit(compilationUnit.getCtx());
@@ -119,7 +119,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	protected void analyzeProcedureDivisions(final Program program) {
 		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
-			final ParserVisitor visitor = new CobolProcedureDivisionVisitorImpl();
+			final ParserVisitor visitor = new CobolProcedureDivisionVisitorImpl(program);
 
 			LOG.info("Analyzing procedure divisions of compilation unit {}.", compilationUnit.getName());
 			visitor.visit(compilationUnit.getCtx());
@@ -128,7 +128,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	protected void analyzeProcedureStatements(final Program program) {
 		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
-			final ParserVisitor visitor = new CobolProcedureStatementVisitorImpl();
+			final ParserVisitor visitor = new CobolProcedureStatementVisitorImpl(program);
 
 			LOG.info("Analyzing statements of compilation unit {}.", compilationUnit.getName());
 			visitor.visit(compilationUnit.getCtx());
@@ -137,7 +137,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	protected void analyzeProgramUnits(final Program program) {
 		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
-			final ParserVisitor visitor = new CobolProgramUnitVisitorImpl(compilationUnit);
+			final ParserVisitor visitor = new CobolProgramUnitVisitorImpl(program, compilationUnit);
 
 			LOG.info("Analyzing program units of compilation unit {}.", compilationUnit.getName());
 			visitor.visit(compilationUnit.getCtx());
@@ -165,8 +165,8 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			final File libDirectory = inputFile.getParentFile();
 
 			// preprocess input stream
-			final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor().process(inputFile,
-					libDirectory, format, dialect);
+			final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, libDirectory, format,
+					dialect);
 
 			LOG.info("Parsing file {}.", inputFile.getName());
 

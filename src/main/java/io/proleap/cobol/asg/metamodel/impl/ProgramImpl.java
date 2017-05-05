@@ -14,13 +14,22 @@ import java.util.Map;
 
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
+import io.proleap.cobol.asg.metamodel.registry.ASGElementRegistry;
+import io.proleap.cobol.asg.metamodel.registry.impl.ASGElementRegistryImpl;
 
 public class ProgramImpl extends ASGElementImpl implements Program {
+
+	protected final ASGElementRegistry asgElementRegistry = new ASGElementRegistryImpl();
 
 	protected final Map<String, CompilationUnit> compilationUnits = new LinkedHashMap<String, CompilationUnit>();
 
 	public ProgramImpl() {
 		super(null);
+	}
+
+	@Override
+	public ASGElementRegistry getASGElementRegistry() {
+		return asgElementRegistry;
 	}
 
 	@Override

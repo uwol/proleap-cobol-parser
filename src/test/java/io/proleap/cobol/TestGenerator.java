@@ -22,9 +22,8 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.util.Strings;
 
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
-import io.proleap.cobol.applicationcontext.CobolGrammarContext;
-import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.util.TreeUtils;
 
 public class TestGenerator {
@@ -68,7 +67,6 @@ public class TestGenerator {
 			pWriter.write("\n");
 			pWriter.write("import java.io.File;\n");
 			pWriter.write("\n");
-			pWriter.write("import io.proleap.cobol.applicationcontext.CobolGrammarContextFactory;\n");
 			pWriter.write("import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;\n");
 			pWriter.write("import io.proleap.cobol.runner.CobolParseTestRunner;\n");
 			pWriter.write("import io.proleap.cobol.runner.impl.CobolParseTestRunnerImpl;\n");
@@ -78,8 +76,6 @@ public class TestGenerator {
 			pWriter.write("\n");
 			pWriter.write("	@Test\n");
 			pWriter.write("	public void test() throws Exception {\n");
-			pWriter.write("		CobolGrammarContextFactory.configureDefaultApplicationContext();\n");
-			pWriter.write("\n");
 			pWriter.write("		final File inputFile = new File(\"" + cobolInputFileName + "\");\n");
 			pWriter.write("		final CobolParseTestRunner runner = new CobolParseTestRunnerImpl();\n");
 			pWriter.write("		runner.parseFile(inputFile, CobolSourceFormatEnum." + format + ");\n");
@@ -89,6 +85,7 @@ public class TestGenerator {
 			pWriter.flush();
 			pWriter.close();
 		}
+
 	}
 
 	public static void generateTestClasses(final File inputDirectory, final File outputDirectory,
@@ -138,8 +135,8 @@ public class TestGenerator {
 			final File parentDirectory = cobolInputFile.getParentFile();
 			final CobolSourceFormatEnum format = getCobolSourceFormat(parentDirectory);
 
-			final String preProcessedInput = CobolGrammarContext.getInstance().getCobolPreprocessor()
-					.process(cobolInputFile, parentDirectory, format);
+			final String preProcessedInput = new CobolPreprocessorImpl().process(cobolInputFile, parentDirectory,
+					format);
 
 			final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
 			final CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -192,8 +189,6 @@ public class TestGenerator {
 	}
 
 	public static void main(final String[] args) throws IOException {
-		CobolGrammarContextFactory.configureDefaultApplicationContext();
-
 		generateTestClasses(INPUT_DIRECTORY, OUTPUT_DIRECTORY, "");
 	}
 }

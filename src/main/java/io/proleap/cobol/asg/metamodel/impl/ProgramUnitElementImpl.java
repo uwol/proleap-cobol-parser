@@ -43,6 +43,7 @@ import io.proleap.cobol.Cobol85Parser.RecordNameContext;
 import io.proleap.cobol.Cobol85Parser.RelationConditionContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.SystemNameContext;
+import io.proleap.cobol.asg.metamodel.ASGElement;
 import io.proleap.cobol.asg.metamodel.BooleanLiteral;
 import io.proleap.cobol.asg.metamodel.FigurativeConstant;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
@@ -1029,6 +1030,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected ASGElement getASGElement(final ParserRuleContext ctx) {
+		final ASGElement result = programUnit.getCompilationUnit().getProgram().getASGElementRegistry()
+				.getASGElement(ctx);
+		return result;
+	}
+
 	@Override
 	public ProgramUnit getProgramUnit() {
 		return programUnit;
@@ -1061,6 +1068,10 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	protected void linkReportDescriptionEntryCallWithReportDescriptionEntry(final ReportDescriptionEntryCall call,
 			final ReportDescriptionEntry reportDescriptionEntry) {
 		reportDescriptionEntry.addCall(call);
+	}
+
+	protected void registerASGElement(final ASGElement asgElement) {
+		programUnit.getCompilationUnit().getProgram().getASGElementRegistry().addASGElement(asgElement);
 	}
 
 }

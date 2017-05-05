@@ -9,12 +9,11 @@
 package io.proleap.cobol.asg.metamodel.impl;
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.ParserRuleContext;
 
-import io.proleap.cobol.asg.applicationcontext.CobolParserContext;
 import io.proleap.cobol.asg.metamodel.ASGElement;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.resolver.impl.NameResolverImpl;
 
 public abstract class CobolDivisionElementImpl extends ProgramUnitElementImpl implements CobolDivisionElement {
 
@@ -24,12 +23,13 @@ public abstract class CobolDivisionElementImpl extends ProgramUnitElementImpl im
 
 	@Override
 	protected String determineName(final ParserRuleContext ctx) {
-		return CobolParserContext.getInstance().getNameResolver().determineName(ctx);
+		return new NameResolverImpl().determineName(ctx);
 	}
 
 	@Override
 	protected ASGElement getASGElement(final ParserRuleContext ctx) {
-		final ASGElement result = CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
+		final ASGElement result = programUnit.getCompilationUnit().getProgram().getASGElementRegistry()
+				.getASGElement(ctx);
 		return result;
 	}
 
@@ -38,7 +38,7 @@ public abstract class CobolDivisionElementImpl extends ProgramUnitElementImpl im
 		assert asgElement != null;
 		assert asgElement.getCtx() != null;
 
-		CobolParserContext.getInstance().getASGElementRegistry().addASGElement(asgElement);
+		programUnit.getCompilationUnit().getProgram().getASGElementRegistry().addASGElement(asgElement);
 	}
 
 }

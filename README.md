@@ -80,12 +80,10 @@ Use the following code as a starting point for developing own code.
 ### Simple: Generate an Abstract Semantic Graph (ASG) from COBOL code
 
 ```java
-io.proleap.cobol.asg.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
-
 // generate ASG from plain COBOL code
 java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/asg/HelloWorld.cbl");
 io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
-io.proleap.cobol.asg.metamodel.Program program = io.proleap.cobol.asg.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, format);
+io.proleap.cobol.asg.metamodel.Program program = new io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl().analyzeFile(inputFile, format);
 
 // navigate on ASG
 io.proleap.cobol.asg.metamodel.CompilationUnit compilationUnit = program.getCompilationUnit("HelloWorld");
@@ -98,18 +96,16 @@ Integer levelNumber = dataDescriptionEntry.getLevelNumber();
 ### Complex: Generate an Abstract Semantic Graph (ASG) and traverse the Abstract Syntax Tree (AST)
 
 ```java
-io.proleap.cobol.asg.applicationcontext.CobolParserContextFactory.configureDefaultApplicationContext();
-
 // generate ASG from plain COBOL code
 java.io.File inputFile = new java.io.File("src/test/resources/io/proleap/cobol/asg/HelloWorld.cbl");
 io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum format = io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum.TANDEM;
-io.proleap.cobol.asg.metamodel.Program program = io.proleap.cobol.asg.applicationcontext.CobolParserContext.getInstance().getParserRunner().analyzeFile(inputFile, format);
+io.proleap.cobol.asg.metamodel.Program program = new io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl().analyzeFile(inputFile, format);
 
 // traverse the AST
 io.proleap.cobol.Cobol85BaseVisitor<Boolean> visitor = new io.proleap.cobol.Cobol85BaseVisitor<Boolean>() {
   @Override
   public Boolean visitDataDescriptionEntryFormat1(final io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context ctx) {
-    io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry entry = (io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry) io.proleap.cobol.asg.applicationcontext.CobolParserContext.getInstance().getASGElementRegistry().getASGElement(ctx);
+    io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry entry = (io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry) program.getASGElementRegistry().getASGElement(ctx);
     String name = entry.getName();
 
     return visitChildren(ctx);
