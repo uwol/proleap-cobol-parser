@@ -8,7 +8,6 @@
 
 package io.proleap.cobol.asg.visitor.impl;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.Cobol85Parser;
@@ -30,7 +29,7 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
-	public Boolean visitConfigurationSection(@NotNull final Cobol85Parser.ConfigurationSectionContext ctx) {
+	public Boolean visitConfigurationSection(final Cobol85Parser.ConfigurationSectionContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 
 		environmentDivision.addConfigurationSection(ctx);
@@ -39,7 +38,7 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
-	public Boolean visitInputOutputSection(@NotNull final Cobol85Parser.InputOutputSectionContext ctx) {
+	public Boolean visitInputOutputSection(final Cobol85Parser.InputOutputSectionContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 
 		environmentDivision.addInputOutputSection(ctx);
@@ -48,7 +47,7 @@ public class CobolEnvironmentDivisionVisitorImpl extends AbstractCobolParserVisi
 	}
 
 	@Override
-	public Boolean visitSpecialNamesParagraph(@NotNull final Cobol85Parser.SpecialNamesParagraphContext ctx) {
+	public Boolean visitSpecialNamesParagraph(final Cobol85Parser.SpecialNamesParagraphContext ctx) {
 		final EnvironmentDivision environmentDivision = findEnvironmentDivision(ctx);
 
 		environmentDivision.addSpecialNamesParagraph(ctx);

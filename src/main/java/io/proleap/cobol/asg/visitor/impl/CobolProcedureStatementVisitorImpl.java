@@ -8,7 +8,6 @@
 
 package io.proleap.cobol.asg.visitor.impl;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.Cobol85Parser;
@@ -31,7 +30,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitAcceptStatement(@NotNull final Cobol85Parser.AcceptStatementContext ctx) {
+	public Boolean visitAcceptStatement(final Cobol85Parser.AcceptStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addAcceptStatement(ctx);
@@ -40,7 +39,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitAddStatement(@NotNull final Cobol85Parser.AddStatementContext ctx) {
+	public Boolean visitAddStatement(final Cobol85Parser.AddStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addAddStatement(ctx);
@@ -49,7 +48,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitAlterStatement(@NotNull final Cobol85Parser.AlterStatementContext ctx) {
+	public Boolean visitAlterStatement(final Cobol85Parser.AlterStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addAlterStatement(ctx);
@@ -58,7 +57,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitCallStatement(@NotNull final Cobol85Parser.CallStatementContext ctx) {
+	public Boolean visitCallStatement(final Cobol85Parser.CallStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addCallStatement(ctx);
@@ -67,7 +66,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitCancelStatement(@NotNull final Cobol85Parser.CancelStatementContext ctx) {
+	public Boolean visitCancelStatement(final Cobol85Parser.CancelStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addCancelStatement(ctx);
@@ -76,7 +75,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitCloseStatement(@NotNull final Cobol85Parser.CloseStatementContext ctx) {
+	public Boolean visitCloseStatement(final Cobol85Parser.CloseStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addCloseStatement(ctx);
@@ -85,7 +84,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitComputeStatement(@NotNull final Cobol85Parser.ComputeStatementContext ctx) {
+	public Boolean visitComputeStatement(final Cobol85Parser.ComputeStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addComputeStatement(ctx);
@@ -94,7 +93,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitContinueStatement(@NotNull final Cobol85Parser.ContinueStatementContext ctx) {
+	public Boolean visitContinueStatement(final Cobol85Parser.ContinueStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addContinueStatement(ctx);
@@ -103,7 +102,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitDeleteStatement(@NotNull final Cobol85Parser.DeleteStatementContext ctx) {
+	public Boolean visitDeleteStatement(final Cobol85Parser.DeleteStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addDeleteStatement(ctx);
@@ -112,7 +111,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitDisableStatement(@NotNull final Cobol85Parser.DisableStatementContext ctx) {
+	public Boolean visitDisableStatement(final Cobol85Parser.DisableStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addDisableStatement(ctx);
@@ -121,7 +120,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitDisplayStatement(@NotNull final Cobol85Parser.DisplayStatementContext ctx) {
+	public Boolean visitDisplayStatement(final Cobol85Parser.DisplayStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addDisplayStatement(ctx);
@@ -130,7 +129,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitDivideStatement(@NotNull final Cobol85Parser.DivideStatementContext ctx) {
+	public Boolean visitDivideStatement(final Cobol85Parser.DivideStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addDivideStatement(ctx);
@@ -139,7 +138,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitEnableStatement(@NotNull final Cobol85Parser.EnableStatementContext ctx) {
+	public Boolean visitEnableStatement(final Cobol85Parser.EnableStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addEnableStatement(ctx);
@@ -148,7 +147,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitEntryStatement(@NotNull final Cobol85Parser.EntryStatementContext ctx) {
+	public Boolean visitEntryStatement(final Cobol85Parser.EntryStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addEntryStatement(ctx);
@@ -157,7 +156,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitEvaluateStatement(@NotNull final Cobol85Parser.EvaluateStatementContext ctx) {
+	public Boolean visitEvaluateStatement(final Cobol85Parser.EvaluateStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addEvaluateStatement(ctx);
@@ -166,7 +165,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitExecCicsStatement(@NotNull final Cobol85Parser.ExecCicsStatementContext ctx) {
+	public Boolean visitExecCicsStatement(final Cobol85Parser.ExecCicsStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addExecCicsStatement(ctx);
@@ -175,7 +174,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitExecSqlImsStatement(@NotNull final Cobol85Parser.ExecSqlImsStatementContext ctx) {
+	public Boolean visitExecSqlImsStatement(final Cobol85Parser.ExecSqlImsStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addExecSqlImsStatement(ctx);
@@ -184,7 +183,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitExecSqlStatement(@NotNull final Cobol85Parser.ExecSqlStatementContext ctx) {
+	public Boolean visitExecSqlStatement(final Cobol85Parser.ExecSqlStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addExecSqlStatement(ctx);
@@ -193,7 +192,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitExhibitStatement(@NotNull final Cobol85Parser.ExhibitStatementContext ctx) {
+	public Boolean visitExhibitStatement(final Cobol85Parser.ExhibitStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addExhibitStatement(ctx);
@@ -202,7 +201,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitExitStatement(@NotNull final Cobol85Parser.ExitStatementContext ctx) {
+	public Boolean visitExitStatement(final Cobol85Parser.ExitStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addExitStatement(ctx);
@@ -211,7 +210,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitGenerateStatement(@NotNull final Cobol85Parser.GenerateStatementContext ctx) {
+	public Boolean visitGenerateStatement(final Cobol85Parser.GenerateStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addGenerateStatement(ctx);
@@ -220,7 +219,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitGobackStatement(@NotNull final Cobol85Parser.GobackStatementContext ctx) {
+	public Boolean visitGobackStatement(final Cobol85Parser.GobackStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addGobackStatement(ctx);
@@ -229,7 +228,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitGoToStatement(@NotNull final Cobol85Parser.GoToStatementContext ctx) {
+	public Boolean visitGoToStatement(final Cobol85Parser.GoToStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addGoToStatement(ctx);
@@ -238,7 +237,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitIfStatement(@NotNull final Cobol85Parser.IfStatementContext ctx) {
+	public Boolean visitIfStatement(final Cobol85Parser.IfStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addIfStatement(ctx);
@@ -247,7 +246,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitInitializeStatement(@NotNull final Cobol85Parser.InitializeStatementContext ctx) {
+	public Boolean visitInitializeStatement(final Cobol85Parser.InitializeStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addInitializeStatement(ctx);
@@ -256,7 +255,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitInitiateStatement(@NotNull final Cobol85Parser.InitiateStatementContext ctx) {
+	public Boolean visitInitiateStatement(final Cobol85Parser.InitiateStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addInitiateStatement(ctx);
@@ -265,7 +264,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitInspectStatement(@NotNull final Cobol85Parser.InspectStatementContext ctx) {
+	public Boolean visitInspectStatement(final Cobol85Parser.InspectStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addInspectStatement(ctx);
@@ -274,7 +273,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitMergeStatement(@NotNull final Cobol85Parser.MergeStatementContext ctx) {
+	public Boolean visitMergeStatement(final Cobol85Parser.MergeStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addMergeStatement(ctx);
@@ -283,7 +282,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitMoveStatement(@NotNull final Cobol85Parser.MoveStatementContext ctx) {
+	public Boolean visitMoveStatement(final Cobol85Parser.MoveStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addMoveStatement(ctx);
@@ -292,7 +291,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitMultiplyStatement(@NotNull final Cobol85Parser.MultiplyStatementContext ctx) {
+	public Boolean visitMultiplyStatement(final Cobol85Parser.MultiplyStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addMultiplyStatement(ctx);
@@ -301,7 +300,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitOpenStatement(@NotNull final Cobol85Parser.OpenStatementContext ctx) {
+	public Boolean visitOpenStatement(final Cobol85Parser.OpenStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addOpenStatement(ctx);
@@ -310,7 +309,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitPerformStatement(@NotNull final Cobol85Parser.PerformStatementContext ctx) {
+	public Boolean visitPerformStatement(final Cobol85Parser.PerformStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addPerformStatement(ctx);
@@ -319,7 +318,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitPurgeStatement(@NotNull final Cobol85Parser.PurgeStatementContext ctx) {
+	public Boolean visitPurgeStatement(final Cobol85Parser.PurgeStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addPurgeStatement(ctx);
@@ -328,7 +327,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitReadStatement(@NotNull final Cobol85Parser.ReadStatementContext ctx) {
+	public Boolean visitReadStatement(final Cobol85Parser.ReadStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addReadStatement(ctx);
@@ -337,7 +336,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitReceiveStatement(@NotNull final Cobol85Parser.ReceiveStatementContext ctx) {
+	public Boolean visitReceiveStatement(final Cobol85Parser.ReceiveStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addReceiveStatement(ctx);
@@ -346,7 +345,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitReleaseStatement(@NotNull final Cobol85Parser.ReleaseStatementContext ctx) {
+	public Boolean visitReleaseStatement(final Cobol85Parser.ReleaseStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addReleaseStatement(ctx);
@@ -355,7 +354,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitReturnStatement(@NotNull final Cobol85Parser.ReturnStatementContext ctx) {
+	public Boolean visitReturnStatement(final Cobol85Parser.ReturnStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addReturnStatement(ctx);
@@ -364,7 +363,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitRewriteStatement(@NotNull final Cobol85Parser.RewriteStatementContext ctx) {
+	public Boolean visitRewriteStatement(final Cobol85Parser.RewriteStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addRewriteStatement(ctx);
@@ -373,7 +372,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitSearchStatement(@NotNull final Cobol85Parser.SearchStatementContext ctx) {
+	public Boolean visitSearchStatement(final Cobol85Parser.SearchStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addSearchStatement(ctx);
@@ -382,7 +381,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitSendStatement(@NotNull final Cobol85Parser.SendStatementContext ctx) {
+	public Boolean visitSendStatement(final Cobol85Parser.SendStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addSendStatement(ctx);
@@ -391,7 +390,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitSetStatement(@NotNull final Cobol85Parser.SetStatementContext ctx) {
+	public Boolean visitSetStatement(final Cobol85Parser.SetStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addSetStatement(ctx);
@@ -400,7 +399,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitSortStatement(@NotNull final Cobol85Parser.SortStatementContext ctx) {
+	public Boolean visitSortStatement(final Cobol85Parser.SortStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addSortStatement(ctx);
@@ -409,7 +408,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitStartStatement(@NotNull final Cobol85Parser.StartStatementContext ctx) {
+	public Boolean visitStartStatement(final Cobol85Parser.StartStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addStartStatement(ctx);
@@ -418,7 +417,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitStopStatement(@NotNull final Cobol85Parser.StopStatementContext ctx) {
+	public Boolean visitStopStatement(final Cobol85Parser.StopStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addStopStatement(ctx);
@@ -427,7 +426,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitStringStatement(@NotNull final Cobol85Parser.StringStatementContext ctx) {
+	public Boolean visitStringStatement(final Cobol85Parser.StringStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addStringStatement(ctx);
@@ -436,7 +435,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitSubtractStatement(@NotNull final Cobol85Parser.SubtractStatementContext ctx) {
+	public Boolean visitSubtractStatement(final Cobol85Parser.SubtractStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addSubtractStatement(ctx);
@@ -445,7 +444,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitTerminateStatement(@NotNull final Cobol85Parser.TerminateStatementContext ctx) {
+	public Boolean visitTerminateStatement(final Cobol85Parser.TerminateStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addTerminateStatement(ctx);
@@ -454,7 +453,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitUnstringStatement(@NotNull final Cobol85Parser.UnstringStatementContext ctx) {
+	public Boolean visitUnstringStatement(final Cobol85Parser.UnstringStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addUnstringStatement(ctx);
@@ -463,7 +462,7 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitWriteStatement(@NotNull final Cobol85Parser.WriteStatementContext ctx) {
+	public Boolean visitWriteStatement(final Cobol85Parser.WriteStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		scope.addWriteStatement(ctx);

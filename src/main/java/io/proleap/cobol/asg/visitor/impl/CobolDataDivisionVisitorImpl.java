@@ -8,7 +8,6 @@
 
 package io.proleap.cobol.asg.visitor.impl;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.Cobol85Parser;
@@ -30,7 +29,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	}
 
 	@Override
-	public Boolean visitCommunicationSection(@NotNull final Cobol85Parser.CommunicationSectionContext ctx) {
+	public Boolean visitCommunicationSection(final Cobol85Parser.CommunicationSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
 		dataDivision.addCommunicationSection(ctx);
@@ -39,7 +38,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	}
 
 	@Override
-	public Boolean visitDataBaseSection(@NotNull final Cobol85Parser.DataBaseSectionContext ctx) {
+	public Boolean visitDataBaseSection(final Cobol85Parser.DataBaseSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
 		dataDivision.addDataBaseSection(ctx);
@@ -48,7 +47,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	}
 
 	@Override
-	public Boolean visitFileSection(@NotNull final Cobol85Parser.FileSectionContext ctx) {
+	public Boolean visitFileSection(final Cobol85Parser.FileSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
 		dataDivision.addFileSection(ctx);
@@ -57,7 +56,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	}
 
 	@Override
-	public Boolean visitLinkageSection(@NotNull final Cobol85Parser.LinkageSectionContext ctx) {
+	public Boolean visitLinkageSection(final Cobol85Parser.LinkageSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
 		dataDivision.addLinkageSection(ctx);
@@ -66,7 +65,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	}
 
 	@Override
-	public Boolean visitLocalStorageSection(@NotNull final Cobol85Parser.LocalStorageSectionContext ctx) {
+	public Boolean visitLocalStorageSection(final Cobol85Parser.LocalStorageSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
 		dataDivision.addLocalStorageSection(ctx);
@@ -75,7 +74,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	}
 
 	@Override
-	public Boolean visitProgramLibrarySection(@NotNull final Cobol85Parser.ProgramLibrarySectionContext ctx) {
+	public Boolean visitProgramLibrarySection(final Cobol85Parser.ProgramLibrarySectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
 		dataDivision.addProgramLibrarySection(ctx);
@@ -84,7 +83,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	}
 
 	@Override
-	public Boolean visitReportSection(@NotNull final Cobol85Parser.ReportSectionContext ctx) {
+	public Boolean visitReportSection(final Cobol85Parser.ReportSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
 		dataDivision.addReportSection(ctx);
@@ -93,7 +92,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	}
 
 	@Override
-	public Boolean visitScreenSection(@NotNull final Cobol85Parser.ScreenSectionContext ctx) {
+	public Boolean visitScreenSection(final Cobol85Parser.ScreenSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
 		dataDivision.addScreenSection(ctx);
@@ -102,7 +101,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	}
 
 	@Override
-	public Boolean visitWorkingStorageSection(@NotNull final Cobol85Parser.WorkingStorageSectionContext ctx) {
+	public Boolean visitWorkingStorageSection(final Cobol85Parser.WorkingStorageSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
 		dataDivision.addWorkingStorageSection(ctx);

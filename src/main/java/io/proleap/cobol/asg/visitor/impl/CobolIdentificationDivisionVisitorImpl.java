@@ -8,7 +8,6 @@
 
 package io.proleap.cobol.asg.visitor.impl;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.Cobol85Parser;
@@ -30,7 +29,7 @@ public class CobolIdentificationDivisionVisitorImpl extends AbstractCobolParserV
 	}
 
 	@Override
-	public Boolean visitAuthorParagraph(@NotNull final Cobol85Parser.AuthorParagraphContext ctx) {
+	public Boolean visitAuthorParagraph(final Cobol85Parser.AuthorParagraphContext ctx) {
 		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
 		identificationDivision.addAuthorParagraph(ctx);
@@ -39,7 +38,7 @@ public class CobolIdentificationDivisionVisitorImpl extends AbstractCobolParserV
 	}
 
 	@Override
-	public Boolean visitDateCompiledParagraph(@NotNull final Cobol85Parser.DateCompiledParagraphContext ctx) {
+	public Boolean visitDateCompiledParagraph(final Cobol85Parser.DateCompiledParagraphContext ctx) {
 		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
 		identificationDivision.addDateCompiledParagraph(ctx);
@@ -48,7 +47,7 @@ public class CobolIdentificationDivisionVisitorImpl extends AbstractCobolParserV
 	}
 
 	@Override
-	public Boolean visitDateWrittenParagraph(@NotNull final Cobol85Parser.DateWrittenParagraphContext ctx) {
+	public Boolean visitDateWrittenParagraph(final Cobol85Parser.DateWrittenParagraphContext ctx) {
 		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
 		identificationDivision.addDateWrittenParagraph(ctx);
@@ -57,7 +56,7 @@ public class CobolIdentificationDivisionVisitorImpl extends AbstractCobolParserV
 	}
 
 	@Override
-	public Boolean visitInstallationParagraph(@NotNull final Cobol85Parser.InstallationParagraphContext ctx) {
+	public Boolean visitInstallationParagraph(final Cobol85Parser.InstallationParagraphContext ctx) {
 		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
 		identificationDivision.addInstallationParagraph(ctx);
@@ -66,7 +65,7 @@ public class CobolIdentificationDivisionVisitorImpl extends AbstractCobolParserV
 	}
 
 	@Override
-	public Boolean visitProgramIdParagraph(@NotNull final Cobol85Parser.ProgramIdParagraphContext ctx) {
+	public Boolean visitProgramIdParagraph(final Cobol85Parser.ProgramIdParagraphContext ctx) {
 		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
 		identificationDivision.addProgramIdParagraph(ctx);
@@ -75,7 +74,7 @@ public class CobolIdentificationDivisionVisitorImpl extends AbstractCobolParserV
 	}
 
 	@Override
-	public Boolean visitRemarksParagraph(@NotNull final Cobol85Parser.RemarksParagraphContext ctx) {
+	public Boolean visitRemarksParagraph(final Cobol85Parser.RemarksParagraphContext ctx) {
 		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
 		identificationDivision.addRemarksParagraph(ctx);
@@ -84,7 +83,7 @@ public class CobolIdentificationDivisionVisitorImpl extends AbstractCobolParserV
 	}
 
 	@Override
-	public Boolean visitSecurityParagraph(@NotNull final Cobol85Parser.SecurityParagraphContext ctx) {
+	public Boolean visitSecurityParagraph(final Cobol85Parser.SecurityParagraphContext ctx) {
 		final IdentificationDivision identificationDivision = findIdentificationDivision(ctx);
 
 		identificationDivision.addSecurityParagraph(ctx);

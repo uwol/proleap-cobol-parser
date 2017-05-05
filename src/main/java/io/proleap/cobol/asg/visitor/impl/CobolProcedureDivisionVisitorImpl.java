@@ -8,7 +8,6 @@
 
 package io.proleap.cobol.asg.visitor.impl;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.Cobol85Parser;
@@ -30,7 +29,7 @@ public class CobolProcedureDivisionVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitParagraph(@NotNull final Cobol85Parser.ParagraphContext ctx) {
+	public Boolean visitParagraph(final Cobol85Parser.ParagraphContext ctx) {
 		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
 
 		procedureDivision.addParagraph(ctx);
@@ -39,7 +38,7 @@ public class CobolProcedureDivisionVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitParagraphName(@NotNull final Cobol85Parser.ParagraphNameContext ctx) {
+	public Boolean visitParagraphName(final Cobol85Parser.ParagraphNameContext ctx) {
 		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
 
 		procedureDivision.addParagraphName(ctx);

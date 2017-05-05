@@ -8,8 +8,6 @@
 
 package io.proleap.cobol.asg.visitor.impl;
 
-import org.antlr.v4.runtime.misc.NotNull;
-
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
@@ -29,7 +27,7 @@ public class CobolProgramUnitVisitorImpl extends AbstractCobolParserVisitorImpl 
 	}
 
 	@Override
-	public Boolean visitDataDivision(@NotNull final Cobol85Parser.DataDivisionContext ctx) {
+	public Boolean visitDataDivision(final Cobol85Parser.DataDivisionContext ctx) {
 		final ProgramUnit programUnit = findProgramUnit(ctx);
 
 		programUnit.addDataDivision(ctx);
@@ -38,7 +36,7 @@ public class CobolProgramUnitVisitorImpl extends AbstractCobolParserVisitorImpl 
 	}
 
 	@Override
-	public Boolean visitEnvironmentDivision(@NotNull final Cobol85Parser.EnvironmentDivisionContext ctx) {
+	public Boolean visitEnvironmentDivision(final Cobol85Parser.EnvironmentDivisionContext ctx) {
 		final ProgramUnit programUnit = findProgramUnit(ctx);
 
 		programUnit.addEnvironmentDivision(ctx);
@@ -47,7 +45,7 @@ public class CobolProgramUnitVisitorImpl extends AbstractCobolParserVisitorImpl 
 	}
 
 	@Override
-	public Boolean visitIdentificationDivision(@NotNull final Cobol85Parser.IdentificationDivisionContext ctx) {
+	public Boolean visitIdentificationDivision(final Cobol85Parser.IdentificationDivisionContext ctx) {
 		final ProgramUnit programUnit = findProgramUnit(ctx);
 
 		programUnit.addIdentificationDivision(ctx);
@@ -56,7 +54,7 @@ public class CobolProgramUnitVisitorImpl extends AbstractCobolParserVisitorImpl 
 	}
 
 	@Override
-	public Boolean visitProcedureDivision(@NotNull final Cobol85Parser.ProcedureDivisionContext ctx) {
+	public Boolean visitProcedureDivision(final Cobol85Parser.ProcedureDivisionContext ctx) {
 		final ProgramUnit programUnit = findProgramUnit(ctx);
 
 		programUnit.addProcedureDivision(ctx);
@@ -65,7 +63,7 @@ public class CobolProgramUnitVisitorImpl extends AbstractCobolParserVisitorImpl 
 	}
 
 	@Override
-	public Boolean visitProgramUnit(@NotNull final Cobol85Parser.ProgramUnitContext ctx) {
+	public Boolean visitProgramUnit(final Cobol85Parser.ProgramUnitContext ctx) {
 		compilationUnit.addProgramUnit(ctx);
 
 		return visitChildren(ctx);
