@@ -1,5 +1,5 @@
-ProLeap ANTLR4-based parser and grammar for Cobol 85
-====================================================
+ProLeap ANTLR4-based parser for Cobol 85
+========================================
 
 [![Build](https://img.shields.io/travis/uwol/cobol85parser.svg)](https://travis-ci.org/uwol/cobol85parser)
 [![Coverage](https://coveralls.io/repos/github/uwol/cobol85parser/badge.svg?branch=master)](https://coveralls.io/github/uwol/cobol85parser?branch=master)
