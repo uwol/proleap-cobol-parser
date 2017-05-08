@@ -268,8 +268,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 				result.addAcceptFromEscapeKey(ctx.acceptFromEscapeKeyStatement());
 				type = Type.FROM_ESCAPE_KEY;
 			} else {
-				LOG.warn("unknown type at {}", ctx);
-				type = null;
+				type = Type.NO_FROM;
 			}
 
 			result.setType(type);
@@ -1586,7 +1585,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			} else if (ctx.literal() != null) {
 				type = StopStatement.Type.STOP_RUN_AND_DISPLAY;
 			} else {
-				LOG.warn("unknown type at {}", ctx);
+				LOG.warn("unknown stop statement at {}", ctx);
 				type = null;
 			}
 

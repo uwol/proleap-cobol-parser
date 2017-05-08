@@ -22,7 +22,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface AcceptStatement extends Statement {
 
 	enum Type {
-		DATE, FROM_ESCAPE_KEY, MESSAGE_COUNT, MNEMONIC
+		DATE, FROM_ESCAPE_KEY, MESSAGE_COUNT, MNEMONIC, NO_FROM
 	}
 
 	AcceptFromDate addAcceptFromDate(AcceptFromDateStatementContext ctx);

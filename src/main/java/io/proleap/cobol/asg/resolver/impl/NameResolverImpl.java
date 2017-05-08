@@ -47,6 +47,7 @@ import io.proleap.cobol.Cobol85Parser.ScreenDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.ScreenNameContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
+import io.proleap.cobol.Cobol85Parser.SpecialRegisterContext;
 import io.proleap.cobol.Cobol85Parser.SystemNameContext;
 import io.proleap.cobol.asg.resolver.NameResolver;
 
@@ -240,6 +241,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((ScreenDescriptionEntryContext) ctx);
 		} else if (ctx instanceof SourceComputerParagraphContext) {
 			result = determineName((SourceComputerParagraphContext) ctx);
+		} else if (ctx instanceof SpecialRegisterContext) {
+			result = determineName((SpecialRegisterContext) ctx);
 		} else if (ctx instanceof SystemNameContext) {
 			result = determineName((SystemNameContext) ctx);
 		} else {
@@ -321,6 +324,11 @@ public class NameResolverImpl implements NameResolver {
 
 	public String determineName(final SourceComputerParagraphContext ctx) {
 		final String result = ctx != null ? determineName(ctx.computerName()) : null;
+		return result;
+	}
+
+	public String determineName(final SpecialRegisterContext ctx) {
+		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}
 

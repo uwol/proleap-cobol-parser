@@ -42,6 +42,7 @@ import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.Cobol85Parser.RecordNameContext;
 import io.proleap.cobol.Cobol85Parser.RelationConditionContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
+import io.proleap.cobol.Cobol85Parser.SpecialRegisterContext;
 import io.proleap.cobol.Cobol85Parser.SystemNameContext;
 import io.proleap.cobol.asg.metamodel.ASGElement;
 import io.proleap.cobol.asg.metamodel.BooleanLiteral;
@@ -59,6 +60,8 @@ import io.proleap.cobol.asg.metamodel.call.FileDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.call.ReportCall;
 import io.proleap.cobol.asg.metamodel.call.ReportDescriptionEntryCall;
+import io.proleap.cobol.asg.metamodel.call.SpecialRegisterCall;
+import io.proleap.cobol.asg.metamodel.call.impl.CallDelegateImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.CommunicationDescriptionEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.DataDescriptionEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.EnvironmentCallImpl;
@@ -67,6 +70,7 @@ import io.proleap.cobol.asg.metamodel.call.impl.MnemonicCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ProcedureCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ReportCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ReportDescriptionEntryCallImpl;
+import io.proleap.cobol.asg.metamodel.call.impl.SpecialRegisterCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.UndefinedCallImpl;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntry;
@@ -255,7 +259,15 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final IdentifierContext ctx) {
-		final Call result = createDataDescriptionEntryCall(ctx);
+		final Call result;
+
+		if (ctx.specialRegister() != null) {
+			final Call specialRegisterCall = createCall(ctx.specialRegister());
+			result = new CallDelegateImpl(specialRegisterCall, programUnit, ctx);
+		} else {
+			result = createDataDescriptionEntryCall(ctx);
+		}
+
 		return result;
 	}
 
@@ -347,6 +359,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCall((RecordNameContext) ctx);
 			} else if (ctx instanceof ReportNameContext) {
 				result = createCall((ReportNameContext) ctx);
+			} else if (ctx instanceof SpecialRegisterContext) {
+				result = createCall((SpecialRegisterContext) ctx);
 			} else if (ctx instanceof SystemNameContext) {
 				result = createCall((SystemNameContext) ctx);
 			} else {
@@ -411,6 +425,83 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			} else {
 				result = createReportCall(name, report, ctx);
 			}
+		}
+
+		return result;
+	}
+
+	protected Call createCall(final SpecialRegisterContext ctx) {
+		SpecialRegisterCall result = (SpecialRegisterCall) getASGElement(ctx);
+
+		if (result == null) {
+			final SpecialRegisterCall.Type type;
+
+			if (ctx.ADDRESS() != null) {
+				type = SpecialRegisterCall.Type.ADDRESS_OF;
+			} else if (ctx.DATE() != null) {
+				type = SpecialRegisterCall.Type.DATE;
+			} else if (ctx.DAY() != null) {
+				type = SpecialRegisterCall.Type.DAY;
+			} else if (ctx.DAY_OF_WEEK() != null) {
+				type = SpecialRegisterCall.Type.DAY_OF_WEEK;
+			} else if (ctx.DEBUG_CONTENTS() != null) {
+				type = SpecialRegisterCall.Type.DEBUG_CONTENTS;
+			} else if (ctx.DEBUG_ITEM() != null) {
+				type = SpecialRegisterCall.Type.DEBUG_ITEM;
+			} else if (ctx.DEBUG_LINE() != null) {
+				type = SpecialRegisterCall.Type.DEBUG_LINE;
+			} else if (ctx.DEBUG_NAME() != null) {
+				type = SpecialRegisterCall.Type.DEBUG_NAME;
+			} else if (ctx.DEBUG_SUB_1() != null) {
+				type = SpecialRegisterCall.Type.DEBUG_SUB_1;
+			} else if (ctx.DEBUG_SUB_2() != null) {
+				type = SpecialRegisterCall.Type.DEBUG_SUB_2;
+			} else if (ctx.DEBUG_SUB_3() != null) {
+				type = SpecialRegisterCall.Type.DEBUG_SUB_3;
+			} else if (ctx.LENGTH() != null) {
+				type = SpecialRegisterCall.Type.LENGTH_OF;
+			} else if (ctx.LINAGE_COUNTER() != null) {
+				type = SpecialRegisterCall.Type.LINAGE_COUNTER;
+			} else if (ctx.LINE_COUNTER() != null) {
+				type = SpecialRegisterCall.Type.LINE_COUNTER;
+			} else if (ctx.PAGE_COUNTER() != null) {
+				type = SpecialRegisterCall.Type.PAGE_COUNTER;
+			} else if (ctx.RETURN_CODE() != null) {
+				type = SpecialRegisterCall.Type.RETURN_CODE;
+			} else if (ctx.SHIFT_IN() != null) {
+				type = SpecialRegisterCall.Type.SHIFT_IN;
+			} else if (ctx.SHIFT_OUT() != null) {
+				type = SpecialRegisterCall.Type.SHIFT_OUT;
+			} else if (ctx.SORT_CONTROL() != null) {
+				type = SpecialRegisterCall.Type.SORT_CONTROL;
+			} else if (ctx.SORT_CORE_SIZE() != null) {
+				type = SpecialRegisterCall.Type.SORT_CORE_SIZE;
+			} else if (ctx.SORT_FILE_SIZE() != null) {
+				type = SpecialRegisterCall.Type.SORT_FILE_SIZE;
+			} else if (ctx.SORT_MESSAGE() != null) {
+				type = SpecialRegisterCall.Type.SORT_MESSAGE;
+			} else if (ctx.SORT_MODE_SIZE() != null) {
+				type = SpecialRegisterCall.Type.SORT_MODE_SIZE;
+			} else if (ctx.SORT_RETURN() != null) {
+				type = SpecialRegisterCall.Type.SORT_RETURN;
+			} else if (ctx.TALLY() != null) {
+				type = SpecialRegisterCall.Type.TALLY;
+			} else if (ctx.TIME() != null) {
+				type = SpecialRegisterCall.Type.TIME;
+			} else if (ctx.WHEN_COMPILED() != null) {
+				type = SpecialRegisterCall.Type.WHEN_COMPILED;
+			} else {
+				type = null;
+			}
+
+			result = new SpecialRegisterCallImpl(type, programUnit, ctx);
+
+			if (ctx.identifier() != null) {
+				final Call identifierCall = createCall(ctx.identifier());
+				result.setIdentifierCall(identifierCall);
+			}
+
+			registerASGElement(result);
 		}
 
 		return result;
@@ -935,25 +1026,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected DataDescriptionEntry getDataDescriptionEntry(final String name) {
-		final DataDivision dataDivision = programUnit.getDataDivision();
-		final DataDescriptionEntry result;
-
-		if (dataDivision == null) {
-			result = null;
-		} else {
-			final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
-
-			if (workingStorageSection == null) {
-				result = null;
-			} else {
-				result = workingStorageSection.getDataDescriptionEntry(name);
-			}
-		}
-
-		return result;
-	}
-
 	protected FileDescriptionEntry findFileDescriptionEntry(final String name) {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final FileDescriptionEntry result;
@@ -1033,6 +1105,25 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	protected ASGElement getASGElement(final ParserRuleContext ctx) {
 		final ASGElement result = programUnit.getCompilationUnit().getProgram().getASGElementRegistry()
 				.getASGElement(ctx);
+		return result;
+	}
+
+	protected DataDescriptionEntry getDataDescriptionEntry(final String name) {
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final DataDescriptionEntry result;
+
+		if (dataDivision == null) {
+			result = null;
+		} else {
+			final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
+
+			if (workingStorageSection == null) {
+				result = null;
+			} else {
+				result = workingStorageSection.getDataDescriptionEntry(name);
+			}
+		}
+
 		return result;
 	}
 
