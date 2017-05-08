@@ -28,8 +28,7 @@ public abstract class CobolDivisionElementImpl extends ProgramUnitElementImpl im
 
 	@Override
 	protected ASGElement getASGElement(final ParserRuleContext ctx) {
-		final ASGElement result = programUnit.getCompilationUnit().getProgram().getASGElementRegistry()
-				.getASGElement(ctx);
+		final ASGElement result = programUnit.getProgram().getASGElementRegistry().getASGElement(ctx);
 		return result;
 	}
 
@@ -38,7 +37,7 @@ public abstract class CobolDivisionElementImpl extends ProgramUnitElementImpl im
 		assert asgElement != null;
 		assert asgElement.getCtx() != null;
 
-		programUnit.getCompilationUnit().getProgram().getASGElementRegistry().addASGElement(asgElement);
+		programUnit.getProgram().getASGElementRegistry().addASGElement(asgElement);
 	}
 
 }

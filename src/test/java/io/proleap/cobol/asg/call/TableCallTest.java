@@ -1,23 +1,29 @@
 package io.proleap.cobol.asg.call;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
-import java.util.List;
 
 import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
+import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursClause;
+import io.proleap.cobol.asg.metamodel.data.datadescription.PictureClause;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
+import io.proleap.cobol.asg.metamodel.identification.IdentificationDivision;
+import io.proleap.cobol.asg.metamodel.identification.ProgramIdParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
@@ -26,7 +32,15 @@ import io.proleap.cobol.asg.metamodel.procedure.display.Operand;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveTo;
 import io.proleap.cobol.asg.metamodel.procedure.move.SendingArea;
+import io.proleap.cobol.asg.metamodel.procedure.perform.By;
+import io.proleap.cobol.asg.metamodel.procedure.perform.From;
+import io.proleap.cobol.asg.metamodel.procedure.perform.PerformProcedureStatement;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformStatement;
+import io.proleap.cobol.asg.metamodel.procedure.perform.PerformType;
+import io.proleap.cobol.asg.metamodel.procedure.perform.Until;
+import io.proleap.cobol.asg.metamodel.procedure.perform.Varying;
+import io.proleap.cobol.asg.metamodel.procedure.perform.VaryingClause;
+import io.proleap.cobol.asg.metamodel.procedure.perform.VaryingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -41,10 +55,19 @@ public class TableCallTest extends CobolTestBase {
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("TableCall");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
+		final IdentificationDivision identificationDivision = programUnit.getIdentificationDivision();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 
+		{
+			final ProgramIdParagraph programIdParagraph = identificationDivision.getProgramIdParagraph();
+			assertEquals("TBLCLL", programIdParagraph.getName());
+		}
+
 		final DataDescriptionEntry dataDescriptionEntryTbl;
+
+		final Paragraph paragraphDisplayRecord = procedureDivision.getParagraph("DISPLAY-RECORD");
+		final Paragraph paragraphDisplayContent = procedureDivision.getParagraph("DISPLAY-CONTENT");
 
 		{
 			final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
@@ -74,6 +97,11 @@ public class TableCallTest extends CobolTestBase {
 						assertEquals(1, occursClause.getIndexCalls().size());
 
 						{
+							final IntegerLiteral from = occursClause.getFrom();
+							assertEquals(new Integer(3), from.getValue());
+						}
+
+						{
 							final Call indexCall = occursClause.getIndexCalls().get(0);
 							assertEquals("I", indexCall.getName());
 						}
@@ -85,6 +113,13 @@ public class TableCallTest extends CobolTestBase {
 						assertEquals("WS-DELIMITER", dataDescriptionEntryDelimiter.getName());
 						assertEquals(new Integer(10), dataDescriptionEntryDelimiter.getLevelNumber());
 						assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryDelimiter.getType());
+
+						final DataDescriptionEntryGroup dataDescriptionEntryGroupDelimiter = (DataDescriptionEntryGroup) dataDescriptionEntryDelimiter;
+
+						{
+							final PictureClause pictureClause = dataDescriptionEntryGroupDelimiter.getPictureClause();
+							assertEquals("A(2)", pictureClause.getPictureString());
+						}
 					}
 
 					{
@@ -103,6 +138,11 @@ public class TableCallTest extends CobolTestBase {
 							assertEquals(1, occursClause.getIndexCalls().size());
 
 							{
+								final IntegerLiteral from = occursClause.getFrom();
+								assertEquals(new Integer(2), from.getValue());
+							}
+
+							{
 								final Call indexCall = occursClause.getIndexCalls().get(0);
 								assertEquals("J", indexCall.getName());
 							}
@@ -114,6 +154,13 @@ public class TableCallTest extends CobolTestBase {
 							assertEquals("WS-COLUMN", dataDescriptionEntryColumn.getName());
 							assertEquals(new Integer(20), dataDescriptionEntryColumn.getLevelNumber());
 							assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryColumn.getType());
+
+							final DataDescriptionEntryGroup dataDescriptionEntryGroupColumn = (DataDescriptionEntryGroup) dataDescriptionEntryColumn;
+
+							{
+								final PictureClause pictureClause = dataDescriptionEntryGroupColumn.getPictureClause();
+								assertEquals("X(3)", pictureClause.getPictureString());
+							}
 						}
 					}
 				}
@@ -154,6 +201,47 @@ public class TableCallTest extends CobolTestBase {
 		{
 			final PerformStatement performStatement = (PerformStatement) procedureDivision.getStatements().get(1);
 			assertEquals(StatementTypeEnum.PERFORM, performStatement.getStatementType());
+			assertEquals(PerformStatement.Type.PROCEDURE, performStatement.getType());
+
+			{
+				final PerformProcedureStatement performProcedureStatement = performStatement
+						.getPerformProcedureStatement();
+				assertNotNull(performProcedureStatement);
+				assertEquals(1, performProcedureStatement.getCalls().size());
+
+				{
+					final Call call = performProcedureStatement.getCalls().get(0);
+					assertEquals(CallType.PROCEDURE_CALL, call.getCallType());
+					final ProcedureCall procedureCall = (ProcedureCall) call;
+					assertEquals(paragraphDisplayRecord, procedureCall.getParagraph());
+				}
+
+				{
+					final PerformType performType = performProcedureStatement.getPerformType();
+					assertEquals(PerformType.Type.VARYING, performType.getType());
+
+					{
+						final Varying varying = performType.getVarying();
+						final VaryingClause varyingClause = varying.getVaryingClause();
+						final VaryingPhrase varyingPhrase = varyingClause.getVaryingPhrase();
+
+						{
+							final From from = varyingPhrase.getFrom();
+							assertEquals(1, from.getFromValueStmt().getValue());
+						}
+
+						{
+							final By by = varyingPhrase.getBy();
+							assertEquals(1, by.getByValueStmt().getValue());
+						}
+
+						{
+							final Until until = varyingPhrase.getUntil();
+							assertNotNull(until.getCondition());
+						}
+					}
+				}
+			}
 		}
 
 		{
@@ -162,24 +250,60 @@ public class TableCallTest extends CobolTestBase {
 		}
 
 		{
-			final Paragraph paragraph = procedureDivision.getParagraph("DISPLAY-RECORD");
+			final PerformStatement performStatement = (PerformStatement) paragraphDisplayRecord.getStatements().get(0);
+			assertEquals(StatementTypeEnum.PERFORM, performStatement.getStatementType());
+			assertEquals(PerformStatement.Type.PROCEDURE, performStatement.getType());
 
 			{
-				final PerformStatement performStatement = (PerformStatement) paragraph.getStatements().get(0);
-				assertEquals(StatementTypeEnum.PERFORM, performStatement.getStatementType());
+				final PerformProcedureStatement performProcedureStatement = performStatement
+						.getPerformProcedureStatement();
+				assertNotNull(performProcedureStatement);
+				assertEquals(1, performProcedureStatement.getCalls().size());
+
+				{
+					final Call call = performProcedureStatement.getCalls().get(0);
+					assertEquals(CallType.PROCEDURE_CALL, call.getCallType());
+					final ProcedureCall procedureCall = (ProcedureCall) call;
+					assertEquals(paragraphDisplayContent, procedureCall.getParagraph());
+				}
+
+				{
+					final PerformType performType = performProcedureStatement.getPerformType();
+					assertEquals(PerformType.Type.VARYING, performType.getType());
+
+					{
+						final Varying varying = performType.getVarying();
+						final VaryingClause varyingClause = varying.getVaryingClause();
+						final VaryingPhrase varyingPhrase = varyingClause.getVaryingPhrase();
+
+						{
+							final From from = varyingPhrase.getFrom();
+							assertEquals(1, from.getFromValueStmt().getValue());
+						}
+
+						{
+							final By by = varyingPhrase.getBy();
+							assertEquals(1, by.getByValueStmt().getValue());
+						}
+
+						{
+							final Until until = varyingPhrase.getUntil();
+							assertNotNull(until.getCondition());
+						}
+					}
+				}
 			}
 		}
 
 		{
-			final Paragraph paragraph = procedureDivision.getParagraph("DISPLAY-CONTENT");
+			final DisplayStatement displayStatement = (DisplayStatement) paragraphDisplayContent.getStatements().get(0);
+			assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 
 			{
-				final DisplayStatement displayStatement = (DisplayStatement) paragraph.getStatements().get(0);
-				assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
+				assertEquals(1, displayStatement.getOperands().size());
 
 				{
-					final List<Operand> operands = displayStatement.getOperands();
-					final Operand operand = operands.get(0);
+					final Operand operand = displayStatement.getOperands().get(0);
 					final ValueStmt operandValueStmt = operand.getOperandValueStmt();
 				}
 			}

@@ -1103,8 +1103,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected ASGElement getASGElement(final ParserRuleContext ctx) {
-		final ASGElement result = programUnit.getCompilationUnit().getProgram().getASGElementRegistry()
-				.getASGElement(ctx);
+		final ASGElement result = programUnit.getProgram().getASGElementRegistry().getASGElement(ctx);
 		return result;
 	}
 
@@ -1162,7 +1161,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected void registerASGElement(final ASGElement asgElement) {
-		programUnit.getCompilationUnit().getProgram().getASGElementRegistry().addASGElement(asgElement);
+		programUnit.getProgram().getASGElementRegistry().addASGElement(asgElement);
 	}
 
 }
