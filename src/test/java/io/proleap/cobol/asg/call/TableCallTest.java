@@ -229,13 +229,25 @@ public class TableCallTest extends CobolTestBase {
 						final VaryingPhrase varyingPhrase = varyingClause.getVaryingPhrase();
 
 						{
+							final ValueStmt varyingValueStmt = varyingPhrase.getVaryingValueStmt();
+							final CallValueStmt varyingCallValueStmt = (CallValueStmt) varyingValueStmt;
+
+							{
+								final Call call = varyingCallValueStmt.getCall();
+								assertEquals(Call.CallType.UNDEFINED_CALL, call.getCallType());
+							}
+						}
+
+						{
 							final From from = varyingPhrase.getFrom();
-							assertEquals(1, from.getFromValueStmt().getValue());
+							final ValueStmt fromValueStmt = from.getFromValueStmt();
+							assertEquals(1, fromValueStmt.getValue());
 						}
 
 						{
 							final By by = varyingPhrase.getBy();
-							assertEquals(1, by.getByValueStmt().getValue());
+							final ValueStmt byValueStmt = by.getByValueStmt();
+							assertEquals(1, byValueStmt.getValue());
 						}
 
 						{
@@ -266,6 +278,7 @@ public class TableCallTest extends CobolTestBase {
 				{
 					final Call call = performProcedureStatement.getCalls().get(0);
 					assertEquals(CallType.PROCEDURE_CALL, call.getCallType());
+
 					final ProcedureCall procedureCall = (ProcedureCall) call;
 					assertEquals(paragraphDisplayContent, procedureCall.getParagraph());
 				}
@@ -280,13 +293,25 @@ public class TableCallTest extends CobolTestBase {
 						final VaryingPhrase varyingPhrase = varyingClause.getVaryingPhrase();
 
 						{
+							final ValueStmt varyingValueStmt = varyingPhrase.getVaryingValueStmt();
+							final CallValueStmt varyingCallValueStmt = (CallValueStmt) varyingValueStmt;
+
+							{
+								final Call call = varyingCallValueStmt.getCall();
+								assertEquals(Call.CallType.UNDEFINED_CALL, call.getCallType());
+							}
+						}
+
+						{
 							final From from = varyingPhrase.getFrom();
-							assertEquals(1, from.getFromValueStmt().getValue());
+							final ValueStmt fromValueStmt = from.getFromValueStmt();
+							assertEquals(1, fromValueStmt.getValue());
 						}
 
 						{
 							final By by = varyingPhrase.getBy();
-							assertEquals(1, by.getByValueStmt().getValue());
+							final ValueStmt byValueStmt = by.getByValueStmt();
+							assertEquals(1, byValueStmt.getValue());
 						}
 
 						{
