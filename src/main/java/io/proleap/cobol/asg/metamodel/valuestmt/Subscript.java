@@ -12,4 +12,8 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface Subscript extends CobolDivisionElement {
 
+	ValueStmt getSubscriptValueStmt();
+
+	void setSubscriptValueStmt(ValueStmt subscriptValueStmt);
+
 }

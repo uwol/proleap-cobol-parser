@@ -105,7 +105,6 @@ public class ConditionNameReferenceImpl extends ValueStmtImpl implements Conditi
 		if (result == null) {
 			result = new ConditionNameSubscriptReferenceImpl(programUnit, ctx);
 
-			// subscripts
 			for (final SubscriptContext subscriptContext : ctx.subscript()) {
 				result.addSubscript(subscriptContext);
 			}

@@ -16,6 +16,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
+import io.proleap.cobol.asg.metamodel.call.TableCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
@@ -42,6 +43,8 @@ import io.proleap.cobol.asg.metamodel.procedure.perform.Varying;
 import io.proleap.cobol.asg.metamodel.procedure.perform.VaryingClause;
 import io.proleap.cobol.asg.metamodel.procedure.perform.VaryingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.stop.StopStatement;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -305,6 +308,37 @@ public class TableCallTest extends CobolTestBase {
 				{
 					final Operand operand = displayStatement.getOperands().get(0);
 					final ValueStmt operandValueStmt = operand.getOperandValueStmt();
+					final CallValueStmt operandCallValueStmt = (CallValueStmt) operandValueStmt;
+
+					{
+						final Call call = operandCallValueStmt.getCall();
+						assertEquals(Call.CallType.TABLE_CALL, call.getCallType());
+
+						final TableCall tableCall = (TableCall) call.unwrap();
+						assertEquals(2, tableCall.getSubscripts().size());
+
+						{
+							final Subscript subscript = tableCall.getSubscripts().get(0);
+							final ValueStmt subscriptValueStmt = subscript.getSubscriptValueStmt();
+							final CallValueStmt subscriptCallValueStmt = (CallValueStmt) subscriptValueStmt;
+
+							{
+								final Call subscriptCall = subscriptCallValueStmt.getCall();
+								assertEquals(Call.CallType.UNDEFINED_CALL, subscriptCall.getCallType());
+							}
+						}
+
+						{
+							final Subscript subscript = tableCall.getSubscripts().get(1);
+							final ValueStmt subscriptValueStmt = subscript.getSubscriptValueStmt();
+							final CallValueStmt subscriptCallValueStmt = (CallValueStmt) subscriptValueStmt;
+
+							{
+								final Call subscriptCall = subscriptCallValueStmt.getCall();
+								assertEquals(Call.CallType.UNDEFINED_CALL, subscriptCall.getCallType());
+							}
+						}
+					}
 				}
 			}
 		}

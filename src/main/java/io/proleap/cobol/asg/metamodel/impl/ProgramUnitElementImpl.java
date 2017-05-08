@@ -43,7 +43,9 @@ import io.proleap.cobol.Cobol85Parser.RecordNameContext;
 import io.proleap.cobol.Cobol85Parser.RelationConditionContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.SpecialRegisterContext;
+import io.proleap.cobol.Cobol85Parser.SubscriptContext;
 import io.proleap.cobol.Cobol85Parser.SystemNameContext;
+import io.proleap.cobol.Cobol85Parser.TableCallContext;
 import io.proleap.cobol.asg.metamodel.ASGElement;
 import io.proleap.cobol.asg.metamodel.BooleanLiteral;
 import io.proleap.cobol.asg.metamodel.FigurativeConstant;
@@ -61,6 +63,7 @@ import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.call.ReportCall;
 import io.proleap.cobol.asg.metamodel.call.ReportDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.SpecialRegisterCall;
+import io.proleap.cobol.asg.metamodel.call.TableCall;
 import io.proleap.cobol.asg.metamodel.call.impl.CallDelegateImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.CommunicationDescriptionEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.DataDescriptionEntryCallImpl;
@@ -71,6 +74,7 @@ import io.proleap.cobol.asg.metamodel.call.impl.ProcedureCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ReportCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ReportDescriptionEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.SpecialRegisterCallImpl;
+import io.proleap.cobol.asg.metamodel.call.impl.TableCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.UndefinedCallImpl;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntry;
@@ -264,6 +268,9 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (ctx.specialRegister() != null) {
 			final Call specialRegisterCall = createCall(ctx.specialRegister());
 			result = new CallDelegateImpl(specialRegisterCall, programUnit, ctx);
+		} else if (ctx.tableCall() != null) {
+			final Call tableCall = createCall(ctx.tableCall());
+			result = new CallDelegateImpl(tableCall, programUnit, ctx);
 		} else {
 			result = createDataDescriptionEntryCall(ctx);
 		}
@@ -363,6 +370,10 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCall((SpecialRegisterContext) ctx);
 			} else if (ctx instanceof SystemNameContext) {
 				result = createCall((SystemNameContext) ctx);
+			} else if (ctx instanceof SpecialRegisterContext) {
+				result = createCall((SpecialRegisterContext) ctx);
+			} else if (ctx instanceof TableCallContext) {
+				result = createCall((TableCallContext) ctx);
 			} else {
 				LOG.warn("unknown call at {}", ctx);
 			}
@@ -512,6 +523,23 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (result == null) {
 			result = createUndefinedCall(ctx);
+		}
+
+		return result;
+	}
+
+	protected Call createCall(final TableCallContext ctx) {
+		TableCall result = (TableCall) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			result = new TableCallImpl(name, programUnit, ctx);
+
+			for (final SubscriptContext subscriptContext : ctx.subscript()) {
+				result.addSubscript(subscriptContext);
+			}
+
+			registerASGElement(result);
 		}
 
 		return result;
@@ -965,6 +993,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCallValueStmt((IdentifierContext) ctx);
 			} else if (ctx instanceof AlphabetNameContext) {
 				result = createCallValueStmt((AlphabetNameContext) ctx);
+			} else if (ctx instanceof ArithmeticExpressionContext) {
+				result = createArithmeticValueStmt((ArithmeticExpressionContext) ctx);
 			} else if (ctx instanceof AssignmentNameContext) {
 				result = createCallValueStmt((AssignmentNameContext) ctx);
 			} else if (ctx instanceof ClassNameContext) {

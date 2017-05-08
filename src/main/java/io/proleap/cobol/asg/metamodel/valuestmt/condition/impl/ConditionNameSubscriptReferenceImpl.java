@@ -15,6 +15,7 @@ import io.proleap.cobol.Cobol85Parser.ConditionNameSubscriptReferenceContext;
 import io.proleap.cobol.Cobol85Parser.SubscriptContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.ConditionNameSubscriptReference;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.SubscriptImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
@@ -37,7 +38,9 @@ public class ConditionNameSubscriptReferenceImpl extends ValueStmtImpl implement
 		if (result == null) {
 			result = new SubscriptImpl(programUnit, ctx);
 
-			// TODO
+			final ValueStmt subscriptValueStmt = createValueStmt(ctx.integerLiteral(), ctx.qualifiedDataName(),
+					ctx.indexName(), ctx.arithmeticExpression());
+			result.setSubscriptValueStmt(subscriptValueStmt);
 
 			subscripts.add(result);
 			registerASGElement(result);

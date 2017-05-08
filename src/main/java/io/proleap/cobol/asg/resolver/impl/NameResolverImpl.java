@@ -49,6 +49,7 @@ import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.SpecialRegisterContext;
 import io.proleap.cobol.Cobol85Parser.SystemNameContext;
+import io.proleap.cobol.Cobol85Parser.TableCallContext;
 import io.proleap.cobol.asg.resolver.NameResolver;
 
 public class NameResolverImpl implements NameResolver {
@@ -245,6 +246,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((SpecialRegisterContext) ctx);
 		} else if (ctx instanceof SystemNameContext) {
 			result = determineName((SystemNameContext) ctx);
+		} else if (ctx instanceof TableCallContext) {
+			result = determineName((TableCallContext) ctx);
 		} else {
 			result = null;
 		}
@@ -334,6 +337,11 @@ public class NameResolverImpl implements NameResolver {
 
 	public String determineName(final SystemNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;
+		return result;
+	}
+
+	public String determineName(final TableCallContext ctx) {
+		final String result = ctx != null ? ctx.qualifiedDataName().getText() : null;
 		return result;
 	}
 }
