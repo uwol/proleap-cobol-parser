@@ -2327,13 +2327,12 @@ identifier
    : qualifiedDataName | tableCall | functionCall | specialRegister
    ;
 
-// array access
 tableCall
-   : qualifiedDataName (LPARENCHAR subscript+ RPARENCHAR)* referenceModifier?
+   : qualifiedDataName (LPARENCHAR subscript (COMMACHAR? subscript)* RPARENCHAR)* referenceModifier?
    ;
 
 functionCall
-   : FUNCTION functionName (LPARENCHAR argument+ RPARENCHAR)* referenceModifier?
+   : FUNCTION functionName (LPARENCHAR argument (COMMACHAR? argument)* RPARENCHAR)* referenceModifier?
    ;
 
 referenceModifier
