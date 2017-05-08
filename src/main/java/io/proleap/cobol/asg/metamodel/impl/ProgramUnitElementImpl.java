@@ -110,7 +110,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	protected ProgramUnit programUnit;
 
 	public ProgramUnitElementImpl(final ProgramUnit programUnit, final ParserRuleContext ctx) {
-		super(ctx);
+		super(programUnit.getCompilationUnit(), ctx);
 
 		this.programUnit = programUnit;
 	}

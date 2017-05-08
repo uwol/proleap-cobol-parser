@@ -36,8 +36,6 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 
 	private final static Logger LOG = LogManager.getLogger(ProgramUnitImpl.class);
 
-	protected final CompilationUnit compilationUnit;
-
 	protected final ProgramUnitContext ctx;
 
 	protected DataDivision dataDivision;
@@ -49,10 +47,9 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 	protected ProcedureDivision procedureDivision;
 
 	public ProgramUnitImpl(final CompilationUnit compilationUnit, final ProgramUnitContext ctx) {
-		super(ctx);
+		super(compilationUnit, ctx);
 
 		this.ctx = ctx;
-		this.compilationUnit = compilationUnit;
 	}
 
 	@Override
@@ -186,11 +183,6 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 	protected ASGElement getASGElement(final ParserRuleContext ctx) {
 		final ASGElement result = compilationUnit.getProgram().getASGElementRegistry().getASGElement(ctx);
 		return result;
-	}
-
-	@Override
-	public CompilationUnit getCompilationUnit() {
-		return compilationUnit;
 	}
 
 	@Override

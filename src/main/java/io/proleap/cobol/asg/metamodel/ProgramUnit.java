@@ -27,8 +27,6 @@ public interface ProgramUnit extends CompilationUnitElement {
 
 	ProcedureDivision addProcedureDivision(ProcedureDivisionContext ctx);
 
-	CompilationUnit getCompilationUnit();
-
 	DataDivision getDataDivision();
 
 	EnvironmentDivision getEnvironmentDivision();

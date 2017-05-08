@@ -24,7 +24,7 @@ public class ProgramImpl extends ASGElementImpl implements Program {
 	protected final Map<String, CompilationUnit> compilationUnits = new LinkedHashMap<String, CompilationUnit>();
 
 	public ProgramImpl() {
-		super(null);
+		super(null, null);
 	}
 
 	@Override

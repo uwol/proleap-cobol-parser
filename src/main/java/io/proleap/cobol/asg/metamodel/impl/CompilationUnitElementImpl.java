@@ -10,17 +10,27 @@ package io.proleap.cobol.asg.metamodel.impl;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 
+import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.CompilationUnitElement;
 import io.proleap.cobol.asg.resolver.impl.NameResolverImpl;
 
 public class CompilationUnitElementImpl extends ASGElementImpl implements CompilationUnitElement {
 
-	public CompilationUnitElementImpl(final ParserRuleContext ctx) {
-		super(ctx);
+	protected final CompilationUnit compilationUnit;
+
+	public CompilationUnitElementImpl(final CompilationUnit compilationUnit, final ParserRuleContext ctx) {
+		super(compilationUnit.getProgram(), ctx);
+
+		this.compilationUnit = compilationUnit;
 	}
 
 	protected String determineName(final ParserRuleContext ctx) {
 		return new NameResolverImpl().determineName(ctx);
+	}
+
+	@Override
+	public CompilationUnit getCompilationUnit() {
+		return compilationUnit;
 	}
 
 }

@@ -10,4 +10,5 @@ package io.proleap.cobol.asg.metamodel;
 
 public interface CompilationUnitElement extends ASGElement {
 
+	CompilationUnit getCompilationUnit();
 }

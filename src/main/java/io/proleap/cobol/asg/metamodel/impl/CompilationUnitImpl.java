@@ -28,15 +28,12 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 
 	protected final String name;
 
-	protected final Program program;
-
 	protected final List<ProgramUnit> programUnits = new ArrayList<ProgramUnit>();
 
 	public CompilationUnitImpl(final String name, final Program program, final CompilationUnitContext ctx) {
-		super(ctx);
+		super(program, ctx);
 
 		this.name = name;
-		this.program = program;
 		this.ctx = ctx;
 
 		registerASGElement(this);
@@ -93,11 +90,6 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 	@Override
 	public String getName() {
 		return name;
-	}
-
-	@Override
-	public Program getProgram() {
-		return program;
 	}
 
 	@Override
