@@ -8,7 +8,6 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -33,7 +32,7 @@ public abstract class ASGElementImpl implements ASGElement {
 	}
 
 	@Override
-	public Collection<ASGElement> getChildren() {
+	public List<ASGElement> getChildren() {
 		final ASGElementRegistry asgElementRegistry = program.getASGElementRegistry();
 		final List<ASGElement> result = ANTLRUtils.findASGElementChildren(ctx, asgElementRegistry);
 		return result;
