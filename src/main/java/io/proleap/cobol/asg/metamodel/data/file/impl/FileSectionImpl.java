@@ -49,7 +49,10 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 			result = new FileDescriptionEntryImpl(name, programUnit, ctx);
 
 			final FileControlEntry fileControlEntry = findFileControlEntry(name);
-			result.setFileControlEntry(fileControlEntry);
+
+			if (fileControlEntry != null) {
+				linkFileDescriptionEntryWithFileControlEntry(result, fileControlEntry);
+			}
 
 			final Call fileCall = createCall(ctx.fileName());
 			result.setFileCall(fileCall);
@@ -131,5 +134,11 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 	@Override
 	public FileDescriptionEntry getFileDescriptionEntry(final String name) {
 		return fileDescriptionEntriesSymbolTable.get(name);
+	}
+
+	protected void linkFileDescriptionEntryWithFileControlEntry(final FileDescriptionEntry fileDescriptionEntry,
+			final FileControlEntry fileControlEntry) {
+		fileDescriptionEntry.setFileControlEntry(fileControlEntry);
+		fileControlEntry.setFileDescriptionEntry(fileDescriptionEntry);
 	}
 }

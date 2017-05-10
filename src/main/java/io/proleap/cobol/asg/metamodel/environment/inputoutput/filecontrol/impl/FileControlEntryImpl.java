@@ -30,6 +30,7 @@ import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.FileControlEntryCall;
+import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.AccessModeClause;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.AlternateRecordKeyClause;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.AssignClause;
@@ -60,6 +61,8 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	protected List<FileControlEntryCall> calls = new ArrayList<FileControlEntryCall>();
 
 	protected final FileControlEntryContext ctx;
+
+	protected FileDescriptionEntry fileDescriptionEntry;
 
 	protected FileStatusClause fileStatusClause;
 
@@ -423,6 +426,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	}
 
 	@Override
+	public FileDescriptionEntry getFileDescriptionEntry() {
+		return fileDescriptionEntry;
+	}
+
+	@Override
 	public FileStatusClause getFileStatusClause() {
 		return fileStatusClause;
 	}
@@ -470,6 +478,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	@Override
 	public SelectClause getSelectClause() {
 		return selectClause;
+	}
+
+	@Override
+	public void setFileDescriptionEntry(final FileDescriptionEntry fileDescriptionEntry) {
+		this.fileDescriptionEntry = fileDescriptionEntry;
 	}
 
 }

@@ -104,40 +104,55 @@ public class OpenStatementTest extends CobolTestBase {
 					final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("SOMEFILE1");
 					assertNotNull(fileDescriptionEntry);
 
-					final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
-					assertNotNull(fileControlEntry);
+					{
+						final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
+						assertNotNull(fileControlEntry);
+						assertEquals(fileDescriptionEntry, fileControlEntry.getFileDescriptionEntry());
+					}
 				}
 
 				{
 					final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("SOMEFILE2");
 					assertNotNull(fileDescriptionEntry);
 
-					final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
-					assertNotNull(fileControlEntry);
+					{
+						final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
+						assertNotNull(fileControlEntry);
+						assertEquals(fileDescriptionEntry, fileControlEntry.getFileDescriptionEntry());
+					}
 				}
 
 				{
 					final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("SOMEFILE3");
 					assertNotNull(fileDescriptionEntry);
 
-					final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
-					assertNotNull(fileControlEntry);
+					{
+						final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
+						assertNotNull(fileControlEntry);
+						assertEquals(fileDescriptionEntry, fileControlEntry.getFileDescriptionEntry());
+					}
 				}
 
 				{
 					final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("SOMEFILE4");
 					assertNotNull(fileDescriptionEntry);
 
-					final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
-					assertNotNull(fileControlEntry);
+					{
+						final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
+						assertNotNull(fileControlEntry);
+						assertEquals(fileDescriptionEntry, fileControlEntry.getFileDescriptionEntry());
+					}
 				}
 
 				{
 					final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("SOMEFILE5");
 					assertNotNull(fileDescriptionEntry);
 
-					final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
-					assertNotNull(fileControlEntry);
+					{
+						final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
+						assertNotNull(fileControlEntry);
+						assertEquals(fileDescriptionEntry, fileControlEntry.getFileDescriptionEntry());
+					}
 				}
 			}
 		}

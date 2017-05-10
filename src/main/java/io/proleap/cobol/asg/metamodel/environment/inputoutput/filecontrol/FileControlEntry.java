@@ -25,6 +25,7 @@ import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.NamedElement;
 import io.proleap.cobol.asg.metamodel.call.FileControlEntryCall;
+import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
 
 public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 
@@ -62,6 +63,8 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 
 	List<FileControlEntryCall> getCalls();
 
+	FileDescriptionEntry getFileDescriptionEntry();
+
 	FileStatusClause getFileStatusClause();
 
 	OrganizationClause getOrganizationClause();
@@ -79,5 +82,7 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 	ReserveClause getReserveClause();
 
 	SelectClause getSelectClause();
+
+	void setFileDescriptionEntry(FileDescriptionEntry fileDescriptionEntry);
 
 }

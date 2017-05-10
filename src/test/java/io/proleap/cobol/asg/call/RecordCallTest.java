@@ -77,11 +77,13 @@ public class RecordCallTest extends CobolTestBase {
 				{
 					fileControlEntryFileIn = fileControlParagraph.getFileControlEntry("FILEIN");
 					assertNotNull(fileControlEntryFileIn.getAssignClause());
+					assertNotNull(fileControlEntryFileIn.getFileDescriptionEntry());
 				}
 
 				{
 					fileControlEntryFileOut = fileControlParagraph.getFileControlEntry("FILEOUT");
 					assertNotNull(fileControlEntryFileOut.getAssignClause());
+					assertNotNull(fileControlEntryFileIn.getFileDescriptionEntry());
 				}
 			}
 		}
@@ -91,6 +93,7 @@ public class RecordCallTest extends CobolTestBase {
 
 			{
 				fileDescriptionEntryFileIn = fileSection.getFileDescriptionEntry("FILEIN");
+				assertEquals(fileControlEntryFileIn, fileDescriptionEntryFileIn.getFileControlEntry());
 
 				{
 					dataDescriptionEntryFileInZ = fileDescriptionEntryFileIn.getDataDescriptionEntry("FILEIN-Z");
@@ -100,6 +103,7 @@ public class RecordCallTest extends CobolTestBase {
 
 			{
 				fileDescriptionEntryFileOut = fileSection.getFileDescriptionEntry("FILEOUT");
+				assertEquals(fileControlEntryFileOut, fileDescriptionEntryFileOut.getFileControlEntry());
 
 				{
 					dataDescriptionEntryFileOutZ = fileDescriptionEntryFileOut.getDataDescriptionEntry("FILEOUT-Z");
