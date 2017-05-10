@@ -8,8 +8,6 @@
 
 package io.proleap.cobol.asg.metamodel.data.file;
 
-import java.util.List;
-
 import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.CodeSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataRecordsClauseContext;
@@ -22,14 +20,12 @@ import io.proleap.cobol.Cobol85Parser.ReportClauseContext;
 import io.proleap.cobol.Cobol85Parser.ValueOfClauseContext;
 import io.proleap.cobol.asg.metamodel.Declaration;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.call.FileDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
 
 public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Declaration {
 
 	BlockContainsClause addBlockContainsClause(BlockContainsClauseContext ctx);
-
-	void addCall(FileDescriptionEntryCall call);
 
 	CodeSetClause addCodeSetClause(CodeSetClauseContext ctx);
 
@@ -51,8 +47,6 @@ public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Dec
 
 	BlockContainsClause getBlockContainsClause();
 
-	List<FileDescriptionEntryCall> getCalls();
-
 	CodeSetClause getCodeSetClause();
 
 	DataRecordsClause getDataRecordsClause();
@@ -60,6 +54,8 @@ public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Dec
 	ExternalClause getExternalClause();
 
 	Call getFileCall();
+
+	FileControlEntry getFileControlEntry();
 
 	GlobalClause getGlobalClause();
 
@@ -74,5 +70,7 @@ public interface FileDescriptionEntry extends DataDescriptionEntryContainer, Dec
 	ValueOfClause getValueOfClause();
 
 	void setFileCall(Call fileCall);
+
+	void setFileControlEntry(FileControlEntry fileControlEntry);
 
 }

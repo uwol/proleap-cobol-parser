@@ -13,10 +13,14 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.call.FileDescriptionEntryCall;
+import io.proleap.cobol.asg.metamodel.call.FileControlEntryCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.file.FileSection;
+import io.proleap.cobol.asg.metamodel.environment.EnvironmentDivision;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.InputOutputSection;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.open.Input;
@@ -39,11 +43,53 @@ public class OpenStatementTest extends CobolTestBase {
 		final CompilationUnit compilationUnit = program.getCompilationUnit("OpenStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 
-		final FileDescriptionEntry fileDescriptionEntry1;
-		final FileDescriptionEntry fileDescriptionEntry2;
-		final FileDescriptionEntry fileDescriptionEntry3;
-		final FileDescriptionEntry fileDescriptionEntry4;
-		final FileDescriptionEntry fileDescriptionEntry5;
+		final FileControlEntry fileControlEntry1;
+		final FileControlEntry fileControlEntry2;
+		final FileControlEntry fileControlEntry3;
+		final FileControlEntry fileControlEntry4;
+		final FileControlEntry fileControlEntry5;
+
+		{
+			final EnvironmentDivision environmentDivision = programUnit.getEnvironmentDivision();
+
+			{
+				final InputOutputSection inputOutputSection = environmentDivision.getInputOutputSection();
+
+				{
+					final FileControlParagraph fileControlParagraph = inputOutputSection.getFileControlParagraph();
+
+					{
+						fileControlEntry1 = fileControlParagraph.getFileControlEntry("SOMEFILE1");
+						assertNotNull(fileControlEntry1);
+						assertEquals(2, fileControlEntry1.getCalls().size());
+					}
+
+					{
+						fileControlEntry2 = fileControlParagraph.getFileControlEntry("SOMEFILE2");
+						assertNotNull(fileControlEntry2);
+						assertEquals(2, fileControlEntry2.getCalls().size());
+					}
+
+					{
+						fileControlEntry3 = fileControlParagraph.getFileControlEntry("SOMEFILE3");
+						assertNotNull(fileControlEntry3);
+						assertEquals(2, fileControlEntry3.getCalls().size());
+					}
+
+					{
+						fileControlEntry4 = fileControlParagraph.getFileControlEntry("SOMEFILE4");
+						assertNotNull(fileControlEntry4);
+						assertEquals(3, fileControlEntry4.getCalls().size());
+					}
+
+					{
+						fileControlEntry5 = fileControlParagraph.getFileControlEntry("SOMEFILE5");
+						assertNotNull(fileControlEntry5);
+						assertEquals(3, fileControlEntry5.getCalls().size());
+					}
+				}
+			}
+		}
 
 		{
 			final DataDivision dataDivision = programUnit.getDataDivision();
@@ -55,33 +101,43 @@ public class OpenStatementTest extends CobolTestBase {
 				assertEquals(5, fileSection.getFileDescriptionEntries().size());
 
 				{
-					fileDescriptionEntry1 = fileSection.getFileDescriptionEntry("SOMEFILE1");
-					assertNotNull(fileDescriptionEntry1);
-					assertEquals(1, fileDescriptionEntry1.getCalls().size());
+					final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("SOMEFILE1");
+					assertNotNull(fileDescriptionEntry);
+
+					final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
+					assertNotNull(fileControlEntry);
 				}
 
 				{
-					fileDescriptionEntry2 = fileSection.getFileDescriptionEntry("SOMEFILE2");
-					assertNotNull(fileDescriptionEntry2);
-					assertEquals(1, fileDescriptionEntry2.getCalls().size());
+					final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("SOMEFILE2");
+					assertNotNull(fileDescriptionEntry);
+
+					final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
+					assertNotNull(fileControlEntry);
 				}
 
 				{
-					fileDescriptionEntry3 = fileSection.getFileDescriptionEntry("SOMEFILE3");
-					assertNotNull(fileDescriptionEntry3);
-					assertEquals(1, fileDescriptionEntry3.getCalls().size());
+					final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("SOMEFILE3");
+					assertNotNull(fileDescriptionEntry);
+
+					final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
+					assertNotNull(fileControlEntry);
 				}
 
 				{
-					fileDescriptionEntry4 = fileSection.getFileDescriptionEntry("SOMEFILE4");
-					assertNotNull(fileDescriptionEntry4);
-					assertEquals(2, fileDescriptionEntry4.getCalls().size());
+					final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("SOMEFILE4");
+					assertNotNull(fileDescriptionEntry);
+
+					final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
+					assertNotNull(fileControlEntry);
 				}
 
 				{
-					fileDescriptionEntry5 = fileSection.getFileDescriptionEntry("SOMEFILE5");
-					assertNotNull(fileDescriptionEntry5);
-					assertEquals(2, fileDescriptionEntry5.getCalls().size());
+					final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("SOMEFILE5");
+					assertNotNull(fileDescriptionEntry);
+
+					final FileControlEntry fileControlEntry = fileDescriptionEntry.getFileControlEntry();
+					assertNotNull(fileControlEntry);
 				}
 			}
 		}
@@ -112,11 +168,11 @@ public class OpenStatementTest extends CobolTestBase {
 						{
 							final Call call = input.getFileCall();
 							assertNotNull(call);
-							assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
+							assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 							{
-								final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
-								assertEquals(fileDescriptionEntry1, fileDescriptionEntryCall.getFileDescriptionEntry());
+								final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
+								assertEquals(fileControlEntry1, fileControlEntryCall.getFileControlEntry());
 							}
 						}
 					}
@@ -128,11 +184,11 @@ public class OpenStatementTest extends CobolTestBase {
 						{
 							final Call call = input.getFileCall();
 							assertNotNull(call);
-							assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
+							assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 							{
-								final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
-								assertEquals(fileDescriptionEntry2, fileDescriptionEntryCall.getFileDescriptionEntry());
+								final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
+								assertEquals(fileControlEntry2, fileControlEntryCall.getFileControlEntry());
 							}
 						}
 					}
@@ -149,11 +205,11 @@ public class OpenStatementTest extends CobolTestBase {
 						{
 							final Call call = output.getFileCall();
 							assertNotNull(call);
-							assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
+							assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 							{
-								final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
-								assertEquals(fileDescriptionEntry3, fileDescriptionEntryCall.getFileDescriptionEntry());
+								final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
+								assertEquals(fileControlEntry3, fileControlEntryCall.getFileControlEntry());
 							}
 						}
 					}
@@ -166,22 +222,22 @@ public class OpenStatementTest extends CobolTestBase {
 					{
 						final Call call = openInputOutput.getFileCalls().get(0);
 						assertNotNull(call);
-						assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
+						assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 						{
-							final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
-							assertEquals(fileDescriptionEntry4, fileDescriptionEntryCall.getFileDescriptionEntry());
+							final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
+							assertEquals(fileControlEntry4, fileControlEntryCall.getFileControlEntry());
 						}
 					}
 
 					{
 						final Call call = openInputOutput.getFileCalls().get(1);
 						assertNotNull(call);
-						assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
+						assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 						{
-							final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
-							assertEquals(fileDescriptionEntry5, fileDescriptionEntryCall.getFileDescriptionEntry());
+							final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
+							assertEquals(fileControlEntry5, fileControlEntryCall.getFileControlEntry());
 						}
 					}
 				}
@@ -193,22 +249,22 @@ public class OpenStatementTest extends CobolTestBase {
 					{
 						final Call call = openExtend.getFileCalls().get(0);
 						assertNotNull(call);
-						assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
+						assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 						{
-							final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
-							assertEquals(fileDescriptionEntry4, fileDescriptionEntryCall.getFileDescriptionEntry());
+							final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
+							assertEquals(fileControlEntry4, fileControlEntryCall.getFileControlEntry());
 						}
 					}
 
 					{
 						final Call call = openExtend.getFileCalls().get(1);
 						assertNotNull(call);
-						assertEquals(Call.CallType.FILE_DESCRIPTION_ENTRY_CALL, call.getCallType());
+						assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 						{
-							final FileDescriptionEntryCall fileDescriptionEntryCall = (FileDescriptionEntryCall) call;
-							assertEquals(fileDescriptionEntry5, fileDescriptionEntryCall.getFileDescriptionEntry());
+							final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
+							assertEquals(fileControlEntry5, fileControlEntryCall.getFileControlEntry());
 						}
 					}
 				}

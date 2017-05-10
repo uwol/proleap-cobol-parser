@@ -58,6 +58,7 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 
 		if (result == null) {
 			result = new DataDivisionImpl(this, ctx);
+			dataDivision = result;
 
 			final DataDivisionBodyContext dataDivisionBodyContext = ctx.dataDivisionBody();
 
@@ -94,7 +95,6 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 			}
 
 			registerASGElement(result);
-			dataDivision = result;
 		}
 
 		return result;
@@ -106,6 +106,7 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 
 		if (result == null) {
 			result = new EnvironmentDivisionImpl(this, ctx);
+			environmentDivision = result;
 
 			for (final EnvironmentDivisionBodyContext environmentDivisionBodyContext : ctx.environmentDivisionBody()) {
 				if (environmentDivisionBodyContext.configurationSection() != null) {
@@ -120,7 +121,6 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 			}
 
 			registerASGElement(result);
-			environmentDivision = result;
 		}
 
 		return result;
@@ -132,6 +132,7 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 
 		if (result == null) {
 			result = new IdentificationDivisionImpl(this, ctx);
+			identificationDivision = result;
 
 			result.addProgramIdParagraph(ctx.programIdParagraph());
 
@@ -155,7 +156,6 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 			}
 
 			registerASGElement(result);
-			identificationDivision = result;
 		}
 
 		return result;
@@ -167,9 +167,9 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 
 		if (result == null) {
 			result = new ProcedureDivisionImpl(this, ctx);
+			procedureDivision = result;
 
 			registerASGElement(result);
-			procedureDivision = result;
 
 			// declaratives
 			if (ctx.procedureDeclaratives() != null) {

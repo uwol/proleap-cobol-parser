@@ -8,6 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,6 +29,7 @@ import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.FileControlEntryCall;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.AccessModeClause;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.AlternateRecordKeyClause;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.AssignClause;
@@ -52,6 +56,8 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	protected AlternateRecordKeyClause alternateRecordKeyClause;
 
 	protected AssignClause assignClause;
+
+	protected List<FileControlEntryCall> calls = new ArrayList<FileControlEntryCall>();
 
 	protected final FileControlEntryContext ctx;
 
@@ -178,6 +184,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		}
 
 		return result;
+	}
+
+	@Override
+	public void addCall(final FileControlEntryCall call) {
+		calls.add(call);
 	}
 
 	@Override
@@ -404,6 +415,11 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 	@Override
 	public AssignClause getAssignClause() {
 		return assignClause;
+	}
+
+	@Override
+	public List<FileControlEntryCall> getCalls() {
+		return calls;
 	}
 
 	@Override

@@ -84,6 +84,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (result == null) {
 			result = new CommunicationSectionImpl(programUnit, ctx);
+			communicationSection = result;
 
 			/*
 			 * data descriptions
@@ -107,7 +108,6 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 				result.createCommunicationDescriptionEntry(communicationDescriptionEntryContext);
 			}
 
-			communicationSection = result;
 			registerASGElement(result);
 		}
 
@@ -120,12 +120,12 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (result == null) {
 			result = new DataBaseSectionImpl(programUnit, ctx);
+			dataBaseSection = result;
 
 			for (final DataBaseSectionEntryContext dataBaseSectionEntryContext : ctx.dataBaseSectionEntry()) {
 				result.addDataBaseSectionEntry(dataBaseSectionEntryContext);
 			}
 
-			dataBaseSection = result;
 			registerASGElement(result);
 		}
 
@@ -138,12 +138,12 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (result == null) {
 			result = new FileSectionImpl(programUnit, ctx);
+			fileSection = result;
 
 			for (final FileDescriptionEntryContext fileDescriptionEntryContext : ctx.fileDescriptionEntry()) {
 				result.addFileDescriptionEntry(fileDescriptionEntryContext);
 			}
 
-			fileSection = result;
 			registerASGElement(result);
 		}
 
@@ -156,6 +156,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (result == null) {
 			result = new LinkageSectionImpl(programUnit, ctx);
+			linkageSection = result;
 
 			/*
 			 * data descriptions
@@ -171,7 +172,6 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 				}
 			}
 
-			linkageSection = result;
 			registerASGElement(result);
 		}
 
@@ -185,6 +185,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		if (result == null) {
 			final String name = determineName(ctx.localName());
 			result = new LocalStorageSectionImpl(name, programUnit, ctx);
+			localStorageSection = result;
 
 			/*
 			 * data descriptions
@@ -200,7 +201,6 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 				}
 			}
 
-			localStorageSection = result;
 			registerASGElement(result);
 		}
 
@@ -213,12 +213,12 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (result == null) {
 			result = new ProgramLibrarySectionImpl(programUnit, ctx);
+			programLibrarySection = result;
 
 			for (final LibraryDescriptionEntryContext libraryDescriptionEntryContext : ctx.libraryDescriptionEntry()) {
 				result.createLibraryDescriptionEntry(libraryDescriptionEntryContext);
 			}
 
-			programLibrarySection = result;
 			registerASGElement(result);
 		}
 
@@ -231,12 +231,12 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (result == null) {
 			result = new ReportSectionImpl(programUnit, ctx);
+			reportSection = result;
 
 			for (final ReportDescriptionContext reportContext : ctx.reportDescription()) {
 				result.addReportDescription(reportContext);
 			}
 
-			reportSection = result;
 			registerASGElement(result);
 		}
 
@@ -274,6 +274,7 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (result == null) {
 			result = new WorkingStorageSectionImpl(programUnit, ctx);
+			workingStorageSection = result;
 
 			/*
 			 * data descriptions
@@ -289,7 +290,6 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 				}
 			}
 
-			workingStorageSection = result;
 			registerASGElement(result);
 		}
 

@@ -58,7 +58,7 @@ import io.proleap.cobol.asg.metamodel.ProgramUnitElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.CommunicationDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
-import io.proleap.cobol.asg.metamodel.call.FileDescriptionEntryCall;
+import io.proleap.cobol.asg.metamodel.call.FileControlEntryCall;
 import io.proleap.cobol.asg.metamodel.call.IndexCall;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.call.ReportCall;
@@ -69,7 +69,7 @@ import io.proleap.cobol.asg.metamodel.call.impl.CallDelegateImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.CommunicationDescriptionEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.DataDescriptionEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.EnvironmentCallImpl;
-import io.proleap.cobol.asg.metamodel.call.impl.FileDescriptionEntryCallImpl;
+import io.proleap.cobol.asg.metamodel.call.impl.FileControlEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.IndexCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.MnemonicCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ProcedureCallImpl;
@@ -87,10 +87,16 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.Index;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursClause;
 import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.file.FileSection;
+import io.proleap.cobol.asg.metamodel.data.linkage.LinkageSection;
+import io.proleap.cobol.asg.metamodel.data.localstorage.LocalStorageSection;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.report.ReportSection;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
+import io.proleap.cobol.asg.metamodel.environment.EnvironmentDivision;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.InputOutputSection;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
@@ -255,12 +261,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			final FileDescriptionEntry fileDescriptionEntry = findFileDescriptionEntry(name);
+			final FileControlEntry fileControlEntry = findFileControlEntry(name);
 
-			if (fileDescriptionEntry == null) {
-				result = createUndefinedCall(ctx);
+			if (fileControlEntry == null) {
+				result = createDataDescriptionEntryCall(ctx);
 			} else {
-				result = createFileDescriptionEntryCall(name, fileDescriptionEntry, ctx);
+				result = createFileControlEntryCall(name, fileControlEntry, ctx);
 			}
 		}
 
@@ -415,12 +421,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final RecordNameContext ctx) {
-		Call result = (Call) getASGElement(ctx);
-
-		if (result == null) {
-			result = createUndefinedCall(ctx);
-		}
-
+		final Call result = createDataDescriptionEntryCall(ctx);
 		return result;
 	}
 
@@ -675,8 +676,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
 			final Index index = findIndex(name);
+			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
 
 			if (index != null) {
 				result = createIndexCall(ctx);
@@ -762,13 +763,13 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected FileDescriptionEntryCall createFileDescriptionEntryCall(final String name,
-			final FileDescriptionEntry fileDescriptionEntry, final FileNameContext ctx) {
-		FileDescriptionEntryCall result = (FileDescriptionEntryCall) getASGElement(ctx);
+	protected FileControlEntryCall createFileControlEntryCall(final String name,
+			final FileControlEntry fileControlEntry, final FileNameContext ctx) {
+		FileControlEntryCall result = (FileControlEntryCall) getASGElement(ctx);
 
 		if (result == null) {
-			result = new FileDescriptionEntryCallImpl(name, fileDescriptionEntry, programUnit, ctx);
-			linkFileDescriptionEntryCallWithFileDescriptionEntry(result, fileDescriptionEntry);
+			result = new FileControlEntryCallImpl(name, fileControlEntry, programUnit, ctx);
+			linkFileControlEntryCallWithFileControlEntry(result, fileControlEntry);
 
 			registerASGElement(result);
 		}
@@ -1088,12 +1089,101 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected DataDescriptionEntry findDataDescriptionEntry(final String name) {
 		final WorkingStorageSection workingStorageSection = findWorkingStorageSection();
-		final DataDescriptionEntry result;
+		final DataDescriptionEntry workingStorageSectionResult;
 
 		if (workingStorageSection == null) {
+			workingStorageSectionResult = null;
+		} else {
+			workingStorageSectionResult = workingStorageSection.getDataDescriptionEntry(name);
+		}
+
+		final CommunicationSection communicationSection = findCommunicationSection();
+		final DataDescriptionEntry communicationSectionResult;
+
+		if (communicationSection == null) {
+			communicationSectionResult = null;
+		} else {
+			communicationSectionResult = communicationSection.getDataDescriptionEntry(name);
+		}
+
+		final LinkageSection linkageSection = findLinkageSection();
+		final DataDescriptionEntry linkageSectionResult;
+
+		if (linkageSection == null) {
+			linkageSectionResult = null;
+		} else {
+			linkageSectionResult = linkageSection.getDataDescriptionEntry(name);
+		}
+
+		final LocalStorageSection localStorageSection = findLocalStorageSection();
+		final DataDescriptionEntry localStorageSectionResult;
+
+		if (localStorageSection == null) {
+			localStorageSectionResult = null;
+		} else {
+			localStorageSectionResult = localStorageSection.getDataDescriptionEntry(name);
+		}
+
+		final FileSection fileSection = findFileSection();
+		final DataDescriptionEntry fileSectionResult;
+
+		if (fileSection == null) {
+			fileSectionResult = null;
+		} else {
+			DataDescriptionEntry dataDescriptionEntryFound = null;
+
+			for (final FileDescriptionEntry fileDescriptionEntry : fileSection.getFileDescriptionEntries()) {
+				final DataDescriptionEntry dataDescriptionEntry = fileDescriptionEntry.getDataDescriptionEntry(name);
+
+				if (dataDescriptionEntry != null) {
+					dataDescriptionEntryFound = dataDescriptionEntry;
+					break;
+				}
+			}
+
+			fileSectionResult = dataDescriptionEntryFound;
+		}
+
+		final DataDescriptionEntry result;
+
+		if (workingStorageSectionResult != null) {
+			result = workingStorageSectionResult;
+		} else if (fileSectionResult != null) {
+			result = fileSectionResult;
+		} else if (communicationSectionResult != null) {
+			result = communicationSectionResult;
+		} else if (linkageSectionResult != null) {
+			result = linkageSectionResult;
+		} else if (localStorageSectionResult != null) {
+			result = localStorageSectionResult;
+		} else {
+			result = null;
+		}
+
+		return result;
+	}
+
+	protected FileControlEntry findFileControlEntry(final String name) {
+		final FileControlParagraph fileControlParagraph = findFileControlParagraph();
+		final FileControlEntry result;
+
+		if (fileControlParagraph == null) {
 			result = null;
 		} else {
-			result = workingStorageSection.getDataDescriptionEntry(name);
+			result = fileControlParagraph.getFileControlEntry(name);
+		}
+
+		return result;
+	}
+
+	protected FileControlParagraph findFileControlParagraph() {
+		final InputOutputSection inputOutputSection = findInputOutputSection();
+		final FileControlParagraph result;
+
+		if (inputOutputSection == null) {
+			result = null;
+		} else {
+			result = inputOutputSection.getFileControlParagraph();
 		}
 
 		return result;
@@ -1127,7 +1217,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected Index findIndex(final String name) {
 		final WorkingStorageSection workingStorageSection = findWorkingStorageSection();
-		Index result = null;
 
 		if (workingStorageSection != null) {
 			for (final DataDescriptionEntry dataDescriptionEntry : workingStorageSection.getDataDescriptionEntries()) {
@@ -1138,12 +1227,50 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 						final Index index = occursClause.getIndex(name);
 
 						if (index != null) {
-							result = index;
-							break;
+							return index;
 						}
 					}
 				}
 			}
+		}
+
+		return null;
+	}
+
+	protected InputOutputSection findInputOutputSection() {
+		final EnvironmentDivision environmentDivision = programUnit.getEnvironmentDivision();
+		final InputOutputSection result;
+
+		if (environmentDivision == null) {
+			result = null;
+		} else {
+			result = environmentDivision.getInputOutputSection();
+		}
+
+		return result;
+	}
+
+	protected LinkageSection findLinkageSection() {
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final LinkageSection result;
+
+		if (dataDivision == null) {
+			result = null;
+		} else {
+			result = dataDivision.getLinkageSection();
+		}
+
+		return result;
+	}
+
+	protected LocalStorageSection findLocalStorageSection() {
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final LocalStorageSection result;
+
+		if (dataDivision == null) {
+			result = null;
+		} else {
+			result = dataDivision.getLocalStorageSection();
 		}
 
 		return result;
@@ -1235,9 +1362,9 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		dataDescriptionEntry.addCall(call);
 	}
 
-	protected void linkFileDescriptionEntryCallWithFileDescriptionEntry(final FileDescriptionEntryCall call,
-			final FileDescriptionEntry fileDescriptionEntry) {
-		fileDescriptionEntry.addCall(call);
+	protected void linkFileControlEntryCallWithFileControlEntry(final FileControlEntryCall call,
+			final FileControlEntry fileControlEntry) {
+		fileControlEntry.addCall(call);
 	}
 
 	protected void linkIndexCallWithIndex(final IndexCall call, final Index index) {

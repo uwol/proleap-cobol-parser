@@ -23,6 +23,7 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.file.FileSection;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 
 public class FileSectionImpl extends CobolDivisionElementImpl implements FileSection {
@@ -46,6 +47,9 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 		if (result == null) {
 			final String name = determineName(ctx);
 			result = new FileDescriptionEntryImpl(name, programUnit, ctx);
+
+			final FileControlEntry fileControlEntry = findFileControlEntry(name);
+			result.setFileControlEntry(fileControlEntry);
 
 			final Call fileCall = createCall(ctx.fileName());
 			result.setFileCall(fileCall);

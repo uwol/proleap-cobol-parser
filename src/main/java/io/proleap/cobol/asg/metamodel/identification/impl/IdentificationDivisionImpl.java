@@ -60,6 +60,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 
 		if (result == null) {
 			result = new AuthorParagraphImpl(programUnit, ctx);
+			authorParagraph = result;
 
 			if (ctx.commentEntry() != null) {
 				final String author = TagUtils.getUntaggedText(CobolPreprocessor.COMMENT_ENTRY_TAG,
@@ -67,7 +68,6 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 				result.setAuthor(author);
 			}
 
-			authorParagraph = result;
 			registerASGElement(result);
 		}
 
@@ -80,6 +80,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 
 		if (result == null) {
 			result = new DateCompiledParagraphImpl(programUnit, ctx);
+			dateCompiledParagraph = result;
 
 			if (ctx.commentEntry() != null) {
 				final String dateCompiled = TagUtils.getUntaggedText(CobolPreprocessor.COMMENT_ENTRY_TAG,
@@ -87,7 +88,6 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 				result.setDateCompiled(dateCompiled);
 			}
 
-			dateCompiledParagraph = result;
 			registerASGElement(result);
 		}
 
@@ -100,6 +100,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 
 		if (result == null) {
 			result = new DateWrittenParagraphImpl(programUnit, ctx);
+			dateWrittenParagraph = result;
 
 			if (ctx.commentEntry() != null) {
 				final String dateWritten = TagUtils.getUntaggedText(CobolPreprocessor.COMMENT_ENTRY_TAG,
@@ -107,7 +108,6 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 				result.setDateWritten(dateWritten);
 			}
 
-			dateWrittenParagraph = result;
 			registerASGElement(result);
 		}
 
@@ -120,6 +120,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 
 		if (result == null) {
 			result = new InstallationParagraphImpl(programUnit, ctx);
+			installationParagraph = result;
 
 			if (ctx.commentEntry() != null) {
 				final String installation = TagUtils.getUntaggedText(CobolPreprocessor.COMMENT_ENTRY_TAG,
@@ -127,7 +128,6 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 				result.setInstallation(installation);
 			}
 
-			installationParagraph = result;
 			registerASGElement(result);
 		}
 
@@ -140,8 +140,8 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 
 		if (result == null) {
 			final String name = determineName(ctx);
-
 			result = new ProgramIdParagraphImpl(name, programUnit, ctx);
+			programIdParagraph = result;
 
 			final Attribute attribute;
 
@@ -159,7 +159,6 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 
 			result.setAttribute(attribute);
 
-			programIdParagraph = result;
 			registerASGElement(result);
 		}
 
@@ -172,6 +171,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 
 		if (result == null) {
 			result = new RemarksParagraphImpl(programUnit, ctx);
+			remarksParagraph = result;
 
 			if (ctx.commentEntry() != null) {
 				final String remarks = TagUtils.getUntaggedText(CobolPreprocessor.COMMENT_ENTRY_TAG,
@@ -179,7 +179,6 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 				result.setRemarks(remarks);
 			}
 
-			remarksParagraph = result;
 			registerASGElement(result);
 		}
 
@@ -192,6 +191,7 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 
 		if (result == null) {
 			result = new SecurityParagraphImpl(programUnit, ctx);
+			securityParagraph = result;
 
 			if (ctx.commentEntry() != null) {
 				final String security = TagUtils.getUntaggedText(CobolPreprocessor.COMMENT_ENTRY_TAG,
@@ -199,7 +199,6 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 				result.setSecurity(security);
 			}
 
-			securityParagraph = result;
 			registerASGElement(result);
 		}
 

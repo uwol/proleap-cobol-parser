@@ -51,13 +51,13 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 
 		if (result == null) {
 			result = new DeclarativesImpl(programUnit, ctx);
+			declaratives = result;
 
 			// declaratives
 			for (final ProcedureDeclarativeContext procedureDeclarativeContext : ctx.procedureDeclarative()) {
 				result.addDeclarative(procedureDeclarativeContext);
 			}
 
-			declaratives = result;
 			registerASGElement(result);
 		}
 

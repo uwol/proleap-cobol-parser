@@ -52,6 +52,7 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 		if (result == null) {
 			result = new ConfigurationSectionImpl(programUnit, ctx);
+			configurationSection = result;
 
 			for (final ConfigurationSectionParagraphContext configurationSectionParagraphContext : ctx
 					.configurationSectionParagraph()) {
@@ -64,7 +65,6 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 				}
 			}
 
-			configurationSection = result;
 			registerASGElement(result);
 		}
 
@@ -77,6 +77,7 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 		if (result == null) {
 			result = new InputOutputSectionImpl(programUnit, ctx);
+			inputOutputSection = result;
 
 			for (final InputOutputSectionParagraphContext inputOutputSectionParagraphContext : ctx
 					.inputOutputSectionParagraph()) {
@@ -89,7 +90,6 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 				}
 			}
 
-			inputOutputSection = result;
 			registerASGElement(result);
 		}
 
@@ -102,6 +102,7 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 
 		if (result == null) {
 			result = new SpecialNamesParagraphImpl(programUnit, ctx);
+			specialNamesParagraph = result;
 
 			for (final SpecialNameClauseContext specialNameClauseContext : ctx.specialNameClause()) {
 				if (specialNameClauseContext.classClause() != null) {
@@ -127,7 +128,6 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 				}
 			}
 
-			specialNamesParagraph = result;
 			registerASGElement(result);
 		}
 

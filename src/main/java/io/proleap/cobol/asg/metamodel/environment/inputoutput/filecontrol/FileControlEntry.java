@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol;
 
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.AccessModeClauseContext;
 import io.proleap.cobol.Cobol85Parser.AlternateRecordKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.AssignClauseContext;
@@ -22,6 +24,7 @@ import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.NamedElement;
+import io.proleap.cobol.asg.metamodel.call.FileControlEntryCall;
 
 public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 
@@ -30,6 +33,8 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 	AlternateRecordKeyClause addAlternateRecordKeyClause(AlternateRecordKeyClauseContext ctx);
 
 	AssignClause addAssignClause(AssignClauseContext ctx);
+
+	void addCall(FileControlEntryCall call);
 
 	FileStatusClause addFileStatusClause(FileStatusClauseContext ctx);
 
@@ -54,6 +59,8 @@ public interface FileControlEntry extends CobolDivisionElement, NamedElement {
 	AlternateRecordKeyClause getAlternateRecordKeyClause();
 
 	AssignClause getAssignClause();
+
+	List<FileControlEntryCall> getCalls();
 
 	FileStatusClause getFileStatusClause();
 
