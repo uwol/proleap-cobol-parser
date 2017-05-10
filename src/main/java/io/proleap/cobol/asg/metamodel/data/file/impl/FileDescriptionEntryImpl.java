@@ -57,6 +57,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 
 	protected CodeSetClause codeSetClause;
 
+	protected final DataDescriptionEntryContainerType containerType = DataDescriptionEntryContainerType.FILE_DESCRIPTION_ENTRY;
+
 	protected final FileDescriptionEntryContext ctx;
 
 	protected DataRecordsClause dataRecordsClause;
@@ -447,6 +449,11 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 	@Override
 	public CodeSetClause getCodeSetClause() {
 		return codeSetClause;
+	}
+
+	@Override
+	public DataDescriptionEntryContainerType getContainerType() {
+		return containerType;
 	}
 
 	@Override

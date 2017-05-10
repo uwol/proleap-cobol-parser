@@ -13,6 +13,7 @@ import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataValueIntervalContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryCondition;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
 import io.proleap.cobol.asg.metamodel.data.datadescription.ValueClause;
 
 public class DataDescriptionEntryConditionImpl extends DataDescriptionEntryImpl
@@ -22,9 +23,10 @@ public class DataDescriptionEntryConditionImpl extends DataDescriptionEntryImpl
 
 	protected ValueClause valueClause;
 
-	public DataDescriptionEntryConditionImpl(final String name, final ProgramUnit programUnit,
+	public DataDescriptionEntryConditionImpl(final String name,
+			final DataDescriptionEntryContainer dataDescriptionEntryContainer, final ProgramUnit programUnit,
 			final DataDescriptionEntryFormat3Context ctx) {
-		super(name, programUnit, ctx);
+		super(name, dataDescriptionEntryContainer, programUnit, ctx);
 
 		this.ctx = ctx;
 	}

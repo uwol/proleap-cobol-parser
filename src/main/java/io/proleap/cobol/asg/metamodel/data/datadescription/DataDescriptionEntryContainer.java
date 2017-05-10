@@ -19,6 +19,10 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface DataDescriptionEntryContainer extends CobolDivisionElement {
 
+	enum DataDescriptionEntryContainerType {
+		COMMUNICATION_SECTION, FILE_DESCRIPTION_ENTRY, LINKAGE_SECTION, LOCAL_STORAGE_SECTION, WORKING_STORAGE_SECTION
+	}
+
 	DataDescriptionEntryCondition addDataDescriptionEntryCondition(DataDescriptionEntryFormat3Context ctx);
 
 	DataDescriptionEntryExecSql addDataDescriptionEntryExecSql(DataDescriptionEntryExecSqlContext ctx);
@@ -29,6 +33,8 @@ public interface DataDescriptionEntryContainer extends CobolDivisionElement {
 
 	DataDescriptionEntry createDataDescriptionEntry(DataDescriptionEntryGroup lastDataDescriptionEntryGroup,
 			DataDescriptionEntryContext ctx);
+
+	DataDescriptionEntryContainerType getContainerType();
 
 	/**
 	 * Returns every contained @DataDescriptionEntry including nested ones.

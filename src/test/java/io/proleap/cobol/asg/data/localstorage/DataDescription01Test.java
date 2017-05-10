@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer.DataDescriptionEntryContainerType;
 import io.proleap.cobol.asg.metamodel.data.localstorage.LocalStorageSection;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -32,13 +33,13 @@ public class DataDescription01Test extends CobolTestBase {
 		final LocalStorageSection localStorageSection = dataDivision.getLocalStorageSection();
 
 		assertEquals("SOMELD", localStorageSection.getName());
+		assertEquals(DataDescriptionEntryContainerType.LOCAL_STORAGE_SECTION, localStorageSection.getContainerType());
 
 		assertEquals(3, localStorageSection.getDataDescriptionEntries().size());
 		assertEquals(1, localStorageSection.getRootDataDescriptionEntries().size());
 
 		{
-			final DataDescriptionEntry dataDescriptionEntryItems = localStorageSection
-					.getDataDescriptionEntry("ITEMS");
+			final DataDescriptionEntry dataDescriptionEntryItems = localStorageSection.getDataDescriptionEntry("ITEMS");
 			assertNotNull(dataDescriptionEntryItems);
 			assertEquals("ITEMS", dataDescriptionEntryItems.getName());
 			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItems.getType());

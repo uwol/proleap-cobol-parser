@@ -55,7 +55,7 @@ import io.proleap.cobol.asg.util.StringUtils;
 import io.proleap.cobol.asg.util.TagUtils;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 
-public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
+public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 		implements DataDescriptionEntryContainer {
 
 	private final static Logger LOG = LogManager.getLogger(DataDescriptionEntryContainerImpl.class);
@@ -75,7 +75,7 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new DataDescriptionEntryConditionImpl(name, programUnit, ctx);
+			result = new DataDescriptionEntryConditionImpl(name, this, programUnit, ctx);
 
 			result.setLevelNumber(DataDescriptionEntry.LEVEL_NUMBER_CONDITION);
 			result.addValueClause(ctx.dataValueClause());
@@ -94,7 +94,7 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 		DataDescriptionEntryExecSql result = (DataDescriptionEntryExecSql) getASGElement(ctx);
 
 		if (result == null) {
-			result = new DataDescriptionEntryExecSqlImpl(programUnit, ctx);
+			result = new DataDescriptionEntryExecSqlImpl(this, programUnit, ctx);
 
 			final String execSqlText = TagUtils.getUntaggedText(CobolPreprocessor.EXEC_SQL_TAG, ctx.EXECSQLLINE());
 			result.setExecSqlText(execSqlText);
@@ -113,7 +113,7 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new DataDescriptionEntryGroupImpl(name, programUnit, ctx);
+			result = new DataDescriptionEntryGroupImpl(name, this, programUnit, ctx);
 
 			/*
 			 * level number
@@ -356,7 +356,7 @@ public class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new DataDescriptionEntryRenameImpl(name, programUnit, ctx);
+			result = new DataDescriptionEntryRenameImpl(name, this, programUnit, ctx);
 
 			result.setLevelNumber(DataDescriptionEntry.LEVEL_NUMBER_RENAME);
 			result.addRenamesClause(ctx.dataRenamesClause());

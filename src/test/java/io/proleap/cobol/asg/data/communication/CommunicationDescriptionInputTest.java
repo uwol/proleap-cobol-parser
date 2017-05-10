@@ -26,6 +26,7 @@ import io.proleap.cobol.asg.metamodel.data.communication.SymbolicSourceClause;
 import io.proleap.cobol.asg.metamodel.data.communication.SymbolicSubQueueClause;
 import io.proleap.cobol.asg.metamodel.data.communication.TextLengthClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer.DataDescriptionEntryContainerType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -42,6 +43,8 @@ public class CommunicationDescriptionInputTest extends CobolTestBase {
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final CommunicationSection communicationSection = dataDivision.getCommunicationSection();
+
+		assertEquals(DataDescriptionEntryContainerType.COMMUNICATION_SECTION, communicationSection.getContainerType());
 
 		{
 			final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection

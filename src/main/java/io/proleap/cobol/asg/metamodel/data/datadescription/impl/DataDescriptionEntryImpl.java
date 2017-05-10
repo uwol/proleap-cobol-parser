@@ -16,6 +16,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 
@@ -23,16 +24,21 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 
 	protected final List<DataDescriptionEntryCall> calls = new ArrayList<DataDescriptionEntryCall>();
 
+	protected DataDescriptionEntryContainer dataDescriptionEntryContainer;
+
 	protected Integer levelNumber;
 
 	protected final String name;
 
 	protected DataDescriptionEntryGroup parentDataDescriptionEntryGroup;
 
-	public DataDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final ParserRuleContext ctx) {
+	public DataDescriptionEntryImpl(final String name,
+			final DataDescriptionEntryContainer dataDescriptionEntryContainer, final ProgramUnit programUnit,
+			final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 
 		this.name = name;
+		this.dataDescriptionEntryContainer = dataDescriptionEntryContainer;
 	}
 
 	@Override
@@ -43,6 +49,11 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	@Override
 	public List<DataDescriptionEntryCall> getCalls() {
 		return calls;
+	}
+
+	@Override
+	public DataDescriptionEntryContainer getDataDescriptionEntryContainer() {
+		return dataDescriptionEntryContainer;
 	}
 
 	@Override

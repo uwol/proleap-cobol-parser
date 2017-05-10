@@ -51,6 +51,8 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 
 	protected Map<String, CommunicationDescriptionEntry> communicationDescriptionEntriesSymbolTable = new HashMap<String, CommunicationDescriptionEntry>();
 
+	protected final DataDescriptionEntryContainerType containerType = DataDescriptionEntryContainerType.COMMUNICATION_SECTION;
+
 	protected final CommunicationSectionContext ctx;
 
 	public CommunicationSectionImpl(final ProgramUnit programUnit, final CommunicationSectionContext ctx) {
@@ -354,4 +356,10 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 	public CommunicationDescriptionEntry getCommunicationDescriptionEntry(final String name) {
 		return communicationDescriptionEntriesSymbolTable.get(name);
 	}
+
+	@Override
+	public DataDescriptionEntryContainerType getContainerType() {
+		return containerType;
+	}
+
 }

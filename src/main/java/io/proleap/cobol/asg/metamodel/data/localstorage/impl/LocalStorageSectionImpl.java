@@ -15,6 +15,8 @@ import io.proleap.cobol.asg.metamodel.data.localstorage.LocalStorageSection;
 
 public class LocalStorageSectionImpl extends DataDescriptionEntryContainerImpl implements LocalStorageSection {
 
+	protected final DataDescriptionEntryContainerType containerType = DataDescriptionEntryContainerType.LOCAL_STORAGE_SECTION;
+
 	protected final LocalStorageSectionContext ctx;
 
 	protected String name;
@@ -25,6 +27,11 @@ public class LocalStorageSectionImpl extends DataDescriptionEntryContainerImpl i
 
 		this.ctx = ctx;
 		this.name = name;
+	}
+
+	@Override
+	public DataDescriptionEntryContainerType getContainerType() {
+		return containerType;
 	}
 
 	@Override

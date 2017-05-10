@@ -15,12 +15,19 @@ import io.proleap.cobol.asg.metamodel.data.linkage.LinkageSection;
 
 public class LinkageSectionImpl extends DataDescriptionEntryContainerImpl implements LinkageSection {
 
+	protected final DataDescriptionEntryContainerType containerType = DataDescriptionEntryContainerType.LINKAGE_SECTION;
+
 	protected final LinkageSectionContext ctx;
 
 	public LinkageSectionImpl(final ProgramUnit programUnit, final LinkageSectionContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public DataDescriptionEntryContainerType getContainerType() {
+		return containerType;
 	}
 
 }

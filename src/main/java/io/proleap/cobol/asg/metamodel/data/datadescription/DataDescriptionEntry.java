@@ -30,6 +30,8 @@ public interface DataDescriptionEntry extends CobolDivisionElement, Declaration 
 
 	List<DataDescriptionEntryCall> getCalls();
 
+	DataDescriptionEntryContainer getDataDescriptionEntryContainer();
+
 	Integer getLevelNumber();
 
 	DataDescriptionEntryGroup getParentDataDescriptionEntryGroup();

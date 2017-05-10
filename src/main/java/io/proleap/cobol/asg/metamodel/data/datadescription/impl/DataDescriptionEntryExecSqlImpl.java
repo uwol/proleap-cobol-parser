@@ -10,6 +10,7 @@ package io.proleap.cobol.asg.metamodel.data.datadescription.impl;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryExecSqlContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryExecSql;
 
 public class DataDescriptionEntryExecSqlImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryExecSql {
@@ -18,9 +19,9 @@ public class DataDescriptionEntryExecSqlImpl extends DataDescriptionEntryImpl im
 
 	protected String execSqlText;
 
-	public DataDescriptionEntryExecSqlImpl(final ProgramUnit programUnit,
-			final DataDescriptionEntryExecSqlContext ctx) {
-		super(null, programUnit, ctx);
+	public DataDescriptionEntryExecSqlImpl(final DataDescriptionEntryContainer dataDescriptionEntryContainer,
+			final ProgramUnit programUnit, final DataDescriptionEntryExecSqlContext ctx) {
+		super(null, dataDescriptionEntryContainer, programUnit, ctx);
 
 		this.ctx = ctx;
 	}

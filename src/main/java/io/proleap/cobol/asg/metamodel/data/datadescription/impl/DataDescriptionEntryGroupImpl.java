@@ -49,6 +49,7 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.AlignedClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.BlankWhenZeroClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.CommonOwnLocalClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.datadescription.ExternalClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.GlobalClause;
@@ -125,9 +126,10 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 
 	protected WithLowerBoundsClause withLowerBoundsClause;
 
-	public DataDescriptionEntryGroupImpl(final String name, final ProgramUnit programUnit,
+	public DataDescriptionEntryGroupImpl(final String name,
+			final DataDescriptionEntryContainer dataDescriptionEntryContainer, final ProgramUnit programUnit,
 			final DataDescriptionEntryFormat1Context ctx) {
-		super(name, programUnit, ctx);
+		super(name, dataDescriptionEntryContainer, programUnit, ctx);
 
 		this.ctx = ctx;
 	}

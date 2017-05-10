@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer.DataDescriptionEntryContainerType;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -33,6 +34,9 @@ public class DataDescription01Test extends CobolTestBase {
 
 		assertEquals(3, workingStorageSection.getDataDescriptionEntries().size());
 		assertEquals(1, workingStorageSection.getRootDataDescriptionEntries().size());
+
+		assertEquals(DataDescriptionEntryContainerType.WORKING_STORAGE_SECTION,
+				workingStorageSection.getContainerType());
 
 		{
 			final DataDescriptionEntry dataDescriptionEntryItems = workingStorageSection

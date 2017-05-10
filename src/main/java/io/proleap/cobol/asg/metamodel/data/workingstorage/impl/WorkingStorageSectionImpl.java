@@ -15,12 +15,19 @@ import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 
 public class WorkingStorageSectionImpl extends DataDescriptionEntryContainerImpl implements WorkingStorageSection {
 
+	protected final DataDescriptionEntryContainerType containerType = DataDescriptionEntryContainerType.WORKING_STORAGE_SECTION;
+
 	protected final WorkingStorageSectionContext ctx;
 
 	public WorkingStorageSectionImpl(final ProgramUnit programUnit, final WorkingStorageSectionContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public DataDescriptionEntryContainerType getContainerType() {
+		return containerType;
 	}
 
 }

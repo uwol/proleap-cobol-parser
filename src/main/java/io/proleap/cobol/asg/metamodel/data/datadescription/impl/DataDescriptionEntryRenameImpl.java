@@ -13,6 +13,7 @@ import io.proleap.cobol.Cobol85Parser.DataRenamesClauseContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryRename;
 import io.proleap.cobol.asg.metamodel.data.datadescription.RenamesClause;
 
@@ -22,9 +23,10 @@ public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl imp
 
 	protected RenamesClause renamesClause;
 
-	public DataDescriptionEntryRenameImpl(final String name, final ProgramUnit programUnit,
+	public DataDescriptionEntryRenameImpl(final String name,
+			final DataDescriptionEntryContainer dataDescriptionEntryContainer, final ProgramUnit programUnit,
 			final DataDescriptionEntryFormat2Context ctx) {
-		super(name, programUnit, ctx);
+		super(name, dataDescriptionEntryContainer, programUnit, ctx);
 
 		this.ctx = ctx;
 	}
