@@ -15,11 +15,13 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
+import io.proleap.cobol.asg.metamodel.call.IndexCall;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.call.TableCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
+import io.proleap.cobol.asg.metamodel.data.datadescription.Index;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.PictureClause;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
@@ -43,9 +45,15 @@ import io.proleap.cobol.asg.metamodel.procedure.perform.Varying;
 import io.proleap.cobol.asg.metamodel.procedure.perform.VaryingClause;
 import io.proleap.cobol.asg.metamodel.procedure.perform.VaryingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.stop.StopStatement;
+import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.RelationConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.condition.CombinableCondition;
+import io.proleap.cobol.asg.metamodel.valuestmt.condition.SimpleCondition;
+import io.proleap.cobol.asg.metamodel.valuestmt.relation.ArithmeticComparison;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -72,6 +80,9 @@ public class TableCallTest extends CobolTestBase {
 		final Paragraph paragraphDisplayRecord = procedureDivision.getParagraph("DISPLAY-RECORD");
 		final Paragraph paragraphDisplayContent = procedureDivision.getParagraph("DISPLAY-CONTENT");
 
+		final Index indexI;
+		final Index indexJ;
+
 		{
 			final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 			assertEquals(1, workingStorageSection.getRootDataDescriptionEntries().size());
@@ -97,7 +108,7 @@ public class TableCallTest extends CobolTestBase {
 
 					{
 						final OccursClause occursClause = dataDescriptionEntryGroupRecord.getOccursClauses().get(0);
-						assertEquals(1, occursClause.getIndexCalls().size());
+						assertEquals(1, occursClause.getIndices().size());
 
 						{
 							final IntegerLiteral from = occursClause.getFrom();
@@ -105,8 +116,9 @@ public class TableCallTest extends CobolTestBase {
 						}
 
 						{
-							final Call indexCall = occursClause.getIndexCalls().get(0);
-							assertEquals("I", indexCall.getName());
+							indexI = occursClause.getIndices().get(0);
+							assertEquals("I", indexI.getName());
+							assertEquals(3, indexI.getCalls().size());
 						}
 					}
 
@@ -138,7 +150,7 @@ public class TableCallTest extends CobolTestBase {
 						{
 							final OccursClause occursClause = dataDescriptionEntryGroupContent.getOccursClauses()
 									.get(0);
-							assertEquals(1, occursClause.getIndexCalls().size());
+							assertEquals(1, occursClause.getIndices().size());
 
 							{
 								final IntegerLiteral from = occursClause.getFrom();
@@ -146,8 +158,9 @@ public class TableCallTest extends CobolTestBase {
 							}
 
 							{
-								final Call indexCall = occursClause.getIndexCalls().get(0);
-								assertEquals("J", indexCall.getName());
+								indexJ = occursClause.getIndices().get(0);
+								assertEquals("J", indexJ.getName());
+								assertEquals(3, indexJ.getCalls().size());
 							}
 						}
 
@@ -234,7 +247,10 @@ public class TableCallTest extends CobolTestBase {
 
 							{
 								final Call call = varyingCallValueStmt.getCall();
-								assertEquals(Call.CallType.UNDEFINED_CALL, call.getCallType());
+								assertEquals(Call.CallType.INDEX_CALL, call.getCallType());
+
+								final IndexCall indexCall = (IndexCall) call;
+								assertEquals(indexI, indexCall.getIndex());
 							}
 						}
 
@@ -253,6 +269,36 @@ public class TableCallTest extends CobolTestBase {
 						{
 							final Until until = varyingPhrase.getUntil();
 							assertNotNull(until.getCondition());
+
+							{
+								final ConditionValueStmt condition = until.getCondition();
+								final CombinableCondition combinableCondition = condition.getCombinableCondition();
+								final SimpleCondition simpleCondition = combinableCondition.getSimpleCondition();
+								final RelationConditionValueStmt relationCondition = simpleCondition
+										.getRelationCondition();
+								final ArithmeticComparison arithmeticComparison = relationCondition
+										.getArithmeticComparison();
+
+								{
+									final ArithmeticValueStmt arithmeticExpressionLeft = arithmeticComparison
+											.getArithmeticExpressionLeft();
+									final ValueStmt basisValueStmt = arithmeticExpressionLeft.getMultDivs().getPowers()
+											.getBasis().getBasisValueStmt();
+
+									final CallValueStmt basisCallValueStmt = (CallValueStmt) basisValueStmt;
+									final Call call = basisCallValueStmt.getCall();
+									final IndexCall indexCall = (IndexCall) call;
+									assertEquals(indexI, indexCall.getIndex());
+								}
+
+								{
+									final ArithmeticValueStmt arithmeticExpressionRight = arithmeticComparison
+											.getArithmeticExpressionRight();
+									final ValueStmt basisValueStmt = arithmeticExpressionRight.getMultDivs().getPowers()
+											.getBasis().getBasisValueStmt();
+									assertEquals(3, basisValueStmt.getValue());
+								}
+							}
 						}
 					}
 				}
@@ -298,7 +344,10 @@ public class TableCallTest extends CobolTestBase {
 
 							{
 								final Call call = varyingCallValueStmt.getCall();
-								assertEquals(Call.CallType.UNDEFINED_CALL, call.getCallType());
+								assertEquals(Call.CallType.INDEX_CALL, call.getCallType());
+
+								final IndexCall indexCall = (IndexCall) call;
+								assertEquals(indexJ, indexCall.getIndex());
 							}
 						}
 
@@ -317,6 +366,36 @@ public class TableCallTest extends CobolTestBase {
 						{
 							final Until until = varyingPhrase.getUntil();
 							assertNotNull(until.getCondition());
+
+							{
+								final ConditionValueStmt condition = until.getCondition();
+								final CombinableCondition combinableCondition = condition.getCombinableCondition();
+								final SimpleCondition simpleCondition = combinableCondition.getSimpleCondition();
+								final RelationConditionValueStmt relationCondition = simpleCondition
+										.getRelationCondition();
+								final ArithmeticComparison arithmeticComparison = relationCondition
+										.getArithmeticComparison();
+
+								{
+									final ArithmeticValueStmt arithmeticExpressionLeft = arithmeticComparison
+											.getArithmeticExpressionLeft();
+									final ValueStmt basisValueStmt = arithmeticExpressionLeft.getMultDivs().getPowers()
+											.getBasis().getBasisValueStmt();
+
+									final CallValueStmt basisCallValueStmt = (CallValueStmt) basisValueStmt;
+									final Call call = basisCallValueStmt.getCall();
+									final IndexCall indexCall = (IndexCall) call;
+									assertEquals(indexJ, indexCall.getIndex());
+								}
+
+								{
+									final ArithmeticValueStmt arithmeticExpressionRight = arithmeticComparison
+											.getArithmeticExpressionRight();
+									final ValueStmt basisValueStmt = arithmeticExpressionRight.getMultDivs().getPowers()
+											.getBasis().getBasisValueStmt();
+									assertEquals(2, basisValueStmt.getValue());
+								}
+							}
 						}
 					}
 				}
@@ -349,7 +428,10 @@ public class TableCallTest extends CobolTestBase {
 
 							{
 								final Call subscriptCall = subscriptCallValueStmt.getCall();
-								assertEquals(Call.CallType.UNDEFINED_CALL, subscriptCall.getCallType());
+								assertEquals(Call.CallType.INDEX_CALL, subscriptCall.getCallType());
+
+								final IndexCall subscriptIndexCall = (IndexCall) subscriptCall;
+								assertEquals(indexI, subscriptIndexCall.getIndex());
 							}
 						}
 
@@ -360,7 +442,10 @@ public class TableCallTest extends CobolTestBase {
 
 							{
 								final Call subscriptCall = subscriptCallValueStmt.getCall();
-								assertEquals(Call.CallType.UNDEFINED_CALL, subscriptCall.getCallType());
+								assertEquals(Call.CallType.INDEX_CALL, subscriptCall.getCallType());
+
+								final IndexCall subscriptIndexCall = (IndexCall) subscriptCall;
+								assertEquals(indexJ, subscriptIndexCall.getIndex());
 							}
 						}
 					}

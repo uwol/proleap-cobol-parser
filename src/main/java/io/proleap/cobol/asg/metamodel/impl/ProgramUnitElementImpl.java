@@ -59,6 +59,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.CommunicationDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.FileDescriptionEntryCall;
+import io.proleap.cobol.asg.metamodel.call.IndexCall;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.call.ReportCall;
 import io.proleap.cobol.asg.metamodel.call.ReportDescriptionEntryCall;
@@ -69,6 +70,7 @@ import io.proleap.cobol.asg.metamodel.call.impl.CommunicationDescriptionEntryCal
 import io.proleap.cobol.asg.metamodel.call.impl.DataDescriptionEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.EnvironmentCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.FileDescriptionEntryCallImpl;
+import io.proleap.cobol.asg.metamodel.call.impl.IndexCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.MnemonicCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ProcedureCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ReportCallImpl;
@@ -80,6 +82,9 @@ import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationSection;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
+import io.proleap.cobol.asg.metamodel.data.datadescription.Index;
+import io.proleap.cobol.asg.metamodel.data.datadescription.OccursClause;
 import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.file.FileSection;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
@@ -275,11 +280,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			result = createDataDescriptionEntryCall(ctx);
 		}
 
-		return result;
-	}
-
-	protected Call createCall(final IndexNameContext ctx) {
-		final Call result = createDataDescriptionEntryCall(ctx);
 		return result;
 	}
 
@@ -675,13 +675,16 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			final DataDescriptionEntry dataDescriptionEntry = getDataDescriptionEntry(name);
+			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
+			final Index index = findIndex(name);
 
-			if (dataDescriptionEntry == null) {
-				LOG.warn("call to unknown data description element {}", name);
-				result = createUndefinedCall(ctx);
-			} else {
+			if (index != null) {
+				result = createIndexCall(ctx);
+			} else if (dataDescriptionEntry != null) {
 				result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
+			} else {
+				LOG.warn("call to unknown data element {}", name);
+				result = createUndefinedCall(ctx);
 			}
 		}
 
@@ -768,6 +771,26 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			linkFileDescriptionEntryCallWithFileDescriptionEntry(result, fileDescriptionEntry);
 
 			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected IndexCall createIndexCall(final ParserRuleContext ctx) {
+		IndexCall result = (IndexCall) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			final Index index = findIndex(name);
+
+			if (index == null) {
+				createDataDescriptionEntryCall(ctx);
+			} else {
+				result = new IndexCallImpl(name, index, programUnit, ctx);
+				linkIndexCallWithIndex(result, index);
+
+				registerASGElement(result);
+			}
 		}
 
 		return result;
@@ -1038,37 +1061,88 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected CommunicationDescriptionEntry findCommunicationDescriptionEntry(final String name) {
-		final DataDivision dataDivision = programUnit.getDataDivision();
+		final CommunicationSection communicationSection = findCommunicationSection();
 		final CommunicationDescriptionEntry result;
+
+		if (communicationSection == null) {
+			result = null;
+		} else {
+			result = communicationSection.getCommunicationDescriptionEntry(name);
+		}
+
+		return result;
+	}
+
+	protected CommunicationSection findCommunicationSection() {
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final CommunicationSection result;
 
 		if (dataDivision == null) {
 			result = null;
 		} else {
-			final CommunicationSection communicationSection = dataDivision.getCommunicationSection();
+			result = dataDivision.getCommunicationSection();
+		}
 
-			if (communicationSection == null) {
-				result = null;
-			} else {
-				result = communicationSection.getCommunicationDescriptionEntry(name);
-			}
+		return result;
+	}
+
+	protected DataDescriptionEntry findDataDescriptionEntry(final String name) {
+		final WorkingStorageSection workingStorageSection = findWorkingStorageSection();
+		final DataDescriptionEntry result;
+
+		if (workingStorageSection == null) {
+			result = null;
+		} else {
+			result = workingStorageSection.getDataDescriptionEntry(name);
 		}
 
 		return result;
 	}
 
 	protected FileDescriptionEntry findFileDescriptionEntry(final String name) {
-		final DataDivision dataDivision = programUnit.getDataDivision();
+		final FileSection fileSection = findFileSection();
 		final FileDescriptionEntry result;
+
+		if (fileSection == null) {
+			result = null;
+		} else {
+			result = fileSection.getFileDescriptionEntry(name);
+		}
+
+		return result;
+	}
+
+	protected FileSection findFileSection() {
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final FileSection result;
 
 		if (dataDivision == null) {
 			result = null;
 		} else {
-			final FileSection fileSection = dataDivision.getFileSection();
+			result = dataDivision.getFileSection();
+		}
 
-			if (fileSection == null) {
-				result = null;
-			} else {
-				result = fileSection.getFileDescriptionEntry(name);
+		return result;
+	}
+
+	protected Index findIndex(final String name) {
+		final WorkingStorageSection workingStorageSection = findWorkingStorageSection();
+		Index result = null;
+
+		if (workingStorageSection != null) {
+			for (final DataDescriptionEntry dataDescriptionEntry : workingStorageSection.getDataDescriptionEntries()) {
+				if (DataDescriptionEntry.Type.GROUP.equals(dataDescriptionEntry.getType())) {
+					final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+
+					for (final OccursClause occursClause : dataDescriptionEntryGroup.getOccursClauses()) {
+						final Index index = occursClause.getIndex(name);
+
+						if (index != null) {
+							result = index;
+							break;
+						}
+					}
+				}
 			}
 		}
 
@@ -1089,44 +1163,52 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected ReportDescription findReportDescription(final String name) {
-		final DataDivision dataDivision = programUnit.getDataDivision();
+		final ReportSection reportSection = findReportSection();
 		final ReportDescription result;
 
-		if (dataDivision == null) {
+		if (reportSection == null) {
 			result = null;
 		} else {
-			final ReportSection reportSection = dataDivision.getReportSection();
-
-			if (reportSection == null) {
-				result = null;
-			} else {
-				result = reportSection.getReportDescription(name);
-			}
+			result = reportSection.getReportDescription(name);
 		}
 
 		return result;
 	}
 
 	protected ReportDescriptionEntry findReportDescriptionEntry(final String name) {
-		final DataDivision dataDivision = programUnit.getDataDivision();
+		final ReportDescription reportDescription = findReportDescription(name);
 		final ReportDescriptionEntry result;
+
+		if (reportDescription == null) {
+			result = null;
+		} else {
+			result = reportDescription.getReportDescriptionEntry();
+		}
+
+		return result;
+	}
+
+	protected ReportSection findReportSection() {
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final ReportSection result;
 
 		if (dataDivision == null) {
 			result = null;
 		} else {
-			final ReportSection reportSection = dataDivision.getReportSection();
+			result = dataDivision.getReportSection();
+		}
 
-			if (reportSection == null) {
-				result = null;
-			} else {
-				final ReportDescription report = reportSection.getReportDescription(name);
+		return result;
+	}
 
-				if (report == null) {
-					result = null;
-				} else {
-					result = report.getReportDescriptionEntry();
-				}
-			}
+	protected WorkingStorageSection findWorkingStorageSection() {
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final WorkingStorageSection result;
+
+		if (dataDivision == null) {
+			result = null;
+		} else {
+			result = dataDivision.getWorkingStorageSection();
 		}
 
 		return result;
@@ -1134,25 +1216,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected ASGElement getASGElement(final ParserRuleContext ctx) {
 		final ASGElement result = programUnit.getProgram().getASGElementRegistry().getASGElement(ctx);
-		return result;
-	}
-
-	protected DataDescriptionEntry getDataDescriptionEntry(final String name) {
-		final DataDivision dataDivision = programUnit.getDataDivision();
-		final DataDescriptionEntry result;
-
-		if (dataDivision == null) {
-			result = null;
-		} else {
-			final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
-
-			if (workingStorageSection == null) {
-				result = null;
-			} else {
-				result = workingStorageSection.getDataDescriptionEntry(name);
-			}
-		}
-
 		return result;
 	}
 
@@ -1175,6 +1238,10 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	protected void linkFileDescriptionEntryCallWithFileDescriptionEntry(final FileDescriptionEntryCall call,
 			final FileDescriptionEntry fileDescriptionEntry) {
 		fileDescriptionEntry.addCall(call);
+	}
+
+	protected void linkIndexCallWithIndex(final IndexCall call, final Index index) {
+		index.addCall(call);
 	}
 
 	protected void linkProcedureCallWithParagraph(final ProcedureCall call, final Paragraph paragraph) {

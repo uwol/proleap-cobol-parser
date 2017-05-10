@@ -336,7 +336,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			 * index names
 			 */
 			for (final IndexNameContext indexNameContext : ctx.indexName()) {
-				result.addIndexCall(indexNameContext);
+				result.addIndex(indexNameContext);
 			}
 
 			occursClauses.add(result);
@@ -698,11 +698,6 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
-	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
-		return dataDescriptionEntriesSymbolTable.get(name);
-	}
-
-	@Override
 	public AlignedClause getAlignedClause() {
 		return alignedClause;
 	}
@@ -720,6 +715,11 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	@Override
 	public List<DataDescriptionEntry> getDataDescriptionEntries() {
 		return dataDescriptionEntries;
+	}
+
+	@Override
+	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
+		return dataDescriptionEntriesSymbolTable.get(name);
 	}
 
 	@Override

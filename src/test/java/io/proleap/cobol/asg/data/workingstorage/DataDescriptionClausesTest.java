@@ -13,11 +13,11 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.CommonOwnLocalClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
+import io.proleap.cobol.asg.metamodel.data.datadescription.Index;
 import io.proleap.cobol.asg.metamodel.data.datadescription.IntegerStringClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.JustifiedClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursClause;
@@ -222,8 +222,8 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 		assertEquals(OccursSort.Order.ASCENDING, occursSort2.getOrder());
 		assertEquals(1, occursSort2.getKeyCalls().size());
 
-		final List<Call> indexCalls = occursClause.getIndexCalls();
-		assertEquals(2, indexCalls.size());
+		final List<Index> indices = occursClause.getIndices();
+		assertEquals(2, indices.size());
 	}
 
 	@Test

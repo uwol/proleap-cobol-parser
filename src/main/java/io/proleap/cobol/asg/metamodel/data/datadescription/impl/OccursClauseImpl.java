@@ -9,7 +9,9 @@
 package io.proleap.cobol.asg.metamodel.data.datadescription.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.proleap.cobol.Cobol85Parser.DataOccursClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataOccursSortContext;
@@ -18,10 +20,10 @@ import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.data.datadescription.Index;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursSort;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class OccursClauseImpl extends CobolDivisionElementImpl implements OccursClause {
 
@@ -31,7 +33,9 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 
 	protected IntegerLiteral from;
 
-	protected List<Call> indexCalls = new ArrayList<Call>();
+	protected List<Index> indices = new ArrayList<Index>();
+
+	protected Map<String, Index> indicesSymbolTable = new HashMap<String, Index>();
 
 	protected List<OccursSort> occursSorts = new ArrayList<OccursSort>();
 
@@ -44,12 +48,17 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 	}
 
 	@Override
-	public ValueStmt addIndexCall(final IndexNameContext ctx) {
-		final ValueStmt result = (ValueStmt) getASGElement(ctx);
+	public Index addIndex(final IndexNameContext ctx) {
+		final Index result = (Index) getASGElement(ctx);
 
 		if (result == null) {
-			final Call indexCall = createCall(ctx);
-			indexCalls.add(indexCall);
+			final String name = determineName(ctx);
+			final Index index = new IndexImpl(name, programUnit, ctx);
+
+			indices.add(index);
+			indicesSymbolTable.put(name, index);
+
+			registerASGElement(index);
 		}
 
 		return result;
@@ -103,8 +112,13 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 	}
 
 	@Override
-	public List<Call> getIndexCalls() {
-		return indexCalls;
+	public Index getIndex(final String name) {
+		return indicesSymbolTable.get(name);
+	}
+
+	@Override
+	public List<Index> getIndices() {
+		return indices;
 	}
 
 	@Override

@@ -15,11 +15,10 @@ import io.proleap.cobol.Cobol85Parser.IndexNameContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface OccursClause extends CobolDivisionElement {
 
-	ValueStmt addIndexCall(IndexNameContext ctx);
+	Index addIndex(IndexNameContext ctx);
 
 	OccursSort addOccursSort(DataOccursSortContext ctx);
 
@@ -27,7 +26,9 @@ public interface OccursClause extends CobolDivisionElement {
 
 	IntegerLiteral getFrom();
 
-	List<Call> getIndexCalls();
+	Index getIndex(String name);
+
+	List<Index> getIndices();
 
 	List<OccursSort> getOccursSorts();
 
