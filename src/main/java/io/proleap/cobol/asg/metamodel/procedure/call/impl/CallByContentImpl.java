@@ -12,20 +12,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.CallByContentContext;
-import io.proleap.cobol.Cobol85Parser.CallByContentStatementContext;
+import io.proleap.cobol.Cobol85Parser.CallByContentPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByContent;
-import io.proleap.cobol.asg.metamodel.procedure.call.CallByContentStatement;
+import io.proleap.cobol.asg.metamodel.procedure.call.CallByContent;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public class CallByContentStatementImpl extends CobolDivisionElementImpl implements CallByContentStatement {
+public class CallByContentImpl extends CobolDivisionElementImpl implements CallByContent {
 
 	protected List<ByContent> byContents = new ArrayList<ByContent>();
 
-	protected final CallByContentStatementContext ctx;
+	protected final CallByContentPhraseContext ctx;
 
-	public CallByContentStatementImpl(final ProgramUnit programUnit, final CallByContentStatementContext ctx) {
+	public CallByContentImpl(final ProgramUnit programUnit, final CallByContentPhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

@@ -10,12 +10,13 @@ package io.proleap.cobol.asg.metamodel.procedure.call;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.CallByContentContext;
+import io.proleap.cobol.Cobol85Parser.CallByValueContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public interface CallByContentStatement extends CobolDivisionElement {
+public interface CallByValue extends CobolDivisionElement {
 
-	ByContent addByContent(CallByContentContext ctx);
+	ValueStmt addValueStmt(CallByValueContext ctx);
 
-	List<ByContent> getByContents();
+	List<ValueStmt> getValueStmts();
 }

@@ -8,12 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.call;
 
-import java.util.List;
-
-import io.proleap.cobol.Cobol85Parser.CallByContentStatementContext;
-import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
-import io.proleap.cobol.Cobol85Parser.CallByValueStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallGivingPhraseContext;
+import io.proleap.cobol.Cobol85Parser.CallUsingPhraseContext;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnException;
 import io.proleap.cobol.asg.metamodel.procedure.OnException;
 import io.proleap.cobol.asg.metamodel.procedure.OnOverflow;
@@ -25,19 +21,9 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
  */
 public interface CallStatement extends Statement {
 
-	CallByContentStatement addCallByContentStatement(CallByContentStatementContext ctx);
-
-	CallByReferenceStatement addCallByReferenceStatement(CallByReferenceStatementContext ctx);
-
-	CallByValueStatement addCallByValueStatement(CallByValueStatementContext ctx);
-
 	Giving addGiving(CallGivingPhraseContext ctx);
 
-	List<CallByContentStatement> getCallByContentStatements();
-
-	List<CallByReferenceStatement> getCallByReferenceStatements();
-
-	List<CallByValueStatement> getCallByValueStatements();
+	Using addUsing(CallUsingPhraseContext ctx);
 
 	Giving getGiving();
 
@@ -48,6 +34,8 @@ public interface CallStatement extends Statement {
 	OnOverflow getOnOverflow();
 
 	ValueStmt getProgramValueStmt();
+
+	Using getUsing();
 
 	void setNotOnException(NotOnException notOnExceptionClause);
 

@@ -20,9 +20,6 @@ import io.proleap.cobol.Cobol85Parser.AddStatementContext;
 import io.proleap.cobol.Cobol85Parser.AlterProceedToContext;
 import io.proleap.cobol.Cobol85Parser.AlterStatementContext;
 import io.proleap.cobol.Cobol85Parser.AtEndPhraseContext;
-import io.proleap.cobol.Cobol85Parser.CallByContentStatementContext;
-import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
-import io.proleap.cobol.Cobol85Parser.CallByValueStatementContext;
 import io.proleap.cobol.Cobol85Parser.CallStatementContext;
 import io.proleap.cobol.Cobol85Parser.CancelCallContext;
 import io.proleap.cobol.Cobol85Parser.CancelStatementContext;
@@ -351,20 +348,9 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			final ValueStmt programValueStmt = createValueStmt(ctx.literal(), ctx.identifier());
 			result.setProgramValueStmt(programValueStmt);
 
-			// using call by reference
-			for (final CallByReferenceStatementContext callByReferenceStatementContext : ctx
-					.callByReferenceStatement()) {
-				result.addCallByReferenceStatement(callByReferenceStatementContext);
-			}
-
-			// using call by value
-			for (final CallByValueStatementContext callByValueStatementContext : ctx.callByValueStatement()) {
-				result.addCallByValueStatement(callByValueStatementContext);
-			}
-
-			// using call by content
-			for (final CallByContentStatementContext callByContentStatementContext : ctx.callByContentStatement()) {
-				result.addCallByContentStatement(callByContentStatementContext);
+			// using
+			if (ctx.callUsingPhrase() != null) {
+				result.addUsing(ctx.callUsingPhrase());
 			}
 
 			// giving

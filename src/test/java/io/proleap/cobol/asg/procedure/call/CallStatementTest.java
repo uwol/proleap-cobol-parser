@@ -18,11 +18,13 @@ import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByContent;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByReference;
-import io.proleap.cobol.asg.metamodel.procedure.call.CallByContentStatement;
-import io.proleap.cobol.asg.metamodel.procedure.call.CallByReferenceStatement;
-import io.proleap.cobol.asg.metamodel.procedure.call.CallByValueStatement;
+import io.proleap.cobol.asg.metamodel.procedure.call.CallByContent;
+import io.proleap.cobol.asg.metamodel.procedure.call.CallByReference;
+import io.proleap.cobol.asg.metamodel.procedure.call.CallByValue;
 import io.proleap.cobol.asg.metamodel.procedure.call.CallStatement;
 import io.proleap.cobol.asg.metamodel.procedure.call.Giving;
+import io.proleap.cobol.asg.metamodel.procedure.call.Parameter;
+import io.proleap.cobol.asg.metamodel.procedure.call.Using;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -60,71 +62,88 @@ public class CallStatementTest extends CobolTestBase {
 			}
 
 			{
-				final CallByReferenceStatement callByReferenceStatement = callStatement.getCallByReferenceStatements()
-						.get(0);
-				assertEquals(2, callByReferenceStatement.getByReferences().size());
+				final Using using = callStatement.getUsing();
+				assertEquals(3, using.getParameters().size());
 
 				{
-					final ByReference byReference = callByReferenceStatement.getByReferences().get(0);
-					assertEquals(ByReference.Type.INTEGER, byReference.getType());
-					assertEquals(Call.CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
+					final Parameter parameter = using.getParameters().get(0);
+					assertEquals(Parameter.Type.REFERENCE, parameter.getType());
+
+					{
+						final CallByReference callByReferenceStatement = parameter.getCallByReference();
+						assertEquals(2, callByReferenceStatement.getByReferences().size());
+
+						{
+							final ByReference byReference = callByReferenceStatement.getByReferences().get(0);
+							assertEquals(ByReference.Type.INTEGER, byReference.getType());
+							assertEquals(Call.CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
+						}
+
+						{
+							final ByReference byReference = callByReferenceStatement.getByReferences().get(1);
+							assertNull(byReference.getType());
+							assertEquals(Call.CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
+						}
+					}
 				}
 
 				{
-					final ByReference byReference = callByReferenceStatement.getByReferences().get(1);
-					assertNull(byReference.getType());
-					assertEquals(Call.CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
-				}
-			}
+					final Parameter parameter = using.getParameters().get(1);
+					assertEquals(Parameter.Type.VALUE, parameter.getType());
 
-			{
-				final CallByValueStatement callByValueStatement = callStatement.getCallByValueStatements().get(0);
-				assertEquals(3, callByValueStatement.getValueStmts().size());
+					final CallByValue callByValueStatement = parameter.getCallByValue();
+					assertEquals(3, callByValueStatement.getValueStmts().size());
 
-				{
-					final ValueStmt valueStmt = callByValueStatement.getValueStmts().get(0);
-					assertEquals(1, valueStmt.getValue());
-				}
+					{
+						final ValueStmt valueStmt = callByValueStatement.getValueStmts().get(0);
+						assertEquals(1, valueStmt.getValue());
+					}
 
-				{
-					final ValueStmt valueStmt = callByValueStatement.getValueStmts().get(1);
-					assertEquals(2, valueStmt.getValue());
-				}
+					{
+						final ValueStmt valueStmt = callByValueStatement.getValueStmts().get(1);
+						assertEquals(2, valueStmt.getValue());
+					}
 
-				{
-					final ValueStmt valueStmt = callByValueStatement.getValueStmts().get(2);
-					assertNotNull(valueStmt);
-				}
-			}
-
-			{
-				final CallByContentStatement callByContentStatement = callStatement.getCallByContentStatements().get(0);
-				assertEquals(3, callByContentStatement.getByContents().size());
-
-				{
-					final ByContent byContent = callByContentStatement.getByContents().get(0);
-					assertEquals(ByContent.Type.ADDRESS_OF, byContent.getType());
-					assertNotNull(byContent.getValueStmt());
-
-					final CallValueStmt callValueStmt = (CallValueStmt) byContent.getValueStmt();
-					assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
+					{
+						final ValueStmt valueStmt = callByValueStatement.getValueStmts().get(2);
+						assertNotNull(valueStmt);
+					}
 				}
 
 				{
-					final ByContent byContent = callByContentStatement.getByContents().get(1);
-					assertEquals(ByContent.Type.LENGTH_OF, byContent.getType());
-					assertNotNull(byContent.getValueStmt());
+					final Parameter parameter = using.getParameters().get(2);
+					assertEquals(Parameter.Type.CONTENT, parameter.getType());
 
-					final CallValueStmt callValueStmt = (CallValueStmt) byContent.getValueStmt();
-					assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
-				}
+					{
+						final CallByContent callByContentStatement = parameter.getCallByContent();
+						assertEquals(3, callByContentStatement.getByContents().size());
 
-				{
-					final ByContent byContent = callByContentStatement.getByContents().get(2);
-					assertNull(byContent.getType());
-					assertNotNull(byContent.getValueStmt());
+						{
+							final ByContent byContent = callByContentStatement.getByContents().get(0);
+							assertEquals(ByContent.Type.ADDRESS_OF, byContent.getType());
+							assertNotNull(byContent.getValueStmt());
 
-					assertEquals(4, byContent.getValueStmt().getValue());
+							final CallValueStmt callValueStmt = (CallValueStmt) byContent.getValueStmt();
+							assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
+						}
+
+						{
+							final ByContent byContent = callByContentStatement.getByContents().get(1);
+							assertEquals(ByContent.Type.LENGTH_OF, byContent.getType());
+							assertNotNull(byContent.getValueStmt());
+
+							final CallValueStmt callValueStmt = (CallValueStmt) byContent.getValueStmt();
+							assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
+						}
+
+						{
+							final ByContent byContent = callByContentStatement.getByContents().get(2);
+							assertNull(byContent.getType());
+							assertNotNull(byContent.getValueStmt());
+
+							assertEquals(4, byContent.getValueStmt().getValue());
+						}
+					}
 				}
 			}
 		}

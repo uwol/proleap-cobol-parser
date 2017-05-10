@@ -12,20 +12,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.CallByReferenceContext;
-import io.proleap.cobol.Cobol85Parser.CallByReferenceStatementContext;
+import io.proleap.cobol.Cobol85Parser.CallByReferencePhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByReference;
-import io.proleap.cobol.asg.metamodel.procedure.call.CallByReferenceStatement;
+import io.proleap.cobol.asg.metamodel.procedure.call.CallByReference;
 
-public class CallByReferenceStatementImpl extends CobolDivisionElementImpl implements CallByReferenceStatement {
+public class CallByReferenceImpl extends CobolDivisionElementImpl implements CallByReference {
 
 	protected List<ByReference> byReferences = new ArrayList<ByReference>();
 
-	protected final CallByReferenceStatementContext ctx;
+	protected final CallByReferencePhraseContext ctx;
 
-	public CallByReferenceStatementImpl(final ProgramUnit programUnit, final CallByReferenceStatementContext ctx) {
+	public CallByReferenceImpl(final ProgramUnit programUnit, final CallByReferencePhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

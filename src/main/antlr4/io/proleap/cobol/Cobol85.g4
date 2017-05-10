@@ -1228,10 +1228,18 @@ alterProceedTo
 // call statement
 
 callStatement
-   : CALL (identifier | literal) (USING (callByReferenceStatement | callByValueStatement | callByContentStatement)+)? callGivingPhrase? onOverflowPhrase? onExceptionClause? notOnExceptionClause? END_CALL?
+   : CALL (identifier | literal) callUsingPhrase? callGivingPhrase? onOverflowPhrase? onExceptionClause? notOnExceptionClause? END_CALL?
    ;
 
-callByReferenceStatement
+callUsingPhrase
+   : USING callUsingParameter+
+   ;
+
+callUsingParameter
+   : callByReferencePhrase | callByValuePhrase | callByContentPhrase
+   ;
+
+callByReferencePhrase
    : (BY? REFERENCE)? callByReference+
    ;
 
@@ -1239,7 +1247,7 @@ callByReference
    : (ADDRESS OF | INTEGER | STRING)? identifier | fileName
    ;
 
-callByValueStatement
+callByValuePhrase
    : BY? VALUE callByValue+
    ;
 
@@ -1247,7 +1255,7 @@ callByValue
    : identifier | literal
    ;
 
-callByContentStatement
+callByContentPhrase
    : BY? CONTENT callByContent+
    ;
 
