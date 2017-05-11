@@ -15,8 +15,7 @@ public class VariableTest {
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File("src/test/resources/io/proleap/cobol/preprocessor/variable/Variable.cbl");
-		final File libDirectory = inputFile.getParentFile();
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, libDirectory,
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, null,
 				CobolSourceFormatEnum.VARIABLE);
 
 		final File expectedFile = new File(

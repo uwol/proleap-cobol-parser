@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -23,10 +24,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.util.Strings;
 
+import com.google.common.collect.Lists;
+
 import io.proleap.cobol.Cobol85Lexer;
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
 import io.proleap.cobol.ThrowingErrorListener;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.runner.CobolParseTestRunner;
@@ -84,21 +88,25 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 		}
 	}
 
-	@Override
-	public void parseDirectory(final File inputDirectory, final CobolSourceFormatEnum format) throws IOException {
-		if (inputDirectory.isDirectory() && !inputDirectory.isHidden()) {
-			for (final File inputFile : inputDirectory.listFiles()) {
-				if (inputFile.isFile() && !inputFile.isHidden() && isCobolFile(inputFile)) {
-					parseFile(inputFile, format);
-				}
-			}
-		}
+	protected List<File> getCopyFiles(final File libDirectory) {
+		return Lists.newArrayList(libDirectory.listFiles());
 	}
 
 	@Override
 	public void parseFile(final File inputFile, final CobolSourceFormatEnum format) throws IOException {
 		final File libDirectory = inputFile.getParentFile();
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, libDirectory, format);
+		final List<File> copyFiles = getCopyFiles(libDirectory);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles, format);
+
+		LOG.info("Parsing file {}.", inputFile.getName());
+
+		doParse(preProcessedInput, inputFile);
+	}
+
+	@Override
+	public void parseFile(final File inputFile, final List<File> copyFiles, final CobolSourceFormatEnum format,
+			final CobolDialect dialect) throws IOException {
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles, format, dialect);
 
 		LOG.info("Parsing file {}.", inputFile.getName());
 

@@ -15,8 +15,7 @@ public class ExecCicsTest {
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File("src/test/resources/io/proleap/cobol/preprocessor/fixed/ExecCics.cbl");
-		final File libDirectory = inputFile.getParentFile();
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, libDirectory,
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, null,
 				CobolSourceFormatEnum.FIXED);
 
 		final File expectedFile = new File(

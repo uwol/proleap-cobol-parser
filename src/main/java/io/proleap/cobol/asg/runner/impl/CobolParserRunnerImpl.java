@@ -21,6 +21,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.common.collect.Lists;
+
 import io.proleap.cobol.Cobol85Lexer;
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
@@ -64,25 +66,6 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		}
 	}
 
-	@Override
-	public Program analyzeDirectory(final File inputDirectory, final CobolSourceFormatEnum format) throws IOException {
-		return analyzeDirectory(inputDirectory, format, null);
-	}
-
-	@Override
-	public Program analyzeDirectory(final File inputDirectory, final CobolSourceFormatEnum format,
-			final CobolDialect dialect) throws IOException {
-		final Program program = new ProgramImpl();
-
-		for (final File inputFile : inputDirectory.listFiles()) {
-			parseFile(inputFile, program, format, dialect);
-		}
-
-		analyze(program);
-
-		return program;
-	}
-
 	protected void analyzeEnvironmentDivisions(final Program program) {
 		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
 			final ParserVisitor visitor = new CobolEnvironmentDivisionVisitorImpl(program);
@@ -94,15 +77,40 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	@Override
 	public Program analyzeFile(final File inputFile, final CobolSourceFormatEnum format) throws IOException {
-		return analyzeFile(inputFile, format, null);
+		final File libDirectory = inputFile.getParentFile();
+		final List<File> copyFiles = getCopyFiles(libDirectory);
+
+		return analyzeFile(inputFile, copyFiles, format, null);
 	}
 
 	@Override
-	public Program analyzeFile(final File inputFile, final CobolSourceFormatEnum format, final CobolDialect dialect)
-			throws IOException {
+	public Program analyzeFile(final File inputFile, final List<File> copyFiles, final CobolSourceFormatEnum format,
+			final CobolDialect dialect) throws IOException {
 		final Program program = new ProgramImpl();
 
-		parseFile(inputFile, program, format, dialect);
+		parseFile(inputFile, copyFiles, program, format, dialect);
+		analyze(program);
+
+		return program;
+	}
+
+	@Override
+	public Program analyzeFiles(final List<File> inputFiles, final CobolSourceFormatEnum format) throws IOException {
+		final File libDirectory = inputFiles.isEmpty() ? null : inputFiles.get(0).getParentFile();
+		final List<File> copyFiles = getCopyFiles(libDirectory);
+
+		return analyzeFiles(inputFiles, copyFiles, format, null);
+	}
+
+	@Override
+	public Program analyzeFiles(final List<File> inputFiles, final List<File> copyFiles,
+			final CobolSourceFormatEnum format, final CobolDialect dialect) throws IOException {
+		final Program program = new ProgramImpl();
+
+		for (final File inputFile : inputFiles) {
+			parseFile(inputFile, copyFiles, program, format, dialect);
+		}
+
 		analyze(program);
 
 		return program;
@@ -148,13 +156,17 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		return StringUtils.capitalize(FilenameUtils.removeExtension(inputFile.getName()));
 	}
 
+	protected List<File> getCopyFiles(final File libDirectory) {
+		return Lists.newArrayList(libDirectory.listFiles());
+	}
+
 	protected boolean isCobolFile(final File inputFile) {
 		final String extension = FilenameUtils.getExtension(inputFile.getName()).toLowerCase();
 		return "cbl".equals(extension);
 	}
 
-	protected void parseFile(final File inputFile, final Program program, final CobolSourceFormatEnum format,
-			final CobolDialect dialect) throws IOException {
+	protected void parseFile(final File inputFile, final List<File> copyFiles, final Program program,
+			final CobolSourceFormatEnum format, final CobolDialect dialect) throws IOException {
 		if (!inputFile.isFile()) {
 			LOG.warn("Could not find file {}", inputFile.getAbsolutePath());
 		} else if (inputFile.isHidden()) {
@@ -162,11 +174,8 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		} else if (!isCobolFile(inputFile)) {
 			LOG.info("Ignoring file {} because of file extension.", inputFile.getAbsolutePath());
 		} else {
-			final File libDirectory = inputFile.getParentFile();
-
 			// preprocess input stream
-			final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, libDirectory, format,
-					dialect);
+			final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles, format, dialect);
 
 			LOG.info("Parsing file {}.", inputFile.getName());
 

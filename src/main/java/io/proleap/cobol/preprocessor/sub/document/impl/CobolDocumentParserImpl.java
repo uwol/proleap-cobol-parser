@@ -9,6 +9,7 @@
 package io.proleap.cobol.preprocessor.sub.document.impl;
 
 import java.io.File;
+import java.util.List;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -27,12 +28,12 @@ import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParser;
  */
 public class CobolDocumentParserImpl implements CobolDocumentParser {
 
-	protected final File libDirectory;
+	protected final List<File> copyFiles;
 
 	protected final String[] triggers = new String[] { "copy", "exec sql", "exec sqlims", "exec cics", "replace" };
 
-	public CobolDocumentParserImpl(final File libDirectory) {
-		this.libDirectory = libDirectory;
+	public CobolDocumentParserImpl(final List<File> copyFiles) {
+		this.copyFiles = copyFiles;
 	}
 
 	protected boolean containsTrigger(final String code, final String[] triggers) {
@@ -57,7 +58,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		final String result;
 
 		if (requiresProcessorExecution) {
-			result = processWithParser(code, libDirectory, format, dialect);
+			result = processWithParser(code, copyFiles, format, dialect);
 		} else {
 			result = code;
 		}
@@ -65,8 +66,8 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		return result;
 	}
 
-	protected String processWithParser(final String code, final File libDirectory, final CobolSourceFormatEnum format,
-			final CobolDialect dialect) {
+	protected String processWithParser(final String code, final List<File> copyFiles,
+			final CobolSourceFormatEnum format, final CobolDialect dialect) {
 		// run the lexer
 		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(CharStreams.fromString(code));
 
@@ -84,8 +85,8 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		final StartRuleContext startRule = parser.startRule();
 
 		// analyze contained copy books
-		final CobolDocumentParserListenerImpl listener = new CobolDocumentParserListenerImpl(libDirectory, format,
-				dialect, tokens);
+		final CobolDocumentParserListenerImpl listener = new CobolDocumentParserListenerImpl(copyFiles, format, dialect,
+				tokens);
 		final ParseTreeWalker walker = new ParseTreeWalker();
 
 		walker.walk(listener, startRule);

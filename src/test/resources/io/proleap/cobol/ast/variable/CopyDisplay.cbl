@@ -2,5 +2,5 @@
 000200 Program-ID. 
 000300  HELLOWORLD.
 000400 Procedure Division.
-000500  COPY CopyDisplay.
+000500  COPY CopyDisplayBook.
 000600  STOP RUN.

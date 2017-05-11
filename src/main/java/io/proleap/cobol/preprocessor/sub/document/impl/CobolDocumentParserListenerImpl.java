@@ -16,6 +16,7 @@ import java.util.Stack;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -40,19 +41,17 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 
 	private final Stack<CobolDocumentContext> contexts = new Stack<CobolDocumentContext>();
 
-	protected final String[] copyFileExtensions = new String[] { "", "CPY", "cpy", "COB", "cob", "CBL", "cbl" };
+	private final List<File> copyFiles;
 
 	private final CobolDialect dialect;
 
 	private final CobolSourceFormatEnum format;
 
-	private final File libDirectory;
-
 	private final BufferedTokenStream tokens;
 
-	public CobolDocumentParserListenerImpl(final File libDirectory, final CobolSourceFormatEnum format,
+	public CobolDocumentParserListenerImpl(final List<File> copyFiles, final CobolSourceFormatEnum format,
 			final CobolDialect dialect, final BufferedTokenStream tokens) {
-		this.libDirectory = libDirectory;
+		this.copyFiles = copyFiles;
 		this.dialect = dialect;
 		this.tokens = tokens;
 		this.format = format;
@@ -155,11 +154,16 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		 * copy the copy file
 		 */
 		final String copyFileIdentifier = ctx.copySource().getText();
-		final String fileContent = getCopyFileContent(copyFileIdentifier, libDirectory, dialect, format);
 
-		if (fileContent != null) {
-			context().write(fileContent + CobolPreprocessor.NEWLINE);
-			context().replaceReplaceablesByReplacements(tokens);
+		if (copyFiles == null || copyFiles.isEmpty()) {
+			LOG.warn("Could not identify copy file {} due to missing copy files.", copyFileIdentifier);
+		} else {
+			final String fileContent = getCopyFileContent(copyFileIdentifier, copyFiles, dialect, format);
+
+			if (fileContent != null) {
+				context().write(fileContent + CobolPreprocessor.NEWLINE);
+				context().replaceReplaceablesByReplacements(tokens);
+			}
 		}
 
 		final String content = context().read();
@@ -264,18 +268,17 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		pop();
 	};
 
-	protected String getCopyFileContent(final String filename, final File libDirectory, final CobolDialect dialect,
+	protected String getCopyFileContent(final String filename, final List<File> copyFiles, final CobolDialect dialect,
 			final CobolSourceFormatEnum format) {
-		final File copyFile = identifyCopyFile(filename, libDirectory);
+		final File copyFile = identifyCopyFile(filename, copyFiles);
 		String result;
 
 		if (copyFile == null) {
-			LOG.warn("Copy file {} not found.", filename);
-
+			LOG.warn("Copy file {} not found in copy files {}.", filename, copyFiles);
 			result = null;
 		} else {
 			try {
-				result = new CobolPreprocessorImpl().process(copyFile, libDirectory, format, dialect);
+				result = new CobolPreprocessorImpl().process(copyFile, copyFiles, format, dialect);
 			} catch (final IOException e) {
 				result = null;
 				LOG.warn(e.getMessage());
@@ -288,23 +291,15 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	/**
 	 * Identifies a copy file by its name and directory.
 	 */
-	protected File identifyCopyFile(final String filename, final File libDirectory) {
+	protected File identifyCopyFile(final String filename, final List<File> copyFiles) {
 		File copyFile = null;
 
-		for (final String extension : copyFileExtensions) {
-			final String filenameWithExtension;
+		for (final File file : copyFiles) {
+			final String baseName = FilenameUtils.getBaseName(file.getName());
+			final boolean matchingBaseName = filename.toLowerCase().equals(baseName.toLowerCase());
 
-			if (extension.isEmpty()) {
-				filenameWithExtension = filename;
-			} else {
-				filenameWithExtension = filename + "." + extension;
-			}
-
-			final String canonicalPath = libDirectory.getAbsolutePath() + "/" + filenameWithExtension;
-			final File copyFileWithExtension = new File(canonicalPath);
-
-			if (copyFileWithExtension.exists()) {
-				copyFile = copyFileWithExtension;
+			if (matchingBaseName) {
+				copyFile = file;
 				break;
 			}
 		}

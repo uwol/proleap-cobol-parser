@@ -3,4 +3,4 @@
 000300  HELLOWORLD.
 000400 Data Division.
 000400 Working-Storage Section.
-000400 01 VAR   COPY CopyInPicture.
+000400 01 VAR   COPY CopyInPictureBook.
