@@ -12,14 +12,12 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.Trees;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.util.Strings;
@@ -40,16 +38,9 @@ import io.proleap.cobol.runner.CobolParseTestRunner;
  */
 public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 
-	private final static String[] cobolFileExtensions = new String[] { "cbl", "cob", "jcl", "txt", "" };
-
 	private final static Logger LOG = LogManager.getLogger(CobolParseTestRunnerImpl.class);
 
 	public final static String TREE_SUFFIX = ".tree";
-
-	protected static boolean isCobolFile(final File inputFile) {
-		final String extension = FilenameUtils.getExtension(inputFile.getName()).toLowerCase();
-		return inputFile.isFile() && Arrays.asList(cobolFileExtensions).contains(extension);
-	}
 
 	protected void doCompareParseTree(final File treeFile, final StartRuleContext startRule, final Cobol85Parser parser)
 			throws IOException {
