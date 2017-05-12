@@ -169,10 +169,6 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			final CobolSourceFormatEnum format, final CobolDialect dialect) throws IOException {
 		if (!inputFile.isFile()) {
 			LOG.warn("Could not find file {}", inputFile.getAbsolutePath());
-		} else if (inputFile.isHidden()) {
-			LOG.warn("Ignoring hidden file {}", inputFile.getAbsolutePath());
-		} else if (!isCobolFile(inputFile)) {
-			LOG.info("Ignoring file {} because of file extension.", inputFile.getAbsolutePath());
 		} else {
 			// preprocess input stream
 			final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles, format, dialect);
