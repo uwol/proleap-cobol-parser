@@ -13,17 +13,17 @@ import io.proleap.cobol.Cobol85Parser.DivideGivingContext;
 import io.proleap.cobol.Cobol85Parser.DivideGivingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.divide.Givings;
 import io.proleap.cobol.asg.metamodel.procedure.divide.ByGiving;
+import io.proleap.cobol.asg.metamodel.procedure.divide.Givings;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ByGivingImpl extends CobolDivisionElementImpl implements ByGiving {
 
+	protected ValueStmt byValueStmt;
+
 	protected DivideByGivingStatementContext ctx;
 
 	protected Givings givings;
-
-	protected ValueStmt intoValueStmt;
 
 	public ByGivingImpl(final ProgramUnit programUnit, final DivideByGivingStatementContext ctx) {
 		super(programUnit, ctx);
@@ -51,18 +51,18 @@ public class ByGivingImpl extends CobolDivisionElementImpl implements ByGiving {
 	}
 
 	@Override
+	public ValueStmt getByValueStmt() {
+		return byValueStmt;
+	}
+
+	@Override
 	public Givings getGivings() {
 		return givings;
 	}
 
 	@Override
-	public ValueStmt getIntoValueStmt() {
-		return intoValueStmt;
-	}
-
-	@Override
-	public void setIntoValueStmt(final ValueStmt intoValueStmt) {
-		this.intoValueStmt = intoValueStmt;
+	public void setByValueStmt(final ValueStmt byValueStmt) {
+		this.byValueStmt = byValueStmt;
 	}
 
 }

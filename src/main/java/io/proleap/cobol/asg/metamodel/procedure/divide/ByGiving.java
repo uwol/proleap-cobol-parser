@@ -16,10 +16,10 @@ public interface ByGiving extends CobolDivisionElement {
 
 	Givings addGivings(DivideGivingPhraseContext ctx);
 
+	ValueStmt getByValueStmt();
+
 	Givings getGivings();
 
-	ValueStmt getIntoValueStmt();
-
-	void setIntoValueStmt(ValueStmt intoValueStmt);
+	void setByValueStmt(ValueStmt intoValueStmt);
 
 }

@@ -128,11 +128,11 @@ public class DivideStatementTest extends CobolTestBase {
 			}
 
 			{
-				final ByGiving intoByGiving = divideStatement.getIntoByGiving();
+				final ByGiving intoByGiving = divideStatement.getByGiving();
 				assertNotNull(intoByGiving);
-				assertNotNull(intoByGiving.getIntoValueStmt());
+				assertNotNull(intoByGiving.getByValueStmt());
 
-				final CallValueStmt intoByGivingCallValueStmt = (CallValueStmt) intoByGiving.getIntoValueStmt();
+				final CallValueStmt intoByGivingCallValueStmt = (CallValueStmt) intoByGiving.getByValueStmt();
 				assertEquals(Call.CallType.UNDEFINED_CALL, intoByGivingCallValueStmt.getCall().getCallType());
 
 				assertNotNull(intoByGiving.getGivings());

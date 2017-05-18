@@ -23,22 +23,22 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 public interface DivideStatement extends Statement {
 
 	enum Type {
-		INTO, BY_GIVING, INTO_GIVING
+		BY_GIVING, INTO, INTO_GIVING
 	}
 
-	Into addInto(DivideIntoStatementContext ctx);
+	ByGiving addByGiving(DivideByGivingStatementContext ctx);
 
-	ByGiving addIntoByGiving(DivideByGivingStatementContext ctx);
+	Into addInto(DivideIntoStatementContext ctx);
 
 	IntoGiving addIntoGiving(DivideIntoGivingStatementContext ctx);
 
 	Remainder addRemainder(DivideRemainderContext ctx);
 
+	ByGiving getByGiving();
+
 	ValueStmt getDivisorValueStmt();
 
 	Into getInto();
-
-	ByGiving getIntoByGiving();
 
 	IntoGiving getIntoGiving();
 
