@@ -11,6 +11,9 @@ package io.proleap.cobol.asg.metamodel.procedure.add;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 
+/**
+ * Adds elementary data items of the same name for two groups.
+ */
 public interface AddCorresponding extends CobolDivisionElement {
 
 	Call getFrom();

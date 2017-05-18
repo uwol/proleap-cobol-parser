@@ -12,6 +12,10 @@ import java.util.List;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
+/**
+ * Adds one or multiple values to one or multiple variables and stores the
+ * result in separate variables.
+ */
 public interface AddToGiving extends CobolDivisionElement {
 
 	void addFrom(From from);
