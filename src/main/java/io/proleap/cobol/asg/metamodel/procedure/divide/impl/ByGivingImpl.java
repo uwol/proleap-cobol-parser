@@ -8,24 +8,24 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.divide.impl;
 
+import io.proleap.cobol.Cobol85Parser.DivideByGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideGivingContext;
 import io.proleap.cobol.Cobol85Parser.DivideGivingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.DivideIntoByGivingStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.divide.Givings;
-import io.proleap.cobol.asg.metamodel.procedure.divide.IntoByGiving;
+import io.proleap.cobol.asg.metamodel.procedure.divide.ByGiving;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public class IntoByGivingImpl extends CobolDivisionElementImpl implements IntoByGiving {
+public class ByGivingImpl extends CobolDivisionElementImpl implements ByGiving {
 
-	protected DivideIntoByGivingStatementContext ctx;
+	protected DivideByGivingStatementContext ctx;
 
 	protected Givings givings;
 
 	protected ValueStmt intoValueStmt;
 
-	public IntoByGivingImpl(final ProgramUnit programUnit, final DivideIntoByGivingStatementContext ctx) {
+	public ByGivingImpl(final ProgramUnit programUnit, final DivideByGivingStatementContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

@@ -590,9 +590,9 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			} else if (ctx.divideIntoGivingStatement() != null) {
 				result.addIntoGiving(ctx.divideIntoGivingStatement());
 				type = DivideStatement.Type.INTO_GIVING;
-			} else if (ctx.divideIntoByGivingStatement() != null) {
-				result.addIntoByGiving(ctx.divideIntoByGivingStatement());
-				type = DivideStatement.Type.INTO_BY_GIVING;
+			} else if (ctx.divideByGivingStatement() != null) {
+				result.addIntoByGiving(ctx.divideByGivingStatement());
+				type = DivideStatement.Type.BY_GIVING;
 			} else {
 				type = null;
 			}

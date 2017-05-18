@@ -19,7 +19,7 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideStatement;
 import io.proleap.cobol.asg.metamodel.procedure.divide.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.Into;
-import io.proleap.cobol.asg.metamodel.procedure.divide.IntoByGiving;
+import io.proleap.cobol.asg.metamodel.procedure.divide.ByGiving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.IntoGiving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.Remainder;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
@@ -119,7 +119,7 @@ public class DivideStatementTest extends CobolTestBase {
 			final DivideStatement divideStatement = (DivideStatement) procedureDivision.getStatements().get(2);
 			assertNotNull(divideStatement);
 			assertEquals(StatementTypeEnum.DIVIDE, divideStatement.getStatementType());
-			assertEquals(DivideStatement.Type.INTO_BY_GIVING, divideStatement.getType());
+			assertEquals(DivideStatement.Type.BY_GIVING, divideStatement.getType());
 
 			{
 				assertNotNull(divideStatement.getDivisorValueStmt());
@@ -128,7 +128,7 @@ public class DivideStatementTest extends CobolTestBase {
 			}
 
 			{
-				final IntoByGiving intoByGiving = divideStatement.getIntoByGiving();
+				final ByGiving intoByGiving = divideStatement.getIntoByGiving();
 				assertNotNull(intoByGiving);
 				assertNotNull(intoByGiving.getIntoValueStmt());
 

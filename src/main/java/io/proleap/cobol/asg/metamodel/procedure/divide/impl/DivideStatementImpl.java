@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.divide.impl;
 
+import io.proleap.cobol.Cobol85Parser.DivideByGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideGivingContext;
-import io.proleap.cobol.Cobol85Parser.DivideIntoByGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideIntoGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideIntoStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideRemainderContext;
@@ -23,7 +23,7 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideStatement;
 import io.proleap.cobol.asg.metamodel.procedure.divide.Into;
-import io.proleap.cobol.asg.metamodel.procedure.divide.IntoByGiving;
+import io.proleap.cobol.asg.metamodel.procedure.divide.ByGiving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.IntoGiving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.Remainder;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
@@ -37,7 +37,7 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 
 	protected Into into;
 
-	protected IntoByGiving intoByGiving;
+	protected ByGiving intoByGiving;
 
 	protected IntoGiving intoGiving;
 
@@ -81,11 +81,11 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	}
 
 	@Override
-	public IntoByGiving addIntoByGiving(final DivideIntoByGivingStatementContext ctx) {
-		IntoByGiving result = (IntoByGiving) getASGElement(ctx);
+	public ByGiving addIntoByGiving(final DivideByGivingStatementContext ctx) {
+		ByGiving result = (ByGiving) getASGElement(ctx);
 
 		if (result == null) {
-			result = new IntoByGivingImpl(programUnit, ctx);
+			result = new ByGivingImpl(programUnit, ctx);
 
 			// into
 			final ValueStmt intoValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
@@ -150,7 +150,7 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	}
 
 	@Override
-	public IntoByGiving getIntoByGiving() {
+	public ByGiving getIntoByGiving() {
 		return intoByGiving;
 	}
 

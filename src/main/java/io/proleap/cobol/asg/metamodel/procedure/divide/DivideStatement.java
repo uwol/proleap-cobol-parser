@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.divide;
 
-import io.proleap.cobol.Cobol85Parser.DivideIntoByGivingStatementContext;
+import io.proleap.cobol.Cobol85Parser.DivideByGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideIntoGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideIntoStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideRemainderContext;
@@ -23,12 +23,12 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 public interface DivideStatement extends Statement {
 
 	enum Type {
-		INTO, INTO_BY_GIVING, INTO_GIVING
+		INTO, BY_GIVING, INTO_GIVING
 	}
 
 	Into addInto(DivideIntoStatementContext ctx);
 
-	IntoByGiving addIntoByGiving(DivideIntoByGivingStatementContext ctx);
+	ByGiving addIntoByGiving(DivideByGivingStatementContext ctx);
 
 	IntoGiving addIntoGiving(DivideIntoGivingStatementContext ctx);
 
@@ -38,7 +38,7 @@ public interface DivideStatement extends Statement {
 
 	Into getInto();
 
-	IntoByGiving getIntoByGiving();
+	ByGiving getIntoByGiving();
 
 	IntoGiving getIntoGiving();
 

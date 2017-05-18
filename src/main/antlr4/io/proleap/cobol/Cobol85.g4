@@ -1368,7 +1368,7 @@ displayWith
 // divide statement
 
 divideStatement
-   : DIVIDE (identifier | literal) (divideIntoStatement | divideIntoGivingStatement | divideIntoByGivingStatement) divideRemainder? onSizeErrorPhrase? notOnSizeErrorPhrase? END_DIVIDE?
+   : DIVIDE (identifier | literal) (divideIntoStatement | divideIntoGivingStatement | divideByGivingStatement) divideRemainder? onSizeErrorPhrase? notOnSizeErrorPhrase? END_DIVIDE?
    ;
 
 divideIntoStatement
@@ -1379,7 +1379,7 @@ divideIntoGivingStatement
    : INTO divideGiving+
    ;
 
-divideIntoByGivingStatement
+divideByGivingStatement
    : BY (identifier | literal) divideGivingPhrase?
    ;
 

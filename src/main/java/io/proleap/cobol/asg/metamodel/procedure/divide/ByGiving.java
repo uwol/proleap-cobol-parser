@@ -12,7 +12,7 @@ import io.proleap.cobol.Cobol85Parser.DivideGivingPhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public interface IntoByGiving extends CobolDivisionElement {
+public interface ByGiving extends CobolDivisionElement {
 
 	Givings addGivings(DivideGivingPhraseContext ctx);
 
