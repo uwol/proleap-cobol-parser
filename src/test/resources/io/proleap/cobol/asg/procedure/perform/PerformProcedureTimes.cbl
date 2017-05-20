@@ -3,3 +3,5 @@
  PROCEDURE DIVISION.
    PERFORM PROC1 
      2 TIMES.
+   PROC1.
+     DISPLAY 'test'.

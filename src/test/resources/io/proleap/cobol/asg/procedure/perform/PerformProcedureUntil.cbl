@@ -4,3 +4,5 @@
    PERFORM PROC1 
      WITH TEST 
      AFTER UNTIL 1=1.
+   PROC1.
+     DISPLAY 'test'.
