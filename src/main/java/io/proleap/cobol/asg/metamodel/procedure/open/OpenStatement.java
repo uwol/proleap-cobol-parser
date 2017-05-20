@@ -17,7 +17,8 @@ import io.proleap.cobol.Cobol85Parser.OpenOutputStatementContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
- * Associates a file description with its physical representation.
+ * Associates a logical file description with its physical representation. Makes
+ * the file resource available for processing.
  */
 public interface OpenStatement extends Statement {
 
