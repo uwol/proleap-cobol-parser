@@ -279,9 +279,13 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (ctx.specialRegister() != null) {
 			final Call specialRegisterCall = createCall(ctx.specialRegister());
 			result = new CallDelegateImpl(specialRegisterCall, programUnit, ctx);
+
+			registerASGElement(result);
 		} else if (ctx.tableCall() != null) {
 			final Call tableCall = createCall(ctx.tableCall());
 			result = new CallDelegateImpl(tableCall, programUnit, ctx);
+
+			registerASGElement(result);
 		} else {
 			result = createDataDescriptionEntryCall(ctx);
 		}
