@@ -13,6 +13,15 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
+import io.proleap.cobol.asg.metamodel.call.FileControlEntryCall;
+import io.proleap.cobol.asg.metamodel.data.DataDivision;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
+import io.proleap.cobol.asg.metamodel.environment.EnvironmentDivision;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.InputOutputSection;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.AtEnd;
 import io.proleap.cobol.asg.metamodel.procedure.InvalidKey;
 import io.proleap.cobol.asg.metamodel.procedure.NotAtEnd;
@@ -36,6 +45,43 @@ public class ReadStatementTest extends CobolTestBase {
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("ReadStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
+
+		final FileControlEntry fileControlEntry;
+		final DataDescriptionEntry dataDescriptionEntry;
+
+		{
+			final EnvironmentDivision environmentDivision = programUnit.getEnvironmentDivision();
+
+			{
+				final InputOutputSection inputOutputSection = environmentDivision.getInputOutputSection();
+
+				{
+					final FileControlParagraph fileControlParagraph = inputOutputSection.getFileControlParagraph();
+
+					{
+						fileControlEntry = fileControlParagraph.getFileControlEntry("SOMEFILE1");
+						assertNotNull(fileControlEntry);
+						assertEquals(1, fileControlEntry.getCalls().size());
+					}
+				}
+			}
+		}
+
+		{
+			final DataDivision dataDivision = programUnit.getDataDivision();
+			assertNotNull(dataDivision);
+
+			{
+				final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
+				assertNotNull(workingStorageSection);
+
+				{
+					dataDescriptionEntry = workingStorageSection.getDataDescriptionEntry("ITEMS");
+					assertNotNull(dataDescriptionEntry);
+				}
+			}
+		}
+
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(0, procedureDivision.getParagraphs().size());
 		assertEquals(1, procedureDivision.getStatements().size());
@@ -47,7 +93,11 @@ public class ReadStatementTest extends CobolTestBase {
 
 			{
 				assertNotNull(readStatement.getFileCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, readStatement.getFileCall().getCallType());
+				assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, readStatement.getFileCall().getCallType());
+
+				final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) readStatement.getFileCall();
+				assertNotNull(fileControlEntryCall.getFileControlEntry());
+				assertEquals(fileControlEntry, fileControlEntryCall.getFileControlEntry());
 			}
 
 			assertTrue(readStatement.isNextRecord());
@@ -56,7 +106,11 @@ public class ReadStatementTest extends CobolTestBase {
 				final Into into = readStatement.getInto();
 				assertNotNull(into);
 				assertNotNull(into.getIntoCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, into.getIntoCall().getCallType());
+				assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, into.getIntoCall().getCallType());
+
+				final DataDescriptionEntryCall dataDescriptionEntryCall = (DataDescriptionEntryCall) into.getIntoCall();
+				assertNotNull(dataDescriptionEntryCall.getDataDescriptionEntry());
+				assertEquals(dataDescriptionEntry, dataDescriptionEntryCall.getDataDescriptionEntry());
 			}
 
 			{
