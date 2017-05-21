@@ -33,6 +33,8 @@ public class CloseFileImpl extends CobolDivisionElementImpl implements CloseFile
 
 	protected Call fileCall;
 
+	protected Type type;
+
 	public CloseFileImpl(final ProgramUnit programUnit, final CloseFileContext ctx) {
 		super(programUnit, ctx);
 
@@ -163,8 +165,18 @@ public class CloseFileImpl extends CobolDivisionElementImpl implements CloseFile
 	}
 
 	@Override
+	public Type getType() {
+		return type;
+	}
+
+	@Override
 	public void setFileCall(final Call fileCall) {
 		this.fileCall = fileCall;
+	}
+
+	@Override
+	public void setType(final Type type) {
+		this.type = type;
 	}
 
 }

@@ -47,20 +47,28 @@ public class CloseStatementImpl extends StatementImpl implements CloseStatement 
 			final Call fileCall = createCall(ctx.fileName());
 			result.setFileCall(fileCall);
 
+			// type
+			final CloseFile.Type type;
+
 			// close reel unit
 			if (ctx.closeReelUnitStatement() != null) {
 				result.addCloseReelUnitStatement(ctx.closeReelUnitStatement());
+				type = CloseFile.Type.ReelUnit;
 			}
-
 			// close relative
-			if (ctx.closeRelativeStatement() != null) {
+			else if (ctx.closeRelativeStatement() != null) {
 				result.addCloseRelativeStatement(ctx.closeRelativeStatement());
+				type = CloseFile.Type.Relative;
+			}
+			// close port io
+			else if (ctx.closePortFileIOStatement() != null) {
+				result.addClosePortFileIOStatement(ctx.closePortFileIOStatement());
+				type = CloseFile.Type.PortFileIO;
+			} else {
+				type = null;
 			}
 
-			// close port io
-			if (ctx.closePortFileIOStatement() != null) {
-				result.addClosePortFileIOStatement(ctx.closePortFileIOStatement());
-			}
+			result.setType(type);
 
 			closeFiles.add(result);
 			registerASGElement(result);
