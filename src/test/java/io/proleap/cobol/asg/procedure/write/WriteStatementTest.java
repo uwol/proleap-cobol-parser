@@ -12,6 +12,15 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
+import io.proleap.cobol.asg.metamodel.data.DataDivision;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.file.FileSection;
+import io.proleap.cobol.asg.metamodel.environment.EnvironmentDivision;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.InputOutputSection;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
+import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.write.Advancing;
@@ -31,6 +40,50 @@ public class WriteStatementTest extends CobolTestBase {
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("WriteStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
+
+		final FileControlEntry fileControlEntry;
+		final DataDescriptionEntry dataDescriptionEntry;
+
+		{
+			final EnvironmentDivision environmentDivision = programUnit.getEnvironmentDivision();
+
+			{
+				final InputOutputSection inputOutputSection = environmentDivision.getInputOutputSection();
+
+				{
+					final FileControlParagraph fileControlParagraph = inputOutputSection.getFileControlParagraph();
+
+					{
+						fileControlEntry = fileControlParagraph.getFileControlEntry("SOMEFILE1");
+						assertNotNull(fileControlEntry);
+						assertEquals(1, fileControlEntry.getCalls().size());
+					}
+				}
+			}
+		}
+
+		{
+			final DataDivision dataDivision = programUnit.getDataDivision();
+			assertNotNull(dataDivision);
+
+			{
+				final FileSection fileSection = dataDivision.getFileSection();
+				assertNotNull(fileSection);
+				assertEquals(1, fileSection.getFileDescriptionEntries().size());
+
+				{
+					final FileDescriptionEntry fileDescriptionEntry = fileSection.getFileDescriptionEntry("SOMEFILE1");
+					assertNotNull(fileDescriptionEntry);
+					assertEquals(fileControlEntry, fileDescriptionEntry.getFileControlEntry());
+
+					{
+						dataDescriptionEntry = fileDescriptionEntry.getDataDescriptionEntry("ITEMS");
+						assertNotNull(dataDescriptionEntry);
+					}
+				}
+			}
+		}
+
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(0, procedureDivision.getParagraphs().size());
 		assertEquals(1, procedureDivision.getStatements().size());
@@ -43,7 +96,10 @@ public class WriteStatementTest extends CobolTestBase {
 			{
 				final Call recordCall = writeStatement.getRecordCall();
 				assertNotNull(recordCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, recordCall.getCallType());
+				assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, recordCall.getCallType());
+
+				final DataDescriptionEntryCall dataDescriptionEntryCall = (DataDescriptionEntryCall) recordCall;
+				assertEquals(dataDescriptionEntry, dataDescriptionEntryCall.getDataDescriptionEntry());
 			}
 
 			{
