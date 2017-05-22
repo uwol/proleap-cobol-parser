@@ -2,6 +2,7 @@ package io.proleap.cobol.asg.procedure.gotostmt;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -13,7 +14,12 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
+import io.proleap.cobol.asg.metamodel.data.DataDivision;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer.DataDescriptionEntryContainerType;
+import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
@@ -33,8 +39,29 @@ public class GoToStatementTest extends CobolTestBase {
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("GoToStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
+		final DataDivision dataDivision = programUnit.getDataDivision();
+		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
+
+		assertEquals(1, workingStorageSection.getDataDescriptionEntries().size());
+		assertEquals(1, workingStorageSection.getRootDataDescriptionEntries().size());
+
+		assertEquals(DataDescriptionEntryContainerType.WORKING_STORAGE_SECTION,
+				workingStorageSection.getContainerType());
+
+		final DataDescriptionEntry dataDescriptionEntry;
+
+		{
+			dataDescriptionEntry = workingStorageSection.getDataDescriptionEntry("SOMEDATA1");
+
+			assertNotNull(dataDescriptionEntry);
+			assertEquals("SOMEDATA1", dataDescriptionEntry.getName());
+			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
+			assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
+			assertNull(dataDescriptionEntry.getParentDataDescriptionEntryGroup());
+		}
+
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
-		assertEquals(3, procedureDivision.getParagraphs().size());
+		assertEquals(5, procedureDivision.getParagraphs().size());
 		assertEquals(0, procedureDivision.getStatements().size());
 
 		final Paragraph paragraph1 = procedureDivision.getParagraph("SOMEPROC1");
@@ -46,8 +73,14 @@ public class GoToStatementTest extends CobolTestBase {
 		final Paragraph paragraph3 = procedureDivision.getParagraph("SOMEPROC3");
 		assertNotNull(paragraph3);
 
+		final Paragraph paragraph4 = procedureDivision.getParagraph("SOMEPROC4");
+		assertNotNull(paragraph4);
+
+		final Paragraph paragraph5 = procedureDivision.getParagraph("SOMEPROC5");
+		assertNotNull(paragraph5);
+
 		{
-			assertEquals(3, paragraph1.getStatements().size());
+			assertEquals(1, paragraph1.getStatements().size());
 
 			{
 				final GoToStatement statement = (GoToStatement) paragraph1.getStatements().get(0);
@@ -61,33 +94,27 @@ public class GoToStatementTest extends CobolTestBase {
 
 					{
 						final ProcedureCall procedureCall = (ProcedureCall) simple.getProcedureCall();
-						assertEquals(paragraph1, procedureCall.getParagraph());
+						assertEquals(paragraph2, procedureCall.getParagraph());
 					}
 				}
 			}
+		}
+
+		{
+			assertEquals(1, paragraph2.getStatements().size());
 
 			{
-				final GoToStatement statement = (GoToStatement) paragraph1.getStatements().get(1);
+				final GoToStatement statement = (GoToStatement) paragraph2.getStatements().get(0);
 				assertNotNull(statement);
 				assertEquals(StatementTypeEnum.GO_TO, statement.getStatementType());
 				assertEquals(GoToStatement.Type.DEPENDING_ON, statement.getType());
 
 				{
 					final DependingOn dependingOn = statement.getDependingOn();
-					assertEquals(2, dependingOn.getProcedureCalls().size());
+					assertEquals(3, dependingOn.getProcedureCalls().size());
 
 					{
 						final Call call = dependingOn.getProcedureCalls().get(0);
-						assertEquals(Call.CallType.PROCEDURE_CALL, call.getCallType());
-
-						{
-							final ProcedureCall procedureCall = (ProcedureCall) call;
-							assertEquals(paragraph2, procedureCall.getParagraph());
-						}
-					}
-
-					{
-						final Call call = dependingOn.getProcedureCalls().get(1);
 						assertEquals(Call.CallType.PROCEDURE_CALL, call.getCallType());
 
 						{
@@ -97,31 +124,33 @@ public class GoToStatementTest extends CobolTestBase {
 					}
 
 					{
+						final Call call = dependingOn.getProcedureCalls().get(1);
+						assertEquals(Call.CallType.PROCEDURE_CALL, call.getCallType());
+
+						{
+							final ProcedureCall procedureCall = (ProcedureCall) call;
+							assertEquals(paragraph4, procedureCall.getParagraph());
+						}
+					}
+
+					{
+						final Call call = dependingOn.getProcedureCalls().get(2);
+						assertEquals(Call.CallType.PROCEDURE_CALL, call.getCallType());
+
+						{
+							final ProcedureCall procedureCall = (ProcedureCall) call;
+							assertEquals(paragraph5, procedureCall.getParagraph());
+						}
+					}
+
+					{
 						final Call dependingOnCall = dependingOn.getDependingOnCall();
-						assertEquals(Call.CallType.UNDEFINED_CALL, dependingOnCall.getCallType());
+						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, dependingOnCall.getCallType());
+
+						final DataDescriptionEntryCall dataDescriptionEntryCall = (DataDescriptionEntryCall) dependingOnCall;
+						assertEquals(dataDescriptionEntry, dataDescriptionEntryCall.getDataDescriptionEntry());
 					}
 				}
-			}
-
-			{
-				final GoToStatement statement = (GoToStatement) paragraph1.getStatements().get(2);
-				assertNotNull(statement);
-				assertEquals(StatementTypeEnum.GO_TO, statement.getStatementType());
-				assertEquals(GoToStatement.Type.DEPENDING_ON, statement.getType());
-
-				{
-					final DependingOn dependingOn = statement.getDependingOn();
-					assertTrue(dependingOn.isMoreLabels());
-				}
-			}
-		}
-
-		{
-			assertEquals(1, paragraph2.getStatements().size());
-
-			{
-				final Statement statement = paragraph2.getStatements().get(0);
-				assertEquals(StatementTypeEnum.DISPLAY, statement.getStatementType());
 			}
 		}
 
@@ -131,6 +160,31 @@ public class GoToStatementTest extends CobolTestBase {
 			{
 				final Statement statement = paragraph3.getStatements().get(0);
 				assertEquals(StatementTypeEnum.DISPLAY, statement.getStatementType());
+			}
+		}
+
+		{
+			assertEquals(1, paragraph4.getStatements().size());
+
+			{
+				final Statement statement = paragraph4.getStatements().get(0);
+				assertEquals(StatementTypeEnum.DISPLAY, statement.getStatementType());
+			}
+		}
+
+		{
+			assertEquals(1, paragraph5.getStatements().size());
+
+			{
+				final GoToStatement statement = (GoToStatement) paragraph5.getStatements().get(0);
+				assertNotNull(statement);
+				assertEquals(StatementTypeEnum.GO_TO, statement.getStatementType());
+				assertEquals(GoToStatement.Type.DEPENDING_ON, statement.getType());
+
+				{
+					final DependingOn dependingOn = statement.getDependingOn();
+					assertTrue(dependingOn.isMoreLabels());
+				}
 			}
 		}
 	}

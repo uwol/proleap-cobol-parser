@@ -13,6 +13,11 @@ import java.util.List;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 
+/**
+ * Causes transfer of control depend on the call returning 1, 2 etc. If the
+ * value is anything other no transfer occurs and control passes to the next
+ * statement.
+ */
 public interface DependingOn extends CobolDivisionElement {
 
 	void addProcedureCall(Call procedureCall);
