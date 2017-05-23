@@ -3,6 +3,7 @@ package io.proleap.cobol.asg.procedure.perform;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -13,10 +14,14 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
+import io.proleap.cobol.asg.metamodel.procedure.perform.PerformProcedureStatement;
+import io.proleap.cobol.asg.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -43,11 +48,66 @@ public class PerformProcedureThroughTest extends CobolTestBase {
 			{
 				final Statement statement = paragraph.getStatements().get(0);
 				assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
+
+				final PerformStatement performStatement = (PerformStatement) statement;
+				assertEquals(PerformStatement.Type.PROCEDURE, performStatement.getType());
+
+				{
+					final PerformProcedureStatement performProcedureStatement = performStatement
+							.getPerformProcedureStatement();
+					assertNull(performProcedureStatement.getPerformType());
+
+					assertEquals(3, performProcedureStatement.getCalls().size());
+
+					{
+						final Call call = performProcedureStatement.getCalls().get(0);
+						final ProcedureCall procedureCall = (ProcedureCall) call;
+
+						assertNotNull(procedureCall.getParagraph());
+						assertEquals(procedureDivision.getParagraph("PROC2"), procedureCall.getParagraph());
+					}
+
+					{
+						final Call call = performProcedureStatement.getCalls().get(1);
+						final ProcedureCall procedureCall = (ProcedureCall) call;
+
+						assertNotNull(procedureCall.getParagraph());
+						// yes, has to be 3, not 4!
+						assertEquals(procedureDivision.getParagraph("PROC3"), procedureCall.getParagraph());
+					}
+
+					{
+						final Call call = performProcedureStatement.getCalls().get(2);
+						final ProcedureCall procedureCall = (ProcedureCall) call;
+
+						assertNotNull(procedureCall.getParagraph());
+						assertEquals(procedureDivision.getParagraph("PROC4"), procedureCall.getParagraph());
+					}
+				}
 			}
 
 			{
 				final Statement statement = paragraph.getStatements().get(1);
 				assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
+
+				final PerformStatement performStatement = (PerformStatement) statement;
+				assertEquals(PerformStatement.Type.PROCEDURE, performStatement.getType());
+
+				{
+					final PerformProcedureStatement performProcedureStatement = performStatement
+							.getPerformProcedureStatement();
+					assertNull(performProcedureStatement.getPerformType());
+
+					assertEquals(1, performProcedureStatement.getCalls().size());
+
+					{
+						final Call call = performProcedureStatement.getCalls().get(0);
+						final ProcedureCall procedureCall = (ProcedureCall) call;
+
+						assertNotNull(procedureCall.getParagraph());
+						assertEquals(procedureDivision.getParagraph("PROC3"), procedureCall.getParagraph());
+					}
+				}
 			}
 
 			{

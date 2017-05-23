@@ -125,10 +125,10 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 
 				if (procedureNames.size() > 1) {
 					final Call lastCall = createCall(procedureNames.get(1));
-					result.addCall(lastCall);
-
 					final List<Call> callsThrough = addCallsThrough(firstCall, lastCall, ctx);
+
 					result.addCalls(callsThrough);
+					result.addCall(lastCall);
 				}
 			}
 
