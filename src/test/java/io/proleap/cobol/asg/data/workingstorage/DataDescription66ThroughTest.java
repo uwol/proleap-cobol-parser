@@ -14,19 +14,21 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryRename;
+import io.proleap.cobol.asg.metamodel.data.datadescription.RenamesClause;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class DataDescription66Test extends CobolTestBase {
+public class DataDescription66ThroughTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/data/workingstorage/DataDescription66.cbl");
+				"src/test/resources/io/proleap/cobol/asg/data/workingstorage/DataDescription66Through.cbl");
 		final Program program = new CobolParserRunnerImpl().analyzeFile(inputFile, CobolSourceFormatEnum.TANDEM);
 
-		final CompilationUnit compilationUnit = program.getCompilationUnit("DataDescription66");
+		final CompilationUnit compilationUnit = program.getCompilationUnit("DataDescription66Through");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
@@ -91,9 +93,17 @@ public class DataDescription66Test extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntryItemz);
 			assertEquals("ITEMZ", dataDescriptionEntryItemz.getName());
-			assertEquals(DataDescriptionEntry.Type.RENAME, dataDescriptionEntryItemz.getType());
 			assertEquals(new Integer(66), dataDescriptionEntryItemz.getLevelNumber());
 			assertNull(dataDescriptionEntryItemz.getParentDataDescriptionEntryGroup());
+
+			final DataDescriptionEntryRename dataDescriptionEntryItemzRename = (DataDescriptionEntryRename) dataDescriptionEntryItemz;
+			assertEquals(DataDescriptionEntry.Type.RENAME, dataDescriptionEntryItemz.getType());
+
+			{
+				final RenamesClause renamesClause = dataDescriptionEntryItemzRename.getRenamesClause();
+				assertNotNull(renamesClause.getFrom());
+				assertNotNull(renamesClause.getTo());
+			}
 		}
 	}
 }
