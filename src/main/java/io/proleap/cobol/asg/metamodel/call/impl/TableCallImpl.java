@@ -15,6 +15,7 @@ import io.proleap.cobol.Cobol85Parser.SubscriptContext;
 import io.proleap.cobol.Cobol85Parser.TableCallContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.TableCall;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.SubscriptImpl;
@@ -25,12 +26,16 @@ public class TableCallImpl extends CallImpl implements TableCall {
 
 	protected final TableCallContext ctx;
 
+	protected DataDescriptionEntry dataDescriptionEntry;
+
 	protected List<Subscript> subscripts = new ArrayList<Subscript>();
 
-	public TableCallImpl(final String name, final ProgramUnit programUnit, final TableCallContext ctx) {
+	public TableCallImpl(final String name, final DataDescriptionEntry dataDescriptionEntry,
+			final ProgramUnit programUnit, final TableCallContext ctx) {
 		super(name, programUnit, ctx);
 
 		this.ctx = ctx;
+		this.dataDescriptionEntry = dataDescriptionEntry;
 	}
 
 	@Override
@@ -62,8 +67,12 @@ public class TableCallImpl extends CallImpl implements TableCall {
 	}
 
 	@Override
+	public DataDescriptionEntry getDataDescriptionEntry() {
+		return dataDescriptionEntry;
+	}
+
+	@Override
 	public List<Subscript> getSubscripts() {
 		return subscripts;
 	}
-
 }

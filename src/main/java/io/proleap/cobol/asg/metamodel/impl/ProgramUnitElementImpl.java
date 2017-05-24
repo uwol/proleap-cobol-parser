@@ -534,17 +534,25 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final TableCallContext ctx) {
-		TableCall result = (TableCall) getASGElement(ctx);
+		Call result = (TableCall) getASGElement(ctx);
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			result = new TableCallImpl(name, programUnit, ctx);
+			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
 
-			for (final SubscriptContext subscriptContext : ctx.subscript()) {
-				result.addSubscript(subscriptContext);
+			if (dataDescriptionEntry != null) {
+				final TableCall tableCall = new TableCallImpl(name, dataDescriptionEntry, programUnit, ctx);
+
+				for (final SubscriptContext subscriptContext : ctx.subscript()) {
+					tableCall.addSubscript(subscriptContext);
+				}
+
+				result = tableCall;
+				registerASGElement(result);
+			} else {
+				LOG.warn("call to unknown data element {}", name);
+				result = createUndefinedCall(ctx);
 			}
-
-			registerASGElement(result);
 		}
 
 		return result;
