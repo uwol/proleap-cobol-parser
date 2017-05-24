@@ -39,17 +39,17 @@ public class VaryingImpl extends CobolDivisionElementImpl implements Varying {
 		if (result == null) {
 			result = new TestClauseImpl(programUnit, ctx);
 
-			final TestClause.Type type;
+			final TestClause.TestClauseType type;
 
 			if (ctx.BEFORE() != null) {
-				type = TestClause.Type.BEFORE;
+				type = TestClause.TestClauseType.BEFORE;
 			} else if (ctx.AFTER() != null) {
-				type = TestClause.Type.AFTER;
+				type = TestClause.TestClauseType.AFTER;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setTestClauseType(type);
 
 			testClause = result;
 			registerASGElement(result);

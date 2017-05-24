@@ -12,11 +12,11 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface DefaultDisplaySignClause extends CobolDivisionElement {
 
-	enum Type {
+	enum DefaultDisplaySignClauseType {
 		LEADING, TRAILING
 	}
 
-	Type getType();
+	DefaultDisplaySignClauseType getDefaultDisplaySignClauseType();
 
-	void setType(Type type);
+	void setDefaultDisplaySignClauseType(DefaultDisplaySignClauseType defaultDisplaySignClauseType);
 }

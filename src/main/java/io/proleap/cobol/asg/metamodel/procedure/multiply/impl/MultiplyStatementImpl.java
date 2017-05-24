@@ -31,6 +31,8 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 
 	protected Giving giving;
 
+	protected MultiplyType multiplyType;
+
 	protected NotOnSizeError notOnSizeError;
 
 	protected OnSizeError onSizeError;
@@ -40,8 +42,6 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 	protected Regular regular;
 
 	protected final StatementType statementType = StatementTypeEnum.MULTIPLY;
-
-	protected Type type;
 
 	public MultiplyStatementImpl(final ProgramUnit programUnit, final Scope scope, final MultiplyStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -95,6 +95,11 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 	}
 
 	@Override
+	public MultiplyType getMultiplyType() {
+		return multiplyType;
+	}
+
+	@Override
 	public NotOnSizeError getNotOnSizeError() {
 		return notOnSizeError;
 	}
@@ -120,8 +125,8 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public void setMultiplyType(final MultiplyType multiplyType) {
+		this.multiplyType = multiplyType;
 	}
 
 	@Override
@@ -137,11 +142,6 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 	@Override
 	public void setOperandValueStmt(final ValueStmt operandValueStmt) {
 		this.operandValueStmt = operandValueStmt;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

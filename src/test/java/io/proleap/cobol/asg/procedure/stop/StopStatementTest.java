@@ -34,14 +34,14 @@ public class StopStatementTest extends CobolTestBase {
 			final StopStatement stopStatement = (StopStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(stopStatement);
 			assertEquals(StatementTypeEnum.STOP, stopStatement.getStatementType());
-			assertEquals(StopStatement.Type.STOP_RUN, stopStatement.getType());
+			assertEquals(StopStatement.StopType.STOP_RUN, stopStatement.getStopType());
 		}
 
 		{
 			final StopStatement stopStatement = (StopStatement) procedureDivision.getStatements().get(1);
 			assertNotNull(stopStatement);
 			assertEquals(StatementTypeEnum.STOP, stopStatement.getStatementType());
-			assertEquals(StopStatement.Type.STOP_RUN_AND_DISPLAY, stopStatement.getType());
+			assertEquals(StopStatement.StopType.STOP_RUN_AND_DISPLAY, stopStatement.getStopType());
 			assertNotNull(stopStatement.getDisplayValueStmt());
 			assertEquals("someliteral", stopStatement.getDisplayValueStmt().getValue());
 		}

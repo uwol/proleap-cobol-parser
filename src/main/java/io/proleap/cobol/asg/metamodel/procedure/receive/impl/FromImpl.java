@@ -18,9 +18,9 @@ public class FromImpl extends CobolDivisionElementImpl implements From {
 
 	protected final ReceiveFromContext ctx;
 
-	protected Call threadCall;
+	protected FromType fromType;
 
-	protected Type type;
+	protected Call threadCall;
 
 	public FromImpl(final ProgramUnit programUnit, final ReceiveFromContext ctx) {
 		super(programUnit, ctx);
@@ -29,23 +29,23 @@ public class FromImpl extends CobolDivisionElementImpl implements From {
 	}
 
 	@Override
+	public FromType getFromType() {
+		return fromType;
+	}
+
+	@Override
 	public Call getThreadCall() {
 		return threadCall;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public void setFromType(final FromType fromType) {
+		this.fromType = fromType;
 	}
 
 	@Override
 	public void setThreadCall(final Call threadCall) {
 		this.threadCall = threadCall;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

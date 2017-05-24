@@ -34,25 +34,25 @@ public class PerformInlineStatementImpl extends ScopeImpl implements PerformInli
 		if (result == null) {
 			result = new PerformTypeImpl(programUnit, ctx);
 
-			final PerformType.Type type;
+			final PerformType.PerformTypeType type;
 
 			if (ctx.performTimes() != null) {
-				type = PerformType.Type.TIMES;
+				type = PerformType.PerformTypeType.TIMES;
 
 				result.addTimes(ctx.performTimes());
 			} else if (ctx.performUntil() != null) {
-				type = PerformType.Type.UNTIL;
+				type = PerformType.PerformTypeType.UNTIL;
 
 				result.addUntil(ctx.performUntil());
 			} else if (ctx.performVarying() != null) {
-				type = PerformType.Type.VARYING;
+				type = PerformType.PerformTypeType.VARYING;
 
 				result.addVarying(ctx.performVarying());
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setPerformTypeType(type);
 
 			performType = result;
 			registerASGElement(result);

@@ -46,7 +46,7 @@ public class InspectTallyingReplacingStatementTest extends CobolTestBase {
 			final InspectStatement inspectStatement = (InspectStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(inspectStatement);
 			assertEquals(StatementTypeEnum.INSPECT, inspectStatement.getStatementType());
-			assertEquals(InspectStatement.Type.TALLYING_REPLACING, inspectStatement.getType());
+			assertEquals(InspectStatement.InspectType.TALLYING_REPLACING, inspectStatement.getInspectType());
 
 			{
 				final TallyingReplacing tallyingReplacing = inspectStatement.getTallyingReplacing();
@@ -66,13 +66,13 @@ public class InspectTallyingReplacingStatementTest extends CobolTestBase {
 
 						{
 							final BeforeAfter beforeAfter = characters.getBeforeAfters().get(0);
-							assertEquals(BeforeAfter.Type.AFTER, beforeAfter.getType());
+							assertEquals(BeforeAfter.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
 						}
 					}
 
 					{
 						final AllLeadings allLeadings = for1.getAllLeadings().get(0);
-						assertEquals(AllLeadings.Type.ALL, allLeadings.getType());
+						assertEquals(AllLeadings.AllLeadingsType.ALL, allLeadings.getAllLeadingsType());
 						assertEquals(1, allLeadings.getAllLeadings().size());
 
 						{
@@ -84,7 +84,7 @@ public class InspectTallyingReplacingStatementTest extends CobolTestBase {
 
 							{
 								final BeforeAfter beforeAfter = allLeading.getBeforeAfters().get(0);
-								assertEquals(BeforeAfter.Type.BEFORE, beforeAfter.getType());
+								assertEquals(BeforeAfter.BeforeAfterType.BEFORE, beforeAfter.getBeforeAfterType());
 							}
 						}
 					}
@@ -99,13 +99,13 @@ public class InspectTallyingReplacingStatementTest extends CobolTestBase {
 
 						{
 							final BeforeAfter beforeAfter = characters.getBeforeAfters().get(0);
-							assertEquals(BeforeAfter.Type.AFTER, beforeAfter.getType());
+							assertEquals(BeforeAfter.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
 						}
 					}
 
 					{
 						final ReplacingAllLeadings allLeadings = replacing.getAllLeadings().get(0);
-						assertEquals(ReplacingAllLeadings.Type.FIRST, allLeadings.getType());
+						assertEquals(ReplacingAllLeadings.ReplacingAllLeadingsType.FIRST, allLeadings.getReplacingAllLeadingsType());
 						assertEquals(1, allLeadings.getAllLeadings().size());
 
 						{
@@ -117,7 +117,7 @@ public class InspectTallyingReplacingStatementTest extends CobolTestBase {
 
 							{
 								final BeforeAfter beforeAfter = allLeading.getBeforeAfters().get(0);
-								assertEquals(BeforeAfter.Type.BEFORE, beforeAfter.getType());
+								assertEquals(BeforeAfter.BeforeAfterType.BEFORE, beforeAfter.getBeforeAfterType());
 							}
 						}
 					}

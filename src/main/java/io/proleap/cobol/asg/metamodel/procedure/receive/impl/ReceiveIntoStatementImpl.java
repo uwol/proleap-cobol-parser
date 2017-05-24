@@ -29,7 +29,7 @@ public class ReceiveIntoStatementImpl extends CobolDivisionElementImpl implement
 
 	protected NoData noData;
 
-	protected Type type;
+	protected ReceiveIntoType receiveIntoType;
 
 	protected WithData withData;
 
@@ -91,8 +91,8 @@ public class ReceiveIntoStatementImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public ReceiveIntoType getReceiveIntoType() {
+		return receiveIntoType;
 	}
 
 	@Override
@@ -111,8 +111,8 @@ public class ReceiveIntoStatementImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setReceiveIntoType(final ReceiveIntoType receiveIntoType) {
+		this.receiveIntoType = receiveIntoType;
 	}
 
 }

@@ -45,7 +45,7 @@ public class ReceiveFromStatementTest extends CobolTestBase {
 			final ReceiveStatement receiveStatement = (ReceiveStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(receiveStatement);
 			assertEquals(StatementTypeEnum.RECEIVE, receiveStatement.getStatementType());
-			assertEquals(ReceiveStatement.Type.FROM, receiveStatement.getType());
+			assertEquals(ReceiveStatement.ReceiveType.FROM, receiveStatement.getReceiveType());
 			assertNotNull(receiveStatement.getReceiveFromStatement());
 
 			{
@@ -61,7 +61,7 @@ public class ReceiveFromStatementTest extends CobolTestBase {
 					final From from = receiveFromStatement.getFrom();
 
 					{
-						assertEquals(From.Type.THREAD, from.getType());
+						assertEquals(From.FromType.THREAD, from.getFromType());
 					}
 
 					{

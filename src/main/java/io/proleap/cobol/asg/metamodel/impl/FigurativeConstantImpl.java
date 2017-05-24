@@ -17,15 +17,16 @@ public class FigurativeConstantImpl extends CobolDivisionElementImpl implements 
 
 	protected final FigurativeConstantContext ctx;
 
+	protected final FigurativeConstantType figurativeConstantType;
+
 	protected Literal literal;
 
-	protected final Type type;
-
-	public FigurativeConstantImpl(final Type type, final ProgramUnit programUnit, final FigurativeConstantContext ctx) {
+	public FigurativeConstantImpl(final FigurativeConstantType figurativeConstantType, final ProgramUnit programUnit,
+			final FigurativeConstantContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
-		this.type = type;
+		this.figurativeConstantType = figurativeConstantType;
 	}
 
 	@Override
@@ -34,13 +35,13 @@ public class FigurativeConstantImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
-	public Literal getLiteral() {
-		return literal;
+	public FigurativeConstantType getFigurativeConstantType() {
+		return figurativeConstantType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public Literal getLiteral() {
+		return literal;
 	}
 
 	@Override
@@ -50,6 +51,6 @@ public class FigurativeConstantImpl extends CobolDivisionElementImpl implements 
 
 	@Override
 	public String toString() {
-		return super.toString() + ", type=[" + type + "]";
+		return super.toString() + ", figurativeConstantType=[" + figurativeConstantType + "]";
 	}
 }

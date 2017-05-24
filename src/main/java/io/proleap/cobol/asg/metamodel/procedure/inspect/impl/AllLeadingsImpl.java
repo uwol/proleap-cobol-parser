@@ -23,9 +23,9 @@ public class AllLeadingsImpl extends InspectPhraseImpl implements AllLeadings {
 
 	protected List<AllLeading> allLeadings = new ArrayList<AllLeading>();
 
-	protected final InspectAllLeadingsContext ctx;
+	protected AllLeadingsType allLeadingsType;
 
-	protected Type type;
+	protected final InspectAllLeadingsContext ctx;
 
 	public AllLeadingsImpl(final ProgramUnit programUnit, final InspectAllLeadingsContext ctx) {
 		super(programUnit, ctx);
@@ -62,13 +62,13 @@ public class AllLeadingsImpl extends InspectPhraseImpl implements AllLeadings {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public AllLeadingsType getAllLeadingsType() {
+		return allLeadingsType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setAllLeadingsType(final AllLeadingsType allLeadingsType) {
+		this.allLeadingsType = allLeadingsType;
 	}
 
 }

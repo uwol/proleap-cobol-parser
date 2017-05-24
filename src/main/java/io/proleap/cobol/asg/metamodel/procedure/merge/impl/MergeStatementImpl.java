@@ -115,12 +115,12 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 			result = new OnKeyImpl(programUnit, ctx);
 
 			// type
-			final OnKey.Type type;
+			final OnKey.OnKeyType type;
 
 			if (ctx.ASCENDING() != null) {
-				type = OnKey.Type.ASCENDING;
+				type = OnKey.OnKeyType.ASCENDING;
 			} else if (ctx.DESCENDING() != null) {
-				type = OnKey.Type.DESCENDING;
+				type = OnKey.OnKeyType.DESCENDING;
 			} else {
 				type = null;
 			}
@@ -131,7 +131,7 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 				result.adKeyCall(keyCall);
 			}
 
-			result.setType(type);
+			result.setOnKeyType(type);
 
 			onKeys.add(result);
 			registerASGElement(result);

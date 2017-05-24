@@ -20,7 +20,7 @@ public class SymbolicSubQueueClauseImpl extends CobolDivisionElementImpl impleme
 
 	protected Call dataDescCall;
 
-	protected Type type;
+	protected SymbolicSubQueueClauseType symbolicSubQueueClauseType;
 
 	public SymbolicSubQueueClauseImpl(final ProgramUnit programUnit, final SymbolicSubQueueClauseContext ctx) {
 		super(programUnit, ctx);
@@ -34,8 +34,8 @@ public class SymbolicSubQueueClauseImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public SymbolicSubQueueClauseType getSymbolicSubQueueClauseType() {
+		return symbolicSubQueueClauseType;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class SymbolicSubQueueClauseImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setSymbolicSubQueueClauseType(final SymbolicSubQueueClauseType symbolicSubQueueClauseType) {
+		this.symbolicSubQueueClauseType = symbolicSubQueueClauseType;
 	}
 
 }

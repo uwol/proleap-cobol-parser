@@ -13,13 +13,13 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface AlphabetClause extends CobolDivisionElement {
 
-	enum Type {
+	enum AlphabetClauseType {
 		ALPHANUMERIC, NATIONAL
 	}
 
 	Call getAlphabetCall();
 
-	Type getType();
+	AlphabetClauseType getAlphabetClauseType();
 
 	void setAlphabetCall(Call alphabetCall);
 

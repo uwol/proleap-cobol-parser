@@ -43,17 +43,17 @@ public class OpenInputImpl extends CobolDivisionElementImpl implements OpenInput
 			result.setFileCall(fileCall);
 
 			// type
-			final Input.Type type;
+			final Input.InputType type;
 
 			if (ctx.REVERSED() != null) {
-				type = Input.Type.REVERSED;
+				type = Input.InputType.REVERSED;
 			} else if (ctx.REWIND() != null) {
-				type = Input.Type.NO_REWIND;
+				type = Input.InputType.NO_REWIND;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setInputType(type);
 
 			inputs.add(result);
 			registerASGElement(result);

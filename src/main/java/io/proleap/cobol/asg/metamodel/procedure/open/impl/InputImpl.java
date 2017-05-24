@@ -20,7 +20,7 @@ public class InputImpl extends CobolDivisionElementImpl implements Input {
 
 	protected Call fileCall;
 
-	protected Type type;
+	protected InputType inputType;
 
 	public InputImpl(final ProgramUnit programUnit, final OpenInputContext ctx) {
 		super(programUnit, ctx);
@@ -34,8 +34,8 @@ public class InputImpl extends CobolDivisionElementImpl implements Input {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public InputType getInputType() {
+		return inputType;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class InputImpl extends CobolDivisionElementImpl implements Input {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setInputType(final InputType inputType) {
+		this.inputType = inputType;
 	}
 
 }

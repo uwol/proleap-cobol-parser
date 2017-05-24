@@ -20,7 +20,7 @@ public class SignConditionImpl extends ValueStmtImpl implements SignCondition {
 
 	protected RelationSignConditionContext ctx;
 
-	protected Type type;
+	protected SignConditionType signConditionType;
 
 	public SignConditionImpl(final ProgramUnit programUnit, final RelationSignConditionContext ctx) {
 		super(programUnit, ctx);
@@ -32,8 +32,8 @@ public class SignConditionImpl extends ValueStmtImpl implements SignCondition {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public SignConditionType getSignConditionType() {
+		return signConditionType;
 	}
 
 	@Override
@@ -47,8 +47,8 @@ public class SignConditionImpl extends ValueStmtImpl implements SignCondition {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setSignConditionType(final SignConditionType signConditionType) {
+		this.signConditionType = signConditionType;
 	}
 
 }

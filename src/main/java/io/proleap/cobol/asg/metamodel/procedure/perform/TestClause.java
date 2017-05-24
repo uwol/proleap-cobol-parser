@@ -12,11 +12,11 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface TestClause extends CobolDivisionElement {
 
-	enum Type {
+	enum TestClauseType {
 		AFTER, BEFORE
 	}
 
-	Type getType();
+	TestClauseType getTestClauseType();
 
-	void setType(Type type);
+	void setTestClauseType(TestClauseType testClauseType);
 }

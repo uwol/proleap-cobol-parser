@@ -55,7 +55,7 @@ public class SpecialNamesTest extends CobolTestBase {
 			final ClassClause classClause = specialNamesParagraph.getClassClause();
 			assertNotNull(classClause);
 			assertNotNull(classClause.getClassCall());
-			assertEquals(ClassClause.Type.NATIONAL, classClause.getType());
+			assertEquals(ClassClause.ClassClauseType.NATIONAL, classClause.getClassClauseType());
 
 			assertEquals(2, classClause.getClassThroughs().size());
 
@@ -96,7 +96,7 @@ public class SpecialNamesTest extends CobolTestBase {
 			final DefaultDisplaySignClause defaultDisplaySignClause = specialNamesParagraph
 					.getDefaultDisplaySignClause();
 			assertNotNull(defaultDisplaySignClause);
-			assertEquals(DefaultDisplaySignClause.Type.TRAILING, defaultDisplaySignClause.getType());
+			assertEquals(DefaultDisplaySignClause.DefaultDisplaySignClauseType.TRAILING, defaultDisplaySignClause.getDefaultDisplaySignClauseType());
 		}
 
 		{
@@ -114,7 +114,7 @@ public class SpecialNamesTest extends CobolTestBase {
 			final SymbolicCharactersClause symbolicCharactersClause = specialNamesParagraph
 					.getSymbolicCharactersClause();
 			assertNotNull(symbolicCharactersClause);
-			assertEquals(SymbolicCharactersClause.Type.NATIONAL, symbolicCharactersClause.getType());
+			assertEquals(SymbolicCharactersClause.SymbolicCharactersClauseType.NATIONAL, symbolicCharactersClause.getSymbolicCharactersClauseType());
 		}
 
 		{
@@ -123,38 +123,38 @@ public class SpecialNamesTest extends CobolTestBase {
 
 			{
 				final AlphabetClause alphabetClause = specialNamesParagraph.getAlphabetClauses().get(0);
-				assertEquals(AlphabetClause.Type.NATIONAL, alphabetClause.getType());
+				assertEquals(AlphabetClause.AlphabetClauseType.NATIONAL, alphabetClause.getAlphabetClauseType());
 				assertNotNull(alphabetClause.getAlphabetCall());
 
 				final AlphabetClauseNational alphabetClauseNational = (AlphabetClauseNational) alphabetClause;
 
-				assertEquals(AlphabetClauseNationalType.NATIVE, alphabetClauseNational.getAlphabetClauseType());
+				assertEquals(AlphabetClauseNationalType.NATIVE, alphabetClauseNational.getAlphabetClauseNationalType());
 			}
 
 			{
 				final AlphabetClause alphabetClause = specialNamesParagraph.getAlphabetClauses().get(1);
-				assertEquals(AlphabetClause.Type.NATIONAL, alphabetClause.getType());
+				assertEquals(AlphabetClause.AlphabetClauseType.NATIONAL, alphabetClause.getAlphabetClauseType());
 				assertNotNull(alphabetClause.getAlphabetCall());
 
 				final AlphabetClauseNational alphabetClauseNational = (AlphabetClauseNational) alphabetClause;
 
-				assertEquals(AlphabetClauseNationalType.CCS_VERSION, alphabetClauseNational.getAlphabetClauseType());
+				assertEquals(AlphabetClauseNationalType.CCS_VERSION, alphabetClauseNational.getAlphabetClauseNationalType());
 				assertEquals(123, alphabetClauseNational.getCcsVersion().getNumericLiteral().getValue());
 			}
 
 			{
 				final AlphabetClause alphabetClause = specialNamesParagraph.getAlphabetClauses().get(2);
-				assertEquals(AlphabetClause.Type.ALPHANUMERIC, alphabetClause.getType());
+				assertEquals(AlphabetClause.AlphabetClauseType.ALPHANUMERIC, alphabetClause.getAlphabetClauseType());
 				assertNotNull(alphabetClause.getAlphabetCall());
 
 				final AlphabetClauseAlphanumeric alphabetClauseAlphanumeric = (AlphabetClauseAlphanumeric) alphabetClause;
 
-				assertEquals(AlphabetClauseAlphanumericType.EBCDIC, alphabetClauseAlphanumeric.getAlphabetClauseType());
+				assertEquals(AlphabetClauseAlphanumericType.EBCDIC, alphabetClauseAlphanumeric.getAlphabetClauseAlphanumericType());
 			}
 
 			{
 				final AlphabetClause alphabetClause = specialNamesParagraph.getAlphabetClauses().get(3);
-				assertEquals(AlphabetClause.Type.ALPHANUMERIC, alphabetClause.getType());
+				assertEquals(AlphabetClause.AlphabetClauseType.ALPHANUMERIC, alphabetClause.getAlphabetClauseType());
 				assertNotNull(alphabetClause.getAlphabetCall());
 
 				final AlphabetClauseAlphanumeric alphabetClauseAlphanumeric = (AlphabetClauseAlphanumeric) alphabetClause;
@@ -164,7 +164,7 @@ public class SpecialNamesTest extends CobolTestBase {
 
 			{
 				final AlphabetClause alphabetClause = specialNamesParagraph.getAlphabetClauses().get(4);
-				assertEquals(AlphabetClause.Type.ALPHANUMERIC, alphabetClause.getType());
+				assertEquals(AlphabetClause.AlphabetClauseType.ALPHANUMERIC, alphabetClause.getAlphabetClauseType());
 				assertNotNull(alphabetClause.getAlphabetCall());
 
 				final AlphabetClauseAlphanumeric alphabetClauseAlphanumeric = (AlphabetClauseAlphanumeric) alphabetClause;

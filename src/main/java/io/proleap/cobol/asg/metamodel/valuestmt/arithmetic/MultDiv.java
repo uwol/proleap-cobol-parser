@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface MultDiv extends ValueStmt {
 
-	enum Type {
+	enum MultDivType {
 		DIV, MULT
 	}
 
@@ -21,8 +21,8 @@ public interface MultDiv extends ValueStmt {
 
 	Powers getPowers();
 
-	Type getType();
+	MultDivType getMultDivType();
 
-	void setType(Type type);
+	void setMultDivType(MultDivType multDivType);
 
 }

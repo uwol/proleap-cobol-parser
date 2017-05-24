@@ -19,7 +19,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface SendStatement extends Statement {
 
-	enum Type {
+	enum SendType {
 		ASYNC, SYNC
 	}
 
@@ -33,13 +33,13 @@ public interface SendStatement extends Statement {
 
 	OnException getOnException();
 
-	Sync getSync();
+	SendType getSendType();
 
-	Type getType();
+	Sync getSync();
 
 	void setNotOnException(NotOnException notOnException);
 
 	void setOnException(OnException onException);
 
-	void setType(Type type);
+	void setSendType(SendType sendType);
 }

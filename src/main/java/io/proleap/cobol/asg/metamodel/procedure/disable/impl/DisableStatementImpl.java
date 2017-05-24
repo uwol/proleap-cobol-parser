@@ -24,13 +24,13 @@ public class DisableStatementImpl extends StatementImpl implements DisableStatem
 
 	protected final DisableStatementContext ctx;
 
+	protected DisableType disableType;
+
 	protected ValueStmt keyValueStmt;
 
 	protected final StatementType statementType = StatementTypeEnum.DISABLE;
 
 	protected boolean terminal;
-
-	protected Type type;
 
 	public DisableStatementImpl(final ProgramUnit programUnit, final Scope scope, final DisableStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -44,6 +44,11 @@ public class DisableStatementImpl extends StatementImpl implements DisableStatem
 	}
 
 	@Override
+	public DisableType getDisableType() {
+		return disableType;
+	}
+
+	@Override
 	public ValueStmt getKeyValueStmt() {
 		return keyValueStmt;
 	}
@@ -51,11 +56,6 @@ public class DisableStatementImpl extends StatementImpl implements DisableStatem
 	@Override
 	public StatementType getStatementType() {
 		return statementType;
-	}
-
-	@Override
-	public Type getType() {
-		return type;
 	}
 
 	@Override
@@ -69,6 +69,11 @@ public class DisableStatementImpl extends StatementImpl implements DisableStatem
 	}
 
 	@Override
+	public void setDisableType(final DisableType disableType) {
+		this.disableType = disableType;
+	}
+
+	@Override
 	public void setKeyValueStmt(final ValueStmt keyValueStmt) {
 		this.keyValueStmt = keyValueStmt;
 	}
@@ -76,11 +81,6 @@ public class DisableStatementImpl extends StatementImpl implements DisableStatem
 	@Override
 	public void setTerminal(final boolean terminal) {
 		this.terminal = terminal;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

@@ -23,7 +23,7 @@ public class OnKeyImpl extends CobolDivisionElementImpl implements OnKey {
 
 	protected List<Call> keyCalls = new ArrayList<Call>();
 
-	protected Type type;
+	protected OnKeyType onKeyType;
 
 	public OnKeyImpl(final ProgramUnit programUnit, final MergeOnKeyClauseContext ctx) {
 		super(programUnit, ctx);
@@ -42,13 +42,13 @@ public class OnKeyImpl extends CobolDivisionElementImpl implements OnKey {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public OnKeyType getOnKeyType() {
+		return onKeyType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setOnKeyType(final OnKeyType onKeyType) {
+		this.onKeyType = onKeyType;
 	}
 
 }

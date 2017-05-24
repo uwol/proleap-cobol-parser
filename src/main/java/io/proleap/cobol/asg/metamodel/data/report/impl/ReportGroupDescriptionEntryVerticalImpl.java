@@ -44,22 +44,22 @@ public class ReportGroupDescriptionEntryVerticalImpl extends ReportGroupDescript
 			/*
 			 * type and integerLiteral
 			 */
-			final NextGroupClause.Type type;
+			final NextGroupClause.NextGroupClauseType type;
 			final IntegerLiteral integerLiteral;
 
 			if (ctx.reportGroupNextGroupNextPage() != null) {
-				type = NextGroupClause.Type.NEXT_PAGE;
+				type = NextGroupClause.NextGroupClauseType.NEXT_PAGE;
 				integerLiteral = null;
 			} else if (ctx.reportGroupNextGroupPlus() != null) {
-				type = NextGroupClause.Type.PLUS;
+				type = NextGroupClause.NextGroupClauseType.PLUS;
 				integerLiteral = createIntegerLiteral(ctx.reportGroupNextGroupPlus().integerLiteral());
 			} else {
-				type = NextGroupClause.Type.ABSOLUTE;
+				type = NextGroupClause.NextGroupClauseType.ABSOLUTE;
 				integerLiteral = createIntegerLiteral(ctx.integerLiteral());
 			}
 
 			result.setIntegerLiteral(integerLiteral);
-			result.setType(type);
+			result.setNextGroupClauseType(type);
 
 			nextGroupClause = result;
 			registerASGElement(result);
@@ -78,36 +78,36 @@ public class ReportGroupDescriptionEntryVerticalImpl extends ReportGroupDescript
 			/*
 			 * type and data
 			 */
-			final TypeClause.Type type;
+			final TypeClause.TypeClauseType type;
 			final Call dataCall;
 
 			if (ctx.reportGroupTypeReportHeading() != null) {
-				type = TypeClause.Type.REPORT_HEADING;
+				type = TypeClause.TypeClauseType.REPORT_HEADING;
 				dataCall = null;
 			} else if (ctx.reportGroupTypePageHeading() != null) {
-				type = TypeClause.Type.PAGE_HEADING;
+				type = TypeClause.TypeClauseType.PAGE_HEADING;
 				dataCall = null;
 			} else if (ctx.reportGroupTypeControlHeading() != null) {
-				type = TypeClause.Type.CONTROL_HEADING;
+				type = TypeClause.TypeClauseType.CONTROL_HEADING;
 				dataCall = createCall(ctx.reportGroupTypeControlHeading().dataName());
 			} else if (ctx.reportGroupTypeDetail() != null) {
-				type = TypeClause.Type.DETAIL;
+				type = TypeClause.TypeClauseType.DETAIL;
 				dataCall = null;
 			} else if (ctx.reportGroupTypeControlFooting() != null) {
-				type = TypeClause.Type.CONTROL_FOOTING;
+				type = TypeClause.TypeClauseType.CONTROL_FOOTING;
 				dataCall = createCall(ctx.reportGroupTypeControlFooting().dataName());
 			} else if (ctx.reportGroupTypePageFooting() != null) {
-				type = TypeClause.Type.PAGE_FOOTING;
+				type = TypeClause.TypeClauseType.PAGE_FOOTING;
 				dataCall = null;
 			} else if (ctx.reportGroupTypeReportFooting() != null) {
-				type = TypeClause.Type.REPORT_FOOTING;
+				type = TypeClause.TypeClauseType.REPORT_FOOTING;
 				dataCall = null;
 			} else {
 				type = null;
 				dataCall = null;
 			}
 
-			result.setType(type);
+			result.setTypeClauseType(type);
 			result.setDataCall(dataCall);
 
 			typeClause = result;
@@ -123,8 +123,8 @@ public class ReportGroupDescriptionEntryVerticalImpl extends ReportGroupDescript
 	}
 
 	@Override
-	public Type getType() {
-		return Type.VERTICAL;
+	public ReportGroupDescriptionEntryType getReportGroupDescriptionEntryType() {
+		return ReportGroupDescriptionEntryType.VERTICAL;
 	}
 
 	@Override

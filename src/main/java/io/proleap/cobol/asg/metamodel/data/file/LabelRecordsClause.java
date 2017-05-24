@@ -15,7 +15,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface LabelRecordsClause extends CobolDivisionElement {
 
-	enum Type {
+	enum LabelRecordsClauseType {
 		DATA_NAMES, OMITTED, STANDARD
 	}
 
@@ -23,7 +23,7 @@ public interface LabelRecordsClause extends CobolDivisionElement {
 
 	List<Call> getDataCalls();
 
-	Type getType();
+	LabelRecordsClauseType getLabelRecordsClauseType();
 
-	void setType(Type type);
+	void setLabelRecordsClauseType(LabelRecordsClauseType labelRecordsClauseType);
 }

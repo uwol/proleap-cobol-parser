@@ -44,7 +44,7 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 
 	protected SubtractFromGiving subtractFromGiving;
 
-	protected Type type;
+	protected SubtractType subtractType;
 
 	public SubtractStatementImpl(final ProgramUnit programUnit, final Scope scope, final SubtractStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -155,8 +155,8 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public SubtractType getSubtractType() {
+		return subtractType;
 	}
 
 	@Override
@@ -170,8 +170,8 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setSubtractType(final SubtractType subtractType) {
+		this.subtractType = subtractType;
 	}
 
 }

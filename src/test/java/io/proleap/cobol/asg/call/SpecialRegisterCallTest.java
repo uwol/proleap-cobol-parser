@@ -37,7 +37,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.ADDRESS_OF, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.ADDRESS_OF, specialRegisterCall.getSpecialRegisterType());
 			assertEquals(Call.CallType.UNDEFINED_CALL, specialRegisterCall.getIdentifierCall().getCallType());
 		}
 
@@ -49,7 +49,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.DATE, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.DATE, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -60,7 +60,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.DAY, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.DAY, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -71,7 +71,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.DAY_OF_WEEK, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.DAY_OF_WEEK, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -82,7 +82,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.DEBUG_CONTENTS, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.DEBUG_CONTENTS, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -93,7 +93,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.DEBUG_ITEM, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.DEBUG_ITEM, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -104,7 +104,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.DEBUG_LINE, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.DEBUG_LINE, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -115,7 +115,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.DEBUG_NAME, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.DEBUG_NAME, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -126,7 +126,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.DEBUG_SUB_1, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.DEBUG_SUB_1, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -137,7 +137,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.DEBUG_SUB_2, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.DEBUG_SUB_2, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -148,7 +148,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.DEBUG_SUB_3, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.DEBUG_SUB_3, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -159,7 +159,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.LENGTH_OF, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.LENGTH_OF, specialRegisterCall.getSpecialRegisterType());
 			assertEquals(Call.CallType.UNDEFINED_CALL, specialRegisterCall.getIdentifierCall().getCallType());
 		}
 
@@ -171,7 +171,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.LINAGE_COUNTER, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.LINAGE_COUNTER, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -182,7 +182,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.LINE_COUNTER, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.LINE_COUNTER, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -193,7 +193,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.PAGE_COUNTER, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.PAGE_COUNTER, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -204,7 +204,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.RETURN_CODE, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.RETURN_CODE, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -215,7 +215,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.SHIFT_IN, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.SHIFT_IN, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -226,7 +226,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.SHIFT_OUT, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.SHIFT_OUT, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -237,7 +237,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.SORT_CONTROL, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.SORT_CONTROL, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -248,7 +248,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.SORT_CORE_SIZE, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.SORT_CORE_SIZE, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -259,7 +259,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.SORT_FILE_SIZE, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.SORT_FILE_SIZE, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -270,7 +270,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.SORT_MESSAGE, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.SORT_MESSAGE, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -281,7 +281,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.SORT_MODE_SIZE, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.SORT_MODE_SIZE, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -292,7 +292,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.SORT_RETURN, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.SORT_RETURN, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -303,7 +303,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.TALLY, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.TALLY, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -314,7 +314,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.TIME, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.TIME, specialRegisterCall.getSpecialRegisterType());
 		}
 
 		{
@@ -325,7 +325,7 @@ public class SpecialRegisterCallTest extends CobolTestBase {
 			assertEquals(Call.CallType.SPECIAL_REGISTER_CALL, call.getCallType());
 
 			final SpecialRegisterCall specialRegisterCall = (SpecialRegisterCall) call.unwrap();
-			assertEquals(SpecialRegisterCall.Type.WHEN_COMPILED, specialRegisterCall.getType());
+			assertEquals(SpecialRegisterCall.SpecialRegisterType.WHEN_COMPILED, specialRegisterCall.getSpecialRegisterType());
 		}
 	}
 }

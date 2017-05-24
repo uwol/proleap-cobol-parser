@@ -13,15 +13,15 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface Async extends CobolDivisionElement {
 
-	enum Type {
+	enum AsyncType {
 		BOTTOM, TOP
 	}
 
+	AsyncType getAsyncType();
+
 	Call getDataDescriptionEntryCall();
 
-	Type getType();
+	void setAsyncType(AsyncType asyncType);
 
 	void setDataDescriptionEntryCall(Call dataDescriptionEntryCall);
-
-	void setType(Type type);
 }

@@ -32,7 +32,7 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 
 	protected final CallUsingParameterContext ctx;
 
-	protected Type type;
+	protected ParameterType parameterType;
 
 	public ParameterImpl(final ProgramUnit programUnit, final CallUsingParameterContext ctx) {
 		super(programUnit, ctx);
@@ -110,12 +110,12 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public ParameterType getParameterType() {
+		return parameterType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setParameterType(final ParameterType parameterType) {
+		this.parameterType = parameterType;
 	}
 }

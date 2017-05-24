@@ -15,7 +15,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface PerformType extends CobolDivisionElement {
 
-	enum Type {
+	enum PerformTypeType {
 		TIMES, UNTIL, VARYING
 	}
 
@@ -25,13 +25,13 @@ public interface PerformType extends CobolDivisionElement {
 
 	Varying addVarying(PerformVaryingContext ctx);
 
-	Times getTimes();
+	PerformTypeType getPerformTypeType();
 
-	Type getType();
+	Times getTimes();
 
 	Until getUntil();
 
 	Varying getVarying();
 
-	void setType(Type type);
+	void setPerformTypeType(PerformTypeType performTypeType);
 }

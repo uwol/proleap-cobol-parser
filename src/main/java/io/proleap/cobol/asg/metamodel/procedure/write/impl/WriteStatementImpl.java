@@ -62,21 +62,21 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 			result = new AdvancingImpl(programUnit, ctx);
 
 			// type
-			final Advancing.Type type;
+			final Advancing.AdvancingType type;
 
 			if (ctx.writeAdvancingPage() != null) {
-				type = Advancing.Type.PAGE;
+				type = Advancing.AdvancingType.PAGE;
 			} else if (ctx.writeAdvancingLines() != null) {
 				result.addAdvancingLines(ctx.writeAdvancingLines());
-				type = Advancing.Type.LINES;
+				type = Advancing.AdvancingType.LINES;
 			} else if (ctx.writeAdvancingMnemonic() != null) {
 				result.addAdvancingMnemonic(ctx.writeAdvancingMnemonic());
-				type = Advancing.Type.MNEMONIC;
+				type = Advancing.AdvancingType.MNEMONIC;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setAdvancingType(type);
 
 			// position type
 			final Advancing.PositionType positionType;

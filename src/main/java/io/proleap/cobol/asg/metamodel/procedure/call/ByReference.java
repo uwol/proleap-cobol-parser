@@ -13,15 +13,15 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface ByReference extends CobolDivisionElement {
 
-	enum Type {
+	enum ByReferenceType {
 		ADDRESS_OF, INTEGER, STRING
 	}
 
+	ByReferenceType getByReferenceType();
+
 	Call getCall();
 
-	Type getType();
+	void setByReferenceType(ByReferenceType byReferenceType);
 
 	void setCall(Call call);
-
-	void setType(Type type);
 }

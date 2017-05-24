@@ -178,7 +178,7 @@ public class OpenStatementTest extends CobolTestBase {
 
 					{
 						final Input input = openInput.getInputs().get(0);
-						assertEquals(Input.Type.NO_REWIND, input.getType());
+						assertEquals(Input.InputType.NO_REWIND, input.getInputType());
 
 						{
 							final Call call = input.getFileCall();
@@ -194,7 +194,7 @@ public class OpenStatementTest extends CobolTestBase {
 
 					{
 						final Input input = openInput.getInputs().get(1);
-						assertEquals(Input.Type.REVERSED, input.getType());
+						assertEquals(Input.InputType.REVERSED, input.getInputType());
 
 						{
 							final Call call = input.getFileCall();

@@ -152,6 +152,11 @@ public class CommunicationDescriptionEntryInputOutputImpl extends CommunicationD
 	}
 
 	@Override
+	public CommunicationDescriptionEntryType getCommunicationDescriptionEntryType() {
+		return CommunicationDescriptionEntryType.INPUT_OUTPUT;
+	}
+
+	@Override
 	public EndKeyClause getEndKeyClause() {
 		return endKeyClause;
 	}
@@ -179,11 +184,6 @@ public class CommunicationDescriptionEntryInputOutputImpl extends CommunicationD
 	@Override
 	public TextLengthClause getTextLengthClause() {
 		return textLengthClause;
-	}
-
-	@Override
-	public Type getType() {
-		return Type.INPUT_OUTPUT;
 	}
 
 }

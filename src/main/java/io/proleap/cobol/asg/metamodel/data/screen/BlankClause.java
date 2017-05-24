@@ -12,12 +12,12 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface BlankClause extends CobolDivisionElement {
 
-	enum Type {
+	enum BlankClauseType {
 		LINE, SCREEN
 	}
 
-	Type getType();
+	BlankClauseType getBlankClauseType();
 
-	void setType(Type type);
+	void setBlankClauseType(BlankClauseType blankClauseType);
 
 }

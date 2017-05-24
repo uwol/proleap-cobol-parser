@@ -19,7 +19,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface ReceiveStatement extends Statement {
 
-	enum Type {
+	enum ReceiveType {
 		FROM, INTO
 	}
 
@@ -35,12 +35,12 @@ public interface ReceiveStatement extends Statement {
 
 	ReceiveIntoStatement getReceiveIntoStatement();
 
-	Type getType();
+	ReceiveType getReceiveType();
 
 	void setNotOnException(NotOnException notOnException);
 
 	void setOnException(OnException onException);
 
-	void setType(Type type);
+	void setReceiveType(ReceiveType receiveType);
 
 }

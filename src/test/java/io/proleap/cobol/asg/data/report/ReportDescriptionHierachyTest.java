@@ -46,7 +46,7 @@ public class ReportDescriptionHierachyTest extends CobolTestBase {
 			{
 				final UsageClause usageClause = reportGroupDescriptionEntry.getUsageClause();
 				assertNotNull(usageClause);
-				assertEquals(UsageClause.Type.DISPLAY, usageClause.getType());
+				assertEquals(UsageClause.UsageClauseType.DISPLAY, usageClause.getUsageClauseType());
 			}
 
 			{
@@ -57,7 +57,7 @@ public class ReportDescriptionHierachyTest extends CobolTestBase {
 				{
 					final UsageClause usageClause = subReportGroupDescriptionEntry.getUsageClause();
 					assertNotNull(usageClause);
-					assertEquals(UsageClause.Type.DISPLAY, usageClause.getType());
+					assertEquals(UsageClause.UsageClauseType.DISPLAY, usageClause.getUsageClauseType());
 				}
 			}
 
@@ -69,7 +69,7 @@ public class ReportDescriptionHierachyTest extends CobolTestBase {
 				{
 					final UsageClause usageClause = subReportGroupDescriptionEntry.getUsageClause();
 					assertNotNull(usageClause);
-					assertEquals(UsageClause.Type.DISPLAY, usageClause.getType());
+					assertEquals(UsageClause.UsageClauseType.DISPLAY, usageClause.getUsageClauseType());
 				}
 			}
 		}
@@ -81,7 +81,7 @@ public class ReportDescriptionHierachyTest extends CobolTestBase {
 			{
 				final UsageClause usageClause = reportGroupDescriptionEntry.getUsageClause();
 				assertNotNull(usageClause);
-				assertEquals(UsageClause.Type.DISPLAY, usageClause.getType());
+				assertEquals(UsageClause.UsageClauseType.DISPLAY, usageClause.getUsageClauseType());
 			}
 		}
 	}

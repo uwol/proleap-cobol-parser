@@ -99,19 +99,19 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 			result = new WithImpl(programUnit, ctx);
 
 			// type
-			final With.Type type;
+			final With.WithType type;
 
 			if (ctx.KEPT() != null) {
-				type = With.Type.KEPT_LOCK;
+				type = With.WithType.KEPT_LOCK;
 			} else if (ctx.NO() != null) {
-				type = With.Type.NO_LOCK;
+				type = With.WithType.NO_LOCK;
 			} else if (ctx.WAIT() != null) {
-				type = With.Type.WAIT;
+				type = With.WithType.WAIT;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setWithType(type);
 
 			with = result;
 			registerASGElement(result);

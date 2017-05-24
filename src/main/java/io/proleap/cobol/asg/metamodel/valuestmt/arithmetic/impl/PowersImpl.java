@@ -29,7 +29,7 @@ public class PowersImpl extends ValueStmtImpl implements Powers {
 
 	protected List<Power> powers = new ArrayList<Power>();
 
-	protected Type type;
+	protected PowersType powersType;
 
 	public PowersImpl(final ProgramUnit programUnit, final PowersContext ctx) {
 		super(programUnit, ctx);
@@ -86,8 +86,8 @@ public class PowersImpl extends ValueStmtImpl implements Powers {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public PowersType getPowersType() {
+		return powersType;
 	}
 
 	@Override
@@ -96,8 +96,8 @@ public class PowersImpl extends ValueStmtImpl implements Powers {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setPowersType(final PowersType powersType) {
+		this.powersType = powersType;
 	}
 
 }

@@ -123,11 +123,11 @@ public class CloseStatementTest extends CobolTestBase {
 					}
 				}
 
-				assertEquals(CloseFile.Type.ReelUnit, closeFile.getType());
+				assertEquals(CloseFile.CloseFileType.ReelUnit, closeFile.getCloseFileType());
 
 				{
 					final CloseReelUnitStatement closeReelUnitStatement = closeFile.getCloseReelUnitStatement();
-					assertEquals(CloseReelUnitStatement.Type.UNIT, closeReelUnitStatement.getType());
+					assertEquals(CloseReelUnitStatement.CloseReelUnitType.UNIT, closeReelUnitStatement.getCloseReelUnitType());
 					assertTrue(closeReelUnitStatement.isForRemovel());
 					assertEquals(CloseReelUnitStatement.WithType.LOCK, closeReelUnitStatement.getWithType());
 				}
@@ -147,11 +147,11 @@ public class CloseStatementTest extends CobolTestBase {
 					}
 				}
 
-				assertEquals(CloseFile.Type.ReelUnit, closeFile.getType());
+				assertEquals(CloseFile.CloseFileType.ReelUnit, closeFile.getCloseFileType());
 
 				{
 					final CloseReelUnitStatement closeReelUnitStatement = closeFile.getCloseReelUnitStatement();
-					assertEquals(CloseReelUnitStatement.Type.REEL, closeReelUnitStatement.getType());
+					assertEquals(CloseReelUnitStatement.CloseReelUnitType.REEL, closeReelUnitStatement.getCloseReelUnitType());
 					assertFalse(closeReelUnitStatement.isForRemovel());
 				}
 			}
@@ -175,7 +175,7 @@ public class CloseStatementTest extends CobolTestBase {
 					}
 				}
 
-				assertEquals(CloseFile.Type.Relative, closeFile.getType());
+				assertEquals(CloseFile.CloseFileType.Relative, closeFile.getCloseFileType());
 
 				{
 					final CloseRelativeStatement closeRelativeStatement = closeFile.getCloseRelativeStatement();
@@ -202,7 +202,7 @@ public class CloseStatementTest extends CobolTestBase {
 					}
 				}
 
-				assertEquals(CloseFile.Type.PortFileIO, closeFile.getType());
+				assertEquals(CloseFile.CloseFileType.PortFileIO, closeFile.getCloseFileType());
 
 				{
 					final ClosePortFileIoStatement closePortFileIOStatement = closeFile.getClosePortFileIOStatement();
@@ -211,11 +211,11 @@ public class CloseStatementTest extends CobolTestBase {
 					{
 						final List<Using> usings = closePortFileIOStatement.getUsings();
 						final Using using = usings.get(0);
-						assertEquals(Using.Type.CLOSE_DISPOSITION, using.getType());
+						assertEquals(Using.UsingType.CLOSE_DISPOSITION, using.getUsingType());
 
 						{
 							final UsingCloseDisposition usingCloseDisposition = using.getUsingCloseDisposition();
-							assertEquals(UsingCloseDisposition.Type.ORDERLY, usingCloseDisposition.getType());
+							assertEquals(UsingCloseDisposition.UsingCloseDispositionType.ORDERLY, usingCloseDisposition.getUsingCloseDispositionType());
 						}
 					}
 				}
@@ -240,7 +240,7 @@ public class CloseStatementTest extends CobolTestBase {
 					}
 				}
 
-				assertEquals(CloseFile.Type.PortFileIO, closeFile.getType());
+				assertEquals(CloseFile.CloseFileType.PortFileIO, closeFile.getCloseFileType());
 
 				{
 					final ClosePortFileIoStatement closePortFileIOStatement = closeFile.getClosePortFileIOStatement();
@@ -249,7 +249,7 @@ public class CloseStatementTest extends CobolTestBase {
 					{
 						final List<Using> usings = closePortFileIOStatement.getUsings();
 						final Using using = usings.get(0);
-						assertEquals(Using.Type.ASSOCIATED_DATA, using.getType());
+						assertEquals(Using.UsingType.ASSOCIATED_DATA, using.getUsingType());
 
 						{
 							final UsingAssociatedData usingAssociatedData = using.getUsingAssociatedData();
@@ -279,7 +279,7 @@ public class CloseStatementTest extends CobolTestBase {
 					}
 				}
 
-				assertEquals(CloseFile.Type.PortFileIO, closeFile.getType());
+				assertEquals(CloseFile.CloseFileType.PortFileIO, closeFile.getCloseFileType());
 
 				{
 					final ClosePortFileIoStatement closePortFileIOStatement = closeFile.getClosePortFileIOStatement();
@@ -288,7 +288,7 @@ public class CloseStatementTest extends CobolTestBase {
 					{
 						final List<Using> usings = closePortFileIOStatement.getUsings();
 						final Using using = usings.get(0);
-						assertEquals(Using.Type.ASSOCIATED_DATA_LENGTH, using.getType());
+						assertEquals(Using.UsingType.ASSOCIATED_DATA_LENGTH, using.getUsingType());
 
 						{
 							final UsingAssociatedDataLength usingAssociatedDataLength = using

@@ -20,9 +20,9 @@ public class MultDivImpl extends ValueStmtImpl implements MultDiv {
 
 	protected MultDivContext ctx;
 
-	protected Powers powers;
+	protected MultDivType multDivType;
 
-	protected Type type;
+	protected Powers powers;
 
 	public MultDivImpl(final ProgramUnit programUnit, final MultDivContext ctx) {
 		super(programUnit, ctx);
@@ -38,17 +38,17 @@ public class MultDivImpl extends ValueStmtImpl implements MultDiv {
 			result = new PowersImpl(programUnit, ctx);
 
 			// type
-			final Powers.Type type;
+			final Powers.PowersType type;
 
 			if (ctx.PLUSCHAR() != null) {
-				type = Powers.Type.PLUS;
+				type = Powers.PowersType.PLUS;
 			} else if (ctx.MINUSCHAR() != null) {
-				type = Powers.Type.MINUS;
+				type = Powers.PowersType.MINUS;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setPowersType(type);
 
 			// basis
 			result.addBasis(ctx.basis());
@@ -67,13 +67,13 @@ public class MultDivImpl extends ValueStmtImpl implements MultDiv {
 	}
 
 	@Override
-	public Powers getPowers() {
-		return powers;
+	public MultDivType getMultDivType() {
+		return multDivType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public Powers getPowers() {
+		return powers;
 	}
 
 	@Override
@@ -82,8 +82,8 @@ public class MultDivImpl extends ValueStmtImpl implements MultDiv {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setMultDivType(final MultDivType multDivType) {
+		this.multDivType = multDivType;
 	}
 
 }

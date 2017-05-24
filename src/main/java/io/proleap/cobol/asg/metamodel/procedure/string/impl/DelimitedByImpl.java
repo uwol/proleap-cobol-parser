@@ -20,7 +20,7 @@ public class DelimitedByImpl extends CobolDivisionElementImpl implements Delimit
 
 	protected final StringDelimitedByPhraseContext ctx;
 
-	protected Type type;
+	protected DelimitedByType delimitedByType;
 
 	public DelimitedByImpl(final ProgramUnit programUnit, final StringDelimitedByPhraseContext ctx) {
 		super(programUnit, ctx);
@@ -34,8 +34,8 @@ public class DelimitedByImpl extends CobolDivisionElementImpl implements Delimit
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public DelimitedByType getDelimitedByType() {
+		return delimitedByType;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class DelimitedByImpl extends CobolDivisionElementImpl implements Delimit
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setType(final DelimitedByType delimitedByType) {
+		this.delimitedByType = delimitedByType;
 	}
 
 }

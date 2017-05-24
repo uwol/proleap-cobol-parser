@@ -35,6 +35,8 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 
 	protected final DivideStatementContext ctx;
 
+	protected DivideType divideType;
+
 	protected ValueStmt divisorValueStmt;
 
 	protected Into into;
@@ -48,8 +50,6 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	protected Remainder remainder;
 
 	protected final StatementType statementType = StatementTypeEnum.DIVIDE;
-
-	protected Type type;
 
 	public DivideStatementImpl(final ProgramUnit programUnit, final Scope scope, final DivideStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -145,6 +145,11 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	}
 
 	@Override
+	public DivideType getDivideType() {
+		return divideType;
+	}
+
+	@Override
 	public ValueStmt getDivisorValueStmt() {
 		return divisorValueStmt;
 	}
@@ -180,8 +185,8 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public void setDivideType(final DivideType divideType) {
+		this.divideType = divideType;
 	}
 
 	@Override
@@ -197,11 +202,6 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	@Override
 	public void setOnSizeError(final OnSizeError onSizeError) {
 		this.onSizeError = onSizeError;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

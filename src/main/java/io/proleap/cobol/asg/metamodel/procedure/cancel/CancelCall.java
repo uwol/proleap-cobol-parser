@@ -13,15 +13,15 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface CancelCall extends CobolDivisionElement {
 
-	enum Type {
+	enum CancelType {
 		BY_FUNCTION, BY_TITLE
 	}
 
-	Type getType();
+	CancelType getCancelType();
 
 	ValueStmt getValueStmt();
 
-	void setType(Type type);
+	void setCancelType(CancelType cancelType);
 
 	void setValueStmt(ValueStmt valueStmt);
 }

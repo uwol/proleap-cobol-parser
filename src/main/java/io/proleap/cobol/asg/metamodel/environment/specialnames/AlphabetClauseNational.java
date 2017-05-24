@@ -16,11 +16,11 @@ public interface AlphabetClauseNational extends AlphabetClause {
 		CCS_VERSION, NATIVE
 	}
 
-	AlphabetClauseNationalType getAlphabetClauseType();
+	AlphabetClauseNationalType getAlphabetClauseNationalType();
 
 	Literal getCcsVersion();
 
-	void setAlphabetClauseType(AlphabetClauseNationalType alphabetClauseNationalType);
+	void setAlphabetClauseNationalType(AlphabetClauseNationalType alphabetClauseNationalType);
 
 	void setCcsVersionLiteral(Literal ccsVersionLiteral);
 }

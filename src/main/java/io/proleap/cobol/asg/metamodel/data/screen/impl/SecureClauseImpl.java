@@ -17,7 +17,7 @@ public class SecureClauseImpl extends CobolDivisionElementImpl implements Secure
 
 	protected ScreenDescriptionSecureClauseContext ctx;
 
-	protected Type type;
+	protected SecureClauseType secureClauseType;
 
 	public SecureClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionSecureClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class SecureClauseImpl extends CobolDivisionElementImpl implements Secure
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public SecureClauseType getSecureClauseType() {
+		return secureClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setSecureClauseType(final SecureClauseType secureClauseType) {
+		this.secureClauseType = secureClauseType;
 	}
 
 }

@@ -28,9 +28,9 @@ public class SetByImpl extends CobolDivisionElementImpl implements SetBy {
 
 	protected SetUpDownByStatementContext ctx;
 
-	protected List<To> tos = new ArrayList<To>();
+	protected SetByType setByType;
 
-	protected Type type;
+	protected List<To> tos = new ArrayList<To>();
 
 	public SetByImpl(final ProgramUnit programUnit, final SetUpDownByStatementContext ctx) {
 		super(programUnit, ctx);
@@ -78,18 +78,18 @@ public class SetByImpl extends CobolDivisionElementImpl implements SetBy {
 	}
 
 	@Override
+	public SetByType getSetByType() {
+		return setByType;
+	}
+
+	@Override
 	public List<To> getTos() {
 		return tos;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setSetByType(final SetByType setByType) {
+		this.setByType = setByType;
 	}
 
 }

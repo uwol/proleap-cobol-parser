@@ -162,12 +162,12 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 			result = new OnKeyImpl(programUnit, ctx);
 
 			// type
-			final OnKey.Type type;
+			final OnKey.OnKeyType type;
 
 			if (ctx.ASCENDING() != null) {
-				type = OnKey.Type.ASCENDING;
+				type = OnKey.OnKeyType.ASCENDING;
 			} else if (ctx.DESCENDING() != null) {
-				type = OnKey.Type.DESCENDING;
+				type = OnKey.OnKeyType.DESCENDING;
 			} else {
 				type = null;
 			}
@@ -175,10 +175,10 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 			// key call
 			for (final QualifiedDataNameContext qualifiedDataNameContext : ctx.qualifiedDataName()) {
 				final Call keyCall = createCall(qualifiedDataNameContext);
-				result.adKeyCall(keyCall);
+				result.addKeyCall(keyCall);
 			}
 
-			result.setType(type);
+			result.setOnKeyType(type);
 
 			onKeys.add(result);
 			registerASGElement(result);

@@ -13,15 +13,15 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface Key extends CobolDivisionElement {
 
-	enum Type {
+	enum KeyType {
 		EQUAL, GREATER, GREATER_OR_EQUAL
 	}
 
 	Call getComparisonCall();
 
-	Type getType();
+	KeyType getKeyType();
 
 	void setComparisonCall(Call comparisonCall);
 
-	void setType(Type type);
+	void setKeyType(KeyType keyType);
 }

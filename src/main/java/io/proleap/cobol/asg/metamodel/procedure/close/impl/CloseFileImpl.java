@@ -23,6 +23,8 @@ import io.proleap.cobol.asg.metamodel.procedure.close.CloseRelativeStatement;
 
 public class CloseFileImpl extends CobolDivisionElementImpl implements CloseFile {
 
+	protected CloseFileType closeFileType;
+
 	protected ClosePortFileIoStatement closePortFileIoStatement;
 
 	protected CloseReelUnitStatement closeReelUnitStatement;
@@ -32,8 +34,6 @@ public class CloseFileImpl extends CobolDivisionElementImpl implements CloseFile
 	protected CloseFileContext ctx;
 
 	protected Call fileCall;
-
-	protected Type type;
 
 	public CloseFileImpl(final ProgramUnit programUnit, final CloseFileContext ctx) {
 		super(programUnit, ctx);
@@ -80,17 +80,17 @@ public class CloseFileImpl extends CobolDivisionElementImpl implements CloseFile
 			result = new CloseReelUnitStatementImpl(programUnit, ctx);
 
 			// type
-			final CloseReelUnitStatement.Type type;
+			final CloseReelUnitStatement.CloseReelUnitType type;
 
 			if (ctx.REEL() != null) {
-				type = CloseReelUnitStatement.Type.REEL;
+				type = CloseReelUnitStatement.CloseReelUnitType.REEL;
 			} else if (ctx.UNIT() != null) {
-				type = CloseReelUnitStatement.Type.UNIT;
+				type = CloseReelUnitStatement.CloseReelUnitType.UNIT;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setCloseReelUnitType(type);
 
 			// for removal
 			if (ctx.REMOVAL() != null) {
@@ -145,6 +145,11 @@ public class CloseFileImpl extends CobolDivisionElementImpl implements CloseFile
 	}
 
 	@Override
+	public CloseFileType getCloseFileType() {
+		return closeFileType;
+	}
+
+	@Override
 	public ClosePortFileIoStatement getClosePortFileIOStatement() {
 		return closePortFileIoStatement;
 	}
@@ -165,18 +170,13 @@ public class CloseFileImpl extends CobolDivisionElementImpl implements CloseFile
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public void setCloseFileType(final CloseFileType closeFileType) {
+		this.closeFileType = closeFileType;
 	}
 
 	@Override
 	public void setFileCall(final Call fileCall) {
 		this.fileCall = fileCall;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

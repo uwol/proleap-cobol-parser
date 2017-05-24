@@ -45,7 +45,7 @@ public class MultiplyRegularStatementTest extends CobolTestBase {
 			final MultiplyStatement multiplyStatement = (MultiplyStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(multiplyStatement);
 			assertEquals(StatementTypeEnum.MULTIPLY, multiplyStatement.getStatementType());
-			assertEquals(MultiplyStatement.Type.REGULAR, multiplyStatement.getType());
+			assertEquals(MultiplyStatement.MultiplyType.REGULAR, multiplyStatement.getMultiplyType());
 
 			{
 				final ValueStmt operandValueStmt = multiplyStatement.getOperandValueStmt();

@@ -54,7 +54,7 @@ public class ExecSqlStatementMultilineTest extends CobolTestBase {
 					.getRootDataDescriptionEntries().get(0);
 
 			assertNotNull(dataDescriptionEntry);
-			assertEquals(DataDescriptionEntry.Type.EXEC_SQL, dataDescriptionEntry.getType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals("EXEC SQL INCLUDE SQLSCRIPT END-EXEC", dataDescriptionEntry.getExecSqlText());
 		}
 
@@ -63,7 +63,7 @@ public class ExecSqlStatementMultilineTest extends CobolTestBase {
 					.getRootDataDescriptionEntries().get(1);
 
 			assertNotNull(dataDescriptionEntry);
-			assertEquals(DataDescriptionEntry.Type.EXEC_SQL, dataDescriptionEntry.getType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals("EXEC SQL INCLUDE TEACHER END-EXEC", dataDescriptionEntry.getExecSqlText());
 		}
 
@@ -72,7 +72,7 @@ public class ExecSqlStatementMultilineTest extends CobolTestBase {
 					.getRootDataDescriptionEntries().get(2);
 
 			assertNotNull(dataDescriptionEntry);
-			assertEquals(DataDescriptionEntry.Type.EXEC_SQL, dataDescriptionEntry.getType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals("EXEC SQL BEGIN DECLARE SECTION END-EXEC", dataDescriptionEntry.getExecSqlText());
 		}
 
@@ -82,7 +82,7 @@ public class ExecSqlStatementMultilineTest extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntry);
 			assertEquals("WS-TEACHER-REC", dataDescriptionEntry.getName());
-			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
 			assertNull(dataDescriptionEntry.getParentDataDescriptionEntryGroup());
 		}
@@ -92,7 +92,7 @@ public class ExecSqlStatementMultilineTest extends CobolTestBase {
 					.getRootDataDescriptionEntries().get(4);
 
 			assertNotNull(dataDescriptionEntry);
-			assertEquals(DataDescriptionEntry.Type.EXEC_SQL, dataDescriptionEntry.getType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals("EXEC SQL END DECLARE SECTION END-EXEC", dataDescriptionEntry.getExecSqlText());
 		}
 

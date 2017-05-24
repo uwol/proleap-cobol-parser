@@ -43,7 +43,7 @@ public class SubtractFromStatementTest extends CobolTestBase {
 			final SubtractStatement subtractStatement = (SubtractStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(subtractStatement);
 			assertEquals(StatementTypeEnum.SUBTRACT, subtractStatement.getStatementType());
-			assertEquals(SubtractStatement.Type.FROM, subtractStatement.getType());
+			assertEquals(SubtractStatement.SubtractType.FROM, subtractStatement.getSubtractType());
 			assertNotNull(subtractStatement.getSubtractFrom());
 
 			{

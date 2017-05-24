@@ -85,19 +85,19 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 			}
 
 			// type
-			final Sendings.Type type;
+			final Sendings.SendingsType type;
 
 			if (ctx.stringDelimitedByPhrase() != null) {
 				result.addDelimitedBy(ctx.stringDelimitedByPhrase());
-				type = Sendings.Type.DELIMITED_BY;
+				type = Sendings.SendingsType.DELIMITED_BY;
 			} else if (ctx.stringForPhrase() != null) {
 				result.addFor(ctx.stringForPhrase());
-				type = Sendings.Type.FOR;
+				type = Sendings.SendingsType.FOR;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setSendingsType(type);
 
 			sendings.add(result);
 			registerASGElement(result);

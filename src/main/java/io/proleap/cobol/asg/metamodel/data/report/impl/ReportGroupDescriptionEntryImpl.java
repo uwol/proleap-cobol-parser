@@ -64,18 +64,18 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 			/*
 			 * type
 			 */
-			final UsageClause.Type type;
+			final UsageClause.UsageClauseType type;
 
 			if (ctx.DISPLAY() != null) {
-				type = UsageClause.Type.DISPLAY;
+				type = UsageClause.UsageClauseType.DISPLAY;
 			} else if (ctx.DISPLAY_1() != null) {
-				type = UsageClause.Type.DISPLAY_1;
+				type = UsageClause.UsageClauseType.DISPLAY_1;
 			} else {
 				LOG.warn("unknown usage at {}", ctx);
 				type = null;
 			}
 
-			result.setType(type);
+			result.setUsageClauseType(type);
 
 			usageClause = result;
 			registerASGElement(result);
@@ -91,14 +91,14 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 		if (result == null) {
 			result = new LineNumberClauseImpl(programUnit, ctx);
 
-			final LineNumberClause.Type type;
+			final LineNumberClause.LineNumberClauseType type;
 			final IntegerLiteral integerLiteral;
 
 			if (ctx.reportGroupLineNumberNextPage() != null) {
-				type = LineNumberClause.Type.NEXT_PAGE;
+				type = LineNumberClause.LineNumberClauseType.NEXT_PAGE;
 				integerLiteral = createIntegerLiteral(ctx.reportGroupLineNumberNextPage().integerLiteral());
 			} else if (ctx.reportGroupLineNumberPlus() != null) {
-				type = LineNumberClause.Type.PLUS;
+				type = LineNumberClause.LineNumberClauseType.PLUS;
 				integerLiteral = createIntegerLiteral(ctx.reportGroupLineNumberPlus().integerLiteral());
 			} else {
 				LOG.warn("unknown line number at {}", ctx);
@@ -106,7 +106,7 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 				integerLiteral = null;
 			}
 
-			result.setType(type);
+			result.setLineNumberClauseType(type);
 			result.setIntegerLiteral(integerLiteral);
 
 			lineNumberClause = result;

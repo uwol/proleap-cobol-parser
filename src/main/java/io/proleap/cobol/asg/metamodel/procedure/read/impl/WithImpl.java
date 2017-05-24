@@ -17,7 +17,7 @@ public class WithImpl extends CobolDivisionElementImpl implements With {
 
 	protected final ReadWithContext ctx;
 
-	protected Type type;
+	protected WithType withType;
 
 	public WithImpl(final ProgramUnit programUnit, final ReadWithContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class WithImpl extends CobolDivisionElementImpl implements With {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public WithType getWithType() {
+		return withType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setWithType(final WithType withType) {
+		this.withType = withType;
 	}
 
 }

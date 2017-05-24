@@ -42,7 +42,7 @@ public class PerformProcedureUntilTest extends CobolTestBase {
 			assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
 
 			final PerformStatement performStatement = (PerformStatement) statement;
-			assertEquals(PerformStatement.Type.PROCEDURE, performStatement.getType());
+			assertEquals(PerformStatement.PerformStatementType.PROCEDURE, performStatement.getPerformStatementType());
 
 			{
 				final PerformProcedureStatement performProcedureStatement = performStatement
@@ -51,12 +51,12 @@ public class PerformProcedureUntilTest extends CobolTestBase {
 
 				{
 					final PerformType performType = performProcedureStatement.getPerformType();
-					assertEquals(PerformType.Type.UNTIL, performType.getType());
+					assertEquals(PerformType.PerformTypeType.UNTIL, performType.getPerformTypeType());
 
 					{
 						final Until until = performType.getUntil();
 						assertNotNull(until.getTestClause());
-						assertEquals(TestClause.Type.AFTER, until.getTestClause().getType());
+						assertEquals(TestClause.TestClauseType.AFTER, until.getTestClause().getTestClauseType());
 
 						final ConditionValueStmt condition = until.getCondition();
 						assertNotNull(condition);

@@ -15,7 +15,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface ReceiveIntoStatement extends CobolDivisionElement {
 
-	enum Type {
+	enum ReceiveIntoType {
 		MESSAGE, SEGMENT
 	}
 
@@ -29,7 +29,7 @@ public interface ReceiveIntoStatement extends CobolDivisionElement {
 
 	NoData getNoData();
 
-	Type getType();
+	ReceiveIntoType getReceiveIntoType();
 
 	WithData getWithData();
 
@@ -37,6 +37,6 @@ public interface ReceiveIntoStatement extends CobolDivisionElement {
 
 	void setIntoCall(Call intoCall);
 
-	void setType(Type type);
+	void setReceiveIntoType(ReceiveIntoType receiveIntoType);
 
 }

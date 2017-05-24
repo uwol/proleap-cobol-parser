@@ -21,9 +21,9 @@ public class SpecialRegisterCallImpl extends CallImpl implements SpecialRegister
 
 	protected Call identifierCall;
 
-	protected final Type type;
+	protected final SpecialRegisterType type;
 
-	public SpecialRegisterCallImpl(final Type type, final ProgramUnit programUnit, final SpecialRegisterContext ctx) {
+	public SpecialRegisterCallImpl(final SpecialRegisterType type, final ProgramUnit programUnit, final SpecialRegisterContext ctx) {
 		super(null, programUnit, ctx);
 
 		this.ctx = ctx;
@@ -46,7 +46,7 @@ public class SpecialRegisterCallImpl extends CallImpl implements SpecialRegister
 	}
 
 	@Override
-	public Type getType() {
+	public SpecialRegisterType getSpecialRegisterType() {
 		return type;
 	}
 

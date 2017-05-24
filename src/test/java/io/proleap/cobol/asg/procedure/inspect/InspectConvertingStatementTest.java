@@ -40,7 +40,7 @@ public class InspectConvertingStatementTest extends CobolTestBase {
 			final InspectStatement inspectStatement = (InspectStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(inspectStatement);
 			assertEquals(StatementTypeEnum.INSPECT, inspectStatement.getStatementType());
-			assertEquals(InspectStatement.Type.CONVERTING, inspectStatement.getType());
+			assertEquals(InspectStatement.InspectType.CONVERTING, inspectStatement.getInspectType());
 
 			{
 				final Converting converting = inspectStatement.getConverting();
@@ -66,7 +66,7 @@ public class InspectConvertingStatementTest extends CobolTestBase {
 				{
 					{
 						final BeforeAfter beforeAfter = converting.getBeforeAfters().get(0);
-						assertEquals(BeforeAfter.Type.AFTER, beforeAfter.getType());
+						assertEquals(BeforeAfter.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
 					}
 				}
 			}

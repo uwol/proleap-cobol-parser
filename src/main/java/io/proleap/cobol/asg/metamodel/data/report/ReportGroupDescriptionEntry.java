@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.Declaration;
 
 public interface ReportGroupDescriptionEntry extends CobolDivisionElement, Declaration {
 
-	enum Type {
+	enum ReportGroupDescriptionEntryType {
 		PRINTABLE, SINGLE, VERTICAL
 	}
 
@@ -37,7 +37,7 @@ public interface ReportGroupDescriptionEntry extends CobolDivisionElement, Decla
 
 	ReportGroupDescriptionEntry getReportGroupDescriptionEntry(String name);
 
-	Type getType();
+	ReportGroupDescriptionEntryType getReportGroupDescriptionEntryType();
 
 	UsageClause getUsageClause();
 

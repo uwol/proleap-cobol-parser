@@ -12,11 +12,11 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface SymbolicCharactersClause extends CobolDivisionElement {
 
-	enum Type {
+	enum SymbolicCharactersClauseType {
 		ALPHA_NUMERIC, NATIONAL
 	}
 
-	Type getType();
+	SymbolicCharactersClauseType getSymbolicCharactersClauseType();
 
-	void setType(Type type);
+	void setSymbolicCharactersClauseType(SymbolicCharactersClauseType symbolicCharactersClauseType);
 }

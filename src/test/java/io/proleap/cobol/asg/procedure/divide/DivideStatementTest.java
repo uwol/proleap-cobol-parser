@@ -43,7 +43,7 @@ public class DivideStatementTest extends CobolTestBase {
 			final DivideStatement divideStatement = (DivideStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(divideStatement);
 			assertEquals(StatementTypeEnum.DIVIDE, divideStatement.getStatementType());
-			assertEquals(DivideStatement.Type.INTO, divideStatement.getType());
+			assertEquals(DivideStatement.DivideType.INTO, divideStatement.getDivideType());
 
 			{
 				assertNotNull(divideStatement.getDivisorValueStmt());
@@ -82,7 +82,7 @@ public class DivideStatementTest extends CobolTestBase {
 			assertNotNull(divideStatement);
 			assertEquals(StatementTypeEnum.DIVIDE, divideStatement.getStatementType());
 
-			assertEquals(DivideStatement.Type.INTO_GIVING, divideStatement.getType());
+			assertEquals(DivideStatement.DivideType.INTO_GIVING, divideStatement.getDivideType());
 			{
 				assertNotNull(divideStatement.getDivisorValueStmt());
 				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getDivisorValueStmt();
@@ -119,7 +119,7 @@ public class DivideStatementTest extends CobolTestBase {
 			final DivideStatement divideStatement = (DivideStatement) procedureDivision.getStatements().get(2);
 			assertNotNull(divideStatement);
 			assertEquals(StatementTypeEnum.DIVIDE, divideStatement.getStatementType());
-			assertEquals(DivideStatement.Type.BY_GIVING, divideStatement.getType());
+			assertEquals(DivideStatement.DivideType.BY_GIVING, divideStatement.getDivideType());
 
 			{
 				assertNotNull(divideStatement.getDivisorValueStmt());

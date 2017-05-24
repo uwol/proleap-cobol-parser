@@ -74,7 +74,7 @@ public class MoveToStatementTest extends CobolTestBase {
 			final MoveStatement moveStatement = (MoveStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(moveStatement);
 			assertEquals(StatementTypeEnum.MOVE, moveStatement.getStatementType());
-			assertEquals(MoveStatement.Type.MOVE_TO, moveStatement.getType());
+			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
 				final MoveTo moveTo = moveStatement.getMoveTo();
@@ -107,7 +107,7 @@ public class MoveToStatementTest extends CobolTestBase {
 			final MoveStatement moveStatement = (MoveStatement) procedureDivision.getStatements().get(1);
 			assertNotNull(moveStatement);
 			assertEquals(StatementTypeEnum.MOVE, moveStatement.getStatementType());
-			assertEquals(MoveStatement.Type.MOVE_TO, moveStatement.getType());
+			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
 				final MoveTo moveTo = moveStatement.getMoveTo();
@@ -140,7 +140,7 @@ public class MoveToStatementTest extends CobolTestBase {
 			final MoveStatement moveStatement = (MoveStatement) procedureDivision.getStatements().get(2);
 			assertNotNull(moveStatement);
 			assertEquals(StatementTypeEnum.MOVE, moveStatement.getStatementType());
-			assertEquals(MoveStatement.Type.MOVE_TO, moveStatement.getType());
+			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
 				final MoveTo moveTo = moveStatement.getMoveTo();

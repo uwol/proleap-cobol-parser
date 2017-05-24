@@ -17,15 +17,15 @@ public class RelationalOperatorImpl extends ValueStmtImpl implements RelationalO
 
 	protected RelationalOperatorContext ctx;
 
-	protected Type type;
+	protected RelationalOperatorType relationalOperatorType;
 
 	public RelationalOperatorImpl(final ProgramUnit programUnit, final RelationalOperatorContext ctx) {
 		super(programUnit, ctx);
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public RelationalOperatorType getRelationalOperatorType() {
+		return relationalOperatorType;
 	}
 
 	@Override
@@ -34,8 +34,8 @@ public class RelationalOperatorImpl extends ValueStmtImpl implements RelationalO
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setRelationalOperatorType(final RelationalOperatorType relationalOperatorType) {
+		this.relationalOperatorType = relationalOperatorType;
 	}
 
 }

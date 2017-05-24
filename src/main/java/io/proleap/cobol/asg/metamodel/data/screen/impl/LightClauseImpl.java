@@ -17,7 +17,7 @@ public class LightClauseImpl extends CobolDivisionElementImpl implements LightCl
 
 	protected ScreenDescriptionLightClauseContext ctx;
 
-	protected Type type;
+	protected LightClauseType lightClauseType;
 
 	public LightClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionLightClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class LightClauseImpl extends CobolDivisionElementImpl implements LightCl
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public LightClauseType getLightClauseType() {
+		return lightClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setLightClauseType(final LightClauseType lightClauseType) {
+		this.lightClauseType = lightClauseType;
 	}
 
 }

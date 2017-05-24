@@ -25,8 +25,8 @@ public class ReportGroupDescriptionEntrySingleImpl extends ReportGroupDescriptio
 	}
 
 	@Override
-	public Type getType() {
-		return Type.SINGLE;
+	public ReportGroupDescriptionEntryType getReportGroupDescriptionEntryType() {
+		return ReportGroupDescriptionEntryType.SINGLE;
 	}
 
 }

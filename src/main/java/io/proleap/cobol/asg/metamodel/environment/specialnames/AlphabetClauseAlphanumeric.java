@@ -23,7 +23,7 @@ public interface AlphabetClauseAlphanumeric extends AlphabetClause {
 
 	void addCharacterSetValueStmts(AlphabetLiteralsContext ctx);
 
-	AlphabetClauseAlphanumericType getAlphabetClauseType();
+	AlphabetClauseAlphanumericType getAlphabetClauseAlphanumericType();
 
 	List<ValueStmt> getCharacterSetValueStmts();
 

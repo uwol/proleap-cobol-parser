@@ -40,9 +40,9 @@ public class ReceiveStatementImpl extends StatementImpl implements ReceiveStatem
 
 	protected ReceiveIntoStatement receiveIntoStatement;
 
-	protected final StatementType statementType = StatementTypeEnum.RECEIVE;
+	protected ReceiveType receiveType;
 
-	protected Type type;
+	protected final StatementType statementType = StatementTypeEnum.RECEIVE;
 
 	public ReceiveStatementImpl(final ProgramUnit programUnit, final Scope scope, final ReceiveStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -108,17 +108,17 @@ public class ReceiveStatementImpl extends StatementImpl implements ReceiveStatem
 			result.setCommunicationDescriptionCall(cdNameCall);
 
 			// type
-			final ReceiveIntoStatement.Type type;
+			final ReceiveIntoStatement.ReceiveIntoType type;
 
 			if (ctx.MESSAGE() != null) {
-				type = ReceiveIntoStatement.Type.MESSAGE;
+				type = ReceiveIntoStatement.ReceiveIntoType.MESSAGE;
 			} else if (ctx.SEGMENT() != null) {
-				type = ReceiveIntoStatement.Type.SEGMENT;
+				type = ReceiveIntoStatement.ReceiveIntoType.SEGMENT;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setReceiveIntoType(type);
 
 			// into call
 			final Call intoCall = createCall(ctx.identifier());
@@ -162,13 +162,13 @@ public class ReceiveStatementImpl extends StatementImpl implements ReceiveStatem
 	}
 
 	@Override
-	public StatementType getStatementType() {
-		return statementType;
+	public ReceiveType getReceiveType() {
+		return receiveType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public StatementType getStatementType() {
+		return statementType;
 	}
 
 	@Override
@@ -182,8 +182,8 @@ public class ReceiveStatementImpl extends StatementImpl implements ReceiveStatem
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setReceiveType(final ReceiveType receiveType) {
+		this.receiveType = receiveType;
 	}
 
 }

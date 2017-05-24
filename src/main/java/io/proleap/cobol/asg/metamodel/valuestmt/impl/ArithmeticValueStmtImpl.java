@@ -67,17 +67,17 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 			result = new PlusMinusImpl(programUnit, ctx);
 
 			// type
-			final PlusMinus.Type type;
+			final PlusMinus.PlusMinusType type;
 
 			if (ctx.PLUSCHAR() != null) {
-				type = PlusMinus.Type.PLUS;
+				type = PlusMinus.PlusMinusType.PLUS;
 			} else if (ctx.MINUSCHAR() != null) {
-				type = PlusMinus.Type.MINUS;
+				type = PlusMinus.PlusMinusType.MINUS;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setPlusMinusType(type);
 
 			// mult divs
 			result.addMultDivs(ctx.multDivs());

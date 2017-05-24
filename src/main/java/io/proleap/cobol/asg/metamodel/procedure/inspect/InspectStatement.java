@@ -21,7 +21,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface InspectStatement extends Statement {
 
-	enum Type {
+	enum InspectType {
 		CONVERTING, REPLACING, TALLYING, TALLYING_REPLACING
 	}
 
@@ -40,16 +40,16 @@ public interface InspectStatement extends Statement {
 	 */
 	Call getDataItemCall();
 
+	InspectType getInspectType();
+
 	Replacing getReplacing();
 
 	Tallying getTallying();
 
 	TallyingReplacing getTallyingReplacing();
 
-	Type getType();
-
 	void setDataItemCall(Call dataItemCall);
 
-	void setType(Type type);
+	void setInspectType(InspectType inspectType);
 
 }

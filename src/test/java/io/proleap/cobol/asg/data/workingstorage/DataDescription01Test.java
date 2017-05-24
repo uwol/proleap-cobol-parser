@@ -50,7 +50,7 @@ public class DataDescription01Test extends CobolTestBase {
 			assertEquals("ITEMS1", dataDescriptionEntryItems1.getName());
 			assertEquals(new Integer(1), dataDescriptionEntryItems1.getLevelNumber());
 			assertNull(dataDescriptionEntryItems1.getParentDataDescriptionEntryGroup());
-			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItems1.getType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItems1.getDataDescriptionEntryType());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroupItems = (DataDescriptionEntryGroup) dataDescriptionEntryItems1;
 			assertNull(dataDescriptionEntryGroupItems.getPredecessor());
@@ -63,7 +63,7 @@ public class DataDescription01Test extends CobolTestBase {
 				assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems1,
 						dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
-				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem1.getType());
+				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItem1.getDataDescriptionEntryType());
 
 				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem1 = (DataDescriptionEntryGroup) dataDescriptionEntryItem1;
 				assertNull(dataDescriptionEntryGroupItem1.getPredecessor());
@@ -77,7 +77,7 @@ public class DataDescription01Test extends CobolTestBase {
 				assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems1,
 						dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
-				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem2.getType());
+				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItem2.getDataDescriptionEntryType());
 
 				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem2 = (DataDescriptionEntryGroup) dataDescriptionEntryItem2;
 				assertNotNull(dataDescriptionEntryGroupItem2.getPredecessor());
@@ -91,7 +91,7 @@ public class DataDescription01Test extends CobolTestBase {
 			assertEquals("ITEMS2", dataDescriptionEntryItems2.getName());
 			assertEquals(new Integer(1), dataDescriptionEntryItems2.getLevelNumber());
 			assertNull(dataDescriptionEntryItems2.getParentDataDescriptionEntryGroup());
-			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItems2.getType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItems2.getDataDescriptionEntryType());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroupItems = (DataDescriptionEntryGroup) dataDescriptionEntryItems2;
 			assertNotNull(dataDescriptionEntryGroupItems.getPredecessor());

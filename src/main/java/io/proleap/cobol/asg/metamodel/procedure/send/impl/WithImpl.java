@@ -18,9 +18,9 @@ public class WithImpl extends CobolDivisionElementImpl implements With {
 
 	protected SendWithPhraseContext ctx;
 
-	protected Type type;
-
 	protected Call withCall;
+
+	protected WithType withType;
 
 	public WithImpl(final ProgramUnit programUnit, final SendWithPhraseContext ctx) {
 		super(programUnit, ctx);
@@ -29,23 +29,23 @@ public class WithImpl extends CobolDivisionElementImpl implements With {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
-	}
-
-	@Override
 	public Call getWithCall() {
 		return withCall;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public WithType getWithType() {
+		return withType;
 	}
 
 	@Override
 	public void setWithCall(final Call withCall) {
 		this.withCall = withCall;
+	}
+
+	@Override
+	public void setWithType(final WithType withType) {
+		this.withType = withType;
 	}
 
 }

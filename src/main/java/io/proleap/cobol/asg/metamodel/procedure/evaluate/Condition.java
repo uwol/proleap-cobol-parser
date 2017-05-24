@@ -15,7 +15,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface Condition extends CobolDivisionElement {
 
-	enum Type {
+	enum ConditionType {
 		ANY, BOOLEAN, CONDITION, VALUE, VALUE_THROUGH
 	}
 
@@ -23,19 +23,19 @@ public interface Condition extends CobolDivisionElement {
 
 	Value addValue(EvaluateValueContext ctx);
 
+	ConditionType getConditionType();
+
 	ValueStmt getConditionValueStmt();
 
 	Through getThrough();
-
-	Type getType();
 
 	Value getValue();
 
 	boolean isNot();
 
+	void setConditionType(ConditionType conditionType);
+
 	void setConditionValueStmt(ValueStmt conditionValueStmt);
 
 	void setNot(boolean not);
-
-	void setType(Type type);
 }

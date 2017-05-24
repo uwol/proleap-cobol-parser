@@ -47,7 +47,7 @@ public class PerformProcedureVaryingTest extends CobolTestBase {
 			assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
 
 			final PerformStatement performStatement = (PerformStatement) statement;
-			assertEquals(PerformStatement.Type.PROCEDURE, performStatement.getType());
+			assertEquals(PerformStatement.PerformStatementType.PROCEDURE, performStatement.getPerformStatementType());
 
 			{
 				final PerformProcedureStatement performProcedureStatement = performStatement
@@ -56,14 +56,14 @@ public class PerformProcedureVaryingTest extends CobolTestBase {
 
 				{
 					final PerformType performType = performProcedureStatement.getPerformType();
-					assertEquals(PerformType.Type.VARYING, performType.getType());
+					assertEquals(PerformType.PerformTypeType.VARYING, performType.getPerformTypeType());
 
 					{
 						final Varying varying = performType.getVarying();
 
 						{
 							assertNotNull(varying.getTestClause());
-							assertEquals(TestClause.Type.BEFORE, varying.getTestClause().getType());
+							assertEquals(TestClause.TestClauseType.BEFORE, varying.getTestClause().getTestClauseType());
 						}
 
 						{

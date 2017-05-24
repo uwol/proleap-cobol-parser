@@ -13,15 +13,15 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface RecordDelimiterClause extends CobolDivisionElement {
 
-	enum Type {
+	enum RecordDelimiterClauseType {
 		ASSIGNMENT, IMPLICIT, STANDARD_1
 	}
 
-	Type getType();
+	RecordDelimiterClauseType getRecordDelimiterClauseType();
 
 	ValueStmt getValueStmt();
 
-	void setType(Type type);
+	void setRecordDelimiterClauseType(RecordDelimiterClauseType recordDelimiterClauseType);
 
 	void setValueStmt(ValueStmt valueStmt);
 

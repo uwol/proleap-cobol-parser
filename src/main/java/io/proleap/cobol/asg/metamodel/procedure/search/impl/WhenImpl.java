@@ -20,7 +20,7 @@ public class WhenImpl extends ScopeImpl implements When {
 
 	protected final SearchWhenContext ctx;
 
-	protected Type type;
+	protected WhenType whenType;
 
 	public WhenImpl(final ProgramUnit programUnit, final SearchWhenContext ctx) {
 		super(programUnit, ctx);
@@ -34,8 +34,8 @@ public class WhenImpl extends ScopeImpl implements When {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public WhenType getWhenType() {
+		return whenType;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class WhenImpl extends ScopeImpl implements When {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setWhenType(final WhenType whenType) {
+		this.whenType = whenType;
 	}
 
 }

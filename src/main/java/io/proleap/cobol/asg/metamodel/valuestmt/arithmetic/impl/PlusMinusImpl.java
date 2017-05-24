@@ -22,7 +22,7 @@ public class PlusMinusImpl extends ValueStmtImpl implements PlusMinus {
 
 	protected MultDivs multDivs;
 
-	protected Type type;
+	protected PlusMinusType plusMinusType;
 
 	public PlusMinusImpl(final ProgramUnit programUnit, final PlusMinusContext ctx) {
 		super(programUnit, ctx);
@@ -59,8 +59,8 @@ public class PlusMinusImpl extends ValueStmtImpl implements PlusMinus {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public PlusMinusType getPlusMinusType() {
+		return plusMinusType;
 	}
 
 	@Override
@@ -69,8 +69,8 @@ public class PlusMinusImpl extends ValueStmtImpl implements PlusMinus {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setPlusMinusType(final PlusMinusType plusMinusType) {
+		this.plusMinusType = plusMinusType;
 	}
 
 }

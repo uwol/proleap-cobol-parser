@@ -156,31 +156,31 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 			result.setToValueStmt(toValueStmt);
 
 			// type
-			final AssignClause.Type type;
+			final AssignClause.AssignClauseType type;
 
 			if (ctx.DISK() != null) {
-				type = AssignClause.Type.DISK;
+				type = AssignClause.AssignClauseType.DISK;
 			} else if (ctx.PORT() != null) {
-				type = AssignClause.Type.PORT;
+				type = AssignClause.AssignClauseType.PORT;
 			} else if (ctx.PRINTER() != null) {
-				type = AssignClause.Type.PRINTER;
+				type = AssignClause.AssignClauseType.PRINTER;
 			} else if (ctx.READER() != null) {
-				type = AssignClause.Type.READER;
+				type = AssignClause.AssignClauseType.READER;
 			} else if (ctx.REMOTE() != null) {
-				type = AssignClause.Type.REMOTE;
+				type = AssignClause.AssignClauseType.REMOTE;
 			} else if (ctx.TAPE() != null) {
-				type = AssignClause.Type.TAPE;
+				type = AssignClause.AssignClauseType.TAPE;
 			} else if (ctx.VIRTUAL() != null) {
-				type = AssignClause.Type.VIRTUAL;
+				type = AssignClause.AssignClauseType.VIRTUAL;
 			} else if (ctx.assignmentName() != null) {
-				type = AssignClause.Type.CALL;
+				type = AssignClause.AssignClauseType.CALL;
 			} else if (ctx.literal() != null) {
-				type = AssignClause.Type.CALL;
+				type = AssignClause.AssignClauseType.CALL;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setAssignClauseType(type);
 
 			assignClause = result;
 			registerASGElement(result);
@@ -226,21 +226,21 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 			/*
 			 * type
 			 */
-			final OrganizationClause.Type type;
+			final OrganizationClause.OrganizationClauseType type;
 
 			if (ctx.LINE() != null) {
-				type = OrganizationClause.Type.LINE;
+				type = OrganizationClause.OrganizationClauseType.LINE;
 			} else if (ctx.RECORD() != null && ctx.BINARY() != null) {
-				type = OrganizationClause.Type.RECORD_BINARY;
+				type = OrganizationClause.OrganizationClauseType.RECORD_BINARY;
 			} else if (ctx.BINARY() != null) {
-				type = OrganizationClause.Type.BINARY;
+				type = OrganizationClause.OrganizationClauseType.BINARY;
 			} else if (ctx.RECORD() != null) {
-				type = OrganizationClause.Type.RECORD;
+				type = OrganizationClause.OrganizationClauseType.RECORD;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setOrganizationClauseType(type);
 
 			/*
 			 * mode
@@ -307,14 +307,14 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new RecordDelimiterClauseImpl(programUnit, ctx);
 
-			final RecordDelimiterClause.Type type;
+			final RecordDelimiterClause.RecordDelimiterClauseType type;
 
 			if (ctx.STANDARD_1() != null) {
-				type = RecordDelimiterClause.Type.STANDARD_1;
+				type = RecordDelimiterClause.RecordDelimiterClauseType.STANDARD_1;
 			} else if (ctx.IMPLICIT() != null) {
-				type = RecordDelimiterClause.Type.IMPLICIT;
+				type = RecordDelimiterClause.RecordDelimiterClauseType.IMPLICIT;
 			} else if (ctx.assignmentName() != null) {
-				type = RecordDelimiterClause.Type.ASSIGNMENT;
+				type = RecordDelimiterClause.RecordDelimiterClauseType.ASSIGNMENT;
 
 				final ValueStmt valueStmt = createValueStmt(ctx.assignmentName());
 				result.setValueStmt(valueStmt);
@@ -322,7 +322,7 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 				type = null;
 			}
 
-			result.setType(type);
+			result.setRecordDelimiterClauseType(type);
 
 			recordDelimiterClause = result;
 			registerASGElement(result);

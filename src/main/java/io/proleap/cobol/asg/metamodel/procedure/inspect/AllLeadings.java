@@ -15,7 +15,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface AllLeadings extends CobolDivisionElement {
 
-	enum Type {
+	enum AllLeadingsType {
 		ALL, LEADING
 	}
 
@@ -23,8 +23,8 @@ public interface AllLeadings extends CobolDivisionElement {
 
 	List<AllLeading> getAllLeadings();
 
-	Type getType();
+	AllLeadingsType getAllLeadingsType();
 
-	void setType(Type type);
+	void setAllLeadingsType(AllLeadingsType allLeadingsType);
 
 }

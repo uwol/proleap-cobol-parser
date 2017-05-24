@@ -12,12 +12,12 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface With extends CobolDivisionElement {
 
-	enum Type {
+	enum WithType {
 		KEPT_LOCK, NO_LOCK, WAIT
 	}
 
-	Type getType();
+	WithType getWithType();
 
-	void setType(Type type);
+	void setWithType(WithType withType);
 
 }

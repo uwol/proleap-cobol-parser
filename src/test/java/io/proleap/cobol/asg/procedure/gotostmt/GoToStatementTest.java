@@ -55,7 +55,7 @@ public class GoToStatementTest extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntry);
 			assertEquals("SOMEDATA1", dataDescriptionEntry.getName());
-			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
 			assertNull(dataDescriptionEntry.getParentDataDescriptionEntryGroup());
 		}
@@ -86,7 +86,7 @@ public class GoToStatementTest extends CobolTestBase {
 				final GoToStatement statement = (GoToStatement) paragraph1.getStatements().get(0);
 				assertNotNull(statement);
 				assertEquals(StatementTypeEnum.GO_TO, statement.getStatementType());
-				assertEquals(GoToStatement.Type.SIMPLE, statement.getType());
+				assertEquals(GoToStatement.GoToType.SIMPLE, statement.getGoToType());
 
 				{
 					final Simple simple = statement.getSimple();
@@ -107,7 +107,7 @@ public class GoToStatementTest extends CobolTestBase {
 				final GoToStatement statement = (GoToStatement) paragraph2.getStatements().get(0);
 				assertNotNull(statement);
 				assertEquals(StatementTypeEnum.GO_TO, statement.getStatementType());
-				assertEquals(GoToStatement.Type.DEPENDING_ON, statement.getType());
+				assertEquals(GoToStatement.GoToType.DEPENDING_ON, statement.getGoToType());
 
 				{
 					final DependingOn dependingOn = statement.getDependingOn();
@@ -179,7 +179,7 @@ public class GoToStatementTest extends CobolTestBase {
 				final GoToStatement statement = (GoToStatement) paragraph5.getStatements().get(0);
 				assertNotNull(statement);
 				assertEquals(StatementTypeEnum.GO_TO, statement.getStatementType());
-				assertEquals(GoToStatement.Type.DEPENDING_ON, statement.getType());
+				assertEquals(GoToStatement.GoToType.DEPENDING_ON, statement.getGoToType());
 
 				{
 					final DependingOn dependingOn = statement.getDependingOn();

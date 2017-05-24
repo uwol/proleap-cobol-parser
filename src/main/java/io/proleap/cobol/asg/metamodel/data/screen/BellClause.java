@@ -12,12 +12,12 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface BellClause extends CobolDivisionElement {
 
-	enum Type {
+	enum BellClauseType {
 		BEEP, BELL
 	}
 
-	Type getType();
+	BellClauseType getBellClauseType();
 
-	void setType(Type type);
+	void setBellClauseType(BellClauseType bellClauseType);
 
 }

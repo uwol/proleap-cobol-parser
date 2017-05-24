@@ -49,33 +49,33 @@ public class StartStatementImpl extends StatementImpl implements StartStatement 
 			result = new KeyImpl(programUnit, ctx);
 
 			// type
-			final Key.Type type;
+			final Key.KeyType type;
 
 			if (ctx.MORETHANOREQUAL() != null) {
-				type = Key.Type.GREATER_OR_EQUAL;
+				type = Key.KeyType.GREATER_OR_EQUAL;
 			} else if (ctx.GREATER() != null && ctx.EQUAL() != null) {
-				type = Key.Type.GREATER_OR_EQUAL;
+				type = Key.KeyType.GREATER_OR_EQUAL;
 			}
 			// with not
 			else if (ctx.NOT() != null && ctx.LESSTHANCHAR() != null) {
-				type = Key.Type.GREATER_OR_EQUAL;
+				type = Key.KeyType.GREATER_OR_EQUAL;
 			} else if (ctx.NOT() != null && ctx.LESS() != null) {
-				type = Key.Type.GREATER_OR_EQUAL;
+				type = Key.KeyType.GREATER_OR_EQUAL;
 			}
 			// without not
 			else if (ctx.MORETHANCHAR() != null) {
-				type = Key.Type.GREATER;
+				type = Key.KeyType.GREATER;
 			} else if (ctx.GREATER() != null) {
-				type = Key.Type.GREATER;
+				type = Key.KeyType.GREATER;
 			} else if (ctx.EQUAL() != null) {
-				type = Key.Type.EQUAL;
+				type = Key.KeyType.EQUAL;
 			} else if (ctx.EQUALCHAR() != null) {
-				type = Key.Type.EQUAL;
+				type = Key.KeyType.EQUAL;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setKeyType(type);
 
 			// comparison call
 			if (ctx.qualifiedDataName() != null) {

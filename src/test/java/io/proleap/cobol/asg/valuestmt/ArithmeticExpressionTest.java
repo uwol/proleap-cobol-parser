@@ -73,7 +73,7 @@ public class ArithmeticExpressionTest extends CobolTestBase {
 
 					{
 						final MultDiv multDivValueStmt = (MultDiv) multDivsValueStmt.getSubValueStmts().get(1);
-						assertEquals(MultDiv.Type.MULT, multDivValueStmt.getType());
+						assertEquals(MultDiv.MultDivType.MULT, multDivValueStmt.getMultDivType());
 						assertEquals(1, multDivValueStmt.getSubValueStmts().size());
 
 						{

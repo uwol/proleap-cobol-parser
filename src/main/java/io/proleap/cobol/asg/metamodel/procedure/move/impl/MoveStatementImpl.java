@@ -30,9 +30,9 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 
 	protected MoveTo moveTo;
 
-	protected final StatementType statementType = StatementTypeEnum.MOVE;
+	protected MoveType moveType;
 
-	protected Type type;
+	protected final StatementType statementType = StatementTypeEnum.MOVE;
 
 	public MoveStatementImpl(final ProgramUnit programUnit, final Scope scope, final MoveStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -98,18 +98,18 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 	}
 
 	@Override
+	public MoveType getMoveType() {
+		return moveType;
+	}
+
+	@Override
 	public StatementType getStatementType() {
 		return statementType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setMoveType(final MoveType moveType) {
+		this.moveType = moveType;
 	}
 
 }

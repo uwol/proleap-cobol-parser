@@ -26,11 +26,11 @@ public class AndOrConditionImpl extends ValueStmtImpl implements AndOrCondition 
 
 	protected List<Abbreviation> abbreviations = new ArrayList<Abbreviation>();
 
+	protected AndOrConditionType andOrConditionType;
+
 	protected CombinableCondition combinableCondition;
 
 	protected AndOrConditionContext ctx;
-
-	protected Type type;
 
 	public AndOrConditionImpl(final ProgramUnit programUnit, final AndOrConditionContext ctx) {
 		super(programUnit, ctx);
@@ -95,13 +95,13 @@ public class AndOrConditionImpl extends ValueStmtImpl implements AndOrCondition 
 	}
 
 	@Override
-	public CombinableCondition getCombinableCondition() {
-		return combinableCondition;
+	public AndOrConditionType getAndOrConditionType() {
+		return andOrConditionType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public CombinableCondition getCombinableCondition() {
+		return combinableCondition;
 	}
 
 	@Override
@@ -110,8 +110,8 @@ public class AndOrConditionImpl extends ValueStmtImpl implements AndOrCondition 
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setAndOrConditionType(final AndOrConditionType andOrConditionType) {
+		this.andOrConditionType = andOrConditionType;
 	}
 
 }

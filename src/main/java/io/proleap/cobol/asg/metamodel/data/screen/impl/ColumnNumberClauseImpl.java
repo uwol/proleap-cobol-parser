@@ -16,11 +16,11 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 
 public class ColumnNumberClauseImpl extends CobolDivisionElementImpl implements ColumnNumberClause {
 
+	protected ColumnNumberClauseType columnNumberClauseType;
+
 	protected ScreenDescriptionColumnClauseContext ctx;
 
 	protected IntegerLiteral integerLiteral;
-
-	protected Type type;
 
 	public ColumnNumberClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionColumnClauseContext ctx) {
 		super(programUnit, ctx);
@@ -29,23 +29,23 @@ public class ColumnNumberClauseImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
+	public ColumnNumberClauseType getColumnNumberClauseType() {
+		return columnNumberClauseType;
+	}
+
+	@Override
 	public IntegerLiteral getIntegerLiteral() {
 		return integerLiteral;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public void setColumnNumberClauseType(final ColumnNumberClauseType columnNumberClauseType) {
+		this.columnNumberClauseType = columnNumberClauseType;
 	}
 
 	@Override
 	public void setIntegerLiteral(final IntegerLiteral integerLiteral) {
 		this.integerLiteral = integerLiteral;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

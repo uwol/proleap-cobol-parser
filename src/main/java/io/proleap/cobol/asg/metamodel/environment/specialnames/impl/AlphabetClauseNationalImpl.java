@@ -29,7 +29,7 @@ public class AlphabetClauseNationalImpl extends AlphabetClauseImpl implements Al
 	}
 
 	@Override
-	public AlphabetClauseNationalType getAlphabetClauseType() {
+	public AlphabetClauseNationalType getAlphabetClauseNationalType() {
 		return alphabetClauseNationalType;
 	}
 
@@ -39,12 +39,12 @@ public class AlphabetClauseNationalImpl extends AlphabetClauseImpl implements Al
 	}
 
 	@Override
-	public Type getType() {
-		return AlphabetClause.Type.NATIONAL;
+	public AlphabetClauseType getAlphabetClauseType() {
+		return AlphabetClause.AlphabetClauseType.NATIONAL;
 	}
 
 	@Override
-	public void setAlphabetClauseType(final AlphabetClauseNationalType alphabetClauseNationalType) {
+	public void setAlphabetClauseNationalType(final AlphabetClauseNationalType alphabetClauseNationalType) {
 		this.alphabetClauseNationalType = alphabetClauseNationalType;
 	}
 

@@ -60,7 +60,7 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 				linkDataDescriptionEntries(predecessor, successor);
 			}
 
-			if (DataDescriptionEntry.Type.GROUP.equals(successor.getType())) {
+			if (DataDescriptionEntry.DataDescriptionEntryType.GROUP.equals(successor.getDataDescriptionEntryType())) {
 				final DataDescriptionEntryGroup successorGroup = (DataDescriptionEntryGroup) successor;
 				linkDataDescriptionEntries(successorGroup.getDataDescriptionEntries());
 			}

@@ -16,9 +16,9 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ByContentImpl extends CobolDivisionElementImpl implements ByContent {
 
-	protected final CallByContentContext ctx;
+	protected ByContentType byContentType;
 
-	protected Type type;
+	protected final CallByContentContext ctx;
 
 	protected ValueStmt valueStmt;
 
@@ -29,8 +29,8 @@ public class ByContentImpl extends CobolDivisionElementImpl implements ByContent
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public ByContentType getByContentType() {
+		return byContentType;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class ByContentImpl extends CobolDivisionElementImpl implements ByContent
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setByContentType(final ByContentType byContentType) {
+		this.byContentType = byContentType;
 	}
 
 	@Override

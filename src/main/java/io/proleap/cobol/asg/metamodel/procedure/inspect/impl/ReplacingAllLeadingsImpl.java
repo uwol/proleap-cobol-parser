@@ -25,7 +25,7 @@ public class ReplacingAllLeadingsImpl extends InspectPhraseImpl implements Repla
 
 	protected final InspectReplacingAllLeadingsContext ctx;
 
-	protected Type type;
+	protected ReplacingAllLeadingsType replacingAllLeadingsType;
 
 	public ReplacingAllLeadingsImpl(final ProgramUnit programUnit, final InspectReplacingAllLeadingsContext ctx) {
 		super(programUnit, ctx);
@@ -65,13 +65,13 @@ public class ReplacingAllLeadingsImpl extends InspectPhraseImpl implements Repla
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public ReplacingAllLeadingsType getReplacingAllLeadingsType() {
+		return replacingAllLeadingsType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setReplacingAllLeadingsType(final ReplacingAllLeadingsType replacingAllLeadingsType) {
+		this.replacingAllLeadingsType = replacingAllLeadingsType;
 	}
 
 }

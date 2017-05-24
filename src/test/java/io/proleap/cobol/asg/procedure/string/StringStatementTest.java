@@ -48,16 +48,16 @@ public class StringStatementTest extends CobolTestBase {
 
 			{
 				final Sendings sendings = stringStatement.getSendings().get(0);
-				assertEquals(Sendings.Type.DELIMITED_BY, sendings.getType());
+				assertEquals(Sendings.SendingsType.DELIMITED_BY, sendings.getSendingsType());
 
 				final DelimitedBy delimitedBy = sendings.getDelimitedBy();
-				assertEquals(DelimitedBy.Type.CHARACTERS, delimitedBy.getType());
+				assertEquals(DelimitedBy.DelimitedByType.CHARACTERS, delimitedBy.getDelimitedByType());
 				assertEquals("1", delimitedBy.getCharactersValueStmt().getValue());
 			}
 
 			{
 				final Sendings sendings = stringStatement.getSendings().get(1);
-				assertEquals(Sendings.Type.FOR, sendings.getType());
+				assertEquals(Sendings.SendingsType.FOR, sendings.getSendingsType());
 
 				final For sendingFor = sendings.getFor();
 				final CallValueStmt forCallValueStmt = (CallValueStmt) sendingFor.getForValueStmt();

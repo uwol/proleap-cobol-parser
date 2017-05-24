@@ -46,7 +46,7 @@ public class ExecSqlStatementTest extends CobolTestBase {
 					.getRootDataDescriptionEntries().get(0);
 
 			assertNotNull(dataDescriptionEntry);
-			assertEquals(DataDescriptionEntry.Type.EXEC_SQL, dataDescriptionEntry.getType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals("EXEC SQL BEGIN DECLARE SECTION END-EXEC", dataDescriptionEntry.getExecSqlText());
 		}
 
@@ -56,7 +56,7 @@ public class ExecSqlStatementTest extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntryUserId);
 			assertEquals("userid", dataDescriptionEntryUserId.getName());
-			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryUserId.getType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryUserId.getDataDescriptionEntryType());
 			assertEquals(new Integer(1), dataDescriptionEntryUserId.getLevelNumber());
 			assertNull(dataDescriptionEntryUserId.getParentDataDescriptionEntryGroup());
 		}
@@ -66,7 +66,7 @@ public class ExecSqlStatementTest extends CobolTestBase {
 					.getRootDataDescriptionEntries().get(2);
 
 			assertNotNull(dataDescriptionEntry);
-			assertEquals(DataDescriptionEntry.Type.EXEC_SQL, dataDescriptionEntry.getType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals("EXEC SQL END DECLARE SECTION END-EXEC", dataDescriptionEntry.getExecSqlText());
 		}
 

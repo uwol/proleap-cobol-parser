@@ -19,7 +19,7 @@ public class SignClauseImpl extends CobolDivisionElementImpl implements SignClau
 
 	protected boolean separate;
 
-	protected Type type;
+	protected SignClauseType signClauseType;
 
 	public SignClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionSignClauseContext ctx) {
 		super(programUnit, ctx);
@@ -28,8 +28,8 @@ public class SignClauseImpl extends CobolDivisionElementImpl implements SignClau
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public SignClauseType getSignClauseType() {
+		return signClauseType;
 	}
 
 	@Override
@@ -43,8 +43,8 @@ public class SignClauseImpl extends CobolDivisionElementImpl implements SignClau
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setSignClauseType(final SignClauseType signClauseType) {
+		this.signClauseType = signClauseType;
 	}
 
 }

@@ -12,12 +12,12 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface RequiredClause extends CobolDivisionElement {
 
-	enum Type {
+	enum RequiredClauseType {
 		EMPTY_CHECK, REQUIRED
 	}
 
-	Type getType();
+	RequiredClauseType getRequiredClauseType();
 
-	void setType(Type type);
+	void setRequiredClauseType(RequiredClauseType requiredClauseType);
 
 }

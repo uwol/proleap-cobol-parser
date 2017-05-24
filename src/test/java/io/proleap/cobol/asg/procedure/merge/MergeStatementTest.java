@@ -56,7 +56,7 @@ public class MergeStatementTest extends CobolTestBase {
 
 				{
 					final OnKey onKey = mergeStatement.getOnKeys().get(0);
-					assertEquals(OnKey.Type.DESCENDING, onKey.getType());
+					assertEquals(OnKey.OnKeyType.DESCENDING, onKey.getOnKeyType());
 					assertEquals(1, onKey.getKeyCalls().size());
 
 					{
@@ -67,7 +67,7 @@ public class MergeStatementTest extends CobolTestBase {
 
 				{
 					final OnKey onKey = mergeStatement.getOnKeys().get(1);
-					assertEquals(OnKey.Type.ASCENDING, onKey.getType());
+					assertEquals(OnKey.OnKeyType.ASCENDING, onKey.getOnKeyType());
 					assertEquals(2, onKey.getKeyCalls().size());
 
 					{

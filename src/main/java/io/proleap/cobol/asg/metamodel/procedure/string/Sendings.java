@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface Sendings extends CobolDivisionElement {
 
-	enum Type {
+	enum SendingsType {
 		DELIMITED_BY, FOR
 	}
 
@@ -31,9 +31,9 @@ public interface Sendings extends CobolDivisionElement {
 
 	For getFor();
 
+	SendingsType getSendingsType();
+
 	List<ValueStmt> getSendingValueStmts();
 
-	Type getType();
-
-	void setType(Type type);
+	void setSendingsType(SendingsType sendingsType);
 }

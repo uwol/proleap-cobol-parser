@@ -46,7 +46,7 @@ public class MultiplyGivingStatementTest extends CobolTestBase {
 			final MultiplyStatement multiplyStatement = (MultiplyStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(multiplyStatement);
 			assertEquals(StatementTypeEnum.MULTIPLY, multiplyStatement.getStatementType());
-			assertEquals(MultiplyStatement.Type.GIVING, multiplyStatement.getType());
+			assertEquals(MultiplyStatement.MultiplyType.GIVING, multiplyStatement.getMultiplyType());
 
 			{
 				final ValueStmt operandValueStmt = multiplyStatement.getOperandValueStmt();

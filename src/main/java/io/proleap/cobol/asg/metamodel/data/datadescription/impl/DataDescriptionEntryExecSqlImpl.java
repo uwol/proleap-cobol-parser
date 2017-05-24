@@ -32,8 +32,8 @@ public class DataDescriptionEntryExecSqlImpl extends DataDescriptionEntryImpl im
 	}
 
 	@Override
-	public Type getType() {
-		return Type.EXEC_SQL;
+	public DataDescriptionEntryType getDataDescriptionEntryType() {
+		return DataDescriptionEntryType.EXEC_SQL;
 	}
 
 	@Override

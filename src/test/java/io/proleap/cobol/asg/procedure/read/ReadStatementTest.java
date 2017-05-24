@@ -116,8 +116,8 @@ public class ReadStatementTest extends CobolTestBase {
 			{
 				final With with = readStatement.getWith();
 				assertNotNull(with);
-				assertNotNull(with.getType());
-				assertEquals(With.Type.WAIT, with.getType());
+				assertNotNull(with.getWithType());
+				assertEquals(With.WithType.WAIT, with.getWithType());
 			}
 
 			{

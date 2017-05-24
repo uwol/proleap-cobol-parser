@@ -47,7 +47,7 @@ public class InitializeStatementTest extends CobolTestBase {
 
 		assertNotNull(someGroup);
 		assertEquals("SOMEGRP", someGroup.getName());
-		assertEquals(DataDescriptionEntry.Type.GROUP, someGroup.getType());
+		assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, someGroup.getDataDescriptionEntryType());
 
 		final DataDescriptionEntry someName = someGroup.getDataDescriptionEntry("SOMENAME");
 		assertNotNull(someName);
@@ -100,7 +100,7 @@ public class InitializeStatementTest extends CobolTestBase {
 
 				{
 					final By by = replacing.getBys().get(0);
-					assertEquals(By.Type.ALPHANUMERIC, by.getType());
+					assertEquals(By.ByType.ALPHANUMERIC, by.getByType());
 					assertNotNull(by.getValueStmt());
 					assertEquals("ABC", by.getValueStmt().getValue());
 				}

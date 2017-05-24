@@ -67,12 +67,12 @@ public class ConditionTest extends CobolTestBase {
 					{
 						final SimpleCondition simpleCondition = combinableCondition.getSimpleCondition();
 						assertNotNull(simpleCondition);
-						assertEquals(SimpleCondition.Type.RELATION_CONDITION, simpleCondition.getType());
+						assertEquals(SimpleCondition.SimpleConditionType.RELATION_CONDITION, simpleCondition.getSimpleConditionType());
 
 						{
 							final RelationConditionValueStmt relationCondition = simpleCondition.getRelationCondition();
 							assertNotNull(relationCondition);
-							assertEquals(RelationConditionValueStmt.Type.ARITHMETIC, relationCondition.getType());
+							assertEquals(RelationConditionValueStmt.RelationConditionType.ARITHMETIC, relationCondition.getRelationConditionType());
 
 							{
 								final ArithmeticComparison arithmeticComparison = relationCondition
@@ -82,7 +82,7 @@ public class ConditionTest extends CobolTestBase {
 								{
 									final RelationalOperator operator = arithmeticComparison.getOperator();
 									assertNotNull(operator);
-									assertEquals(RelationalOperator.Type.GREATER, operator.getType());
+									assertEquals(RelationalOperator.RelationalOperatorType.GREATER, operator.getRelationalOperatorType());
 								}
 
 								{
@@ -165,7 +165,7 @@ public class ConditionTest extends CobolTestBase {
 						{
 							final SimpleCondition simpleCondition = combinableCondition.getSimpleCondition();
 							assertNotNull(simpleCondition);
-							assertEquals(SimpleCondition.Type.CONDITION_NAME_REFERENCE, simpleCondition.getType());
+							assertEquals(SimpleCondition.SimpleConditionType.CONDITION_NAME_REFERENCE, simpleCondition.getSimpleConditionType());
 
 							{
 								final ConditionNameReference conditionNameReference = simpleCondition

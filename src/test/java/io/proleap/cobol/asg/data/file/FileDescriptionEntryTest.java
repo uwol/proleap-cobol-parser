@@ -70,7 +70,7 @@ public class FileDescriptionEntryTest extends CobolTestBase {
 			{
 				final LabelRecordsClause labelRecordsClause = fileDescriptionEntry.getLabelRecordsClause();
 				assertNotNull(labelRecordsClause);
-				assertEquals(LabelRecordsClause.Type.DATA_NAMES, labelRecordsClause.getType());
+				assertEquals(LabelRecordsClause.LabelRecordsClauseType.DATA_NAMES, labelRecordsClause.getLabelRecordsClauseType());
 				assertEquals(2, labelRecordsClause.getDataCalls().size());
 				assertNotNull(labelRecordsClause.getDataCalls().get(0));
 				assertNotNull(labelRecordsClause.getDataCalls().get(1));

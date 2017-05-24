@@ -57,7 +57,7 @@ public class CancelStatementTest extends CobolTestBase {
 				final CancelCall cancelCall = cancelStatement.getCancelCalls().get(0);
 				final CallValueStmt callValueStmt = (CallValueStmt) cancelCall.getValueStmt();
 
-				assertEquals(CancelCall.Type.BY_FUNCTION, cancelCall.getType());
+				assertEquals(CancelCall.CancelType.BY_FUNCTION, cancelCall.getCancelType());
 				assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 			}
 		}

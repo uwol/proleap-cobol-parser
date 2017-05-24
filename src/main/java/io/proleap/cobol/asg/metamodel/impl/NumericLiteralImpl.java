@@ -20,7 +20,7 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 
 	protected Integer integerValue;
 
-	protected Type type;
+	protected NumericLiteralType numericLiteralType;
 
 	public NumericLiteralImpl(final ProgramUnit programUnit, final NumericLiteralContext ctx) {
 		super(programUnit, ctx);
@@ -44,15 +44,15 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public NumericLiteralType getNumericLiteralType() {
+		return numericLiteralType;
 	}
 
 	@Override
 	public Object getValue() {
 		final Object result;
 
-		switch (type) {
+		switch (numericLiteralType) {
 		case INTEGER:
 			result = integerValue;
 			break;
@@ -76,8 +76,8 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setNumericLiteralType(final NumericLiteralType numericLiteralType) {
+		this.numericLiteralType = numericLiteralType;
 	}
 
 	@Override

@@ -37,27 +37,27 @@ public class UsingImpl extends CobolDivisionElementImpl implements Using {
 		if (result == null) {
 			result = new ParameterImpl(programUnit, ctx);
 
-			final Parameter.Type type;
+			final Parameter.ParameterType type;
 
 			// using call by reference
 			if (ctx.callByReferencePhrase() != null) {
 				result.addCallByReference(ctx.callByReferencePhrase());
-				type = Parameter.Type.REFERENCE;
+				type = Parameter.ParameterType.REFERENCE;
 			}
 			// using call by value
 			else if (ctx.callByValuePhrase() != null) {
 				result.addCallByValue(ctx.callByValuePhrase());
-				type = Parameter.Type.VALUE;
+				type = Parameter.ParameterType.VALUE;
 			}
 			// using call by content
 			else if (ctx.callByContentPhrase() != null) {
 				result.addCallByContent(ctx.callByContentPhrase());
-				type = Parameter.Type.CONTENT;
+				type = Parameter.ParameterType.CONTENT;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setParameterType(type);
 
 			parameters.add(result);
 			registerASGElement(result);

@@ -22,24 +22,24 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
  */
 public interface DisableStatement extends Statement {
 
-	enum Type {
+	enum DisableType {
 		INPUT, INPUT_OUTPUT, OUTPUT
 	}
 
 	Call getCommunicationDescriptionCall();
 
-	ValueStmt getKeyValueStmt();
+	DisableType getDisableType();
 
-	Type getType();
+	ValueStmt getKeyValueStmt();
 
 	boolean isTerminal();
 
 	void setCommunicationDescriptionCall(Call communicationDescriptionCall);
 
+	void setDisableType(DisableType disableType);
+
 	void setKeyValueStmt(ValueStmt keyValueStmt);
 
 	void setTerminal(boolean terminal);
-
-	void setType(Type type);
 
 }

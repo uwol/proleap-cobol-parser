@@ -37,7 +37,7 @@ public class AddToStatementTest extends CobolTestBase {
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(0);
 			assertEquals(StatementTypeEnum.ADD, addStatement.getStatementType());
-			assertEquals(AddStatement.Type.TO, addStatement.getType());
+			assertEquals(AddStatement.AddType.TO, addStatement.getAddType());
 			assertNotNull(addStatement.getAddTo());
 
 			{
@@ -61,7 +61,7 @@ public class AddToStatementTest extends CobolTestBase {
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(1);
 			assertEquals(StatementTypeEnum.ADD, addStatement.getStatementType());
-			assertEquals(AddStatement.Type.TO, addStatement.getType());
+			assertEquals(AddStatement.AddType.TO, addStatement.getAddType());
 			assertNotNull(addStatement.getAddTo());
 
 			{

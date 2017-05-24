@@ -43,17 +43,17 @@ public class MultDivsImpl extends ValueStmtImpl implements MultDivs {
 			result = new MultDivImpl(programUnit, ctx);
 
 			// type
-			final MultDiv.Type type;
+			final MultDiv.MultDivType type;
 
 			if (ctx.ASTERISKCHAR() != null) {
-				type = MultDiv.Type.MULT;
+				type = MultDiv.MultDivType.MULT;
 			} else if (ctx.SLASHCHAR() != null) {
-				type = MultDiv.Type.DIV;
+				type = MultDiv.MultDivType.DIV;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setMultDivType(type);
 
 			// powers
 			result.addPowers(ctx.powers());
@@ -74,17 +74,17 @@ public class MultDivsImpl extends ValueStmtImpl implements MultDivs {
 			result = new PowersImpl(programUnit, ctx);
 
 			// type
-			final Powers.Type type;
+			final Powers.PowersType type;
 
 			if (ctx.PLUSCHAR() != null) {
-				type = Powers.Type.PLUS;
+				type = Powers.PowersType.PLUS;
 			} else if (ctx.MINUSCHAR() != null) {
-				type = Powers.Type.MINUS;
+				type = Powers.PowersType.MINUS;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setPowersType(type);
 
 			// basis
 			result.addBasis(ctx.basis());

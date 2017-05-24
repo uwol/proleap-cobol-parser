@@ -16,15 +16,15 @@ public interface OrganizationClause extends CobolDivisionElement {
 		INDEXED, RELATIVE, SEQUENTIAL
 	}
 
-	enum Type {
+	enum OrganizationClauseType {
 		BINARY, LINE, RECORD, RECORD_BINARY
 	}
 
 	Mode getMode();
 
-	Type getType();
+	OrganizationClauseType getOrganizationClauseType();
 
 	void setMode(Mode mode);
 
-	void setType(Type type);
+	void setOrganizationClauseType(OrganizationClauseType organizationClauseType);
 }

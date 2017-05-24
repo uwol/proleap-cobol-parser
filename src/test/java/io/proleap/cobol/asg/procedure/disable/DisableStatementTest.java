@@ -41,17 +41,17 @@ public class DisableStatementTest extends CobolTestBase {
 		final CommunicationDescriptionEntry communicationDescriptionEntry1 = communicationSection
 				.getCommunicationDescriptionEntry("SOMECDNAME1");
 		assertNotNull(communicationDescriptionEntry1);
-		assertEquals(CommunicationDescriptionEntry.Type.INPUT, communicationDescriptionEntry1.getType());
+		assertEquals(CommunicationDescriptionEntry.CommunicationDescriptionEntryType.INPUT, communicationDescriptionEntry1.getCommunicationDescriptionEntryType());
 
 		final CommunicationDescriptionEntry communicationDescriptionEntry2 = communicationSection
 				.getCommunicationDescriptionEntry("SOMECDNAME2");
 		assertNotNull(communicationDescriptionEntry2);
-		assertEquals(CommunicationDescriptionEntry.Type.INPUT_OUTPUT, communicationDescriptionEntry2.getType());
+		assertEquals(CommunicationDescriptionEntry.CommunicationDescriptionEntryType.INPUT_OUTPUT, communicationDescriptionEntry2.getCommunicationDescriptionEntryType());
 
 		final CommunicationDescriptionEntry communicationDescriptionEntry3 = communicationSection
 				.getCommunicationDescriptionEntry("SOMECDNAME3");
 		assertNotNull(communicationDescriptionEntry3);
-		assertEquals(CommunicationDescriptionEntry.Type.OUTPUT, communicationDescriptionEntry3.getType());
+		assertEquals(CommunicationDescriptionEntry.CommunicationDescriptionEntryType.OUTPUT, communicationDescriptionEntry3.getCommunicationDescriptionEntryType());
 
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(0, procedureDivision.getParagraphs().size());
@@ -61,7 +61,7 @@ public class DisableStatementTest extends CobolTestBase {
 			final DisableStatement disableStatement = (DisableStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(disableStatement);
 			assertEquals(StatementTypeEnum.DISABLE, disableStatement.getStatementType());
-			assertEquals(DisableStatement.Type.INPUT, disableStatement.getType());
+			assertEquals(DisableStatement.DisableType.INPUT, disableStatement.getDisableType());
 			assertTrue(disableStatement.isTerminal());
 
 			assertNotNull(disableStatement.getCommunicationDescriptionCall());
@@ -86,7 +86,7 @@ public class DisableStatementTest extends CobolTestBase {
 			final DisableStatement disableStatement = (DisableStatement) procedureDivision.getStatements().get(1);
 			assertNotNull(disableStatement);
 			assertEquals(StatementTypeEnum.DISABLE, disableStatement.getStatementType());
-			assertEquals(DisableStatement.Type.INPUT_OUTPUT, disableStatement.getType());
+			assertEquals(DisableStatement.DisableType.INPUT_OUTPUT, disableStatement.getDisableType());
 			assertTrue(disableStatement.isTerminal());
 
 			assertNotNull(disableStatement.getCommunicationDescriptionCall());
@@ -111,7 +111,7 @@ public class DisableStatementTest extends CobolTestBase {
 			final DisableStatement disableStatement = (DisableStatement) procedureDivision.getStatements().get(2);
 			assertNotNull(disableStatement);
 			assertEquals(StatementTypeEnum.DISABLE, disableStatement.getStatementType());
-			assertEquals(DisableStatement.Type.OUTPUT, disableStatement.getType());
+			assertEquals(DisableStatement.DisableType.OUTPUT, disableStatement.getDisableType());
 			assertFalse(disableStatement.isTerminal());
 
 			assertNotNull(disableStatement.getCommunicationDescriptionCall());

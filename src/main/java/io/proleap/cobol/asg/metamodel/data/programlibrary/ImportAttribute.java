@@ -13,23 +13,23 @@ import io.proleap.cobol.asg.metamodel.Literal;
 
 public interface ImportAttribute extends CobolDivisionElement {
 
-	enum Type {
+	enum ImportAttributeType {
 		BY_FUNCTION, BY_TITLE
 	}
 
 	Literal getFunctionLiteral();
 
+	ImportAttributeType getImportAttributeType();
+
 	Literal getParameterLiteral();
 
 	Literal getTitleLiteral();
 
-	Type getType();
-
 	void setFunctionLiteral(Literal functionLiteral);
+
+	void setImportAttributeType(ImportAttributeType importAttributeType);
 
 	void setParameterLiteral(Literal parameterLiteral);
 
 	void setTitleLiteral(Literal titleLiteral);
-
-	void setType(Type type);
 }

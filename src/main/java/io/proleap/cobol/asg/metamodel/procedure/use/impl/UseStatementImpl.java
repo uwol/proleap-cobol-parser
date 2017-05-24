@@ -31,7 +31,7 @@ public class UseStatementImpl extends StatementImpl implements UseStatement {
 
 	protected final StatementType statementType = StatementTypeEnum.USE;
 
-	protected Type type;
+	protected UseType useType;
 
 	public UseStatementImpl(final ProgramUnit programUnit, final Scope scope, final UseStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -96,13 +96,13 @@ public class UseStatementImpl extends StatementImpl implements UseStatement {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public UseType getUseType() {
+		return useType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setUseType(final UseType useType) {
+		this.useType = useType;
 	}
 
 }

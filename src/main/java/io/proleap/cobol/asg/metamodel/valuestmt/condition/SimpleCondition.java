@@ -18,7 +18,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface SimpleCondition extends ValueStmt {
 
-	enum Type {
+	enum SimpleConditionType {
 		CLASS_CONDITION, CONDITION, CONDITION_NAME_REFERENCE, RELATION_CONDITION
 	}
 
@@ -38,8 +38,8 @@ public interface SimpleCondition extends ValueStmt {
 
 	RelationConditionValueStmt getRelationCondition();
 
-	Type getType();
+	SimpleConditionType getSimpleConditionType();
 
-	void setType(Type type);
+	void setSimpleConditionType(SimpleConditionType simpleConditionType);
 
 }

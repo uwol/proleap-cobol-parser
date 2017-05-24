@@ -128,8 +128,8 @@ public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl imp
 	}
 
 	@Override
-	public Type getType() {
-		return Type.RENAME;
+	public DataDescriptionEntryType getDataDescriptionEntryType() {
+		return DataDescriptionEntryType.RENAME;
 	}
 
 }

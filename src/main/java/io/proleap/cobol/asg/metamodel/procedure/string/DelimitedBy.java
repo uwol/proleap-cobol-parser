@@ -13,15 +13,15 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface DelimitedBy extends CobolDivisionElement {
 
-	enum Type {
+	enum DelimitedByType {
 		CHARACTERS, SIZE
 	}
 
 	ValueStmt getCharactersValueStmt();
 
-	Type getType();
+	DelimitedByType getDelimitedByType();
 
 	void setCharactersValueStmt(ValueStmt charactersValueStmt);
 
-	void setType(Type type);
+	void setType(DelimitedByType delimitedByType);
 }

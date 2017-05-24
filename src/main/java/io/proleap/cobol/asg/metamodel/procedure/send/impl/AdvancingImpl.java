@@ -25,11 +25,11 @@ public class AdvancingImpl extends CobolDivisionElementImpl implements Advancing
 
 	protected AdvancingMnemonic advancingMnemonic;
 
+	protected AdvancingType advancingType;
+
 	protected SendAdvancingPhraseContext ctx;
 
 	protected PositionType positionType;
-
-	protected Type type;
 
 	public AdvancingImpl(final ProgramUnit programUnit, final SendAdvancingPhraseContext ctx) {
 		super(programUnit, ctx);
@@ -82,23 +82,23 @@ public class AdvancingImpl extends CobolDivisionElementImpl implements Advancing
 	}
 
 	@Override
+	public AdvancingType getAdvancingType() {
+		return advancingType;
+	}
+
+	@Override
 	public PositionType getPositionType() {
 		return positionType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public void setAdvancingType(final AdvancingType advancingType) {
+		this.advancingType = advancingType;
 	}
 
 	@Override
 	public void setPositionType(final PositionType positionType) {
 		this.positionType = positionType;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

@@ -44,7 +44,7 @@ public class PerformInlineUntilTest extends CobolTestBase {
 			assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
 
 			final PerformStatement performStatement = (PerformStatement) statement;
-			assertEquals(PerformStatement.Type.INLINE, performStatement.getType());
+			assertEquals(PerformStatement.PerformStatementType.INLINE, performStatement.getPerformStatementType());
 
 			{
 				final PerformInlineStatement performInlineStatement = performStatement.getPerformInlineStatement();
@@ -52,12 +52,12 @@ public class PerformInlineUntilTest extends CobolTestBase {
 
 				{
 					final PerformType performType = performInlineStatement.getPerformType();
-					assertEquals(PerformType.Type.UNTIL, performType.getType());
+					assertEquals(PerformType.PerformTypeType.UNTIL, performType.getPerformTypeType());
 
 					{
 						final Until until = performType.getUntil();
 						assertNotNull(until.getTestClause());
-						assertEquals(TestClause.Type.AFTER, until.getTestClause().getType());
+						assertEquals(TestClause.TestClauseType.AFTER, until.getTestClause().getTestClauseType());
 
 						final ConditionValueStmt condition = until.getCondition();
 						assertNotNull(condition);

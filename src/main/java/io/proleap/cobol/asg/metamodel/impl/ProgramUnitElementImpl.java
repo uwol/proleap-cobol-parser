@@ -450,62 +450,62 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		SpecialRegisterCall result = (SpecialRegisterCall) getASGElement(ctx);
 
 		if (result == null) {
-			final SpecialRegisterCall.Type type;
+			final SpecialRegisterCall.SpecialRegisterType type;
 
 			if (ctx.ADDRESS() != null) {
-				type = SpecialRegisterCall.Type.ADDRESS_OF;
+				type = SpecialRegisterCall.SpecialRegisterType.ADDRESS_OF;
 			} else if (ctx.DATE() != null) {
-				type = SpecialRegisterCall.Type.DATE;
+				type = SpecialRegisterCall.SpecialRegisterType.DATE;
 			} else if (ctx.DAY() != null) {
-				type = SpecialRegisterCall.Type.DAY;
+				type = SpecialRegisterCall.SpecialRegisterType.DAY;
 			} else if (ctx.DAY_OF_WEEK() != null) {
-				type = SpecialRegisterCall.Type.DAY_OF_WEEK;
+				type = SpecialRegisterCall.SpecialRegisterType.DAY_OF_WEEK;
 			} else if (ctx.DEBUG_CONTENTS() != null) {
-				type = SpecialRegisterCall.Type.DEBUG_CONTENTS;
+				type = SpecialRegisterCall.SpecialRegisterType.DEBUG_CONTENTS;
 			} else if (ctx.DEBUG_ITEM() != null) {
-				type = SpecialRegisterCall.Type.DEBUG_ITEM;
+				type = SpecialRegisterCall.SpecialRegisterType.DEBUG_ITEM;
 			} else if (ctx.DEBUG_LINE() != null) {
-				type = SpecialRegisterCall.Type.DEBUG_LINE;
+				type = SpecialRegisterCall.SpecialRegisterType.DEBUG_LINE;
 			} else if (ctx.DEBUG_NAME() != null) {
-				type = SpecialRegisterCall.Type.DEBUG_NAME;
+				type = SpecialRegisterCall.SpecialRegisterType.DEBUG_NAME;
 			} else if (ctx.DEBUG_SUB_1() != null) {
-				type = SpecialRegisterCall.Type.DEBUG_SUB_1;
+				type = SpecialRegisterCall.SpecialRegisterType.DEBUG_SUB_1;
 			} else if (ctx.DEBUG_SUB_2() != null) {
-				type = SpecialRegisterCall.Type.DEBUG_SUB_2;
+				type = SpecialRegisterCall.SpecialRegisterType.DEBUG_SUB_2;
 			} else if (ctx.DEBUG_SUB_3() != null) {
-				type = SpecialRegisterCall.Type.DEBUG_SUB_3;
+				type = SpecialRegisterCall.SpecialRegisterType.DEBUG_SUB_3;
 			} else if (ctx.LENGTH() != null) {
-				type = SpecialRegisterCall.Type.LENGTH_OF;
+				type = SpecialRegisterCall.SpecialRegisterType.LENGTH_OF;
 			} else if (ctx.LINAGE_COUNTER() != null) {
-				type = SpecialRegisterCall.Type.LINAGE_COUNTER;
+				type = SpecialRegisterCall.SpecialRegisterType.LINAGE_COUNTER;
 			} else if (ctx.LINE_COUNTER() != null) {
-				type = SpecialRegisterCall.Type.LINE_COUNTER;
+				type = SpecialRegisterCall.SpecialRegisterType.LINE_COUNTER;
 			} else if (ctx.PAGE_COUNTER() != null) {
-				type = SpecialRegisterCall.Type.PAGE_COUNTER;
+				type = SpecialRegisterCall.SpecialRegisterType.PAGE_COUNTER;
 			} else if (ctx.RETURN_CODE() != null) {
-				type = SpecialRegisterCall.Type.RETURN_CODE;
+				type = SpecialRegisterCall.SpecialRegisterType.RETURN_CODE;
 			} else if (ctx.SHIFT_IN() != null) {
-				type = SpecialRegisterCall.Type.SHIFT_IN;
+				type = SpecialRegisterCall.SpecialRegisterType.SHIFT_IN;
 			} else if (ctx.SHIFT_OUT() != null) {
-				type = SpecialRegisterCall.Type.SHIFT_OUT;
+				type = SpecialRegisterCall.SpecialRegisterType.SHIFT_OUT;
 			} else if (ctx.SORT_CONTROL() != null) {
-				type = SpecialRegisterCall.Type.SORT_CONTROL;
+				type = SpecialRegisterCall.SpecialRegisterType.SORT_CONTROL;
 			} else if (ctx.SORT_CORE_SIZE() != null) {
-				type = SpecialRegisterCall.Type.SORT_CORE_SIZE;
+				type = SpecialRegisterCall.SpecialRegisterType.SORT_CORE_SIZE;
 			} else if (ctx.SORT_FILE_SIZE() != null) {
-				type = SpecialRegisterCall.Type.SORT_FILE_SIZE;
+				type = SpecialRegisterCall.SpecialRegisterType.SORT_FILE_SIZE;
 			} else if (ctx.SORT_MESSAGE() != null) {
-				type = SpecialRegisterCall.Type.SORT_MESSAGE;
+				type = SpecialRegisterCall.SpecialRegisterType.SORT_MESSAGE;
 			} else if (ctx.SORT_MODE_SIZE() != null) {
-				type = SpecialRegisterCall.Type.SORT_MODE_SIZE;
+				type = SpecialRegisterCall.SpecialRegisterType.SORT_MODE_SIZE;
 			} else if (ctx.SORT_RETURN() != null) {
-				type = SpecialRegisterCall.Type.SORT_RETURN;
+				type = SpecialRegisterCall.SpecialRegisterType.SORT_RETURN;
 			} else if (ctx.TALLY() != null) {
-				type = SpecialRegisterCall.Type.TALLY;
+				type = SpecialRegisterCall.SpecialRegisterType.TALLY;
 			} else if (ctx.TIME() != null) {
-				type = SpecialRegisterCall.Type.TIME;
+				type = SpecialRegisterCall.SpecialRegisterType.TIME;
 			} else if (ctx.WHEN_COMPILED() != null) {
-				type = SpecialRegisterCall.Type.WHEN_COMPILED;
+				type = SpecialRegisterCall.SpecialRegisterType.WHEN_COMPILED;
 			} else {
 				type = null;
 			}
@@ -725,36 +725,36 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			/*
 			 * type
 			 */
-			final FigurativeConstant.Type type;
+			final FigurativeConstant.FigurativeConstantType type;
 
 			if (ctx.ALL() != null) {
-				type = FigurativeConstant.Type.ALL;
+				type = FigurativeConstant.FigurativeConstantType.ALL;
 			} else if (ctx.HIGH_VALUE() != null) {
-				type = FigurativeConstant.Type.HIGH_VALUE;
+				type = FigurativeConstant.FigurativeConstantType.HIGH_VALUE;
 			} else if (ctx.HIGH_VALUES() != null) {
-				type = FigurativeConstant.Type.HIGH_VALUES;
+				type = FigurativeConstant.FigurativeConstantType.HIGH_VALUES;
 			} else if (ctx.LOW_VALUE() != null) {
-				type = FigurativeConstant.Type.LOW_VALUE;
+				type = FigurativeConstant.FigurativeConstantType.LOW_VALUE;
 			} else if (ctx.LOW_VALUES() != null) {
-				type = FigurativeConstant.Type.LOW_VALUES;
+				type = FigurativeConstant.FigurativeConstantType.LOW_VALUES;
 			} else if (ctx.NULL() != null) {
-				type = FigurativeConstant.Type.NULL;
+				type = FigurativeConstant.FigurativeConstantType.NULL;
 			} else if (ctx.NULLS() != null) {
-				type = FigurativeConstant.Type.NULLS;
+				type = FigurativeConstant.FigurativeConstantType.NULLS;
 			} else if (ctx.QUOTE() != null) {
-				type = FigurativeConstant.Type.QUOTE;
+				type = FigurativeConstant.FigurativeConstantType.QUOTE;
 			} else if (ctx.QUOTES() != null) {
-				type = FigurativeConstant.Type.QUOTES;
+				type = FigurativeConstant.FigurativeConstantType.QUOTES;
 			} else if (ctx.SPACE() != null) {
-				type = FigurativeConstant.Type.SPACE;
+				type = FigurativeConstant.FigurativeConstantType.SPACE;
 			} else if (ctx.SPACES() != null) {
-				type = FigurativeConstant.Type.SPACES;
+				type = FigurativeConstant.FigurativeConstantType.SPACES;
 			} else if (ctx.ZERO() != null) {
-				type = FigurativeConstant.Type.ZERO;
+				type = FigurativeConstant.FigurativeConstantType.ZERO;
 			} else if (ctx.ZEROS() != null) {
-				type = FigurativeConstant.Type.ZEROS;
+				type = FigurativeConstant.FigurativeConstantType.ZEROS;
 			} else if (ctx.ZEROES() != null) {
-				type = FigurativeConstant.Type.ZEROES;
+				type = FigurativeConstant.FigurativeConstantType.ZEROES;
 			} else {
 				type = null;
 			}
@@ -835,7 +835,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (result == null) {
 			result = new LiteralImpl(programUnit, ctx);
 
-			final Literal.Type type;
+			final Literal.LiteralType type;
 
 			if (ctx.NONNUMERICLITERAL() != null) {
 				final String text = ctx.getText();
@@ -843,31 +843,31 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				final String nonNumericLiteral = isHex ? text : text.substring(1, text.length() - 1);
 				result.setNonNumericLiteral(nonNumericLiteral);
 
-				type = Literal.Type.NON_NUMERIC;
+				type = Literal.LiteralType.NON_NUMERIC;
 			} else if (ctx.numericLiteral() != null) {
 				final NumericLiteral numericLiteral = createNumericLiteral(ctx.numericLiteral());
 				result.setNumericLiteral(numericLiteral);
 
-				type = Literal.Type.NUMERIC;
+				type = Literal.LiteralType.NUMERIC;
 			} else if (ctx.booleanLiteral() != null) {
 				final BooleanLiteral booleanLiteral = createBooleanLiteral(ctx.booleanLiteral());
 				result.setBooleanLiteral(booleanLiteral);
 
-				type = Literal.Type.BOOLEAN;
+				type = Literal.LiteralType.BOOLEAN;
 			} else if (ctx.figurativeConstant() != null) {
 				final FigurativeConstant figurativeConstant = createFigurativeConstant(ctx.figurativeConstant());
 				result.setFigurativeConstant(figurativeConstant);
 
-				type = Literal.Type.FIGURATIVE_CONSTANT;
+				type = Literal.LiteralType.FIGURATIVE_CONSTANT;
 			} else if (ctx.cicsDfhRespLiteral() != null) {
-				type = Literal.Type.CICS_DFH_RESP;
+				type = Literal.LiteralType.CICS_DFH_RESP;
 			} else if (ctx.cicsDfhValueLiteral() != null) {
-				type = Literal.Type.CICS_DFH_VALUE;
+				type = Literal.LiteralType.CICS_DFH_VALUE;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setLiteralType(type);
 
 			registerASGElement(result);
 		}
@@ -901,27 +901,27 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (result == null) {
 			result = new NumericLiteralImpl(programUnit, ctx);
 
-			final NumericLiteral.Type type;
+			final NumericLiteral.NumericLiteralType type;
 
 			if (ctx.integerLiteral() != null) {
 				final Integer integerValue = StringUtils.parseInteger(ctx.getText());
 				result.setIntegerValue(integerValue);
 
-				type = NumericLiteral.Type.INTEGER;
+				type = NumericLiteral.NumericLiteralType.INTEGER;
 			} else if (ctx.ZERO() != null) {
 				result.setIntegerValue(0);
 
-				type = NumericLiteral.Type.INTEGER;
+				type = NumericLiteral.NumericLiteralType.INTEGER;
 			} else if (ctx.NUMERICLITERAL() != null) {
 				final Double doubleValue = StringUtils.parseDouble(ctx.NUMERICLITERAL().getText());
 				result.setDoubleValue(doubleValue);
 
-				type = NumericLiteral.Type.DOUBLE;
+				type = NumericLiteral.NumericLiteralType.DOUBLE;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setNumericLiteralType(type);
 
 			registerASGElement(result);
 		}
@@ -949,22 +949,22 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (result == null) {
 			result = new RelationConditionValueStmtImpl(programUnit, ctx);
 
-			final RelationConditionValueStmt.Type type;
+			final RelationConditionValueStmt.RelationConditionType type;
 
 			if (ctx.relationSignCondition() != null) {
 				result.addRelationSignCondition(ctx.relationSignCondition());
-				type = RelationConditionValueStmt.Type.SIGN;
+				type = RelationConditionValueStmt.RelationConditionType.SIGN;
 			} else if (ctx.relationArithmeticComparison() != null) {
 				result.addRelationArithmeticComparison(ctx.relationArithmeticComparison());
-				type = RelationConditionValueStmt.Type.ARITHMETIC;
+				type = RelationConditionValueStmt.RelationConditionType.ARITHMETIC;
 			} else if (ctx.relationCombinedComparison() != null) {
 				result.addRelationCombinedComparison(ctx.relationCombinedComparison());
-				type = RelationConditionValueStmt.Type.COMBINED;
+				type = RelationConditionValueStmt.RelationConditionType.COMBINED;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setRelationConditionType(type);
 
 			registerASGElement(result);
 		}
@@ -1232,7 +1232,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (workingStorageSection != null) {
 			for (final DataDescriptionEntry dataDescriptionEntry : workingStorageSection.getDataDescriptionEntries()) {
-				if (DataDescriptionEntry.Type.GROUP.equals(dataDescriptionEntry.getType())) {
+				if (DataDescriptionEntry.DataDescriptionEntryType.GROUP.equals(dataDescriptionEntry.getDataDescriptionEntryType())) {
 					final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
 
 					for (final OccursClause occursClause : dataDescriptionEntryGroup.getOccursClauses()) {

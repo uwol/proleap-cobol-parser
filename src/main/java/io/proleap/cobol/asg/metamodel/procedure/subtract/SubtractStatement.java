@@ -20,7 +20,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface SubtractStatement extends Statement {
 
-	enum Type {
+	enum SubtractType {
 		CORRESPONDING, FROM, FROM_GIVING
 	}
 
@@ -40,11 +40,11 @@ public interface SubtractStatement extends Statement {
 
 	SubtractFromGiving getSubtractFromGiving();
 
-	Type getType();
+	SubtractType getSubtractType();
 
 	void setNotOnSizeError(NotOnSizeError notOnSizeError);
 
 	void setOnSizeError(OnSizeError onSizeError);
 
-	void setType(Type type);
+	void setSubtractType(SubtractType subtractType);
 }

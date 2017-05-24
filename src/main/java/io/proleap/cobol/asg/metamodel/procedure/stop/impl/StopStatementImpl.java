@@ -25,7 +25,7 @@ public class StopStatementImpl extends StatementImpl implements StopStatement {
 
 	protected final StatementType statementType = StatementTypeEnum.STOP;
 
-	protected Type type;
+	protected StopType stopType;
 
 	public StopStatementImpl(final ProgramUnit programUnit, final Scope scope, final StopStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -44,8 +44,8 @@ public class StopStatementImpl extends StatementImpl implements StopStatement {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public StopType getStopType() {
+		return stopType;
 	}
 
 	@Override
@@ -54,8 +54,8 @@ public class StopStatementImpl extends StatementImpl implements StopStatement {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setStopType(final StopType stopType) {
+		this.stopType = stopType;
 	}
 
 }

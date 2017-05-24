@@ -20,7 +20,7 @@ public class TypeClauseImpl extends CobolDivisionElementImpl implements TypeClau
 
 	protected Call dataCall;
 
-	protected Type type;
+	protected TypeClauseType typeClauseType;
 
 	public TypeClauseImpl(final ProgramUnit programUnit, final ReportGroupTypeClauseContext ctx) {
 		super(programUnit, ctx);
@@ -34,8 +34,8 @@ public class TypeClauseImpl extends CobolDivisionElementImpl implements TypeClau
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public TypeClauseType getTypeClauseType() {
+		return typeClauseType;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class TypeClauseImpl extends CobolDivisionElementImpl implements TypeClau
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setTypeClauseType(final TypeClauseType typeClauseType) {
+		this.typeClauseType = typeClauseType;
 	}
 
 }

@@ -19,11 +19,11 @@ import io.proleap.cobol.asg.metamodel.procedure.use.AfterOn;
 
 public class AfterOnImpl extends CobolDivisionElementImpl implements AfterOn {
 
+	protected AfterOnType afterOnType;
+
 	protected UseAfterOnContext ctx;
 
 	protected List<Call> fileCalls = new ArrayList<Call>();
-
-	protected Type type;
 
 	public AfterOnImpl(final ProgramUnit programUnit, final UseAfterOnContext ctx) {
 		super(programUnit, ctx);
@@ -37,18 +37,18 @@ public class AfterOnImpl extends CobolDivisionElementImpl implements AfterOn {
 	}
 
 	@Override
+	public AfterOnType getAfterOnType() {
+		return afterOnType;
+	}
+
+	@Override
 	public List<Call> getFileCalls() {
 		return fileCalls;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setType(final AfterOnType afterOnType) {
+		this.afterOnType = afterOnType;
 	}
 
 }

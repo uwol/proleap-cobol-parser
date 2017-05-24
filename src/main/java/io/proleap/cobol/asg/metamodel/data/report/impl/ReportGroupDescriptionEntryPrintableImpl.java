@@ -190,17 +190,17 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 			/*
 			 * type
 			 */
-			final SignClause.Type type;
+			final SignClause.SignClauseType type;
 
 			if (ctx.LEADING() != null) {
-				type = SignClause.Type.LEADING;
+				type = SignClause.SignClauseType.LEADING;
 			} else if (ctx.TRAILING() != null) {
-				type = SignClause.Type.TRAILING;
+				type = SignClause.SignClauseType.TRAILING;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setSignClauseType(type);
 
 			/*
 			 * separate
@@ -326,8 +326,8 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 	}
 
 	@Override
-	public Type getType() {
-		return Type.PRINTABLE;
+	public ReportGroupDescriptionEntryType getReportGroupDescriptionEntryType() {
+		return ReportGroupDescriptionEntryType.PRINTABLE;
 	}
 
 	@Override

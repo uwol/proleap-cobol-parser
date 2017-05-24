@@ -18,9 +18,9 @@ public class DebugOnImpl extends CobolDivisionElementImpl implements DebugOn {
 
 	protected UseDebugOnContext ctx;
 
-	protected Call onCall;
+	protected DebugOnType debugOnType;
 
-	protected Type type;
+	protected Call onCall;
 
 	public DebugOnImpl(final ProgramUnit programUnit, final UseDebugOnContext ctx) {
 		super(programUnit, ctx);
@@ -29,13 +29,13 @@ public class DebugOnImpl extends CobolDivisionElementImpl implements DebugOn {
 	}
 
 	@Override
-	public Call getOnCall() {
-		return onCall;
+	public DebugOnType getDebugOnType() {
+		return debugOnType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public Call getOnCall() {
+		return onCall;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class DebugOnImpl extends CobolDivisionElementImpl implements DebugOn {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setType(final DebugOnType debugOnType) {
+		this.debugOnType = debugOnType;
 	}
 
 }

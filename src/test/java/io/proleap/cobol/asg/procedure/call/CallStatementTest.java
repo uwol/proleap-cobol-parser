@@ -67,7 +67,7 @@ public class CallStatementTest extends CobolTestBase {
 
 				{
 					final Parameter parameter = using.getParameters().get(0);
-					assertEquals(Parameter.Type.REFERENCE, parameter.getType());
+					assertEquals(Parameter.ParameterType.REFERENCE, parameter.getParameterType());
 
 					{
 						final CallByReference callByReferenceStatement = parameter.getCallByReference();
@@ -75,13 +75,13 @@ public class CallStatementTest extends CobolTestBase {
 
 						{
 							final ByReference byReference = callByReferenceStatement.getByReferences().get(0);
-							assertEquals(ByReference.Type.INTEGER, byReference.getType());
+							assertEquals(ByReference.ByReferenceType.INTEGER, byReference.getByReferenceType());
 							assertEquals(Call.CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
 						}
 
 						{
 							final ByReference byReference = callByReferenceStatement.getByReferences().get(1);
-							assertNull(byReference.getType());
+							assertNull(byReference.getByReferenceType());
 							assertEquals(Call.CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
 						}
 					}
@@ -89,7 +89,7 @@ public class CallStatementTest extends CobolTestBase {
 
 				{
 					final Parameter parameter = using.getParameters().get(1);
-					assertEquals(Parameter.Type.VALUE, parameter.getType());
+					assertEquals(Parameter.ParameterType.VALUE, parameter.getParameterType());
 
 					final CallByValue callByValueStatement = parameter.getCallByValue();
 					assertEquals(3, callByValueStatement.getValueStmts().size());
@@ -112,7 +112,7 @@ public class CallStatementTest extends CobolTestBase {
 
 				{
 					final Parameter parameter = using.getParameters().get(2);
-					assertEquals(Parameter.Type.CONTENT, parameter.getType());
+					assertEquals(Parameter.ParameterType.CONTENT, parameter.getParameterType());
 
 					{
 						final CallByContent callByContentStatement = parameter.getCallByContent();
@@ -120,7 +120,7 @@ public class CallStatementTest extends CobolTestBase {
 
 						{
 							final ByContent byContent = callByContentStatement.getByContents().get(0);
-							assertEquals(ByContent.Type.ADDRESS_OF, byContent.getType());
+							assertEquals(ByContent.ByContentType.ADDRESS_OF, byContent.getByContentType());
 							assertNotNull(byContent.getValueStmt());
 
 							final CallValueStmt callValueStmt = (CallValueStmt) byContent.getValueStmt();
@@ -129,7 +129,7 @@ public class CallStatementTest extends CobolTestBase {
 
 						{
 							final ByContent byContent = callByContentStatement.getByContents().get(1);
-							assertEquals(ByContent.Type.LENGTH_OF, byContent.getType());
+							assertEquals(ByContent.ByContentType.LENGTH_OF, byContent.getByContentType());
 							assertNotNull(byContent.getValueStmt());
 
 							final CallValueStmt callValueStmt = (CallValueStmt) byContent.getValueStmt();
@@ -138,7 +138,7 @@ public class CallStatementTest extends CobolTestBase {
 
 						{
 							final ByContent byContent = callByContentStatement.getByContents().get(2);
-							assertNull(byContent.getType());
+							assertNull(byContent.getByContentType());
 							assertNotNull(byContent.getValueStmt());
 
 							assertEquals(4, byContent.getValueStmt().getValue());

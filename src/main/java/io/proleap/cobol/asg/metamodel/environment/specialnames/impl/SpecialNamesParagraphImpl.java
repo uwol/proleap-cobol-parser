@@ -160,7 +160,7 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 				alphabetClauseNationalType = null;
 			}
 
-			result.setAlphabetClauseType(alphabetClauseNationalType);
+			result.setAlphabetClauseNationalType(alphabetClauseNationalType);
 
 			/*
 			 * literal
@@ -213,17 +213,17 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			/*
 			 * type
 			 */
-			final ClassClause.Type type;
+			final ClassClause.ClassClauseType type;
 
 			if (ctx.ALPHANUMERIC() != null) {
-				type = ClassClause.Type.ALPHA_NUMERIC;
+				type = ClassClause.ClassClauseType.ALPHA_NUMERIC;
 			} else if (ctx.NATIONAL() != null) {
-				type = ClassClause.Type.NATIONAL;
+				type = ClassClause.ClassClauseType.NATIONAL;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setClassClauseType(type);
 
 			/*
 			 * class through
@@ -285,17 +285,17 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			/*
 			 * type
 			 */
-			final DefaultDisplaySignClause.Type type;
+			final DefaultDisplaySignClause.DefaultDisplaySignClauseType type;
 
 			if (ctx.LEADING() != null) {
-				type = DefaultDisplaySignClause.Type.LEADING;
+				type = DefaultDisplaySignClause.DefaultDisplaySignClauseType.LEADING;
 			} else if (ctx.TRAILING() != null) {
-				type = DefaultDisplaySignClause.Type.TRAILING;
+				type = DefaultDisplaySignClause.DefaultDisplaySignClauseType.TRAILING;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setDefaultDisplaySignClauseType(type);
 
 			defaultDisplaySignClause = result;
 			registerASGElement(result);
@@ -345,17 +345,17 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 			/*
 			 * type
 			 */
-			final SymbolicCharactersClause.Type type;
+			final SymbolicCharactersClause.SymbolicCharactersClauseType type;
 
 			if (ctx.ALPHANUMERIC() != null) {
-				type = SymbolicCharactersClause.Type.ALPHA_NUMERIC;
+				type = SymbolicCharactersClause.SymbolicCharactersClauseType.ALPHA_NUMERIC;
 			} else if (ctx.NATIONAL() != null) {
-				type = SymbolicCharactersClause.Type.NATIONAL;
+				type = SymbolicCharactersClause.SymbolicCharactersClauseType.NATIONAL;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setSymbolicCharactersClauseType(type);
 
 			/*
 			 * alphabet

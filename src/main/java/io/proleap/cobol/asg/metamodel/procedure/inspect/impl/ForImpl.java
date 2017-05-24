@@ -46,17 +46,17 @@ public class ForImpl extends InspectPhraseImpl implements For {
 			result = new AllLeadingsImpl(programUnit, ctx);
 
 			// type
-			final AllLeadings.Type type;
+			final AllLeadings.AllLeadingsType type;
 
 			if (ctx.ALL() != null) {
-				type = AllLeadings.Type.ALL;
+				type = AllLeadings.AllLeadingsType.ALL;
 			} else if (ctx.LEADING() != null) {
-				type = AllLeadings.Type.LEADING;
+				type = AllLeadings.AllLeadingsType.LEADING;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setAllLeadingsType(type);
 
 			// all leadings
 			for (final InspectAllLeadingContext inspectAllLeadingContext : ctx.inspectAllLeading()) {

@@ -58,12 +58,12 @@ public class SearchStatementTest extends CobolTestBase {
 
 				{
 					final When when = searchStatement.getWhens().get(0);
-					assertEquals(When.Type.NEXT_SENTENCE, when.getType());
+					assertEquals(When.WhenType.NEXT_SENTENCE, when.getWhenType());
 				}
 
 				{
 					final When when = searchStatement.getWhens().get(1);
-					assertEquals(When.Type.STATEMENTS, when.getType());
+					assertEquals(When.WhenType.STATEMENTS, when.getWhenType());
 				}
 			}
 		}

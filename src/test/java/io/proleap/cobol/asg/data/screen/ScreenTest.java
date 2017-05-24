@@ -69,7 +69,7 @@ public class ScreenTest extends CobolTestBase {
 				{
 					final BlankClause blankClause = subScreenDescriptionEntry1.getBlankClause();
 					assertNotNull(blankClause);
-					assertEquals(BlankClause.Type.SCREEN, blankClause.getType());
+					assertEquals(BlankClause.BlankClauseType.SCREEN, blankClause.getBlankClauseType());
 				}
 			}
 
@@ -103,7 +103,7 @@ public class ScreenTest extends CobolTestBase {
 				{
 					final LightClause lightClause = subScreenDescriptionEntry2.getLightClause();
 					assertNotNull(lightClause);
-					assertEquals(LightClause.Type.HIGHLIGHT, lightClause.getType());
+					assertEquals(LightClause.LightClauseType.HIGHLIGHT, lightClause.getLightClauseType());
 				}
 			}
 
@@ -136,7 +136,7 @@ public class ScreenTest extends CobolTestBase {
 				{
 					final LightClause lightClause = subScreenDescriptionEntry3.getLightClause();
 					assertNotNull(lightClause);
-					assertEquals(LightClause.Type.LOWLIGHT, lightClause.getType());
+					assertEquals(LightClause.LightClauseType.LOWLIGHT, lightClause.getLightClauseType());
 				}
 			}
 		}

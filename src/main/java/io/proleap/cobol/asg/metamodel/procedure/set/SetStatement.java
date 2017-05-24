@@ -19,7 +19,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface SetStatement extends Statement {
 
-	enum Type {
+	enum SetType {
 		BY, TO
 	}
 
@@ -31,8 +31,8 @@ public interface SetStatement extends Statement {
 
 	List<SetTo> getSetTos();
 
-	Type getType();
+	SetType getSetType();
 
-	void setType(Type type);
+	void setSetType(SetType setType);
 
 }

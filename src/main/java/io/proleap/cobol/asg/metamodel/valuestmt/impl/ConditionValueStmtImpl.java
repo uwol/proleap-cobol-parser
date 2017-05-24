@@ -44,17 +44,17 @@ public class ConditionValueStmtImpl extends ValueStmtImpl implements ConditionVa
 			result = new AndOrConditionImpl(programUnit, ctx);
 
 			// type
-			final AndOrCondition.Type type;
+			final AndOrCondition.AndOrConditionType type;
 
 			if (ctx.AND() != null) {
-				type = AndOrCondition.Type.AND;
+				type = AndOrCondition.AndOrConditionType.AND;
 			} else if (ctx.OR() != null) {
-				type = AndOrCondition.Type.OR;
+				type = AndOrCondition.AndOrConditionType.OR;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setAndOrConditionType(type);
 
 			// combinable condition
 			if (ctx.combinableCondition() != null) {

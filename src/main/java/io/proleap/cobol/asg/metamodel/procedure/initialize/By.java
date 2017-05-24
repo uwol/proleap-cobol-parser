@@ -13,15 +13,15 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface By extends CobolDivisionElement {
 
-	enum Type {
+	enum ByType {
 		ALPHABETIC, ALPHANUMERIC, ALPHANUMERIC_EDITED, DBCS, EGCS, NATIONAL, NUMERIC, NUMERIC_EDITED
 	}
 
-	Type getType();
+	ByType getByType();
 
 	ValueStmt getValueStmt();
 
-	void setType(Type type);
+	void setByType(ByType byType);
 
 	void setValueStmt(ValueStmt valueStmt);
 }

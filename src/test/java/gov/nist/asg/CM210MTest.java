@@ -64,13 +64,13 @@ public class CM210MTest extends CobolTestBase {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.getDataDescriptionEntry("MSG-72");
-					assertEquals(DataDescriptionEntry.Type.SCALAR, dataDescriptionEntry.getType());
+					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.SCALAR, dataDescriptionEntry.getDataDescriptionEntryType());
 				}
 
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.getDataDescriptionEntry("RECOGNITION-MSG-1");
-					assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
+					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -81,7 +81,7 @@ public class CM210MTest extends CobolTestBase {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.getDataDescriptionEntry("RECOGNITION-MSG-2");
-					assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
+					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -92,7 +92,7 @@ public class CM210MTest extends CobolTestBase {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.getDataDescriptionEntry("RECOGNITION-MSG-3");
-					assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
+					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -113,20 +113,20 @@ public class CM210MTest extends CobolTestBase {
 					final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
 							.getCommunicationDescriptionEntry("CM-INQUE-1");
 					assertNotNull(communicationDescriptionEntry);
-					assertEquals(CommunicationDescriptionEntry.Type.INPUT, communicationDescriptionEntry.getType());
+					assertEquals(CommunicationDescriptionEntry.CommunicationDescriptionEntryType.INPUT, communicationDescriptionEntry.getCommunicationDescriptionEntryType());
 				}
 
 				{
 					final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
 							.getCommunicationDescriptionEntry("CM-OUTQUE-1");
 					assertNotNull(communicationDescriptionEntry);
-					assertEquals(CommunicationDescriptionEntry.Type.OUTPUT, communicationDescriptionEntry.getType());
+					assertEquals(CommunicationDescriptionEntry.CommunicationDescriptionEntryType.OUTPUT, communicationDescriptionEntry.getCommunicationDescriptionEntryType());
 				}
 
 				{
 					final DataDescriptionEntry dataDescriptionEntry = communicationSection
 							.getDataDescriptionEntry("INQUE-1-RECORD");
-					assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
+					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -137,7 +137,7 @@ public class CM210MTest extends CobolTestBase {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = communicationSection
 							.getDataDescriptionEntry("OUTQUE-1-RECORD");
-					assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntry.getType());
+					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;

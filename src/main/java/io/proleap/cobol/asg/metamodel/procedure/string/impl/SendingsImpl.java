@@ -29,9 +29,9 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 
 	protected For sendingFor;
 
-	protected List<ValueStmt> sendingValueStmts = new ArrayList<ValueStmt>();
+	protected SendingsType sendingsType;
 
-	protected Type type;
+	protected List<ValueStmt> sendingValueStmts = new ArrayList<ValueStmt>();
 
 	public SendingsImpl(final ProgramUnit programUnit, final StringSendingPhraseContext ctx) {
 		super(programUnit, ctx);
@@ -47,14 +47,14 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 			result = new DelimitedByImpl(programUnit, ctx);
 
 			// type
-			final DelimitedBy.Type type;
+			final DelimitedBy.DelimitedByType type;
 
 			if (ctx.SIZE() != null) {
-				type = DelimitedBy.Type.SIZE;
+				type = DelimitedBy.DelimitedByType.SIZE;
 			} else {
 				final ValueStmt charactersValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
 				result.setCharactersValueStmt(charactersValueStmt);
-				type = DelimitedBy.Type.CHARACTERS;
+				type = DelimitedBy.DelimitedByType.CHARACTERS;
 			}
 
 			result.setType(type);
@@ -99,18 +99,18 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 	}
 
 	@Override
+	public SendingsType getSendingsType() {
+		return sendingsType;
+	}
+
+	@Override
 	public List<ValueStmt> getSendingValueStmts() {
 		return sendingValueStmts;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setSendingsType(final SendingsType sendingsType) {
+		this.sendingsType = sendingsType;
 	}
 
 }

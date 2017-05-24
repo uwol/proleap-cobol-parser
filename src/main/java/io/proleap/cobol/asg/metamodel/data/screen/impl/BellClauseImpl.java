@@ -15,9 +15,9 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 
 public class BellClauseImpl extends CobolDivisionElementImpl implements BellClause {
 
-	protected ScreenDescriptionBellClauseContext ctx;
+	protected BellClauseType bellClauseType;
 
-	protected Type type;
+	protected ScreenDescriptionBellClauseContext ctx;
 
 	public BellClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionBellClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class BellClauseImpl extends CobolDivisionElementImpl implements BellClau
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public BellClauseType getBellClauseType() {
+		return bellClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setBellClauseType(final BellClauseType bellClauseType) {
+		this.bellClauseType = bellClauseType;
 	}
 
 }

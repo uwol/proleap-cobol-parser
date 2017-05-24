@@ -439,17 +439,17 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			/*
 			 * type
 			 */
-			final SignClause.Type type;
+			final SignClause.SignClauseType type;
 
 			if (ctx.LEADING() != null) {
-				type = SignClause.Type.LEADING;
+				type = SignClause.SignClauseType.LEADING;
 			} else if (ctx.TRAILING() != null) {
-				type = SignClause.Type.TRAILING;
+				type = SignClause.SignClauseType.TRAILING;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setSignClauseType(type);
 
 			/*
 			 * separate
@@ -565,62 +565,62 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			/*
 			 * type
 			 */
-			final UsageClause.Type type;
+			final UsageClause.UsageClauseType type;
 
 			if (ctx.BINARY() != null) {
-				type = UsageClause.Type.BINARY;
+				type = UsageClause.UsageClauseType.BINARY;
 			} else if (ctx.BIT() != null) {
-				type = UsageClause.Type.BIT;
+				type = UsageClause.UsageClauseType.BIT;
 			} else if (ctx.COMP() != null || ctx.COMPUTATIONAL() != null) {
-				type = UsageClause.Type.COMP;
+				type = UsageClause.UsageClauseType.COMP;
 			} else if (ctx.COMP_1() != null || ctx.COMPUTATIONAL_1() != null) {
-				type = UsageClause.Type.COMP_1;
+				type = UsageClause.UsageClauseType.COMP_1;
 			} else if (ctx.COMP_2() != null || ctx.COMPUTATIONAL_2() != null) {
-				type = UsageClause.Type.COMP_2;
+				type = UsageClause.UsageClauseType.COMP_2;
 			} else if (ctx.COMP_3() != null || ctx.COMPUTATIONAL_3() != null) {
-				type = UsageClause.Type.COMP_3;
+				type = UsageClause.UsageClauseType.COMP_3;
 			} else if (ctx.COMP_4() != null || ctx.COMPUTATIONAL_4() != null) {
-				type = UsageClause.Type.COMP_4;
+				type = UsageClause.UsageClauseType.COMP_4;
 			} else if (ctx.COMP_5() != null || ctx.COMPUTATIONAL_5() != null) {
-				type = UsageClause.Type.COMP_5;
+				type = UsageClause.UsageClauseType.COMP_5;
 			} else if (ctx.CONTROL_POINT() != null) {
-				type = UsageClause.Type.CONTROL_POINT;
+				type = UsageClause.UsageClauseType.CONTROL_POINT;
 			} else if (ctx.DATE() != null) {
-				type = UsageClause.Type.DATE;
+				type = UsageClause.UsageClauseType.DATE;
 			} else if (ctx.DISPLAY() != null) {
-				type = UsageClause.Type.DISPLAY;
+				type = UsageClause.UsageClauseType.DISPLAY;
 			} else if (ctx.DISPLAY_1() != null) {
-				type = UsageClause.Type.DISPLAY_1;
+				type = UsageClause.UsageClauseType.DISPLAY_1;
 			} else if (ctx.DOUBLE() != null) {
-				type = UsageClause.Type.DOUBLE;
+				type = UsageClause.UsageClauseType.DOUBLE;
 			} else if (ctx.EVENT() != null) {
-				type = UsageClause.Type.EVENT;
+				type = UsageClause.UsageClauseType.EVENT;
 			} else if (ctx.FUNCTION_POINTER() != null) {
-				type = UsageClause.Type.FUNCTION_POINTER;
+				type = UsageClause.UsageClauseType.FUNCTION_POINTER;
 			} else if (ctx.INDEX() != null) {
-				type = UsageClause.Type.INDEX;
+				type = UsageClause.UsageClauseType.INDEX;
 			} else if (ctx.KANJI() != null) {
-				type = UsageClause.Type.KANJI;
+				type = UsageClause.UsageClauseType.KANJI;
 			} else if (ctx.LOCK() != null) {
-				type = UsageClause.Type.LOCK;
+				type = UsageClause.UsageClauseType.LOCK;
 			} else if (ctx.NATIONAL() != null) {
-				type = UsageClause.Type.NATIONAL;
+				type = UsageClause.UsageClauseType.NATIONAL;
 			} else if (ctx.PACKED_DECIMAL() != null) {
-				type = UsageClause.Type.PACKED_DECIMAL;
+				type = UsageClause.UsageClauseType.PACKED_DECIMAL;
 			} else if (ctx.POINTER() != null) {
-				type = UsageClause.Type.POINTER;
+				type = UsageClause.UsageClauseType.POINTER;
 			} else if (ctx.PROCEDURE_POINTER() != null) {
-				type = UsageClause.Type.PROCEDURE_POINTER;
+				type = UsageClause.UsageClauseType.PROCEDURE_POINTER;
 			} else if (ctx.REAL() != null) {
-				type = UsageClause.Type.REAL;
+				type = UsageClause.UsageClauseType.REAL;
 			} else if (ctx.TASK() != null) {
-				type = UsageClause.Type.TASK;
+				type = UsageClause.UsageClauseType.TASK;
 			} else {
 				LOG.warn("unknown usage at {}", ctx);
 				type = null;
 			}
 
-			result.setType(type);
+			result.setUsageClauseType(type);
 
 			usageClause = result;
 			registerASGElement(result);
@@ -639,18 +639,18 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			/*
 			 * type
 			 */
-			final UsingClause.Type type;
+			final UsingClause.UsingClauseType type;
 
 			if (ctx.CONVENTION() != null) {
-				type = UsingClause.Type.CONVENTION;
+				type = UsingClause.UsingClauseType.CONVENTION;
 			} else if (ctx.LANGUAGE() != null) {
-				type = UsingClause.Type.LANGUAGE;
+				type = UsingClause.UsingClauseType.LANGUAGE;
 			} else {
 				LOG.warn("unknown type at {}", ctx);
 				type = null;
 			}
 
-			result.setType(type);
+			result.setUsingClauseType(type);
 
 			/*
 			 * of
@@ -790,13 +790,13 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
-	public Type getType() {
-		final Type result;
+	public DataDescriptionEntryType getDataDescriptionEntryType() {
+		final DataDescriptionEntryType result;
 
 		if (DataDescriptionEntry.LEVEL_NUMBER_SCALAR == levelNumber) {
-			result = Type.SCALAR;
+			result = DataDescriptionEntryType.SCALAR;
 		} else {
-			result = Type.GROUP;
+			result = DataDescriptionEntryType.GROUP;
 		}
 
 		return result;

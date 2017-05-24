@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.CommonClause;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.GlobalClause;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.ImportAttribute;
-import io.proleap.cobol.asg.metamodel.data.programlibrary.ImportAttribute.Type;
+import io.proleap.cobol.asg.metamodel.data.programlibrary.ImportAttribute.ImportAttributeType;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.ImportEntryProcedure;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.LibraryDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.LibraryDescriptionEntryImport;
@@ -42,7 +42,7 @@ public class ProgramLibraryImportTest extends CobolTestBase {
 			final LibraryDescriptionEntry libraryDescriptionEntry = programLibrarySection
 					.getLibraryDescriptionEntry("SOMELIB");
 			assertNotNull(libraryDescriptionEntry);
-			assertEquals(LibraryDescriptionEntry.Type.IMPORT, libraryDescriptionEntry.getType());
+			assertEquals(LibraryDescriptionEntry.LibraryDescriptionEntryType.IMPORT, libraryDescriptionEntry.getLibraryDescriptionEntryType());
 
 			final LibraryDescriptionEntryImport libraryDescriptionEntryImport = (LibraryDescriptionEntryImport) libraryDescriptionEntry;
 
@@ -63,7 +63,7 @@ public class ProgramLibraryImportTest extends CobolTestBase {
 				assertEquals(1, importAttributes.size());
 
 				final ImportAttribute importAttribute = importAttributes.get(0);
-				assertEquals(Type.BY_TITLE, importAttribute.getType());
+				assertEquals(ImportAttributeType.BY_TITLE, importAttribute.getImportAttributeType());
 				assertEquals(123, importAttribute.getFunctionLiteral().getNumericLiteral().getValue());
 				assertEquals(234, importAttribute.getParameterLiteral().getNumericLiteral().getValue());
 				assertEquals("SOMETITLE", importAttribute.getTitleLiteral().getNonNumericLiteral());

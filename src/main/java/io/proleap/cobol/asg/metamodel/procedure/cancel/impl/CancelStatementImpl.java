@@ -48,17 +48,17 @@ public class CancelStatementImpl extends StatementImpl implements CancelStatemen
 			result.setValueStmt(valueStmt);
 
 			// type
-			final CancelCall.Type type;
+			final CancelCall.CancelType type;
 
 			if (ctx.BYTITLE() != null) {
-				type = CancelCall.Type.BY_TITLE;
+				type = CancelCall.CancelType.BY_TITLE;
 			} else if (ctx.BYFUNCTION() != null) {
-				type = CancelCall.Type.BY_FUNCTION;
+				type = CancelCall.CancelType.BY_FUNCTION;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setCancelType(type);
 
 			cancelCalls.add(result);
 			registerASGElement(result);

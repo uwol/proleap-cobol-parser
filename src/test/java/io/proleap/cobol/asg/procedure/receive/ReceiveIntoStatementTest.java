@@ -39,7 +39,7 @@ public class ReceiveIntoStatementTest extends CobolTestBase {
 			final ReceiveStatement receiveStatement = (ReceiveStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(receiveStatement);
 			assertEquals(StatementTypeEnum.RECEIVE, receiveStatement.getStatementType());
-			assertEquals(ReceiveStatement.Type.INTO, receiveStatement.getType());
+			assertEquals(ReceiveStatement.ReceiveType.INTO, receiveStatement.getReceiveType());
 			assertNotNull(receiveStatement.getReceiveIntoStatement());
 
 			{
@@ -52,7 +52,7 @@ public class ReceiveIntoStatementTest extends CobolTestBase {
 				}
 
 				{
-					assertEquals(ReceiveIntoStatement.Type.MESSAGE, receiveIntoStatement.getType());
+					assertEquals(ReceiveIntoStatement.ReceiveIntoType.MESSAGE, receiveIntoStatement.getReceiveIntoType());
 				}
 
 				{

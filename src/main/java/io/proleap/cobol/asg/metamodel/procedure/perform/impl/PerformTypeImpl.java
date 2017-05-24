@@ -25,9 +25,9 @@ public class PerformTypeImpl extends CobolDivisionElementImpl implements Perform
 
 	protected final PerformTypeContext ctx;
 
-	protected Times times;
+	protected PerformTypeType performTypeType;
 
-	protected Type type;
+	protected Times times;
 
 	protected Until until;
 
@@ -102,13 +102,13 @@ public class PerformTypeImpl extends CobolDivisionElementImpl implements Perform
 	}
 
 	@Override
-	public Times getTimes() {
-		return times;
+	public PerformTypeType getPerformTypeType() {
+		return performTypeType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public Times getTimes() {
+		return times;
 	}
 
 	@Override
@@ -122,8 +122,8 @@ public class PerformTypeImpl extends CobolDivisionElementImpl implements Perform
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setPerformTypeType(final PerformTypeType performTypeType) {
+		this.performTypeType = performTypeType;
 	}
 
 }

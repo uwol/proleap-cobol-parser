@@ -24,13 +24,13 @@ public class EnableStatementImpl extends StatementImpl implements EnableStatemen
 
 	protected final EnableStatementContext ctx;
 
+	protected EnableType enableType;
+
 	protected ValueStmt keyValueStmt;
 
 	protected final StatementType statementType = StatementTypeEnum.ENABLE;
 
 	protected boolean terminal;
-
-	protected Type type;
 
 	public EnableStatementImpl(final ProgramUnit programUnit, final Scope scope, final EnableStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -44,6 +44,11 @@ public class EnableStatementImpl extends StatementImpl implements EnableStatemen
 	}
 
 	@Override
+	public EnableType getEnableType() {
+		return enableType;
+	}
+
+	@Override
 	public ValueStmt getKeyValueStmt() {
 		return keyValueStmt;
 	}
@@ -51,11 +56,6 @@ public class EnableStatementImpl extends StatementImpl implements EnableStatemen
 	@Override
 	public StatementType getStatementType() {
 		return statementType;
-	}
-
-	@Override
-	public Type getType() {
-		return type;
 	}
 
 	@Override
@@ -69,6 +69,11 @@ public class EnableStatementImpl extends StatementImpl implements EnableStatemen
 	}
 
 	@Override
+	public void setEnableType(final EnableType enableType) {
+		this.enableType = enableType;
+	}
+
+	@Override
 	public void setKeyValueStmt(final ValueStmt keyValueStmt) {
 		this.keyValueStmt = keyValueStmt;
 	}
@@ -76,11 +81,6 @@ public class EnableStatementImpl extends StatementImpl implements EnableStatemen
 	@Override
 	public void setTerminal(final boolean terminal) {
 		this.terminal = terminal;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

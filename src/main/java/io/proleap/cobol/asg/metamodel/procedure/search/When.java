@@ -13,16 +13,16 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
 
 public interface When extends Scope {
 
-	enum Type {
+	enum WhenType {
 		NEXT_SENTENCE, STATEMENTS
 	}
 
 	ConditionValueStmt getCondition();
 
-	Type getType();
+	WhenType getWhenType();
 
 	void setCondition(ConditionValueStmt condition);
 
-	void setType(Type type);
+	void setWhenType(WhenType whenType);
 
 }

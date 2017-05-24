@@ -30,9 +30,9 @@ public class RelationConditionValueStmtImpl extends ValueStmtImpl implements Rel
 
 	protected RelationConditionContext ctx;
 
-	protected SignCondition signCondition;
+	protected RelationConditionValueStmt.RelationConditionType relationConditionType;
 
-	protected RelationConditionValueStmt.Type type;
+	protected SignCondition signCondition;
 
 	public RelationConditionValueStmtImpl(final ProgramUnit programUnit, final RelationConditionContext ctx) {
 		super(programUnit, ctx);
@@ -100,19 +100,19 @@ public class RelationConditionValueStmtImpl extends ValueStmtImpl implements Rel
 			result = new SignConditionImpl(programUnit, ctx);
 
 			// type
-			final SignCondition.Type type;
+			final SignCondition.SignConditionType type;
 
 			if (ctx.POSITIVE() != null) {
-				type = SignCondition.Type.POSITIVE;
+				type = SignCondition.SignConditionType.POSITIVE;
 			} else if (ctx.NEGATIVE() != null) {
-				type = SignCondition.Type.NEGATIVE;
+				type = SignCondition.SignConditionType.NEGATIVE;
 			} else if (ctx.ZERO() != null) {
-				type = SignCondition.Type.ZERO;
+				type = SignCondition.SignConditionType.ZERO;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setSignConditionType(type);
 
 			// arithmetic
 			final ArithmeticValueStmt arithmeticExpression = createArithmeticValueStmt(ctx.arithmeticExpression());
@@ -137,13 +137,13 @@ public class RelationConditionValueStmtImpl extends ValueStmtImpl implements Rel
 	}
 
 	@Override
-	public SignCondition getSignCondition() {
-		return signCondition;
+	public RelationConditionType getRelationConditionType() {
+		return relationConditionType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public SignCondition getSignCondition() {
+		return signCondition;
 	}
 
 	@Override
@@ -152,8 +152,8 @@ public class RelationConditionValueStmtImpl extends ValueStmtImpl implements Rel
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setRelationConditionType(final RelationConditionType relationConditionType) {
+		this.relationConditionType = relationConditionType;
 	}
 
 }

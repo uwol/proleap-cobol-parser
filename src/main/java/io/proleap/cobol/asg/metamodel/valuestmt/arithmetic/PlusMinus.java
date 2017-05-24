@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface PlusMinus extends ValueStmt {
 
-	enum Type {
+	enum PlusMinusType {
 		MINUS, PLUS
 	}
 
@@ -21,8 +21,8 @@ public interface PlusMinus extends ValueStmt {
 
 	MultDivs getMultDivs();
 
-	Type getType();
+	PlusMinusType getPlusMinusType();
 
-	void setType(Type type);
+	void setPlusMinusType(PlusMinusType plusMinusType);
 
 }

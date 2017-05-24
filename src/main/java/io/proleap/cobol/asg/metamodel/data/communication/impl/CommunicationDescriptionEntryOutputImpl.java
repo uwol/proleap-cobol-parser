@@ -169,6 +169,11 @@ public class CommunicationDescriptionEntryOutputImpl extends CommunicationDescri
 	}
 
 	@Override
+	public CommunicationDescriptionEntryType getCommunicationDescriptionEntryType() {
+		return CommunicationDescriptionEntryType.OUTPUT;
+	}
+
+	@Override
 	public DestinationCountClause getDestinationCountClause() {
 		return destinationCountClause;
 	}
@@ -196,11 +201,6 @@ public class CommunicationDescriptionEntryOutputImpl extends CommunicationDescri
 	@Override
 	public TextLengthClause getTextLengthClause() {
 		return textLengthClause;
-	}
-
-	@Override
-	public Type getType() {
-		return Type.OUTPUT;
 	}
 
 }

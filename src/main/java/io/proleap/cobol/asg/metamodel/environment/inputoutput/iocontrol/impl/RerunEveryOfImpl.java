@@ -20,7 +20,7 @@ public class RerunEveryOfImpl extends CobolDivisionElementImpl implements RerunE
 
 	protected Call fileCall;
 
-	protected Type type;
+	protected RerunEveryOfType rerunEveryOfType;
 
 	public RerunEveryOfImpl(final ProgramUnit programUnit, final RerunEveryOfContext ctx) {
 		super(programUnit, ctx);
@@ -34,8 +34,8 @@ public class RerunEveryOfImpl extends CobolDivisionElementImpl implements RerunE
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public RerunEveryOfType getRerunEveryOfType() {
+		return rerunEveryOfType;
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class RerunEveryOfImpl extends CobolDivisionElementImpl implements RerunE
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setRerunEveryOfType(final RerunEveryOfType rerunEveryOfType) {
+		this.rerunEveryOfType = rerunEveryOfType;
 	}
 }

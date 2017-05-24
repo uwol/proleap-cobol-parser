@@ -20,7 +20,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
  */
 public interface MultiplyStatement extends Statement {
 
-	enum Type {
+	enum MultiplyType {
 		GIVING, REGULAR
 	}
 
@@ -30,6 +30,8 @@ public interface MultiplyStatement extends Statement {
 
 	Giving getGiving();
 
+	MultiplyType getMultiplyType();
+
 	NotOnSizeError getNotOnSizeError();
 
 	OnSizeError getOnSizeError();
@@ -38,14 +40,12 @@ public interface MultiplyStatement extends Statement {
 
 	Regular getRegular();
 
-	Type getType();
+	void setMultiplyType(MultiplyType multiply);
 
 	void setNotOnSizeError(NotOnSizeError notOnSizeError);
 
 	void setOnSizeError(OnSizeError onSizeError);
 
 	void setOperandValueStmt(ValueStmt operandValueStmt);
-
-	void setType(Type type);
 
 }

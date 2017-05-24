@@ -215,19 +215,19 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			/*
 			 * type
 			 */
-			final LabelRecordsClause.Type type;
+			final LabelRecordsClause.LabelRecordsClauseType type;
 
 			if (ctx.OMITTED() != null) {
-				type = LabelRecordsClause.Type.OMITTED;
+				type = LabelRecordsClause.LabelRecordsClauseType.OMITTED;
 			} else if (ctx.STANDARD() != null) {
-				type = LabelRecordsClause.Type.STANDARD;
+				type = LabelRecordsClause.LabelRecordsClauseType.STANDARD;
 			} else if (!ctx.dataName().isEmpty()) {
-				type = LabelRecordsClause.Type.DATA_NAMES;
+				type = LabelRecordsClause.LabelRecordsClauseType.DATA_NAMES;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setLabelRecordsClauseType(type);
 
 			/*
 			 * data names

@@ -34,11 +34,11 @@ public class SendStatementImpl extends StatementImpl implements SendStatement {
 
 	protected OnException onException;
 
+	protected SendType sendType;
+
 	protected final StatementType statementType = StatementTypeEnum.SEND;
 
 	protected Sync sync;
-
-	protected Type type;
 
 	public SendStatementImpl(final ProgramUnit programUnit, final Scope scope, final SendStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -54,17 +54,17 @@ public class SendStatementImpl extends StatementImpl implements SendStatement {
 			result = new AsyncImpl(programUnit, ctx);
 
 			// type
-			final Async.Type type;
+			final Async.AsyncType type;
 
 			if (ctx.BOTTOM() != null) {
-				type = Async.Type.BOTTOM;
+				type = Async.AsyncType.BOTTOM;
 			} else if (ctx.TOP() != null) {
-				type = Async.Type.TOP;
+				type = Async.AsyncType.TOP;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setAsyncType(type);
 
 			// call
 			final Call dateDescriptionEntryCall = createCall(ctx.identifier());
@@ -131,6 +131,11 @@ public class SendStatementImpl extends StatementImpl implements SendStatement {
 	}
 
 	@Override
+	public SendType getSendType() {
+		return sendType;
+	}
+
+	@Override
 	public StatementType getStatementType() {
 		return statementType;
 	}
@@ -138,11 +143,6 @@ public class SendStatementImpl extends StatementImpl implements SendStatement {
 	@Override
 	public Sync getSync() {
 		return sync;
-	}
-
-	@Override
-	public Type getType() {
-		return type;
 	}
 
 	@Override
@@ -156,8 +156,8 @@ public class SendStatementImpl extends StatementImpl implements SendStatement {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setSendType(final SendType sendType) {
+		this.sendType = sendType;
 	}
 
 }

@@ -17,7 +17,7 @@ public class RequiredClauseImpl extends CobolDivisionElementImpl implements Requ
 
 	protected ScreenDescriptionRequiredClauseContext ctx;
 
-	protected Type type;
+	protected RequiredClauseType requiredClauseType;
 
 	public RequiredClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionRequiredClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class RequiredClauseImpl extends CobolDivisionElementImpl implements Requ
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public RequiredClauseType getRequiredClauseType() {
+		return requiredClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setRequiredClauseType(final RequiredClauseType requiredClauseType) {
+		this.requiredClauseType = requiredClauseType;
 	}
 
 }

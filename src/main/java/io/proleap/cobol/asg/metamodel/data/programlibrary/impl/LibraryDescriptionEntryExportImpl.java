@@ -112,7 +112,7 @@ public class LibraryDescriptionEntryExportImpl extends LibraryDescriptionEntryIm
 	}
 
 	@Override
-	public Type getType() {
-		return Type.EXPORT;
+	public LibraryDescriptionEntryType getLibraryDescriptionEntryType() {
+		return LibraryDescriptionEntryType.EXPORT;
 	}
 }

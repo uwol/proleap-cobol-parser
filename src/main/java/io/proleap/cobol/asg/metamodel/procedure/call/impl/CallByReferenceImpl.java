@@ -43,19 +43,19 @@ public class CallByReferenceImpl extends CobolDivisionElementImpl implements Cal
 			result.setCall(call);
 
 			// type
-			final ByReference.Type type;
+			final ByReference.ByReferenceType type;
 
 			if (ctx.ADDRESS() != null) {
-				type = ByReference.Type.ADDRESS_OF;
+				type = ByReference.ByReferenceType.ADDRESS_OF;
 			} else if (ctx.INTEGER() != null) {
-				type = ByReference.Type.INTEGER;
+				type = ByReference.ByReferenceType.INTEGER;
 			} else if (ctx.STRING() != null) {
-				type = ByReference.Type.STRING;
+				type = ByReference.ByReferenceType.STRING;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setByReferenceType(type);
 
 			byReferences.add(result);
 			registerASGElement(result);

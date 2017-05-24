@@ -174,17 +174,17 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new AutoClauseImpl(programUnit, ctx);
 
 			// type
-			final AutoClause.Type type;
+			final AutoClause.AutoClauseType type;
 
 			if (ctx.AUTO() != null) {
-				type = AutoClause.Type.AUTO;
+				type = AutoClause.AutoClauseType.AUTO;
 			} else if (ctx.AUTO_SKIP() != null) {
-				type = AutoClause.Type.AUTO_SKIP;
+				type = AutoClause.AutoClauseType.AUTO_SKIP;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setAutoClauseType(type);
 
 			autoClause = result;
 			registerASGElement(result);
@@ -218,17 +218,17 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new BellClauseImpl(programUnit, ctx);
 
 			// type
-			final BellClause.Type type;
+			final BellClause.BellClauseType type;
 
 			if (ctx.BELL() != null) {
-				type = BellClause.Type.BELL;
+				type = BellClause.BellClauseType.BELL;
 			} else if (ctx.BEEP() != null) {
-				type = BellClause.Type.BEEP;
+				type = BellClause.BellClauseType.BEEP;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setBellClauseType(type);
 
 			bellClause = result;
 			registerASGElement(result);
@@ -245,17 +245,17 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new BlankClauseImpl(programUnit, ctx);
 
 			// type
-			final BlankClause.Type type;
+			final BlankClause.BlankClauseType type;
 
 			if (ctx.SCREEN() != null) {
-				type = BlankClause.Type.SCREEN;
+				type = BlankClause.BlankClauseType.SCREEN;
 			} else if (ctx.LINE() != null) {
-				type = BlankClause.Type.LINE;
+				type = BlankClause.BlankClauseType.LINE;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setBlankClauseType(type);
 
 			blankClause = result;
 			registerASGElement(result);
@@ -309,19 +309,19 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new ColumnNumberClauseImpl(programUnit, ctx);
 
 			// type
-			final ColumnNumberClause.Type type;
+			final ColumnNumberClause.ColumnNumberClauseType type;
 
 			if (ctx.PLUS() != null) {
-				type = ColumnNumberClause.Type.PLUS;
+				type = ColumnNumberClause.ColumnNumberClauseType.PLUS;
 			} else if (ctx.PLUSCHAR() != null) {
-				type = ColumnNumberClause.Type.PLUS;
+				type = ColumnNumberClause.ColumnNumberClauseType.PLUS;
 			} else if (ctx.MINUSCHAR() != null) {
-				type = ColumnNumberClause.Type.MINUS;
+				type = ColumnNumberClause.ColumnNumberClauseType.MINUS;
 			} else {
-				type = ColumnNumberClause.Type.EQUAL;
+				type = ColumnNumberClause.ColumnNumberClauseType.EQUAL;
 			}
 
-			result.setType(type);
+			result.setColumnNumberClauseType(type);
 
 			// line number
 			final IntegerLiteral lineNumber = createIntegerLiteral(ctx.integerLiteral());
@@ -359,17 +359,17 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new EraseClauseImpl(programUnit, ctx);
 
 			// type
-			final EraseClause.Type type;
+			final EraseClause.EraseClauseType type;
 
 			if (ctx.EOL() != null) {
-				type = EraseClause.Type.EOL;
+				type = EraseClause.EraseClauseType.EOL;
 			} else if (ctx.EOS() != null) {
-				type = EraseClause.Type.EOS;
+				type = EraseClause.EraseClauseType.EOS;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setEraseClauseType(type);
 
 			eraseClause = result;
 			registerASGElement(result);
@@ -426,17 +426,17 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new FullClauseImpl(programUnit, ctx);
 
 			// type
-			final FullClause.Type type;
+			final FullClause.FullClauseType type;
 
 			if (ctx.FULL() != null) {
-				type = FullClause.Type.FULL;
+				type = FullClause.FullClauseType.FULL;
 			} else if (ctx.LENGTH_CHECK() != null) {
-				type = FullClause.Type.LENGTH_CHECK;
+				type = FullClause.FullClauseType.LENGTH_CHECK;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setFullClauseType(type);
 
 			fullClause = result;
 			registerASGElement(result);
@@ -453,19 +453,19 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new GridClauseImpl(programUnit, ctx);
 
 			// type
-			final GridClause.Type type;
+			final GridClause.GridClauseType type;
 
 			if (ctx.GRID() != null) {
-				type = GridClause.Type.GRID;
+				type = GridClause.GridClauseType.GRID;
 			} else if (ctx.LEFTLINE() != null) {
-				type = GridClause.Type.LEFTLINE;
+				type = GridClause.GridClauseType.LEFTLINE;
 			} else if (ctx.OVERLINE() != null) {
-				type = GridClause.Type.OVERLINE;
+				type = GridClause.GridClauseType.OVERLINE;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setGridClauseType(type);
 
 			gridClause = result;
 			registerASGElement(result);
@@ -507,17 +507,17 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new LightClauseImpl(programUnit, ctx);
 
 			// type
-			final LightClause.Type type;
+			final LightClause.LightClauseType type;
 
 			if (ctx.HIGHLIGHT() != null) {
-				type = LightClause.Type.HIGHLIGHT;
+				type = LightClause.LightClauseType.HIGHLIGHT;
 			} else if (ctx.LOWLIGHT() != null) {
-				type = LightClause.Type.LOWLIGHT;
+				type = LightClause.LightClauseType.LOWLIGHT;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setLightClauseType(type);
 
 			lightClause = result;
 			registerASGElement(result);
@@ -534,19 +534,19 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new LineNumberClauseImpl(programUnit, ctx);
 
 			// type
-			final LineNumberClause.Type type;
+			final LineNumberClause.LineNumberClauseType type;
 
 			if (ctx.PLUS() != null) {
-				type = LineNumberClause.Type.PLUS;
+				type = LineNumberClause.LineNumberClauseType.PLUS;
 			} else if (ctx.PLUSCHAR() != null) {
-				type = LineNumberClause.Type.PLUS;
+				type = LineNumberClause.LineNumberClauseType.PLUS;
 			} else if (ctx.MINUSCHAR() != null) {
-				type = LineNumberClause.Type.MINUS;
+				type = LineNumberClause.LineNumberClauseType.MINUS;
 			} else {
-				type = LineNumberClause.Type.EQUAL;
+				type = LineNumberClause.LineNumberClauseType.EQUAL;
 			}
 
-			result.setType(type);
+			result.setLineNumberClauseType(type);
 
 			// line number
 			final IntegerLiteral lineNumber = createIntegerLiteral(ctx.integerLiteral());
@@ -607,17 +607,17 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new RequiredClauseImpl(programUnit, ctx);
 
 			// type
-			final RequiredClause.Type type;
+			final RequiredClause.RequiredClauseType type;
 
 			if (ctx.REQUIRED() != null) {
-				type = RequiredClause.Type.REQUIRED;
+				type = RequiredClause.RequiredClauseType.REQUIRED;
 			} else if (ctx.EMPTY_CHECK() != null) {
-				type = RequiredClause.Type.EMPTY_CHECK;
+				type = RequiredClause.RequiredClauseType.EMPTY_CHECK;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setRequiredClauseType(type);
 
 			requiredClause = result;
 			registerASGElement(result);
@@ -658,17 +658,17 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new SecureClauseImpl(programUnit, ctx);
 
 			// type
-			final SecureClause.Type type;
+			final SecureClause.SecureClauseType type;
 
 			if (ctx.SECURE() != null) {
-				type = SecureClause.Type.SECURE;
+				type = SecureClause.SecureClauseType.SECURE;
 			} else if (ctx.NO_ECHO() != null) {
-				type = SecureClause.Type.NO_ECHO;
+				type = SecureClause.SecureClauseType.NO_ECHO;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setSecureClauseType(type);
 
 			secureClause = result;
 			registerASGElement(result);
@@ -685,17 +685,17 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new SignClauseImpl(programUnit, ctx);
 
 			// type
-			final SignClause.Type type;
+			final SignClause.SignClauseType type;
 
 			if (ctx.LEADING() != null) {
-				type = SignClause.Type.LEADING;
+				type = SignClause.SignClauseType.LEADING;
 			} else if (ctx.TRAILING() != null) {
-				type = SignClause.Type.TRAILING;
+				type = SignClause.SignClauseType.TRAILING;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setSignClauseType(type);
 
 			signClause = result;
 			registerASGElement(result);
@@ -745,17 +745,17 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result = new UsageClauseImpl(programUnit, ctx);
 
 			// type
-			final UsageClause.Type type;
+			final UsageClause.UsageClauseType type;
 
 			if (ctx.DISPLAY() != null) {
-				type = UsageClause.Type.DISPLAY;
+				type = UsageClause.UsageClauseType.DISPLAY;
 			} else if (ctx.DISPLAY_1() != null) {
-				type = UsageClause.Type.DISPLAY_1;
+				type = UsageClause.UsageClauseType.DISPLAY_1;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setUsageClauseType(type);
 
 			usageClause = result;
 			registerASGElement(result);

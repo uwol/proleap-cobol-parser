@@ -18,9 +18,9 @@ public class ValueImpl extends CobolDivisionElementImpl implements Value {
 
 	protected SetToValueContext ctx;
 
-	protected Type type;
-
 	protected ValueStmt valueStmt;
+
+	protected ValueType valueType;
 
 	public ValueImpl(final ProgramUnit programUnit, final SetToValueContext ctx) {
 		super(programUnit, ctx);
@@ -29,23 +29,23 @@ public class ValueImpl extends CobolDivisionElementImpl implements Value {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
-	}
-
-	@Override
 	public ValueStmt getValueStmt() {
 		return valueStmt;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public ValueType getValueType() {
+		return valueType;
 	}
 
 	@Override
 	public void setValueStmt(final ValueStmt valueStmt) {
 		this.valueStmt = valueStmt;
+	}
+
+	@Override
+	public void setValueType(final ValueType valueType) {
+		this.valueType = valueType;
 	}
 
 }

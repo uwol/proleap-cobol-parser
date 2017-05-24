@@ -17,7 +17,7 @@ public class DefaultDisplaySignClauseImpl extends CobolDivisionElementImpl imple
 
 	protected final DefaultDisplaySignClauseContext ctx;
 
-	protected Type type;
+	protected DefaultDisplaySignClauseType defaultDisplaySignClauseType;
 
 	public DefaultDisplaySignClauseImpl(final ProgramUnit programUnit, final DefaultDisplaySignClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class DefaultDisplaySignClauseImpl extends CobolDivisionElementImpl imple
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public DefaultDisplaySignClauseType getDefaultDisplaySignClauseType() {
+		return defaultDisplaySignClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setDefaultDisplaySignClauseType(final DefaultDisplaySignClauseType defaultDisplaySignClauseType) {
+		this.defaultDisplaySignClauseType = defaultDisplaySignClauseType;
 	}
 
 }

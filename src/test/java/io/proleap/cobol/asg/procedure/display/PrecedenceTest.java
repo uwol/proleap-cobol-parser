@@ -39,7 +39,7 @@ public class PrecedenceTest extends CobolTestBase {
 		{
 			final StopStatement stopStatement = (StopStatement) procedureDivision.getStatements().get(1);
 			assertEquals(StatementTypeEnum.STOP, stopStatement.getStatementType());
-			assertEquals(StopStatement.Type.STOP_RUN, stopStatement.getType());
+			assertEquals(StopStatement.StopType.STOP_RUN, stopStatement.getStopType());
 		}
 	}
 }

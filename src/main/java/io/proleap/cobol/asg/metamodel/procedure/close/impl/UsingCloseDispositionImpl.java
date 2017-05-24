@@ -17,7 +17,7 @@ public class UsingCloseDispositionImpl extends CobolDivisionElementImpl implemen
 
 	protected ClosePortFileIOUsingCloseDispositionContext ctx;
 
-	protected Type type;
+	protected UsingCloseDispositionType usingCloseDispositionType;
 
 	public UsingCloseDispositionImpl(final ProgramUnit programUnit,
 			final ClosePortFileIOUsingCloseDispositionContext ctx) {
@@ -27,13 +27,13 @@ public class UsingCloseDispositionImpl extends CobolDivisionElementImpl implemen
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public UsingCloseDispositionType getUsingCloseDispositionType() {
+		return usingCloseDispositionType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setUsingCloseDispositionType(final UsingCloseDispositionType usingCloseDispositionType) {
+		this.usingCloseDispositionType = usingCloseDispositionType;
 	}
 
 }

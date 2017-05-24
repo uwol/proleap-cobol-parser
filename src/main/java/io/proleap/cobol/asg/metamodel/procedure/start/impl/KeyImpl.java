@@ -20,7 +20,7 @@ public class KeyImpl extends CobolDivisionElementImpl implements Key {
 
 	protected final StartKeyContext ctx;
 
-	protected Type type;
+	protected KeyType keyType;
 
 	public KeyImpl(final ProgramUnit programUnit, final StartKeyContext ctx) {
 		super(programUnit, ctx);
@@ -34,8 +34,8 @@ public class KeyImpl extends CobolDivisionElementImpl implements Key {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public KeyType getKeyType() {
+		return keyType;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class KeyImpl extends CobolDivisionElementImpl implements Key {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setKeyType(final KeyType keyType) {
+		this.keyType = keyType;
 	}
 
 }

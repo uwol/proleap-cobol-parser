@@ -36,17 +36,17 @@ public abstract class InspectPhraseImpl extends CobolDivisionElementImpl {
 			result = new BeforeAfterImpl(programUnit, ctx);
 
 			// type
-			final BeforeAfter.Type type;
+			final BeforeAfter.BeforeAfterType type;
 
 			if (ctx.BEFORE() != null) {
-				type = BeforeAfter.Type.BEFORE;
+				type = BeforeAfter.BeforeAfterType.BEFORE;
 			} else if (ctx.AFTER() != null) {
-				type = BeforeAfter.Type.AFTER;
+				type = BeforeAfter.BeforeAfterType.AFTER;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setBeforeAfterType(type);
 
 			// data item
 			final ValueStmt dataItemValueStmt = createValueStmt(ctx.identifier(), ctx.literal());

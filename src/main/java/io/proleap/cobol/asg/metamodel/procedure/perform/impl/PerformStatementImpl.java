@@ -42,9 +42,9 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 
 	protected PerformProcedureStatement performProcedureStatement;
 
-	protected final StatementType statementType = StatementTypeEnum.PERFORM;
+	protected PerformStatementType performStatementType;
 
-	protected Type type;
+	protected final StatementType statementType = StatementTypeEnum.PERFORM;
 
 	public PerformStatementImpl(final ProgramUnit programUnit, final Scope scope, final PerformStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -157,18 +157,18 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 	}
 
 	@Override
+	public PerformStatementType getPerformStatementType() {
+		return performStatementType;
+	}
+
+	@Override
 	public StatementType getStatementType() {
 		return statementType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setPerformStatementType(final PerformStatementType performStatementType) {
+		this.performStatementType = performStatementType;
 	}
 
 }

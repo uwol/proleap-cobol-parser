@@ -16,9 +16,9 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class CancelCallImpl extends CobolDivisionElementImpl implements CancelCall {
 
-	protected CancelCallContext ctx;
+	protected CancelType cancelType;
 
-	protected Type type;
+	protected CancelCallContext ctx;
 
 	protected ValueStmt valueStmt;
 
@@ -29,8 +29,8 @@ public class CancelCallImpl extends CobolDivisionElementImpl implements CancelCa
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public CancelType getCancelType() {
+		return cancelType;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class CancelCallImpl extends CobolDivisionElementImpl implements CancelCa
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setCancelType(final CancelType cancelType) {
+		this.cancelType = cancelType;
 	}
 
 	@Override

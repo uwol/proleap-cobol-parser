@@ -15,7 +15,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface Parameter extends CobolDivisionElement {
 
-	enum Type {
+	enum ParameterType {
 		CONTENT, REFERENCE, VALUE
 	}
 
@@ -31,8 +31,8 @@ public interface Parameter extends CobolDivisionElement {
 
 	CallByValue getCallByValue();
 
-	Type getType();
+	ParameterType getParameterType();
 
-	void setType(Type type);
+	void setParameterType(ParameterType parameterType);
 
 }

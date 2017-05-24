@@ -40,7 +40,7 @@ public class SetByStatementTest extends CobolTestBase {
 			final SetStatement setStatement = (SetStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(setStatement);
 			assertEquals(StatementTypeEnum.SET, setStatement.getStatementType());
-			assertEquals(SetStatement.Type.BY, setStatement.getType());
+			assertEquals(SetStatement.SetType.BY, setStatement.getSetType());
 
 			{
 				final SetBy setBy = setStatement.getSetBy();

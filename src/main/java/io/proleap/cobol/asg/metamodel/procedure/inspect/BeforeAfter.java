@@ -13,15 +13,15 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface BeforeAfter extends CobolDivisionElement {
 
-	enum Type {
+	enum BeforeAfterType {
 		AFTER, BEFORE
 	}
 
+	BeforeAfterType getBeforeAfterType();
+
 	ValueStmt getDataItemValueStmt();
 
-	Type getType();
+	void setBeforeAfterType(BeforeAfterType beforeAfterType);
 
 	void setDataItemValueStmt(ValueStmt dataItemValueStmt);
-
-	void setType(Type type);
 }

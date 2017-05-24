@@ -20,7 +20,7 @@ public class NextGroupClauseImpl extends CobolDivisionElementImpl implements Nex
 
 	protected IntegerLiteral integerLiteral;
 
-	protected Type type;
+	protected NextGroupClauseType nextGroupClauseType;
 
 	public NextGroupClauseImpl(final ProgramUnit programUnit, final ReportGroupNextGroupClauseContext ctx) {
 		super(programUnit, ctx);
@@ -34,8 +34,8 @@ public class NextGroupClauseImpl extends CobolDivisionElementImpl implements Nex
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public NextGroupClauseType getNextGroupClauseType() {
+		return nextGroupClauseType;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class NextGroupClauseImpl extends CobolDivisionElementImpl implements Nex
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setNextGroupClauseType(final NextGroupClauseType nextGroupClauseType) {
+		this.nextGroupClauseType = nextGroupClauseType;
 	}
 
 }

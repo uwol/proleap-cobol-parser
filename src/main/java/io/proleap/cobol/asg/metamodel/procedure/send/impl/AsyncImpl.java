@@ -16,11 +16,11 @@ import io.proleap.cobol.asg.metamodel.procedure.send.Async;
 
 public class AsyncImpl extends CobolDivisionElementImpl implements Async {
 
+	protected AsyncType asyncType;
+
 	protected SendStatementAsyncContext ctx;
 
 	protected Call dataDescriptionEntryCall;
-
-	protected Type type;
 
 	public AsyncImpl(final ProgramUnit programUnit, final SendStatementAsyncContext ctx) {
 		super(programUnit, ctx);
@@ -29,23 +29,23 @@ public class AsyncImpl extends CobolDivisionElementImpl implements Async {
 	}
 
 	@Override
+	public AsyncType getAsyncType() {
+		return asyncType;
+	}
+
+	@Override
 	public Call getDataDescriptionEntryCall() {
 		return dataDescriptionEntryCall;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public void setAsyncType(final AsyncType asyncType) {
+		this.asyncType = asyncType;
 	}
 
 	@Override
 	public void setDataDescriptionEntryCall(final Call dataDescriptionEntryCall) {
 		this.dataDescriptionEntryCall = dataDescriptionEntryCall;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

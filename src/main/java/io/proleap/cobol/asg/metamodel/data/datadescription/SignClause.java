@@ -12,16 +12,16 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface SignClause extends CobolDivisionElement {
 
-	enum Type {
+	enum SignClauseType {
 		LEADING, TRAILING
 	}
 
-	Type getType();
+	SignClauseType getSignClauseType();
 
 	boolean isSeparate();
 
 	void setSeparate(boolean separate);
 
-	void setType(Type type);
+	void setSignClauseType(SignClauseType signClauseType);
 
 }

@@ -18,13 +18,13 @@ public class ClassConditionImpl extends ValueStmtImpl implements ClassCondition 
 
 	protected Call classCall;
 
+	protected ClassConditionType classConditionType;
+
 	protected ClassConditionContext ctx;
 
 	protected Call identifierCall;
 
 	protected boolean not;
-
-	protected Type type;
 
 	public ClassConditionImpl(final ProgramUnit programUnit, final ClassConditionContext ctx) {
 		super(programUnit, ctx);
@@ -33,6 +33,11 @@ public class ClassConditionImpl extends ValueStmtImpl implements ClassCondition 
 	@Override
 	public Call getClassCall() {
 		return classCall;
+	}
+
+	@Override
+	public ClassConditionType getClassConditionType() {
+		return classConditionType;
 	}
 
 	@Override
@@ -46,11 +51,6 @@ public class ClassConditionImpl extends ValueStmtImpl implements ClassCondition 
 	}
 
 	@Override
-	public Type getType() {
-		return type;
-	}
-
-	@Override
 	public Object getValue() {
 		return null;
 	}
@@ -61,6 +61,11 @@ public class ClassConditionImpl extends ValueStmtImpl implements ClassCondition 
 	}
 
 	@Override
+	public void setClassConditionType(final ClassConditionType classConditionType) {
+		this.classConditionType = classConditionType;
+	}
+
+	@Override
 	public void setIdentifierCall(final Call identifierCall) {
 		this.identifierCall = identifierCall;
 	}
@@ -68,11 +73,6 @@ public class ClassConditionImpl extends ValueStmtImpl implements ClassCondition 
 	@Override
 	public void setNot(final boolean not) {
 		this.not = not;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

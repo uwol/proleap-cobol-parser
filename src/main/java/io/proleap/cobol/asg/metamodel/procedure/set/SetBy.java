@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface SetBy extends CobolDivisionElement {
 
-	enum Type {
+	enum SetByType {
 		DOWN, UP
 	}
 
@@ -26,9 +26,9 @@ public interface SetBy extends CobolDivisionElement {
 
 	By getBy();
 
+	SetByType getSetByType();
+
 	List<To> getTos();
 
-	Type getType();
-
-	void setType(Type type);
+	void setSetByType(SetByType setByType);
 }

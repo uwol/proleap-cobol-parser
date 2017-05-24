@@ -12,12 +12,12 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface AutoClause extends CobolDivisionElement {
 
-	enum Type {
+	enum AutoClauseType {
 		AUTO, AUTO_SKIP
 	}
 
-	Type getType();
+	AutoClauseType getAutoClauseType();
 
-	void setType(Type type);
+	void setAutoClauseType(AutoClauseType autoClauseType);
 
 }

@@ -19,7 +19,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface PerformStatement extends Statement {
 
-	enum Type {
+	enum PerformStatementType {
 		INLINE, PROCEDURE
 	}
 
@@ -31,8 +31,8 @@ public interface PerformStatement extends Statement {
 
 	PerformProcedureStatement getPerformProcedureStatement();
 
-	Type getType();
+	PerformStatementType getPerformStatementType();
 
-	void setType(Type type);
+	void setPerformStatementType(PerformStatementType performStatementType);
 
 }

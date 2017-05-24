@@ -32,49 +32,49 @@ public abstract class AbstractComparisonValueStmtImpl extends ValueStmtImpl impl
 			result = new RelationalOperatorImpl(programUnit, ctx);
 
 			// operator
-			final RelationalOperator.Type type;
+			final RelationalOperator.RelationalOperatorType type;
 
 			if (ctx.MORETHANOREQUAL() != null) {
-				type = RelationalOperator.Type.GREATER_OR_EQUAL;
+				type = RelationalOperator.RelationalOperatorType.GREATER_OR_EQUAL;
 			} else if (ctx.LESSTHANOREQUAL() != null) {
-				type = RelationalOperator.Type.LESS_OR_EQUAL;
+				type = RelationalOperator.RelationalOperatorType.LESS_OR_EQUAL;
 			} else if (ctx.GREATER() != null && ctx.EQUAL() != null) {
-				type = RelationalOperator.Type.GREATER_OR_EQUAL;
+				type = RelationalOperator.RelationalOperatorType.GREATER_OR_EQUAL;
 			} else if (ctx.LESS() != null && ctx.EQUAL() != null) {
-				type = RelationalOperator.Type.LESS_OR_EQUAL;
+				type = RelationalOperator.RelationalOperatorType.LESS_OR_EQUAL;
 			}
 			// with not
 			else if (ctx.NOT() != null && ctx.MORETHANCHAR() != null) {
-				type = RelationalOperator.Type.LESS_OR_EQUAL;
+				type = RelationalOperator.RelationalOperatorType.LESS_OR_EQUAL;
 			} else if (ctx.NOT() != null && ctx.LESSTHANCHAR() != null) {
-				type = RelationalOperator.Type.GREATER_OR_EQUAL;
+				type = RelationalOperator.RelationalOperatorType.GREATER_OR_EQUAL;
 			} else if (ctx.NOT() != null && ctx.GREATER() != null) {
-				type = RelationalOperator.Type.LESS_OR_EQUAL;
+				type = RelationalOperator.RelationalOperatorType.LESS_OR_EQUAL;
 			} else if (ctx.NOT() != null && ctx.LESS() != null) {
-				type = RelationalOperator.Type.GREATER_OR_EQUAL;
+				type = RelationalOperator.RelationalOperatorType.GREATER_OR_EQUAL;
 			} else if (ctx.NOT() != null && ctx.EQUAL() != null) {
-				type = RelationalOperator.Type.NOT_EQUAL;
+				type = RelationalOperator.RelationalOperatorType.NOT_EQUAL;
 			} else if (ctx.NOT() != null && ctx.EQUALCHAR() != null) {
-				type = RelationalOperator.Type.NOT_EQUAL;
+				type = RelationalOperator.RelationalOperatorType.NOT_EQUAL;
 			}
 			// without not
 			else if (ctx.MORETHANCHAR() != null) {
-				type = RelationalOperator.Type.GREATER;
+				type = RelationalOperator.RelationalOperatorType.GREATER;
 			} else if (ctx.LESSTHANCHAR() != null) {
-				type = RelationalOperator.Type.LESS;
+				type = RelationalOperator.RelationalOperatorType.LESS;
 			} else if (ctx.GREATER() != null) {
-				type = RelationalOperator.Type.GREATER;
+				type = RelationalOperator.RelationalOperatorType.GREATER;
 			} else if (ctx.LESS() != null) {
-				type = RelationalOperator.Type.LESS;
+				type = RelationalOperator.RelationalOperatorType.LESS;
 			} else if (ctx.EQUAL() != null) {
-				type = RelationalOperator.Type.EQUAL;
+				type = RelationalOperator.RelationalOperatorType.EQUAL;
 			} else if (ctx.EQUALCHAR() != null) {
-				type = RelationalOperator.Type.EQUAL;
+				type = RelationalOperator.RelationalOperatorType.EQUAL;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setRelationalOperatorType(type);
 
 			operator = result;
 			subValueStmts.add(result);

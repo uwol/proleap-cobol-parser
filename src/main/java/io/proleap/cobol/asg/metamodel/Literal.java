@@ -12,7 +12,7 @@ import io.proleap.cobol.Cobol85Parser.LiteralContext;
 
 public interface Literal extends CobolDivisionElement {
 
-	public enum Type {
+	public enum LiteralType {
 		BOOLEAN, CICS_DFH_RESP, CICS_DFH_VALUE, FIGURATIVE_CONSTANT, NON_NUMERIC, NUMERIC
 	}
 
@@ -23,11 +23,11 @@ public interface Literal extends CobolDivisionElement {
 
 	FigurativeConstant getFigurativeConstant();
 
+	LiteralType getLiteralType();
+
 	String getNonNumericLiteral();
 
 	NumericLiteral getNumericLiteral();
-
-	Type getType();
 
 	Object getValue();
 
@@ -35,9 +35,9 @@ public interface Literal extends CobolDivisionElement {
 
 	void setFigurativeConstant(FigurativeConstant figurativeConstant);
 
+	void setLiteralType(LiteralType type);
+
 	void setNonNumericLiteral(String nonNumericLiteral);
 
 	void setNumericLiteral(NumericLiteral numericLiteral);
-
-	void setType(Type type);
 }

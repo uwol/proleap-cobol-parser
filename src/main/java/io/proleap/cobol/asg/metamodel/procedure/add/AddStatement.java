@@ -20,7 +20,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface AddStatement extends Statement {
 
-	enum Type {
+	enum AddType {
 		CORRESPONDING, GIVING, TO
 	}
 
@@ -36,15 +36,15 @@ public interface AddStatement extends Statement {
 
 	AddToGiving getAddToGiving();
 
+	AddType getAddType();
+
 	NotOnSizeError getNotOnSizeError();
 
 	OnSizeError getOnSizeError();
 
-	Type getType();
+	void setAddType(AddType addType);
 
 	void setNotOnSize(NotOnSizeError notOnSizeError);
 
 	void setOnSizeError(OnSizeError onSizeError);
-
-	void setType(Type type);
 }

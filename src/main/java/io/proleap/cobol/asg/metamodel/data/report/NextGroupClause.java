@@ -13,15 +13,15 @@ import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 
 public interface NextGroupClause extends CobolDivisionElement {
 
-	enum Type {
+	enum NextGroupClauseType {
 		ABSOLUTE, NEXT_PAGE, PLUS
 	}
 
 	IntegerLiteral getIntegerLiteral();
 
-	Type getType();
+	NextGroupClauseType getNextGroupClauseType();
 
 	void setIntegerLiteral(IntegerLiteral integerLiteral);
 
-	void setType(Type type);
+	void setNextGroupClauseType(NextGroupClauseType nextGroupClauseType);
 }

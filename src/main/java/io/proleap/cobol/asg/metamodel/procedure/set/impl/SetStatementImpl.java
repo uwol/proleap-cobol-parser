@@ -33,9 +33,9 @@ public class SetStatementImpl extends StatementImpl implements SetStatement {
 
 	protected List<SetTo> setTos = new ArrayList<SetTo>();
 
-	protected final StatementType statementType = StatementTypeEnum.SET;
+	protected SetType setType;
 
-	protected Type type;
+	protected final StatementType statementType = StatementTypeEnum.SET;
 
 	public SetStatementImpl(final ProgramUnit programUnit, final Scope scope, final SetStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -51,17 +51,17 @@ public class SetStatementImpl extends StatementImpl implements SetStatement {
 			result = new SetByImpl(programUnit, ctx);
 
 			// type
-			final SetBy.Type type;
+			final SetBy.SetByType type;
 
 			if (ctx.UP() != null) {
-				type = SetBy.Type.UP;
+				type = SetBy.SetByType.UP;
 			} else if (ctx.DOWN() != null) {
-				type = SetBy.Type.DOWN;
+				type = SetBy.SetByType.DOWN;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setSetByType(type);
 
 			// to
 			for (final SetToContext setToContext : ctx.setTo()) {
@@ -113,18 +113,18 @@ public class SetStatementImpl extends StatementImpl implements SetStatement {
 	}
 
 	@Override
+	public SetType getSetType() {
+		return setType;
+	}
+
+	@Override
 	public StatementType getStatementType() {
 		return statementType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setSetType(final SetType setType) {
+		this.setType = setType;
 	}
 
 }

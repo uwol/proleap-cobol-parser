@@ -13,16 +13,16 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface AssignClause extends CobolDivisionElement {
 
-	enum Type {
+	enum AssignClauseType {
 		CALL, DISK, PORT, PRINTER, READER, REMOTE, TAPE, VIRTUAL
 	}
 
+	AssignClauseType getAssignClauseType();
+
 	ValueStmt getToValueStmt();
 
-	Type getType();
+	void setAssignClauseType(AssignClauseType assignClauseType);
 
 	void setToValueStmt(ValueStmt toValueStmt);
-
-	void setType(Type type);
 
 }

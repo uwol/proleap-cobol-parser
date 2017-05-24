@@ -51,7 +51,7 @@ public class FileControlTest extends CobolTestBase {
 		{
 			final AssignClause assignClause = fileControlEntry.getAssignClause();
 			assertNotNull(assignClause);
-			assertEquals(AssignClause.Type.CALL, assignClause.getType());
+			assertEquals(AssignClause.AssignClauseType.CALL, assignClause.getAssignClauseType());
 			assertEquals("teacher.txt", assignClause.getToValueStmt().getValue());
 		}
 
@@ -64,7 +64,7 @@ public class FileControlTest extends CobolTestBase {
 		{
 			final OrganizationClause organizationClause = fileControlEntry.getOrganizationClause();
 			assertNotNull(organizationClause);
-			assertEquals(OrganizationClause.Type.RECORD, organizationClause.getType());
+			assertEquals(OrganizationClause.OrganizationClauseType.RECORD, organizationClause.getOrganizationClauseType());
 			assertEquals(OrganizationClause.Mode.INDEXED, organizationClause.getMode());
 		}
 
@@ -77,7 +77,7 @@ public class FileControlTest extends CobolTestBase {
 		{
 			final RecordDelimiterClause recordDelimiterClause = fileControlEntry.getRecordDelimiterClause();
 			assertNotNull(recordDelimiterClause);
-			assertEquals(RecordDelimiterClause.Type.IMPLICIT, recordDelimiterClause.getType());
+			assertEquals(RecordDelimiterClause.RecordDelimiterClauseType.IMPLICIT, recordDelimiterClause.getRecordDelimiterClauseType());
 		}
 
 		{

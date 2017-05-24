@@ -41,7 +41,7 @@ public class SetToStatementTest extends CobolTestBase {
 			final SetStatement setStatement = (SetStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(setStatement);
 			assertEquals(StatementTypeEnum.SET, setStatement.getStatementType());
-			assertEquals(SetStatement.Type.TO, setStatement.getType());
+			assertEquals(SetStatement.SetType.TO, setStatement.getSetType());
 			assertEquals(2, setStatement.getSetTos().size());
 
 			{
@@ -65,7 +65,7 @@ public class SetToStatementTest extends CobolTestBase {
 
 				{
 					final Value value = setTo.getValues().get(0);
-					assertEquals(Value.Type.CALL, value.getType());
+					assertEquals(Value.ValueType.CALL, value.getValueType());
 
 					final ValueStmt valueStmt = value.getValueStmt();
 					assertNotNull(valueStmt);
@@ -76,7 +76,7 @@ public class SetToStatementTest extends CobolTestBase {
 
 				{
 					final Value value = setTo.getValues().get(1);
-					assertEquals(Value.Type.CALL, value.getType());
+					assertEquals(Value.ValueType.CALL, value.getValueType());
 
 					final ValueStmt valueStmt = value.getValueStmt();
 					assertNotNull(valueStmt);
@@ -100,7 +100,7 @@ public class SetToStatementTest extends CobolTestBase {
 
 				{
 					final Value value = setTo.getValues().get(0);
-					assertEquals(Value.Type.CALL, value.getType());
+					assertEquals(Value.ValueType.CALL, value.getValueType());
 
 					final ValueStmt valueStmt = value.getValueStmt();
 					assertNotNull(valueStmt);
@@ -111,7 +111,7 @@ public class SetToStatementTest extends CobolTestBase {
 
 				{
 					final Value value = setTo.getValues().get(1);
-					assertEquals(Value.Type.ON, value.getType());
+					assertEquals(Value.ValueType.ON, value.getValueType());
 					assertNull(value.getValueStmt());
 				}
 			}

@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface ClassCondition extends ValueStmt {
 
-	enum Type {
+	enum ClassConditionType {
 		ALPHABETIC, ALPHABETIC_LOWER, ALPHABETIC_UPPER, CLASS_NAME, DBCS, KANJI, NUMERIC
 	}
 
@@ -23,7 +23,7 @@ public interface ClassCondition extends ValueStmt {
 
 	boolean getNot();
 
-	Type getType();
+	ClassConditionType getClassConditionType();
 
 	void setClassCall(Call classCall);
 
@@ -31,6 +31,6 @@ public interface ClassCondition extends ValueStmt {
 
 	void setNot(boolean not);
 
-	void setType(Type type);
+	void setClassConditionType(ClassConditionType classConditionType);
 
 }

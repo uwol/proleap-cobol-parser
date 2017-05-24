@@ -38,7 +38,7 @@ public class AcceptStatementTest extends CobolTestBase {
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(0);
 			assertEquals(StatementTypeEnum.ACCEPT, acceptStatement.getStatementType());
-			assertEquals(AcceptStatement.Type.DATE, acceptStatement.getType());
+			assertEquals(AcceptStatement.AcceptType.DATE, acceptStatement.getAcceptType());
 
 			assertNotNull(acceptStatement.getAcceptCall());
 			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
@@ -53,7 +53,7 @@ public class AcceptStatementTest extends CobolTestBase {
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(1);
 			assertEquals(StatementTypeEnum.ACCEPT, acceptStatement.getStatementType());
-			assertEquals(AcceptStatement.Type.MNEMONIC, acceptStatement.getType());
+			assertEquals(AcceptStatement.AcceptType.MNEMONIC, acceptStatement.getAcceptType());
 
 			assertNotNull(acceptStatement.getAcceptCall());
 			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
@@ -69,7 +69,7 @@ public class AcceptStatementTest extends CobolTestBase {
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(2);
 			assertEquals(StatementTypeEnum.ACCEPT, acceptStatement.getStatementType());
-			assertEquals(AcceptStatement.Type.MESSAGE_COUNT, acceptStatement.getType());
+			assertEquals(AcceptStatement.AcceptType.MESSAGE_COUNT, acceptStatement.getAcceptType());
 
 			assertNotNull(acceptStatement.getAcceptCall());
 			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
@@ -83,7 +83,7 @@ public class AcceptStatementTest extends CobolTestBase {
 		{
 			final AcceptStatement acceptStatement = (AcceptStatement) procedureDivision.getStatements().get(3);
 			assertEquals(StatementTypeEnum.ACCEPT, acceptStatement.getStatementType());
-			assertEquals(AcceptStatement.Type.FROM_ESCAPE_KEY, acceptStatement.getType());
+			assertEquals(AcceptStatement.AcceptType.FROM_ESCAPE_KEY, acceptStatement.getAcceptType());
 
 			assertNotNull(acceptStatement.getAcceptCall());
 

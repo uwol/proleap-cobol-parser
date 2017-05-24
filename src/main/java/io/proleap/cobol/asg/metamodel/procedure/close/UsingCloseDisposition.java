@@ -12,11 +12,11 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface UsingCloseDisposition extends CobolDivisionElement {
 
-	enum Type {
+	enum UsingCloseDispositionType {
 		ABORT, ORDERLY
 	}
 
-	Type getType();
+	UsingCloseDispositionType getUsingCloseDispositionType();
 
-	void setType(Type type);
+	void setUsingCloseDispositionType(UsingCloseDispositionType usingCloseDispositionType);
 }

@@ -39,20 +39,20 @@ public class DebugImpl extends CobolDivisionElementImpl implements Debug {
 			result = new DebugOnImpl(programUnit, ctx);
 
 			// type and on call
-			final DebugOn.Type type;
+			final DebugOn.DebugOnType type;
 			final Call onCall;
 
 			if (ctx.PROCEDURES() != null) {
-				type = DebugOn.Type.ALL_PROCEDURES;
+				type = DebugOn.DebugOnType.ALL_PROCEDURES;
 				onCall = null;
 			} else if (ctx.REFERENCES() != null) {
-				type = DebugOn.Type.ALL_REFERENCES;
+				type = DebugOn.DebugOnType.ALL_REFERENCES;
 				onCall = createCall(ctx.identifier());
 			} else if (ctx.procedureName() != null) {
-				type = DebugOn.Type.PROCEDURE;
+				type = DebugOn.DebugOnType.PROCEDURE;
 				onCall = createCall(ctx.procedureName());
 			} else if (ctx.fileName() != null) {
-				type = DebugOn.Type.FILE;
+				type = DebugOn.DebugOnType.FILE;
 				onCall = createCall(ctx.fileName());
 			} else {
 				type = null;

@@ -17,7 +17,7 @@ public class UsageClauseImpl extends CobolDivisionElementImpl implements UsageCl
 
 	protected ScreenDescriptionUsageClauseContext ctx;
 
-	protected Type type;
+	protected UsageClauseType usageClauseType;
 
 	public UsageClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionUsageClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class UsageClauseImpl extends CobolDivisionElementImpl implements UsageCl
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public UsageClauseType getUsageClauseType() {
+		return usageClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setUsageClauseType(final UsageClauseType usageClauseType) {
+		this.usageClauseType = usageClauseType;
 	}
 
 }

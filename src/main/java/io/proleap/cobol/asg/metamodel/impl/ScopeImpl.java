@@ -114,7 +114,7 @@ import io.proleap.cobol.asg.metamodel.procedure.OnOverflow;
 import io.proleap.cobol.asg.metamodel.procedure.OnSizeError;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptStatement;
-import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptStatement.Type;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptStatement.AcceptType;
 import io.proleap.cobol.asg.metamodel.procedure.accept.impl.AcceptStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.add.AddStatement;
 import io.proleap.cobol.asg.metamodel.procedure.add.impl.AddStatementImpl;
@@ -250,25 +250,25 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result.setAcceptCall(acceptCall);
 
 			// type
-			final Type type;
+			final AcceptType type;
 
 			if (ctx.acceptFromDateStatement() != null) {
 				result.addAcceptFromDate(ctx.acceptFromDateStatement());
-				type = Type.DATE;
+				type = AcceptType.DATE;
 			} else if (ctx.acceptFromMnemonicStatement() != null) {
 				result.addAcceptFromMnemonic(ctx.acceptFromMnemonicStatement());
-				type = Type.MNEMONIC;
+				type = AcceptType.MNEMONIC;
 			} else if (ctx.acceptMessageCountStatement() != null) {
 				result.addAcceptMessageCount(ctx.acceptMessageCountStatement());
-				type = Type.MESSAGE_COUNT;
+				type = AcceptType.MESSAGE_COUNT;
 			} else if (ctx.acceptFromEscapeKeyStatement() != null) {
 				result.addAcceptFromEscapeKey(ctx.acceptFromEscapeKeyStatement());
-				type = Type.FROM_ESCAPE_KEY;
+				type = AcceptType.FROM_ESCAPE_KEY;
 			} else {
-				type = Type.NO_FROM;
+				type = AcceptType.NO_FROM;
 			}
 
-			result.setType(type);
+			result.setAcceptType(type);
 
 			registerStatement(result);
 		}
@@ -284,23 +284,23 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new AddStatementImpl(programUnit, this, ctx);
 
 			// add sub statement
-			final AddStatement.Type type;
+			final AddStatement.AddType type;
 
 			if (ctx.addToStatement() != null) {
 				result.addAddTo(ctx.addToStatement());
-				type = AddStatement.Type.TO;
+				type = AddStatement.AddType.TO;
 			} else if (ctx.addToGivingStatement() != null) {
 				result.addAddToGiving(ctx.addToGivingStatement());
-				type = AddStatement.Type.GIVING;
+				type = AddStatement.AddType.GIVING;
 			} else if (ctx.addCorrespondingStatement() != null) {
 				result.addAddCorresponding(ctx.addCorrespondingStatement());
-				type = AddStatement.Type.CORRESPONDING;
+				type = AddStatement.AddType.CORRESPONDING;
 			} else {
 				LOG.warn("unknown add statement at {}", ctx);
 				type = null;
 			}
 
-			result.setType(type);
+			result.setAddType(type);
 
 			// on size
 			if (ctx.onSizeErrorPhrase() != null) {
@@ -504,19 +504,19 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new DisableStatementImpl(programUnit, this, ctx);
 
 			// type
-			final DisableStatement.Type type;
+			final DisableStatement.DisableType type;
 
 			if (ctx.INPUT() != null) {
-				type = DisableStatement.Type.INPUT;
+				type = DisableStatement.DisableType.INPUT;
 			} else if (ctx.I_O() != null) {
-				type = DisableStatement.Type.INPUT_OUTPUT;
+				type = DisableStatement.DisableType.INPUT_OUTPUT;
 			} else if (ctx.OUTPUT() != null) {
-				type = DisableStatement.Type.OUTPUT;
+				type = DisableStatement.DisableType.OUTPUT;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setDisableType(type);
 
 			// terminal
 			if (ctx.TERMINAL() != null) {
@@ -582,22 +582,22 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result.setDivisorValueStmt(divisorValueStmt);
 
 			// giving
-			final DivideStatement.Type type;
+			final DivideStatement.DivideType type;
 
 			if (ctx.divideIntoStatement() != null) {
 				result.addInto(ctx.divideIntoStatement());
-				type = DivideStatement.Type.INTO;
+				type = DivideStatement.DivideType.INTO;
 			} else if (ctx.divideIntoGivingStatement() != null) {
 				result.addIntoGiving(ctx.divideIntoGivingStatement());
-				type = DivideStatement.Type.INTO_GIVING;
+				type = DivideStatement.DivideType.INTO_GIVING;
 			} else if (ctx.divideByGivingStatement() != null) {
 				result.addByGiving(ctx.divideByGivingStatement());
-				type = DivideStatement.Type.BY_GIVING;
+				type = DivideStatement.DivideType.BY_GIVING;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setDivideType(type);
 
 			// remainder
 			if (ctx.divideRemainder() != null) {
@@ -630,19 +630,19 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new EnableStatementImpl(programUnit, this, ctx);
 
 			// type
-			final EnableStatement.Type type;
+			final EnableStatement.EnableType type;
 
 			if (ctx.INPUT() != null) {
-				type = EnableStatement.Type.INPUT;
+				type = EnableStatement.EnableType.INPUT;
 			} else if (ctx.I_O() != null) {
-				type = EnableStatement.Type.INPUT_OUTPUT;
+				type = EnableStatement.EnableType.INPUT_OUTPUT;
 			} else if (ctx.OUTPUT() != null) {
-				type = EnableStatement.Type.OUTPUT;
+				type = EnableStatement.EnableType.OUTPUT;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setEnableType(type);
 
 			// terminal
 			if (ctx.TERMINAL() != null) {
@@ -844,19 +844,19 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new GoToStatementImpl(programUnit, this, ctx);
 
 			// type
-			final GoToStatement.Type type;
+			final GoToStatement.GoToType type;
 
 			if (ctx.goToStatementSimple() != null) {
 				result.addSimple(ctx.goToStatementSimple());
-				type = GoToStatement.Type.SIMPLE;
+				type = GoToStatement.GoToType.SIMPLE;
 			} else if (ctx.goToDependingOnStatement() != null) {
 				result.addDependingOn(ctx.goToDependingOnStatement());
-				type = GoToStatement.Type.DEPENDING_ON;
+				type = GoToStatement.GoToType.DEPENDING_ON;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setGoToType(type);
 
 			registerStatement(result);
 		}
@@ -945,25 +945,25 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result.setDataItemCall(dataItemCall);
 
 			// type
-			final InspectStatement.Type type;
+			final InspectStatement.InspectType type;
 
 			if (ctx.inspectTallyingPhrase() != null) {
 				result.addTallying(ctx.inspectTallyingPhrase());
-				type = InspectStatement.Type.TALLYING;
+				type = InspectStatement.InspectType.TALLYING;
 			} else if (ctx.inspectReplacingPhrase() != null) {
 				result.addReplacing(ctx.inspectReplacingPhrase());
-				type = InspectStatement.Type.REPLACING;
+				type = InspectStatement.InspectType.REPLACING;
 			} else if (ctx.inspectTallyingReplacingPhrase() != null) {
 				result.addTallyingReplacing(ctx.inspectTallyingReplacingPhrase());
-				type = InspectStatement.Type.TALLYING_REPLACING;
+				type = InspectStatement.InspectType.TALLYING_REPLACING;
 			} else if (ctx.inspectConvertingPhrase() != null) {
 				result.addConverting(ctx.inspectConvertingPhrase());
-				type = InspectStatement.Type.CONVERTING;
+				type = InspectStatement.InspectType.CONVERTING;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setInspectType(type);
 
 			registerStatement(result);
 		}
@@ -1021,19 +1021,19 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new MoveStatementImpl(programUnit, this, ctx);
 
 			// type
-			final MoveStatement.Type type;
+			final MoveStatement.MoveType type;
 
 			if (ctx.moveToStatement() != null) {
-				type = MoveStatement.Type.MOVE_TO;
+				type = MoveStatement.MoveType.MOVE_TO;
 				result.addMoveTo(ctx.moveToStatement());
 			} else if (ctx.moveCorrespondingToStatement() != null) {
-				type = MoveStatement.Type.MOVE_CORRESPONDING_TO;
+				type = MoveStatement.MoveType.MOVE_CORRESPONDING_TO;
 				result.addMoveCorrespondingTo(ctx.moveCorrespondingToStatement());
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setMoveType(type);
 
 			registerStatement(result);
 		}
@@ -1053,19 +1053,19 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result.setOperandValueStmt(operandValueStmt);
 
 			// type
-			final MultiplyStatement.Type type;
+			final MultiplyStatement.MultiplyType type;
 
 			if (ctx.multiplyRegular() != null) {
 				result.addRegular(ctx.multiplyRegular());
-				type = MultiplyStatement.Type.REGULAR;
+				type = MultiplyStatement.MultiplyType.REGULAR;
 			} else if (ctx.multiplyGiving() != null) {
 				result.addGiving(ctx.multiplyGiving());
-				type = MultiplyStatement.Type.GIVING;
+				type = MultiplyStatement.MultiplyType.GIVING;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setMultiplyType(type);
 
 			// on size error
 			if (ctx.onSizeErrorPhrase() != null) {
@@ -1125,21 +1125,21 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		if (result == null) {
 			result = new PerformStatementImpl(programUnit, this, ctx);
 
-			final PerformStatement.Type type;
+			final PerformStatement.PerformStatementType type;
 
 			if (ctx.performInlineStatement() != null) {
-				type = PerformStatement.Type.INLINE;
+				type = PerformStatement.PerformStatementType.INLINE;
 
 				result.addPerformInlineStatement(ctx.performInlineStatement());
 			} else if (ctx.performProcedureStatement() != null) {
-				type = PerformStatement.Type.PROCEDURE;
+				type = PerformStatement.PerformStatementType.PROCEDURE;
 
 				result.addPerformProcedureStatement(ctx.performProcedureStatement());
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setPerformStatementType(type);
 
 			registerStatement(result);
 		}
@@ -1234,19 +1234,19 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new ReceiveStatementImpl(programUnit, this, ctx);
 
 			// type
-			final ReceiveStatement.Type type;
+			final ReceiveStatement.ReceiveType type;
 
 			if (ctx.receiveFromStatement() != null) {
 				result.addReceiveFromStatement(ctx.receiveFromStatement());
-				type = ReceiveStatement.Type.FROM;
+				type = ReceiveStatement.ReceiveType.FROM;
 			} else if (ctx.receiveIntoStatement() != null) {
 				result.addReceiveIntoStatement(ctx.receiveIntoStatement());
-				type = ReceiveStatement.Type.INTO;
+				type = ReceiveStatement.ReceiveType.INTO;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setReceiveType(type);
 
 			// on exception
 			if (ctx.onExceptionClause() != null) {
@@ -1396,19 +1396,19 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new SendStatementImpl(programUnit, this, ctx);
 
 			// type
-			final SendStatement.Type type;
+			final SendStatement.SendType type;
 
 			if (ctx.sendStatementSync() != null) {
 				result.addSync(ctx.sendStatementSync());
-				type = SendStatement.Type.SYNC;
+				type = SendStatement.SendType.SYNC;
 			} else if (ctx.sendStatementAsync() != null) {
 				result.addAsync(ctx.sendStatementAsync());
-				type = SendStatement.Type.ASYNC;
+				type = SendStatement.SendType.ASYNC;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setSendType(type);
 
 			// on exception
 			if (ctx.onExceptionClause() != null) {
@@ -1436,22 +1436,22 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new SetStatementImpl(programUnit, this, ctx);
 
 			// type
-			final SetStatement.Type type;
+			final SetStatement.SetType type;
 
 			if (!ctx.setToStatement().isEmpty()) {
-				type = SetStatement.Type.TO;
+				type = SetStatement.SetType.TO;
 
 				for (final SetToStatementContext setToStatementContext : ctx.setToStatement()) {
 					result.addSetTo(setToStatementContext);
 				}
 			} else if (ctx.setUpDownByStatement() != null) {
 				result.addSetBy(ctx.setUpDownByStatement());
-				type = SetStatement.Type.BY;
+				type = SetStatement.SetType.BY;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setSetType(type);
 
 			registerStatement(result);
 		}
@@ -1564,18 +1564,18 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			}
 
 			// type
-			final StopStatement.Type type;
+			final StopStatement.StopType type;
 
 			if (ctx.RUN() != null) {
-				type = StopStatement.Type.STOP_RUN;
+				type = StopStatement.StopType.STOP_RUN;
 			} else if (ctx.literal() != null) {
-				type = StopStatement.Type.STOP_RUN_AND_DISPLAY;
+				type = StopStatement.StopType.STOP_RUN_AND_DISPLAY;
 			} else {
 				LOG.warn("unknown stop statement at {}", ctx);
 				type = null;
 			}
 
-			result.setType(type);
+			result.setStopType(type);
 
 			registerStatement(result);
 		}
@@ -1629,22 +1629,22 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new SubtractStatementImpl(programUnit, this, ctx);
 
 			// type
-			final SubtractStatement.Type type;
+			final SubtractStatement.SubtractType type;
 
 			if (ctx.subtractFromStatement() != null) {
 				result.addSubtractFrom(ctx.subtractFromStatement());
-				type = SubtractStatement.Type.FROM;
+				type = SubtractStatement.SubtractType.FROM;
 			} else if (ctx.subtractFromGivingStatement() != null) {
 				result.addSubtractFromGiving(ctx.subtractFromGivingStatement());
-				type = SubtractStatement.Type.FROM_GIVING;
+				type = SubtractStatement.SubtractType.FROM_GIVING;
 			} else if (ctx.subtractCorrespondingStatement() != null) {
 				result.addSubtractCorresponding(ctx.subtractCorrespondingStatement());
-				type = SubtractStatement.Type.CORRESPONDING;
+				type = SubtractStatement.SubtractType.CORRESPONDING;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setSubtractType(type);
 
 			// on size error
 			if (ctx.onSizeErrorPhrase() != null) {

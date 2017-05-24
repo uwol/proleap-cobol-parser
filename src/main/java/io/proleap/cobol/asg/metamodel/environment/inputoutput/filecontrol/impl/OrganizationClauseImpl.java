@@ -19,7 +19,7 @@ public class OrganizationClauseImpl extends CobolDivisionElementImpl implements 
 
 	protected Mode mode;
 
-	protected Type type;
+	protected OrganizationClauseType organizationClauseType;
 
 	public OrganizationClauseImpl(final ProgramUnit programUnit, final OrganizationClauseContext ctx) {
 		super(programUnit, ctx);
@@ -33,8 +33,8 @@ public class OrganizationClauseImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public OrganizationClauseType getOrganizationClauseType() {
+		return organizationClauseType;
 	}
 
 	@Override
@@ -43,8 +43,8 @@ public class OrganizationClauseImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setOrganizationClauseType(final OrganizationClauseType organizationClauseType) {
+		this.organizationClauseType = organizationClauseType;
 	}
 
 }

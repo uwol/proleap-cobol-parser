@@ -49,21 +49,21 @@ public class SyncImpl extends CobolDivisionElementImpl implements Sync {
 			result = new AdvancingImpl(programUnit, ctx);
 
 			// type
-			final Advancing.Type type;
+			final Advancing.AdvancingType type;
 
 			if (ctx.sendAdvancingPage() != null) {
-				type = Advancing.Type.PAGE;
+				type = Advancing.AdvancingType.PAGE;
 			} else if (ctx.sendAdvancingLines() != null) {
 				result.addAdvancingLines(ctx.sendAdvancingLines());
-				type = Advancing.Type.LINES;
+				type = Advancing.AdvancingType.LINES;
 			} else if (ctx.sendAdvancingMnemonic() != null) {
 				result.addAdvancingMnemonic(ctx.sendAdvancingMnemonic());
-				type = Advancing.Type.MNEMONIC;
+				type = Advancing.AdvancingType.MNEMONIC;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setAdvancingType(type);
 
 			// position type
 			final Advancing.PositionType positionType;
@@ -111,23 +111,23 @@ public class SyncImpl extends CobolDivisionElementImpl implements Sync {
 			result = new WithImpl(programUnit, ctx);
 
 			// type
-			final With.Type type;
+			final With.WithType type;
 
 			if (ctx.identifier() != null) {
 				final Call withCall = createCall(ctx.identifier());
 				result.setWithCall(withCall);
-				type = With.Type.CALL;
+				type = With.WithType.CALL;
 			} else if (ctx.EGI() != null) {
-				type = With.Type.EGI;
+				type = With.WithType.EGI;
 			} else if (ctx.EMI() != null) {
-				type = With.Type.EMI;
+				type = With.WithType.EMI;
 			} else if (ctx.ESI() != null) {
-				type = With.Type.ESI;
+				type = With.WithType.ESI;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setWithType(type);
 
 			with = result;
 			registerASGElement(result);

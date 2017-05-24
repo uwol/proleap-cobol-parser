@@ -87,17 +87,17 @@ public class LibraryDescriptionEntryImportImpl extends LibraryDescriptionEntryIm
 			/*
 			 * type
 			 */
-			final ImportAttribute.Type type;
+			final ImportAttribute.ImportAttributeType type;
 
 			if (ctx.BYFUNCTION() != null) {
-				type = ImportAttribute.Type.BY_FUNCTION;
+				type = ImportAttribute.ImportAttributeType.BY_FUNCTION;
 			} else if (ctx.BYTITLE() != null) {
-				type = ImportAttribute.Type.BY_TITLE;
+				type = ImportAttribute.ImportAttributeType.BY_TITLE;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setImportAttributeType(type);
 
 			/*
 			 * function
@@ -199,8 +199,8 @@ public class LibraryDescriptionEntryImportImpl extends LibraryDescriptionEntryIm
 	}
 
 	@Override
-	public Type getType() {
-		return Type.IMPORT;
+	public LibraryDescriptionEntryType getLibraryDescriptionEntryType() {
+		return LibraryDescriptionEntryType.IMPORT;
 	}
 
 }

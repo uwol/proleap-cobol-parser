@@ -17,7 +17,7 @@ public class FullClauseImpl extends CobolDivisionElementImpl implements FullClau
 
 	protected ScreenDescriptionFullClauseContext ctx;
 
-	protected Type type;
+	protected FullClauseType fullClauseType;
 
 	public FullClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionFullClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class FullClauseImpl extends CobolDivisionElementImpl implements FullClau
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public FullClauseType getFullClauseType() {
+		return fullClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setFullClauseType(final FullClauseType fullClauseType) {
+		this.fullClauseType = fullClauseType;
 	}
 
 }

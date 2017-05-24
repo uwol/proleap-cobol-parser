@@ -26,11 +26,11 @@ public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassCl
 
 	protected Call classCall;
 
+	protected ClassClauseType classClauseType;
+
 	protected List<ClassThrough> classThroughs = new ArrayList<ClassThrough>();
 
 	protected final ClassClauseContext ctx;
-
-	protected Type type;
 
 	public ClassClauseImpl(final ProgramUnit programUnit, final ClassClauseContext ctx) {
 		super(programUnit, ctx);
@@ -73,13 +73,13 @@ public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassCl
 	}
 
 	@Override
-	public List<ClassThrough> getClassThroughs() {
-		return classThroughs;
+	public ClassClauseType getClassClauseType() {
+		return classClauseType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public List<ClassThrough> getClassThroughs() {
+		return classThroughs;
 	}
 
 	@Override
@@ -88,8 +88,8 @@ public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassCl
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setClassClauseType(final ClassClauseType classClauseType) {
+		this.classClauseType = classClauseType;
 	}
 
 }

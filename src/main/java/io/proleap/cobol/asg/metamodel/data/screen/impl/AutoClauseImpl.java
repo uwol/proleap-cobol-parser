@@ -15,9 +15,9 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 
 public class AutoClauseImpl extends CobolDivisionElementImpl implements AutoClause {
 
-	protected ScreenDescriptionAutoClauseContext ctx;
+	protected AutoClauseType autoClauseType;
 
-	protected Type type;
+	protected ScreenDescriptionAutoClauseContext ctx;
 
 	public AutoClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionAutoClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class AutoClauseImpl extends CobolDivisionElementImpl implements AutoClau
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public AutoClauseType getAutoClauseType() {
+		return autoClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setAutoClauseType(final AutoClauseType autoClauseType) {
+		this.autoClauseType = autoClauseType;
 	}
 
 }

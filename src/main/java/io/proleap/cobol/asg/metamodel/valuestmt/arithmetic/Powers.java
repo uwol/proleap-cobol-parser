@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface Powers extends ValueStmt {
 
-	enum Type {
+	enum PowersType {
 		MINUS, PLUS
 	}
 
@@ -28,8 +28,8 @@ public interface Powers extends ValueStmt {
 
 	List<Power> getPowers();
 
-	Type getType();
+	PowersType getPowersType();
 
-	void setType(Type type);
+	void setPowersType(PowersType powersType);
 
 }

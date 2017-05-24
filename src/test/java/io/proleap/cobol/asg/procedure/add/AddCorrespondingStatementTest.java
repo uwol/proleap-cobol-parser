@@ -34,7 +34,7 @@ public class AddCorrespondingStatementTest extends CobolTestBase {
 
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(0);
-			assertEquals(AddStatement.Type.CORRESPONDING, addStatement.getType());
+			assertEquals(AddStatement.AddType.CORRESPONDING, addStatement.getAddType());
 			assertNotNull(addStatement.getAddCorresponding());
 
 			{

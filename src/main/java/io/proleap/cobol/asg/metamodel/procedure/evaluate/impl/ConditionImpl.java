@@ -20,6 +20,8 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ConditionImpl extends CobolDivisionElementImpl implements Condition {
 
+	protected ConditionType conditionType;
+
 	protected ValueStmt conditionValueStmt;
 
 	protected final EvaluateConditionContext ctx;
@@ -27,8 +29,6 @@ public class ConditionImpl extends CobolDivisionElementImpl implements Condition
 	protected boolean not;
 
 	protected Through through;
-
-	protected Type type;
 
 	protected Value value;
 
@@ -72,6 +72,11 @@ public class ConditionImpl extends CobolDivisionElementImpl implements Condition
 	}
 
 	@Override
+	public ConditionType getConditionType() {
+		return conditionType;
+	}
+
+	@Override
 	public ValueStmt getConditionValueStmt() {
 		return conditionValueStmt;
 	}
@@ -79,11 +84,6 @@ public class ConditionImpl extends CobolDivisionElementImpl implements Condition
 	@Override
 	public Through getThrough() {
 		return through;
-	}
-
-	@Override
-	public Type getType() {
-		return type;
 	}
 
 	@Override
@@ -97,6 +97,11 @@ public class ConditionImpl extends CobolDivisionElementImpl implements Condition
 	}
 
 	@Override
+	public void setConditionType(final ConditionType conditionType) {
+		this.conditionType = conditionType;
+	}
+
+	@Override
 	public void setConditionValueStmt(final ValueStmt conditionValueStmt) {
 		this.conditionValueStmt = conditionValueStmt;
 	}
@@ -104,11 +109,6 @@ public class ConditionImpl extends CobolDivisionElementImpl implements Condition
 	@Override
 	public void setNot(final boolean not) {
 		this.not = not;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

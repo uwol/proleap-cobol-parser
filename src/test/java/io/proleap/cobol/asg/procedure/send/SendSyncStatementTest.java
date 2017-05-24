@@ -43,7 +43,7 @@ public class SendSyncStatementTest extends CobolTestBase {
 			final SendStatement sendStatement = (SendStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(sendStatement);
 			assertEquals(StatementTypeEnum.SEND, sendStatement.getStatementType());
-			assertEquals(SendStatement.Type.SYNC, sendStatement.getType());
+			assertEquals(SendStatement.SendType.SYNC, sendStatement.getSendType());
 
 			{
 				final Sync sync = sendStatement.getSync();
@@ -66,7 +66,7 @@ public class SendSyncStatementTest extends CobolTestBase {
 				{
 					final With with = sync.getWith();
 					assertNotNull(with);
-					assertEquals(With.Type.CALL, with.getType());
+					assertEquals(With.WithType.CALL, with.getWithType());
 					assertEquals(Call.CallType.UNDEFINED_CALL, with.getWithCall().getCallType());
 				}
 
@@ -76,7 +76,7 @@ public class SendSyncStatementTest extends CobolTestBase {
 					final Advancing advancing = sync.getAdvancing();
 					assertNotNull(advancing);
 					assertEquals(Advancing.PositionType.BEFORE, advancing.getPositionType());
-					assertEquals(Advancing.Type.LINES, advancing.getType());
+					assertEquals(Advancing.AdvancingType.LINES, advancing.getAdvancingType());
 
 					{
 						final AdvancingLines advancingLines = advancing.getAdvancingLines();

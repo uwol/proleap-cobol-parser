@@ -15,11 +15,11 @@ import io.proleap.cobol.asg.metamodel.procedure.close.CloseReelUnitStatement;
 
 public class CloseReelUnitStatementImpl extends CobolDivisionElementImpl implements CloseReelUnitStatement {
 
+	protected CloseReelUnitType closeReelUnitType;
+
 	protected CloseReelUnitStatementContext ctx;
 
 	protected boolean forRemoval;
-
-	protected Type type;
 
 	protected WithType withType;
 
@@ -30,8 +30,8 @@ public class CloseReelUnitStatementImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public CloseReelUnitType getCloseReelUnitType() {
+		return closeReelUnitType;
 	}
 
 	@Override
@@ -45,13 +45,13 @@ public class CloseReelUnitStatementImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
-	public void setForRemoval(final boolean forRemoval) {
-		this.forRemoval = forRemoval;
+	public void setCloseReelUnitType(final CloseReelUnitType closeReelUnitType) {
+		this.closeReelUnitType = closeReelUnitType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setForRemoval(final boolean forRemoval) {
+		this.forRemoval = forRemoval;
 	}
 
 	@Override

@@ -15,15 +15,15 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface OnKey extends CobolDivisionElement {
 
-	enum Type {
+	enum OnKeyType {
 		ASCENDING, DESCENDING
 	}
 
-	void adKeyCall(Call keyCall);
+	void addKeyCall(Call keyCall);
 
 	List<Call> getKeyCalls();
 
-	Type getType();
+	OnKeyType getOnKeyType();
 
-	void setType(Type type);
+	void setOnKeyType(OnKeyType onKeyType);
 }

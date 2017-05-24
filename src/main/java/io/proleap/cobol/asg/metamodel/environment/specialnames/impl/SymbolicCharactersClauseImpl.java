@@ -17,7 +17,7 @@ public class SymbolicCharactersClauseImpl extends CobolDivisionElementImpl imple
 
 	protected final SymbolicCharactersClauseContext ctx;
 
-	protected Type type;
+	protected SymbolicCharactersClauseType symbolicCharactersClauseType;
 
 	public SymbolicCharactersClauseImpl(final ProgramUnit programUnit, final SymbolicCharactersClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class SymbolicCharactersClauseImpl extends CobolDivisionElementImpl imple
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public SymbolicCharactersClauseType getSymbolicCharactersClauseType() {
+		return symbolicCharactersClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setSymbolicCharactersClauseType(final SymbolicCharactersClauseType symbolicCharactersClauseType) {
+		this.symbolicCharactersClauseType = symbolicCharactersClauseType;
 	}
 
 }

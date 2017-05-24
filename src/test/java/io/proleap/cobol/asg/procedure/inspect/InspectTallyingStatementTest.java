@@ -42,7 +42,7 @@ public class InspectTallyingStatementTest extends CobolTestBase {
 			final InspectStatement inspectStatement = (InspectStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(inspectStatement);
 			assertEquals(StatementTypeEnum.INSPECT, inspectStatement.getStatementType());
-			assertEquals(InspectStatement.Type.TALLYING, inspectStatement.getType());
+			assertEquals(InspectStatement.InspectType.TALLYING, inspectStatement.getInspectType());
 
 			final Tallying tallying = inspectStatement.getTallying();
 			assertEquals(1, tallying.getFors().size());
@@ -61,13 +61,13 @@ public class InspectTallyingStatementTest extends CobolTestBase {
 
 					{
 						final BeforeAfter beforeAfter = characters.getBeforeAfters().get(0);
-						assertEquals(BeforeAfter.Type.AFTER, beforeAfter.getType());
+						assertEquals(BeforeAfter.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
 					}
 				}
 
 				{
 					final AllLeadings allLeadings = for1.getAllLeadings().get(0);
-					assertEquals(AllLeadings.Type.ALL, allLeadings.getType());
+					assertEquals(AllLeadings.AllLeadingsType.ALL, allLeadings.getAllLeadingsType());
 					assertEquals(1, allLeadings.getAllLeadings().size());
 
 					{
@@ -79,7 +79,7 @@ public class InspectTallyingStatementTest extends CobolTestBase {
 
 						{
 							final BeforeAfter beforeAfter = allLeading.getBeforeAfters().get(0);
-							assertEquals(BeforeAfter.Type.BEFORE, beforeAfter.getType());
+							assertEquals(BeforeAfter.BeforeAfterType.BEFORE, beforeAfter.getBeforeAfterType());
 						}
 					}
 				}

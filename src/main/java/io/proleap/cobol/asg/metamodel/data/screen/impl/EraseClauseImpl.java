@@ -17,7 +17,7 @@ public class EraseClauseImpl extends CobolDivisionElementImpl implements EraseCl
 
 	protected ScreenDescriptionEraseClauseContext ctx;
 
-	protected Type type;
+	protected EraseClauseType eraseClauseType;
 
 	public EraseClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionEraseClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class EraseClauseImpl extends CobolDivisionElementImpl implements EraseCl
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public EraseClauseType getEraseClauseType() {
+		return eraseClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setEraseClauseType(final EraseClauseType eraseClauseType) {
+		this.eraseClauseType = eraseClauseType;
 	}
 
 }

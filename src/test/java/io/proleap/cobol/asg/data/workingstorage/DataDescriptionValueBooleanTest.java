@@ -50,7 +50,7 @@ public class DataDescriptionValueBooleanTest extends CobolTestBase {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals(Literal.Type.BOOLEAN, literal.getType());
+				assertEquals(Literal.LiteralType.BOOLEAN, literal.getLiteralType());
 				assertTrue(literal.getBooleanLiteral().getValue());
 			}
 		}
@@ -69,7 +69,7 @@ public class DataDescriptionValueBooleanTest extends CobolTestBase {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals(Literal.Type.BOOLEAN, literal.getType());
+				assertEquals(Literal.LiteralType.BOOLEAN, literal.getLiteralType());
 				assertFalse(literal.getBooleanLiteral().getValue());
 			}
 		}

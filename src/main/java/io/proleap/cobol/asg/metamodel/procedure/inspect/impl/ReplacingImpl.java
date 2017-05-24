@@ -43,19 +43,19 @@ public class ReplacingImpl extends InspectPhraseImpl implements Replacing {
 			result = new ReplacingAllLeadingsImpl(programUnit, ctx);
 
 			// type
-			final ReplacingAllLeadings.Type type;
+			final ReplacingAllLeadings.ReplacingAllLeadingsType type;
 
 			if (ctx.ALL() != null) {
-				type = ReplacingAllLeadings.Type.ALL;
+				type = ReplacingAllLeadings.ReplacingAllLeadingsType.ALL;
 			} else if (ctx.LEADING() != null) {
-				type = ReplacingAllLeadings.Type.LEADING;
+				type = ReplacingAllLeadings.ReplacingAllLeadingsType.LEADING;
 			} else if (ctx.FIRST() != null) {
-				type = ReplacingAllLeadings.Type.FIRST;
+				type = ReplacingAllLeadings.ReplacingAllLeadingsType.FIRST;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setReplacingAllLeadingsType(type);
 
 			// all leadings
 			for (final InspectReplacingAllLeadingContext inspectReplacingAllLeadingContext : ctx

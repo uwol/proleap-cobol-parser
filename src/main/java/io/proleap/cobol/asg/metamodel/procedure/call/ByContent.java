@@ -13,15 +13,15 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface ByContent extends CobolDivisionElement {
 
-	enum Type {
+	enum ByContentType {
 		ADDRESS_OF, LENGTH_OF
 	}
 
-	Type getType();
+	ByContentType getByContentType();
 
 	ValueStmt getValueStmt();
 
-	void setType(Type type);
+	void setByContentType(ByContentType byContentType);
 
 	void setValueStmt(ValueStmt valueStmt);
 }

@@ -37,7 +37,7 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 
 	protected void assertProperties(final DataDescriptionEntry dataDescriptionEntryItem) {
 		assertNotNull(dataDescriptionEntryItem);
-		assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem.getType());
+		assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItem.getDataDescriptionEntryType());
 		assertEquals(new Integer(2), dataDescriptionEntryItem.getLevelNumber());
 	}
 
@@ -289,7 +289,7 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 
 		assertNotNull(dataDescriptionEntryGroup.getSignClause());
 		assertTrue(dataDescriptionEntryGroup.getSignClause().isSeparate());
-		assertEquals(SignClause.Type.TRAILING, dataDescriptionEntryGroup.getSignClause().getType());
+		assertEquals(SignClause.SignClauseType.TRAILING, dataDescriptionEntryGroup.getSignClause().getSignClauseType());
 	}
 
 	@Test
@@ -359,7 +359,7 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getUsageClause());
-		assertEquals(UsageClause.Type.DATE, dataDescriptionEntryGroup.getUsageClause().getType());
+		assertEquals(UsageClause.UsageClauseType.DATE, dataDescriptionEntryGroup.getUsageClause().getUsageClauseType());
 	}
 
 	@Test
@@ -370,7 +370,7 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getUsingClause());
-		assertEquals(UsingClause.Type.LANGUAGE, dataDescriptionEntryGroup.getUsingClause().getType());
+		assertEquals(UsingClause.UsingClauseType.LANGUAGE, dataDescriptionEntryGroup.getUsingClause().getUsingClauseType());
 		assertNotNull(dataDescriptionEntryGroup.getUsingClause().getOfValueStmt());
 	}
 
@@ -382,7 +382,7 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getUsingClause());
-		assertEquals(UsingClause.Type.CONVENTION, dataDescriptionEntryGroup.getUsingClause().getType());
+		assertEquals(UsingClause.UsingClauseType.CONVENTION, dataDescriptionEntryGroup.getUsingClause().getUsingClauseType());
 		assertNotNull(dataDescriptionEntryGroup.getUsingClause().getOfValueStmt());
 	}
 

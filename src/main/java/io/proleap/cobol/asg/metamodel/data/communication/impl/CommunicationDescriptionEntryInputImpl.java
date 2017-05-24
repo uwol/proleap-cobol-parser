@@ -200,20 +200,20 @@ public class CommunicationDescriptionEntryInputImpl extends CommunicationDescrip
 			/*
 			 * sub queue
 			 */
-			final SymbolicSubQueueClause.Type type;
+			final SymbolicSubQueueClause.SymbolicSubQueueClauseType type;
 
 			if (ctx.SUB_QUEUE_1() != null) {
-				type = SymbolicSubQueueClause.Type.SUB_QUEUE_1;
+				type = SymbolicSubQueueClause.SymbolicSubQueueClauseType.SUB_QUEUE_1;
 			} else if (ctx.SUB_QUEUE_2() != null) {
-				type = SymbolicSubQueueClause.Type.SUB_QUEUE_2;
+				type = SymbolicSubQueueClause.SymbolicSubQueueClauseType.SUB_QUEUE_2;
 			} else if (ctx.SUB_QUEUE_3() != null) {
-				type = SymbolicSubQueueClause.Type.SUB_QUEUE_3;
+				type = SymbolicSubQueueClause.SymbolicSubQueueClauseType.SUB_QUEUE_3;
 			} else {
 				LOG.warn("unknown type at {}", ctx);
 				type = null;
 			}
 
-			result.setType(type);
+			result.setSymbolicSubQueueClauseType(type);
 
 			symbolicSubQueueClause = result;
 			registerASGElement(result);
@@ -237,6 +237,11 @@ public class CommunicationDescriptionEntryInputImpl extends CommunicationDescrip
 		}
 
 		return result;
+	}
+
+	@Override
+	public CommunicationDescriptionEntryType getCommunicationDescriptionEntryType() {
+		return CommunicationDescriptionEntryType.INPUT;
 	}
 
 	@Override
@@ -282,11 +287,6 @@ public class CommunicationDescriptionEntryInputImpl extends CommunicationDescrip
 	@Override
 	public TextLengthClause getTextLengthClause() {
 		return textLengthClause;
-	}
-
-	@Override
-	public Type getType() {
-		return Type.INPUT;
 	}
 
 }

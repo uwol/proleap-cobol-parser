@@ -43,17 +43,17 @@ public class CallByContentImpl extends CobolDivisionElementImpl implements CallB
 			result.setValueStmt(valueStmt);
 
 			// type
-			final ByContent.Type type;
+			final ByContent.ByContentType type;
 
 			if (ctx.ADDRESS() != null) {
-				type = ByContent.Type.ADDRESS_OF;
+				type = ByContent.ByContentType.ADDRESS_OF;
 			} else if (ctx.LENGTH() != null) {
-				type = ByContent.Type.LENGTH_OF;
+				type = ByContent.ByContentType.LENGTH_OF;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setByContentType(type);
 
 			byContents.add(result);
 			registerASGElement(result);

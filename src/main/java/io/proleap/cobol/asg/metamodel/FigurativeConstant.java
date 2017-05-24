@@ -12,16 +12,16 @@ import io.proleap.cobol.Cobol85Parser.FigurativeConstantContext;
 
 public interface FigurativeConstant extends CobolDivisionElement {
 
-	public enum Type {
+	public enum FigurativeConstantType {
 		ALL, HIGH_VALUE, HIGH_VALUES, LOW_VALUE, LOW_VALUES, NULL, NULLS, QUOTE, QUOTES, SPACE, SPACES, ZERO, ZEROES, ZEROS
 	}
 
 	@Override
 	FigurativeConstantContext getCtx();
 
-	Literal getLiteral();
+	FigurativeConstantType getFigurativeConstantType();
 
-	Type getType();
+	Literal getLiteral();
 
 	void setLiteral(Literal literal);
 }

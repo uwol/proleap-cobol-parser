@@ -28,11 +28,11 @@ public class GoToStatementImpl extends StatementImpl implements GoToStatement {
 
 	protected DependingOn dependingOn;
 
+	protected GoToType goToType;
+
 	protected Simple simple;
 
 	protected final StatementType statementType = StatementTypeEnum.GO_TO;
-
-	protected Type type;
 
 	public GoToStatementImpl(final ProgramUnit programUnit, final Scope scope, final GoToStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -94,6 +94,11 @@ public class GoToStatementImpl extends StatementImpl implements GoToStatement {
 	}
 
 	@Override
+	public GoToType getGoToType() {
+		return goToType;
+	}
+
+	@Override
 	public Simple getSimple() {
 		return simple;
 	}
@@ -104,13 +109,8 @@ public class GoToStatementImpl extends StatementImpl implements GoToStatement {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setGoToType(final GoToType goToType) {
+		this.goToType = goToType;
 	}
 
 }

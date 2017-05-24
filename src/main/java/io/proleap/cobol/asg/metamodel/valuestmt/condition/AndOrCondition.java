@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.relation.Abbreviation;
 
 public interface AndOrCondition extends ValueStmt {
 
-	enum Type {
+	enum AndOrConditionType {
 		AND, OR
 	}
 
@@ -29,8 +29,8 @@ public interface AndOrCondition extends ValueStmt {
 
 	CombinableCondition getCombinableCondition();
 
-	Type getType();
+	AndOrConditionType getAndOrConditionType();
 
-	void setType(Type type);
+	void setAndOrConditionType(AndOrConditionType andOrConditionType);
 
 }

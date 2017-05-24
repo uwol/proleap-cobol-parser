@@ -40,6 +40,8 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 
 	protected AddToGiving addToGiving;
 
+	protected AddType addType;
+
 	protected final AddStatementContext ctx;
 
 	protected NotOnSizeError notOnSizeError;
@@ -47,8 +49,6 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 	protected OnSizeError onSizeError;
 
 	protected final StatementType statementType = StatementTypeEnum.ADD;
-
-	protected Type type;
 
 	public AddStatementImpl(final ProgramUnit programUnit, final Scope scope, final AddStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -234,6 +234,11 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 	}
 
 	@Override
+	public AddType getAddType() {
+		return addType;
+	}
+
+	@Override
 	public NotOnSizeError getNotOnSizeError() {
 		return notOnSizeError;
 	}
@@ -249,8 +254,8 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public void setAddType(final AddType addType) {
+		this.addType = addType;
 	}
 
 	@Override
@@ -261,11 +266,6 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 	@Override
 	public void setOnSizeError(final OnSizeError onSizeError) {
 		this.onSizeError = onSizeError;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

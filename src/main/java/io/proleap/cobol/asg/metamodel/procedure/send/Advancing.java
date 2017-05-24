@@ -14,12 +14,12 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface Advancing extends CobolDivisionElement {
 
-	enum PositionType {
-		AFTER, BEFORE
+	enum AdvancingType {
+		LINES, MNEMONIC, PAGE
 	}
 
-	enum Type {
-		LINES, MNEMONIC, PAGE
+	enum PositionType {
+		AFTER, BEFORE
 	}
 
 	AdvancingLines addAdvancingLines(SendAdvancingLinesContext ctx);
@@ -30,11 +30,11 @@ public interface Advancing extends CobolDivisionElement {
 
 	AdvancingMnemonic getAdvancingMnemonic();
 
+	AdvancingType getAdvancingType();
+
 	PositionType getPositionType();
 
-	Type getType();
+	void setAdvancingType(AdvancingType advancingType);
 
 	void setPositionType(PositionType positionType);
-
-	void setType(Type type);
 }

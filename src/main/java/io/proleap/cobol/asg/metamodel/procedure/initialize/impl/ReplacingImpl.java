@@ -44,30 +44,30 @@ public class ReplacingImpl extends CobolDivisionElementImpl implements Replacing
 			result = new ByImpl(programUnit, ctx);
 
 			// type
-			final By.Type type;
+			final By.ByType type;
 
 			if (ctx.ALPHABETIC() != null) {
-				type = By.Type.ALPHABETIC;
+				type = By.ByType.ALPHABETIC;
 			} else if (ctx.ALPHANUMERIC() != null) {
-				type = By.Type.ALPHANUMERIC;
+				type = By.ByType.ALPHANUMERIC;
 			} else if (ctx.NATIONAL() != null) {
-				type = By.Type.NATIONAL;
+				type = By.ByType.NATIONAL;
 			} else if (ctx.NUMERIC() != null) {
-				type = By.Type.NUMERIC;
+				type = By.ByType.NUMERIC;
 			} else if (ctx.ALPHANUMERIC_EDITED() != null) {
-				type = By.Type.ALPHANUMERIC_EDITED;
+				type = By.ByType.ALPHANUMERIC_EDITED;
 			} else if (ctx.NUMERIC_EDITED() != null) {
-				type = By.Type.NUMERIC_EDITED;
+				type = By.ByType.NUMERIC_EDITED;
 			} else if (ctx.DBCS() != null) {
-				type = By.Type.DBCS;
+				type = By.ByType.DBCS;
 			} else if (ctx.EGCS() != null) {
-				type = By.Type.EGCS;
+				type = By.ByType.EGCS;
 			} else {
 				LOG.warn("unknown type at {}", ctx);
 				type = null;
 			}
 
-			result.setType(type);
+			result.setByType(type);
 
 			// value
 			final ValueStmt valueStmt = createValueStmt(ctx.identifier(), ctx.literal());

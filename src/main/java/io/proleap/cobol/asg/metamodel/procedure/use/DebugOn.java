@@ -13,15 +13,15 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface DebugOn extends CobolDivisionElement {
 
-	enum Type {
+	enum DebugOnType {
 		ALL_PROCEDURES, ALL_REFERENCES, FILE, PROCEDURE
 	}
 
-	Call getOnCall();
+	DebugOnType getDebugOnType();
 
-	Type getType();
+	Call getOnCall();
 
 	void setOnCall(Call onCall);
 
-	void setType(Type type);
+	void setType(DebugOnType debugOnType);
 }

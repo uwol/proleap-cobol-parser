@@ -37,12 +37,12 @@ public class SendAsyncStatementTest extends CobolTestBase {
 			final SendStatement sendStatement = (SendStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(sendStatement);
 			assertEquals(StatementTypeEnum.SEND, sendStatement.getStatementType());
-			assertEquals(SendStatement.Type.ASYNC, sendStatement.getType());
+			assertEquals(SendStatement.SendType.ASYNC, sendStatement.getSendType());
 
 			{
 				final Async async = sendStatement.getAsync();
 				assertNotNull(async);
-				assertEquals(Async.Type.TOP, async.getType());
+				assertEquals(Async.AsyncType.TOP, async.getAsyncType());
 
 				{
 					final Call dataDescriptionEntryCall = async.getDataDescriptionEntryCall();

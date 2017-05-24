@@ -15,9 +15,9 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 
 public class BlankClauseImpl extends CobolDivisionElementImpl implements BlankClause {
 
-	protected ScreenDescriptionBlankClauseContext ctx;
+	protected BlankClauseType blankClauseType;
 
-	protected Type type;
+	protected ScreenDescriptionBlankClauseContext ctx;
 
 	public BlankClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionBlankClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class BlankClauseImpl extends CobolDivisionElementImpl implements BlankCl
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public BlankClauseType getBlankClauseType() {
+		return blankClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setBlankClauseType(final BlankClauseType blankClauseType) {
+		this.blankClauseType = blankClauseType;
 	}
 
 }

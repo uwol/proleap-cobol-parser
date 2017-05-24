@@ -13,16 +13,16 @@ import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 
 public interface ColumnNumberClause extends CobolDivisionElement {
 
-	enum Type {
+	enum ColumnNumberClauseType {
 		EQUAL, MINUS, PLUS
 	}
 
 	IntegerLiteral getIntegerLiteral();
 
-	Type getType();
+	ColumnNumberClauseType getColumnNumberClauseType();
+
+	void setColumnNumberClauseType(ColumnNumberClauseType columnNumberClauseType);
 
 	void setIntegerLiteral(IntegerLiteral integerLiteral);
-
-	void setType(Type type);
 
 }

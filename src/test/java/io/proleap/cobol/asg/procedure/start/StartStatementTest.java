@@ -49,7 +49,7 @@ public class StartStatementTest extends CobolTestBase {
 			{
 				final Key key = startStatement.getKey();
 				assertNotNull(key);
-				assertEquals(Key.Type.EQUAL, key.getType());
+				assertEquals(Key.KeyType.EQUAL, key.getKeyType());
 
 				{
 					final Call comparisonCall = key.getComparisonCall();

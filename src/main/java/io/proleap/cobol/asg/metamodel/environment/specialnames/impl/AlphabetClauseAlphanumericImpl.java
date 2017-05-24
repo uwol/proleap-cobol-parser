@@ -66,7 +66,7 @@ public class AlphabetClauseAlphanumericImpl extends AlphabetClauseImpl implement
 	}
 
 	@Override
-	public AlphabetClauseAlphanumericType getAlphabetClauseType() {
+	public AlphabetClauseAlphanumericType getAlphabetClauseAlphanumericType() {
 		return alphabetClauseAlphanumericType;
 	}
 
@@ -76,8 +76,8 @@ public class AlphabetClauseAlphanumericImpl extends AlphabetClauseImpl implement
 	}
 
 	@Override
-	public Type getType() {
-		return Type.ALPHANUMERIC;
+	public AlphabetClauseType getAlphabetClauseType() {
+		return AlphabetClauseType.ALPHANUMERIC;
 	}
 
 	@Override

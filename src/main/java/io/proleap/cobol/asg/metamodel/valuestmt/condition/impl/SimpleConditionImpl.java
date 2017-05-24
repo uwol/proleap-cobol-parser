@@ -37,7 +37,7 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 
 	protected RelationConditionValueStmt relationCondition;
 
-	protected Type type;
+	protected SimpleConditionType simpleConditionType;
 
 	public SimpleConditionImpl(final ProgramUnit programUnit, final SimpleConditionContext ctx) {
 		super(programUnit, ctx);
@@ -59,27 +59,27 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 			result.setNot(not);
 
 			// type
-			final ClassCondition.Type type;
+			final ClassCondition.ClassConditionType type;
 
 			if (ctx.NUMERIC() != null) {
-				type = ClassCondition.Type.NUMERIC;
+				type = ClassCondition.ClassConditionType.NUMERIC;
 			} else if (ctx.ALPHABETIC() != null) {
-				type = ClassCondition.Type.ALPHABETIC;
+				type = ClassCondition.ClassConditionType.ALPHABETIC;
 			} else if (ctx.ALPHABETIC_LOWER() != null) {
-				type = ClassCondition.Type.ALPHABETIC_LOWER;
+				type = ClassCondition.ClassConditionType.ALPHABETIC_LOWER;
 			} else if (ctx.ALPHABETIC_UPPER() != null) {
-				type = ClassCondition.Type.ALPHABETIC_UPPER;
+				type = ClassCondition.ClassConditionType.ALPHABETIC_UPPER;
 			} else if (ctx.DBCS() != null) {
-				type = ClassCondition.Type.DBCS;
+				type = ClassCondition.ClassConditionType.DBCS;
 			} else if (ctx.KANJI() != null) {
-				type = ClassCondition.Type.KANJI;
+				type = ClassCondition.ClassConditionType.KANJI;
 			} else if (ctx.className() != null) {
-				type = ClassCondition.Type.CLASS_NAME;
+				type = ClassCondition.ClassConditionType.CLASS_NAME;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setClassConditionType(type);
 
 			// class call
 			final Call classCall = createCall(ctx.className());
@@ -183,8 +183,8 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public SimpleConditionType getSimpleConditionType() {
+		return simpleConditionType;
 	}
 
 	@Override
@@ -193,8 +193,8 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setSimpleConditionType(final SimpleConditionType simpleConditionType) {
+		this.simpleConditionType = simpleConditionType;
 	}
 
 }

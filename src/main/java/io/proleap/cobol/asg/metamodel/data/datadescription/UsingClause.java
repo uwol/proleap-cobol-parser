@@ -13,15 +13,15 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface UsingClause extends CobolDivisionElement {
 
-	enum Type {
+	enum UsingClauseType {
 		CONVENTION, LANGUAGE
 	}
 
 	ValueStmt getOfValueStmt();
 
-	Type getType();
+	UsingClauseType getUsingClauseType();
 
 	void setOfValueStmt(ValueStmt ofValueStmt);
 
-	void setType(Type type);
+	void setUsingClauseType(UsingClauseType usingClauseType);
 }

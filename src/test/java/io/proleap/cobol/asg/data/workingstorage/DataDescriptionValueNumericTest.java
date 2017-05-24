@@ -49,8 +49,8 @@ public class DataDescriptionValueNumericTest extends CobolTestBase {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals(Literal.Type.NUMERIC, literal.getType());
-				assertEquals(NumericLiteral.Type.DOUBLE, literal.getNumericLiteral().getType());
+				assertEquals(Literal.LiteralType.NUMERIC, literal.getLiteralType());
+				assertEquals(NumericLiteral.NumericLiteralType.DOUBLE, literal.getNumericLiteral().getNumericLiteralType());
 				assertEquals(23.4, literal.getNumericLiteral().getDoubleValue(), EPSILON);
 			}
 		}
@@ -69,8 +69,8 @@ public class DataDescriptionValueNumericTest extends CobolTestBase {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals(Literal.Type.NUMERIC, literal.getType());
-				assertEquals(NumericLiteral.Type.INTEGER, literal.getNumericLiteral().getType());
+				assertEquals(Literal.LiteralType.NUMERIC, literal.getLiteralType());
+				assertEquals(NumericLiteral.NumericLiteralType.INTEGER, literal.getNumericLiteral().getNumericLiteralType());
 				assertEquals(42, literal.getNumericLiteral().getValue());
 			}
 		}

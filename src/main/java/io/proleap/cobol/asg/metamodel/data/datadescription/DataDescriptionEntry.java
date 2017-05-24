@@ -16,7 +16,7 @@ import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 
 public interface DataDescriptionEntry extends CobolDivisionElement, Declaration {
 
-	enum Type {
+	enum DataDescriptionEntryType {
 		CONDITION, EXEC_SQL, GROUP, RENAME, SCALAR
 	}
 
@@ -32,6 +32,8 @@ public interface DataDescriptionEntry extends CobolDivisionElement, Declaration 
 
 	DataDescriptionEntryContainer getDataDescriptionEntryContainer();
 
+	DataDescriptionEntryType getDataDescriptionEntryType();
+
 	Integer getLevelNumber();
 
 	DataDescriptionEntryGroup getParentDataDescriptionEntryGroup();
@@ -39,8 +41,6 @@ public interface DataDescriptionEntry extends CobolDivisionElement, Declaration 
 	DataDescriptionEntry getPredecessor();
 
 	DataDescriptionEntry getSuccessor();
-
-	Type getType();
 
 	void setLevelNumber(Integer levelNumber);
 

@@ -89,7 +89,7 @@ public class EvaluateStatementTest extends CobolTestBase {
 						final When when = whenPhrase.getWhens().get(0);
 						final Condition condition = when.getCondition();
 						assertNotNull(condition);
-						assertEquals(Condition.Type.VALUE_THROUGH, condition.getType());
+						assertEquals(Condition.ConditionType.VALUE_THROUGH, condition.getConditionType());
 
 						{
 							final Value value = condition.getValue();
@@ -120,7 +120,7 @@ public class EvaluateStatementTest extends CobolTestBase {
 						final When when = whenPhrase.getWhens().get(0);
 						final Condition condition = when.getCondition();
 						assertNotNull(condition);
-						assertEquals(Condition.Type.VALUE_THROUGH, condition.getType());
+						assertEquals(Condition.ConditionType.VALUE_THROUGH, condition.getConditionType());
 
 						{
 							final Value value = condition.getValue();
@@ -153,7 +153,7 @@ public class EvaluateStatementTest extends CobolTestBase {
 						{
 							final Condition condition = when.getCondition();
 							assertNotNull(condition);
-							assertEquals(Condition.Type.VALUE_THROUGH, condition.getType());
+							assertEquals(Condition.ConditionType.VALUE_THROUGH, condition.getConditionType());
 
 							{
 								final Value value = condition.getValue();
@@ -182,7 +182,7 @@ public class EvaluateStatementTest extends CobolTestBase {
 							{
 								final Condition condition = alsoCondition.getCondition();
 								assertNotNull(condition);
-								assertEquals(Condition.Type.VALUE, condition.getType());
+								assertEquals(Condition.ConditionType.VALUE, condition.getConditionType());
 
 								{
 									final Value value = condition.getValue();

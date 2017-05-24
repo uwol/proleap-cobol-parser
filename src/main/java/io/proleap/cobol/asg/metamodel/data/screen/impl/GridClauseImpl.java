@@ -17,7 +17,7 @@ public class GridClauseImpl extends CobolDivisionElementImpl implements GridClau
 
 	protected ScreenDescriptionGridClauseContext ctx;
 
-	protected Type type;
+	protected GridClauseType gridClauseType;
 
 	public GridClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionGridClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class GridClauseImpl extends CobolDivisionElementImpl implements GridClau
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public GridClauseType getGridClauseType() {
+		return gridClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setGridClauseType(final GridClauseType gridClauseType) {
+		this.gridClauseType = gridClauseType;
 	}
 
 }

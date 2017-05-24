@@ -12,11 +12,11 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface UsageClause extends CobolDivisionElement {
 
-	enum Type {
+	enum UsageClauseType {
 		DISPLAY, DISPLAY_1
 	}
 
-	Type getType();
+	UsageClauseType getUsageClauseType();
 
-	void setType(Type type);
+	void setUsageClauseType(UsageClauseType usageClauseType);
 }

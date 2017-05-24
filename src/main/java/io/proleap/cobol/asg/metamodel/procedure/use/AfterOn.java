@@ -15,16 +15,16 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface AfterOn extends CobolDivisionElement {
 
-	enum Type {
+	enum AfterOnType {
 		EXTEND, FILE, INPUT, INPUT_OUTPUT, OUTPUT
 	}
 
 	void addFileCall(Call fileCall);
 
+	AfterOnType getAfterOnType();
+
 	List<Call> getFileCalls();
 
-	Type getType();
-
-	void setType(Type type);
+	void setType(AfterOnType afterOnType);
 
 }

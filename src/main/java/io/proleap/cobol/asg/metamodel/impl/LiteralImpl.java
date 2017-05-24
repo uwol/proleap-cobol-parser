@@ -23,11 +23,11 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 
 	protected FigurativeConstant figurativeConstant;
 
+	protected LiteralType literalType;
+
 	protected String nonNumericLiteral;
 
 	protected NumericLiteral numericLiteral;
-
-	protected Type type;
 
 	public LiteralImpl(final ProgramUnit programUnit, final LiteralContext ctx) {
 		super(programUnit, ctx);
@@ -51,6 +51,11 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 	}
 
 	@Override
+	public LiteralType getLiteralType() {
+		return literalType;
+	}
+
+	@Override
 	public String getNonNumericLiteral() {
 		return nonNumericLiteral;
 	}
@@ -61,15 +66,10 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
-	}
-
-	@Override
 	public Object getValue() {
 		final Object result;
 
-		switch (type) {
+		switch (literalType) {
 		case NON_NUMERIC:
 			result = nonNumericLiteral;
 			break;
@@ -100,6 +100,11 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 	}
 
 	@Override
+	public void setLiteralType(final LiteralType type) {
+		literalType = type;
+	}
+
+	@Override
 	public void setNonNumericLiteral(final String nonNumericLiteral) {
 		this.nonNumericLiteral = nonNumericLiteral;
 	}
@@ -110,12 +115,7 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
-	}
-
-	@Override
 	public String toString() {
-		return super.toString() + ", type=[" + type + "]";
+		return super.toString() + ", literalType=[" + literalType + "]";
 	}
 }

@@ -18,7 +18,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface GoToStatement extends Statement {
 
-	enum Type {
+	enum GoToType {
 		DEPENDING_ON, SIMPLE
 	}
 
@@ -28,9 +28,9 @@ public interface GoToStatement extends Statement {
 
 	DependingOn getDependingOn();
 
+	GoToType getGoToType();
+
 	Simple getSimple();
 
-	Type getType();
-
-	void setType(Type type);
+	void setGoToType(GoToType goToType);
 }

@@ -44,7 +44,7 @@ public class ReportGroupDescriptionSingleTest extends CobolTestBase {
 			{
 				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = reportDescription
 						.getReportGroupDescriptionEntries().get(0);
-				assertEquals(ReportGroupDescriptionEntry.Type.SINGLE, reportGroupDescriptionEntry.getType());
+				assertEquals(ReportGroupDescriptionEntry.ReportGroupDescriptionEntryType.SINGLE, reportGroupDescriptionEntry.getReportGroupDescriptionEntryType());
 
 				final ReportGroupDescriptionEntrySingle reportGroupDescriptionEntrySingle = (ReportGroupDescriptionEntrySingle) reportGroupDescriptionEntry;
 				assertEquals(new Integer(1), reportGroupDescriptionEntrySingle.getLevelNumber());
@@ -56,7 +56,7 @@ public class ReportGroupDescriptionSingleTest extends CobolTestBase {
 
 				{
 					final UsageClause usageClause = reportGroupDescriptionEntrySingle.getUsageClause();
-					assertEquals(UsageClause.Type.DISPLAY, usageClause.getType());
+					assertEquals(UsageClause.UsageClauseType.DISPLAY, usageClause.getUsageClauseType());
 				}
 			}
 		}

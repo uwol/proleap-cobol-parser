@@ -17,7 +17,7 @@ public class TestClauseImpl extends CobolDivisionElementImpl implements TestClau
 
 	protected final PerformTestClauseContext ctx;
 
-	protected Type type;
+	protected TestClauseType testClauseType;
 
 	public TestClauseImpl(final ProgramUnit programUnit, final PerformTestClauseContext ctx) {
 		super(programUnit, ctx);
@@ -26,13 +26,13 @@ public class TestClauseImpl extends CobolDivisionElementImpl implements TestClau
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public TestClauseType getTestClauseType() {
+		return testClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setTestClauseType(final TestClauseType testClauseType) {
+		this.testClauseType = testClauseType;
 	}
 
 }

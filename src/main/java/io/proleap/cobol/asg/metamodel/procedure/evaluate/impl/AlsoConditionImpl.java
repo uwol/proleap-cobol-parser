@@ -36,30 +36,30 @@ public class AlsoConditionImpl extends CobolDivisionElementImpl implements AlsoC
 			result = new ConditionImpl(programUnit, ctx);
 
 			// type and condition
-			final Condition.Type type;
+			final Condition.ConditionType type;
 			final ValueStmt conditionValueStmt;
 
 			if (ctx.ANY() != null) {
-				type = Condition.Type.ANY;
+				type = Condition.ConditionType.ANY;
 				conditionValueStmt = null;
 			} else if (ctx.condition() != null) {
-				type = Condition.Type.CONDITION;
+				type = Condition.ConditionType.CONDITION;
 				conditionValueStmt = createConditionValueStmt(ctx.condition());
 			} else if (ctx.booleanLiteral() != null) {
-				type = Condition.Type.BOOLEAN;
+				type = Condition.ConditionType.BOOLEAN;
 				conditionValueStmt = createBooleanLiteralValueStmt(ctx.booleanLiteral());
 			} else if (ctx.evaluateThrough() != null) {
-				type = Condition.Type.VALUE_THROUGH;
+				type = Condition.ConditionType.VALUE_THROUGH;
 				conditionValueStmt = null;
 			} else if (ctx.evaluateValue() != null) {
-				type = Condition.Type.VALUE;
+				type = Condition.ConditionType.VALUE;
 				conditionValueStmt = null;
 			} else {
 				type = null;
 				conditionValueStmt = null;
 			}
 
-			result.setType(type);
+			result.setConditionType(type);
 			result.setConditionValueStmt(conditionValueStmt);
 
 			// not

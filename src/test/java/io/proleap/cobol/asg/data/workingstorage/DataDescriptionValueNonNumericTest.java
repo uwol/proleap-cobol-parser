@@ -48,7 +48,7 @@ public class DataDescriptionValueNonNumericTest extends CobolTestBase {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals(Literal.Type.NON_NUMERIC, literal.getType());
+				assertEquals(Literal.LiteralType.NON_NUMERIC, literal.getLiteralType());
 				assertEquals("SOMESTRING", literal.getNonNumericLiteral());
 			}
 		}
@@ -67,7 +67,7 @@ public class DataDescriptionValueNonNumericTest extends CobolTestBase {
 				final ValueStmt fromValueStmt = valueInterval.getFromValueStmt();
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
-				assertEquals(Literal.Type.NON_NUMERIC, literal.getType());
+				assertEquals(Literal.LiteralType.NON_NUMERIC, literal.getLiteralType());
 				assertEquals("X\"02AD\"", literal.getNonNumericLiteral());
 			}
 		}

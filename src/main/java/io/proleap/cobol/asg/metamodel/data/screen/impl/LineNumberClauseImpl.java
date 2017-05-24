@@ -20,7 +20,7 @@ public class LineNumberClauseImpl extends CobolDivisionElementImpl implements Li
 
 	protected IntegerLiteral integerLiteral;
 
-	protected Type type;
+	protected LineNumberClauseType lineNumberClauseType;
 
 	public LineNumberClauseImpl(final ProgramUnit programUnit, final ScreenDescriptionLineClauseContext ctx) {
 		super(programUnit, ctx);
@@ -34,8 +34,8 @@ public class LineNumberClauseImpl extends CobolDivisionElementImpl implements Li
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public LineNumberClauseType getLineNumberClauseType() {
+		return lineNumberClauseType;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class LineNumberClauseImpl extends CobolDivisionElementImpl implements Li
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setLineNumberClauseType(final LineNumberClauseType lineNumberClauseType) {
+		this.lineNumberClauseType = lineNumberClauseType;
 	}
 
 }

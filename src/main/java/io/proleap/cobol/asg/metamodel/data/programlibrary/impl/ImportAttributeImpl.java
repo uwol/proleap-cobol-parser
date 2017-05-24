@@ -20,11 +20,11 @@ public class ImportAttributeImpl extends CobolDivisionElementImpl implements Imp
 
 	protected Literal functionLiteral;
 
+	protected ImportAttributeType importAttributeType;
+
 	protected Literal parameterLiteral;
 
 	protected Literal titleLiteral;
-
-	protected Type type;
 
 	public ImportAttributeImpl(final ProgramUnit programUnit, final LibraryAttributeClauseFormat2Context ctx) {
 		super(programUnit, ctx);
@@ -38,6 +38,11 @@ public class ImportAttributeImpl extends CobolDivisionElementImpl implements Imp
 	}
 
 	@Override
+	public ImportAttributeType getImportAttributeType() {
+		return importAttributeType;
+	}
+
+	@Override
 	public Literal getParameterLiteral() {
 		return parameterLiteral;
 	}
@@ -48,13 +53,13 @@ public class ImportAttributeImpl extends CobolDivisionElementImpl implements Imp
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public void setFunctionLiteral(final Literal functionLiteral) {
+		this.functionLiteral = functionLiteral;
 	}
 
 	@Override
-	public void setFunctionLiteral(final Literal functionLiteral) {
-		this.functionLiteral = functionLiteral;
+	public void setImportAttributeType(final ImportAttributeType importAttributeType) {
+		this.importAttributeType = importAttributeType;
 	}
 
 	@Override
@@ -65,10 +70,5 @@ public class ImportAttributeImpl extends CobolDivisionElementImpl implements Imp
 	@Override
 	public void setTitleLiteral(final Literal titleLiteral) {
 		this.titleLiteral = titleLiteral;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 }

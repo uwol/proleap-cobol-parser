@@ -51,7 +51,7 @@ public class ReportGroupDescriptionResetTest extends CobolTestBase {
 			{
 				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = reportDescription
 						.getReportGroupDescriptionEntries().get(0);
-				assertEquals(ReportGroupDescriptionEntry.Type.PRINTABLE, reportGroupDescriptionEntry.getType());
+				assertEquals(ReportGroupDescriptionEntry.ReportGroupDescriptionEntryType.PRINTABLE, reportGroupDescriptionEntry.getReportGroupDescriptionEntryType());
 
 				final ReportGroupDescriptionEntryPrintable reportGroupDescriptionEntryPrintable = (ReportGroupDescriptionEntryPrintable) reportGroupDescriptionEntry;
 				assertEquals(new Integer(1), reportGroupDescriptionEntryPrintable.getLevelNumber());
@@ -63,7 +63,7 @@ public class ReportGroupDescriptionResetTest extends CobolTestBase {
 
 				{
 					final SignClause signClause = reportGroupDescriptionEntryPrintable.getSignClause();
-					assertEquals(SignClause.Type.TRAILING, signClause.getType());
+					assertEquals(SignClause.SignClauseType.TRAILING, signClause.getSignClauseType());
 				}
 
 				{
@@ -97,7 +97,7 @@ public class ReportGroupDescriptionResetTest extends CobolTestBase {
 
 				{
 					final UsageClause usageClause = reportGroupDescriptionEntryPrintable.getUsageClause();
-					assertEquals(UsageClause.Type.DISPLAY_1, usageClause.getType());
+					assertEquals(UsageClause.UsageClauseType.DISPLAY_1, usageClause.getUsageClauseType());
 				}
 			}
 		}

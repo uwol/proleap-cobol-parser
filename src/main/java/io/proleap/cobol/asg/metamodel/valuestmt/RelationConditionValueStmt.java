@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.relation.SignCondition;
 
 public interface RelationConditionValueStmt extends ValueStmt {
 
-	enum Type {
+	enum RelationConditionType {
 		ARITHMETIC, COMBINED, SIGN
 	}
 
@@ -33,7 +33,7 @@ public interface RelationConditionValueStmt extends ValueStmt {
 
 	SignCondition getSignCondition();
 
-	Type getType();
+	RelationConditionType getRelationConditionType();
 
-	void setType(Type type);
+	void setRelationConditionType(RelationConditionType relationConditionType);
 }

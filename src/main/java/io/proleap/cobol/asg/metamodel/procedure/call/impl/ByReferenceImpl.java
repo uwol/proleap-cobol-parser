@@ -16,11 +16,11 @@ import io.proleap.cobol.asg.metamodel.procedure.call.ByReference;
 
 public class ByReferenceImpl extends CobolDivisionElementImpl implements ByReference {
 
+	protected ByReferenceType byReferenceType;
+
 	protected Call call;
 
 	protected final CallByReferenceContext ctx;
-
-	protected Type type;
 
 	public ByReferenceImpl(final ProgramUnit programUnit, final CallByReferenceContext ctx) {
 		super(programUnit, ctx);
@@ -29,23 +29,23 @@ public class ByReferenceImpl extends CobolDivisionElementImpl implements ByRefer
 	}
 
 	@Override
+	public ByReferenceType getByReferenceType() {
+		return byReferenceType;
+	}
+
+	@Override
 	public Call getCall() {
 		return call;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public void setByReferenceType(final ByReferenceType byReferenceType) {
+		this.byReferenceType = byReferenceType;
 	}
 
 	@Override
 	public void setCall(final Call call) {
 		this.call = call;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

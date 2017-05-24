@@ -17,16 +17,16 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
  */
 public interface StopStatement extends Statement {
 
-	enum Type {
+	enum StopType {
 		STOP_RUN, STOP_RUN_AND_DISPLAY
 	}
 
 	ValueStmt getDisplayValueStmt();
 
-	Type getType();
+	StopType getStopType();
 
 	void setDisplayValueStmt(ValueStmt displayValueStmt);
 
-	void setType(Type type);
+	void setStopType(StopType stopType);
 
 }

@@ -37,11 +37,11 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 
 	protected AcceptMessageCount acceptMessageCount;
 
+	protected AcceptType acceptType;
+
 	protected final AcceptStatementContext ctx;
 
 	protected final StatementType statementType = StatementTypeEnum.ACCEPT;
-
-	protected Type type;
 
 	public AcceptStatementImpl(final ProgramUnit programUnit, final Scope scope, final AcceptStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -169,13 +169,13 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public StatementType getStatementType() {
-		return statementType;
+	public AcceptType getAcceptType() {
+		return acceptType;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public StatementType getStatementType() {
+		return statementType;
 	}
 
 	@Override
@@ -184,8 +184,8 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setAcceptType(final AcceptType acceptType) {
+		this.acceptType = acceptType;
 	}
 
 }

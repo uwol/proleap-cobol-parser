@@ -15,11 +15,11 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class BeforeAfterImpl extends InspectPhraseImpl implements BeforeAfter {
 
+	protected BeforeAfterType beforeAfterType;
+
 	protected final InspectBeforeAfterContext ctx;
 
 	protected ValueStmt dataItemValueStmt;
-
-	protected Type type;
 
 	public BeforeAfterImpl(final ProgramUnit programUnit, final InspectBeforeAfterContext ctx) {
 		super(programUnit, ctx);
@@ -28,23 +28,23 @@ public class BeforeAfterImpl extends InspectPhraseImpl implements BeforeAfter {
 	}
 
 	@Override
+	public BeforeAfterType getBeforeAfterType() {
+		return beforeAfterType;
+	}
+
+	@Override
 	public ValueStmt getDataItemValueStmt() {
 		return dataItemValueStmt;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public void setBeforeAfterType(final BeforeAfterType beforeAfterType) {
+		this.beforeAfterType = beforeAfterType;
 	}
 
 	@Override
 	public void setDataItemValueStmt(final ValueStmt dataItemValueStmt) {
 		this.dataItemValueStmt = dataItemValueStmt;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

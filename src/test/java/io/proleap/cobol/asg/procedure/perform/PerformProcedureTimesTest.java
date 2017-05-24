@@ -40,7 +40,7 @@ public class PerformProcedureTimesTest extends CobolTestBase {
 			assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
 
 			final PerformStatement performStatement = (PerformStatement) statement;
-			assertEquals(PerformStatement.Type.PROCEDURE, performStatement.getType());
+			assertEquals(PerformStatement.PerformStatementType.PROCEDURE, performStatement.getPerformStatementType());
 
 			{
 				final PerformProcedureStatement performProcedureStatement = performStatement
@@ -49,7 +49,7 @@ public class PerformProcedureTimesTest extends CobolTestBase {
 
 				{
 					final PerformType performType = performProcedureStatement.getPerformType();
-					assertEquals(PerformType.Type.TIMES, performType.getType());
+					assertEquals(PerformType.PerformTypeType.TIMES, performType.getPerformTypeType());
 
 					{
 						final Times times = performType.getTimes();

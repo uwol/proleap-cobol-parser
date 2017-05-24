@@ -12,12 +12,12 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface EraseClause extends CobolDivisionElement {
 
-	enum Type {
+	enum EraseClauseType {
 		EOL, EOS
 	}
 
-	Type getType();
+	EraseClauseType getEraseClauseType();
 
-	void setType(Type type);
+	void setEraseClauseType(EraseClauseType eraseClauseType);
 
 }

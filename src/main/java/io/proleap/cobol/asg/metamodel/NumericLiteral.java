@@ -12,7 +12,7 @@ import io.proleap.cobol.Cobol85Parser.NumericLiteralContext;
 
 public interface NumericLiteral extends CobolDivisionElement {
 
-	enum Type {
+	enum NumericLiteralType {
 		DOUBLE, INTEGER
 	}
 
@@ -23,7 +23,7 @@ public interface NumericLiteral extends CobolDivisionElement {
 
 	Integer getIntegerValue();
 
-	Type getType();
+	NumericLiteralType getNumericLiteralType();
 
 	Object getValue();
 
@@ -31,5 +31,5 @@ public interface NumericLiteral extends CobolDivisionElement {
 
 	void setIntegerValue(Integer integerValue);
 
-	void setType(Type type);
+	void setNumericLiteralType(NumericLiteralType numericLiteralType);
 }

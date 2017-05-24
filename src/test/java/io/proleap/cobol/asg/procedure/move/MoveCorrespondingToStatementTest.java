@@ -63,7 +63,7 @@ public class MoveCorrespondingToStatementTest extends CobolTestBase {
 			final MoveStatement moveStatement = (MoveStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(moveStatement);
 			assertEquals(StatementTypeEnum.MOVE, moveStatement.getStatementType());
-			assertEquals(MoveStatement.Type.MOVE_CORRESPONDING_TO, moveStatement.getType());
+			assertEquals(MoveStatement.MoveType.MOVE_CORRESPONDING_TO, moveStatement.getMoveType());
 
 			{
 				final MoveCorrespondingTo moveCorrespondingTo = moveStatement.getMoveCorrespondingTo();

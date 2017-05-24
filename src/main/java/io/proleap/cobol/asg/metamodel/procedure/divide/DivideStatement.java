@@ -22,7 +22,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
  */
 public interface DivideStatement extends Statement {
 
-	enum Type {
+	enum DivideType {
 		BY_GIVING, INTO, INTO_GIVING
 	}
 
@@ -36,6 +36,8 @@ public interface DivideStatement extends Statement {
 
 	ByGiving getByGiving();
 
+	DivideType getDivideType();
+
 	ValueStmt getDivisorValueStmt();
 
 	Into getInto();
@@ -48,14 +50,12 @@ public interface DivideStatement extends Statement {
 
 	Remainder getRemainder();
 
-	Type getType();
+	void setDivideType(DivideType divideType);
 
 	void setDivisorValueStmt(ValueStmt divisorValueStmt);
 
 	void setNotOnSizeError(NotOnSizeError notOnSizeError);
 
 	void setOnSizeError(OnSizeError onSizeError);
-
-	void setType(Type type);
 
 }

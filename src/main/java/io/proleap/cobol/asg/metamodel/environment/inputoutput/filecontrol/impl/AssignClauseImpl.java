@@ -16,11 +16,11 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class AssignClauseImpl extends CobolDivisionElementImpl implements AssignClause {
 
+	protected AssignClauseType assignClauseType;
+
 	protected final AssignClauseContext ctx;
 
 	protected ValueStmt toValueStmt;
-
-	protected Type type;
 
 	public AssignClauseImpl(final ProgramUnit programUnit, final AssignClauseContext ctx) {
 		super(programUnit, ctx);
@@ -29,23 +29,23 @@ public class AssignClauseImpl extends CobolDivisionElementImpl implements Assign
 	}
 
 	@Override
+	public AssignClauseType getAssignClauseType() {
+		return assignClauseType;
+	}
+
+	@Override
 	public ValueStmt getToValueStmt() {
 		return toValueStmt;
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public void setAssignClauseType(final AssignClauseType assignClauseType) {
+		this.assignClauseType = assignClauseType;
 	}
 
 	@Override
 	public void setToValueStmt(final ValueStmt toValueStmt) {
 		this.toValueStmt = toValueStmt;
-	}
-
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
 	}
 
 }

@@ -23,7 +23,7 @@ public class LabelRecordsClauseImpl extends CobolDivisionElementImpl implements 
 
 	protected List<Call> dataCalls = new ArrayList<Call>();
 
-	protected Type type;
+	protected LabelRecordsClauseType labelRecordsClauseType;
 
 	public LabelRecordsClauseImpl(final ProgramUnit programUnit, final LabelRecordsClauseContext ctx) {
 		super(programUnit, ctx);
@@ -42,13 +42,13 @@ public class LabelRecordsClauseImpl extends CobolDivisionElementImpl implements 
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public LabelRecordsClauseType getLabelRecordsClauseType() {
+		return labelRecordsClauseType;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setLabelRecordsClauseType(final LabelRecordsClauseType labelRecordsClauseType) {
+		this.labelRecordsClauseType = labelRecordsClauseType;
 	}
 
 }

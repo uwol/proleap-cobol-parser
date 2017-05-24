@@ -21,7 +21,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface AcceptStatement extends Statement {
 
-	enum Type {
+	enum AcceptType {
 		DATE, FROM_ESCAPE_KEY, MESSAGE_COUNT, MNEMONIC, NO_FROM
 	}
 
@@ -43,9 +43,9 @@ public interface AcceptStatement extends Statement {
 
 	AcceptMessageCount getAcceptMessageCount();
 
-	Type getType();
+	AcceptType getAcceptType();
 
 	void setAcceptCall(Call acceptCall);
 
-	void setType(Type fromType);
+	void setAcceptType(AcceptType acceptType);
 }

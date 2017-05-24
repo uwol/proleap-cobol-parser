@@ -41,7 +41,7 @@ public class PerformInlineTimesTest extends CobolTestBase {
 			assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
 
 			final PerformStatement performStatement = (PerformStatement) statement;
-			assertEquals(PerformStatement.Type.INLINE, performStatement.getType());
+			assertEquals(PerformStatement.PerformStatementType.INLINE, performStatement.getPerformStatementType());
 
 			{
 				final PerformInlineStatement performInlineStatement = performStatement.getPerformInlineStatement();
@@ -49,7 +49,7 @@ public class PerformInlineTimesTest extends CobolTestBase {
 
 				{
 					final PerformType performType = performInlineStatement.getPerformType();
-					assertEquals(PerformType.Type.TIMES, performType.getType());
+					assertEquals(PerformType.PerformTypeType.TIMES, performType.getPerformTypeType());
 
 					{
 						final Times times = performType.getTimes();

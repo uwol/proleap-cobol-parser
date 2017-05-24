@@ -38,6 +38,8 @@ public class InspectStatementImpl extends StatementImpl implements InspectStatem
 
 	protected Call dataItemCall;
 
+	protected InspectType inspectType;
+
 	protected Replacing replacing;
 
 	protected final StatementType statementType = StatementTypeEnum.INSPECT;
@@ -45,8 +47,6 @@ public class InspectStatementImpl extends StatementImpl implements InspectStatem
 	protected Tallying tallying;
 
 	protected TallyingReplacing tallyingReplacing;
-
-	protected Type type;
 
 	public InspectStatementImpl(final ProgramUnit programUnit, final Scope scope, final InspectStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -160,6 +160,11 @@ public class InspectStatementImpl extends StatementImpl implements InspectStatem
 	}
 
 	@Override
+	public InspectType getInspectType() {
+		return inspectType;
+	}
+
+	@Override
 	public Replacing getReplacing() {
 		return replacing;
 	}
@@ -180,18 +185,13 @@ public class InspectStatementImpl extends StatementImpl implements InspectStatem
 	}
 
 	@Override
-	public Type getType() {
-		return type;
-	}
-
-	@Override
 	public void setDataItemCall(final Call dataItemCall) {
 		this.dataItemCall = dataItemCall;
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setInspectType(final InspectType inspectType) {
+		this.inspectType = inspectType;
 	}
 
 }

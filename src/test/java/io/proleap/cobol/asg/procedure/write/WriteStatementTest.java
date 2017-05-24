@@ -114,7 +114,7 @@ public class WriteStatementTest extends CobolTestBase {
 				final Advancing advancing = writeStatement.getAdvancing();
 				assertNotNull(advancing);
 				assertEquals(Advancing.PositionType.BEFORE, advancing.getPositionType());
-				assertEquals(Advancing.Type.LINES, advancing.getType());
+				assertEquals(Advancing.AdvancingType.LINES, advancing.getAdvancingType());
 
 				{
 					final AdvancingLines advancingLines = advancing.getAdvancingLines();

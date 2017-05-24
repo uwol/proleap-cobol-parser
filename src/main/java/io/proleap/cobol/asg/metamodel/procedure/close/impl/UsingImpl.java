@@ -24,13 +24,13 @@ public class UsingImpl extends CobolDivisionElementImpl implements Using {
 
 	protected ClosePortFileIOUsingContext ctx;
 
-	protected Type type;
-
 	protected UsingAssociatedData usingAssociatedData;
 
 	protected UsingAssociatedDataLength usingAssociatedDataLength;
 
 	protected UsingCloseDisposition usingCloseDisposition;
+
+	protected UsingType usingType;
 
 	public UsingImpl(final ProgramUnit programUnit, final ClosePortFileIOUsingContext ctx) {
 		super(programUnit, ctx);
@@ -83,28 +83,23 @@ public class UsingImpl extends CobolDivisionElementImpl implements Using {
 			result = new UsingCloseDispositionImpl(programUnit, ctx);
 
 			// type
-			final UsingCloseDisposition.Type type;
+			final UsingCloseDisposition.UsingCloseDispositionType type;
 
 			if (ctx.ABORT() != null) {
-				type = UsingCloseDisposition.Type.ABORT;
+				type = UsingCloseDisposition.UsingCloseDispositionType.ABORT;
 			} else if (ctx.ORDERLY() != null) {
-				type = UsingCloseDisposition.Type.ORDERLY;
+				type = UsingCloseDisposition.UsingCloseDispositionType.ORDERLY;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setUsingCloseDispositionType(type);
 
 			usingCloseDisposition = result;
 			registerASGElement(result);
 		}
 
 		return result;
-	}
-
-	@Override
-	public Type getType() {
-		return type;
 	}
 
 	@Override
@@ -123,8 +118,13 @@ public class UsingImpl extends CobolDivisionElementImpl implements Using {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public UsingType getUsingType() {
+		return usingType;
+	}
+
+	@Override
+	public void setUsingType(final UsingType usingType) {
+		this.usingType = usingType;
 	}
 
 }

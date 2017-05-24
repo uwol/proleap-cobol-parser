@@ -16,9 +16,9 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ByImpl extends CobolDivisionElementImpl implements By {
 
-	protected final InitializeReplacingByContext ctx;
+	protected ByType byType;
 
-	protected Type type;
+	protected final InitializeReplacingByContext ctx;
 
 	protected ValueStmt valueStmt;
 
@@ -29,8 +29,8 @@ public class ByImpl extends CobolDivisionElementImpl implements By {
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public ByType getByType() {
+		return byType;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class ByImpl extends CobolDivisionElementImpl implements By {
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setByType(final ByType byType) {
+		this.byType = byType;
 	}
 
 	@Override

@@ -91,7 +91,7 @@ public class TableCallTest extends CobolTestBase {
 				dataDescriptionEntryTbl = workingStorageSection.getRootDataDescriptionEntries().get(0);
 				assertEquals("WS-TBL", dataDescriptionEntryTbl.getName());
 				assertEquals(new Integer(1), dataDescriptionEntryTbl.getLevelNumber());
-				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryTbl.getType());
+				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryTbl.getDataDescriptionEntryType());
 
 				final DataDescriptionEntryGroup dataDescriptionEntryGroupTbl = (DataDescriptionEntryGroup) dataDescriptionEntryTbl;
 				assertEquals(1, dataDescriptionEntryGroupTbl.getDataDescriptionEntries().size());
@@ -101,7 +101,7 @@ public class TableCallTest extends CobolTestBase {
 							.getDataDescriptionEntries().get(0);
 					assertEquals("WS-RECORD", dataDescriptionEntryRecord.getName());
 					assertEquals(new Integer(5), dataDescriptionEntryRecord.getLevelNumber());
-					assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryRecord.getType());
+					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryRecord.getDataDescriptionEntryType());
 
 					final DataDescriptionEntryGroup dataDescriptionEntryGroupRecord = (DataDescriptionEntryGroup) dataDescriptionEntryRecord;
 					assertEquals(2, dataDescriptionEntryGroupRecord.getDataDescriptionEntries().size());
@@ -127,7 +127,7 @@ public class TableCallTest extends CobolTestBase {
 								.getDataDescriptionEntries().get(0);
 						assertEquals("WS-DELIMITER", dataDescriptionEntryDelimiter.getName());
 						assertEquals(new Integer(10), dataDescriptionEntryDelimiter.getLevelNumber());
-						assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryDelimiter.getType());
+						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryDelimiter.getDataDescriptionEntryType());
 
 						final DataDescriptionEntryGroup dataDescriptionEntryGroupDelimiter = (DataDescriptionEntryGroup) dataDescriptionEntryDelimiter;
 
@@ -142,7 +142,7 @@ public class TableCallTest extends CobolTestBase {
 								.getDataDescriptionEntries().get(1);
 						assertEquals("WS-CONTENT", dataDescriptionEntryContent.getName());
 						assertEquals(new Integer(10), dataDescriptionEntryContent.getLevelNumber());
-						assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryContent.getType());
+						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryContent.getDataDescriptionEntryType());
 
 						final DataDescriptionEntryGroup dataDescriptionEntryGroupContent = (DataDescriptionEntryGroup) dataDescriptionEntryContent;
 						assertEquals(1, dataDescriptionEntryGroupContent.getDataDescriptionEntries().size());
@@ -169,7 +169,7 @@ public class TableCallTest extends CobolTestBase {
 									.getDataDescriptionEntries().get(0);
 							assertEquals("WS-COLUMN", dataDescriptionEntryColumn.getName());
 							assertEquals(new Integer(20), dataDescriptionEntryColumn.getLevelNumber());
-							assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryColumn.getType());
+							assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryColumn.getDataDescriptionEntryType());
 
 							final DataDescriptionEntryGroup dataDescriptionEntryGroupColumn = (DataDescriptionEntryGroup) dataDescriptionEntryColumn;
 
@@ -189,7 +189,7 @@ public class TableCallTest extends CobolTestBase {
 		{
 			final MoveStatement moveStatement = (MoveStatement) procedureDivision.getStatements().get(0);
 			assertEquals(StatementTypeEnum.MOVE, moveStatement.getStatementType());
-			assertEquals(MoveStatement.Type.MOVE_TO, moveStatement.getType());
+			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
 				final MoveTo moveTo = moveStatement.getMoveTo();
@@ -217,7 +217,7 @@ public class TableCallTest extends CobolTestBase {
 		{
 			final PerformStatement performStatement = (PerformStatement) procedureDivision.getStatements().get(1);
 			assertEquals(StatementTypeEnum.PERFORM, performStatement.getStatementType());
-			assertEquals(PerformStatement.Type.PROCEDURE, performStatement.getType());
+			assertEquals(PerformStatement.PerformStatementType.PROCEDURE, performStatement.getPerformStatementType());
 
 			{
 				final PerformProcedureStatement performProcedureStatement = performStatement
@@ -234,7 +234,7 @@ public class TableCallTest extends CobolTestBase {
 
 				{
 					final PerformType performType = performProcedureStatement.getPerformType();
-					assertEquals(PerformType.Type.VARYING, performType.getType());
+					assertEquals(PerformType.PerformTypeType.VARYING, performType.getPerformTypeType());
 
 					{
 						final Varying varying = performType.getVarying();
@@ -313,7 +313,7 @@ public class TableCallTest extends CobolTestBase {
 		{
 			final PerformStatement performStatement = (PerformStatement) paragraphDisplayRecord.getStatements().get(0);
 			assertEquals(StatementTypeEnum.PERFORM, performStatement.getStatementType());
-			assertEquals(PerformStatement.Type.PROCEDURE, performStatement.getType());
+			assertEquals(PerformStatement.PerformStatementType.PROCEDURE, performStatement.getPerformStatementType());
 
 			{
 				final PerformProcedureStatement performProcedureStatement = performStatement
@@ -331,7 +331,7 @@ public class TableCallTest extends CobolTestBase {
 
 				{
 					final PerformType performType = performProcedureStatement.getPerformType();
-					assertEquals(PerformType.Type.VARYING, performType.getType());
+					assertEquals(PerformType.PerformTypeType.VARYING, performType.getPerformTypeType());
 
 					{
 						final Varying varying = performType.getVarying();

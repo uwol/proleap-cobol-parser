@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface UseStatement extends Statement {
 
-	enum Type {
+	enum UseType {
 		AFTER, DEBUG
 	}
 
@@ -29,7 +29,7 @@ public interface UseStatement extends Statement {
 
 	Debug getDebug();
 
-	Type getType();
+	UseType getUseType();
 
-	void setType(Type type);
+	void setUseType(UseType useType);
 }

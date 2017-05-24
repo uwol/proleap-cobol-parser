@@ -12,12 +12,12 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface RelationalOperator extends ValueStmt {
 
-	enum Type {
+	enum RelationalOperatorType {
 		EQUAL, GREATER, GREATER_OR_EQUAL, LESS, LESS_OR_EQUAL, NOT_EQUAL
 	}
 
-	Type getType();
+	RelationalOperatorType getRelationalOperatorType();
 
-	void setType(Type type);
+	void setRelationalOperatorType(RelationalOperatorType type);
 
 }

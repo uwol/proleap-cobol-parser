@@ -13,16 +13,16 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface SymbolicSubQueueClause extends CobolDivisionElement {
 
-	enum Type {
+	enum SymbolicSubQueueClauseType {
 		SUB_QUEUE_1, SUB_QUEUE_2, SUB_QUEUE_3
 	}
 
 	Call getDataDescCall();
 
-	Type getType();
+	SymbolicSubQueueClauseType getSymbolicSubQueueClauseType();
 
 	void setDataDescCall(Call dataDescCall);
 
-	void setType(Type type);
+	void setSymbolicSubQueueClauseType(SymbolicSubQueueClauseType symbolicSubQueueClauseType);
 
 }

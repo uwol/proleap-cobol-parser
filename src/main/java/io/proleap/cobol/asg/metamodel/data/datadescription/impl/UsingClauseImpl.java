@@ -20,7 +20,7 @@ public class UsingClauseImpl extends CobolDivisionElementImpl implements UsingCl
 
 	protected ValueStmt ofValueStmt;
 
-	protected Type type;
+	protected UsingClauseType usingClauseType;
 
 	public UsingClauseImpl(final ProgramUnit programUnit, final DataUsingClauseContext ctx) {
 		super(programUnit, ctx);
@@ -34,8 +34,8 @@ public class UsingClauseImpl extends CobolDivisionElementImpl implements UsingCl
 	}
 
 	@Override
-	public Type getType() {
-		return type;
+	public UsingClauseType getUsingClauseType() {
+		return usingClauseType;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class UsingClauseImpl extends CobolDivisionElementImpl implements UsingCl
 	}
 
 	@Override
-	public void setType(final Type type) {
-		this.type = type;
+	public void setUsingClauseType(final UsingClauseType usingClauseType) {
+		this.usingClauseType = usingClauseType;
 	}
 
 }

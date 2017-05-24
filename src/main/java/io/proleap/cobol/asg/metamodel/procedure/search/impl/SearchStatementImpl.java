@@ -76,21 +76,21 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 			result.setCondition(condition);
 
 			// type and statements
-			final When.Type type;
+			final When.WhenType type;
 
 			if (ctx.NEXT() != null) {
-				type = When.Type.NEXT_SENTENCE;
+				type = When.WhenType.NEXT_SENTENCE;
 			} else if (!ctx.statement().isEmpty()) {
 				for (final StatementContext statementContext : ctx.statement()) {
 					result.addStatement(statementContext);
 				}
 
-				type = When.Type.STATEMENTS;
+				type = When.WhenType.STATEMENTS;
 			} else {
 				type = null;
 			}
 
-			result.setType(type);
+			result.setWhenType(type);
 
 			whens.add(result);
 			registerASGElement(result);
