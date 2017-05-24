@@ -89,14 +89,14 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			/*
 			 * data descriptions
 			 */
-			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
+			DataDescriptionEntryGroup currentDataDescriptionEntryGroup = null;
 
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
 				final DataDescriptionEntry dataDescriptionEntry = result
-						.createDataDescriptionEntry(lastDataDescriptionEntryGroup, dataDescriptionEntryContext);
+						.createDataDescriptionEntry(currentDataDescriptionEntryGroup, dataDescriptionEntryContext);
 
 				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
-					lastDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+					currentDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
 				}
 			}
 
@@ -161,14 +161,14 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			/*
 			 * data descriptions
 			 */
-			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
+			DataDescriptionEntryGroup currentDataDescriptionEntryGroup = null;
 
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
 				final DataDescriptionEntry dataDescriptionEntry = result
-						.createDataDescriptionEntry(lastDataDescriptionEntryGroup, dataDescriptionEntryContext);
+						.createDataDescriptionEntry(currentDataDescriptionEntryGroup, dataDescriptionEntryContext);
 
 				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
-					lastDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+					currentDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
 				}
 			}
 
@@ -190,14 +190,14 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			/*
 			 * data descriptions
 			 */
-			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
+			DataDescriptionEntryGroup currentDataDescriptionEntryGroup = null;
 
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
 				final DataDescriptionEntry dataDescriptionEntry = result
-						.createDataDescriptionEntry(lastDataDescriptionEntryGroup, dataDescriptionEntryContext);
+						.createDataDescriptionEntry(currentDataDescriptionEntryGroup, dataDescriptionEntryContext);
 
 				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
-					lastDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+					currentDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
 				}
 			}
 
@@ -254,12 +254,12 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			/*
 			 * screen description entry
 			 */
-			ScreenDescriptionEntry lastScreenDescriptionEntry = null;
+			ScreenDescriptionEntry currentScreenDescriptionEntry = null;
 
 			for (final ScreenDescriptionEntryContext screenDescriptionEntryContext : ctx.screenDescriptionEntry()) {
 				final ScreenDescriptionEntry screenDescriptionEntry = createScreenDescriptionEntry(
-						lastScreenDescriptionEntry, screenDescriptionEntryContext);
-				lastScreenDescriptionEntry = screenDescriptionEntry;
+						currentScreenDescriptionEntry, screenDescriptionEntryContext);
+				currentScreenDescriptionEntry = screenDescriptionEntry;
 			}
 
 			registerASGElement(result);
@@ -279,14 +279,14 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			/*
 			 * data descriptions
 			 */
-			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
+			DataDescriptionEntryGroup currentDataDescriptionEntryGroup = null;
 
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
 				final DataDescriptionEntry dataDescriptionEntry = result
-						.createDataDescriptionEntry(lastDataDescriptionEntryGroup, dataDescriptionEntryContext);
+						.createDataDescriptionEntry(currentDataDescriptionEntryGroup, dataDescriptionEntryContext);
 
 				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
-					lastDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+					currentDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
 				}
 			}
 
@@ -297,12 +297,13 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	}
 
 	protected ScreenDescriptionEntry createScreenDescriptionEntry(
-			final ScreenDescriptionEntry lastScreenDescriptionEntry,
+			final ScreenDescriptionEntry currentScreenDescriptionEntry,
 			final ScreenDescriptionEntryContext screenDescriptionEntryContext) {
 		final ScreenDescriptionEntry result = screenSection.addScreenDescriptionEntry(screenDescriptionEntryContext);
 
-		if (lastScreenDescriptionEntry != null && result != null) {
-			groupScreenDescriptionEntry(lastScreenDescriptionEntry, result);
+		if (currentScreenDescriptionEntry != null && result != null) {
+			groupScreenDescriptionEntry(currentScreenDescriptionEntry, result);
+			linkScreenDescriptionEntry(currentScreenDescriptionEntry, result);
 		}
 
 		return result;
@@ -353,22 +354,32 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 		return workingStorageSection;
 	}
 
-	protected void groupScreenDescriptionEntry(final ScreenDescriptionEntry lastScreenDescriptionEntry,
+	protected void groupScreenDescriptionEntry(final ScreenDescriptionEntry currentScreenDescriptionEntry,
 			final ScreenDescriptionEntry screenDescriptionEntry) {
-		final Integer lastLevelNumber = lastScreenDescriptionEntry.getLevelNumber();
+		final Integer currentLevelNumber = currentScreenDescriptionEntry.getLevelNumber();
 		final Integer levelNumber = screenDescriptionEntry.getLevelNumber();
 
-		if (levelNumber > lastLevelNumber) {
-			lastScreenDescriptionEntry.addScreenDescriptionEntry(screenDescriptionEntry);
-			screenDescriptionEntry.setParentScreenDescriptionEntry(lastScreenDescriptionEntry);
+		if (levelNumber > currentLevelNumber) {
+			currentScreenDescriptionEntry.addScreenDescriptionEntry(screenDescriptionEntry);
+			screenDescriptionEntry.setParentScreenDescriptionEntry(currentScreenDescriptionEntry);
 		} else {
-			final ScreenDescriptionEntry lastSuperScreenDescriptionEntry = lastScreenDescriptionEntry
+			final ScreenDescriptionEntry currentParentScreenDescriptionEntry = currentScreenDescriptionEntry
 					.getParentScreenDescriptionEntry();
 
-			if (lastSuperScreenDescriptionEntry != null) {
-				groupScreenDescriptionEntry(lastSuperScreenDescriptionEntry, screenDescriptionEntry);
+			if (currentParentScreenDescriptionEntry != null) {
+				groupScreenDescriptionEntry(currentParentScreenDescriptionEntry, screenDescriptionEntry);
 			}
 		}
 	}
 
+	protected void linkScreenDescriptionEntry(final ScreenDescriptionEntry currentScreenDescriptionEntry,
+			final ScreenDescriptionEntry screenDescriptionEntry) {
+		final Integer currentLevelNumber = currentScreenDescriptionEntry.getLevelNumber();
+		final Integer levelNumber = screenDescriptionEntry.getLevelNumber();
+
+		if (levelNumber == currentLevelNumber) {
+			currentScreenDescriptionEntry.setSuccessor(screenDescriptionEntry);
+			screenDescriptionEntry.setPredecessor(currentScreenDescriptionEntry);
+		}
+	}
 }

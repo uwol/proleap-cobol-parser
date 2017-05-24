@@ -8,6 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.data.datadescription.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.proleap.cobol.Cobol85Parser.DataRenamesClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -15,6 +18,8 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.RenamesClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 
 public class RenamesClauseImpl extends CobolDivisionElementImpl implements RenamesClause {
+
+	protected List<Call> calls = new ArrayList<Call>();
 
 	protected DataRenamesClauseContext ctx;
 
@@ -26,6 +31,21 @@ public class RenamesClauseImpl extends CobolDivisionElementImpl implements Renam
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public void addCall(final Call call) {
+		calls.add(call);
+	}
+
+	@Override
+	public void addCalls(final List<Call> calls) {
+		this.calls.addAll(calls);
+	}
+
+	@Override
+	public List<Call> getCalls() {
+		return calls;
 	}
 
 	@Override

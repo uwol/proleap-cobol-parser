@@ -146,6 +146,8 @@ public interface ScreenDescriptionEntry extends CobolDivisionElement, Declaratio
 
 	PictureClause getPictureClause();
 
+	ScreenDescriptionEntry getPredecessor();
+
 	PromptClause getPromptClause();
 
 	RequiredClause getRequiredClause();
@@ -162,6 +164,8 @@ public interface ScreenDescriptionEntry extends CobolDivisionElement, Declaratio
 
 	SizeClause getSizeClause();
 
+	ScreenDescriptionEntry getSuccessor();
+
 	UnderlineClause getUnderlineClause();
 
 	UsageClause getUsageClause();
@@ -177,5 +181,9 @@ public interface ScreenDescriptionEntry extends CobolDivisionElement, Declaratio
 	void setLevelNumber(Integer levelNumber);
 
 	void setParentScreenDescriptionEntry(ScreenDescriptionEntry parentScreenDescriptionEntry);
+
+	void setPredecessor(ScreenDescriptionEntry predecessor);
+
+	void setSuccessor(ScreenDescriptionEntry successor);
 
 }

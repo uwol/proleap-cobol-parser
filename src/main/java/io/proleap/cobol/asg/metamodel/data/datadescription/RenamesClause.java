@@ -8,10 +8,18 @@
 
 package io.proleap.cobol.asg.metamodel.data.datadescription;
 
+import java.util.List;
+
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface RenamesClause extends CobolDivisionElement {
+
+	void addCall(Call call);
+
+	void addCalls(List<Call> calls);
+
+	List<Call> getCalls();
 
 	Call getFrom();
 

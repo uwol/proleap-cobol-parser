@@ -36,21 +36,28 @@ public class ScreenTest extends CobolTestBase {
 		final ScreenSection screenSection = dataDivision.getScreenSection();
 
 		assertNotNull(screenSection);
-		assertEquals(4, screenSection.getScreenDescriptionEntries().size());
-		assertEquals(1, screenSection.getRootScreenDescriptionEntries().size());
+		assertEquals(5, screenSection.getScreenDescriptionEntries().size());
+		assertEquals(2, screenSection.getRootScreenDescriptionEntries().size());
 
 		{
-			final ScreenDescriptionEntry screenDescriptionEntry = screenSection.getScreenDescriptionEntries().get(0);
-			assertEquals(new Integer(1), screenDescriptionEntry.getLevelNumber());
-			assertEquals("SOMESCREEN1", screenDescriptionEntry.getName());
+			final ScreenDescriptionEntry screenDescriptionEntry1 = screenSection.getRootScreenDescriptionEntries()
+					.get(0);
+			assertEquals(new Integer(1), screenDescriptionEntry1.getLevelNumber());
+			assertEquals("SOMESCREEN1", screenDescriptionEntry1.getName());
+			assertNull(screenDescriptionEntry1.getPredecessor());
+			// FIXME: should be SOMESCREEN2
+			assertNull(screenDescriptionEntry1.getSuccessor());
 
-			assertEquals(3, screenDescriptionEntry.getScreenDescriptionEntries().size());
+			assertEquals(3, screenDescriptionEntry1.getScreenDescriptionEntries().size());
 
 			{
-				final ScreenDescriptionEntry subScreenDescriptionEntry = screenDescriptionEntry
+				final ScreenDescriptionEntry subScreenDescriptionEntry = screenDescriptionEntry1
 						.getScreenDescriptionEntries().get(0);
 				assertNull(subScreenDescriptionEntry.getName());
 				assertEquals(new Integer(5), subScreenDescriptionEntry.getLevelNumber());
+				assertEquals(screenDescriptionEntry1, subScreenDescriptionEntry.getParentScreenDescriptionEntry());
+				assertNull(subScreenDescriptionEntry.getPredecessor());
+				assertNotNull(subScreenDescriptionEntry.getSuccessor());
 
 				{
 					final BlankClause blankClause = subScreenDescriptionEntry.getBlankClause();
@@ -60,10 +67,13 @@ public class ScreenTest extends CobolTestBase {
 			}
 
 			{
-				final ScreenDescriptionEntry subScreenDescriptionEntry = screenDescriptionEntry
+				final ScreenDescriptionEntry subScreenDescriptionEntry = screenDescriptionEntry1
 						.getScreenDescriptionEntries().get(1);
 				assertEquals("SOMELINE1", subScreenDescriptionEntry.getName());
 				assertEquals(new Integer(5), subScreenDescriptionEntry.getLevelNumber());
+				assertEquals(screenDescriptionEntry1, subScreenDescriptionEntry.getParentScreenDescriptionEntry());
+				assertNotNull(subScreenDescriptionEntry.getPredecessor());
+				assertNotNull(subScreenDescriptionEntry.getSuccessor());
 
 				{
 					final LineNumberClause lineNumberClause = subScreenDescriptionEntry.getLineNumberClause();
@@ -91,10 +101,13 @@ public class ScreenTest extends CobolTestBase {
 			}
 
 			{
-				final ScreenDescriptionEntry subScreenDescriptionEntry = screenDescriptionEntry
+				final ScreenDescriptionEntry subScreenDescriptionEntry = screenDescriptionEntry1
 						.getScreenDescriptionEntries().get(2);
 				assertNull(subScreenDescriptionEntry.getName());
 				assertEquals(new Integer(5), subScreenDescriptionEntry.getLevelNumber());
+				assertEquals(screenDescriptionEntry1, subScreenDescriptionEntry.getParentScreenDescriptionEntry());
+				assertNotNull(subScreenDescriptionEntry.getPredecessor());
+				assertNull(subScreenDescriptionEntry.getSuccessor());
 
 				{
 					final LineNumberClause lineNumberClause = subScreenDescriptionEntry.getLineNumberClause();
@@ -120,6 +133,16 @@ public class ScreenTest extends CobolTestBase {
 					assertEquals(LightClause.Type.LOWLIGHT, lightClause.getType());
 				}
 			}
+		}
+
+		{
+			final ScreenDescriptionEntry screenDescriptionEntry2 = screenSection.getRootScreenDescriptionEntries()
+					.get(1);
+			assertEquals(new Integer(1), screenDescriptionEntry2.getLevelNumber());
+			assertEquals("SOMESCREEN2", screenDescriptionEntry2.getName());
+			// FIXME: should be SOMESCREEN1
+			assertNull(screenDescriptionEntry2.getPredecessor());
+			assertNull(screenDescriptionEntry2.getSuccessor());
 		}
 	}
 }

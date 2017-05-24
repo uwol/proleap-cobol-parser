@@ -372,7 +372,7 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 
 	@Override
 	public DataDescriptionEntry createDataDescriptionEntry(
-			final DataDescriptionEntryGroup lastDataDescriptionEntryGroup, final DataDescriptionEntryContext ctx) {
+			final DataDescriptionEntryGroup currentDataDescriptionEntryGroup, final DataDescriptionEntryContext ctx) {
 		final DataDescriptionEntry result;
 
 		if (ctx.dataDescriptionEntryFormat1() != null) {
@@ -388,8 +388,12 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			result = null;
 		}
 
-		if (lastDataDescriptionEntryGroup != null && result != null) {
-			groupDataDescriptionEntry(lastDataDescriptionEntryGroup, result);
+		if (currentDataDescriptionEntryGroup != null && result != null) {
+			groupDataDescriptionEntry(currentDataDescriptionEntryGroup, result);
+
+			if (result instanceof DataDescriptionEntryGroup) {
+				linkDataDescriptionEntry(currentDataDescriptionEntryGroup, (DataDescriptionEntryGroup) result);
+			}
 		}
 
 		return result;
@@ -419,24 +423,40 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 		return result;
 	}
 
-	protected void groupDataDescriptionEntry(final DataDescriptionEntryGroup lastDataDescriptionEntryGroup,
+	protected void groupDataDescriptionEntry(final DataDescriptionEntryGroup currentDataDescriptionEntryGroup,
 			final DataDescriptionEntry dataDescriptionEntry) {
-		final Integer lastLevelNumber = lastDataDescriptionEntryGroup.getLevelNumber();
+		final Integer currentLevelNumber = currentDataDescriptionEntryGroup.getLevelNumber();
 		final Integer levelNumber = dataDescriptionEntry.getLevelNumber();
 
-		if (levelNumber == null || DataDescriptionEntry.LEVEL_NUMBER_SCALAR == levelNumber
-				|| DataDescriptionEntry.LEVEL_NUMBER_RENAME == levelNumber) {
-		} else if (levelNumber > lastLevelNumber) {
-			lastDataDescriptionEntryGroup.addDataDescriptionEntry(dataDescriptionEntry);
-			dataDescriptionEntry.setParentDataDescriptionEntryGroup(lastDataDescriptionEntryGroup);
+		if (!isGroupableLevelNumber(levelNumber)) {
+		} else if (levelNumber > currentLevelNumber) {
+			currentDataDescriptionEntryGroup.addDataDescriptionEntry(dataDescriptionEntry);
+			dataDescriptionEntry.setParentDataDescriptionEntryGroup(currentDataDescriptionEntryGroup);
 		} else {
-			final DataDescriptionEntryGroup lastSuperDataDescriptionEntryGroup = lastDataDescriptionEntryGroup
+			final DataDescriptionEntryGroup currentParentDataDescriptionEntryGroup = currentDataDescriptionEntryGroup
 					.getParentDataDescriptionEntryGroup();
 
-			if (lastSuperDataDescriptionEntryGroup != null) {
-				groupDataDescriptionEntry(lastSuperDataDescriptionEntryGroup, dataDescriptionEntry);
+			if (currentParentDataDescriptionEntryGroup != null) {
+				groupDataDescriptionEntry(currentParentDataDescriptionEntryGroup, dataDescriptionEntry);
 			}
 		}
 	}
 
+	protected boolean isGroupableLevelNumber(final Integer levelNumber) {
+		final boolean result = levelNumber != null && DataDescriptionEntry.LEVEL_NUMBER_SCALAR != levelNumber
+				&& DataDescriptionEntry.LEVEL_NUMBER_RENAME != levelNumber;
+		return result;
+	}
+
+	protected void linkDataDescriptionEntry(final DataDescriptionEntryGroup currentDataDescriptionEntryGroup,
+			final DataDescriptionEntryGroup dataDescriptionEntry) {
+		final Integer currentLevelNumber = currentDataDescriptionEntryGroup.getLevelNumber();
+		final Integer levelNumber = dataDescriptionEntry.getLevelNumber();
+
+		if (!isGroupableLevelNumber(levelNumber)) {
+		} else if (levelNumber == currentLevelNumber) {
+			currentDataDescriptionEntryGroup.setSuccessor(dataDescriptionEntry);
+			dataDescriptionEntry.setPredecessor(currentDataDescriptionEntryGroup);
+		}
+	}
 }

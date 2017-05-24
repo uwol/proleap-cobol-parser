@@ -12,8 +12,10 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryRename;
 import io.proleap.cobol.asg.metamodel.data.datadescription.RenamesClause;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
@@ -36,44 +38,57 @@ public class DataDescription66ThroughTest extends CobolTestBase {
 		assertEquals(6, workingStorageSection.getDataDescriptionEntries().size());
 		assertEquals(2, workingStorageSection.getRootDataDescriptionEntries().size());
 
+		final DataDescriptionEntry dataDescriptionEntryItem1;
+		final DataDescriptionEntry dataDescriptionEntryItem2;
+		final DataDescriptionEntry dataDescriptionEntryItem3;
+
 		{
 			final DataDescriptionEntry dataDescriptionEntryItems = workingStorageSection
 					.getDataDescriptionEntry("ITEMS");
 
 			assertNotNull(dataDescriptionEntryItems);
 			assertEquals("ITEMS", dataDescriptionEntryItems.getName());
-			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItems.getType());
 			assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
 			assertNull(dataDescriptionEntryItems.getParentDataDescriptionEntryGroup());
+			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItems.getType());
+
+			final DataDescriptionEntryGroup dataDescriptionEntryGroupItems = (DataDescriptionEntryGroup) dataDescriptionEntryItems;
+			assertEquals(0, dataDescriptionEntryGroupItems.getCalls().size());
 
 			{
-				final DataDescriptionEntry dataDescriptionEntryItem1 = workingStorageSection
-						.getDataDescriptionEntry("ITEM1");
+				dataDescriptionEntryItem1 = workingStorageSection.getDataDescriptionEntry("ITEM1");
 				assertNotNull(dataDescriptionEntryItem1);
 				assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
-				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem1.getType());
 				assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
+				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem1.getType());
+
+				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem1 = (DataDescriptionEntryGroup) dataDescriptionEntryItem1;
+				assertEquals(1, dataDescriptionEntryGroupItem1.getCalls().size());
 			}
 
 			{
-				final DataDescriptionEntry dataDescriptionEntryItem2 = workingStorageSection
-						.getDataDescriptionEntry("ITEM2");
+				dataDescriptionEntryItem2 = workingStorageSection.getDataDescriptionEntry("ITEM2");
 				assertNotNull(dataDescriptionEntryItem2);
 				assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
-				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem2.getType());
 				assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
+				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem2.getType());
+
+				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem2 = (DataDescriptionEntryGroup) dataDescriptionEntryItem2;
+				assertEquals(1, dataDescriptionEntryGroupItem2.getCalls().size());
 			}
 
 			{
-				final DataDescriptionEntry dataDescriptionEntryItem3 = workingStorageSection
-						.getDataDescriptionEntry("ITEM3");
+				dataDescriptionEntryItem3 = workingStorageSection.getDataDescriptionEntry("ITEM3");
 				assertNotNull(dataDescriptionEntryItem3);
 				assertEquals("ITEM3", dataDescriptionEntryItem3.getName());
 				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem3.getType());
 				assertEquals(new Integer(2), dataDescriptionEntryItem3.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem3.getParentDataDescriptionEntryGroup());
+
+				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem3 = (DataDescriptionEntryGroup) dataDescriptionEntryItem3;
+				assertEquals(1, dataDescriptionEntryGroupItem3.getCalls().size());
 			}
 
 			{
@@ -81,9 +96,12 @@ public class DataDescription66ThroughTest extends CobolTestBase {
 						.getDataDescriptionEntry("ITEM4");
 				assertNotNull(dataDescriptionEntryItem4);
 				assertEquals("ITEM4", dataDescriptionEntryItem4.getName());
-				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem4.getType());
 				assertEquals(new Integer(2), dataDescriptionEntryItem4.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem4.getParentDataDescriptionEntryGroup());
+				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem4.getType());
+
+				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem4 = (DataDescriptionEntryGroup) dataDescriptionEntryItem4;
+				assertEquals(0, dataDescriptionEntryGroupItem4.getCalls().size());
 			}
 		}
 
@@ -95,14 +113,48 @@ public class DataDescription66ThroughTest extends CobolTestBase {
 			assertEquals("ITEMZ", dataDescriptionEntryItemz.getName());
 			assertEquals(new Integer(66), dataDescriptionEntryItemz.getLevelNumber());
 			assertNull(dataDescriptionEntryItemz.getParentDataDescriptionEntryGroup());
+			assertEquals(DataDescriptionEntry.Type.RENAME, dataDescriptionEntryItemz.getType());
 
 			final DataDescriptionEntryRename dataDescriptionEntryItemzRename = (DataDescriptionEntryRename) dataDescriptionEntryItemz;
-			assertEquals(DataDescriptionEntry.Type.RENAME, dataDescriptionEntryItemz.getType());
 
 			{
 				final RenamesClause renamesClause = dataDescriptionEntryItemzRename.getRenamesClause();
-				assertNotNull(renamesClause.getFrom());
-				assertNotNull(renamesClause.getTo());
+
+				{
+					assertNotNull(renamesClause.getFrom());
+
+					final DataDescriptionEntryCall from = (DataDescriptionEntryCall) renamesClause.getFrom();
+					assertEquals(dataDescriptionEntryItem1, from.getDataDescriptionEntry());
+				}
+
+				{
+					assertNotNull(renamesClause.getTo());
+
+					final DataDescriptionEntryCall to = (DataDescriptionEntryCall) renamesClause.getTo();
+					assertEquals(dataDescriptionEntryItem3, to.getDataDescriptionEntry());
+				}
+
+				{
+					assertEquals(3, renamesClause.getCalls().size());
+
+					{
+						final DataDescriptionEntryCall call1 = (DataDescriptionEntryCall) renamesClause.getCalls()
+								.get(0);
+						assertEquals(dataDescriptionEntryItem1, call1.getDataDescriptionEntry());
+					}
+
+					{
+						final DataDescriptionEntryCall call2 = (DataDescriptionEntryCall) renamesClause.getCalls()
+								.get(1);
+						assertEquals(dataDescriptionEntryItem2, call2.getDataDescriptionEntry());
+					}
+
+					{
+						final DataDescriptionEntryCall call3 = (DataDescriptionEntryCall) renamesClause.getCalls()
+								.get(2);
+						assertEquals(dataDescriptionEntryItem3, call3.getDataDescriptionEntry());
+					}
+				}
 			}
 		}
 	}

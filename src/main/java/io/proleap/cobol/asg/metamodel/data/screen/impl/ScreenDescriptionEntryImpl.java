@@ -128,6 +128,8 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 
 	protected PictureClause pictureClause;
 
+	protected ScreenDescriptionEntry predecessor;
+
 	protected PromptClause promptClause;
 
 	protected RequiredClause requiredClause;
@@ -143,6 +145,8 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 	protected SignClause signClause;
 
 	protected SizeClause sizeClause;
+
+	protected ScreenDescriptionEntry successor;
 
 	protected UnderlineClause underlineClause;
 
@@ -921,6 +925,11 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
+	public ScreenDescriptionEntry getPredecessor() {
+		return predecessor;
+	}
+
+	@Override
 	public PromptClause getPromptClause() {
 		return promptClause;
 	}
@@ -961,6 +970,11 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 	}
 
 	@Override
+	public ScreenDescriptionEntry getSuccessor() {
+		return successor;
+	}
+
+	@Override
 	public UnderlineClause getUnderlineClause() {
 		return underlineClause;
 	}
@@ -998,6 +1012,16 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 	@Override
 	public void setParentScreenDescriptionEntry(final ScreenDescriptionEntry parentScreenDescriptionEntry) {
 		this.parentScreenDescriptionEntry = parentScreenDescriptionEntry;
+	}
+
+	@Override
+	public void setPredecessor(final ScreenDescriptionEntry predecessor) {
+		this.predecessor = predecessor;
+	}
+
+	@Override
+	public void setSuccessor(final ScreenDescriptionEntry successor) {
+		this.successor = successor;
 	}
 
 	@Override

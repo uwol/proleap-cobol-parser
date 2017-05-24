@@ -106,14 +106,14 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 			/*
 			 * data description entries
 			 */
-			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
+			DataDescriptionEntryGroup currentDataDescriptionEntryGroup = null;
 
 			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
 				final DataDescriptionEntry dataDescriptionEntry = result
-						.createDataDescriptionEntry(lastDataDescriptionEntryGroup, dataDescriptionEntryContext);
+						.createDataDescriptionEntry(currentDataDescriptionEntryGroup, dataDescriptionEntryContext);
 
 				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
-					lastDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+					currentDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
 				}
 			}
 

@@ -15,6 +15,7 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer.DataDescriptionEntryContainerType;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -32,30 +33,40 @@ public class DataDescription01Test extends CobolTestBase {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
-		assertEquals(3, workingStorageSection.getDataDescriptionEntries().size());
-		assertEquals(1, workingStorageSection.getRootDataDescriptionEntries().size());
+		assertEquals(4, workingStorageSection.getDataDescriptionEntries().size());
+		assertEquals(2, workingStorageSection.getRootDataDescriptionEntries().size());
 
 		assertEquals(DataDescriptionEntryContainerType.WORKING_STORAGE_SECTION,
 				workingStorageSection.getContainerType());
 
 		{
-			final DataDescriptionEntry dataDescriptionEntryItems = workingStorageSection
-					.getDataDescriptionEntry("ITEMS");
+			final DataDescriptionEntry dataDescriptionEntryItems1 = workingStorageSection
+					.getDataDescriptionEntry("ITEMS1");
 
-			assertNotNull(dataDescriptionEntryItems);
-			assertEquals("ITEMS", dataDescriptionEntryItems.getName());
-			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItems.getType());
-			assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
-			assertNull(dataDescriptionEntryItems.getParentDataDescriptionEntryGroup());
+			assertNotNull(dataDescriptionEntryItems1);
+			assertEquals("ITEMS1", dataDescriptionEntryItems1.getName());
+			assertEquals(new Integer(1), dataDescriptionEntryItems1.getLevelNumber());
+			assertNull(dataDescriptionEntryItems1.getParentDataDescriptionEntryGroup());
+			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItems1.getType());
+
+			final DataDescriptionEntryGroup dataDescriptionEntryGroupItems = (DataDescriptionEntryGroup) dataDescriptionEntryItems1;
+			assertNull(dataDescriptionEntryGroupItems.getPredecessor());
+			// FIXME: should be ITEMS2
+			assertNull(dataDescriptionEntryGroupItems.getSuccessor());
 
 			{
 				final DataDescriptionEntry dataDescriptionEntryItem1 = workingStorageSection
 						.getDataDescriptionEntry("ITEM1");
 				assertNotNull(dataDescriptionEntryItem1);
 				assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
-				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem1.getType());
 				assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
-				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
+				assertEquals(dataDescriptionEntryItems1,
+						dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
+				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem1.getType());
+
+				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem1 = (DataDescriptionEntryGroup) dataDescriptionEntryItem1;
+				assertNull(dataDescriptionEntryGroupItem1.getPredecessor());
+				assertNotNull(dataDescriptionEntryGroupItem1.getSuccessor());
 			}
 
 			{
@@ -63,10 +74,31 @@ public class DataDescription01Test extends CobolTestBase {
 						.getDataDescriptionEntry("ITEM2");
 				assertNotNull(dataDescriptionEntryItem2);
 				assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
-				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem2.getType());
 				assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
-				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
+				assertEquals(dataDescriptionEntryItems1,
+						dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
+				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem2.getType());
+
+				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem2 = (DataDescriptionEntryGroup) dataDescriptionEntryItem2;
+				assertNotNull(dataDescriptionEntryGroupItem2.getPredecessor());
+				assertNull(dataDescriptionEntryGroupItem2.getSuccessor());
 			}
+		}
+
+		{
+			final DataDescriptionEntry dataDescriptionEntryItems2 = workingStorageSection
+					.getDataDescriptionEntry("ITEMS2");
+
+			assertNotNull(dataDescriptionEntryItems2);
+			assertEquals("ITEMS2", dataDescriptionEntryItems2.getName());
+			assertEquals(new Integer(1), dataDescriptionEntryItems2.getLevelNumber());
+			assertNull(dataDescriptionEntryItems2.getParentDataDescriptionEntryGroup());
+			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItems2.getType());
+
+			final DataDescriptionEntryGroup dataDescriptionEntryGroupItems = (DataDescriptionEntryGroup) dataDescriptionEntryItems2;
+			// FIXME: should be ITEMS1
+			assertNull(dataDescriptionEntryGroupItems.getPredecessor());
+			assertNull(dataDescriptionEntryGroupItems.getSuccessor());
 		}
 	}
 }

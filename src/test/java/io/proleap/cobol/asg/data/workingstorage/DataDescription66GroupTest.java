@@ -12,6 +12,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryRename;
@@ -36,24 +37,25 @@ public class DataDescription66GroupTest extends CobolTestBase {
 		assertEquals(4, workingStorageSection.getDataDescriptionEntries().size());
 		assertEquals(2, workingStorageSection.getRootDataDescriptionEntries().size());
 
+		final DataDescriptionEntry dataDescriptionEntryItems;
+
 		{
-			final DataDescriptionEntry dataDescriptionEntryItems = workingStorageSection
-					.getDataDescriptionEntry("ITEMS");
+			dataDescriptionEntryItems = workingStorageSection.getDataDescriptionEntry("ITEMS");
 
 			assertNotNull(dataDescriptionEntryItems);
 			assertEquals("ITEMS", dataDescriptionEntryItems.getName());
-			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItems.getType());
 			assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
 			assertNull(dataDescriptionEntryItems.getParentDataDescriptionEntryGroup());
+			assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItems.getType());
 
 			{
 				final DataDescriptionEntry dataDescriptionEntryItem1 = workingStorageSection
 						.getDataDescriptionEntry("ITEM1");
 				assertNotNull(dataDescriptionEntryItem1);
 				assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
-				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem1.getType());
 				assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
+				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem1.getType());
 			}
 
 			{
@@ -61,9 +63,9 @@ public class DataDescription66GroupTest extends CobolTestBase {
 						.getDataDescriptionEntry("ITEM2");
 				assertNotNull(dataDescriptionEntryItem2);
 				assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
-				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem2.getType());
 				assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
+				assertEquals(DataDescriptionEntry.Type.GROUP, dataDescriptionEntryItem2.getType());
 			}
 		}
 
@@ -75,14 +77,30 @@ public class DataDescription66GroupTest extends CobolTestBase {
 			assertEquals("ITEMZ", dataDescriptionEntryItemz.getName());
 			assertEquals(new Integer(66), dataDescriptionEntryItemz.getLevelNumber());
 			assertNull(dataDescriptionEntryItemz.getParentDataDescriptionEntryGroup());
+			assertEquals(DataDescriptionEntry.Type.RENAME, dataDescriptionEntryItemz.getType());
 
 			final DataDescriptionEntryRename dataDescriptionEntryItemzRename = (DataDescriptionEntryRename) dataDescriptionEntryItemz;
-			assertEquals(DataDescriptionEntry.Type.RENAME, dataDescriptionEntryItemz.getType());
 
 			{
 				final RenamesClause renamesClause = dataDescriptionEntryItemzRename.getRenamesClause();
-				assertNotNull(renamesClause.getFrom());
+
+				{
+					assertNotNull(renamesClause.getFrom());
+					final DataDescriptionEntryCall from = (DataDescriptionEntryCall) renamesClause.getFrom();
+					assertEquals(dataDescriptionEntryItems, from.getDataDescriptionEntry());
+				}
+
 				assertNull(renamesClause.getTo());
+
+				{
+					assertEquals(1, renamesClause.getCalls().size());
+
+					{
+						final DataDescriptionEntryCall call1 = (DataDescriptionEntryCall) renamesClause.getCalls()
+								.get(0);
+						assertEquals(dataDescriptionEntryItems, call1.getDataDescriptionEntry());
+					}
+				}
 			}
 		}
 	}

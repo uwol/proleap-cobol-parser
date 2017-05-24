@@ -78,8 +78,6 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 
 	WithLowerBoundsClause addWithLowerBoundClause(DataWithLowerBoundsClauseContext ctx);
 
-	DataDescriptionEntry getDataDescriptionEntry(String name);
-
 	AlignedClause getAlignedClause();
 
 	BlankWhenZeroClause getBlankWhenZeroClause();
@@ -87,6 +85,8 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 	CommonOwnLocalClause getCommonOwnLocalClause();
 
 	List<DataDescriptionEntry> getDataDescriptionEntries();
+
+	DataDescriptionEntry getDataDescriptionEntry(String name);
 
 	ExternalClause getExternalClause();
 
@@ -102,6 +102,8 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 
 	PictureClause getPictureClause();
 
+	DataDescriptionEntry getPredecessor();
+
 	ReceivedByClause getReceivedByClause();
 
 	RecordAreaClause getRecordAreaClause();
@@ -109,6 +111,8 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 	RedefinesClause getRedefinesClause();
 
 	SignClause getSignClause();
+
+	DataDescriptionEntry getSuccessor();
 
 	SynchronizedClause getSynchronizedClause();
 
@@ -127,5 +131,9 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 	WithLowerBoundsClause getWithLowerBoundsClause();
 
 	void setFiller(Boolean filler);
+
+	void setPredecessor(DataDescriptionEntry predecessor);
+
+	void setSuccessor(DataDescriptionEntry successor);
 
 }
