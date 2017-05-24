@@ -39,96 +39,102 @@ public class ScreenTest extends CobolTestBase {
 		assertEquals(5, screenSection.getScreenDescriptionEntries().size());
 		assertEquals(2, screenSection.getRootScreenDescriptionEntries().size());
 
+		final ScreenDescriptionEntry screenDescriptionEntry1 = screenSection.getRootScreenDescriptionEntries().get(0);
+		final ScreenDescriptionEntry screenDescriptionEntry2 = screenSection.getRootScreenDescriptionEntries().get(1);
+
 		{
-			final ScreenDescriptionEntry screenDescriptionEntry1 = screenSection.getRootScreenDescriptionEntries()
-					.get(0);
 			assertEquals(new Integer(1), screenDescriptionEntry1.getLevelNumber());
 			assertEquals("SOMESCREEN1", screenDescriptionEntry1.getName());
 			assertNull(screenDescriptionEntry1.getPredecessor());
-			// FIXME: should be SOMESCREEN2
-			assertNull(screenDescriptionEntry1.getSuccessor());
+			assertNotNull(screenDescriptionEntry1.getSuccessor());
+			assertEquals(screenDescriptionEntry2, screenDescriptionEntry1.getSuccessor());
 
 			assertEquals(3, screenDescriptionEntry1.getScreenDescriptionEntries().size());
 
+			final ScreenDescriptionEntry subScreenDescriptionEntry1 = screenDescriptionEntry1
+					.getScreenDescriptionEntries().get(0);
+			final ScreenDescriptionEntry subScreenDescriptionEntry2 = screenDescriptionEntry1
+					.getScreenDescriptionEntries().get(1);
+			final ScreenDescriptionEntry subScreenDescriptionEntry3 = screenDescriptionEntry1
+					.getScreenDescriptionEntries().get(2);
+
 			{
-				final ScreenDescriptionEntry subScreenDescriptionEntry = screenDescriptionEntry1
-						.getScreenDescriptionEntries().get(0);
-				assertNull(subScreenDescriptionEntry.getName());
-				assertEquals(new Integer(5), subScreenDescriptionEntry.getLevelNumber());
-				assertEquals(screenDescriptionEntry1, subScreenDescriptionEntry.getParentScreenDescriptionEntry());
-				assertNull(subScreenDescriptionEntry.getPredecessor());
-				assertNotNull(subScreenDescriptionEntry.getSuccessor());
+				assertNull(subScreenDescriptionEntry1.getName());
+				assertEquals(new Integer(5), subScreenDescriptionEntry1.getLevelNumber());
+				assertEquals(screenDescriptionEntry1, subScreenDescriptionEntry1.getParentScreenDescriptionEntry());
+				assertNull(subScreenDescriptionEntry1.getPredecessor());
+				assertNotNull(subScreenDescriptionEntry1.getSuccessor());
+				assertEquals(subScreenDescriptionEntry2, subScreenDescriptionEntry1.getSuccessor());
 
 				{
-					final BlankClause blankClause = subScreenDescriptionEntry.getBlankClause();
+					final BlankClause blankClause = subScreenDescriptionEntry1.getBlankClause();
 					assertNotNull(blankClause);
 					assertEquals(BlankClause.Type.SCREEN, blankClause.getType());
 				}
 			}
 
 			{
-				final ScreenDescriptionEntry subScreenDescriptionEntry = screenDescriptionEntry1
-						.getScreenDescriptionEntries().get(1);
-				assertEquals("SOMELINE1", subScreenDescriptionEntry.getName());
-				assertEquals(new Integer(5), subScreenDescriptionEntry.getLevelNumber());
-				assertEquals(screenDescriptionEntry1, subScreenDescriptionEntry.getParentScreenDescriptionEntry());
-				assertNotNull(subScreenDescriptionEntry.getPredecessor());
-				assertNotNull(subScreenDescriptionEntry.getSuccessor());
+				assertEquals("SOMELINE1", subScreenDescriptionEntry2.getName());
+				assertEquals(new Integer(5), subScreenDescriptionEntry2.getLevelNumber());
+				assertEquals(screenDescriptionEntry1, subScreenDescriptionEntry2.getParentScreenDescriptionEntry());
+				assertNotNull(subScreenDescriptionEntry2.getPredecessor());
+				assertEquals(subScreenDescriptionEntry1, subScreenDescriptionEntry2.getPredecessor());
+				assertNotNull(subScreenDescriptionEntry2.getSuccessor());
+				assertEquals(subScreenDescriptionEntry3, subScreenDescriptionEntry2.getSuccessor());
 
 				{
-					final LineNumberClause lineNumberClause = subScreenDescriptionEntry.getLineNumberClause();
+					final LineNumberClause lineNumberClause = subScreenDescriptionEntry2.getLineNumberClause();
 					assertNotNull(lineNumberClause);
 					assertEquals(new Integer(1), lineNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
-					final ColumnNumberClause columnNumberClause = subScreenDescriptionEntry.getColumnNumberClause();
+					final ColumnNumberClause columnNumberClause = subScreenDescriptionEntry2.getColumnNumberClause();
 					assertNotNull(columnNumberClause);
 					assertEquals(new Integer(16), columnNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
-					final ValueClause valueClause = subScreenDescriptionEntry.getValueClause();
+					final ValueClause valueClause = subScreenDescriptionEntry2.getValueClause();
 					assertNotNull(valueClause);
 					assertEquals("E M P L O Y E E", valueClause.getLiteral().getNonNumericLiteral());
 				}
 
 				{
-					final LightClause lightClause = subScreenDescriptionEntry.getLightClause();
+					final LightClause lightClause = subScreenDescriptionEntry2.getLightClause();
 					assertNotNull(lightClause);
 					assertEquals(LightClause.Type.HIGHLIGHT, lightClause.getType());
 				}
 			}
 
 			{
-				final ScreenDescriptionEntry subScreenDescriptionEntry = screenDescriptionEntry1
-						.getScreenDescriptionEntries().get(2);
-				assertNull(subScreenDescriptionEntry.getName());
-				assertEquals(new Integer(5), subScreenDescriptionEntry.getLevelNumber());
-				assertEquals(screenDescriptionEntry1, subScreenDescriptionEntry.getParentScreenDescriptionEntry());
-				assertNotNull(subScreenDescriptionEntry.getPredecessor());
-				assertNull(subScreenDescriptionEntry.getSuccessor());
+				assertNull(subScreenDescriptionEntry3.getName());
+				assertEquals(new Integer(5), subScreenDescriptionEntry3.getLevelNumber());
+				assertEquals(screenDescriptionEntry1, subScreenDescriptionEntry3.getParentScreenDescriptionEntry());
+				assertNotNull(subScreenDescriptionEntry3.getPredecessor());
+				assertEquals(subScreenDescriptionEntry2, subScreenDescriptionEntry3.getPredecessor());
+				assertNull(subScreenDescriptionEntry3.getSuccessor());
 
 				{
-					final LineNumberClause lineNumberClause = subScreenDescriptionEntry.getLineNumberClause();
+					final LineNumberClause lineNumberClause = subScreenDescriptionEntry3.getLineNumberClause();
 					assertNotNull(lineNumberClause);
 					assertEquals(new Integer(2), lineNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
-					final ColumnNumberClause columnNumberClause = subScreenDescriptionEntry.getColumnNumberClause();
+					final ColumnNumberClause columnNumberClause = subScreenDescriptionEntry3.getColumnNumberClause();
 					assertNotNull(columnNumberClause);
 					assertEquals(new Integer(35), columnNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
-					final ValueClause valueClause = subScreenDescriptionEntry.getValueClause();
+					final ValueClause valueClause = subScreenDescriptionEntry3.getValueClause();
 					assertNotNull(valueClause);
 					assertEquals("A D D R E S S", valueClause.getLiteral().getNonNumericLiteral());
 				}
 
 				{
-					final LightClause lightClause = subScreenDescriptionEntry.getLightClause();
+					final LightClause lightClause = subScreenDescriptionEntry3.getLightClause();
 					assertNotNull(lightClause);
 					assertEquals(LightClause.Type.LOWLIGHT, lightClause.getType());
 				}
@@ -136,12 +142,10 @@ public class ScreenTest extends CobolTestBase {
 		}
 
 		{
-			final ScreenDescriptionEntry screenDescriptionEntry2 = screenSection.getRootScreenDescriptionEntries()
-					.get(1);
 			assertEquals(new Integer(1), screenDescriptionEntry2.getLevelNumber());
 			assertEquals("SOMESCREEN2", screenDescriptionEntry2.getName());
-			// FIXME: should be SOMESCREEN1
-			assertNull(screenDescriptionEntry2.getPredecessor());
+			assertNotNull(screenDescriptionEntry2.getPredecessor());
+			assertEquals(screenDescriptionEntry1, screenDescriptionEntry2.getPredecessor());
 			assertNull(screenDescriptionEntry2.getSuccessor());
 		}
 	}

@@ -8,11 +8,24 @@
 
 package io.proleap.cobol.asg.visitor.impl;
 
+import java.util.List;
+
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
+import io.proleap.cobol.asg.metamodel.data.communication.CommunicationSection;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
+import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.file.FileSection;
+import io.proleap.cobol.asg.metamodel.data.linkage.LinkageSection;
+import io.proleap.cobol.asg.metamodel.data.localstorage.LocalStorageSection;
+import io.proleap.cobol.asg.metamodel.data.screen.ScreenDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.screen.ScreenSection;
+import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.util.ANTLRUtils;
 
 /**
@@ -28,13 +41,68 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 		return ANTLRUtils.findParent(DataDivision.class, ctx, program.getASGElementRegistry());
 	}
 
+	protected void linkDataDescriptionEntries(final DataDescriptionEntry predecessor,
+			final DataDescriptionEntry successor) {
+		predecessor.setSuccessor(successor);
+		successor.setPredecessor(predecessor);
+	}
+
+	protected void linkDataDescriptionEntries(final DataDescriptionEntryContainer container) {
+		final List<DataDescriptionEntry> rootDataDescriptionEntries = container.getRootDataDescriptionEntries();
+		linkDataDescriptionEntries(rootDataDescriptionEntries);
+	}
+
+	protected void linkDataDescriptionEntries(final List<DataDescriptionEntry> dataDescriptionEntries) {
+		DataDescriptionEntry predecessor = null;
+
+		for (final DataDescriptionEntry successor : dataDescriptionEntries) {
+			if (predecessor != null) {
+				linkDataDescriptionEntries(predecessor, successor);
+			}
+
+			if (DataDescriptionEntry.Type.GROUP.equals(successor.getType())) {
+				final DataDescriptionEntryGroup successorGroup = (DataDescriptionEntryGroup) successor;
+				linkDataDescriptionEntries(successorGroup.getDataDescriptionEntries());
+			}
+
+			predecessor = successor;
+		}
+	}
+
+	protected void linkScreenDescriptionEntries(final List<ScreenDescriptionEntry> screenDescriptionEntries) {
+		ScreenDescriptionEntry predecessor = null;
+
+		for (final ScreenDescriptionEntry successor : screenDescriptionEntries) {
+			if (predecessor != null) {
+				linkScreenDescriptionEntries(predecessor, successor);
+			}
+
+			linkScreenDescriptionEntries(successor.getScreenDescriptionEntries());
+			predecessor = successor;
+		}
+	}
+
+	protected void linkScreenDescriptionEntries(final ScreenDescriptionEntry predecessor,
+			final ScreenDescriptionEntry successor) {
+		predecessor.setSuccessor(successor);
+		successor.setPredecessor(predecessor);
+	}
+
+	protected void linkScreenDescriptionEntries(final ScreenSection screenSection) {
+		final List<ScreenDescriptionEntry> rootScreenDescriptionEntries = screenSection
+				.getRootScreenDescriptionEntries();
+		linkScreenDescriptionEntries(rootScreenDescriptionEntries);
+	}
+
 	@Override
 	public Boolean visitCommunicationSection(final Cobol85Parser.CommunicationSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
+		final CommunicationSection communicationSection = dataDivision.addCommunicationSection(ctx);
+		final Boolean result = visitChildren(ctx);
 
-		dataDivision.addCommunicationSection(ctx);
+		linkDataDescriptionEntries(communicationSection);
 
-		return visitChildren(ctx);
+		return result;
 	}
 
 	@Override
@@ -49,28 +117,36 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	@Override
 	public Boolean visitFileSection(final Cobol85Parser.FileSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
+		final FileSection fileSection = dataDivision.addFileSection(ctx);
+		final Boolean result = visitChildren(ctx);
 
-		dataDivision.addFileSection(ctx);
+		for (final FileDescriptionEntry fileDescriptionEntry : fileSection.getFileDescriptionEntries()) {
+			linkDataDescriptionEntries(fileDescriptionEntry);
+		}
 
-		return visitChildren(ctx);
+		return result;
 	}
 
 	@Override
 	public Boolean visitLinkageSection(final Cobol85Parser.LinkageSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
+		final LinkageSection linkageSection = dataDivision.addLinkageSection(ctx);
+		final Boolean result = visitChildren(ctx);
 
-		dataDivision.addLinkageSection(ctx);
+		linkDataDescriptionEntries(linkageSection);
 
-		return visitChildren(ctx);
+		return result;
 	}
 
 	@Override
 	public Boolean visitLocalStorageSection(final Cobol85Parser.LocalStorageSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
+		final LocalStorageSection localStorageSection = dataDivision.addLocalStorageSection(ctx);
+		final Boolean result = visitChildren(ctx);
 
-		dataDivision.addLocalStorageSection(ctx);
+		linkDataDescriptionEntries(localStorageSection);
 
-		return visitChildren(ctx);
+		return result;
 	}
 
 	@Override
@@ -94,19 +170,22 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 	@Override
 	public Boolean visitScreenSection(final Cobol85Parser.ScreenSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
+		final ScreenSection screenSection = dataDivision.addScreenSection(ctx);
+		final Boolean result = visitChildren(ctx);
 
-		dataDivision.addScreenSection(ctx);
+		linkScreenDescriptionEntries(screenSection);
 
-		return visitChildren(ctx);
+		return result;
 	}
 
 	@Override
 	public Boolean visitWorkingStorageSection(final Cobol85Parser.WorkingStorageSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
+		final WorkingStorageSection workingStorageSection = dataDivision.addWorkingStorageSection(ctx);
+		final Boolean result = visitChildren(ctx);
 
-		dataDivision.addWorkingStorageSection(ctx);
+		linkDataDescriptionEntries(workingStorageSection);
 
-		return visitChildren(ctx);
+		return result;
 	}
-
 }

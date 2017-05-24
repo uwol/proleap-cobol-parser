@@ -102,8 +102,6 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 
 	protected PictureClause pictureClause;
 
-	protected DataDescriptionEntry predecessor;
-
 	protected ReceivedByClause receivedByClause;
 
 	protected RecordAreaClause recordAreaClause;
@@ -111,8 +109,6 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	protected RedefinesClause redefinesClause;
 
 	protected SignClause signClause;
-
-	protected DataDescriptionEntry successor;
 
 	protected SynchronizedClause synchronizedClause;
 
@@ -764,11 +760,6 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
-	public DataDescriptionEntry getPredecessor() {
-		return predecessor;
-	}
-
-	@Override
 	public ReceivedByClause getReceivedByClause() {
 		return receivedByClause;
 	}
@@ -786,11 +777,6 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	@Override
 	public SignClause getSignClause() {
 		return signClause;
-	}
-
-	@Override
-	public DataDescriptionEntry getSuccessor() {
-		return successor;
 	}
 
 	@Override
@@ -849,16 +835,6 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	@Override
 	public void setFiller(final Boolean filler) {
 		this.filler = filler;
-	}
-
-	@Override
-	public void setPredecessor(final DataDescriptionEntry predecessor) {
-		this.predecessor = predecessor;
-	}
-
-	@Override
-	public void setSuccessor(final DataDescriptionEntry successor) {
-		this.successor = successor;
 	}
 
 }

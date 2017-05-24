@@ -102,8 +102,6 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 
 	PictureClause getPictureClause();
 
-	DataDescriptionEntry getPredecessor();
-
 	ReceivedByClause getReceivedByClause();
 
 	RecordAreaClause getRecordAreaClause();
@@ -111,8 +109,6 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 	RedefinesClause getRedefinesClause();
 
 	SignClause getSignClause();
-
-	DataDescriptionEntry getSuccessor();
 
 	SynchronizedClause getSynchronizedClause();
 
@@ -131,9 +127,5 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 	WithLowerBoundsClause getWithLowerBoundsClause();
 
 	void setFiller(Boolean filler);
-
-	void setPredecessor(DataDescriptionEntry predecessor);
-
-	void setSuccessor(DataDescriptionEntry successor);
 
 }

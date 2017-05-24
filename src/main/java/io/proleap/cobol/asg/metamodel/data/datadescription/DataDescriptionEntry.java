@@ -36,9 +36,17 @@ public interface DataDescriptionEntry extends CobolDivisionElement, Declaration 
 
 	DataDescriptionEntryGroup getParentDataDescriptionEntryGroup();
 
+	DataDescriptionEntry getPredecessor();
+
+	DataDescriptionEntry getSuccessor();
+
 	Type getType();
 
 	void setLevelNumber(Integer levelNumber);
 
 	void setParentDataDescriptionEntryGroup(DataDescriptionEntryGroup parentDataDescriptionEntryGroup);
+
+	void setPredecessor(DataDescriptionEntry predecessor);
+
+	void setSuccessor(DataDescriptionEntry successor);
 }

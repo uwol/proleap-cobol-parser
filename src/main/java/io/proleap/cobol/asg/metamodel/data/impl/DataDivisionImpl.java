@@ -303,7 +303,6 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 
 		if (currentScreenDescriptionEntry != null && result != null) {
 			groupScreenDescriptionEntry(currentScreenDescriptionEntry, result);
-			linkScreenDescriptionEntry(currentScreenDescriptionEntry, result);
 		}
 
 		return result;
@@ -369,17 +368,6 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 			if (currentParentScreenDescriptionEntry != null) {
 				groupScreenDescriptionEntry(currentParentScreenDescriptionEntry, screenDescriptionEntry);
 			}
-		}
-	}
-
-	protected void linkScreenDescriptionEntry(final ScreenDescriptionEntry currentScreenDescriptionEntry,
-			final ScreenDescriptionEntry screenDescriptionEntry) {
-		final Integer currentLevelNumber = currentScreenDescriptionEntry.getLevelNumber();
-		final Integer levelNumber = screenDescriptionEntry.getLevelNumber();
-
-		if (levelNumber == currentLevelNumber) {
-			currentScreenDescriptionEntry.setSuccessor(screenDescriptionEntry);
-			screenDescriptionEntry.setPredecessor(currentScreenDescriptionEntry);
 		}
 	}
 }

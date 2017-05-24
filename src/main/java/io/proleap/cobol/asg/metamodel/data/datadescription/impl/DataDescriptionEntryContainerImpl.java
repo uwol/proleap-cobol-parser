@@ -390,10 +390,6 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 
 		if (currentDataDescriptionEntryGroup != null && result != null) {
 			groupDataDescriptionEntry(currentDataDescriptionEntryGroup, result);
-
-			if (result instanceof DataDescriptionEntryGroup) {
-				linkDataDescriptionEntry(currentDataDescriptionEntryGroup, (DataDescriptionEntryGroup) result);
-			}
 		}
 
 		return result;
@@ -446,17 +442,5 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 		final boolean result = levelNumber != null && DataDescriptionEntry.LEVEL_NUMBER_SCALAR != levelNumber
 				&& DataDescriptionEntry.LEVEL_NUMBER_RENAME != levelNumber;
 		return result;
-	}
-
-	protected void linkDataDescriptionEntry(final DataDescriptionEntryGroup currentDataDescriptionEntryGroup,
-			final DataDescriptionEntryGroup dataDescriptionEntry) {
-		final Integer currentLevelNumber = currentDataDescriptionEntryGroup.getLevelNumber();
-		final Integer levelNumber = dataDescriptionEntry.getLevelNumber();
-
-		if (!isGroupableLevelNumber(levelNumber)) {
-		} else if (levelNumber == currentLevelNumber) {
-			currentDataDescriptionEntryGroup.setSuccessor(dataDescriptionEntry);
-			dataDescriptionEntry.setPredecessor(currentDataDescriptionEntryGroup);
-		}
 	}
 }

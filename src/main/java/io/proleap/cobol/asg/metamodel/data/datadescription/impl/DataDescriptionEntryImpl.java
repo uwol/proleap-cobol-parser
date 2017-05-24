@@ -32,6 +32,10 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 
 	protected DataDescriptionEntryGroup parentDataDescriptionEntryGroup;
 
+	protected DataDescriptionEntry predecessor;
+
+	protected DataDescriptionEntry successor;
+
 	public DataDescriptionEntryImpl(final String name,
 			final DataDescriptionEntryContainer dataDescriptionEntryContainer, final ProgramUnit programUnit,
 			final ParserRuleContext ctx) {
@@ -72,6 +76,16 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	}
 
 	@Override
+	public DataDescriptionEntry getPredecessor() {
+		return predecessor;
+	}
+
+	@Override
+	public DataDescriptionEntry getSuccessor() {
+		return successor;
+	}
+
+	@Override
 	public void setLevelNumber(final Integer levelNumber) {
 		this.levelNumber = levelNumber;
 	}
@@ -79,6 +93,16 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	@Override
 	public void setParentDataDescriptionEntryGroup(final DataDescriptionEntryGroup parentDataDescriptionEntryGroup) {
 		this.parentDataDescriptionEntryGroup = parentDataDescriptionEntryGroup;
+	}
+
+	@Override
+	public void setPredecessor(final DataDescriptionEntry predecessor) {
+		this.predecessor = predecessor;
+	}
+
+	@Override
+	public void setSuccessor(final DataDescriptionEntry successor) {
+		this.successor = successor;
 	}
 
 	@Override
