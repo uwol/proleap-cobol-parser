@@ -12,6 +12,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.ReportCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
@@ -76,7 +77,7 @@ public class InitiateStatementTest extends CobolTestBase {
 
 					{
 						final ReportCall reportCall = (ReportCall) call;
-						assertEquals(Call.CallType.REPORT_DESCRIPTION_CALL, call.getCallType());
+						assertEquals(CallType.REPORT_DESCRIPTION_CALL, call.getCallType());
 						assertEquals(reportDescription1, reportCall.getReport());
 					}
 				}
@@ -87,7 +88,7 @@ public class InitiateStatementTest extends CobolTestBase {
 
 					{
 						final ReportCall reportCall = (ReportCall) call;
-						assertEquals(Call.CallType.REPORT_DESCRIPTION_CALL, call.getCallType());
+						assertEquals(CallType.REPORT_DESCRIPTION_CALL, call.getCallType());
 						assertEquals(reportDescription2, reportCall.getReport());
 					}
 				}

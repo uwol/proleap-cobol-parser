@@ -12,6 +12,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.receive.NoData;
@@ -48,17 +49,18 @@ public class ReceiveIntoStatementTest extends CobolTestBase {
 				{
 					final Call communicationDescriptionCall = receiveIntoStatement.getCommunicationDescriptionCall();
 					assertNotNull(communicationDescriptionCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, communicationDescriptionCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, communicationDescriptionCall.getCallType());
 				}
 
 				{
-					assertEquals(ReceiveIntoStatement.ReceiveIntoType.MESSAGE, receiveIntoStatement.getReceiveIntoType());
+					assertEquals(ReceiveIntoStatement.ReceiveIntoType.MESSAGE,
+							receiveIntoStatement.getReceiveIntoType());
 				}
 
 				{
 					final Call intoCall = receiveIntoStatement.getIntoCall();
 					assertNotNull(intoCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, intoCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, intoCall.getCallType());
 				}
 
 				{

@@ -12,6 +12,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
@@ -55,11 +56,11 @@ public class UnstringStatementTest extends CobolTestBase {
 
 				{
 					final Call sendingCall = sending.getSendingCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, sendingCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, sendingCall.getCallType());
 
 					{
-						final DelimitedByPhrase delimitedBy = sending.getDelimitedByPhrase();
-						final ValueStmt delimitedByValueStmt = delimitedBy.getDelimitedByValueStmt();
+						final DelimitedByPhrase delimitedByPhrase = sending.getDelimitedByPhrase();
+						final ValueStmt delimitedByValueStmt = delimitedByPhrase.getDelimitedByValueStmt();
 						assertEquals("1", delimitedByValueStmt.getValue());
 					}
 
@@ -71,7 +72,7 @@ public class UnstringStatementTest extends CobolTestBase {
 							final ValueStmt orAllValueStmt = orAll.getOrAllValueStmt();
 
 							final CallValueStmt orAllCallValueStmt = (CallValueStmt) orAllValueStmt;
-							assertEquals(Call.CallType.UNDEFINED_CALL, orAllCallValueStmt.getCall().getCallType());
+							assertEquals(CallType.UNDEFINED_CALL, orAllCallValueStmt.getCall().getCallType());
 						}
 
 						{
@@ -79,67 +80,69 @@ public class UnstringStatementTest extends CobolTestBase {
 							final ValueStmt orAllValueStmt = orAll.getOrAllValueStmt();
 
 							final CallValueStmt orAllCallValueStmt = (CallValueStmt) orAllValueStmt;
-							assertEquals(Call.CallType.UNDEFINED_CALL, orAllCallValueStmt.getCall().getCallType());
+							assertEquals(CallType.UNDEFINED_CALL, orAllCallValueStmt.getCall().getCallType());
 						}
 					}
 				}
 			}
 
 			{
-				final IntoPhrase intos = unstringStatement.getIntoPhrase();
-				assertNotNull(intos);
-				assertEquals(2, intos.getIntos().size());
+				final IntoPhrase intoPhrase = unstringStatement.getIntoPhrase();
+				assertNotNull(intoPhrase);
+				assertEquals(2, intoPhrase.getIntos().size());
 
 				{
-					final io.proleap.cobol.asg.metamodel.procedure.unstring.Into into = intos.getIntos().get(0);
+					final io.proleap.cobol.asg.metamodel.procedure.unstring.Into into = intoPhrase.getIntos().get(0);
 					final Call intoCall = into.getIntoCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, intoCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, intoCall.getCallType());
 
 					{
 						final DelimiterIn delimiterIn = into.getDelimiterIn();
 						final Call delimiterInCall = delimiterIn.getDelimiterInCall();
-						assertEquals(Call.CallType.UNDEFINED_CALL, delimiterInCall.getCallType());
+						assertEquals(CallType.UNDEFINED_CALL, delimiterInCall.getCallType());
 					}
 				}
 
 				{
-					final io.proleap.cobol.asg.metamodel.procedure.unstring.Into into = intos.getIntos().get(1);
+					final io.proleap.cobol.asg.metamodel.procedure.unstring.Into into = intoPhrase.getIntos().get(1);
 					final Call intoCall = into.getIntoCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, intoCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, intoCall.getCallType());
 
 					{
 						final CountIn countIn = into.getCountIn();
 						final Call countInCall = countIn.getCountInCall();
-						assertEquals(Call.CallType.UNDEFINED_CALL, countInCall.getCallType());
+						assertEquals(CallType.UNDEFINED_CALL, countInCall.getCallType());
 					}
 				}
 			}
 
 			{
-				final WithPointerPhrase withPointer = unstringStatement.getWithPointerPhrase();
-				final Call pointerCall = withPointer.getPointerCall();
-				assertEquals(Call.CallType.UNDEFINED_CALL, pointerCall.getCallType());
+				final WithPointerPhrase withPointerPhrase = unstringStatement.getWithPointerPhrase();
+				final Call pointerCall = withPointerPhrase.getPointerCall();
+				assertEquals(CallType.UNDEFINED_CALL, pointerCall.getCallType());
 			}
 
 			{
-				final OnOverflowPhrase onOverflow = unstringStatement.getOnOverflowPhrase();
-				assertNotNull(onOverflow);
-				assertEquals(1, onOverflow.getStatements().size());
+				final OnOverflowPhrase onOverflowPhrase = unstringStatement.getOnOverflowPhrase();
+				assertNotNull(onOverflowPhrase);
+				assertEquals(1, onOverflowPhrase.getStatements().size());
 
 				{
-					final DisplayStatement displayStatement = (DisplayStatement) onOverflow.getStatements().get(0);
+					final DisplayStatement displayStatement = (DisplayStatement) onOverflowPhrase.getStatements()
+							.get(0);
 					assertNotNull(displayStatement);
 					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 				}
 			}
 
 			{
-				final NotOnOverflowPhrase notOnOverflow = unstringStatement.getNotOnOverflowPhrase();
-				assertNotNull(notOnOverflow);
-				assertEquals(1, notOnOverflow.getStatements().size());
+				final NotOnOverflowPhrase notOnOverflowPhrase = unstringStatement.getNotOnOverflowPhrase();
+				assertNotNull(notOnOverflowPhrase);
+				assertEquals(1, notOnOverflowPhrase.getStatements().size());
 
 				{
-					final DisplayStatement displayStatement = (DisplayStatement) notOnOverflow.getStatements().get(0);
+					final DisplayStatement displayStatement = (DisplayStatement) notOnOverflowPhrase.getStatements()
+							.get(0);
 					assertNotNull(displayStatement);
 					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 				}

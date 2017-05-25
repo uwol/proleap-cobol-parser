@@ -192,7 +192,7 @@ public class TableCallTest extends CobolTestBase {
 			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
-				final MoveToPhrase moveTo = moveStatement.getMoveTo();
+				final MoveToPhrase moveTo = moveStatement.getMoveToPhrase();
 
 				{
 					final SendingArea sendingArea = moveTo.getSendingArea();

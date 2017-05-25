@@ -12,6 +12,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.search.SearchStatement;
@@ -41,14 +42,14 @@ public class SearchStatementTest extends CobolTestBase {
 			{
 				final Call dataCall = searchStatement.getDataCall();
 				assertNotNull(dataCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, dataCall.getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, dataCall.getCallType());
 			}
 
 			{
 				final VaryingPhrase varying = searchStatement.getVaryingPhrase();
 				assertNotNull(varying);
 				assertNotNull(varying.getDataCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, varying.getDataCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, varying.getDataCall().getCallType());
 			}
 
 			assertNotNull(searchStatement.getAtEndPhrase());
@@ -57,13 +58,13 @@ public class SearchStatementTest extends CobolTestBase {
 				assertEquals(2, searchStatement.getWhenPhrases().size());
 
 				{
-					final WhenPhrase when = searchStatement.getWhenPhrases().get(0);
-					assertEquals(WhenPhrase.WhenType.NEXT_SENTENCE, when.getWhenType());
+					final WhenPhrase whenPhrase = searchStatement.getWhenPhrases().get(0);
+					assertEquals(WhenPhrase.WhenType.NEXT_SENTENCE, whenPhrase.getWhenType());
 				}
 
 				{
-					final WhenPhrase when = searchStatement.getWhenPhrases().get(1);
-					assertEquals(WhenPhrase.WhenType.STATEMENTS, when.getWhenType());
+					final WhenPhrase whenPhrase = searchStatement.getWhenPhrases().get(1);
+					assertEquals(WhenPhrase.WhenType.STATEMENTS, whenPhrase.getWhenType());
 				}
 			}
 		}

@@ -13,7 +13,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideByGivingStatement;
@@ -48,7 +48,7 @@ public class DivideStatementTest extends CobolTestBase {
 			{
 				assertNotNull(divideStatement.getDivisorValueStmt());
 				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getDivisorValueStmt();
-				assertEquals(Call.CallType.UNDEFINED_CALL, divisorCallValueStmt.getCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, divisorCallValueStmt.getCall().getCallType());
 			}
 
 			{
@@ -57,7 +57,7 @@ public class DivideStatementTest extends CobolTestBase {
 				assertNotNull(divideIntoStatement.getIntoValueStmt());
 
 				final CallValueStmt intoCallValueStmt = (CallValueStmt) divideIntoStatement.getIntoValueStmt();
-				assertEquals(Call.CallType.UNDEFINED_CALL, intoCallValueStmt.getCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, intoCallValueStmt.getCall().getCallType());
 
 				assertNotNull(divideIntoStatement.getGivingPhrase());
 				assertEquals(1, divideIntoStatement.getGivingPhrase().getGivings().size());
@@ -65,7 +65,7 @@ public class DivideStatementTest extends CobolTestBase {
 				{
 					final DivideGivingStatement giving = divideIntoStatement.getGivingPhrase().getGivings().get(0);
 					assertTrue(giving.isRounded());
-					assertEquals(Call.CallType.UNDEFINED_CALL, giving.getCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, giving.getCall().getCallType());
 				}
 			}
 
@@ -73,7 +73,7 @@ public class DivideStatementTest extends CobolTestBase {
 				final Remainder remainder = divideStatement.getRemainder();
 				assertNotNull(remainder);
 				assertNotNull(remainder.getRemainderCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, remainder.getRemainderCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, remainder.getRemainderCall().getCallType());
 			}
 		}
 
@@ -86,7 +86,7 @@ public class DivideStatementTest extends CobolTestBase {
 			{
 				assertNotNull(divideStatement.getDivisorValueStmt());
 				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getDivisorValueStmt();
-				assertEquals(Call.CallType.UNDEFINED_CALL, divisorCallValueStmt.getCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, divisorCallValueStmt.getCall().getCallType());
 			}
 
 			{
@@ -98,13 +98,13 @@ public class DivideStatementTest extends CobolTestBase {
 				{
 					final DivideGivingStatement giving = divideIntoGivingStatement.getGivings().get(0);
 					assertTrue(giving.isRounded());
-					assertEquals(Call.CallType.UNDEFINED_CALL, giving.getCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, giving.getCall().getCallType());
 				}
 
 				{
 					final DivideGivingStatement giving = divideIntoGivingStatement.getGivings().get(1);
 					assertFalse(giving.isRounded());
-					assertEquals(Call.CallType.UNDEFINED_CALL, giving.getCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, giving.getCall().getCallType());
 				}
 			}
 
@@ -112,7 +112,7 @@ public class DivideStatementTest extends CobolTestBase {
 				final Remainder remainder = divideStatement.getRemainder();
 				assertNotNull(remainder);
 				assertNotNull(remainder.getRemainderCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, remainder.getRemainderCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, remainder.getRemainderCall().getCallType());
 			}
 		}
 
@@ -125,7 +125,7 @@ public class DivideStatementTest extends CobolTestBase {
 			{
 				assertNotNull(divideStatement.getDivisorValueStmt());
 				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getDivisorValueStmt();
-				assertEquals(Call.CallType.UNDEFINED_CALL, divisorCallValueStmt.getCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, divisorCallValueStmt.getCall().getCallType());
 			}
 
 			{
@@ -136,7 +136,7 @@ public class DivideStatementTest extends CobolTestBase {
 
 				final CallValueStmt intoByGivingCallValueStmt = (CallValueStmt) divideIntoByGivingStatement
 						.getByValueStmt();
-				assertEquals(Call.CallType.UNDEFINED_CALL, intoByGivingCallValueStmt.getCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, intoByGivingCallValueStmt.getCall().getCallType());
 
 				assertNotNull(divideIntoByGivingStatement.getGivingPhrase());
 				assertEquals(1, divideIntoByGivingStatement.getGivingPhrase().getGivings().size());
@@ -145,7 +145,7 @@ public class DivideStatementTest extends CobolTestBase {
 					final DivideGivingStatement giving = divideIntoByGivingStatement.getGivingPhrase().getGivings()
 							.get(0);
 					assertTrue(giving.isRounded());
-					assertEquals(Call.CallType.UNDEFINED_CALL, giving.getCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, giving.getCall().getCallType());
 				}
 			}
 
@@ -153,7 +153,7 @@ public class DivideStatementTest extends CobolTestBase {
 				final Remainder remainder = divideStatement.getRemainder();
 				assertNotNull(remainder);
 				assertNotNull(remainder.getRemainderCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, remainder.getRemainderCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, remainder.getRemainderCall().getCallType());
 			}
 		}
 	}

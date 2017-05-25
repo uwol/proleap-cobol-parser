@@ -12,7 +12,6 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
@@ -56,17 +55,17 @@ public class CallStatementTest extends CobolTestBase {
 			}
 
 			{
-				final GivingPhrase giving = callStatement.getGivingPhrase();
-				assertNotNull(giving.getGivingCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, giving.getGivingCall().getCallType());
+				final GivingPhrase givingPhrase = callStatement.getGivingPhrase();
+				assertNotNull(givingPhrase.getGivingCall());
+				assertEquals(CallType.UNDEFINED_CALL, givingPhrase.getGivingCall().getCallType());
 			}
 
 			{
-				final UsingPhrase using = callStatement.getUsingPhrasePhrase();
-				assertEquals(3, using.getParameters().size());
+				final UsingPhrase usingPhrase = callStatement.getUsingPhrasePhrase();
+				assertEquals(3, usingPhrase.getParameters().size());
 
 				{
-					final Parameter parameter = using.getParameters().get(0);
+					final Parameter parameter = usingPhrase.getParameters().get(0);
 					assertEquals(Parameter.ParameterType.REFERENCE, parameter.getParameterType());
 
 					{
@@ -76,19 +75,19 @@ public class CallStatementTest extends CobolTestBase {
 						{
 							final ByReference byReference = byReferencePhrase.getByReferences().get(0);
 							assertEquals(ByReference.ByReferenceType.INTEGER, byReference.getByReferenceType());
-							assertEquals(Call.CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
+							assertEquals(CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
 						}
 
 						{
 							final ByReference byReference = byReferencePhrase.getByReferences().get(1);
 							assertNull(byReference.getByReferenceType());
-							assertEquals(Call.CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
+							assertEquals(CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
 						}
 					}
 				}
 
 				{
-					final Parameter parameter = using.getParameters().get(1);
+					final Parameter parameter = usingPhrase.getParameters().get(1);
 					assertEquals(Parameter.ParameterType.VALUE, parameter.getParameterType());
 
 					final ByValuePhrase byValuePhrase = parameter.getByValuePhrase();
@@ -111,7 +110,7 @@ public class CallStatementTest extends CobolTestBase {
 				}
 
 				{
-					final Parameter parameter = using.getParameters().get(2);
+					final Parameter parameter = usingPhrase.getParameters().get(2);
 					assertEquals(Parameter.ParameterType.CONTENT, parameter.getParameterType());
 
 					{
@@ -124,7 +123,7 @@ public class CallStatementTest extends CobolTestBase {
 							assertNotNull(byContent.getValueStmt());
 
 							final CallValueStmt callValueStmt = (CallValueStmt) byContent.getValueStmt();
-							assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
+							assertEquals(CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 						}
 
 						{
@@ -133,7 +132,7 @@ public class CallStatementTest extends CobolTestBase {
 							assertNotNull(byContent.getValueStmt());
 
 							final CallValueStmt callValueStmt = (CallValueStmt) byContent.getValueStmt();
-							assertEquals(Call.CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
+							assertEquals(CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 						}
 
 						{

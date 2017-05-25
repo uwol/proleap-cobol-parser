@@ -12,6 +12,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.merge.Alphanumeric;
@@ -48,7 +49,7 @@ public class MergeStatementTest extends CobolTestBase {
 			{
 				final Call fileCall = mergeStatement.getFileCall();
 				assertNotNull(fileCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, fileCall.getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, fileCall.getCallType());
 			}
 
 			{
@@ -61,7 +62,7 @@ public class MergeStatementTest extends CobolTestBase {
 
 					{
 						final Call keyCall = onKey.getKeyCalls().get(0);
-						assertEquals(Call.CallType.UNDEFINED_CALL, keyCall.getCallType());
+						assertEquals(CallType.UNDEFINED_CALL, keyCall.getCallType());
 					}
 				}
 
@@ -72,45 +73,45 @@ public class MergeStatementTest extends CobolTestBase {
 
 					{
 						final Call keyCall = onKey.getKeyCalls().get(0);
-						assertEquals(Call.CallType.UNDEFINED_CALL, keyCall.getCallType());
+						assertEquals(CallType.UNDEFINED_CALL, keyCall.getCallType());
 					}
 
 					{
 						final Call keyCall = onKey.getKeyCalls().get(1);
-						assertEquals(Call.CallType.UNDEFINED_CALL, keyCall.getCallType());
+						assertEquals(CallType.UNDEFINED_CALL, keyCall.getCallType());
 					}
 				}
 			}
 
 			{
-				final CollatingSequencePhrase collatingSequence = mergeStatement.getCollatingSequencePhrase();
-				assertEquals(2, collatingSequence.getAlphabetCalls().size());
+				final CollatingSequencePhrase collatingSequencePhrase = mergeStatement.getCollatingSequencePhrase();
+				assertEquals(2, collatingSequencePhrase.getAlphabetCalls().size());
 
 				{
-					final Alphanumeric alphaNumeric = collatingSequence.getAlphaNumeric();
+					final Alphanumeric alphaNumeric = collatingSequencePhrase.getAlphaNumeric();
 					assertNotNull(alphaNumeric);
 
 					final Call alphabetCall = alphaNumeric.getAlphabetCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, alphabetCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, alphabetCall.getCallType());
 				}
 
 				{
-					final National national = collatingSequence.getNational();
+					final National national = collatingSequencePhrase.getNational();
 					assertNotNull(national);
 
 					final Call alphabetCall = national.getAlphabetCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, alphabetCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, alphabetCall.getCallType());
 				}
 			}
 
 			{
 				assertEquals(1, mergeStatement.getUsingPhrases().size());
 
-				final UsingPhrase using = mergeStatement.getUsingPhrases().get(0);
-				assertEquals(1, using.getFileCalls().size());
+				final UsingPhrase usingPhrase = mergeStatement.getUsingPhrases().get(0);
+				assertEquals(1, usingPhrase.getFileCalls().size());
 
-				final Call fileCall = using.getFileCalls().get(0);
-				assertEquals(Call.CallType.UNDEFINED_CALL, fileCall.getCallType());
+				final Call fileCall = usingPhrase.getFileCalls().get(0);
+				assertEquals(CallType.UNDEFINED_CALL, fileCall.getCallType());
 			}
 
 			{
@@ -120,7 +121,7 @@ public class MergeStatementTest extends CobolTestBase {
 				{
 					final Call procedureCall = outputProcedure.getProcedureCall();
 					assertNotNull(procedureCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, procedureCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, procedureCall.getCallType());
 				}
 
 				{
@@ -129,24 +130,24 @@ public class MergeStatementTest extends CobolTestBase {
 
 					final Call procedureCall = outputThrough.getProcedureCall();
 					assertNotNull(procedureCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, procedureCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, procedureCall.getCallType());
 				}
 			}
 
 			{
 				assertEquals(1, mergeStatement.getGivingPhrases().size());
 
-				final GivingPhrase givings = mergeStatement.getGivingPhrases().get(0);
-				assertNotNull(givings);
-				assertEquals(1, givings.getGivings().size());
+				final GivingPhrase givingPhrases = mergeStatement.getGivingPhrases().get(0);
+				assertNotNull(givingPhrases);
+				assertEquals(1, givingPhrases.getGivings().size());
 
 				{
-					final Giving giving = givings.getGivings().get(0);
+					final Giving giving = givingPhrases.getGivings().get(0);
 					assertNotNull(giving);
 					assertEquals(Giving.CloseProcedure.NO_REWIND, giving.getCloseProcedure());
 
 					final Call fileCall = giving.getFileCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, fileCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, fileCall.getCallType());
 				}
 			}
 		}

@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Giving;
@@ -56,7 +57,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
 
 					final CallValueStmt subtrahendCallValueStmt = (CallValueStmt) subtrahendValueStmt;
-					assertEquals(Call.CallType.UNDEFINED_CALL, subtrahendCallValueStmt.getCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, subtrahendCallValueStmt.getCall().getCallType());
 				}
 
 				{
@@ -68,7 +69,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 				{
 					final MinuendGiving minuend = subtractFromGiving.getMinuend();
 					final Call minuendCall = minuend.getMinuendCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, minuendCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, minuendCall.getCallType());
 				}
 
 				assertEquals(2, subtractFromGiving.getGivings().size());
@@ -78,7 +79,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 					assertFalse(giving.isRounded());
 
 					final Call givingCall = giving.getGivingCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, givingCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, givingCall.getCallType());
 				}
 
 				{
@@ -86,7 +87,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 					assertTrue(giving.isRounded());
 
 					final Call givingCall = giving.getGivingCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, givingCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, givingCall.getCallType());
 				}
 			}
 		}

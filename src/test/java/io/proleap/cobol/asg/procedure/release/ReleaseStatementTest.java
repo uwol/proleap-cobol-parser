@@ -11,7 +11,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.release.ReleaseStatement;
@@ -39,12 +39,12 @@ public class ReleaseStatementTest extends CobolTestBase {
 
 			{
 				assertNotNull(releaseStatement.getRecordCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, releaseStatement.getRecordCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, releaseStatement.getRecordCall().getCallType());
 			}
 
 			{
 				assertNotNull(releaseStatement.getContentCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, releaseStatement.getContentCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, releaseStatement.getContentCall().getCallType());
 			}
 		}
 	}

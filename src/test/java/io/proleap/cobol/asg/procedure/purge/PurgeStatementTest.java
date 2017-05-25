@@ -12,6 +12,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.purge.PurgeStatement;
@@ -40,13 +41,13 @@ public class PurgeStatementTest extends CobolTestBase {
 			{
 				final Call cdEntryCall = purgeStatement.getCommunicationDescriptionEntryCalls().get(0);
 				assertNotNull(cdEntryCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, cdEntryCall.getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, cdEntryCall.getCallType());
 			}
 
 			{
 				final Call cdEntryCall = purgeStatement.getCommunicationDescriptionEntryCalls().get(1);
 				assertNotNull(cdEntryCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, cdEntryCall.getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, cdEntryCall.getCallType());
 			}
 		}
 	}

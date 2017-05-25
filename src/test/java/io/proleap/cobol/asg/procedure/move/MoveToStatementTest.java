@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
@@ -77,10 +78,10 @@ public class MoveToStatementTest extends CobolTestBase {
 			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
-				final MoveToPhrase moveTo = moveStatement.getMoveTo();
+				final MoveToPhrase moveToPhrase = moveStatement.getMoveToPhrase();
 
 				{
-					final SendingArea sendingArea = moveTo.getSendingArea();
+					final SendingArea sendingArea = moveToPhrase.getSendingArea();
 					assertNotNull(sendingArea);
 
 					{
@@ -91,13 +92,13 @@ public class MoveToStatementTest extends CobolTestBase {
 				}
 
 				{
-					final List<Call> receivingAreaCalls = moveTo.getReceivingAreaCalls();
+					final List<Call> receivingAreaCalls = moveToPhrase.getReceivingAreaCalls();
 					assertEquals(1, receivingAreaCalls.size());
 
 					{
 						final Call receivingAreaCall = receivingAreaCalls.get(0);
 						assertNotNull(receivingAreaCall);
-						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
+						assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
 					}
 				}
 			}
@@ -110,10 +111,10 @@ public class MoveToStatementTest extends CobolTestBase {
 			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
-				final MoveToPhrase moveTo = moveStatement.getMoveTo();
+				final MoveToPhrase moveToPhrase = moveStatement.getMoveToPhrase();
 
 				{
-					final SendingArea sendingArea = moveTo.getSendingArea();
+					final SendingArea sendingArea = moveToPhrase.getSendingArea();
 					assertNotNull(sendingArea);
 
 					{
@@ -124,13 +125,13 @@ public class MoveToStatementTest extends CobolTestBase {
 				}
 
 				{
-					final List<Call> receivingAreaCalls = moveTo.getReceivingAreaCalls();
+					final List<Call> receivingAreaCalls = moveToPhrase.getReceivingAreaCalls();
 					assertEquals(1, receivingAreaCalls.size());
 
 					{
 						final Call receivingAreaCall = receivingAreaCalls.get(0);
 						assertNotNull(receivingAreaCall);
-						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
+						assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
 					}
 				}
 			}
@@ -143,10 +144,10 @@ public class MoveToStatementTest extends CobolTestBase {
 			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
-				final MoveToPhrase moveTo = moveStatement.getMoveTo();
+				final MoveToPhrase moveToPhrase = moveStatement.getMoveToPhrase();
 
 				{
-					final SendingArea sendingArea = moveTo.getSendingArea();
+					final SendingArea sendingArea = moveToPhrase.getSendingArea();
 					assertNotNull(sendingArea);
 
 					{
@@ -154,19 +155,19 @@ public class MoveToStatementTest extends CobolTestBase {
 						assertNotNull(sendingAreaValueStmt);
 
 						final CallValueStmt sendingAreaCallValueStmt = (CallValueStmt) sendingAreaValueStmt;
-						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL,
+						assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL,
 								sendingAreaCallValueStmt.getCall().getCallType());
 					}
 				}
 
 				{
-					final List<Call> receivingAreaCalls = moveTo.getReceivingAreaCalls();
+					final List<Call> receivingAreaCalls = moveToPhrase.getReceivingAreaCalls();
 					assertEquals(1, receivingAreaCalls.size());
 
 					{
 						final Call receivingAreaCall = receivingAreaCalls.get(0);
 						assertNotNull(receivingAreaCall);
-						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
+						assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
 					}
 				}
 			}

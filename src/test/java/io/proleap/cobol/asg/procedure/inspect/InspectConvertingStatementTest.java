@@ -11,7 +11,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfterPhrase;
@@ -49,7 +49,7 @@ public class InspectConvertingStatementTest extends CobolTestBase {
 					assertNotNull(converting.getFromValueStmt());
 
 					final CallValueStmt fromCallValueStmt = (CallValueStmt) converting.getFromValueStmt();
-					assertEquals(Call.CallType.UNDEFINED_CALL, fromCallValueStmt.getCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, fromCallValueStmt.getCall().getCallType());
 				}
 
 				{
@@ -58,15 +58,15 @@ public class InspectConvertingStatementTest extends CobolTestBase {
 					assertNotNull(to.getToValueStmt());
 
 					final CallValueStmt toCallValueStmt = (CallValueStmt) to.getToValueStmt();
-					assertEquals(Call.CallType.UNDEFINED_CALL, toCallValueStmt.getCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, toCallValueStmt.getCall().getCallType());
 				}
 
 				assertEquals(1, converting.getBeforeAfterPhrases().size());
 
 				{
 					{
-						final BeforeAfterPhrase beforeAfter = converting.getBeforeAfterPhrases().get(0);
-						assertEquals(BeforeAfterPhrase.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
+						final BeforeAfterPhrase beforeAfterPhrase = converting.getBeforeAfterPhrases().get(0);
+						assertEquals(BeforeAfterPhrase.BeforeAfterType.AFTER, beforeAfterPhrase.getBeforeAfterType());
 					}
 				}
 			}

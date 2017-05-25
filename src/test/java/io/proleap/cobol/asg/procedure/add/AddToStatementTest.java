@@ -11,7 +11,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.add.AddStatement;
@@ -41,19 +41,19 @@ public class AddToStatementTest extends CobolTestBase {
 			assertNotNull(addStatement.getAddToStatement());
 
 			{
-				final AddToStatement addTo = addStatement.getAddToStatement();
-				assertEquals(1, addTo.getFroms().size());
+				final AddToStatement addToStatement = addStatement.getAddToStatement();
+				assertEquals(1, addToStatement.getFroms().size());
 
 				{
-					final From from = addTo.getFroms().get(0);
+					final From from = addToStatement.getFroms().get(0);
 					assertNotNull(from.getFrom());
-					assertEquals(1, addTo.getTos().size());
+					assertEquals(1, addToStatement.getTos().size());
 				}
 
 				{
-					final To to = addTo.getTos().get(0);
+					final To to = addToStatement.getTos().get(0);
 					assertNotNull(to.getTo());
-					assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to.getTo().getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to.getTo().getCallType());
 				}
 			}
 		}
@@ -83,13 +83,13 @@ public class AddToStatementTest extends CobolTestBase {
 				{
 					final To to1 = addTo.getTos().get(0);
 					assertNotNull(to1.getTo());
-					assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to1.getTo().getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to1.getTo().getCallType());
 				}
 
 				{
 					final To to2 = addTo.getTos().get(1);
 					assertNotNull(to2.getTo());
-					assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, to2.getTo().getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to2.getTo().getCallType());
 				}
 			}
 		}

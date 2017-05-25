@@ -12,6 +12,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
@@ -23,8 +24,8 @@ import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileCo
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.write.AdvancingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.write.AdvancingLines;
+import io.proleap.cobol.asg.metamodel.procedure.write.AdvancingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.write.From;
 import io.proleap.cobol.asg.metamodel.procedure.write.WriteStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
@@ -96,7 +97,7 @@ public class WriteStatementTest extends CobolTestBase {
 			{
 				final Call recordCall = writeStatement.getRecordCall();
 				assertNotNull(recordCall);
-				assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, recordCall.getCallType());
+				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, recordCall.getCallType());
 
 				final DataDescriptionEntryCall dataDescriptionEntryCall = (DataDescriptionEntryCall) recordCall;
 				assertEquals(dataDescriptionEntry, dataDescriptionEntryCall.getDataDescriptionEntry());
@@ -107,17 +108,17 @@ public class WriteStatementTest extends CobolTestBase {
 				assertNotNull(from);
 
 				final CallValueStmt fromCallValueStmt = (CallValueStmt) from.getFromValueStmt();
-				assertEquals(Call.CallType.UNDEFINED_CALL, fromCallValueStmt.getCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, fromCallValueStmt.getCall().getCallType());
 			}
 
 			{
-				final AdvancingPhrase advancing = writeStatement.getAdvancingPhrase();
-				assertNotNull(advancing);
-				assertEquals(AdvancingPhrase.PositionType.BEFORE, advancing.getPositionType());
-				assertEquals(AdvancingPhrase.AdvancingType.LINES, advancing.getAdvancingType());
+				final AdvancingPhrase advancingPhrase = writeStatement.getAdvancingPhrase();
+				assertNotNull(advancingPhrase);
+				assertEquals(AdvancingPhrase.PositionType.BEFORE, advancingPhrase.getPositionType());
+				assertEquals(AdvancingPhrase.AdvancingType.LINES, advancingPhrase.getAdvancingType());
 
 				{
-					final AdvancingLines advancingLines = advancing.getAdvancingLines();
+					final AdvancingLines advancingLines = advancingPhrase.getAdvancingLines();
 					assertNotNull(advancingLines);
 					assertNotNull(advancingLines.getLinesValueStmt());
 					assertEquals(3, advancingLines.getLinesValueStmt().getValue());

@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.declaratives.Declarative;
 import io.proleap.cobol.asg.metamodel.procedure.declaratives.Declaratives;
@@ -53,7 +54,7 @@ public class UseStatementTest extends CobolTestBase {
 					assertEquals(DebugOn.DebugOnType.ALL_REFERENCES, debugOn.getDebugOnType());
 
 					final Call onCall = debugOn.getOnCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, onCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, onCall.getCallType());
 				}
 
 				{
@@ -67,7 +68,7 @@ public class UseStatementTest extends CobolTestBase {
 					assertEquals(DebugOn.DebugOnType.PROCEDURE, debugOn.getDebugOnType());
 
 					final Call onCall = debugOn.getOnCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, onCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, onCall.getCallType());
 				}
 			}
 		}

@@ -13,6 +13,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.receive.From;
@@ -54,7 +55,7 @@ public class ReceiveFromStatementTest extends CobolTestBase {
 				{
 					final Call dataCall = receiveFromStatement.getDataCall();
 					assertNotNull(dataCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, dataCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, dataCall.getCallType());
 				}
 
 				{
@@ -67,7 +68,7 @@ public class ReceiveFromStatementTest extends CobolTestBase {
 					{
 						final Call threadCall = from.getThreadCall();
 						assertNotNull(threadCall);
-						assertEquals(Call.CallType.UNDEFINED_CALL, threadCall.getCallType());
+						assertEquals(CallType.UNDEFINED_CALL, threadCall.getCallType());
 					}
 				}
 
@@ -78,7 +79,7 @@ public class ReceiveFromStatementTest extends CobolTestBase {
 					assertNotNull(timeValueStmt);
 
 					final CallValueStmt timeCallValueStmt = (CallValueStmt) timeValueStmt;
-					assertEquals(Call.CallType.UNDEFINED_CALL, timeCallValueStmt.getCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, timeCallValueStmt.getCall().getCallType());
 				}
 
 				{
@@ -91,7 +92,7 @@ public class ReceiveFromStatementTest extends CobolTestBase {
 					final Call threadInCall = thread.getThreadInCall();
 
 					assertNotNull(threadInCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, threadInCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, threadInCall.getCallType());
 				}
 
 				{
@@ -101,7 +102,7 @@ public class ReceiveFromStatementTest extends CobolTestBase {
 					assertNotNull(sizeValueStmt);
 
 					final CallValueStmt sizeCallValueStmt = (CallValueStmt) sizeValueStmt;
-					assertEquals(Call.CallType.UNDEFINED_CALL, sizeCallValueStmt.getCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, sizeCallValueStmt.getCall().getCallType());
 				}
 
 				{
@@ -109,7 +110,7 @@ public class ReceiveFromStatementTest extends CobolTestBase {
 					final Call statusCall = status.getStatusCall();
 
 					assertNotNull(statusCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, statusCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, statusCall.getCallType());
 				}
 			}
 		}

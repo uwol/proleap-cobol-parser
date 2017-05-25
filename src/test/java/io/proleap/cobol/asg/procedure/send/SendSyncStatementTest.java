@@ -12,7 +12,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.send.Advancing;
@@ -54,20 +54,20 @@ public class SendSyncStatementTest extends CobolTestBase {
 					assertNotNull(receivingProgramValueStmt);
 
 					final CallValueStmt receivingProgramCallValueStmt = (CallValueStmt) receivingProgramValueStmt;
-					assertEquals(Call.CallType.UNDEFINED_CALL, receivingProgramCallValueStmt.getCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, receivingProgramCallValueStmt.getCall().getCallType());
 				}
 
 				{
 					final From from = sync.getFrom();
 					assertNotNull(from);
-					assertEquals(Call.CallType.UNDEFINED_CALL, from.getFromCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, from.getFromCall().getCallType());
 				}
 
 				{
 					final With with = sync.getWith();
 					assertNotNull(with);
 					assertEquals(With.WithType.CALL, with.getWithType());
-					assertEquals(Call.CallType.UNDEFINED_CALL, with.getWithCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, with.getWithCall().getCallType());
 				}
 
 				assertTrue(sync.isReplacing());

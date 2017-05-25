@@ -12,6 +12,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.AtEndPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.NotAtEndPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
@@ -44,7 +45,7 @@ public class ReturnStatementTest extends CobolTestBase {
 			{
 				final Call fileCall = returnStatement.getFileCall();
 				assertNotNull(fileCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, fileCall.getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, fileCall.getCallType());
 			}
 
 			{
@@ -53,24 +54,24 @@ public class ReturnStatementTest extends CobolTestBase {
 
 				final Call intoCall = into.getIntoCall();
 				assertNotNull(intoCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, intoCall.getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, intoCall.getCallType());
 			}
 
 			{
-				final AtEndPhrase atEnd = returnStatement.getAtEndPhrase();
-				assertNotNull(atEnd);
-				assertEquals(1, atEnd.getStatements().size());
+				final AtEndPhrase atEndPhrase = returnStatement.getAtEndPhrase();
+				assertNotNull(atEndPhrase);
+				assertEquals(1, atEndPhrase.getStatements().size());
 
-				final DisplayStatement displayStatement = (DisplayStatement) atEnd.getStatements().get(0);
+				final DisplayStatement displayStatement = (DisplayStatement) atEndPhrase.getStatements().get(0);
 				assertNotNull(displayStatement);
 			}
 
 			{
-				final NotAtEndPhrase notAtEnd = returnStatement.getNotAtEndPhrase();
-				assertNotNull(notAtEnd);
-				assertEquals(1, notAtEnd.getStatements().size());
+				final NotAtEndPhrase notAtEndPhrase = returnStatement.getNotAtEndPhrase();
+				assertNotNull(notAtEndPhrase);
+				assertEquals(1, notAtEndPhrase.getStatements().size());
 
-				final DisplayStatement displayStatement = (DisplayStatement) notAtEnd.getStatements().get(0);
+				final DisplayStatement displayStatement = (DisplayStatement) notAtEndPhrase.getStatements().get(0);
 				assertNotNull(displayStatement);
 			}
 		}

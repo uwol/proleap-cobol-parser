@@ -23,11 +23,11 @@ public interface MoveStatement extends Statement {
 
 	MoveCorrespondingPhrase addMoveCorrespondingPhrase(MoveCorrespondingToStatementContext ctx);
 
-	MoveToPhrase addMoveTo(MoveToStatementContext ctx);
+	MoveToPhrase addMoveToPhrase(MoveToStatementContext ctx);
 
 	MoveCorrespondingPhrase getMoveCorrespondingPhrase();
 
-	MoveToPhrase getMoveTo();
+	MoveToPhrase getMoveToPhrase();
 
 	MoveType getMoveType();
 

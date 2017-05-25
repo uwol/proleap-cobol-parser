@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Minuend;
@@ -55,7 +56,7 @@ public class SubtractFromStatementTest extends CobolTestBase {
 					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
 
 					final CallValueStmt subtrahendCallValueStmt = (CallValueStmt) subtrahendValueStmt;
-					assertEquals(Call.CallType.UNDEFINED_CALL, subtrahendCallValueStmt.getCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, subtrahendCallValueStmt.getCall().getCallType());
 				}
 
 				{
@@ -71,7 +72,7 @@ public class SubtractFromStatementTest extends CobolTestBase {
 					assertFalse(minuend.isRounded());
 
 					final Call minuendCall = minuend.getMinuendCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, minuendCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, minuendCall.getCallType());
 				}
 
 				{
@@ -79,7 +80,7 @@ public class SubtractFromStatementTest extends CobolTestBase {
 					assertTrue(minuend.isRounded());
 
 					final Call minuendCall = minuend.getMinuendCall();
-					assertEquals(Call.CallType.UNDEFINED_CALL, minuendCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, minuendCall.getCallType());
 				}
 			}
 		}

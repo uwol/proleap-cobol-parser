@@ -65,7 +65,7 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 	}
 
 	@Override
-	public MoveToPhrase addMoveTo(final MoveToStatementContext ctx) {
+	public MoveToPhrase addMoveToPhrase(final MoveToStatementContext ctx) {
 		MoveToPhrase result = (MoveToPhrase) getASGElement(ctx);
 
 		if (result == null) {
@@ -93,7 +93,7 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 	}
 
 	@Override
-	public MoveToPhrase getMoveTo() {
+	public MoveToPhrase getMoveToPhrase() {
 		return moveToPhrase;
 	}
 

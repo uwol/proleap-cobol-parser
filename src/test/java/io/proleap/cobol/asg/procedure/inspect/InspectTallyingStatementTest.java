@@ -11,7 +11,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.AllLeading;
@@ -51,7 +51,7 @@ public class InspectTallyingStatementTest extends CobolTestBase {
 				final For for1 = tallying.getFors().get(0);
 
 				assertNotNull(for1.getTallyCountDataItemCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, for1.getTallyCountDataItemCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, for1.getTallyCountDataItemCall().getCallType());
 				assertEquals(1, for1.getCharacters().size());
 				assertEquals(1, for1.getAllLeadingPhrase().size());
 
@@ -60,26 +60,27 @@ public class InspectTallyingStatementTest extends CobolTestBase {
 					assertEquals(1, characters.getBeforeAfterPhrases().size());
 
 					{
-						final BeforeAfterPhrase beforeAfter = characters.getBeforeAfterPhrases().get(0);
-						assertEquals(BeforeAfterPhrase.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
+						final BeforeAfterPhrase beforeAfterPhrase = characters.getBeforeAfterPhrases().get(0);
+						assertEquals(BeforeAfterPhrase.BeforeAfterType.AFTER, beforeAfterPhrase.getBeforeAfterType());
 					}
 				}
 
 				{
-					final AllLeadingPhrase allLeadings = for1.getAllLeadingPhrase().get(0);
-					assertEquals(AllLeadingPhrase.AllLeadingsType.ALL, allLeadings.getAllLeadingsType());
-					assertEquals(1, allLeadings.getAllLeadings().size());
+					final AllLeadingPhrase allLeadingPhrase = for1.getAllLeadingPhrase().get(0);
+					assertEquals(AllLeadingPhrase.AllLeadingsType.ALL, allLeadingPhrase.getAllLeadingsType());
+					assertEquals(1, allLeadingPhrase.getAllLeadings().size());
 
 					{
-						final AllLeading allLeading = allLeadings.getAllLeadings().get(0);
+						final AllLeading allLeading = allLeadingPhrase.getAllLeadings().get(0);
 
 						assertNotNull(allLeading.getPatternDataItemValueStmt());
 						assertEquals("B", allLeading.getPatternDataItemValueStmt().getValue());
 						assertEquals(1, allLeading.getBeforeAfterPhrases().size());
 
 						{
-							final BeforeAfterPhrase beforeAfter = allLeading.getBeforeAfterPhrases().get(0);
-							assertEquals(BeforeAfterPhrase.BeforeAfterType.BEFORE, beforeAfter.getBeforeAfterType());
+							final BeforeAfterPhrase beforeAfterPhrase = allLeading.getBeforeAfterPhrases().get(0);
+							assertEquals(BeforeAfterPhrase.BeforeAfterType.BEFORE,
+									beforeAfterPhrase.getBeforeAfterType());
 						}
 					}
 				}

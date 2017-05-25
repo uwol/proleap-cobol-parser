@@ -11,7 +11,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.terminate.TerminateStatement;
@@ -37,7 +37,7 @@ public class TerminateStatementTest extends CobolTestBase {
 			assertNotNull(terminateStatement);
 			assertEquals(StatementTypeEnum.TERMINATE, terminateStatement.getStatementType());
 			assertNotNull(terminateStatement.getReportCall());
-			assertEquals(Call.CallType.UNDEFINED_CALL, terminateStatement.getReportCall().getCallType());
+			assertEquals(CallType.UNDEFINED_CALL, terminateStatement.getReportCall().getCallType());
 		}
 	}
 }

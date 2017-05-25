@@ -11,7 +11,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.add.AddCorrespondingStatement;
 import io.proleap.cobol.asg.metamodel.procedure.add.AddStatement;
@@ -38,11 +38,12 @@ public class AddCorrespondingStatementTest extends CobolTestBase {
 			assertNotNull(addStatement.getAddCorrespondingStatement());
 
 			{
-				final AddCorrespondingStatement addCorresponding = addStatement.getAddCorrespondingStatement();
-				assertNotNull(addCorresponding.getFrom());
-				assertNotNull(addCorresponding.getTo());
-				assertNotNull(addCorresponding.getTo().getTo());
-				assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, addCorresponding.getTo().getTo().getCallType());
+				final AddCorrespondingStatement addCorrespondingStatement = addStatement.getAddCorrespondingStatement();
+				assertNotNull(addCorrespondingStatement.getFrom());
+				assertNotNull(addCorrespondingStatement.getTo());
+				assertNotNull(addCorrespondingStatement.getTo().getTo());
+				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL,
+						addCorrespondingStatement.getTo().getTo().getCallType());
 			}
 		}
 	}

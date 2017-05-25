@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
@@ -53,7 +54,7 @@ public class MultiplyGivingStatementTest extends CobolTestBase {
 				assertNotNull(operandValueStmt);
 
 				final CallValueStmt operandCallValueStmt = (CallValueStmt) operandValueStmt;
-				assertEquals(Call.CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
 			}
 
 			{
@@ -68,7 +69,7 @@ public class MultiplyGivingStatementTest extends CobolTestBase {
 					assertNotNull(operandValueStmt);
 
 					final CallValueStmt operandCallValueStmt = (CallValueStmt) operandValueStmt;
-					assertEquals(Call.CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
 				}
 
 				assertEquals(2, giving.getResults().size());
@@ -79,7 +80,7 @@ public class MultiplyGivingStatementTest extends CobolTestBase {
 
 					final Call resultCall = result.getResultCall();
 					assertNotNull(resultCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, resultCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, resultCall.getCallType());
 				}
 
 				{
@@ -88,25 +89,26 @@ public class MultiplyGivingStatementTest extends CobolTestBase {
 
 					final Call resultCall = result.getResultCall();
 					assertNotNull(resultCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, resultCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, resultCall.getCallType());
 				}
 			}
 
 			{
-				final OnSizeErrorPhrase onSizeError = multiplyStatement.getOnSizeErrorPhrase();
-				assertNotNull(onSizeError);
-				assertEquals(1, onSizeError.getStatements().size());
+				final OnSizeErrorPhrase onSizeErrorPhrase = multiplyStatement.getOnSizeErrorPhrase();
+				assertNotNull(onSizeErrorPhrase);
+				assertEquals(1, onSizeErrorPhrase.getStatements().size());
 
-				final DisplayStatement displayStatement = (DisplayStatement) onSizeError.getStatements().get(0);
+				final DisplayStatement displayStatement = (DisplayStatement) onSizeErrorPhrase.getStatements().get(0);
 				assertNotNull(displayStatement);
 			}
 
 			{
-				final NotOnSizeErrorPhrase notOnSizeError = multiplyStatement.getNotOnSizeErrorPhrase();
-				assertNotNull(notOnSizeError);
-				assertEquals(1, notOnSizeError.getStatements().size());
+				final NotOnSizeErrorPhrase notOnSizeErrorPhrase = multiplyStatement.getNotOnSizeErrorPhrase();
+				assertNotNull(notOnSizeErrorPhrase);
+				assertEquals(1, notOnSizeErrorPhrase.getStatements().size());
 
-				final DisplayStatement displayStatement = (DisplayStatement) notOnSizeError.getStatements().get(0);
+				final DisplayStatement displayStatement = (DisplayStatement) notOnSizeErrorPhrase.getStatements()
+						.get(0);
 				assertNotNull(displayStatement);
 			}
 		}

@@ -23,15 +23,15 @@ import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileCo
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
+import io.proleap.cobol.asg.metamodel.procedure.close.AssociatedDataLengthPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.close.AssociatedDataPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.close.CloseDispositionPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.close.CloseFile;
 import io.proleap.cobol.asg.metamodel.procedure.close.ClosePortFileIoStatement;
 import io.proleap.cobol.asg.metamodel.procedure.close.CloseReelUnitStatement;
 import io.proleap.cobol.asg.metamodel.procedure.close.CloseRelativeStatement;
 import io.proleap.cobol.asg.metamodel.procedure.close.CloseStatement;
 import io.proleap.cobol.asg.metamodel.procedure.close.Using;
-import io.proleap.cobol.asg.metamodel.procedure.close.AssociatedDataPhrase;
-import io.proleap.cobol.asg.metamodel.procedure.close.AssociatedDataLengthPhrase;
-import io.proleap.cobol.asg.metamodel.procedure.close.CloseDispositionPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -115,7 +115,7 @@ public class CloseStatementTest extends CobolTestBase {
 				{
 					final Call call = closeFile.getFileCall();
 					assertNotNull(call);
-					assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+					assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 					{
 						final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
@@ -127,7 +127,8 @@ public class CloseStatementTest extends CobolTestBase {
 
 				{
 					final CloseReelUnitStatement closeReelUnitStatement = closeFile.getCloseReelUnitStatement();
-					assertEquals(CloseReelUnitStatement.CloseReelUnitType.UNIT, closeReelUnitStatement.getCloseReelUnitType());
+					assertEquals(CloseReelUnitStatement.CloseReelUnitType.UNIT,
+							closeReelUnitStatement.getCloseReelUnitType());
 					assertTrue(closeReelUnitStatement.isForRemovel());
 					assertEquals(CloseReelUnitStatement.WithType.LOCK, closeReelUnitStatement.getWithType());
 				}
@@ -139,7 +140,7 @@ public class CloseStatementTest extends CobolTestBase {
 				{
 					final Call call = closeFile.getFileCall();
 					assertNotNull(call);
-					assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+					assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 					{
 						final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
@@ -151,7 +152,8 @@ public class CloseStatementTest extends CobolTestBase {
 
 				{
 					final CloseReelUnitStatement closeReelUnitStatement = closeFile.getCloseReelUnitStatement();
-					assertEquals(CloseReelUnitStatement.CloseReelUnitType.REEL, closeReelUnitStatement.getCloseReelUnitType());
+					assertEquals(CloseReelUnitStatement.CloseReelUnitType.REEL,
+							closeReelUnitStatement.getCloseReelUnitType());
 					assertFalse(closeReelUnitStatement.isForRemovel());
 				}
 			}
@@ -167,7 +169,7 @@ public class CloseStatementTest extends CobolTestBase {
 				{
 					final Call call = closeFile.getFileCall();
 					assertNotNull(call);
-					assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+					assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 					{
 						final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
@@ -194,7 +196,7 @@ public class CloseStatementTest extends CobolTestBase {
 				{
 					final Call call = closeFile.getFileCall();
 					assertNotNull(call);
-					assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+					assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 					{
 						final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
@@ -215,7 +217,8 @@ public class CloseStatementTest extends CobolTestBase {
 
 						{
 							final CloseDispositionPhrase closeDispositionPhrase = using.getCloseDispositionPhrase();
-							assertEquals(CloseDispositionPhrase.UsingCloseDispositionType.ORDERLY, closeDispositionPhrase.getUsingCloseDispositionType());
+							assertEquals(CloseDispositionPhrase.UsingCloseDispositionType.ORDERLY,
+									closeDispositionPhrase.getUsingCloseDispositionType());
 						}
 					}
 				}
@@ -232,7 +235,7 @@ public class CloseStatementTest extends CobolTestBase {
 				{
 					final Call call = closeFile.getFileCall();
 					assertNotNull(call);
-					assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+					assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 					{
 						final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
@@ -271,7 +274,7 @@ public class CloseStatementTest extends CobolTestBase {
 				{
 					final Call call = closeFile.getFileCall();
 					assertNotNull(call);
-					assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+					assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 					{
 						final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;

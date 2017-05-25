@@ -12,7 +12,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.FileControlEntryCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
@@ -93,7 +93,7 @@ public class ReadStatementTest extends CobolTestBase {
 
 			{
 				assertNotNull(readStatement.getFileCall());
-				assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, readStatement.getFileCall().getCallType());
+				assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, readStatement.getFileCall().getCallType());
 
 				final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) readStatement.getFileCall();
 				assertNotNull(fileControlEntryCall.getFileControlEntry());
@@ -106,7 +106,7 @@ public class ReadStatementTest extends CobolTestBase {
 				final Into into = readStatement.getInto();
 				assertNotNull(into);
 				assertNotNull(into.getIntoCall());
-				assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, into.getIntoCall().getCallType());
+				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, into.getIntoCall().getCallType());
 
 				final DataDescriptionEntryCall dataDescriptionEntryCall = (DataDescriptionEntryCall) into.getIntoCall();
 				assertNotNull(dataDescriptionEntryCall.getDataDescriptionEntry());
@@ -123,7 +123,7 @@ public class ReadStatementTest extends CobolTestBase {
 			{
 				final Key key = readStatement.getKey();
 				assertNotNull(key.getKeyCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, key.getKeyCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, key.getKeyCall().getCallType());
 			}
 
 			{
@@ -139,12 +139,13 @@ public class ReadStatementTest extends CobolTestBase {
 			}
 
 			{
-				final NotInvalidKeyPhrase notInvalidKey = readStatement.getNotInvalidKeyPhrase();
-				assertNotNull(notInvalidKey);
-				assertEquals(1, notInvalidKey.getStatements().size());
+				final NotInvalidKeyPhrase notInvalidKeyPhrase = readStatement.getNotInvalidKeyPhrase();
+				assertNotNull(notInvalidKeyPhrase);
+				assertEquals(1, notInvalidKeyPhrase.getStatements().size());
 
 				{
-					final DisplayStatement displayStatement = (DisplayStatement) notInvalidKey.getStatements().get(0);
+					final DisplayStatement displayStatement = (DisplayStatement) notInvalidKeyPhrase.getStatements()
+							.get(0);
 					assertNotNull(displayStatement);
 					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 				}
@@ -163,12 +164,12 @@ public class ReadStatementTest extends CobolTestBase {
 			}
 
 			{
-				final NotAtEndPhrase notAtEnd = readStatement.getNotAtEndPhrase();
-				assertNotNull(notAtEnd);
-				assertEquals(1, notAtEnd.getStatements().size());
+				final NotAtEndPhrase notAtEndPhrase = readStatement.getNotAtEndPhrase();
+				assertNotNull(notAtEndPhrase);
+				assertEquals(1, notAtEndPhrase.getStatements().size());
 
 				{
-					final DisplayStatement displayStatement = (DisplayStatement) notAtEnd.getStatements().get(0);
+					final DisplayStatement displayStatement = (DisplayStatement) notAtEndPhrase.getStatements().get(0);
 					assertNotNull(displayStatement);
 					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
 				}

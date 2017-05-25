@@ -13,6 +13,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.FileControlEntryCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
@@ -23,13 +24,13 @@ import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileCo
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.open.Input;
 import io.proleap.cobol.asg.metamodel.procedure.open.ExtendPhrase;
-import io.proleap.cobol.asg.metamodel.procedure.open.InputPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.open.Input;
 import io.proleap.cobol.asg.metamodel.procedure.open.InputOutputPhrase;
-import io.proleap.cobol.asg.metamodel.procedure.open.OutputPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.open.InputPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.open.OpenStatement;
 import io.proleap.cobol.asg.metamodel.procedure.open.Output;
+import io.proleap.cobol.asg.metamodel.procedure.open.OutputPhrase;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -173,17 +174,17 @@ public class OpenStatementTest extends CobolTestBase {
 				assertEquals(1, openStatement.getExtendPhrases().size());
 
 				{
-					final InputPhrase openInput = openStatement.getInputPhrases().get(0);
-					assertEquals(2, openInput.getInputs().size());
+					final InputPhrase inputPhrase = openStatement.getInputPhrases().get(0);
+					assertEquals(2, inputPhrase.getInputs().size());
 
 					{
-						final Input input = openInput.getInputs().get(0);
+						final Input input = inputPhrase.getInputs().get(0);
 						assertEquals(Input.InputType.NO_REWIND, input.getInputType());
 
 						{
 							final Call call = input.getFileCall();
 							assertNotNull(call);
-							assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+							assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 							{
 								final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
@@ -193,13 +194,13 @@ public class OpenStatementTest extends CobolTestBase {
 					}
 
 					{
-						final Input input = openInput.getInputs().get(1);
+						final Input input = inputPhrase.getInputs().get(1);
 						assertEquals(Input.InputType.REVERSED, input.getInputType());
 
 						{
 							final Call call = input.getFileCall();
 							assertNotNull(call);
-							assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+							assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 							{
 								final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
@@ -210,17 +211,17 @@ public class OpenStatementTest extends CobolTestBase {
 				}
 
 				{
-					final OutputPhrase openOutput = openStatement.getOutputPhrases().get(0);
-					assertEquals(1, openOutput.getOutputs().size());
+					final OutputPhrase outputPhrase = openStatement.getOutputPhrases().get(0);
+					assertEquals(1, outputPhrase.getOutputs().size());
 
 					{
-						final Output output = openOutput.getOutputs().get(0);
+						final Output output = outputPhrase.getOutputs().get(0);
 						assertTrue(output.isNoRewind());
 
 						{
 							final Call call = output.getFileCall();
 							assertNotNull(call);
-							assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+							assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 							{
 								final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
@@ -231,13 +232,13 @@ public class OpenStatementTest extends CobolTestBase {
 				}
 
 				{
-					final InputOutputPhrase openInputOutput = openStatement.getInputOutputPhrases().get(0);
-					assertEquals(2, openInputOutput.getFileCalls().size());
+					final InputOutputPhrase inputOutputPhrase = openStatement.getInputOutputPhrases().get(0);
+					assertEquals(2, inputOutputPhrase.getFileCalls().size());
 
 					{
-						final Call call = openInputOutput.getFileCalls().get(0);
+						final Call call = inputOutputPhrase.getFileCalls().get(0);
 						assertNotNull(call);
-						assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+						assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 						{
 							final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
@@ -246,9 +247,9 @@ public class OpenStatementTest extends CobolTestBase {
 					}
 
 					{
-						final Call call = openInputOutput.getFileCalls().get(1);
+						final Call call = inputOutputPhrase.getFileCalls().get(1);
 						assertNotNull(call);
-						assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+						assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 						{
 							final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
@@ -258,13 +259,13 @@ public class OpenStatementTest extends CobolTestBase {
 				}
 
 				{
-					final ExtendPhrase openExtend = openStatement.getExtendPhrases().get(0);
-					assertEquals(2, openExtend.getFileCalls().size());
+					final ExtendPhrase extendPhrase = openStatement.getExtendPhrases().get(0);
+					assertEquals(2, extendPhrase.getFileCalls().size());
 
 					{
-						final Call call = openExtend.getFileCalls().get(0);
+						final Call call = extendPhrase.getFileCalls().get(0);
 						assertNotNull(call);
-						assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+						assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 						{
 							final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;
@@ -273,9 +274,9 @@ public class OpenStatementTest extends CobolTestBase {
 					}
 
 					{
-						final Call call = openExtend.getFileCalls().get(1);
+						final Call call = extendPhrase.getFileCalls().get(1);
 						assertNotNull(call);
-						assertEquals(Call.CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
+						assertEquals(CallType.FILE_CONTROL_ENTRY_CALL, call.getCallType());
 
 						{
 							final FileControlEntryCall fileControlEntryCall = (FileControlEntryCall) call;

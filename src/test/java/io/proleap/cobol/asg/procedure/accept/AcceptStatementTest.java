@@ -11,7 +11,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromDateStatement;
@@ -41,7 +41,7 @@ public class AcceptStatementTest extends CobolTestBase {
 			assertEquals(AcceptStatement.AcceptType.DATE, acceptStatement.getAcceptType());
 
 			assertNotNull(acceptStatement.getAcceptCall());
-			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
+			assertEquals(CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
 
 			{
 				final AcceptFromDateStatement acceptFromDateStatement = acceptStatement.getAcceptFromDateStatement();
@@ -56,14 +56,14 @@ public class AcceptStatementTest extends CobolTestBase {
 			assertEquals(AcceptStatement.AcceptType.MNEMONIC, acceptStatement.getAcceptType());
 
 			assertNotNull(acceptStatement.getAcceptCall());
-			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
+			assertEquals(CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
 
 			{
 				final AcceptFromMnemonicStatement acceptFromMnemonicStatement = acceptStatement
 						.getAcceptFromMnemonicStatement();
 				assertNotNull(acceptFromMnemonicStatement);
 				assertNotNull(acceptFromMnemonicStatement.getMnemonicCall());
-				assertEquals(Call.CallType.MNEMONIC_CALL, acceptFromMnemonicStatement.getMnemonicCall().getCallType());
+				assertEquals(CallType.MNEMONIC_CALL, acceptFromMnemonicStatement.getMnemonicCall().getCallType());
 			}
 		}
 
@@ -73,7 +73,7 @@ public class AcceptStatementTest extends CobolTestBase {
 			assertEquals(AcceptStatement.AcceptType.MESSAGE_COUNT, acceptStatement.getAcceptType());
 
 			assertNotNull(acceptStatement.getAcceptCall());
-			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
+			assertEquals(CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
 
 			{
 				final AcceptMessageCountStatement acceptMessageCountStatement = acceptStatement

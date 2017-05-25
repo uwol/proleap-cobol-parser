@@ -11,7 +11,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
@@ -46,7 +46,7 @@ public class DisplayAtStatementTest extends CobolTestBase {
 				assertNotNull(operand.getOperandValueStmt());
 
 				final CallValueStmt operandCallValueStmt = (CallValueStmt) operand.getOperandValueStmt();
-				assertEquals(Call.CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
 			}
 
 			{
@@ -62,7 +62,7 @@ public class DisplayAtStatementTest extends CobolTestBase {
 				assertNotNull(atValueStmt);
 
 				final CallValueStmt atCallValueStmt = (CallValueStmt) atValueStmt;
-				assertEquals(Call.CallType.UNDEFINED_CALL, atCallValueStmt.getCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, atCallValueStmt.getCall().getCallType());
 			}
 		}
 	}

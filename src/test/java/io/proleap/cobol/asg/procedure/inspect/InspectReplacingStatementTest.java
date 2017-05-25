@@ -52,26 +52,29 @@ public class InspectReplacingStatementTest extends CobolTestBase {
 					assertEquals(1, characters.getBeforeAfterPhrases().size());
 
 					{
-						final BeforeAfterPhrase beforeAfter = characters.getBeforeAfterPhrases().get(0);
-						assertEquals(BeforeAfterPhrase.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
+						final BeforeAfterPhrase beforeAfterPhrase = characters.getBeforeAfterPhrases().get(0);
+						assertEquals(BeforeAfterPhrase.BeforeAfterType.AFTER, beforeAfterPhrase.getBeforeAfterType());
 					}
 				}
 
 				{
-					final ReplacingAllLeadings allLeadings = replacing.getAllLeadings().get(0);
-					assertEquals(ReplacingAllLeadings.ReplacingAllLeadingsType.FIRST, allLeadings.getReplacingAllLeadingsType());
-					assertEquals(1, allLeadings.getAllLeadings().size());
+					final ReplacingAllLeadings replacingAllLeadings = replacing.getAllLeadings().get(0);
+					assertEquals(ReplacingAllLeadings.ReplacingAllLeadingsType.FIRST,
+							replacingAllLeadings.getReplacingAllLeadingsType());
+					assertEquals(1, replacingAllLeadings.getAllLeadings().size());
 
 					{
-						final ReplacingAllLeading allLeading = allLeadings.getAllLeadings().get(0);
+						final ReplacingAllLeading replacingAllLeading = replacingAllLeadings.getAllLeadings().get(0);
 
-						assertNotNull(allLeading.getPatternDataItemValueStmt());
-						assertEquals("B", allLeading.getPatternDataItemValueStmt().getValue());
-						assertEquals(1, allLeading.getBeforeAfterPhrases().size());
+						assertNotNull(replacingAllLeading.getPatternDataItemValueStmt());
+						assertEquals("B", replacingAllLeading.getPatternDataItemValueStmt().getValue());
+						assertEquals(1, replacingAllLeading.getBeforeAfterPhrases().size());
 
 						{
-							final BeforeAfterPhrase beforeAfter = allLeading.getBeforeAfterPhrases().get(0);
-							assertEquals(BeforeAfterPhrase.BeforeAfterType.BEFORE, beforeAfter.getBeforeAfterType());
+							final BeforeAfterPhrase beforeAfterPhrase = replacingAllLeading.getBeforeAfterPhrases()
+									.get(0);
+							assertEquals(BeforeAfterPhrase.BeforeAfterType.BEFORE,
+									beforeAfterPhrase.getBeforeAfterType());
 						}
 					}
 				}

@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
@@ -55,7 +56,8 @@ public class GoToStatementTest extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntry);
 			assertEquals("SOMEDATA1", dataDescriptionEntry.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+					dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
 			assertNull(dataDescriptionEntry.getParentDataDescriptionEntryGroup());
 		}
@@ -90,7 +92,7 @@ public class GoToStatementTest extends CobolTestBase {
 
 				{
 					final Simple simple = statement.getSimple();
-					assertEquals(Call.CallType.PROCEDURE_CALL, simple.getProcedureCall().getCallType());
+					assertEquals(CallType.PROCEDURE_CALL, simple.getProcedureCall().getCallType());
 
 					{
 						final ProcedureCall procedureCall = (ProcedureCall) simple.getProcedureCall();
@@ -110,12 +112,12 @@ public class GoToStatementTest extends CobolTestBase {
 				assertEquals(GoToStatement.GoToType.DEPENDING_ON, statement.getGoToType());
 
 				{
-					final DependingOnPhrase dependingOn = statement.getDependingOnPhrase();
-					assertEquals(3, dependingOn.getProcedureCalls().size());
+					final DependingOnPhrase dependingOnPhrase = statement.getDependingOnPhrase();
+					assertEquals(3, dependingOnPhrase.getProcedureCalls().size());
 
 					{
-						final Call call = dependingOn.getProcedureCalls().get(0);
-						assertEquals(Call.CallType.PROCEDURE_CALL, call.getCallType());
+						final Call call = dependingOnPhrase.getProcedureCalls().get(0);
+						assertEquals(CallType.PROCEDURE_CALL, call.getCallType());
 
 						{
 							final ProcedureCall procedureCall = (ProcedureCall) call;
@@ -124,8 +126,8 @@ public class GoToStatementTest extends CobolTestBase {
 					}
 
 					{
-						final Call call = dependingOn.getProcedureCalls().get(1);
-						assertEquals(Call.CallType.PROCEDURE_CALL, call.getCallType());
+						final Call call = dependingOnPhrase.getProcedureCalls().get(1);
+						assertEquals(CallType.PROCEDURE_CALL, call.getCallType());
 
 						{
 							final ProcedureCall procedureCall = (ProcedureCall) call;
@@ -134,8 +136,8 @@ public class GoToStatementTest extends CobolTestBase {
 					}
 
 					{
-						final Call call = dependingOn.getProcedureCalls().get(2);
-						assertEquals(Call.CallType.PROCEDURE_CALL, call.getCallType());
+						final Call call = dependingOnPhrase.getProcedureCalls().get(2);
+						assertEquals(CallType.PROCEDURE_CALL, call.getCallType());
 
 						{
 							final ProcedureCall procedureCall = (ProcedureCall) call;
@@ -144,8 +146,8 @@ public class GoToStatementTest extends CobolTestBase {
 					}
 
 					{
-						final Call dependingOnCall = dependingOn.getDependingOnCall();
-						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, dependingOnCall.getCallType());
+						final Call dependingOnCall = dependingOnPhrase.getDependingOnCall();
+						assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, dependingOnCall.getCallType());
 
 						final DataDescriptionEntryCall dataDescriptionEntryCall = (DataDescriptionEntryCall) dependingOnCall;
 						assertEquals(dataDescriptionEntry, dataDescriptionEntryCall.getDataDescriptionEntry());
@@ -182,8 +184,8 @@ public class GoToStatementTest extends CobolTestBase {
 				assertEquals(GoToStatement.GoToType.DEPENDING_ON, statement.getGoToType());
 
 				{
-					final DependingOnPhrase dependingOn = statement.getDependingOnPhrase();
-					assertTrue(dependingOn.isMoreLabels());
+					final DependingOnPhrase dependingOnPhrase = statement.getDependingOnPhrase();
+					assertTrue(dependingOnPhrase.isMoreLabels());
 				}
 			}
 		}

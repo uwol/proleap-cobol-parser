@@ -27,7 +27,6 @@ public class ParagraphTest extends CobolTestBase {
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 
 		final Paragraph paragraph = procedureDivision.getParagraph("INIT");
-
 		assertNotNull(paragraph);
 	}
 }

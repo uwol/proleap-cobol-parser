@@ -12,6 +12,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.send.Async;
@@ -47,7 +48,7 @@ public class SendAsyncStatementTest extends CobolTestBase {
 				{
 					final Call dataDescriptionEntryCall = async.getDataDescriptionEntryCall();
 					assertNotNull(dataDescriptionEntryCall);
-					assertEquals(Call.CallType.UNDEFINED_CALL, dataDescriptionEntryCall.getCallType());
+					assertEquals(CallType.UNDEFINED_CALL, dataDescriptionEntryCall.getCallType());
 				}
 			}
 		}

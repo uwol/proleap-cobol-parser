@@ -12,6 +12,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.entry.EntryStatement;
@@ -42,13 +43,13 @@ public class EntryStatementTest extends CobolTestBase {
 			{
 				final Call usingCall = entryStatement.getUsingCalls().get(0);
 				assertNotNull(usingCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, usingCall.getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, usingCall.getCallType());
 			}
 
 			{
 				final Call usingCall = entryStatement.getUsingCalls().get(1);
 				assertNotNull(usingCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, usingCall.getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, usingCall.getCallType());
 			}
 		}
 	}

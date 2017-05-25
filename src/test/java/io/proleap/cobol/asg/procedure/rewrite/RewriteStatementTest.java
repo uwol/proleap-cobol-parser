@@ -12,6 +12,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
@@ -44,7 +45,7 @@ public class RewriteStatementTest extends CobolTestBase {
 			{
 				final Call recordCall = rewriteStatement.getRecordCall();
 				assertNotNull(recordCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, recordCall.getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, recordCall.getCallType());
 			}
 
 			{
@@ -53,24 +54,24 @@ public class RewriteStatementTest extends CobolTestBase {
 
 				final Call fromCall = from.getFromCall();
 				assertNotNull(fromCall);
-				assertEquals(Call.CallType.UNDEFINED_CALL, fromCall.getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, fromCall.getCallType());
 			}
 
 			{
-				final InvalidKeyPhrase invalidKey = rewriteStatement.getInvalidKeyPhrase();
-				assertNotNull(invalidKey);
-				assertEquals(1, invalidKey.getStatements().size());
+				final InvalidKeyPhrase invalidKeyPhrase = rewriteStatement.getInvalidKeyPhrase();
+				assertNotNull(invalidKeyPhrase);
+				assertEquals(1, invalidKeyPhrase.getStatements().size());
 
-				final DisplayStatement displayStatement = (DisplayStatement) invalidKey.getStatements().get(0);
+				final DisplayStatement displayStatement = (DisplayStatement) invalidKeyPhrase.getStatements().get(0);
 				assertNotNull(displayStatement);
 			}
 
 			{
-				final NotInvalidKeyPhrase notInvalidKey = rewriteStatement.getNotInvalidKeyPhrase();
-				assertNotNull(notInvalidKey);
-				assertEquals(1, notInvalidKey.getStatements().size());
+				final NotInvalidKeyPhrase notInvalidKeyPhrase = rewriteStatement.getNotInvalidKeyPhrase();
+				assertNotNull(notInvalidKeyPhrase);
+				assertEquals(1, notInvalidKeyPhrase.getStatements().size());
 
-				final DisplayStatement displayStatement = (DisplayStatement) notInvalidKey.getStatements().get(0);
+				final DisplayStatement displayStatement = (DisplayStatement) notInvalidKeyPhrase.getStatements().get(0);
 				assertNotNull(displayStatement);
 			}
 		}

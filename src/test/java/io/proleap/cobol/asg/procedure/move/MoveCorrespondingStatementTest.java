@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
@@ -24,7 +25,7 @@ import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class MoveCorrespondingToStatementTest extends CobolTestBase {
+public class MoveCorrespondingStatementTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {
@@ -66,22 +67,22 @@ public class MoveCorrespondingToStatementTest extends CobolTestBase {
 			assertEquals(MoveStatement.MoveType.MOVE_CORRESPONDING, moveStatement.getMoveType());
 
 			{
-				final MoveCorrespondingPhrase moveCorrespondingTo = moveStatement.getMoveCorrespondingPhrase();
+				final MoveCorrespondingPhrase moveCorrespondingPhrase = moveStatement.getMoveCorrespondingPhrase();
 
 				{
-					final Call sendingCall = moveCorrespondingTo.getSendingCall();
+					final Call sendingCall = moveCorrespondingPhrase.getSendingCall();
 					assertNotNull(sendingCall);
-					assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, sendingCall.getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, sendingCall.getCallType());
 				}
 
 				{
-					final List<Call> receivingAreaCalls = moveCorrespondingTo.getReceivingAreaCalls();
+					final List<Call> receivingAreaCalls = moveCorrespondingPhrase.getReceivingAreaCalls();
 					assertEquals(1, receivingAreaCalls.size());
 
 					{
 						final Call receivingAreaCall = receivingAreaCalls.get(0);
 						assertNotNull(receivingAreaCall);
-						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
+						assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
 					}
 				}
 			}

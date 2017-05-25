@@ -13,12 +13,13 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.alter.ProceedTo;
 import io.proleap.cobol.asg.metamodel.procedure.alter.AlterStatement;
+import io.proleap.cobol.asg.metamodel.procedure.alter.ProceedTo;
 import io.proleap.cobol.asg.metamodel.procedure.gotostmt.GoToStatement;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -52,14 +53,14 @@ public class AlterStatementTest extends CobolTestBase {
 				final ProceedTo proceedTo = proceedTos.get(0);
 				final Call sourceCall = proceedTo.getSourceCall();
 				assertNotNull(sourceCall);
-				assertEquals(Call.CallType.PROCEDURE_CALL, sourceCall.getCallType());
+				assertEquals(CallType.PROCEDURE_CALL, sourceCall.getCallType());
 
 				final ProcedureCall sourceProcedureCall = (ProcedureCall) sourceCall;
 				assertEquals(paragraph1, sourceProcedureCall.getParagraph());
 
 				final Call targetCall = proceedTo.getTargetCall();
 				assertNotNull(targetCall);
-				assertEquals(Call.CallType.PROCEDURE_CALL, targetCall.getCallType());
+				assertEquals(CallType.PROCEDURE_CALL, targetCall.getCallType());
 
 				final ProcedureCall targetProcedureCall = (ProcedureCall) targetCall;
 				assertEquals(paragraph2, targetProcedureCall.getParagraph());

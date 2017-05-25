@@ -11,7 +11,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.ReportCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
@@ -56,7 +56,7 @@ public class GenerateStatementTest extends CobolTestBase {
 						.get(0);
 				assertNotNull(generateStatement);
 				assertEquals(StatementTypeEnum.GENERATE, generateStatement.getStatementType());
-				assertEquals(Call.CallType.REPORT_DESCRIPTION_CALL,
+				assertEquals(CallType.REPORT_DESCRIPTION_CALL,
 						generateStatement.getReportDescriptionCall().getCallType());
 
 				{

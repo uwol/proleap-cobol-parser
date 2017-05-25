@@ -13,6 +13,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
@@ -65,7 +66,7 @@ public class InitializeStatementTest extends CobolTestBase {
 
 			{
 				final Call dataItemCall = initializeStatement.getDataItemCalls().get(0);
-				assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, dataItemCall.getCallType());
+				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, dataItemCall.getCallType());
 
 				{
 					final DataDescriptionEntryCall dataItemDataDescriptionEntryCall = (DataDescriptionEntryCall) dataItemCall;
@@ -85,7 +86,7 @@ public class InitializeStatementTest extends CobolTestBase {
 
 			{
 				final Call dataItemCall = initializeStatement.getDataItemCalls().get(0);
-				assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, dataItemCall.getCallType());
+				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, dataItemCall.getCallType());
 
 				{
 					final DataDescriptionEntryCall dataItemDataDescriptionEntryCall = (DataDescriptionEntryCall) dataItemCall;

@@ -12,6 +12,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
@@ -50,51 +51,51 @@ public class StringStatementTest extends CobolTestBase {
 				final Sendings sendings = stringStatement.getSendings().get(0);
 				assertEquals(Sendings.SendingsType.DELIMITED_BY, sendings.getSendingsType());
 
-				final DelimitedByPhrase delimitedBy = sendings.getDelimitedByPhrase();
-				assertEquals(DelimitedByPhrase.DelimitedByType.CHARACTERS, delimitedBy.getDelimitedByType());
-				assertEquals("1", delimitedBy.getCharactersValueStmt().getValue());
+				final DelimitedByPhrase delimitedByPhrase = sendings.getDelimitedByPhrase();
+				assertEquals(DelimitedByPhrase.DelimitedByType.CHARACTERS, delimitedByPhrase.getDelimitedByType());
+				assertEquals("1", delimitedByPhrase.getCharactersValueStmt().getValue());
 			}
 
 			{
 				final Sendings sendings = stringStatement.getSendings().get(1);
 				assertEquals(Sendings.SendingsType.FOR, sendings.getSendingsType());
 
-				final ForPhrase sendingFor = sendings.getForPhrase();
-				final CallValueStmt forCallValueStmt = (CallValueStmt) sendingFor.getForValueStmt();
-				assertEquals(Call.CallType.UNDEFINED_CALL, forCallValueStmt.getCall().getCallType());
+				final ForPhrase forPhrase = sendings.getForPhrase();
+				final CallValueStmt forCallValueStmt = (CallValueStmt) forPhrase.getForValueStmt();
+				assertEquals(CallType.UNDEFINED_CALL, forCallValueStmt.getCall().getCallType());
 			}
 
 			{
-				final IntoPhrase into = stringStatement.getIntoPhrase();
-				assertNotNull(into);
+				final IntoPhrase intoPhrase = stringStatement.getIntoPhrase();
+				assertNotNull(intoPhrase);
 
-				final Call intoCall = into.getIntoCall();
-				assertEquals(Call.CallType.UNDEFINED_CALL, intoCall.getCallType());
+				final Call intoCall = intoPhrase.getIntoCall();
+				assertEquals(CallType.UNDEFINED_CALL, intoCall.getCallType());
 			}
 
 			{
-				final WithPointerPhrase withPointer = stringStatement.getWithPointerPhrase();
-				assertNotNull(withPointer);
+				final WithPointerPhrase withPointerPhrase = stringStatement.getWithPointerPhrase();
+				assertNotNull(withPointerPhrase);
 
-				final Call pointerCall = withPointer.getPointerCall();
-				assertEquals(Call.CallType.UNDEFINED_CALL, pointerCall.getCallType());
+				final Call pointerCall = withPointerPhrase.getPointerCall();
+				assertEquals(CallType.UNDEFINED_CALL, pointerCall.getCallType());
 			}
 
 			{
-				final OnOverflowPhrase onOverflow = stringStatement.getOnOverflowPhrase();
-				assertNotNull(onOverflow);
-				assertEquals(1, onOverflow.getStatements().size());
+				final OnOverflowPhrase onOverflowPhrase = stringStatement.getOnOverflowPhrase();
+				assertNotNull(onOverflowPhrase);
+				assertEquals(1, onOverflowPhrase.getStatements().size());
 
-				final DisplayStatement displayStatement = (DisplayStatement) onOverflow.getStatements().get(0);
+				final DisplayStatement displayStatement = (DisplayStatement) onOverflowPhrase.getStatements().get(0);
 				assertNotNull(displayStatement);
 			}
 
 			{
-				final NotOnOverflowPhrase notOnOverflow = stringStatement.getNotOnOverflowPhrase();
-				assertNotNull(notOnOverflow);
-				assertEquals(1, notOnOverflow.getStatements().size());
+				final NotOnOverflowPhrase notOnOverflowPhrase = stringStatement.getNotOnOverflowPhrase();
+				assertNotNull(notOnOverflowPhrase);
+				assertEquals(1, notOnOverflowPhrase.getStatements().size());
 
-				final DisplayStatement displayStatement = (DisplayStatement) notOnOverflow.getStatements().get(0);
+				final DisplayStatement displayStatement = (DisplayStatement) notOnOverflowPhrase.getStatements().get(0);
 				assertNotNull(displayStatement);
 			}
 		}
