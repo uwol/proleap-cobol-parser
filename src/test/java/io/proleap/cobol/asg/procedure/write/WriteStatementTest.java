@@ -23,7 +23,7 @@ import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileCo
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.write.Advancing;
+import io.proleap.cobol.asg.metamodel.procedure.write.AdvancingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.write.AdvancingLines;
 import io.proleap.cobol.asg.metamodel.procedure.write.From;
 import io.proleap.cobol.asg.metamodel.procedure.write.WriteStatement;
@@ -111,10 +111,10 @@ public class WriteStatementTest extends CobolTestBase {
 			}
 
 			{
-				final Advancing advancing = writeStatement.getAdvancing();
+				final AdvancingPhrase advancing = writeStatement.getAdvancingPhrase();
 				assertNotNull(advancing);
-				assertEquals(Advancing.PositionType.BEFORE, advancing.getPositionType());
-				assertEquals(Advancing.AdvancingType.LINES, advancing.getAdvancingType());
+				assertEquals(AdvancingPhrase.PositionType.BEFORE, advancing.getPositionType());
+				assertEquals(AdvancingPhrase.AdvancingType.LINES, advancing.getAdvancingType());
 
 				{
 					final AdvancingLines advancingLines = advancing.getAdvancingLines();

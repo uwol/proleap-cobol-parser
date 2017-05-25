@@ -16,8 +16,8 @@ import io.proleap.cobol.Cobol85Parser.StringForPhraseContext;
 import io.proleap.cobol.Cobol85Parser.StringSendingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.string.DelimitedBy;
-import io.proleap.cobol.asg.metamodel.procedure.string.For;
+import io.proleap.cobol.asg.metamodel.procedure.string.DelimitedByPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.string.ForPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.string.Sendings;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
@@ -25,9 +25,9 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 
 	protected final StringSendingPhraseContext ctx;
 
-	protected DelimitedBy delimitedBy;
+	protected DelimitedByPhrase delimitedByPhrase;
 
-	protected For sendingFor;
+	protected ForPhrase sendingForPhrase;
 
 	protected SendingsType sendingsType;
 
@@ -40,26 +40,26 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 	}
 
 	@Override
-	public DelimitedBy addDelimitedBy(final StringDelimitedByPhraseContext ctx) {
-		DelimitedBy result = (DelimitedBy) getASGElement(ctx);
+	public DelimitedByPhrase addDelimitedByPhrase(final StringDelimitedByPhraseContext ctx) {
+		DelimitedByPhrase result = (DelimitedByPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new DelimitedByImpl(programUnit, ctx);
+			result = new DelimitedByPhraseImpl(programUnit, ctx);
 
 			// type
-			final DelimitedBy.DelimitedByType type;
+			final DelimitedByPhrase.DelimitedByType type;
 
 			if (ctx.SIZE() != null) {
-				type = DelimitedBy.DelimitedByType.SIZE;
+				type = DelimitedByPhrase.DelimitedByType.SIZE;
 			} else {
 				final ValueStmt charactersValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
 				result.setCharactersValueStmt(charactersValueStmt);
-				type = DelimitedBy.DelimitedByType.CHARACTERS;
+				type = DelimitedByPhrase.DelimitedByType.CHARACTERS;
 			}
 
 			result.setType(type);
 
-			delimitedBy = result;
+			delimitedByPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -67,16 +67,16 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 	}
 
 	@Override
-	public For addFor(final StringForPhraseContext ctx) {
-		For result = (For) getASGElement(ctx);
+	public ForPhrase addForPhrase(final StringForPhraseContext ctx) {
+		ForPhrase result = (ForPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new ForImpl(programUnit, ctx);
+			result = new ForPhraseImpl(programUnit, ctx);
 
 			final ValueStmt forValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
 			result.setForValueStmt(forValueStmt);
 
-			sendingFor = result;
+			sendingForPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -89,13 +89,13 @@ public class SendingsImpl extends CobolDivisionElementImpl implements Sendings {
 	}
 
 	@Override
-	public DelimitedBy getDelimitedBy() {
-		return delimitedBy;
+	public DelimitedByPhrase getDelimitedByPhrase() {
+		return delimitedByPhrase;
 	}
 
 	@Override
-	public For getFor() {
-		return sendingFor;
+	public ForPhrase getForPhrase() {
+		return sendingForPhrase;
 	}
 
 	@Override

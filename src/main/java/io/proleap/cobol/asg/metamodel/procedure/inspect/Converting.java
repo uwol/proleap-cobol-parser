@@ -17,11 +17,11 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface Converting extends CobolDivisionElement {
 
-	BeforeAfter addBeforeAfter(InspectBeforeAfterContext ctx);
+	BeforeAfterPhrase addBeforeAfterPhrase(InspectBeforeAfterContext ctx);
 
 	To addTo(InspectToContext ctx);
 
-	List<BeforeAfter> getBeforeAfters();
+	List<BeforeAfterPhrase> getBeforeAfterPhrases();
 
 	ValueStmt getFromValueStmt();
 

@@ -33,10 +33,10 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.asg.metamodel.procedure.display.Operand;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveTo;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.move.SendingArea;
-import io.proleap.cobol.asg.metamodel.procedure.perform.By;
-import io.proleap.cobol.asg.metamodel.procedure.perform.From;
+import io.proleap.cobol.asg.metamodel.procedure.perform.ByPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.perform.FromPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformProcedureStatement;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformType;
@@ -192,7 +192,7 @@ public class TableCallTest extends CobolTestBase {
 			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
-				final MoveTo moveTo = moveStatement.getMoveTo();
+				final MoveToPhrase moveTo = moveStatement.getMoveTo();
 
 				{
 					final SendingArea sendingArea = moveTo.getSendingArea();
@@ -255,13 +255,13 @@ public class TableCallTest extends CobolTestBase {
 						}
 
 						{
-							final From from = varyingPhrase.getFrom();
+							final FromPhrase from = varyingPhrase.getFrom();
 							final ValueStmt fromValueStmt = from.getFromValueStmt();
 							assertEquals(1, fromValueStmt.getValue());
 						}
 
 						{
-							final By by = varyingPhrase.getBy();
+							final ByPhrase by = varyingPhrase.getBy();
 							final ValueStmt byValueStmt = by.getByValueStmt();
 							assertEquals(1, byValueStmt.getValue());
 						}
@@ -352,13 +352,13 @@ public class TableCallTest extends CobolTestBase {
 						}
 
 						{
-							final From from = varyingPhrase.getFrom();
+							final FromPhrase from = varyingPhrase.getFrom();
 							final ValueStmt fromValueStmt = from.getFromValueStmt();
 							assertEquals(1, fromValueStmt.getValue());
 						}
 
 						{
-							final By by = varyingPhrase.getBy();
+							final ByPhrase by = varyingPhrase.getBy();
 							final ValueStmt byValueStmt = by.getByValueStmt();
 							assertEquals(1, byValueStmt.getValue());
 						}

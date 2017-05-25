@@ -15,10 +15,10 @@ import io.proleap.cobol.Cobol85Parser.CallByValueContext;
 import io.proleap.cobol.Cobol85Parser.CallByValuePhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.call.CallByValue;
+import io.proleap.cobol.asg.metamodel.procedure.call.ByValuePhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public class CallByValueImpl extends CobolDivisionElementImpl implements CallByValue {
+public class CallByValueImpl extends CobolDivisionElementImpl implements ByValuePhrase {
 
 	protected final CallByValuePhraseContext ctx;
 

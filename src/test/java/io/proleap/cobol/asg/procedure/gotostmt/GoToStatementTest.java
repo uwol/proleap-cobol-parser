@@ -24,7 +24,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.gotostmt.DependingOn;
+import io.proleap.cobol.asg.metamodel.procedure.gotostmt.DependingOnPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.gotostmt.GoToStatement;
 import io.proleap.cobol.asg.metamodel.procedure.gotostmt.Simple;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -110,7 +110,7 @@ public class GoToStatementTest extends CobolTestBase {
 				assertEquals(GoToStatement.GoToType.DEPENDING_ON, statement.getGoToType());
 
 				{
-					final DependingOn dependingOn = statement.getDependingOn();
+					final DependingOnPhrase dependingOn = statement.getDependingOnPhrase();
 					assertEquals(3, dependingOn.getProcedureCalls().size());
 
 					{
@@ -182,7 +182,7 @@ public class GoToStatementTest extends CobolTestBase {
 				assertEquals(GoToStatement.GoToType.DEPENDING_ON, statement.getGoToType());
 
 				{
-					final DependingOn dependingOn = statement.getDependingOn();
+					final DependingOnPhrase dependingOn = statement.getDependingOnPhrase();
 					assertTrue(dependingOn.isMoreLabels());
 				}
 			}

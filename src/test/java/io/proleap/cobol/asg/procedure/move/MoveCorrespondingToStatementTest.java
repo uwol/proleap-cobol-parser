@@ -19,7 +19,7 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveCorrespondingTo;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveCorrespondingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -63,10 +63,10 @@ public class MoveCorrespondingToStatementTest extends CobolTestBase {
 			final MoveStatement moveStatement = (MoveStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(moveStatement);
 			assertEquals(StatementTypeEnum.MOVE, moveStatement.getStatementType());
-			assertEquals(MoveStatement.MoveType.MOVE_CORRESPONDING_TO, moveStatement.getMoveType());
+			assertEquals(MoveStatement.MoveType.MOVE_CORRESPONDING, moveStatement.getMoveType());
 
 			{
-				final MoveCorrespondingTo moveCorrespondingTo = moveStatement.getMoveCorrespondingTo();
+				final MoveCorrespondingPhrase moveCorrespondingTo = moveStatement.getMoveCorrespondingPhrase();
 
 				{
 					final Call sendingCall = moveCorrespondingTo.getSendingCall();

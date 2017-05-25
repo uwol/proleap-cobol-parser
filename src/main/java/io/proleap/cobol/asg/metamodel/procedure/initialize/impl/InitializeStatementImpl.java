@@ -21,7 +21,7 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.InitializeStatement;
-import io.proleap.cobol.asg.metamodel.procedure.initialize.Replacing;
+import io.proleap.cobol.asg.metamodel.procedure.initialize.ReplacingPhrase;
 
 public class InitializeStatementImpl extends StatementImpl implements InitializeStatement {
 
@@ -29,7 +29,7 @@ public class InitializeStatementImpl extends StatementImpl implements Initialize
 
 	protected List<Call> dataItemCalls = new ArrayList<Call>();
 
-	protected Replacing replacing;
+	protected ReplacingPhrase replacingPhrase;
 
 	protected final StatementType statementType = StatementTypeEnum.INITIALIZE;
 
@@ -46,18 +46,18 @@ public class InitializeStatementImpl extends StatementImpl implements Initialize
 	}
 
 	@Override
-	public Replacing addReplacing(final InitializeReplacingPhraseContext ctx) {
-		Replacing result = (Replacing) getASGElement(ctx);
+	public ReplacingPhrase addReplacingPhrase(final InitializeReplacingPhraseContext ctx) {
+		ReplacingPhrase result = (ReplacingPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new ReplacingImpl(programUnit, ctx);
+			result = new ReplacingPhraseImpl(programUnit, ctx);
 
 			// by
 			for (final InitializeReplacingByContext initializeReplacingByContext : ctx.initializeReplacingBy()) {
 				result.addBy(initializeReplacingByContext);
 			}
 
-			replacing = result;
+			replacingPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -70,8 +70,8 @@ public class InitializeStatementImpl extends StatementImpl implements Initialize
 	}
 
 	@Override
-	public Replacing getReplacing() {
-		return replacing;
+	public ReplacingPhrase getReplacingPhrase() {
+		return replacingPhrase;
 	}
 
 	@Override

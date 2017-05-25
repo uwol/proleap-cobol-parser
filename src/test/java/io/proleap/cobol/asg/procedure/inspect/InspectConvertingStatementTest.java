@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfter;
+import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfterPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.Converting;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.InspectStatement;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.To;
@@ -61,12 +61,12 @@ public class InspectConvertingStatementTest extends CobolTestBase {
 					assertEquals(Call.CallType.UNDEFINED_CALL, toCallValueStmt.getCall().getCallType());
 				}
 
-				assertEquals(1, converting.getBeforeAfters().size());
+				assertEquals(1, converting.getBeforeAfterPhrases().size());
 
 				{
 					{
-						final BeforeAfter beforeAfter = converting.getBeforeAfters().get(0);
-						assertEquals(BeforeAfter.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
+						final BeforeAfterPhrase beforeAfter = converting.getBeforeAfterPhrases().get(0);
+						assertEquals(BeforeAfterPhrase.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
 					}
 				}
 			}

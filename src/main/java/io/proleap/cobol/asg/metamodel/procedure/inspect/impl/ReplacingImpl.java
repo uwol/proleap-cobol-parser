@@ -82,7 +82,7 @@ public class ReplacingImpl extends InspectPhraseImpl implements Replacing {
 
 			// before / after
 			for (final InspectBeforeAfterContext inspectBeforeAfterContext : ctx.inspectBeforeAfter()) {
-				result.addBeforeAfter(inspectBeforeAfterContext);
+				result.addBeforeAfterPhrase(inspectBeforeAfterContext);
 			}
 
 			characters.add(result);

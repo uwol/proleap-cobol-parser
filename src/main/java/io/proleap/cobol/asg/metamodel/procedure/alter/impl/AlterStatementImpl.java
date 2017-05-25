@@ -18,15 +18,15 @@ import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.alter.AlterProceedTo;
 import io.proleap.cobol.asg.metamodel.procedure.alter.AlterStatement;
+import io.proleap.cobol.asg.metamodel.procedure.alter.ProceedTo;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
 
 public class AlterStatementImpl extends StatementImpl implements AlterStatement {
 
-	protected List<AlterProceedTo> alterProceedTos = new ArrayList<AlterProceedTo>();
-
 	protected final AlterStatementContext ctx;
+
+	protected List<ProceedTo> proceedTos = new ArrayList<ProceedTo>();
 
 	protected final StatementType statementType = StatementTypeEnum.ALTER;
 
@@ -37,11 +37,11 @@ public class AlterStatementImpl extends StatementImpl implements AlterStatement 
 	}
 
 	@Override
-	public AlterProceedTo addAlterProceedTo(final AlterProceedToContext ctx) {
-		AlterProceedTo result = (AlterProceedTo) getASGElement(ctx);
+	public ProceedTo addProceedTo(final AlterProceedToContext ctx) {
+		ProceedTo result = (ProceedTo) getASGElement(ctx);
 
 		if (result == null) {
-			result = new AlterProceedToImpl(programUnit, ctx);
+			result = new ProceedToImpl(programUnit, ctx);
 
 			/*
 			 * source
@@ -55,7 +55,7 @@ public class AlterStatementImpl extends StatementImpl implements AlterStatement 
 			final Call targetCall = createCall(ctx.procedureName(1));
 			result.setTargetCall(targetCall);
 
-			alterProceedTos.add(result);
+			proceedTos.add(result);
 			registerASGElement(result);
 		}
 
@@ -63,8 +63,8 @@ public class AlterStatementImpl extends StatementImpl implements AlterStatement 
 	}
 
 	@Override
-	public List<AlterProceedTo> getAlterProceedTos() {
-		return alterProceedTos;
+	public List<ProceedTo> getProceedTos() {
+		return proceedTos;
 	}
 
 	@Override

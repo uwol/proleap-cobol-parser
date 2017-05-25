@@ -22,13 +22,13 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface StringStatement extends Statement {
 
-	Into addInto(StringIntoPhraseContext ctx);
+	IntoPhrase addIntoPhrase(StringIntoPhraseContext ctx);
 
 	Sendings addSendings(StringSendingPhraseContext ctx);
 
-	WithPointer addWithPointer(StringWithPointerPhraseContext ctx);
+	WithPointerPhrase addWithPointerPhrase(StringWithPointerPhraseContext ctx);
 
-	Into getInto();
+	IntoPhrase getIntoPhrase();
 
 	NotOnOverflowPhrase getNotOnOverflowPhrase();
 
@@ -36,7 +36,7 @@ public interface StringStatement extends Statement {
 
 	List<Sendings> getSendings();
 
-	WithPointer getWithPointer();
+	WithPointerPhrase getWithPointerPhrase();
 
 	void setNotOnOverflowPhrase(NotOnOverflowPhrase notOnOverflowPhrase);
 

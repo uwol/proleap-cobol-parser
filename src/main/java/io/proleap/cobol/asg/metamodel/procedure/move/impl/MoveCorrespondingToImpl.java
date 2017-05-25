@@ -15,9 +15,9 @@ import io.proleap.cobol.Cobol85Parser.MoveCorrespondingToStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveCorrespondingTo;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveCorrespondingPhrase;
 
-public class MoveCorrespondingToImpl extends CobolDivisionElementImpl implements MoveCorrespondingTo {
+public class MoveCorrespondingToImpl extends CobolDivisionElementImpl implements MoveCorrespondingPhrase {
 
 	protected final MoveCorrespondingToStatementContext ctx;
 

@@ -18,13 +18,13 @@ import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.CountIn;
-import io.proleap.cobol.asg.metamodel.procedure.unstring.DelimitedBy;
+import io.proleap.cobol.asg.metamodel.procedure.unstring.DelimitedByPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.DelimiterIn;
-import io.proleap.cobol.asg.metamodel.procedure.unstring.Intos;
+import io.proleap.cobol.asg.metamodel.procedure.unstring.IntoPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.OrAll;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.Sending;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.UnstringStatement;
-import io.proleap.cobol.asg.metamodel.procedure.unstring.WithPointer;
+import io.proleap.cobol.asg.metamodel.procedure.unstring.WithPointerPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -58,7 +58,7 @@ public class UnstringStatementTest extends CobolTestBase {
 					assertEquals(Call.CallType.UNDEFINED_CALL, sendingCall.getCallType());
 
 					{
-						final DelimitedBy delimitedBy = sending.getDelimitedBy();
+						final DelimitedByPhrase delimitedBy = sending.getDelimitedByPhrase();
 						final ValueStmt delimitedByValueStmt = delimitedBy.getDelimitedByValueStmt();
 						assertEquals("1", delimitedByValueStmt.getValue());
 					}
@@ -86,7 +86,7 @@ public class UnstringStatementTest extends CobolTestBase {
 			}
 
 			{
-				final Intos intos = unstringStatement.getIntos();
+				final IntoPhrase intos = unstringStatement.getIntoPhrase();
 				assertNotNull(intos);
 				assertEquals(2, intos.getIntos().size());
 
@@ -116,7 +116,7 @@ public class UnstringStatementTest extends CobolTestBase {
 			}
 
 			{
-				final WithPointer withPointer = unstringStatement.getWithPointer();
+				final WithPointerPhrase withPointer = unstringStatement.getWithPointerPhrase();
 				final Call pointerCall = withPointer.getPointerCall();
 				assertEquals(Call.CallType.UNDEFINED_CALL, pointerCall.getCallType());
 			}

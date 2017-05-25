@@ -23,8 +23,8 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.search.SearchStatement;
-import io.proleap.cobol.asg.metamodel.procedure.search.Varying;
-import io.proleap.cobol.asg.metamodel.procedure.search.When;
+import io.proleap.cobol.asg.metamodel.procedure.search.VaryingPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.search.WhenPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
 
 public class SearchStatementImpl extends StatementImpl implements SearchStatement {
@@ -37,9 +37,9 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 
 	protected final StatementType statementType = StatementTypeEnum.SEARCH;
 
-	protected Varying varying;
+	protected VaryingPhrase varyingPhrase;
 
-	protected List<When> whens = new ArrayList<When>();
+	protected List<WhenPhrase> whenPhrases = new ArrayList<WhenPhrase>();
 
 	public SearchStatementImpl(final ProgramUnit programUnit, final Scope scope, final SearchStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -48,8 +48,8 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 	}
 
 	@Override
-	public Varying addVarying(final SearchVaryingContext ctx) {
-		Varying result = (Varying) getASGElement(ctx);
+	public VaryingPhrase addVaryingPhrase(final SearchVaryingContext ctx) {
+		VaryingPhrase result = (VaryingPhrase) getASGElement(ctx);
 
 		if (result == null) {
 			result = new VaryingImpl(programUnit, ctx);
@@ -57,7 +57,7 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 			final Call dataCall = createCall(ctx.qualifiedDataName());
 			result.setDataCall(dataCall);
 
-			varying = result;
+			varyingPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -65,8 +65,8 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 	}
 
 	@Override
-	public When addWhen(final SearchWhenContext ctx) {
-		When result = (When) getASGElement(ctx);
+	public WhenPhrase addWhenPhrase(final SearchWhenContext ctx) {
+		WhenPhrase result = (WhenPhrase) getASGElement(ctx);
 
 		if (result == null) {
 			result = new WhenImpl(programUnit, ctx);
@@ -76,23 +76,23 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 			result.setCondition(condition);
 
 			// type and statements
-			final When.WhenType type;
+			final WhenPhrase.WhenType type;
 
 			if (ctx.NEXT() != null) {
-				type = When.WhenType.NEXT_SENTENCE;
+				type = WhenPhrase.WhenType.NEXT_SENTENCE;
 			} else if (!ctx.statement().isEmpty()) {
 				for (final StatementContext statementContext : ctx.statement()) {
 					result.addStatement(statementContext);
 				}
 
-				type = When.WhenType.STATEMENTS;
+				type = WhenPhrase.WhenType.STATEMENTS;
 			} else {
 				type = null;
 			}
 
 			result.setWhenType(type);
 
-			whens.add(result);
+			whenPhrases.add(result);
 			registerASGElement(result);
 		}
 
@@ -115,13 +115,13 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 	}
 
 	@Override
-	public Varying getVarying() {
-		return varying;
+	public VaryingPhrase getVaryingPhrase() {
+		return varyingPhrase;
 	}
 
 	@Override
-	public List<When> getWhens() {
-		return whens;
+	public List<WhenPhrase> getWhenPhrases() {
+		return whenPhrases;
 	}
 
 	@Override

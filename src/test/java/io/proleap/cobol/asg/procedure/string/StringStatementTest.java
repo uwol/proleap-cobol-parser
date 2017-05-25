@@ -17,12 +17,12 @@ import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
-import io.proleap.cobol.asg.metamodel.procedure.string.DelimitedBy;
-import io.proleap.cobol.asg.metamodel.procedure.string.For;
-import io.proleap.cobol.asg.metamodel.procedure.string.Into;
+import io.proleap.cobol.asg.metamodel.procedure.string.DelimitedByPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.string.ForPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.string.IntoPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.string.Sendings;
 import io.proleap.cobol.asg.metamodel.procedure.string.StringStatement;
-import io.proleap.cobol.asg.metamodel.procedure.string.WithPointer;
+import io.proleap.cobol.asg.metamodel.procedure.string.WithPointerPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -50,8 +50,8 @@ public class StringStatementTest extends CobolTestBase {
 				final Sendings sendings = stringStatement.getSendings().get(0);
 				assertEquals(Sendings.SendingsType.DELIMITED_BY, sendings.getSendingsType());
 
-				final DelimitedBy delimitedBy = sendings.getDelimitedBy();
-				assertEquals(DelimitedBy.DelimitedByType.CHARACTERS, delimitedBy.getDelimitedByType());
+				final DelimitedByPhrase delimitedBy = sendings.getDelimitedByPhrase();
+				assertEquals(DelimitedByPhrase.DelimitedByType.CHARACTERS, delimitedBy.getDelimitedByType());
 				assertEquals("1", delimitedBy.getCharactersValueStmt().getValue());
 			}
 
@@ -59,13 +59,13 @@ public class StringStatementTest extends CobolTestBase {
 				final Sendings sendings = stringStatement.getSendings().get(1);
 				assertEquals(Sendings.SendingsType.FOR, sendings.getSendingsType());
 
-				final For sendingFor = sendings.getFor();
+				final ForPhrase sendingFor = sendings.getForPhrase();
 				final CallValueStmt forCallValueStmt = (CallValueStmt) sendingFor.getForValueStmt();
 				assertEquals(Call.CallType.UNDEFINED_CALL, forCallValueStmt.getCall().getCallType());
 			}
 
 			{
-				final Into into = stringStatement.getInto();
+				final IntoPhrase into = stringStatement.getIntoPhrase();
 				assertNotNull(into);
 
 				final Call intoCall = into.getIntoCall();
@@ -73,7 +73,7 @@ public class StringStatementTest extends CobolTestBase {
 			}
 
 			{
-				final WithPointer withPointer = stringStatement.getWithPointer();
+				final WithPointerPhrase withPointer = stringStatement.getWithPointerPhrase();
 				assertNotNull(withPointer);
 
 				final Call pointerCall = withPointer.getPointerCall();

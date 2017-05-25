@@ -18,7 +18,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface AlterStatement extends Statement {
 
-	AlterProceedTo addAlterProceedTo(AlterProceedToContext ctx);
+	ProceedTo addProceedTo(AlterProceedToContext ctx);
 
-	List<AlterProceedTo> getAlterProceedTos();
+	List<ProceedTo> getProceedTos();
 }

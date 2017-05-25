@@ -31,7 +31,7 @@ public interface SortStatement extends Statement {
 
 	Duplicates addDuplicates(SortDuplicatesPhraseContext ctx);
 
-	Givings addGiving(SortGivingPhraseContext ctx);
+	GivingPhrase addGivingPhrase(SortGivingPhraseContext ctx);
 
 	InputProcedure addInputProcedure(SortInputProcedurePhraseContext ctx);
 
@@ -39,7 +39,7 @@ public interface SortStatement extends Statement {
 
 	OutputProcedure addOutputProcedure(SortOutputProcedurePhraseContext ctx);
 
-	Using addUsing(SortUsingContext ctx);
+	UsingPhrase addUsingPhrase(SortUsingContext ctx);
 
 	CollatingSequence getCollatingSequence();
 
@@ -47,7 +47,7 @@ public interface SortStatement extends Statement {
 
 	Call getFileCall();
 
-	List<Givings> getGivings();
+	List<GivingPhrase> getGivingPhrases();
 
 	InputProcedure getInputProcedure();
 
@@ -55,7 +55,7 @@ public interface SortStatement extends Statement {
 
 	OutputProcedure getOutputProcedure();
 
-	List<Using> getUsings();
+	List<UsingPhrase> getUsingPhrases();
 
 	void setFileCall(Call fileCall);
 

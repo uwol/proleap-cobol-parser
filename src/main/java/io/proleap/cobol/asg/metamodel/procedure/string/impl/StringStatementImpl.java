@@ -24,17 +24,17 @@ import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.string.Into;
+import io.proleap.cobol.asg.metamodel.procedure.string.IntoPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.string.Sendings;
 import io.proleap.cobol.asg.metamodel.procedure.string.StringStatement;
-import io.proleap.cobol.asg.metamodel.procedure.string.WithPointer;
+import io.proleap.cobol.asg.metamodel.procedure.string.WithPointerPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class StringStatementImpl extends StatementImpl implements StringStatement {
 
 	protected final StringStatementContext ctx;
 
-	protected Into into;
+	protected IntoPhrase intoPhrase;
 
 	protected NotOnOverflowPhrase notOnOverflowPhrase;
 
@@ -44,7 +44,7 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 
 	protected final StatementType statementType = StatementTypeEnum.STRING;
 
-	protected WithPointer withPointer;
+	protected WithPointerPhrase withPointerPhrase;
 
 	public StringStatementImpl(final ProgramUnit programUnit, final Scope scope, final StringStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -53,17 +53,17 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 	}
 
 	@Override
-	public Into addInto(final StringIntoPhraseContext ctx) {
-		Into result = (Into) getASGElement(ctx);
+	public IntoPhrase addIntoPhrase(final StringIntoPhraseContext ctx) {
+		IntoPhrase result = (IntoPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new IntoImpl(programUnit, ctx);
+			result = new IntoPhraseImpl(programUnit, ctx);
 
 			// into
 			final Call intoCall = createCall(ctx.identifier());
 			result.setIntoCall(intoCall);
 
-			into = result;
+			intoPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -88,10 +88,10 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 			final Sendings.SendingsType type;
 
 			if (ctx.stringDelimitedByPhrase() != null) {
-				result.addDelimitedBy(ctx.stringDelimitedByPhrase());
+				result.addDelimitedByPhrase(ctx.stringDelimitedByPhrase());
 				type = Sendings.SendingsType.DELIMITED_BY;
 			} else if (ctx.stringForPhrase() != null) {
-				result.addFor(ctx.stringForPhrase());
+				result.addForPhrase(ctx.stringForPhrase());
 				type = Sendings.SendingsType.FOR;
 			} else {
 				type = null;
@@ -107,16 +107,16 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 	}
 
 	@Override
-	public WithPointer addWithPointer(final StringWithPointerPhraseContext ctx) {
-		WithPointer result = (WithPointer) getASGElement(ctx);
+	public WithPointerPhrase addWithPointerPhrase(final StringWithPointerPhraseContext ctx) {
+		WithPointerPhrase result = (WithPointerPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new WithPointerImpl(programUnit, ctx);
+			result = new WithPointerPhraseImpl(programUnit, ctx);
 
 			final Call pointerCall = createCall(ctx.qualifiedDataName());
 			result.setPointerCall(pointerCall);
 
-			withPointer = result;
+			withPointerPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -124,8 +124,8 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 	}
 
 	@Override
-	public Into getInto() {
-		return into;
+	public IntoPhrase getIntoPhrase() {
+		return intoPhrase;
 	}
 
 	@Override
@@ -149,8 +149,8 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 	}
 
 	@Override
-	public WithPointer getWithPointer() {
-		return withPointer;
+	public WithPointerPhrase getWithPointerPhrase() {
+		return withPointerPhrase;
 	}
 
 	@Override

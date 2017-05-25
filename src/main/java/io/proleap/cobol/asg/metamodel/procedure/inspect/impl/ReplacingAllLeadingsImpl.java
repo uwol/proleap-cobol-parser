@@ -49,7 +49,7 @@ public class ReplacingAllLeadingsImpl extends InspectPhraseImpl implements Repla
 
 			// before / after
 			for (final InspectBeforeAfterContext inspectBeforeAfterContext : ctx.inspectBeforeAfter()) {
-				result.addBeforeAfter(inspectBeforeAfterContext);
+				result.addBeforeAfterPhrase(inspectBeforeAfterContext);
 			}
 
 			allLeadings.add(result);

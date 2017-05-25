@@ -50,7 +50,7 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public AcceptFromDateStatement addAcceptFromDate(final AcceptFromDateStatementContext ctx) {
+	public AcceptFromDateStatement addAcceptFromDateStatement(final AcceptFromDateStatementContext ctx) {
 		AcceptFromDateStatement result = (AcceptFromDateStatement) getASGElement(ctx);
 
 		if (result == null) {
@@ -99,7 +99,7 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public AcceptFromEscapeKeyStatement addAcceptFromEscapeKey(final AcceptFromEscapeKeyStatementContext ctx) {
+	public AcceptFromEscapeKeyStatement addAcceptFromEscapeKeyStatement(final AcceptFromEscapeKeyStatementContext ctx) {
 		AcceptFromEscapeKeyStatement result = (AcceptFromEscapeKeyStatement) getASGElement(ctx);
 
 		if (result == null) {
@@ -113,7 +113,7 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public AcceptFromMnemonicStatement addAcceptFromMnemonic(final AcceptFromMnemonicStatementContext ctx) {
+	public AcceptFromMnemonicStatement addAcceptFromMnemonicStatement(final AcceptFromMnemonicStatementContext ctx) {
 		AcceptFromMnemonicStatement result = (AcceptFromMnemonicStatement) getASGElement(ctx);
 
 		if (result == null) {
@@ -130,7 +130,7 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public AcceptMessageCountStatement addAcceptMessageCount(final AcceptMessageCountStatementContext ctx) {
+	public AcceptMessageCountStatement addAcceptMessageCountStatement(final AcceptMessageCountStatementContext ctx) {
 		AcceptMessageCountStatement result = (AcceptMessageCountStatement) getASGElement(ctx);
 
 		if (result == null) {

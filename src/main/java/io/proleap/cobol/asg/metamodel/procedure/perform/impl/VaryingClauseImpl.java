@@ -62,10 +62,10 @@ public class VaryingClauseImpl extends CobolDivisionElementImpl implements Varyi
 			result.setVaryingValueStmt(varyingValueStmt);
 
 			// from
-			result.addFrom(ctx.performFrom());
+			result.addFromPhrase(ctx.performFrom());
 
 			// by
-			result.addBy(ctx.performBy());
+			result.addByPhrase(ctx.performBy());
 
 			// until
 			result.addUntil(ctx.performUntil());

@@ -26,23 +26,23 @@ public interface DivideStatement extends Statement {
 		BY_GIVING, INTO, INTO_GIVING
 	}
 
-	ByGiving addByGiving(DivideByGivingStatementContext ctx);
+	DivideByGivingStatement addDivideByGivingStatement(DivideByGivingStatementContext ctx);
 
-	Into addInto(DivideIntoStatementContext ctx);
+	DivideIntoGivingStatement addDivideIntoGivingStatement(DivideIntoGivingStatementContext ctx);
 
-	IntoGiving addIntoGiving(DivideIntoGivingStatementContext ctx);
+	DivideIntoStatement addDivideIntoStatement(DivideIntoStatementContext ctx);
 
 	Remainder addRemainder(DivideRemainderContext ctx);
 
-	ByGiving getByGiving();
+	DivideByGivingStatement getDivideByGivingStatement();
+
+	DivideIntoGivingStatement getDivideIntoGivingStatement();
+
+	DivideIntoStatement getDivideIntoStatement();
 
 	DivideType getDivideType();
 
 	ValueStmt getDivisorValueStmt();
-
-	Into getInto();
-
-	IntoGiving getIntoGiving();
 
 	NotOnSizeErrorPhrase getNotOnSizeErrorPhrase();
 

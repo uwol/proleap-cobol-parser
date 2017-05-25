@@ -28,8 +28,8 @@ import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.close.CloseFile;
 import io.proleap.cobol.asg.metamodel.procedure.close.CloseStatement;
 import io.proleap.cobol.asg.metamodel.procedure.open.Input;
-import io.proleap.cobol.asg.metamodel.procedure.open.OpenInput;
-import io.proleap.cobol.asg.metamodel.procedure.open.OpenOutput;
+import io.proleap.cobol.asg.metamodel.procedure.open.InputPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.open.OutputPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.open.OpenStatement;
 import io.proleap.cobol.asg.metamodel.procedure.open.Output;
 import io.proleap.cobol.asg.metamodel.procedure.read.ReadStatement;
@@ -116,11 +116,11 @@ public class RecordCallTest extends CobolTestBase {
 
 		{
 			final OpenStatement openStatement = (OpenStatement) procedureDivision.getStatements().get(0);
-			assertEquals(1, openStatement.getOpenInputs().size());
-			assertEquals(1, openStatement.getOpenOutputs().size());
+			assertEquals(1, openStatement.getInputPhrases().size());
+			assertEquals(1, openStatement.getOutputPhrases().size());
 
 			{
-				final OpenInput openInput = openStatement.getOpenInputs().get(0);
+				final InputPhrase openInput = openStatement.getInputPhrases().get(0);
 				assertEquals(1, openInput.getInputs().size());
 
 				{
@@ -135,7 +135,7 @@ public class RecordCallTest extends CobolTestBase {
 			}
 
 			{
-				final OpenOutput openOutput = openStatement.getOpenOutputs().get(0);
+				final OutputPhrase openOutput = openStatement.getOutputPhrases().get(0);
 				assertEquals(1, openOutput.getOutputs().size());
 
 				{

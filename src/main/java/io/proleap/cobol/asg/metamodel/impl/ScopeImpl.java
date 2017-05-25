@@ -253,16 +253,16 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			final AcceptType type;
 
 			if (ctx.acceptFromDateStatement() != null) {
-				result.addAcceptFromDate(ctx.acceptFromDateStatement());
+				result.addAcceptFromDateStatement(ctx.acceptFromDateStatement());
 				type = AcceptType.DATE;
 			} else if (ctx.acceptFromMnemonicStatement() != null) {
-				result.addAcceptFromMnemonic(ctx.acceptFromMnemonicStatement());
+				result.addAcceptFromMnemonicStatement(ctx.acceptFromMnemonicStatement());
 				type = AcceptType.MNEMONIC;
 			} else if (ctx.acceptMessageCountStatement() != null) {
-				result.addAcceptMessageCount(ctx.acceptMessageCountStatement());
+				result.addAcceptMessageCountStatement(ctx.acceptMessageCountStatement());
 				type = AcceptType.MESSAGE_COUNT;
 			} else if (ctx.acceptFromEscapeKeyStatement() != null) {
-				result.addAcceptFromEscapeKey(ctx.acceptFromEscapeKeyStatement());
+				result.addAcceptFromEscapeKeyStatement(ctx.acceptFromEscapeKeyStatement());
 				type = AcceptType.FROM_ESCAPE_KEY;
 			} else {
 				type = AcceptType.NO_FROM;
@@ -328,7 +328,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new AlterStatementImpl(programUnit, this, ctx);
 
 			for (final AlterProceedToContext alterProceedToContext : ctx.alterProceedTo()) {
-				result.addAlterProceedTo(alterProceedToContext);
+				result.addProceedTo(alterProceedToContext);
 			}
 
 			registerStatement(result);
@@ -585,13 +585,13 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			final DivideStatement.DivideType type;
 
 			if (ctx.divideIntoStatement() != null) {
-				result.addInto(ctx.divideIntoStatement());
+				result.addDivideIntoStatement(ctx.divideIntoStatement());
 				type = DivideStatement.DivideType.INTO;
 			} else if (ctx.divideIntoGivingStatement() != null) {
-				result.addIntoGiving(ctx.divideIntoGivingStatement());
+				result.addDivideIntoGivingStatement(ctx.divideIntoGivingStatement());
 				type = DivideStatement.DivideType.INTO_GIVING;
 			} else if (ctx.divideByGivingStatement() != null) {
-				result.addByGiving(ctx.divideByGivingStatement());
+				result.addDivideByGivingStatement(ctx.divideByGivingStatement());
 				type = DivideStatement.DivideType.BY_GIVING;
 			} else {
 				type = null;
@@ -850,7 +850,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 				result.addSimple(ctx.goToStatementSimple());
 				type = GoToStatement.GoToType.SIMPLE;
 			} else if (ctx.goToDependingOnStatement() != null) {
-				result.addDependingOn(ctx.goToDependingOnStatement());
+				result.addDependingOnPhrase(ctx.goToDependingOnStatement());
 				type = GoToStatement.GoToType.DEPENDING_ON;
 			} else {
 				type = null;
@@ -906,7 +906,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// replacing
 			if (ctx.initializeReplacingPhrase() != null) {
-				result.addReplacing(ctx.initializeReplacingPhrase());
+				result.addReplacingPhrase(ctx.initializeReplacingPhrase());
 			}
 
 			registerStatement(result);
@@ -989,17 +989,17 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// collating sequence
 			if (ctx.mergeCollatingSequencePhrase() != null) {
-				result.addCollatingSequence(ctx.mergeCollatingSequencePhrase());
+				result.addCollatingSequencePhrase(ctx.mergeCollatingSequencePhrase());
 			}
 
 			// using
 			for (final MergeUsingContext mergeUsingContext : ctx.mergeUsing()) {
-				result.addUsing(mergeUsingContext);
+				result.addUsingPhrase(mergeUsingContext);
 			}
 
 			// output procedure
 			if (ctx.mergeOutputProcedurePhrase() != null) {
-				result.addOutputProcedure(ctx.mergeOutputProcedurePhrase());
+				result.addOutputProcedurePhrase(ctx.mergeOutputProcedurePhrase());
 			}
 
 			// giving
@@ -1027,8 +1027,8 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 				type = MoveStatement.MoveType.MOVE_TO;
 				result.addMoveTo(ctx.moveToStatement());
 			} else if (ctx.moveCorrespondingToStatement() != null) {
-				type = MoveStatement.MoveType.MOVE_CORRESPONDING_TO;
-				result.addMoveCorrespondingTo(ctx.moveCorrespondingToStatement());
+				type = MoveStatement.MoveType.MOVE_CORRESPONDING;
+				result.addMoveCorrespondingPhrase(ctx.moveCorrespondingToStatement());
 			} else {
 				type = null;
 			}
@@ -1094,22 +1094,22 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// input
 			for (final OpenInputStatementContext openInputStatementContext : ctx.openInputStatement()) {
-				result.addOpenInput(openInputStatementContext);
+				result.addInputPhrase(openInputStatementContext);
 			}
 
 			// output
 			for (final OpenOutputStatementContext openOutputStatementContext : ctx.openOutputStatement()) {
-				result.addOpenOutput(openOutputStatementContext);
+				result.addOutputPhrase(openOutputStatementContext);
 			}
 
 			// input / output
 			for (final OpenIOStatementContext openIOStatementContext : ctx.openIOStatement()) {
-				result.addOpenInputOutput(openIOStatementContext);
+				result.addInputOutputPhrase(openIOStatementContext);
 			}
 
 			// extend
 			for (final OpenExtendStatementContext openExtendStatementContext : ctx.openExtendStatement()) {
-				result.addOpenExtend(openExtendStatementContext);
+				result.addExtendPhrase(openExtendStatementContext);
 			}
 
 			registerStatement(result);
@@ -1368,7 +1368,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// varying
 			if (ctx.searchVarying() != null) {
-				result.addVarying(ctx.searchVarying());
+				result.addVaryingPhrase(ctx.searchVarying());
 			}
 
 			// at end
@@ -1379,7 +1379,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// when
 			for (final SearchWhenContext searchWhenContext : ctx.searchWhen()) {
-				result.addWhen(searchWhenContext);
+				result.addWhenPhrase(searchWhenContext);
 			}
 
 			registerStatement(result);
@@ -1487,7 +1487,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// using
 			for (final SortUsingContext sortUsingContext : ctx.sortUsing()) {
-				result.addUsing(sortUsingContext);
+				result.addUsingPhrase(sortUsingContext);
 			}
 
 			// input procedure
@@ -1497,7 +1497,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// giving
 			for (final SortGivingPhraseContext sortGivingPhraseContext : ctx.sortGivingPhrase()) {
-				result.addGiving(sortGivingPhraseContext);
+				result.addGivingPhrase(sortGivingPhraseContext);
 			}
 
 			// output procedure
@@ -1595,11 +1595,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			}
 
 			// into
-			result.addInto(ctx.stringIntoPhrase());
+			result.addIntoPhrase(ctx.stringIntoPhrase());
 
 			// with pointer
 			if (ctx.stringWithPointerPhrase() != null) {
-				result.addWithPointer(ctx.stringWithPointerPhrase());
+				result.addWithPointerPhrase(ctx.stringWithPointerPhrase());
 			}
 
 			// on overflow
@@ -1690,16 +1690,16 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result.addSending(ctx.unstringSendingPhrase());
 
 			// into
-			result.addIntos(ctx.unstringIntoPhrase());
+			result.addIntoPhrase(ctx.unstringIntoPhrase());
 
 			// with pointer
 			if (ctx.unstringWithPointerPhrase() != null) {
-				result.addWithPointer(ctx.unstringWithPointerPhrase());
+				result.addWithPointerPhrase(ctx.unstringWithPointerPhrase());
 			}
 
 			// tallying
 			if (ctx.unstringTallyingPhrase() != null) {
-				result.addTallying(ctx.unstringTallyingPhrase());
+				result.addTallyingPhrase(ctx.unstringTallyingPhrase());
 			}
 
 			// on overflow
@@ -1738,17 +1738,17 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// advancing
 			if (ctx.writeAdvancingPhrase() != null) {
-				result.addAdvancing(ctx.writeAdvancingPhrase());
+				result.addAdvancingPhrase(ctx.writeAdvancingPhrase());
 			}
 
 			// at end of page
 			if (ctx.writeAtEndOfPagePhrase() != null) {
-				result.addAtEndOfPage(ctx.writeAtEndOfPagePhrase());
+				result.addAtEndOfPagePhrase(ctx.writeAtEndOfPagePhrase());
 			}
 
 			// not at end of page
 			if (ctx.writeNotAtEndOfPagePhrase() != null) {
-				result.addNotAtEndOfPage(ctx.writeNotAtEndOfPagePhrase());
+				result.addNotAtEndOfPagePhrase(ctx.writeNotAtEndOfPagePhrase());
 			}
 
 			// invalid key

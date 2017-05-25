@@ -15,15 +15,15 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.merge.Alphanumeric;
-import io.proleap.cobol.asg.metamodel.procedure.merge.CollatingSequence;
+import io.proleap.cobol.asg.metamodel.procedure.merge.CollatingSequencePhrase;
 import io.proleap.cobol.asg.metamodel.procedure.merge.Giving;
-import io.proleap.cobol.asg.metamodel.procedure.merge.Givings;
+import io.proleap.cobol.asg.metamodel.procedure.merge.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.merge.MergeStatement;
 import io.proleap.cobol.asg.metamodel.procedure.merge.National;
 import io.proleap.cobol.asg.metamodel.procedure.merge.OnKey;
-import io.proleap.cobol.asg.metamodel.procedure.merge.OutputProcedure;
+import io.proleap.cobol.asg.metamodel.procedure.merge.OutputProcedurePhrase;
 import io.proleap.cobol.asg.metamodel.procedure.merge.OutputThrough;
-import io.proleap.cobol.asg.metamodel.procedure.merge.Using;
+import io.proleap.cobol.asg.metamodel.procedure.merge.UsingPhrase;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -83,7 +83,7 @@ public class MergeStatementTest extends CobolTestBase {
 			}
 
 			{
-				final CollatingSequence collatingSequence = mergeStatement.getCollatingSequence();
+				final CollatingSequencePhrase collatingSequence = mergeStatement.getCollatingSequencePhrase();
 				assertEquals(2, collatingSequence.getAlphabetCalls().size());
 
 				{
@@ -104,9 +104,9 @@ public class MergeStatementTest extends CobolTestBase {
 			}
 
 			{
-				assertEquals(1, mergeStatement.getUsings().size());
+				assertEquals(1, mergeStatement.getUsingPhrases().size());
 
-				final Using using = mergeStatement.getUsings().get(0);
+				final UsingPhrase using = mergeStatement.getUsingPhrases().get(0);
 				assertEquals(1, using.getFileCalls().size());
 
 				final Call fileCall = using.getFileCalls().get(0);
@@ -114,7 +114,7 @@ public class MergeStatementTest extends CobolTestBase {
 			}
 
 			{
-				final OutputProcedure outputProcedure = mergeStatement.getOutputProcedure();
+				final OutputProcedurePhrase outputProcedure = mergeStatement.getOutputProcedurePhrase();
 				assertNotNull(outputProcedure);
 
 				{
@@ -134,9 +134,9 @@ public class MergeStatementTest extends CobolTestBase {
 			}
 
 			{
-				assertEquals(1, mergeStatement.getGivings().size());
+				assertEquals(1, mergeStatement.getGivingPhrases().size());
 
-				final Givings givings = mergeStatement.getGivings().get(0);
+				final GivingPhrase givings = mergeStatement.getGivingPhrases().get(0);
 				assertNotNull(givings);
 				assertEquals(1, givings.getGivings().size());
 

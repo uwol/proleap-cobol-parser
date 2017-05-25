@@ -19,17 +19,17 @@ public interface Using extends CobolDivisionElement {
 		ASSOCIATED_DATA, ASSOCIATED_DATA_LENGTH, CLOSE_DISPOSITION
 	}
 
-	UsingAssociatedData addUsingAssociatedData(ClosePortFileIOUsingAssociatedDataContext ctx);
+	AssociatedDataLengthPhrase addAssociatedDataLengthPhrase(ClosePortFileIOUsingAssociatedDataLengthContext ctx);
 
-	UsingAssociatedDataLength addUsingAssociatedDataLength(ClosePortFileIOUsingAssociatedDataLengthContext ctx);
+	AssociatedDataPhrase addAssociatedDataPhrase(ClosePortFileIOUsingAssociatedDataContext ctx);
 
-	UsingCloseDisposition addUsingCloseDisposition(ClosePortFileIOUsingCloseDispositionContext ctx);
+	CloseDispositionPhrase addCloseDispositionPhrase(ClosePortFileIOUsingCloseDispositionContext ctx);
 
-	UsingAssociatedData getUsingAssociatedData();
+	AssociatedDataLengthPhrase getAssociatedDataLengthPhrase();
 
-	UsingAssociatedDataLength getUsingAssociatedDataLength();
+	AssociatedDataPhrase getAssociatedDataPhrase();
 
-	UsingCloseDisposition getUsingCloseDisposition();
+	CloseDispositionPhrase getCloseDispositionPhrase();
 
 	UsingType getUsingType();
 

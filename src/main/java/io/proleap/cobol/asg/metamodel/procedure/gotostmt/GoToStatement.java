@@ -22,11 +22,11 @@ public interface GoToStatement extends Statement {
 		DEPENDING_ON, SIMPLE
 	}
 
-	DependingOn addDependingOn(GoToDependingOnStatementContext ctx);
+	DependingOnPhrase addDependingOnPhrase(GoToDependingOnStatementContext ctx);
 
 	Simple addSimple(GoToStatementSimpleContext ctx);
 
-	DependingOn getDependingOn();
+	DependingOnPhrase getDependingOnPhrase();
 
 	GoToType getGoToType();
 

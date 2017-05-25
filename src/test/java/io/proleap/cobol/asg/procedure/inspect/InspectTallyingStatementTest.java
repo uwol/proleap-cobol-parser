@@ -15,8 +15,8 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.AllLeading;
-import io.proleap.cobol.asg.metamodel.procedure.inspect.AllLeadings;
-import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfter;
+import io.proleap.cobol.asg.metamodel.procedure.inspect.AllLeadingPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfterPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.Characters;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.For;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.InspectStatement;
@@ -53,21 +53,21 @@ public class InspectTallyingStatementTest extends CobolTestBase {
 				assertNotNull(for1.getTallyCountDataItemCall());
 				assertEquals(Call.CallType.UNDEFINED_CALL, for1.getTallyCountDataItemCall().getCallType());
 				assertEquals(1, for1.getCharacters().size());
-				assertEquals(1, for1.getAllLeadings().size());
+				assertEquals(1, for1.getAllLeadingPhrase().size());
 
 				{
 					final Characters characters = for1.getCharacters().get(0);
-					assertEquals(1, characters.getBeforeAfters().size());
+					assertEquals(1, characters.getBeforeAfterPhrases().size());
 
 					{
-						final BeforeAfter beforeAfter = characters.getBeforeAfters().get(0);
-						assertEquals(BeforeAfter.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
+						final BeforeAfterPhrase beforeAfter = characters.getBeforeAfterPhrases().get(0);
+						assertEquals(BeforeAfterPhrase.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
 					}
 				}
 
 				{
-					final AllLeadings allLeadings = for1.getAllLeadings().get(0);
-					assertEquals(AllLeadings.AllLeadingsType.ALL, allLeadings.getAllLeadingsType());
+					final AllLeadingPhrase allLeadings = for1.getAllLeadingPhrase().get(0);
+					assertEquals(AllLeadingPhrase.AllLeadingsType.ALL, allLeadings.getAllLeadingsType());
 					assertEquals(1, allLeadings.getAllLeadings().size());
 
 					{
@@ -75,11 +75,11 @@ public class InspectTallyingStatementTest extends CobolTestBase {
 
 						assertNotNull(allLeading.getPatternDataItemValueStmt());
 						assertEquals("B", allLeading.getPatternDataItemValueStmt().getValue());
-						assertEquals(1, allLeading.getBeforeAfters().size());
+						assertEquals(1, allLeading.getBeforeAfterPhrases().size());
 
 						{
-							final BeforeAfter beforeAfter = allLeading.getBeforeAfters().get(0);
-							assertEquals(BeforeAfter.BeforeAfterType.BEFORE, beforeAfter.getBeforeAfterType());
+							final BeforeAfterPhrase beforeAfter = allLeading.getBeforeAfterPhrases().get(0);
+							assertEquals(BeforeAfterPhrase.BeforeAfterType.BEFORE, beforeAfter.getBeforeAfterType());
 						}
 					}
 				}

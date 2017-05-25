@@ -15,8 +15,8 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface Characters extends CobolDivisionElement {
 
-	BeforeAfter addBeforeAfter(InspectBeforeAfterContext ctx);
+	BeforeAfterPhrase addBeforeAfterPhrase(InspectBeforeAfterContext ctx);
 
-	List<BeforeAfter> getBeforeAfters();
+	List<BeforeAfterPhrase> getBeforeAfterPhrases();
 
 }

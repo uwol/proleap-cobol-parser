@@ -14,8 +14,8 @@ import io.proleap.cobol.Cobol85Parser.PerformUntilContext;
 import io.proleap.cobol.Cobol85Parser.PerformVaryingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.perform.By;
-import io.proleap.cobol.asg.metamodel.procedure.perform.From;
+import io.proleap.cobol.asg.metamodel.procedure.perform.ByPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.perform.FromPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.perform.Until;
 import io.proleap.cobol.asg.metamodel.procedure.perform.VaryingPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
@@ -23,11 +23,11 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class VaryingPhraseImpl extends CobolDivisionElementImpl implements VaryingPhrase {
 
-	protected By by;
+	protected ByPhrase byPhrase;
 
 	protected final PerformVaryingPhraseContext ctx;
 
-	protected From from;
+	protected FromPhrase fromPhrase;
 
 	protected Until until;
 
@@ -40,16 +40,16 @@ public class VaryingPhraseImpl extends CobolDivisionElementImpl implements Varyi
 	}
 
 	@Override
-	public By addBy(final PerformByContext ctx) {
-		By result = (By) getASGElement(ctx);
+	public ByPhrase addByPhrase(final PerformByContext ctx) {
+		ByPhrase result = (ByPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new ByImpl(programUnit, ctx);
+			result = new ByPhraseImpl(programUnit, ctx);
 
 			final ValueStmt byValueStmt = createValueStmt(ctx.identifier(), ctx.literal(), ctx.arithmeticExpression());
 			result.setByValueStmt(byValueStmt);
 
-			by = result;
+			byPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -57,17 +57,17 @@ public class VaryingPhraseImpl extends CobolDivisionElementImpl implements Varyi
 	}
 
 	@Override
-	public From addFrom(final PerformFromContext ctx) {
-		From result = (From) getASGElement(ctx);
+	public FromPhrase addFromPhrase(final PerformFromContext ctx) {
+		FromPhrase result = (FromPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new FromImpl(programUnit, ctx);
+			result = new FromPhraseImpl(programUnit, ctx);
 
 			final ValueStmt fromValueStmt = createValueStmt(ctx.identifier(), ctx.literal(),
 					ctx.arithmeticExpression());
 			result.setFromValueStmt(fromValueStmt);
 
-			from = result;
+			fromPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -98,13 +98,13 @@ public class VaryingPhraseImpl extends CobolDivisionElementImpl implements Varyi
 	}
 
 	@Override
-	public By getBy() {
-		return by;
+	public ByPhrase getBy() {
+		return byPhrase;
 	}
 
 	@Override
-	public From getFrom() {
-		return from;
+	public FromPhrase getFrom() {
+		return fromPhrase;
 	}
 
 	@Override

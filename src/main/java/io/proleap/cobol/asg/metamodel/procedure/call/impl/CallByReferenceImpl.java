@@ -17,9 +17,9 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByReference;
-import io.proleap.cobol.asg.metamodel.procedure.call.CallByReference;
+import io.proleap.cobol.asg.metamodel.procedure.call.ByReferencePhrase;
 
-public class CallByReferenceImpl extends CobolDivisionElementImpl implements CallByReference {
+public class CallByReferenceImpl extends CobolDivisionElementImpl implements ByReferencePhrase {
 
 	protected List<ByReference> byReferences = new ArrayList<ByReference>();
 

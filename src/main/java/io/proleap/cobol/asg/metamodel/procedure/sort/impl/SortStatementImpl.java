@@ -31,12 +31,12 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.sort.CollatingSequence;
 import io.proleap.cobol.asg.metamodel.procedure.sort.Duplicates;
-import io.proleap.cobol.asg.metamodel.procedure.sort.Givings;
+import io.proleap.cobol.asg.metamodel.procedure.sort.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.sort.InputProcedure;
 import io.proleap.cobol.asg.metamodel.procedure.sort.OnKey;
 import io.proleap.cobol.asg.metamodel.procedure.sort.OutputProcedure;
 import io.proleap.cobol.asg.metamodel.procedure.sort.SortStatement;
-import io.proleap.cobol.asg.metamodel.procedure.sort.Using;
+import io.proleap.cobol.asg.metamodel.procedure.sort.UsingPhrase;
 
 public class SortStatementImpl extends StatementImpl implements SortStatement {
 
@@ -48,7 +48,7 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 
 	protected Call fileCall;
 
-	protected List<Givings> givings = new ArrayList<Givings>();
+	protected List<GivingPhrase> givingPhrases = new ArrayList<GivingPhrase>();
 
 	protected InputProcedure inputProcedure;
 
@@ -58,7 +58,7 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 
 	protected final StatementType statementType = StatementTypeEnum.SORT;
 
-	protected List<Using> usings = new ArrayList<Using>();
+	protected List<UsingPhrase> usingPhrases = new ArrayList<UsingPhrase>();
 
 	public SortStatementImpl(final ProgramUnit programUnit, final Scope scope, final SortStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -113,18 +113,18 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 	}
 
 	@Override
-	public Givings addGiving(final SortGivingPhraseContext ctx) {
-		Givings result = (Givings) getASGElement(ctx);
+	public GivingPhrase addGivingPhrase(final SortGivingPhraseContext ctx) {
+		GivingPhrase result = (GivingPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new GivingsImpl(programUnit, ctx);
+			result = new GivingPhraseImpl(programUnit, ctx);
 
 			// givings
 			for (final SortGivingContext sortGivingContext : ctx.sortGiving()) {
 				result.addGiving(sortGivingContext);
 			}
 
-			givings.add(result);
+			givingPhrases.add(result);
 			registerASGElement(result);
 		}
 
@@ -211,11 +211,11 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 	}
 
 	@Override
-	public Using addUsing(final SortUsingContext ctx) {
-		Using result = (Using) getASGElement(ctx);
+	public UsingPhrase addUsingPhrase(final SortUsingContext ctx) {
+		UsingPhrase result = (UsingPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new UsingImpl(programUnit, ctx);
+			result = new UsingPhraseImpl(programUnit, ctx);
 
 			// file calls
 			for (final FileNameContext fileNameContext : ctx.fileName()) {
@@ -223,7 +223,7 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 				result.addFileCall(fileCall);
 			}
 
-			usings.add(result);
+			usingPhrases.add(result);
 			registerASGElement(result);
 		}
 
@@ -246,8 +246,8 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 	}
 
 	@Override
-	public List<Givings> getGivings() {
-		return givings;
+	public List<GivingPhrase> getGivingPhrases() {
+		return givingPhrases;
 	}
 
 	@Override
@@ -271,8 +271,8 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 	}
 
 	@Override
-	public List<Using> getUsings() {
-		return usings;
+	public List<UsingPhrase> getUsingPhrases() {
+		return usingPhrases;
 	}
 
 	@Override

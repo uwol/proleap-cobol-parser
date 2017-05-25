@@ -16,10 +16,10 @@ import io.proleap.cobol.Cobol85Parser.CallByContentPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByContent;
-import io.proleap.cobol.asg.metamodel.procedure.call.CallByContent;
+import io.proleap.cobol.asg.metamodel.procedure.call.ByContentPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public class CallByContentImpl extends CobolDivisionElementImpl implements CallByContent {
+public class CallByContentImpl extends CobolDivisionElementImpl implements ByContentPhrase {
 
 	protected List<ByContent> byContents = new ArrayList<ByContent>();
 

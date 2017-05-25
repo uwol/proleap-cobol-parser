@@ -16,11 +16,11 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
+import io.proleap.cobol.asg.metamodel.procedure.divide.DivideByGivingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.divide.DivideGivingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.divide.DivideIntoGivingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.divide.DivideIntoStatement;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideStatement;
-import io.proleap.cobol.asg.metamodel.procedure.divide.Giving;
-import io.proleap.cobol.asg.metamodel.procedure.divide.Into;
-import io.proleap.cobol.asg.metamodel.procedure.divide.ByGiving;
-import io.proleap.cobol.asg.metamodel.procedure.divide.IntoGiving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.Remainder;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -52,18 +52,18 @@ public class DivideStatementTest extends CobolTestBase {
 			}
 
 			{
-				final Into into = divideStatement.getInto();
-				assertNotNull(into);
-				assertNotNull(into.getIntoValueStmt());
+				final DivideIntoStatement divideIntoStatement = divideStatement.getDivideIntoStatement();
+				assertNotNull(divideIntoStatement);
+				assertNotNull(divideIntoStatement.getIntoValueStmt());
 
-				final CallValueStmt intoCallValueStmt = (CallValueStmt) into.getIntoValueStmt();
+				final CallValueStmt intoCallValueStmt = (CallValueStmt) divideIntoStatement.getIntoValueStmt();
 				assertEquals(Call.CallType.UNDEFINED_CALL, intoCallValueStmt.getCall().getCallType());
 
-				assertNotNull(into.getGivings());
-				assertEquals(1, into.getGivings().getGivings().size());
+				assertNotNull(divideIntoStatement.getGivingPhrase());
+				assertEquals(1, divideIntoStatement.getGivingPhrase().getGivings().size());
 
 				{
-					final Giving giving = into.getGivings().getGivings().get(0);
+					final DivideGivingStatement giving = divideIntoStatement.getGivingPhrase().getGivings().get(0);
 					assertTrue(giving.isRounded());
 					assertEquals(Call.CallType.UNDEFINED_CALL, giving.getCall().getCallType());
 				}
@@ -90,18 +90,19 @@ public class DivideStatementTest extends CobolTestBase {
 			}
 
 			{
-				final IntoGiving intoGiving = divideStatement.getIntoGiving();
-				assertNotNull(intoGiving.getGivings());
-				assertEquals(2, intoGiving.getGivings().size());
+				final DivideIntoGivingStatement divideIntoGivingStatement = divideStatement
+						.getDivideIntoGivingStatement();
+				assertNotNull(divideIntoGivingStatement.getGivings());
+				assertEquals(2, divideIntoGivingStatement.getGivings().size());
 
 				{
-					final Giving giving = intoGiving.getGivings().get(0);
+					final DivideGivingStatement giving = divideIntoGivingStatement.getGivings().get(0);
 					assertTrue(giving.isRounded());
 					assertEquals(Call.CallType.UNDEFINED_CALL, giving.getCall().getCallType());
 				}
 
 				{
-					final Giving giving = intoGiving.getGivings().get(1);
+					final DivideGivingStatement giving = divideIntoGivingStatement.getGivings().get(1);
 					assertFalse(giving.isRounded());
 					assertEquals(Call.CallType.UNDEFINED_CALL, giving.getCall().getCallType());
 				}
@@ -128,18 +129,21 @@ public class DivideStatementTest extends CobolTestBase {
 			}
 
 			{
-				final ByGiving intoByGiving = divideStatement.getByGiving();
-				assertNotNull(intoByGiving);
-				assertNotNull(intoByGiving.getByValueStmt());
+				final DivideByGivingStatement divideIntoByGivingStatement = divideStatement
+						.getDivideByGivingStatement();
+				assertNotNull(divideIntoByGivingStatement);
+				assertNotNull(divideIntoByGivingStatement.getByValueStmt());
 
-				final CallValueStmt intoByGivingCallValueStmt = (CallValueStmt) intoByGiving.getByValueStmt();
+				final CallValueStmt intoByGivingCallValueStmt = (CallValueStmt) divideIntoByGivingStatement
+						.getByValueStmt();
 				assertEquals(Call.CallType.UNDEFINED_CALL, intoByGivingCallValueStmt.getCall().getCallType());
 
-				assertNotNull(intoByGiving.getGivings());
-				assertEquals(1, intoByGiving.getGivings().getGivings().size());
+				assertNotNull(divideIntoByGivingStatement.getGivingPhrase());
+				assertEquals(1, divideIntoByGivingStatement.getGivingPhrase().getGivings().size());
 
 				{
-					final Giving giving = intoByGiving.getGivings().getGivings().get(0);
+					final DivideGivingStatement giving = divideIntoByGivingStatement.getGivingPhrase().getGivings()
+							.get(0);
 					assertTrue(giving.isRounded());
 					assertEquals(Call.CallType.UNDEFINED_CALL, giving.getCall().getCallType());
 				}

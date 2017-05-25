@@ -21,27 +21,27 @@ import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.divide.ByGiving;
+import io.proleap.cobol.asg.metamodel.procedure.divide.DivideByGivingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.divide.DivideIntoGivingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.divide.DivideIntoStatement;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideStatement;
-import io.proleap.cobol.asg.metamodel.procedure.divide.Into;
-import io.proleap.cobol.asg.metamodel.procedure.divide.IntoGiving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.Remainder;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class DivideStatementImpl extends StatementImpl implements DivideStatement {
 
-	protected ByGiving byGiving;
-
 	protected final DivideStatementContext ctx;
+
+	protected DivideByGivingStatement divideByGivingStatement;
+
+	protected DivideIntoGivingStatement divideIntoGivingStatement;
+
+	protected DivideIntoStatement divideIntoStatement;
 
 	protected DivideType divideType;
 
 	protected ValueStmt divisorValueStmt;
-
-	protected Into into;
-
-	protected IntoGiving intoGiving;
 
 	protected NotOnSizeErrorPhrase notOnSizeErrorPhrase;
 
@@ -58,8 +58,8 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	}
 
 	@Override
-	public ByGiving addByGiving(final DivideByGivingStatementContext ctx) {
-		ByGiving result = (ByGiving) getASGElement(ctx);
+	public DivideByGivingStatement addDivideByGivingStatement(final DivideByGivingStatementContext ctx) {
+		DivideByGivingStatement result = (DivideByGivingStatement) getASGElement(ctx);
 
 		if (result == null) {
 			result = new ByGivingImpl(programUnit, ctx);
@@ -70,10 +70,10 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 
 			// giving
 			if (ctx.divideGivingPhrase() != null) {
-				result.addGivings(ctx.divideGivingPhrase());
+				result.addGivingPhrase(ctx.divideGivingPhrase());
 			}
 
-			byGiving = result;
+			divideByGivingStatement = result;
 			registerASGElement(result);
 		}
 
@@ -81,11 +81,29 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	}
 
 	@Override
-	public Into addInto(final DivideIntoStatementContext ctx) {
-		Into result = (Into) getASGElement(ctx);
+	public DivideIntoGivingStatement addDivideIntoGivingStatement(final DivideIntoGivingStatementContext ctx) {
+		DivideIntoGivingStatement result = (DivideIntoGivingStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new IntoImpl(programUnit, ctx);
+			result = new DivideIntoGivingStatementImpl(programUnit, ctx);
+
+			for (final DivideGivingContext divideGivingContext : ctx.divideGiving()) {
+				result.addGiving(divideGivingContext);
+			}
+
+			divideIntoGivingStatement = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public DivideIntoStatement addDivideIntoStatement(final DivideIntoStatementContext ctx) {
+		DivideIntoStatement result = (DivideIntoStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new DivideIntoStatementImpl(programUnit, ctx);
 
 			// into
 			final ValueStmt intoValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
@@ -93,28 +111,10 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 
 			// givings
 			if (ctx.divideGivingPhrase() != null) {
-				result.addGivings(ctx.divideGivingPhrase());
+				result.addGivingPhrase(ctx.divideGivingPhrase());
 			}
 
-			into = result;
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public IntoGiving addIntoGiving(final DivideIntoGivingStatementContext ctx) {
-		IntoGiving result = (IntoGiving) getASGElement(ctx);
-
-		if (result == null) {
-			result = new IntoGivingImpl(programUnit, ctx);
-
-			for (final DivideGivingContext divideGivingContext : ctx.divideGiving()) {
-				result.addGiving(divideGivingContext);
-			}
-
-			intoGiving = result;
+			divideIntoStatement = result;
 			registerASGElement(result);
 		}
 
@@ -140,8 +140,18 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	}
 
 	@Override
-	public ByGiving getByGiving() {
-		return byGiving;
+	public DivideByGivingStatement getDivideByGivingStatement() {
+		return divideByGivingStatement;
+	}
+
+	@Override
+	public DivideIntoGivingStatement getDivideIntoGivingStatement() {
+		return divideIntoGivingStatement;
+	}
+
+	@Override
+	public DivideIntoStatement getDivideIntoStatement() {
+		return divideIntoStatement;
 	}
 
 	@Override
@@ -152,16 +162,6 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	@Override
 	public ValueStmt getDivisorValueStmt() {
 		return divisorValueStmt;
-	}
-
-	@Override
-	public Into getInto() {
-		return into;
-	}
-
-	@Override
-	public IntoGiving getIntoGiving() {
-		return intoGiving;
 	}
 
 	@Override

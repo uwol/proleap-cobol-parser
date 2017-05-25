@@ -70,7 +70,7 @@ public class InspectStatementImpl extends StatementImpl implements InspectStatem
 
 			// before / after
 			for (final InspectBeforeAfterContext inspectBeforeAfterPhraseContext : ctx.inspectBeforeAfter()) {
-				result.addBeforeAfter(inspectBeforeAfterPhraseContext);
+				result.addBeforeAfterPhrase(inspectBeforeAfterPhraseContext);
 			}
 
 			converting = result;

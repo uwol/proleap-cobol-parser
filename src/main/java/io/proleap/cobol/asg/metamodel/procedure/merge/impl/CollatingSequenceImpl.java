@@ -18,10 +18,10 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.merge.Alphanumeric;
-import io.proleap.cobol.asg.metamodel.procedure.merge.CollatingSequence;
+import io.proleap.cobol.asg.metamodel.procedure.merge.CollatingSequencePhrase;
 import io.proleap.cobol.asg.metamodel.procedure.merge.National;
 
-public class CollatingSequenceImpl extends CobolDivisionElementImpl implements CollatingSequence {
+public class CollatingSequenceImpl extends CobolDivisionElementImpl implements CollatingSequencePhrase {
 
 	protected List<Call> alphabetCalls = new ArrayList<Call>();
 

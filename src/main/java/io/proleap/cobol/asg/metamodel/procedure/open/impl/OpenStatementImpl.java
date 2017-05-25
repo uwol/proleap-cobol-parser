@@ -25,23 +25,23 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.open.OpenExtend;
-import io.proleap.cobol.asg.metamodel.procedure.open.OpenInput;
-import io.proleap.cobol.asg.metamodel.procedure.open.OpenInputOutput;
-import io.proleap.cobol.asg.metamodel.procedure.open.OpenOutput;
+import io.proleap.cobol.asg.metamodel.procedure.open.ExtendPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.open.InputOutputPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.open.InputPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.open.OpenStatement;
+import io.proleap.cobol.asg.metamodel.procedure.open.OutputPhrase;
 
 public class OpenStatementImpl extends StatementImpl implements OpenStatement {
 
 	protected final OpenStatementContext ctx;
 
-	protected List<OpenExtend> openExtends = new ArrayList<OpenExtend>();
+	protected List<ExtendPhrase> extendPhrases = new ArrayList<ExtendPhrase>();
 
-	protected List<OpenInputOutput> openInputOutputs = new ArrayList<OpenInputOutput>();
+	protected List<InputOutputPhrase> inputOutputPhrases = new ArrayList<InputOutputPhrase>();
 
-	protected List<OpenInput> openInputs = new ArrayList<OpenInput>();
+	protected List<InputPhrase> inputPhrases = new ArrayList<InputPhrase>();
 
-	protected List<OpenOutput> openOutputs = new ArrayList<OpenOutput>();
+	protected List<OutputPhrase> outputPhrases = new ArrayList<OutputPhrase>();
 
 	protected final StatementType statementType = StatementTypeEnum.OPEN;
 
@@ -52,18 +52,18 @@ public class OpenStatementImpl extends StatementImpl implements OpenStatement {
 	}
 
 	@Override
-	public OpenExtend addOpenExtend(final OpenExtendStatementContext ctx) {
-		OpenExtend result = (OpenExtend) getASGElement(ctx);
+	public ExtendPhrase addExtendPhrase(final OpenExtendStatementContext ctx) {
+		ExtendPhrase result = (ExtendPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new OpenExtendImpl(programUnit, ctx);
+			result = new ExtendPhraseImpl(programUnit, ctx);
 
 			for (final FileNameContext fileNameContext : ctx.fileName()) {
 				final Call fileCall = createCall(fileNameContext);
 				result.addFileCall(fileCall);
 			}
 
-			openExtends.add(result);
+			extendPhrases.add(result);
 			registerASGElement(result);
 		}
 
@@ -71,17 +71,36 @@ public class OpenStatementImpl extends StatementImpl implements OpenStatement {
 	}
 
 	@Override
-	public OpenInput addOpenInput(final OpenInputStatementContext ctx) {
-		OpenInput result = (OpenInput) getASGElement(ctx);
+	public InputOutputPhrase addInputOutputPhrase(final OpenIOStatementContext ctx) {
+		InputOutputPhrase result = (InputOutputPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new OpenInputImpl(programUnit, ctx);
+			result = new InputOutputPhraseImpl(programUnit, ctx);
+
+			for (final FileNameContext fileNameContext : ctx.fileName()) {
+				final Call fileCall = createCall(fileNameContext);
+				result.addFileCall(fileCall);
+			}
+
+			inputOutputPhrases.add(result);
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public InputPhrase addInputPhrase(final OpenInputStatementContext ctx) {
+		InputPhrase result = (InputPhrase) getASGElement(ctx);
+
+		if (result == null) {
+			result = new InputPhraseImpl(programUnit, ctx);
 
 			for (final OpenInputContext openInputContext : ctx.openInput()) {
 				result.addOpenInput(openInputContext);
 			}
 
-			openInputs.add(result);
+			inputPhrases.add(result);
 			registerASGElement(result);
 		}
 
@@ -89,36 +108,17 @@ public class OpenStatementImpl extends StatementImpl implements OpenStatement {
 	}
 
 	@Override
-	public OpenInputOutput addOpenInputOutput(final OpenIOStatementContext ctx) {
-		OpenInputOutput result = (OpenInputOutput) getASGElement(ctx);
+	public OutputPhrase addOutputPhrase(final OpenOutputStatementContext ctx) {
+		OutputPhrase result = (OutputPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new OpenInputOutputImpl(programUnit, ctx);
-
-			for (final FileNameContext fileNameContext : ctx.fileName()) {
-				final Call fileCall = createCall(fileNameContext);
-				result.addFileCall(fileCall);
-			}
-
-			openInputOutputs.add(result);
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public OpenOutput addOpenOutput(final OpenOutputStatementContext ctx) {
-		OpenOutput result = (OpenOutput) getASGElement(ctx);
-
-		if (result == null) {
-			result = new OpenOutputImpl(programUnit, ctx);
+			result = new OutputPhraseImpl(programUnit, ctx);
 
 			for (final OpenOutputContext openOutputContext : ctx.openOutput()) {
 				result.addOpenOutput(openOutputContext);
 			}
 
-			openOutputs.add(result);
+			outputPhrases.add(result);
 			registerASGElement(result);
 		}
 
@@ -126,23 +126,23 @@ public class OpenStatementImpl extends StatementImpl implements OpenStatement {
 	}
 
 	@Override
-	public List<OpenExtend> getOpenExtends() {
-		return openExtends;
+	public List<ExtendPhrase> getExtendPhrases() {
+		return extendPhrases;
 	}
 
 	@Override
-	public List<OpenInputOutput> getOpenInputOutputs() {
-		return openInputOutputs;
+	public List<InputOutputPhrase> getInputOutputPhrases() {
+		return inputOutputPhrases;
 	}
 
 	@Override
-	public List<OpenInput> getOpenInputs() {
-		return openInputs;
+	public List<InputPhrase> getInputPhrases() {
+		return inputPhrases;
 	}
 
 	@Override
-	public List<OpenOutput> getOpenOutputs() {
-		return openOutputs;
+	public List<OutputPhrase> getOutputPhrases() {
+		return outputPhrases;
 	}
 
 	@Override

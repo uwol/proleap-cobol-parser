@@ -16,11 +16,11 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface ReplacingCharacters extends CobolDivisionElement {
 
-	BeforeAfter addBeforeAfter(InspectBeforeAfterContext ctx);
+	BeforeAfterPhrase addBeforeAfterPhrase(InspectBeforeAfterContext ctx);
 
 	By addBy(InspectByContext ctx);
 
-	List<BeforeAfter> getBeforeAfters();
+	List<BeforeAfterPhrase> getBeforeAfterPhrases();
 
 	By getBy();
 

@@ -22,17 +22,17 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface SearchStatement extends Statement {
 
-	Varying addVarying(SearchVaryingContext ctx);
+	VaryingPhrase addVaryingPhrase(SearchVaryingContext ctx);
 
-	When addWhen(SearchWhenContext ctx);
+	WhenPhrase addWhenPhrase(SearchWhenContext ctx);
 
 	AtEndPhrase getAtEndPhrase();
 
 	Call getDataCall();
 
-	Varying getVarying();
+	VaryingPhrase getVaryingPhrase();
 
-	List<When> getWhens();
+	List<WhenPhrase> getWhenPhrases();
 
 	void setAtEndPhrase(AtEndPhrase atEndPhrase);
 

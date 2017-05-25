@@ -17,11 +17,11 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface For extends CobolDivisionElement {
 
-	AllLeadings addAllLeadings(InspectAllLeadingsContext ctx);
+	AllLeadingPhrase addAllLeadingPhrase(InspectAllLeadingsContext ctx);
 
 	Characters addCharacters(InspectCharactersContext ctx);
 
-	List<AllLeadings> getAllLeadings();
+	List<AllLeadingPhrase> getAllLeadingPhrase();
 
 	List<Characters> getCharacters();
 

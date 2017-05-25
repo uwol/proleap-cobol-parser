@@ -15,8 +15,8 @@ import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
-import io.proleap.cobol.asg.metamodel.procedure.perform.By;
-import io.proleap.cobol.asg.metamodel.procedure.perform.From;
+import io.proleap.cobol.asg.metamodel.procedure.perform.ByPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.perform.FromPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformInlineStatement;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformType;
@@ -74,12 +74,12 @@ public class PerformInlineVaryingTest extends CobolTestBase {
 								final VaryingPhrase varyingPhrase = varyingClause.getVaryingPhrase();
 
 								{
-									final From from = varyingPhrase.getFrom();
+									final FromPhrase from = varyingPhrase.getFrom();
 									assertEquals(1, from.getFromValueStmt().getValue());
 								}
 
 								{
-									final By by = varyingPhrase.getBy();
+									final ByPhrase by = varyingPhrase.getBy();
 									assertEquals(2, by.getByValueStmt().getValue());
 								}
 

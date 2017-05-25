@@ -23,27 +23,27 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface MergeStatement extends Statement {
 
-	CollatingSequence addCollatingSequence(MergeCollatingSequencePhraseContext ctx);
+	CollatingSequencePhrase addCollatingSequencePhrase(MergeCollatingSequencePhraseContext ctx);
 
-	Givings addGiving(MergeGivingPhraseContext ctx);
+	GivingPhrase addGiving(MergeGivingPhraseContext ctx);
 
 	OnKey addOnKey(MergeOnKeyClauseContext ctx);
 
-	OutputProcedure addOutputProcedure(MergeOutputProcedurePhraseContext ctx);
+	OutputProcedurePhrase addOutputProcedurePhrase(MergeOutputProcedurePhraseContext ctx);
 
-	Using addUsing(MergeUsingContext ctx);
+	UsingPhrase addUsingPhrase(MergeUsingContext ctx);
 
-	CollatingSequence getCollatingSequence();
+	CollatingSequencePhrase getCollatingSequencePhrase();
 
 	Call getFileCall();
 
-	List<Givings> getGivings();
+	List<GivingPhrase> getGivingPhrases();
 
 	List<OnKey> getOnKeys();
 
-	OutputProcedure getOutputProcedure();
+	OutputProcedurePhrase getOutputProcedurePhrase();
 
-	List<Using> getUsings();
+	List<UsingPhrase> getUsingPhrases();
 
 	void setFileCall(Call fileCall);
 

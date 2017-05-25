@@ -17,11 +17,11 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface Sending extends CobolDivisionElement {
 
-	DelimitedBy addDelimitedBy(UnstringDelimitedByPhraseContext ctx);
+	DelimitedByPhrase addDelimitedByPhrase(UnstringDelimitedByPhraseContext ctx);
 
 	OrAll addOrAll(UnstringOrAllPhraseContext ctx);
 
-	DelimitedBy getDelimitedBy();
+	DelimitedByPhrase getDelimitedByPhrase();
 
 	List<OrAll> getOrAlls();
 

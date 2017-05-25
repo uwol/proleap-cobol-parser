@@ -40,10 +40,10 @@ public class AfterImpl extends CobolDivisionElementImpl implements After {
 			result.setVaryingValueStmt(varyingValueStmt);
 
 			// from
-			result.addFrom(ctx.performFrom());
+			result.addFromPhrase(ctx.performFrom());
 
 			// by
-			result.addBy(ctx.performBy());
+			result.addByPhrase(ctx.performBy());
 
 			// until
 			result.addUntil(ctx.performUntil());

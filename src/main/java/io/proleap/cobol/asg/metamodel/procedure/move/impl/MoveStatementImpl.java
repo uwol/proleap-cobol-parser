@@ -18,17 +18,17 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveCorrespondingTo;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveCorrespondingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveTo;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToPhrase;
 
 public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 
 	protected final MoveStatementContext ctx;
 
-	protected MoveCorrespondingTo moveCorrespondingTo;
+	protected MoveCorrespondingPhrase moveCorrespondingPhrase;
 
-	protected MoveTo moveTo;
+	protected MoveToPhrase moveToPhrase;
 
 	protected MoveType moveType;
 
@@ -41,8 +41,8 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 	}
 
 	@Override
-	public MoveCorrespondingTo addMoveCorrespondingTo(final MoveCorrespondingToStatementContext ctx) {
-		MoveCorrespondingTo result = (MoveCorrespondingTo) getASGElement(ctx);
+	public MoveCorrespondingPhrase addMoveCorrespondingPhrase(final MoveCorrespondingToStatementContext ctx) {
+		MoveCorrespondingPhrase result = (MoveCorrespondingPhrase) getASGElement(ctx);
 
 		if (result == null) {
 			result = new MoveCorrespondingToImpl(programUnit, ctx);
@@ -57,7 +57,7 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 				result.addReceivingAreaCall(receivingAreaCall);
 			}
 
-			moveCorrespondingTo = result;
+			moveCorrespondingPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -65,11 +65,11 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 	}
 
 	@Override
-	public MoveTo addMoveTo(final MoveToStatementContext ctx) {
-		MoveTo result = (MoveTo) getASGElement(ctx);
+	public MoveToPhrase addMoveTo(final MoveToStatementContext ctx) {
+		MoveToPhrase result = (MoveToPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new MoveToImpl(programUnit, ctx);
+			result = new MoveToPhraseImpl(programUnit, ctx);
 
 			// sending area
 			result.addSendingArea(ctx.moveToSendingArea());
@@ -80,7 +80,7 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 				result.addReceivingAreaCall(receivingAreaCall);
 			}
 
-			moveTo = result;
+			moveToPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -88,13 +88,13 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 	}
 
 	@Override
-	public MoveCorrespondingTo getMoveCorrespondingTo() {
-		return moveCorrespondingTo;
+	public MoveCorrespondingPhrase getMoveCorrespondingPhrase() {
+		return moveCorrespondingPhrase;
 	}
 
 	@Override
-	public MoveTo getMoveTo() {
-		return moveTo;
+	public MoveToPhrase getMoveTo() {
+		return moveToPhrase;
 	}
 
 	@Override

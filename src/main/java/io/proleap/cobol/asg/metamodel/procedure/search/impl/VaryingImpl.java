@@ -12,9 +12,9 @@ import io.proleap.cobol.Cobol85Parser.SearchVaryingContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.search.Varying;
+import io.proleap.cobol.asg.metamodel.procedure.search.VaryingPhrase;
 
-public class VaryingImpl extends CobolDivisionElementImpl implements Varying {
+public class VaryingImpl extends CobolDivisionElementImpl implements VaryingPhrase {
 
 	protected final SearchVaryingContext ctx;
 

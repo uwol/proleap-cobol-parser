@@ -44,9 +44,9 @@ public class AcceptStatementTest extends CobolTestBase {
 			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
 
 			{
-				final AcceptFromDateStatement acceptFromDate = acceptStatement.getAcceptFromDateStatement();
-				assertNotNull(acceptFromDate);
-				assertEquals(AcceptFromDateStatement.DateType.TODAYS_NAME, acceptFromDate.getDateType());
+				final AcceptFromDateStatement acceptFromDateStatement = acceptStatement.getAcceptFromDateStatement();
+				assertNotNull(acceptFromDateStatement);
+				assertEquals(AcceptFromDateStatement.DateType.TODAYS_NAME, acceptFromDateStatement.getDateType());
 			}
 		}
 
@@ -59,10 +59,11 @@ public class AcceptStatementTest extends CobolTestBase {
 			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
 
 			{
-				final AcceptFromMnemonicStatement acceptFromMnemonic = acceptStatement.getAcceptFromMnemonicStatement();
-				assertNotNull(acceptFromMnemonic);
-				assertNotNull(acceptFromMnemonic.getMnemonicCall());
-				assertEquals(Call.CallType.MNEMONIC_CALL, acceptFromMnemonic.getMnemonicCall().getCallType());
+				final AcceptFromMnemonicStatement acceptFromMnemonicStatement = acceptStatement
+						.getAcceptFromMnemonicStatement();
+				assertNotNull(acceptFromMnemonicStatement);
+				assertNotNull(acceptFromMnemonicStatement.getMnemonicCall());
+				assertEquals(Call.CallType.MNEMONIC_CALL, acceptFromMnemonicStatement.getMnemonicCall().getCallType());
 			}
 		}
 
@@ -75,8 +76,9 @@ public class AcceptStatementTest extends CobolTestBase {
 			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
 
 			{
-				final AcceptMessageCountStatement acceptMessageCount = acceptStatement.getAcceptMessageCountStatement();
-				assertNotNull(acceptMessageCount);
+				final AcceptMessageCountStatement acceptMessageCountStatement = acceptStatement
+						.getAcceptMessageCountStatement();
+				assertNotNull(acceptMessageCountStatement);
 			}
 		}
 
@@ -88,8 +90,9 @@ public class AcceptStatementTest extends CobolTestBase {
 			assertNotNull(acceptStatement.getAcceptCall());
 
 			{
-				final AcceptFromEscapeKeyStatement acceptFromEscapeKey = acceptStatement.getAcceptFromEscapeKeyStatement();
-				assertNotNull(acceptFromEscapeKey);
+				final AcceptFromEscapeKeyStatement acceptFromEscapeKeyStatement = acceptStatement
+						.getAcceptFromEscapeKeyStatement();
+				assertNotNull(acceptFromEscapeKeyStatement);
 			}
 		}
 	}

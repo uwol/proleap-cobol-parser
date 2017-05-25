@@ -19,17 +19,17 @@ public interface Parameter extends CobolDivisionElement {
 		CONTENT, REFERENCE, VALUE
 	}
 
-	CallByContent addCallByContent(CallByContentPhraseContext ctx);
+	ByContentPhrase addByContentPhrase(CallByContentPhraseContext ctx);
 
-	CallByReference addCallByReference(CallByReferencePhraseContext ctx);
+	ByReferencePhrase addByReferencePhrase(CallByReferencePhraseContext ctx);
 
-	CallByValue addCallByValue(CallByValuePhraseContext ctx);
+	ByValuePhrase addByValuePhrase(CallByValuePhraseContext ctx);
 
-	CallByContent getCallByContent();
+	ByContentPhrase getByContentPhrase();
 
-	CallByReference getCallByReference();
+	ByReferencePhrase getByReferencePhrase();
 
-	CallByValue getCallByValue();
+	ByValuePhrase getByValuePhrase();
 
 	ParameterType getParameterType();
 

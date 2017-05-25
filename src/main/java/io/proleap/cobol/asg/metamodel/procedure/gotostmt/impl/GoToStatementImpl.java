@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.gotostmt.DependingOn;
+import io.proleap.cobol.asg.metamodel.procedure.gotostmt.DependingOnPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.gotostmt.GoToStatement;
 import io.proleap.cobol.asg.metamodel.procedure.gotostmt.Simple;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
@@ -26,7 +26,7 @@ public class GoToStatementImpl extends StatementImpl implements GoToStatement {
 
 	protected final GoToStatementContext ctx;
 
-	protected DependingOn dependingOn;
+	protected DependingOnPhrase dependingOnPhrase;
 
 	protected GoToType goToType;
 
@@ -41,11 +41,11 @@ public class GoToStatementImpl extends StatementImpl implements GoToStatement {
 	}
 
 	@Override
-	public DependingOn addDependingOn(final GoToDependingOnStatementContext ctx) {
-		DependingOn result = (DependingOn) getASGElement(ctx);
+	public DependingOnPhrase addDependingOnPhrase(final GoToDependingOnStatementContext ctx) {
+		DependingOnPhrase result = (DependingOnPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new DependingOnImpl(programUnit, ctx);
+			result = new DependingOnPhraseImpl(programUnit, ctx);
 
 			// procedures
 			for (final ProcedureNameContext procedureNameContext : ctx.procedureName()) {
@@ -64,7 +64,7 @@ public class GoToStatementImpl extends StatementImpl implements GoToStatement {
 				result.setMoreLabels(true);
 			}
 
-			dependingOn = result;
+			dependingOnPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -89,8 +89,8 @@ public class GoToStatementImpl extends StatementImpl implements GoToStatement {
 	}
 
 	@Override
-	public DependingOn getDependingOn() {
-		return dependingOn;
+	public DependingOnPhrase getDependingOnPhrase() {
+		return dependingOnPhrase;
 	}
 
 	@Override

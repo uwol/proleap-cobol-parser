@@ -22,10 +22,10 @@ public interface InitializeStatement extends Statement {
 
 	void addDataItemCall(Call dataItemCall);
 
-	Replacing addReplacing(InitializeReplacingPhraseContext ctx);
+	ReplacingPhrase addReplacingPhrase(InitializeReplacingPhraseContext ctx);
 
 	List<Call> getDataItemCalls();
 
-	Replacing getReplacing();
+	ReplacingPhrase getReplacingPhrase();
 
 }

@@ -16,9 +16,9 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface AllLeading extends CobolDivisionElement {
 
-	BeforeAfter addBeforeAfter(InspectBeforeAfterContext ctx);
+	BeforeAfterPhrase addBeforeAfterPhrase(InspectBeforeAfterContext ctx);
 
-	List<BeforeAfter> getBeforeAfters();
+	List<BeforeAfterPhrase> getBeforeAfterPhrases();
 
 	ValueStmt getPatternDataItemValueStmt();
 

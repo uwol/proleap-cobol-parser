@@ -18,13 +18,13 @@ import io.proleap.cobol.Cobol85Parser.InspectCharactersContext;
 import io.proleap.cobol.Cobol85Parser.InspectForContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.inspect.AllLeadings;
+import io.proleap.cobol.asg.metamodel.procedure.inspect.AllLeadingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.Characters;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.For;
 
 public class ForImpl extends InspectPhraseImpl implements For {
 
-	protected List<AllLeadings> allLeadings = new ArrayList<AllLeadings>();
+	protected List<AllLeadingPhrase> allLeadingPhrase = new ArrayList<AllLeadingPhrase>();
 
 	protected List<Characters> characters = new ArrayList<Characters>();
 
@@ -39,19 +39,19 @@ public class ForImpl extends InspectPhraseImpl implements For {
 	}
 
 	@Override
-	public AllLeadings addAllLeadings(final InspectAllLeadingsContext ctx) {
-		AllLeadings result = (AllLeadings) getASGElement(ctx);
+	public AllLeadingPhrase addAllLeadingPhrase(final InspectAllLeadingsContext ctx) {
+		AllLeadingPhrase result = (AllLeadingPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new AllLeadingsImpl(programUnit, ctx);
+			result = new AllLeadingPhraseImpl(programUnit, ctx);
 
 			// type
-			final AllLeadings.AllLeadingsType type;
+			final AllLeadingPhrase.AllLeadingsType type;
 
 			if (ctx.ALL() != null) {
-				type = AllLeadings.AllLeadingsType.ALL;
+				type = AllLeadingPhrase.AllLeadingsType.ALL;
 			} else if (ctx.LEADING() != null) {
-				type = AllLeadings.AllLeadingsType.LEADING;
+				type = AllLeadingPhrase.AllLeadingsType.LEADING;
 			} else {
 				type = null;
 			}
@@ -63,7 +63,7 @@ public class ForImpl extends InspectPhraseImpl implements For {
 				result.addAllLeading(inspectAllLeadingContext);
 			}
 
-			allLeadings.add(result);
+			allLeadingPhrase.add(result);
 			registerASGElement(result);
 		}
 
@@ -79,7 +79,7 @@ public class ForImpl extends InspectPhraseImpl implements For {
 
 			// before / after
 			for (final InspectBeforeAfterContext inspectBeforeAfterContext : ctx.inspectBeforeAfter()) {
-				result.addBeforeAfter(inspectBeforeAfterContext);
+				result.addBeforeAfterPhrase(inspectBeforeAfterContext);
 			}
 
 			characters.add(result);
@@ -90,8 +90,8 @@ public class ForImpl extends InspectPhraseImpl implements For {
 	}
 
 	@Override
-	public List<AllLeadings> getAllLeadings() {
-		return allLeadings;
+	public List<AllLeadingPhrase> getAllLeadingPhrase() {
+		return allLeadingPhrase;
 	}
 
 	@Override

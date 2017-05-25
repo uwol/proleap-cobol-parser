@@ -15,14 +15,14 @@ import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
 import io.proleap.cobol.Cobol85Parser.InspectByContext;
 import io.proleap.cobol.Cobol85Parser.InspectReplacingAllLeadingContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfter;
+import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfterPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.By;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.ReplacingAllLeading;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ReplacingAllLeadingImpl extends InspectPhraseImpl implements ReplacingAllLeading {
 
-	protected List<BeforeAfter> beforeAfters = new ArrayList<BeforeAfter>();
+	protected List<BeforeAfterPhrase> beforeAfterPhrases = new ArrayList<BeforeAfterPhrase>();
 
 	protected By by;
 
@@ -37,12 +37,12 @@ public class ReplacingAllLeadingImpl extends InspectPhraseImpl implements Replac
 	}
 
 	@Override
-	public BeforeAfter addBeforeAfter(final InspectBeforeAfterContext ctx) {
-		BeforeAfter result = (BeforeAfter) getASGElement(ctx);
+	public BeforeAfterPhrase addBeforeAfterPhrase(final InspectBeforeAfterContext ctx) {
+		BeforeAfterPhrase result = (BeforeAfterPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = createBeforeAfter(ctx);
-			beforeAfters.add(result);
+			result = createBeforeAfterPhrase(ctx);
+			beforeAfterPhrases.add(result);
 		}
 
 		return result;
@@ -61,8 +61,8 @@ public class ReplacingAllLeadingImpl extends InspectPhraseImpl implements Replac
 	}
 
 	@Override
-	public List<BeforeAfter> getBeforeAfters() {
-		return beforeAfters;
+	public List<BeforeAfterPhrase> getBeforeAfterPhrases() {
+		return beforeAfterPhrases;
 	}
 
 	@Override

@@ -23,17 +23,17 @@ import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.unstring.Intos;
+import io.proleap.cobol.asg.metamodel.procedure.unstring.IntoPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.Sending;
-import io.proleap.cobol.asg.metamodel.procedure.unstring.Tallying;
+import io.proleap.cobol.asg.metamodel.procedure.unstring.TallyingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.UnstringStatement;
-import io.proleap.cobol.asg.metamodel.procedure.unstring.WithPointer;
+import io.proleap.cobol.asg.metamodel.procedure.unstring.WithPointerPhrase;
 
 public class UnstringStatementImpl extends StatementImpl implements UnstringStatement {
 
 	protected final UnstringStatementContext ctx;
 
-	protected Intos intos;
+	protected IntoPhrase intoPhrase;
 
 	protected NotOnOverflowPhrase notOnOverflowPhrase;
 
@@ -43,9 +43,9 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 
 	protected final StatementType statementType = StatementTypeEnum.UNSTRING;
 
-	protected Tallying tallying;
+	protected TallyingPhrase tallyingPhrase;
 
-	protected WithPointer withPointer;
+	protected WithPointerPhrase withPointerPhrase;
 
 	public UnstringStatementImpl(final ProgramUnit programUnit, final Scope scope, final UnstringStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -54,18 +54,18 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 	}
 
 	@Override
-	public Intos addIntos(final UnstringIntoPhraseContext ctx) {
-		Intos result = (Intos) getASGElement(ctx);
+	public IntoPhrase addIntoPhrase(final UnstringIntoPhraseContext ctx) {
+		IntoPhrase result = (IntoPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new IntosImpl(programUnit, ctx);
+			result = new IntoPhraseImpl(programUnit, ctx);
 
 			// intos
 			for (final UnstringIntoContext unstringIntoContext : ctx.unstringInto()) {
 				result.addInto(unstringIntoContext);
 			}
 
-			intos = result;
+			intoPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -85,7 +85,7 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 
 			// delimited by
 			if (ctx.unstringDelimitedByPhrase() != null) {
-				result.addDelimitedBy(ctx.unstringDelimitedByPhrase());
+				result.addDelimitedByPhrase(ctx.unstringDelimitedByPhrase());
 			}
 
 			// or all
@@ -101,16 +101,16 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 	}
 
 	@Override
-	public Tallying addTallying(final UnstringTallyingPhraseContext ctx) {
-		Tallying result = (Tallying) getASGElement(ctx);
+	public TallyingPhrase addTallyingPhrase(final UnstringTallyingPhraseContext ctx) {
+		TallyingPhrase result = (TallyingPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new TallyingImpl(programUnit, ctx);
+			result = new TallyingPhraseImpl(programUnit, ctx);
 
 			final Call tallyCountDataItemCall = createCall(ctx.qualifiedDataName());
 			result.addTallyCountDataItemCall(tallyCountDataItemCall);
 
-			tallying = result;
+			tallyingPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -118,16 +118,16 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 	}
 
 	@Override
-	public WithPointer addWithPointer(final UnstringWithPointerPhraseContext ctx) {
-		WithPointer result = (WithPointer) getASGElement(ctx);
+	public WithPointerPhrase addWithPointerPhrase(final UnstringWithPointerPhraseContext ctx) {
+		WithPointerPhrase result = (WithPointerPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new WithPointerImpl(programUnit, ctx);
+			result = new WithPointerPhraseImpl(programUnit, ctx);
 
 			final Call pointerCall = createCall(ctx.qualifiedDataName());
 			result.setPointerCall(pointerCall);
 
-			withPointer = result;
+			withPointerPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -135,8 +135,8 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 	}
 
 	@Override
-	public Intos getIntos() {
-		return intos;
+	public IntoPhrase getIntoPhrase() {
+		return intoPhrase;
 	}
 
 	@Override
@@ -160,13 +160,13 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 	}
 
 	@Override
-	public Tallying getTallying() {
-		return tallying;
+	public TallyingPhrase getTallyingPhrase() {
+		return tallyingPhrase;
 	}
 
 	@Override
-	public WithPointer getWithPointer() {
-		return withPointer;
+	public WithPointerPhrase getWithPointerPhrase() {
+		return withPointerPhrase;
 	}
 
 	@Override

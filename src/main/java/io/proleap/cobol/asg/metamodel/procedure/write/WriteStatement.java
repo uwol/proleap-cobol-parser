@@ -22,23 +22,23 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface WriteStatement extends Statement {
 
-	Advancing addAdvancing(WriteAdvancingPhraseContext ctx);
+	AdvancingPhrase addAdvancingPhrase(WriteAdvancingPhraseContext ctx);
 
-	AtEndOfPage addAtEndOfPage(WriteAtEndOfPagePhraseContext ctx);
+	AtEndOfPagePhrase addAtEndOfPagePhrase(WriteAtEndOfPagePhraseContext ctx);
 
 	From addFrom(WriteFromPhraseContext ctx);
 
-	NotAtEndOfPage addNotAtEndOfPage(WriteNotAtEndOfPagePhraseContext ctx);
+	NotAtEndOfPagePhrase addNotAtEndOfPagePhrase(WriteNotAtEndOfPagePhraseContext ctx);
 
-	Advancing getAdvancing();
+	AdvancingPhrase getAdvancingPhrase();
 
-	AtEndOfPage getAtEndOfPage();
+	AtEndOfPagePhrase getAtEndOfPagePhrase();
 
 	From getFrom();
 
 	InvalidKeyPhrase getInvalidKeyPhrase();
 
-	NotAtEndOfPage getNotAtEndOfPage();
+	NotAtEndOfPagePhrase getNotAtEndOfPagePhrase();
 
 	NotInvalidKeyPhrase getNotInvalidKeyPhrase();
 

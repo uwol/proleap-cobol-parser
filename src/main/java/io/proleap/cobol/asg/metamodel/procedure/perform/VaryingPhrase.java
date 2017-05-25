@@ -16,15 +16,15 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface VaryingPhrase extends CobolDivisionElement {
 
-	By addBy(PerformByContext ctx);
+	ByPhrase addByPhrase(PerformByContext ctx);
 
-	From addFrom(PerformFromContext ctx);
+	FromPhrase addFromPhrase(PerformFromContext ctx);
 
 	Until addUntil(PerformUntilContext ctx);
 
-	By getBy();
+	ByPhrase getBy();
 
-	From getFrom();
+	FromPhrase getFrom();
 
 	Until getUntil();
 

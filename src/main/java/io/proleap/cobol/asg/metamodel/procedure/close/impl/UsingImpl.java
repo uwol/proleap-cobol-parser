@@ -14,21 +14,21 @@ import io.proleap.cobol.Cobol85Parser.ClosePortFileIOUsingCloseDispositionContex
 import io.proleap.cobol.Cobol85Parser.ClosePortFileIOUsingContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.asg.metamodel.procedure.close.AssociatedDataLengthPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.close.AssociatedDataPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.close.CloseDispositionPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.close.Using;
-import io.proleap.cobol.asg.metamodel.procedure.close.UsingAssociatedData;
-import io.proleap.cobol.asg.metamodel.procedure.close.UsingAssociatedDataLength;
-import io.proleap.cobol.asg.metamodel.procedure.close.UsingCloseDisposition;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class UsingImpl extends CobolDivisionElementImpl implements Using {
 
+	protected AssociatedDataLengthPhrase associatedDataLengthPhrase;
+
+	protected AssociatedDataPhrase associatedDataPhrase;
+
+	protected CloseDispositionPhrase closeDispositionPhrase;
+
 	protected ClosePortFileIOUsingContext ctx;
-
-	protected UsingAssociatedData usingAssociatedData;
-
-	protected UsingAssociatedDataLength usingAssociatedDataLength;
-
-	protected UsingCloseDisposition usingCloseDisposition;
 
 	protected UsingType usingType;
 
@@ -39,36 +39,18 @@ public class UsingImpl extends CobolDivisionElementImpl implements Using {
 	}
 
 	@Override
-	public UsingAssociatedData addUsingAssociatedData(final ClosePortFileIOUsingAssociatedDataContext ctx) {
-		UsingAssociatedData result = (UsingAssociatedData) getASGElement(ctx);
-
-		if (result == null) {
-			result = new UsingAssociatedDataImpl(programUnit, ctx);
-
-			// data
-			final ValueStmt dataValueStmt = createValueStmt(ctx.identifier(), ctx.integerLiteral());
-			result.setDataValueStmt(dataValueStmt);
-
-			usingAssociatedData = result;
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public UsingAssociatedDataLength addUsingAssociatedDataLength(
+	public AssociatedDataLengthPhrase addAssociatedDataLengthPhrase(
 			final ClosePortFileIOUsingAssociatedDataLengthContext ctx) {
-		UsingAssociatedDataLength result = (UsingAssociatedDataLength) getASGElement(ctx);
+		AssociatedDataLengthPhrase result = (AssociatedDataLengthPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new UsingAssociatedDataLengthImpl(programUnit, ctx);
+			result = new AssociatedDataLengthPhraseImpl(programUnit, ctx);
 
 			// data call
 			final ValueStmt dataLengthValueStmt = createValueStmt(ctx.identifier(), ctx.integerLiteral());
 			result.setDataLengthValueStmt(dataLengthValueStmt);
 
-			usingAssociatedDataLength = result;
+			associatedDataLengthPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -76,26 +58,44 @@ public class UsingImpl extends CobolDivisionElementImpl implements Using {
 	}
 
 	@Override
-	public UsingCloseDisposition addUsingCloseDisposition(final ClosePortFileIOUsingCloseDispositionContext ctx) {
-		UsingCloseDisposition result = (UsingCloseDisposition) getASGElement(ctx);
+	public AssociatedDataPhrase addAssociatedDataPhrase(final ClosePortFileIOUsingAssociatedDataContext ctx) {
+		AssociatedDataPhrase result = (AssociatedDataPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new UsingCloseDispositionImpl(programUnit, ctx);
+			result = new AssociatedDataPhraseImpl(programUnit, ctx);
+
+			// data
+			final ValueStmt dataValueStmt = createValueStmt(ctx.identifier(), ctx.integerLiteral());
+			result.setDataValueStmt(dataValueStmt);
+
+			associatedDataPhrase = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public CloseDispositionPhrase addCloseDispositionPhrase(final ClosePortFileIOUsingCloseDispositionContext ctx) {
+		CloseDispositionPhrase result = (CloseDispositionPhrase) getASGElement(ctx);
+
+		if (result == null) {
+			result = new CloseDispositionPhraseImpl(programUnit, ctx);
 
 			// type
-			final UsingCloseDisposition.UsingCloseDispositionType type;
+			final CloseDispositionPhrase.UsingCloseDispositionType type;
 
 			if (ctx.ABORT() != null) {
-				type = UsingCloseDisposition.UsingCloseDispositionType.ABORT;
+				type = CloseDispositionPhrase.UsingCloseDispositionType.ABORT;
 			} else if (ctx.ORDERLY() != null) {
-				type = UsingCloseDisposition.UsingCloseDispositionType.ORDERLY;
+				type = CloseDispositionPhrase.UsingCloseDispositionType.ORDERLY;
 			} else {
 				type = null;
 			}
 
 			result.setUsingCloseDispositionType(type);
 
-			usingCloseDisposition = result;
+			closeDispositionPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -103,18 +103,18 @@ public class UsingImpl extends CobolDivisionElementImpl implements Using {
 	}
 
 	@Override
-	public UsingAssociatedData getUsingAssociatedData() {
-		return usingAssociatedData;
+	public AssociatedDataLengthPhrase getAssociatedDataLengthPhrase() {
+		return associatedDataLengthPhrase;
 	}
 
 	@Override
-	public UsingAssociatedDataLength getUsingAssociatedDataLength() {
-		return usingAssociatedDataLength;
+	public AssociatedDataPhrase getAssociatedDataPhrase() {
+		return associatedDataPhrase;
 	}
 
 	@Override
-	public UsingCloseDisposition getUsingCloseDisposition() {
-		return usingCloseDisposition;
+	public CloseDispositionPhrase getCloseDispositionPhrase() {
+		return closeDispositionPhrase;
 	}
 
 	@Override

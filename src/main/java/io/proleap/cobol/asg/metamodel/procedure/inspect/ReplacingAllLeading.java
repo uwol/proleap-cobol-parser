@@ -17,11 +17,11 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface ReplacingAllLeading extends CobolDivisionElement {
 
-	BeforeAfter addBeforeAfter(InspectBeforeAfterContext ctx);
+	BeforeAfterPhrase addBeforeAfterPhrase(InspectBeforeAfterContext ctx);
 
 	By addBy(InspectByContext ctx);
 
-	List<BeforeAfter> getBeforeAfters();
+	List<BeforeAfterPhrase> getBeforeAfterPhrases();
 
 	By getBy();
 

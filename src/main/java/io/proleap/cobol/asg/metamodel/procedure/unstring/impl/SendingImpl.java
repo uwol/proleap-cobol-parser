@@ -17,7 +17,7 @@ import io.proleap.cobol.Cobol85Parser.UnstringSendingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.unstring.DelimitedBy;
+import io.proleap.cobol.asg.metamodel.procedure.unstring.DelimitedByPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.OrAll;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.Sending;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
@@ -26,7 +26,7 @@ public class SendingImpl extends CobolDivisionElementImpl implements Sending {
 
 	protected final UnstringSendingPhraseContext ctx;
 
-	protected DelimitedBy delimitedBy;
+	protected DelimitedByPhrase delimitedByPhrase;
 
 	protected List<OrAll> orAlls = new ArrayList<OrAll>();
 
@@ -39,16 +39,16 @@ public class SendingImpl extends CobolDivisionElementImpl implements Sending {
 	}
 
 	@Override
-	public DelimitedBy addDelimitedBy(final UnstringDelimitedByPhraseContext ctx) {
-		DelimitedBy result = (DelimitedBy) getASGElement(ctx);
+	public DelimitedByPhrase addDelimitedByPhrase(final UnstringDelimitedByPhraseContext ctx) {
+		DelimitedByPhrase result = (DelimitedByPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new DelimitedByImpl(programUnit, ctx);
+			result = new DelimitedByPhraseImpl(programUnit, ctx);
 
 			final ValueStmt delimitedByValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
 			result.setDelimitedByValueStmt(delimitedByValueStmt);
 
-			delimitedBy = result;
+			delimitedByPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -73,8 +73,8 @@ public class SendingImpl extends CobolDivisionElementImpl implements Sending {
 	}
 
 	@Override
-	public DelimitedBy getDelimitedBy() {
-		return delimitedBy;
+	public DelimitedByPhrase getDelimitedByPhrase() {
+		return delimitedByPhrase;
 	}
 
 	@Override

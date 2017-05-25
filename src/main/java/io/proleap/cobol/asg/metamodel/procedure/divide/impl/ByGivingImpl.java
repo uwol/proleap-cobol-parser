@@ -13,17 +13,17 @@ import io.proleap.cobol.Cobol85Parser.DivideGivingContext;
 import io.proleap.cobol.Cobol85Parser.DivideGivingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.divide.ByGiving;
-import io.proleap.cobol.asg.metamodel.procedure.divide.Givings;
+import io.proleap.cobol.asg.metamodel.procedure.divide.DivideByGivingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.divide.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public class ByGivingImpl extends CobolDivisionElementImpl implements ByGiving {
+public class ByGivingImpl extends CobolDivisionElementImpl implements DivideByGivingStatement {
 
 	protected ValueStmt byValueStmt;
 
 	protected DivideByGivingStatementContext ctx;
 
-	protected Givings givings;
+	protected GivingPhrase givingPhrase;
 
 	public ByGivingImpl(final ProgramUnit programUnit, final DivideByGivingStatementContext ctx) {
 		super(programUnit, ctx);
@@ -32,18 +32,18 @@ public class ByGivingImpl extends CobolDivisionElementImpl implements ByGiving {
 	}
 
 	@Override
-	public Givings addGivings(final DivideGivingPhraseContext ctx) {
-		Givings result = (Givings) getASGElement(ctx);
+	public GivingPhrase addGivingPhrase(final DivideGivingPhraseContext ctx) {
+		GivingPhrase result = (GivingPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new GivingsImpl(programUnit, ctx);
+			result = new GivingPhraseImpl(programUnit, ctx);
 
 			// givings
 			for (final DivideGivingContext divideGivingContext : ctx.divideGiving()) {
 				result.addGiving(divideGivingContext);
 			}
 
-			givings = result;
+			givingPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -56,8 +56,8 @@ public class ByGivingImpl extends CobolDivisionElementImpl implements ByGiving {
 	}
 
 	@Override
-	public Givings getGivings() {
-		return givings;
+	public GivingPhrase getGivingPhrase() {
+		return givingPhrase;
 	}
 
 	@Override

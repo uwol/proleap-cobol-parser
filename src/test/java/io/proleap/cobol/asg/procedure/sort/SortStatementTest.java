@@ -19,13 +19,13 @@ import io.proleap.cobol.asg.metamodel.procedure.sort.Alphanumeric;
 import io.proleap.cobol.asg.metamodel.procedure.sort.CollatingSequence;
 import io.proleap.cobol.asg.metamodel.procedure.sort.Duplicates;
 import io.proleap.cobol.asg.metamodel.procedure.sort.Giving;
-import io.proleap.cobol.asg.metamodel.procedure.sort.Givings;
+import io.proleap.cobol.asg.metamodel.procedure.sort.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.sort.National;
 import io.proleap.cobol.asg.metamodel.procedure.sort.OnKey;
 import io.proleap.cobol.asg.metamodel.procedure.sort.OutputProcedure;
 import io.proleap.cobol.asg.metamodel.procedure.sort.OutputThrough;
 import io.proleap.cobol.asg.metamodel.procedure.sort.SortStatement;
-import io.proleap.cobol.asg.metamodel.procedure.sort.Using;
+import io.proleap.cobol.asg.metamodel.procedure.sort.UsingPhrase;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -112,9 +112,9 @@ public class SortStatementTest extends CobolTestBase {
 			}
 
 			{
-				assertEquals(1, sortStatement.getUsings().size());
+				assertEquals(1, sortStatement.getUsingPhrases().size());
 
-				final Using using = sortStatement.getUsings().get(0);
+				final UsingPhrase using = sortStatement.getUsingPhrases().get(0);
 				assertEquals(1, using.getFileCalls().size());
 
 				final Call fileCall = using.getFileCalls().get(0);
@@ -142,9 +142,9 @@ public class SortStatementTest extends CobolTestBase {
 			}
 
 			{
-				assertEquals(1, sortStatement.getGivings().size());
+				assertEquals(1, sortStatement.getGivingPhrases().size());
 
-				final Givings givings = sortStatement.getGivings().get(0);
+				final GivingPhrase givings = sortStatement.getGivingPhrases().get(0);
 				assertNotNull(givings);
 				assertEquals(1, givings.getGivings().size());
 

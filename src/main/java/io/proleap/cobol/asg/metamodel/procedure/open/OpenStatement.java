@@ -22,20 +22,20 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  */
 public interface OpenStatement extends Statement {
 
-	OpenExtend addOpenExtend(OpenExtendStatementContext ctx);
+	ExtendPhrase addExtendPhrase(OpenExtendStatementContext ctx);
 
-	OpenInput addOpenInput(OpenInputStatementContext ctx);
+	InputOutputPhrase addInputOutputPhrase(OpenIOStatementContext ctx);
 
-	OpenInputOutput addOpenInputOutput(OpenIOStatementContext ctx);
+	InputPhrase addInputPhrase(OpenInputStatementContext ctx);
 
-	OpenOutput addOpenOutput(OpenOutputStatementContext ctx);
+	OutputPhrase addOutputPhrase(OpenOutputStatementContext ctx);
 
-	List<OpenExtend> getOpenExtends();
+	List<ExtendPhrase> getExtendPhrases();
 
-	List<OpenInputOutput> getOpenInputOutputs();
+	List<InputOutputPhrase> getInputOutputPhrases();
 
-	List<OpenInput> getOpenInputs();
+	List<InputPhrase> getInputPhrases();
 
-	List<OpenOutput> getOpenOutputs();
+	List<OutputPhrase> getOutputPhrases();
 
 }

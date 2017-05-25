@@ -18,7 +18,7 @@ import io.proleap.cobol.Cobol85Parser.InspectForContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfter;
+import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfterPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.By;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.For;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
@@ -29,19 +29,19 @@ public abstract class InspectPhraseImpl extends CobolDivisionElementImpl {
 		super(programUnit, ctx);
 	}
 
-	protected BeforeAfter createBeforeAfter(final InspectBeforeAfterContext ctx) {
-		BeforeAfter result = (BeforeAfter) getASGElement(ctx);
+	protected BeforeAfterPhrase createBeforeAfterPhrase(final InspectBeforeAfterContext ctx) {
+		BeforeAfterPhrase result = (BeforeAfterPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new BeforeAfterImpl(programUnit, ctx);
+			result = new BeforeAfterPhraseImpl(programUnit, ctx);
 
 			// type
-			final BeforeAfter.BeforeAfterType type;
+			final BeforeAfterPhrase.BeforeAfterType type;
 
 			if (ctx.BEFORE() != null) {
-				type = BeforeAfter.BeforeAfterType.BEFORE;
+				type = BeforeAfterPhrase.BeforeAfterType.BEFORE;
 			} else if (ctx.AFTER() != null) {
-				type = BeforeAfter.BeforeAfterType.AFTER;
+				type = BeforeAfterPhrase.BeforeAfterType.AFTER;
 			} else {
 				type = null;
 			}
@@ -91,7 +91,7 @@ public abstract class InspectPhraseImpl extends CobolDivisionElementImpl {
 
 			// all leadings
 			for (final InspectAllLeadingsContext inspectAllLeadingsContext : ctx.inspectAllLeadings()) {
-				result.addAllLeadings(inspectAllLeadingsContext);
+				result.addAllLeadingPhrase(inspectAllLeadingsContext);
 			}
 
 			registerASGElement(result);

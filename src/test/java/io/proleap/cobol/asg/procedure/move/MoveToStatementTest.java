@@ -20,7 +20,7 @@ import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveTo;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.move.SendingArea;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
@@ -77,7 +77,7 @@ public class MoveToStatementTest extends CobolTestBase {
 			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
-				final MoveTo moveTo = moveStatement.getMoveTo();
+				final MoveToPhrase moveTo = moveStatement.getMoveTo();
 
 				{
 					final SendingArea sendingArea = moveTo.getSendingArea();
@@ -110,7 +110,7 @@ public class MoveToStatementTest extends CobolTestBase {
 			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
-				final MoveTo moveTo = moveStatement.getMoveTo();
+				final MoveToPhrase moveTo = moveStatement.getMoveTo();
 
 				{
 					final SendingArea sendingArea = moveTo.getSendingArea();
@@ -143,7 +143,7 @@ public class MoveToStatementTest extends CobolTestBase {
 			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
-				final MoveTo moveTo = moveStatement.getMoveTo();
+				final MoveToPhrase moveTo = moveStatement.getMoveTo();
 
 				{
 					final SendingArea sendingArea = moveTo.getSendingArea();

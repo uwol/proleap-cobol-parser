@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfter;
+import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfterPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.InspectStatement;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.Replacing;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.ReplacingAllLeading;
@@ -49,11 +49,11 @@ public class InspectReplacingStatementTest extends CobolTestBase {
 
 				{
 					final ReplacingCharacters characters = replacing.getCharacters().get(0);
-					assertEquals(1, characters.getBeforeAfters().size());
+					assertEquals(1, characters.getBeforeAfterPhrases().size());
 
 					{
-						final BeforeAfter beforeAfter = characters.getBeforeAfters().get(0);
-						assertEquals(BeforeAfter.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
+						final BeforeAfterPhrase beforeAfter = characters.getBeforeAfterPhrases().get(0);
+						assertEquals(BeforeAfterPhrase.BeforeAfterType.AFTER, beforeAfter.getBeforeAfterType());
 					}
 				}
 
@@ -67,11 +67,11 @@ public class InspectReplacingStatementTest extends CobolTestBase {
 
 						assertNotNull(allLeading.getPatternDataItemValueStmt());
 						assertEquals("B", allLeading.getPatternDataItemValueStmt().getValue());
-						assertEquals(1, allLeading.getBeforeAfters().size());
+						assertEquals(1, allLeading.getBeforeAfterPhrases().size());
 
 						{
-							final BeforeAfter beforeAfter = allLeading.getBeforeAfters().get(0);
-							assertEquals(BeforeAfter.BeforeAfterType.BEFORE, beforeAfter.getBeforeAfterType());
+							final BeforeAfterPhrase beforeAfter = allLeading.getBeforeAfterPhrases().get(0);
+							assertEquals(BeforeAfterPhrase.BeforeAfterType.BEFORE, beforeAfter.getBeforeAfterType());
 						}
 					}
 				}

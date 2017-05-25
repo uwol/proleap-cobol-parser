@@ -24,10 +24,10 @@ import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileCo
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.open.Input;
-import io.proleap.cobol.asg.metamodel.procedure.open.OpenExtend;
-import io.proleap.cobol.asg.metamodel.procedure.open.OpenInput;
-import io.proleap.cobol.asg.metamodel.procedure.open.OpenInputOutput;
-import io.proleap.cobol.asg.metamodel.procedure.open.OpenOutput;
+import io.proleap.cobol.asg.metamodel.procedure.open.ExtendPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.open.InputPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.open.InputOutputPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.open.OutputPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.open.OpenStatement;
 import io.proleap.cobol.asg.metamodel.procedure.open.Output;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -167,13 +167,13 @@ public class OpenStatementTest extends CobolTestBase {
 				assertNotNull(openStatement);
 				assertEquals(StatementTypeEnum.OPEN, openStatement.getStatementType());
 
-				assertEquals(1, openStatement.getOpenInputs().size());
-				assertEquals(1, openStatement.getOpenOutputs().size());
-				assertEquals(1, openStatement.getOpenInputOutputs().size());
-				assertEquals(1, openStatement.getOpenExtends().size());
+				assertEquals(1, openStatement.getInputPhrases().size());
+				assertEquals(1, openStatement.getOutputPhrases().size());
+				assertEquals(1, openStatement.getInputOutputPhrases().size());
+				assertEquals(1, openStatement.getExtendPhrases().size());
 
 				{
-					final OpenInput openInput = openStatement.getOpenInputs().get(0);
+					final InputPhrase openInput = openStatement.getInputPhrases().get(0);
 					assertEquals(2, openInput.getInputs().size());
 
 					{
@@ -210,7 +210,7 @@ public class OpenStatementTest extends CobolTestBase {
 				}
 
 				{
-					final OpenOutput openOutput = openStatement.getOpenOutputs().get(0);
+					final OutputPhrase openOutput = openStatement.getOutputPhrases().get(0);
 					assertEquals(1, openOutput.getOutputs().size());
 
 					{
@@ -231,7 +231,7 @@ public class OpenStatementTest extends CobolTestBase {
 				}
 
 				{
-					final OpenInputOutput openInputOutput = openStatement.getOpenInputOutputs().get(0);
+					final InputOutputPhrase openInputOutput = openStatement.getInputOutputPhrases().get(0);
 					assertEquals(2, openInputOutput.getFileCalls().size());
 
 					{
@@ -258,7 +258,7 @@ public class OpenStatementTest extends CobolTestBase {
 				}
 
 				{
-					final OpenExtend openExtend = openStatement.getOpenExtends().get(0);
+					final ExtendPhrase openExtend = openStatement.getExtendPhrases().get(0);
 					assertEquals(2, openExtend.getFileCalls().size());
 
 					{

@@ -11,10 +11,10 @@ package io.proleap.cobol.asg.metamodel.procedure.search.impl;
 import io.proleap.cobol.Cobol85Parser.SearchWhenContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
-import io.proleap.cobol.asg.metamodel.procedure.search.When;
+import io.proleap.cobol.asg.metamodel.procedure.search.WhenPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
 
-public class WhenImpl extends ScopeImpl implements When {
+public class WhenImpl extends ScopeImpl implements WhenPhrase {
 
 	protected ConditionValueStmt condition;
 

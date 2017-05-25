@@ -21,18 +21,18 @@ import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.write.Advancing;
-import io.proleap.cobol.asg.metamodel.procedure.write.AtEndOfPage;
+import io.proleap.cobol.asg.metamodel.procedure.write.AdvancingPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.write.AtEndOfPagePhrase;
 import io.proleap.cobol.asg.metamodel.procedure.write.From;
-import io.proleap.cobol.asg.metamodel.procedure.write.NotAtEndOfPage;
+import io.proleap.cobol.asg.metamodel.procedure.write.NotAtEndOfPagePhrase;
 import io.proleap.cobol.asg.metamodel.procedure.write.WriteStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class WriteStatementImpl extends StatementImpl implements WriteStatement {
 
-	protected Advancing advancing;
+	protected AdvancingPhrase advancingPhrase;
 
-	protected AtEndOfPage atEndOfPage;
+	protected AtEndOfPagePhrase atEndOfPagePhrase;
 
 	protected final WriteStatementContext ctx;
 
@@ -40,7 +40,7 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 
 	protected InvalidKeyPhrase invalidKeyPhrase;
 
-	protected NotAtEndOfPage notAtEndOfPage;
+	protected NotAtEndOfPagePhrase notAtEndOfPagePhrase;
 
 	protected NotInvalidKeyPhrase notInvalidKeyPhrase;
 
@@ -55,23 +55,23 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 	}
 
 	@Override
-	public Advancing addAdvancing(final WriteAdvancingPhraseContext ctx) {
-		Advancing result = (Advancing) getASGElement(ctx);
+	public AdvancingPhrase addAdvancingPhrase(final WriteAdvancingPhraseContext ctx) {
+		AdvancingPhrase result = (AdvancingPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new AdvancingImpl(programUnit, ctx);
+			result = new AdvancingPhraseImpl(programUnit, ctx);
 
 			// type
-			final Advancing.AdvancingType type;
+			final AdvancingPhrase.AdvancingType type;
 
 			if (ctx.writeAdvancingPage() != null) {
-				type = Advancing.AdvancingType.PAGE;
+				type = AdvancingPhrase.AdvancingType.PAGE;
 			} else if (ctx.writeAdvancingLines() != null) {
 				result.addAdvancingLines(ctx.writeAdvancingLines());
-				type = Advancing.AdvancingType.LINES;
+				type = AdvancingPhrase.AdvancingType.LINES;
 			} else if (ctx.writeAdvancingMnemonic() != null) {
 				result.addAdvancingMnemonic(ctx.writeAdvancingMnemonic());
-				type = Advancing.AdvancingType.MNEMONIC;
+				type = AdvancingPhrase.AdvancingType.MNEMONIC;
 			} else {
 				type = null;
 			}
@@ -79,19 +79,19 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 			result.setAdvancingType(type);
 
 			// position type
-			final Advancing.PositionType positionType;
+			final AdvancingPhrase.PositionType positionType;
 
 			if (ctx.AFTER() != null) {
-				positionType = Advancing.PositionType.AFTER;
+				positionType = AdvancingPhrase.PositionType.AFTER;
 			} else if (ctx.BEFORE() != null) {
-				positionType = Advancing.PositionType.BEFORE;
+				positionType = AdvancingPhrase.PositionType.BEFORE;
 			} else {
 				positionType = null;
 			}
 
 			result.setPositionType(positionType);
 
-			advancing = result;
+			advancingPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -99,15 +99,15 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 	}
 
 	@Override
-	public AtEndOfPage addAtEndOfPage(final WriteAtEndOfPagePhraseContext ctx) {
-		AtEndOfPage result = (AtEndOfPage) getASGElement(ctx);
+	public AtEndOfPagePhrase addAtEndOfPagePhrase(final WriteAtEndOfPagePhraseContext ctx) {
+		AtEndOfPagePhrase result = (AtEndOfPagePhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new AtEndOfPageImpl(programUnit, ctx);
+			result = new AtEndOfPagePhraseImpl(programUnit, ctx);
 
 			// FXIME statements
 
-			atEndOfPage = result;
+			atEndOfPagePhrase = result;
 			registerASGElement(result);
 		}
 
@@ -133,15 +133,15 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 	}
 
 	@Override
-	public NotAtEndOfPage addNotAtEndOfPage(final WriteNotAtEndOfPagePhraseContext ctx) {
-		NotAtEndOfPage result = (NotAtEndOfPage) getASGElement(ctx);
+	public NotAtEndOfPagePhrase addNotAtEndOfPagePhrase(final WriteNotAtEndOfPagePhraseContext ctx) {
+		NotAtEndOfPagePhrase result = (NotAtEndOfPagePhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new NotAtEndOfPageImpl(programUnit, ctx);
+			result = new NotAtEndOfPagePhraseImpl(programUnit, ctx);
 
 			// FXIME statements
 
-			notAtEndOfPage = result;
+			notAtEndOfPagePhrase = result;
 			registerASGElement(result);
 		}
 
@@ -149,13 +149,13 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 	}
 
 	@Override
-	public Advancing getAdvancing() {
-		return advancing;
+	public AdvancingPhrase getAdvancingPhrase() {
+		return advancingPhrase;
 	}
 
 	@Override
-	public AtEndOfPage getAtEndOfPage() {
-		return atEndOfPage;
+	public AtEndOfPagePhrase getAtEndOfPagePhrase() {
+		return atEndOfPagePhrase;
 	}
 
 	@Override
@@ -169,8 +169,8 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 	}
 
 	@Override
-	public NotAtEndOfPage getNotAtEndOfPage() {
-		return notAtEndOfPage;
+	public NotAtEndOfPagePhrase getNotAtEndOfPagePhrase() {
+		return notAtEndOfPagePhrase;
 	}
 
 	@Override

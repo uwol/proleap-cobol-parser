@@ -41,17 +41,17 @@ public class UsingPhraseImpl extends CobolDivisionElementImpl implements UsingPh
 
 			// using call by reference
 			if (ctx.callByReferencePhrase() != null) {
-				result.addCallByReference(ctx.callByReferencePhrase());
+				result.addByReferencePhrase(ctx.callByReferencePhrase());
 				type = Parameter.ParameterType.REFERENCE;
 			}
 			// using call by value
 			else if (ctx.callByValuePhrase() != null) {
-				result.addCallByValue(ctx.callByValuePhrase());
+				result.addByValuePhrase(ctx.callByValuePhrase());
 				type = Parameter.ParameterType.VALUE;
 			}
 			// using call by content
 			else if (ctx.callByContentPhrase() != null) {
-				result.addCallByContent(ctx.callByContentPhrase());
+				result.addByContentPhrase(ctx.callByContentPhrase());
 				type = Parameter.ParameterType.CONTENT;
 			} else {
 				type = null;

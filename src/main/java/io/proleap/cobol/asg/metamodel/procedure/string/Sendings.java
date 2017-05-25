@@ -21,15 +21,15 @@ public interface Sendings extends CobolDivisionElement {
 		DELIMITED_BY, FOR
 	}
 
-	DelimitedBy addDelimitedBy(StringDelimitedByPhraseContext ctx);
+	DelimitedByPhrase addDelimitedByPhrase(StringDelimitedByPhraseContext ctx);
 
-	For addFor(StringForPhraseContext ctx);
+	ForPhrase addForPhrase(StringForPhraseContext ctx);
 
 	void addSendingValueStmt(ValueStmt sendingValueStmt);
 
-	DelimitedBy getDelimitedBy();
+	DelimitedByPhrase getDelimitedByPhrase();
 
-	For getFor();
+	ForPhrase getForPhrase();
 
 	SendingsType getSendingsType();
 

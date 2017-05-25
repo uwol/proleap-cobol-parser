@@ -22,7 +22,7 @@ import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.By;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.InitializeStatement;
-import io.proleap.cobol.asg.metamodel.procedure.initialize.Replacing;
+import io.proleap.cobol.asg.metamodel.procedure.initialize.ReplacingPhrase;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -73,7 +73,7 @@ public class InitializeStatementTest extends CobolTestBase {
 				}
 			}
 
-			assertNull(initializeStatement.getReplacing());
+			assertNull(initializeStatement.getReplacingPhrase());
 		}
 
 		{
@@ -94,12 +94,12 @@ public class InitializeStatementTest extends CobolTestBase {
 			}
 
 			{
-				final Replacing replacing = initializeStatement.getReplacing();
-				assertNotNull(replacing);
-				assertEquals(1, replacing.getBys().size());
+				final ReplacingPhrase replacingPhrase = initializeStatement.getReplacingPhrase();
+				assertNotNull(replacingPhrase);
+				assertEquals(1, replacingPhrase.getBys().size());
 
 				{
-					final By by = replacing.getBys().get(0);
+					final By by = replacingPhrase.getBys().get(0);
 					assertEquals(By.ByType.ALPHANUMERIC, by.getByType());
 					assertNotNull(by.getValueStmt());
 					assertEquals("ABC", by.getValueStmt().getValue());

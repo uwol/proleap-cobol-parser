@@ -17,18 +17,18 @@ import io.proleap.cobol.Cobol85Parser.CallByValuePhraseContext;
 import io.proleap.cobol.Cobol85Parser.CallUsingParameterContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.call.CallByContent;
-import io.proleap.cobol.asg.metamodel.procedure.call.CallByReference;
-import io.proleap.cobol.asg.metamodel.procedure.call.CallByValue;
+import io.proleap.cobol.asg.metamodel.procedure.call.ByContentPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.call.ByReferencePhrase;
+import io.proleap.cobol.asg.metamodel.procedure.call.ByValuePhrase;
 import io.proleap.cobol.asg.metamodel.procedure.call.Parameter;
 
 public class ParameterImpl extends CobolDivisionElementImpl implements Parameter {
 
-	protected CallByContent callByContent;
+	protected ByContentPhrase byContentPhrase;
 
-	protected CallByReference callByReference;
+	protected ByReferencePhrase byReferencePhrase;
 
-	protected CallByValue callByValue;
+	protected ByValuePhrase byValuePhrase;
 
 	protected final CallUsingParameterContext ctx;
 
@@ -41,8 +41,8 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 	}
 
 	@Override
-	public CallByContent addCallByContent(final CallByContentPhraseContext ctx) {
-		CallByContent result = (CallByContent) getASGElement(ctx);
+	public ByContentPhrase addByContentPhrase(final CallByContentPhraseContext ctx) {
+		ByContentPhrase result = (ByContentPhrase) getASGElement(ctx);
 
 		if (result == null) {
 			result = new CallByContentImpl(programUnit, ctx);
@@ -51,7 +51,7 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 				result.addByContent(callByContentContext);
 			}
 
-			callByContent = result;
+			byContentPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -59,8 +59,8 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 	}
 
 	@Override
-	public CallByReference addCallByReference(final CallByReferencePhraseContext ctx) {
-		CallByReference result = (CallByReference) getASGElement(ctx);
+	public ByReferencePhrase addByReferencePhrase(final CallByReferencePhraseContext ctx) {
+		ByReferencePhrase result = (ByReferencePhrase) getASGElement(ctx);
 
 		if (result == null) {
 			result = new CallByReferenceImpl(programUnit, ctx);
@@ -69,7 +69,7 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 				result.addByReference(callByReferenceContext);
 			}
 
-			callByReference = result;
+			byReferencePhrase = result;
 			registerASGElement(result);
 		}
 
@@ -77,8 +77,8 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 	}
 
 	@Override
-	public CallByValue addCallByValue(final CallByValuePhraseContext ctx) {
-		CallByValue result = (CallByValue) getASGElement(ctx);
+	public ByValuePhrase addByValuePhrase(final CallByValuePhraseContext ctx) {
+		ByValuePhrase result = (ByValuePhrase) getASGElement(ctx);
 
 		if (result == null) {
 			result = new CallByValueImpl(programUnit, ctx);
@@ -87,7 +87,7 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 				result.addValueStmt(callByValueContext);
 			}
 
-			callByValue = result;
+			byValuePhrase = result;
 			registerASGElement(result);
 		}
 
@@ -95,18 +95,18 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 	}
 
 	@Override
-	public CallByContent getCallByContent() {
-		return callByContent;
+	public ByContentPhrase getByContentPhrase() {
+		return byContentPhrase;
 	}
 
 	@Override
-	public CallByReference getCallByReference() {
-		return callByReference;
+	public ByReferencePhrase getByReferencePhrase() {
+		return byReferencePhrase;
 	}
 
 	@Override
-	public CallByValue getCallByValue() {
-		return callByValue;
+	public ByValuePhrase getByValuePhrase() {
+		return byValuePhrase;
 	}
 
 	@Override

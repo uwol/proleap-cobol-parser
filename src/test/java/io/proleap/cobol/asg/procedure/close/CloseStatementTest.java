@@ -29,9 +29,9 @@ import io.proleap.cobol.asg.metamodel.procedure.close.CloseReelUnitStatement;
 import io.proleap.cobol.asg.metamodel.procedure.close.CloseRelativeStatement;
 import io.proleap.cobol.asg.metamodel.procedure.close.CloseStatement;
 import io.proleap.cobol.asg.metamodel.procedure.close.Using;
-import io.proleap.cobol.asg.metamodel.procedure.close.UsingAssociatedData;
-import io.proleap.cobol.asg.metamodel.procedure.close.UsingAssociatedDataLength;
-import io.proleap.cobol.asg.metamodel.procedure.close.UsingCloseDisposition;
+import io.proleap.cobol.asg.metamodel.procedure.close.AssociatedDataPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.close.AssociatedDataLengthPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.close.CloseDispositionPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -214,8 +214,8 @@ public class CloseStatementTest extends CobolTestBase {
 						assertEquals(Using.UsingType.CLOSE_DISPOSITION, using.getUsingType());
 
 						{
-							final UsingCloseDisposition usingCloseDisposition = using.getUsingCloseDisposition();
-							assertEquals(UsingCloseDisposition.UsingCloseDispositionType.ORDERLY, usingCloseDisposition.getUsingCloseDispositionType());
+							final CloseDispositionPhrase closeDispositionPhrase = using.getCloseDispositionPhrase();
+							assertEquals(CloseDispositionPhrase.UsingCloseDispositionType.ORDERLY, closeDispositionPhrase.getUsingCloseDispositionType());
 						}
 					}
 				}
@@ -252,9 +252,9 @@ public class CloseStatementTest extends CobolTestBase {
 						assertEquals(Using.UsingType.ASSOCIATED_DATA, using.getUsingType());
 
 						{
-							final UsingAssociatedData usingAssociatedData = using.getUsingAssociatedData();
-							assertNotNull(usingAssociatedData.getDataValueStmt());
-							assertEquals(4, usingAssociatedData.getDataValueStmt().getValue());
+							final AssociatedDataPhrase associatedDataPhrase = using.getAssociatedDataPhrase();
+							assertNotNull(associatedDataPhrase.getDataValueStmt());
+							assertEquals(4, associatedDataPhrase.getDataValueStmt().getValue());
 						}
 					}
 				}
@@ -291,11 +291,11 @@ public class CloseStatementTest extends CobolTestBase {
 						assertEquals(Using.UsingType.ASSOCIATED_DATA_LENGTH, using.getUsingType());
 
 						{
-							final UsingAssociatedDataLength usingAssociatedDataLength = using
-									.getUsingAssociatedDataLength();
-							assertNotNull(usingAssociatedDataLength.getDataLengthValueStmt());
+							final AssociatedDataLengthPhrase associatedDataLengthPhrase = using
+									.getAssociatedDataLengthPhrase();
+							assertNotNull(associatedDataLengthPhrase.getDataLengthValueStmt());
 
-							final CallValueStmt dataLengthCallValueStmt = (CallValueStmt) usingAssociatedDataLength
+							final CallValueStmt dataLengthCallValueStmt = (CallValueStmt) associatedDataLengthPhrase
 									.getDataLengthValueStmt();
 							assertEquals(CallType.UNDEFINED_CALL, dataLengthCallValueStmt.getCall().getCallType());
 						}

@@ -27,30 +27,30 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.merge.CollatingSequence;
-import io.proleap.cobol.asg.metamodel.procedure.merge.Givings;
+import io.proleap.cobol.asg.metamodel.procedure.merge.CollatingSequencePhrase;
+import io.proleap.cobol.asg.metamodel.procedure.merge.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.merge.MergeStatement;
 import io.proleap.cobol.asg.metamodel.procedure.merge.OnKey;
-import io.proleap.cobol.asg.metamodel.procedure.merge.OutputProcedure;
-import io.proleap.cobol.asg.metamodel.procedure.merge.Using;
+import io.proleap.cobol.asg.metamodel.procedure.merge.OutputProcedurePhrase;
+import io.proleap.cobol.asg.metamodel.procedure.merge.UsingPhrase;
 
 public class MergeStatementImpl extends StatementImpl implements MergeStatement {
 
-	protected CollatingSequence collatingSequence;
+	protected CollatingSequencePhrase collatingSequencePhrase;
 
 	protected final MergeStatementContext ctx;
 
 	protected Call fileCall;
 
-	protected List<Givings> givings = new ArrayList<Givings>();
+	protected List<GivingPhrase> givingPhrases = new ArrayList<GivingPhrase>();
 
 	protected List<OnKey> onKeys = new ArrayList<OnKey>();
 
-	protected OutputProcedure outputProcedure;
+	protected OutputProcedurePhrase outputProcedurePhrase;
 
 	protected final StatementType statementType = StatementTypeEnum.MERGE;
 
-	protected List<Using> usings = new ArrayList<Using>();
+	protected List<UsingPhrase> usingPhrases = new ArrayList<UsingPhrase>();
 
 	public MergeStatementImpl(final ProgramUnit programUnit, final Scope scope, final MergeStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -59,8 +59,8 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
-	public CollatingSequence addCollatingSequence(final MergeCollatingSequencePhraseContext ctx) {
-		CollatingSequence result = (CollatingSequence) getASGElement(ctx);
+	public CollatingSequencePhrase addCollatingSequencePhrase(final MergeCollatingSequencePhraseContext ctx) {
+		CollatingSequencePhrase result = (CollatingSequencePhrase) getASGElement(ctx);
 
 		if (result == null) {
 			result = new CollatingSequenceImpl(programUnit, ctx);
@@ -81,7 +81,7 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 				result.addNational(ctx.mergeCollatingNational());
 			}
 
-			collatingSequence = result;
+			collatingSequencePhrase = result;
 			registerASGElement(result);
 		}
 
@@ -89,18 +89,18 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
-	public Givings addGiving(final MergeGivingPhraseContext ctx) {
-		Givings result = (Givings) getASGElement(ctx);
+	public GivingPhrase addGiving(final MergeGivingPhraseContext ctx) {
+		GivingPhrase result = (GivingPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new GivingsImpl(programUnit, ctx);
+			result = new GivingPhraseImpl(programUnit, ctx);
 
 			// givings
 			for (final MergeGivingContext mergeGivingContext : ctx.mergeGiving()) {
 				result.addGiving(mergeGivingContext);
 			}
 
-			givings.add(result);
+			givingPhrases.add(result);
 			registerASGElement(result);
 		}
 
@@ -141,11 +141,11 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
-	public OutputProcedure addOutputProcedure(final MergeOutputProcedurePhraseContext ctx) {
-		OutputProcedure result = (OutputProcedure) getASGElement(ctx);
+	public OutputProcedurePhrase addOutputProcedurePhrase(final MergeOutputProcedurePhraseContext ctx) {
+		OutputProcedurePhrase result = (OutputProcedurePhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new OutputProcedureImpl(programUnit, ctx);
+			result = new OutputProcedurePhraseImpl(programUnit, ctx);
 
 			// procedure
 			final Call procedureCall = createCall(ctx.procedureName());
@@ -156,7 +156,7 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 				result.addOutputThrough(ctx.mergeOutputThrough());
 			}
 
-			outputProcedure = result;
+			outputProcedurePhrase = result;
 			registerASGElement(result);
 		}
 
@@ -164,11 +164,11 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
-	public Using addUsing(final MergeUsingContext ctx) {
-		Using result = (Using) getASGElement(ctx);
+	public UsingPhrase addUsingPhrase(final MergeUsingContext ctx) {
+		UsingPhrase result = (UsingPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new UsingImpl(programUnit, ctx);
+			result = new UsingPhraseImpl(programUnit, ctx);
 
 			// file calls
 			for (final FileNameContext fileNameContext : ctx.fileName()) {
@@ -176,7 +176,7 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 				result.addFileCall(fileCall);
 			}
 
-			usings.add(result);
+			usingPhrases.add(result);
 			registerASGElement(result);
 		}
 
@@ -184,8 +184,8 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
-	public CollatingSequence getCollatingSequence() {
-		return collatingSequence;
+	public CollatingSequencePhrase getCollatingSequencePhrase() {
+		return collatingSequencePhrase;
 	}
 
 	@Override
@@ -194,8 +194,8 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
-	public List<Givings> getGivings() {
-		return givings;
+	public List<GivingPhrase> getGivingPhrases() {
+		return givingPhrases;
 	}
 
 	@Override
@@ -204,8 +204,8 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
-	public OutputProcedure getOutputProcedure() {
-		return outputProcedure;
+	public OutputProcedurePhrase getOutputProcedurePhrase() {
+		return outputProcedurePhrase;
 	}
 
 	@Override
@@ -214,8 +214,8 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 	}
 
 	@Override
-	public List<Using> getUsings() {
-		return usings;
+	public List<UsingPhrase> getUsingPhrases() {
+		return usingPhrases;
 	}
 
 	@Override
