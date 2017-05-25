@@ -12,8 +12,8 @@ import io.proleap.cobol.Cobol85Parser.DivideByGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideIntoGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideIntoStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideRemainderContext;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeError;
-import io.proleap.cobol.asg.metamodel.procedure.OnSizeError;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
@@ -44,9 +44,9 @@ public interface DivideStatement extends Statement {
 
 	IntoGiving getIntoGiving();
 
-	NotOnSizeError getNotOnSizeError();
+	NotOnSizeErrorPhrase getNotOnSizeErrorPhrase();
 
-	OnSizeError getOnSizeError();
+	OnSizeErrorPhrase getOnSizeErrorPhrase();
 
 	Remainder getRemainder();
 
@@ -54,8 +54,8 @@ public interface DivideStatement extends Statement {
 
 	void setDivisorValueStmt(ValueStmt divisorValueStmt);
 
-	void setNotOnSizeError(NotOnSizeError notOnSizeError);
+	void setNotOnSizeErrorPhrase(NotOnSizeErrorPhrase notOnSizeErrorPhrase);
 
-	void setOnSizeError(OnSizeError onSizeError);
+	void setOnSizeErrorPhrase(OnSizeErrorPhrase onSizeErrorPhrase);
 
 }

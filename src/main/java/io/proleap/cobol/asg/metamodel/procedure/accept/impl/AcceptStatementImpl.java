@@ -18,10 +18,10 @@ import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromDate;
-import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromEscapeKey;
-import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromMnemonic;
-import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptMessageCount;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromDateStatement;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromEscapeKeyStatement;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromMnemonicStatement;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptMessageCountStatement;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptStatement;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
 
@@ -29,13 +29,13 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 
 	protected Call acceptCall;
 
-	protected AcceptFromDate acceptFromDate;
+	protected AcceptFromDateStatement acceptFromDateStatement;
 
-	protected AcceptFromEscapeKey acceptFromEscapeKey;
+	protected AcceptFromEscapeKeyStatement acceptFromEscapeKeyStatement;
 
-	protected AcceptFromMnemonic acceptFromMnemonic;
+	protected AcceptFromMnemonicStatement acceptFromMnemonicStatement;
 
-	protected AcceptMessageCount acceptMessageCount;
+	protected AcceptMessageCountStatement acceptMessageCountStatement;
 
 	protected AcceptType acceptType;
 
@@ -50,8 +50,8 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public AcceptFromDate addAcceptFromDate(final AcceptFromDateStatementContext ctx) {
-		AcceptFromDate result = (AcceptFromDate) getASGElement(ctx);
+	public AcceptFromDateStatement addAcceptFromDate(final AcceptFromDateStatementContext ctx) {
+		AcceptFromDateStatement result = (AcceptFromDateStatement) getASGElement(ctx);
 
 		if (result == null) {
 			result = new AcceptFromDateImpl(programUnit, ctx);
@@ -59,37 +59,37 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 			/*
 			 * date type
 			 */
-			final AcceptFromDate.DateType dateType;
+			final AcceptFromDateStatement.DateType dateType;
 
 			if (ctx.DATE() != null && ctx.YYYYMMDD() == null) {
-				dateType = AcceptFromDate.DateType.DATE;
+				dateType = AcceptFromDateStatement.DateType.DATE;
 			} else if (ctx.DATE() != null && ctx.YYYYMMDD() != null) {
-				dateType = AcceptFromDate.DateType.DATE_YYYYMMDD;
+				dateType = AcceptFromDateStatement.DateType.DATE_YYYYMMDD;
 			} else if (ctx.DAY() != null && ctx.YYYYMMDD() == null) {
-				dateType = AcceptFromDate.DateType.DAY;
+				dateType = AcceptFromDateStatement.DateType.DAY;
 			} else if (ctx.DAY() != null && ctx.YYYYMMDD() != null) {
-				dateType = AcceptFromDate.DateType.DAY_YYYYMMDD;
+				dateType = AcceptFromDateStatement.DateType.DAY_YYYYMMDD;
 			} else if (ctx.TIME() != null) {
-				dateType = AcceptFromDate.DateType.TIME;
+				dateType = AcceptFromDateStatement.DateType.TIME;
 			} else if (ctx.TIMER() != null) {
-				dateType = AcceptFromDate.DateType.TIMER;
+				dateType = AcceptFromDateStatement.DateType.TIMER;
 			} else if (ctx.TODAYS_DATE() != null && ctx.YYYYMMDD() == null) {
-				dateType = AcceptFromDate.DateType.TODAYS_DATE;
+				dateType = AcceptFromDateStatement.DateType.TODAYS_DATE;
 			} else if (ctx.TODAYS_DATE() != null && ctx.YYYYMMDD() != null) {
-				dateType = AcceptFromDate.DateType.TODAYS_DATE_MMDDYYYY;
+				dateType = AcceptFromDateStatement.DateType.TODAYS_DATE_MMDDYYYY;
 			} else if (ctx.TODAYS_NAME() != null) {
-				dateType = AcceptFromDate.DateType.TODAYS_NAME;
+				dateType = AcceptFromDateStatement.DateType.TODAYS_NAME;
 			} else if (ctx.YEAR() != null) {
-				dateType = AcceptFromDate.DateType.YEAR;
+				dateType = AcceptFromDateStatement.DateType.YEAR;
 			} else if (ctx.YYYYDDD() != null) {
-				dateType = AcceptFromDate.DateType.YYYYDDD;
+				dateType = AcceptFromDateStatement.DateType.YYYYDDD;
 			} else if (ctx.MMDDYYYY() != null) {
-				dateType = AcceptFromDate.DateType.YYYYMMDD;
+				dateType = AcceptFromDateStatement.DateType.YYYYMMDD;
 			} else {
 				dateType = null;
 			}
 
-			acceptFromDate = result;
+			acceptFromDateStatement = result;
 			result.setDateType(dateType);
 
 			registerASGElement(result);
@@ -99,13 +99,13 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public AcceptFromEscapeKey addAcceptFromEscapeKey(final AcceptFromEscapeKeyStatementContext ctx) {
-		AcceptFromEscapeKey result = (AcceptFromEscapeKey) getASGElement(ctx);
+	public AcceptFromEscapeKeyStatement addAcceptFromEscapeKey(final AcceptFromEscapeKeyStatementContext ctx) {
+		AcceptFromEscapeKeyStatement result = (AcceptFromEscapeKeyStatement) getASGElement(ctx);
 
 		if (result == null) {
 			result = new AcceptFromEscapeKeyImpl(programUnit, ctx);
 
-			acceptFromEscapeKey = result;
+			acceptFromEscapeKeyStatement = result;
 			registerASGElement(result);
 		}
 
@@ -113,8 +113,8 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public AcceptFromMnemonic addAcceptFromMnemonic(final AcceptFromMnemonicStatementContext ctx) {
-		AcceptFromMnemonic result = (AcceptFromMnemonic) getASGElement(ctx);
+	public AcceptFromMnemonicStatement addAcceptFromMnemonic(final AcceptFromMnemonicStatementContext ctx) {
+		AcceptFromMnemonicStatement result = (AcceptFromMnemonicStatement) getASGElement(ctx);
 
 		if (result == null) {
 			result = new AcceptFromMnemonicImpl(programUnit, ctx);
@@ -122,7 +122,7 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 			final Call mnemonicCall = createCall(ctx.mnemonicName());
 			result.setMnemonicCall(mnemonicCall);
 
-			acceptFromMnemonic = result;
+			acceptFromMnemonicStatement = result;
 			registerASGElement(result);
 		}
 
@@ -130,13 +130,13 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public AcceptMessageCount addAcceptMessageCount(final AcceptMessageCountStatementContext ctx) {
-		AcceptMessageCount result = (AcceptMessageCount) getASGElement(ctx);
+	public AcceptMessageCountStatement addAcceptMessageCount(final AcceptMessageCountStatementContext ctx) {
+		AcceptMessageCountStatement result = (AcceptMessageCountStatement) getASGElement(ctx);
 
 		if (result == null) {
 			result = new AcceptMessageCountImpl(programUnit, ctx);
 
-			acceptMessageCount = result;
+			acceptMessageCountStatement = result;
 			registerASGElement(result);
 		}
 
@@ -149,23 +149,23 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 	}
 
 	@Override
-	public AcceptFromDate getAcceptFromDate() {
-		return acceptFromDate;
+	public AcceptFromDateStatement getAcceptFromDateStatement() {
+		return acceptFromDateStatement;
 	}
 
 	@Override
-	public AcceptFromEscapeKey getAcceptFromEscapeKey() {
-		return acceptFromEscapeKey;
+	public AcceptFromEscapeKeyStatement getAcceptFromEscapeKeyStatement() {
+		return acceptFromEscapeKeyStatement;
 	}
 
 	@Override
-	public AcceptFromMnemonic getAcceptFromMnemonic() {
-		return acceptFromMnemonic;
+	public AcceptFromMnemonicStatement getAcceptFromMnemonicStatement() {
+		return acceptFromMnemonicStatement;
 	}
 
 	@Override
-	public AcceptMessageCount getAcceptMessageCount() {
-		return acceptMessageCount;
+	public AcceptMessageCountStatement getAcceptMessageCountStatement() {
+		return acceptMessageCountStatement;
 	}
 
 	@Override

@@ -11,9 +11,9 @@ package io.proleap.cobol.asg.metamodel.procedure.accept.impl;
 import io.proleap.cobol.Cobol85Parser.AcceptFromEscapeKeyStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromEscapeKey;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromEscapeKeyStatement;
 
-public class AcceptFromEscapeKeyImpl extends CobolDivisionElementImpl implements AcceptFromEscapeKey {
+public class AcceptFromEscapeKeyImpl extends CobolDivisionElementImpl implements AcceptFromEscapeKeyStatement {
 
 	protected final AcceptFromEscapeKeyStatementContext ctx;
 

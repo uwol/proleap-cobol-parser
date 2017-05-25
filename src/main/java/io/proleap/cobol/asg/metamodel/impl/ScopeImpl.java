@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017, Ulrich Wolffgang <u.wol@wwu.de>
+ * Copyright (C) 2017, Ulrich Wolffgang <u.wlauseol@wwu.de>
  * All rights reserved.
  *
  * This software may be modified and distributed under the terms
@@ -102,16 +102,16 @@ import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.AtEnd;
-import io.proleap.cobol.asg.metamodel.procedure.InvalidKey;
-import io.proleap.cobol.asg.metamodel.procedure.NotAtEnd;
-import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKey;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnException;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflow;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeError;
-import io.proleap.cobol.asg.metamodel.procedure.OnException;
-import io.proleap.cobol.asg.metamodel.procedure.OnOverflow;
-import io.proleap.cobol.asg.metamodel.procedure.OnSizeError;
+import io.proleap.cobol.asg.metamodel.procedure.AtEndPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotAtEndPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflowPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
+import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptStatement;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptStatement.AcceptType;
@@ -162,16 +162,16 @@ import io.proleap.cobol.asg.metamodel.procedure.gotostmt.GoToStatement;
 import io.proleap.cobol.asg.metamodel.procedure.gotostmt.impl.GoToStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.ifstmt.IfStatement;
 import io.proleap.cobol.asg.metamodel.procedure.ifstmt.impl.IfStatementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.impl.AtEndImpl;
-import io.proleap.cobol.asg.metamodel.procedure.impl.InvalidKeyImpl;
-import io.proleap.cobol.asg.metamodel.procedure.impl.NotAtEndImpl;
-import io.proleap.cobol.asg.metamodel.procedure.impl.NotInvalidKeyImpl;
-import io.proleap.cobol.asg.metamodel.procedure.impl.NotOnExceptionImpl;
-import io.proleap.cobol.asg.metamodel.procedure.impl.NotOnOverflowImpl;
-import io.proleap.cobol.asg.metamodel.procedure.impl.NotOnSizeErrorImpl;
-import io.proleap.cobol.asg.metamodel.procedure.impl.OnExceptionImpl;
-import io.proleap.cobol.asg.metamodel.procedure.impl.OnOverflowImpl;
-import io.proleap.cobol.asg.metamodel.procedure.impl.OnSizeErrorImpl;
+import io.proleap.cobol.asg.metamodel.procedure.impl.AtEndPhraseImpl;
+import io.proleap.cobol.asg.metamodel.procedure.impl.InvalidKeyPhraseImpl;
+import io.proleap.cobol.asg.metamodel.procedure.impl.NotAtEndPhraseImpl;
+import io.proleap.cobol.asg.metamodel.procedure.impl.NotInvalidKeyPhraseImpl;
+import io.proleap.cobol.asg.metamodel.procedure.impl.NotOnExceptionClauseImpl;
+import io.proleap.cobol.asg.metamodel.procedure.impl.NotOnOverflowPhraseImpl;
+import io.proleap.cobol.asg.metamodel.procedure.impl.NotOnSizeErrorPhraseImpl;
+import io.proleap.cobol.asg.metamodel.procedure.impl.OnExceptionClauseImpl;
+import io.proleap.cobol.asg.metamodel.procedure.impl.OnOverflowPhraseImpl;
+import io.proleap.cobol.asg.metamodel.procedure.impl.OnSizeErrorPhraseImpl;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.InitializeStatement;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.impl.InitializeStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.initiate.InitiateStatement;
@@ -287,13 +287,13 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			final AddStatement.AddType type;
 
 			if (ctx.addToStatement() != null) {
-				result.addAddTo(ctx.addToStatement());
+				result.addAddToStatement(ctx.addToStatement());
 				type = AddStatement.AddType.TO;
 			} else if (ctx.addToGivingStatement() != null) {
-				result.addAddToGiving(ctx.addToGivingStatement());
+				result.addAddToGivingStatement(ctx.addToGivingStatement());
 				type = AddStatement.AddType.GIVING;
 			} else if (ctx.addCorrespondingStatement() != null) {
-				result.addAddCorresponding(ctx.addCorrespondingStatement());
+				result.addAddCorrespondingStatement(ctx.addCorrespondingStatement());
 				type = AddStatement.AddType.CORRESPONDING;
 			} else {
 				LOG.warn("unknown add statement at {}", ctx);
@@ -304,14 +304,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// on size
 			if (ctx.onSizeErrorPhrase() != null) {
-				final OnSizeError onSizeError = createOnSizeError(ctx.onSizeErrorPhrase());
-				result.setOnSizeError(onSizeError);
+				final OnSizeErrorPhrase onSizeError = createOnSizeErrorPhrase(ctx.onSizeErrorPhrase());
+				result.setOnSizeErrorPhrase(onSizeError);
 			}
 
 			// not on size
 			if (ctx.notOnSizeErrorPhrase() != null) {
-				final NotOnSizeError notOnSizeError = createNotOnSizeError(ctx.notOnSizeErrorPhrase());
-				result.setNotOnSize(notOnSizeError);
+				final NotOnSizeErrorPhrase notOnSizeError = createNotOnSizeErrorPhrase(ctx.notOnSizeErrorPhrase());
+				result.setNotOnSizePhrase(notOnSizeError);
 			}
 
 			registerStatement(result);
@@ -350,29 +350,29 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// using
 			if (ctx.callUsingPhrase() != null) {
-				result.addUsing(ctx.callUsingPhrase());
+				result.addUsingPhrase(ctx.callUsingPhrase());
 			}
 
 			// giving
 			if (ctx.callGivingPhrase() != null) {
-				result.addGiving(ctx.callGivingPhrase());
+				result.addGivingPhrase(ctx.callGivingPhrase());
 			}
 
 			// on overflow
 			if (ctx.onOverflowPhrase() != null) {
-				final OnOverflow onOverflow = createOnOverflow(ctx.onOverflowPhrase());
+				final OnOverflowPhrase onOverflow = createOnOverflowPhrase(ctx.onOverflowPhrase());
 				result.setOnOverflow(onOverflow);
 			}
 
 			// on exception
 			if (ctx.onExceptionClause() != null) {
-				final OnException onException = createOnException(ctx.onExceptionClause());
+				final OnExceptionClause onException = createOnException(ctx.onExceptionClause());
 				result.setOnException(onException);
 			}
 
 			// not on exception
 			if (ctx.notOnExceptionClause() != null) {
-				final NotOnException notOnException = createNotOnException(ctx.notOnExceptionClause());
+				final NotOnExceptionClause notOnException = createNotOnExceptionClause(ctx.notOnExceptionClause());
 				result.setNotOnException(notOnException);
 			}
 
@@ -434,14 +434,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// on size error
 			if (ctx.onSizeErrorPhrase() != null) {
-				final OnSizeError onSizeError = createOnSizeError(ctx.onSizeErrorPhrase());
-				result.setOnSizeError(onSizeError);
+				final OnSizeErrorPhrase onSizeError = createOnSizeErrorPhrase(ctx.onSizeErrorPhrase());
+				result.setOnSizeErrorPhrase(onSizeError);
 			}
 
 			// not on size error
 			if (ctx.notOnSizeErrorPhrase() != null) {
-				final NotOnSizeError notOnSizeError = createNotOnSizeError(ctx.notOnSizeErrorPhrase());
-				result.setNotOnSizeError(notOnSizeError);
+				final NotOnSizeErrorPhrase notOnSizeError = createNotOnSizeErrorPhrase(ctx.notOnSizeErrorPhrase());
+				result.setNotOnSizeErrorPhrase(notOnSizeError);
 			}
 
 			registerStatement(result);
@@ -480,14 +480,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// invalid key
 			if (ctx.invalidKeyPhrase() != null) {
-				final InvalidKey invalidKey = createInvalidKey(ctx.invalidKeyPhrase());
-				result.setInvalidKey(invalidKey);
+				final InvalidKeyPhrase invalidKey = createInvalidKeyPhrase(ctx.invalidKeyPhrase());
+				result.setInvalidKeyPhrase(invalidKey);
 			}
 
 			// not invalid key
 			if (ctx.notInvalidKeyPhrase() != null) {
-				final NotInvalidKey notInvalidKey = createNotInvalidKey(ctx.notInvalidKeyPhrase());
-				result.setNotInvalidKey(notInvalidKey);
+				final NotInvalidKeyPhrase notInvalidKey = createNotInvalidKeyPhrase(ctx.notInvalidKeyPhrase());
+				result.setNotInvalidKeyPhrase(notInvalidKey);
 			}
 
 			registerStatement(result);
@@ -606,14 +606,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// on size
 			if (ctx.onSizeErrorPhrase() != null) {
-				final OnSizeError onSizeError = createOnSizeError(ctx.onSizeErrorPhrase());
-				result.setOnSizeError(onSizeError);
+				final OnSizeErrorPhrase onSizeError = createOnSizeErrorPhrase(ctx.onSizeErrorPhrase());
+				result.setOnSizeErrorPhrase(onSizeError);
 			}
 
 			// not on size
 			if (ctx.notOnSizeErrorPhrase() != null) {
-				final NotOnSizeError notOnSizeError = createNotOnSizeError(ctx.notOnSizeErrorPhrase());
-				result.setNotOnSizeError(notOnSizeError);
+				final NotOnSizeErrorPhrase notOnSizeError = createNotOnSizeErrorPhrase(ctx.notOnSizeErrorPhrase());
+				result.setNotOnSizeErrorPhrase(notOnSizeError);
 			}
 
 			registerStatement(result);
@@ -1069,14 +1069,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// on size error
 			if (ctx.onSizeErrorPhrase() != null) {
-				final OnSizeError onSizeError = createOnSizeError(ctx.onSizeErrorPhrase());
-				result.setOnSizeError(onSizeError);
+				final OnSizeErrorPhrase onSizeError = createOnSizeErrorPhrase(ctx.onSizeErrorPhrase());
+				result.setOnSizeErrorPhrase(onSizeError);
 			}
 
 			// not on size error
 			if (ctx.notOnSizeErrorPhrase() != null) {
-				final NotOnSizeError notOnSizeError = createNotOnSizeError(ctx.notOnSizeErrorPhrase());
-				result.setNotOnSizeError(notOnSizeError);
+				final NotOnSizeErrorPhrase notOnSizeError = createNotOnSizeErrorPhrase(ctx.notOnSizeErrorPhrase());
+				result.setNotOnSizeErrorPhrase(notOnSizeError);
 			}
 
 			registerStatement(result);
@@ -1198,26 +1198,26 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// invalid key
 			if (ctx.invalidKeyPhrase() != null) {
-				final InvalidKey invalidKey = createInvalidKey(ctx.invalidKeyPhrase());
-				result.setInvalidKey(invalidKey);
+				final InvalidKeyPhrase invalidKey = createInvalidKeyPhrase(ctx.invalidKeyPhrase());
+				result.setInvalidKeyPhrase(invalidKey);
 			}
 
 			// not invalid key
 			if (ctx.notInvalidKeyPhrase() != null) {
-				final NotInvalidKey notInvalidKey = createNotInvalidKey(ctx.notInvalidKeyPhrase());
-				result.setNotInvalidKey(notInvalidKey);
+				final NotInvalidKeyPhrase notInvalidKey = createNotInvalidKeyPhrase(ctx.notInvalidKeyPhrase());
+				result.setNotInvalidKeyPhrase(notInvalidKey);
 			}
 
 			// at end
 			if (ctx.atEndPhrase() != null) {
-				final AtEnd atEnd = createAtEnd(ctx.atEndPhrase());
+				final AtEndPhrase atEnd = createAtEndPhrase(ctx.atEndPhrase());
 				result.setAtEnd(atEnd);
 			}
 
 			// not at end
 			if (ctx.notAtEndPhrase() != null) {
-				final NotAtEnd notAtEnd = createNotAtEnd(ctx.notAtEndPhrase());
-				result.setNotAtEnd(notAtEnd);
+				final NotAtEndPhrase notAtEnd = createNotAtEndPhrase(ctx.notAtEndPhrase());
+				result.setNotAtEndPhrase(notAtEnd);
 			}
 
 			registerStatement(result);
@@ -1250,14 +1250,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// on exception
 			if (ctx.onExceptionClause() != null) {
-				final OnException onException = createOnException(ctx.onExceptionClause());
-				result.setOnException(onException);
+				final OnExceptionClause onException = createOnException(ctx.onExceptionClause());
+				result.setOnExceptionClause(onException);
 			}
 
 			// not on exeption
 			if (ctx.notOnExceptionClause() != null) {
-				final NotOnException notOnException = createNotOnException(ctx.notOnExceptionClause());
-				result.setNotOnException(notOnException);
+				final NotOnExceptionClause notOnException = createNotOnExceptionClause(ctx.notOnExceptionClause());
+				result.setNotOnExceptionClause(notOnException);
 			}
 
 			registerStatement(result);
@@ -1305,14 +1305,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// at end
 			if (ctx.atEndPhrase() != null) {
-				final AtEnd atEnd = createAtEnd(ctx.atEndPhrase());
-				result.setAtEnd(atEnd);
+				final AtEndPhrase atEnd = createAtEndPhrase(ctx.atEndPhrase());
+				result.setAtEndPhrase(atEnd);
 			}
 
 			// not at end
 			if (ctx.notAtEndPhrase() != null) {
-				final NotAtEnd notAtEnd = createNotAtEnd(ctx.notAtEndPhrase());
-				result.setNotAtEnd(notAtEnd);
+				final NotAtEndPhrase notAtEnd = createNotAtEndPhrase(ctx.notAtEndPhrase());
+				result.setNotAtEndPhrase(notAtEnd);
 			}
 
 			registerStatement(result);
@@ -1339,14 +1339,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// invalid key
 			if (ctx.invalidKeyPhrase() != null) {
-				final InvalidKey invalidKey = createInvalidKey(ctx.invalidKeyPhrase());
-				result.setInvalidKey(invalidKey);
+				final InvalidKeyPhrase invalidKey = createInvalidKeyPhrase(ctx.invalidKeyPhrase());
+				result.setInvalidKeyPhrase(invalidKey);
 			}
 
 			// not invalid key
 			if (ctx.notInvalidKeyPhrase() != null) {
-				final NotInvalidKey notInvalidKey = createNotInvalidKey(ctx.notInvalidKeyPhrase());
-				result.setNotInvalidKey(notInvalidKey);
+				final NotInvalidKeyPhrase notInvalidKey = createNotInvalidKeyPhrase(ctx.notInvalidKeyPhrase());
+				result.setNotInvalidKeyPhrase(notInvalidKey);
 			}
 
 			registerStatement(result);
@@ -1373,8 +1373,8 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// at end
 			if (ctx.atEndPhrase() != null) {
-				final AtEnd atEnd = createAtEnd(ctx.atEndPhrase());
-				result.setAtEnd(atEnd);
+				final AtEndPhrase atEnd = createAtEndPhrase(ctx.atEndPhrase());
+				result.setAtEndPhrase(atEnd);
 			}
 
 			// when
@@ -1412,14 +1412,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// on exception
 			if (ctx.onExceptionClause() != null) {
-				final OnException onException = createOnException(ctx.onExceptionClause());
-				result.setOnException(onException);
+				final OnExceptionClause onException = createOnException(ctx.onExceptionClause());
+				result.setOnExceptionClause(onException);
 			}
 
 			// not on exeption
 			if (ctx.notOnExceptionClause() != null) {
-				final NotOnException notOnException = createNotOnException(ctx.notOnExceptionClause());
-				result.setNotOnException(notOnException);
+				final NotOnExceptionClause notOnException = createNotOnExceptionClause(ctx.notOnExceptionClause());
+				result.setNotOnExceptionClause(notOnException);
 			}
 
 			registerStatement(result);
@@ -1529,14 +1529,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// invalid key
 			if (ctx.invalidKeyPhrase() != null) {
-				final InvalidKey invalidKey = createInvalidKey(ctx.invalidKeyPhrase());
-				result.setInvalidKey(invalidKey);
+				final InvalidKeyPhrase invalidKey = createInvalidKeyPhrase(ctx.invalidKeyPhrase());
+				result.setInvalidKeyPhrase(invalidKey);
 			}
 
 			// not invalid key
 			if (ctx.notInvalidKeyPhrase() != null) {
-				final NotInvalidKey notInvalidKey = createNotInvalidKey(ctx.notInvalidKeyPhrase());
-				result.setNotInvalidKey(notInvalidKey);
+				final NotInvalidKeyPhrase notInvalidKey = createNotInvalidKeyPhrase(ctx.notInvalidKeyPhrase());
+				result.setNotInvalidKeyPhrase(notInvalidKey);
 			}
 
 			registerStatement(result);
@@ -1547,7 +1547,6 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 	@Override
 	public Statement addStatement(final StatementContext ctx) {
-		// FIXME
 		return null;
 	}
 
@@ -1605,14 +1604,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// on overflow
 			if (ctx.onOverflowPhrase() != null) {
-				final OnOverflow onOverflow = createOnOverflow(ctx.onOverflowPhrase());
-				result.setOnOverflow(onOverflow);
+				final OnOverflowPhrase onOverflow = createOnOverflowPhrase(ctx.onOverflowPhrase());
+				result.setOnOverflowPhrase(onOverflow);
 			}
 
 			// not on overflow
 			if (ctx.notOnOverflowPhrase() != null) {
-				final NotOnOverflow notOnOverflow = createNotOnOverflow(ctx.notOnOverflowPhrase());
-				result.setNotOnOverflow(notOnOverflow);
+				final NotOnOverflowPhrase notOnOverflow = createNotOnOverflowPhrase(ctx.notOnOverflowPhrase());
+				result.setNotOnOverflowPhrase(notOnOverflow);
 			}
 
 			registerStatement(result);
@@ -1648,14 +1647,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// on size error
 			if (ctx.onSizeErrorPhrase() != null) {
-				final OnSizeError onSizeError = createOnSizeError(ctx.onSizeErrorPhrase());
-				result.setOnSizeError(onSizeError);
+				final OnSizeErrorPhrase onSizeError = createOnSizeErrorPhrase(ctx.onSizeErrorPhrase());
+				result.setOnSizeErrorPhrase(onSizeError);
 			}
 
 			// not on size error
 			if (ctx.notOnSizeErrorPhrase() != null) {
-				final NotOnSizeError notOnSizeError = createNotOnSizeError(ctx.notOnSizeErrorPhrase());
-				result.setNotOnSizeError(notOnSizeError);
+				final NotOnSizeErrorPhrase notOnSizeError = createNotOnSizeErrorPhrase(ctx.notOnSizeErrorPhrase());
+				result.setNotOnSizeErrorPhrase(notOnSizeError);
 			}
 
 			registerStatement(result);
@@ -1705,14 +1704,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// on overflow
 			if (ctx.onOverflowPhrase() != null) {
-				final OnOverflow onOverflow = createOnOverflow(ctx.onOverflowPhrase());
-				result.setOnOverflow(onOverflow);
+				final OnOverflowPhrase onOverflow = createOnOverflowPhrase(ctx.onOverflowPhrase());
+				result.setOnOverflowPhrase(onOverflow);
 			}
 
 			// not on overflow
 			if (ctx.notOnOverflowPhrase() != null) {
-				final NotOnOverflow notOnOverflow = createNotOnOverflow(ctx.notOnOverflowPhrase());
-				result.setNotOnOverflow(notOnOverflow);
+				final NotOnOverflowPhrase notOnOverflow = createNotOnOverflowPhrase(ctx.notOnOverflowPhrase());
+				result.setNotOnOverflowPhrase(notOnOverflow);
 			}
 
 			registerStatement(result);
@@ -1754,14 +1753,14 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// invalid key
 			if (ctx.invalidKeyPhrase() != null) {
-				final InvalidKey invalidKey = createInvalidKey(ctx.invalidKeyPhrase());
-				result.setInvalidKey(invalidKey);
+				final InvalidKeyPhrase invalidKey = createInvalidKeyPhrase(ctx.invalidKeyPhrase());
+				result.setInvalidKeyPhrase(invalidKey);
 			}
 
 			// not invalid key
 			if (ctx.notInvalidKeyPhrase() != null) {
-				final NotInvalidKey notInvalidKey = createNotInvalidKey(ctx.notInvalidKeyPhrase());
-				result.setNotInvalidKey(notInvalidKey);
+				final NotInvalidKeyPhrase notInvalidKey = createNotInvalidKeyPhrase(ctx.notInvalidKeyPhrase());
+				result.setNotInvalidKeyPhrase(notInvalidKey);
 			}
 
 			registerStatement(result);
@@ -1770,11 +1769,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		return result;
 	}
 
-	protected AtEnd createAtEnd(final AtEndPhraseContext ctx) {
-		AtEnd result = (AtEnd) getASGElement(ctx);
+	protected AtEndPhrase createAtEndPhrase(final AtEndPhraseContext ctx) {
+		AtEndPhrase result = (AtEndPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new AtEndImpl(programUnit, ctx);
+			result = new AtEndPhraseImpl(programUnit, ctx);
 
 			for (final StatementContext statementContext : ctx.statement()) {
 				result.addStatement(statementContext);
@@ -1786,11 +1785,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		return result;
 	}
 
-	protected InvalidKey createInvalidKey(final InvalidKeyPhraseContext ctx) {
-		InvalidKey result = (InvalidKey) getASGElement(ctx);
+	protected InvalidKeyPhrase createInvalidKeyPhrase(final InvalidKeyPhraseContext ctx) {
+		InvalidKeyPhrase result = (InvalidKeyPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new InvalidKeyImpl(programUnit, ctx);
+			result = new InvalidKeyPhraseImpl(programUnit, ctx);
 
 			for (final StatementContext statementContext : ctx.statement()) {
 				result.addStatement(statementContext);
@@ -1802,11 +1801,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		return result;
 	}
 
-	protected NotAtEnd createNotAtEnd(final NotAtEndPhraseContext ctx) {
-		NotAtEnd result = (NotAtEnd) getASGElement(ctx);
+	protected NotAtEndPhrase createNotAtEndPhrase(final NotAtEndPhraseContext ctx) {
+		NotAtEndPhrase result = (NotAtEndPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new NotAtEndImpl(programUnit, ctx);
+			result = new NotAtEndPhraseImpl(programUnit, ctx);
 
 			for (final StatementContext statementContext : ctx.statement()) {
 				result.addStatement(statementContext);
@@ -1818,11 +1817,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		return result;
 	}
 
-	protected NotInvalidKey createNotInvalidKey(final NotInvalidKeyPhraseContext ctx) {
-		NotInvalidKey result = (NotInvalidKey) getASGElement(ctx);
+	protected NotInvalidKeyPhrase createNotInvalidKeyPhrase(final NotInvalidKeyPhraseContext ctx) {
+		NotInvalidKeyPhrase result = (NotInvalidKeyPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new NotInvalidKeyImpl(programUnit, ctx);
+			result = new NotInvalidKeyPhraseImpl(programUnit, ctx);
 
 			for (final StatementContext statementContext : ctx.statement()) {
 				result.addStatement(statementContext);
@@ -1834,11 +1833,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		return result;
 	}
 
-	protected NotOnException createNotOnException(final NotOnExceptionClauseContext ctx) {
-		NotOnException result = (NotOnException) getASGElement(ctx);
+	protected NotOnExceptionClause createNotOnExceptionClause(final NotOnExceptionClauseContext ctx) {
+		NotOnExceptionClause result = (NotOnExceptionClause) getASGElement(ctx);
 
 		if (result == null) {
-			result = new NotOnExceptionImpl(programUnit, ctx);
+			result = new NotOnExceptionClauseImpl(programUnit, ctx);
 
 			for (final StatementContext statementContext : ctx.statement()) {
 				result.addStatement(statementContext);
@@ -1850,11 +1849,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		return result;
 	}
 
-	protected NotOnOverflow createNotOnOverflow(final NotOnOverflowPhraseContext ctx) {
-		NotOnOverflow result = (NotOnOverflow) getASGElement(ctx);
+	protected NotOnOverflowPhrase createNotOnOverflowPhrase(final NotOnOverflowPhraseContext ctx) {
+		NotOnOverflowPhrase result = (NotOnOverflowPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new NotOnOverflowImpl(programUnit, ctx);
+			result = new NotOnOverflowPhraseImpl(programUnit, ctx);
 
 			for (final StatementContext statementContext : ctx.statement()) {
 				result.addStatement(statementContext);
@@ -1866,11 +1865,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		return result;
 	}
 
-	protected NotOnSizeError createNotOnSizeError(final NotOnSizeErrorPhraseContext ctx) {
-		NotOnSizeError result = (NotOnSizeError) getASGElement(ctx);
+	protected NotOnSizeErrorPhrase createNotOnSizeErrorPhrase(final NotOnSizeErrorPhraseContext ctx) {
+		NotOnSizeErrorPhrase result = (NotOnSizeErrorPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new NotOnSizeErrorImpl(programUnit, ctx);
+			result = new NotOnSizeErrorPhraseImpl(programUnit, ctx);
 
 			for (final StatementContext statementContext : ctx.statement()) {
 				result.addStatement(statementContext);
@@ -1882,11 +1881,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		return result;
 	}
 
-	protected OnException createOnException(final OnExceptionClauseContext ctx) {
-		OnException result = (OnException) getASGElement(ctx);
+	protected OnExceptionClause createOnException(final OnExceptionClauseContext ctx) {
+		OnExceptionClause result = (OnExceptionClause) getASGElement(ctx);
 
 		if (result == null) {
-			result = new OnExceptionImpl(programUnit, ctx);
+			result = new OnExceptionClauseImpl(programUnit, ctx);
 
 			for (final StatementContext statementContext : ctx.statement()) {
 				result.addStatement(statementContext);
@@ -1898,11 +1897,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		return result;
 	}
 
-	protected OnOverflow createOnOverflow(final OnOverflowPhraseContext ctx) {
-		OnOverflow result = (OnOverflow) getASGElement(ctx);
+	protected OnOverflowPhrase createOnOverflowPhrase(final OnOverflowPhraseContext ctx) {
+		OnOverflowPhrase result = (OnOverflowPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new OnOverflowImpl(programUnit, ctx);
+			result = new OnOverflowPhraseImpl(programUnit, ctx);
 
 			for (final StatementContext statementContext : ctx.statement()) {
 				result.addStatement(statementContext);
@@ -1914,11 +1913,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		return result;
 	}
 
-	protected OnSizeError createOnSizeError(final OnSizeErrorPhraseContext ctx) {
-		OnSizeError result = (OnSizeError) getASGElement(ctx);
+	protected OnSizeErrorPhrase createOnSizeErrorPhrase(final OnSizeErrorPhraseContext ctx) {
+		OnSizeErrorPhrase result = (OnSizeErrorPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new OnSizeErrorImpl(programUnit, ctx);
+			result = new OnSizeErrorPhraseImpl(programUnit, ctx);
 
 			for (final StatementContext statementContext : ctx.statement()) {
 				result.addStatement(statementContext);

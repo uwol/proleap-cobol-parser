@@ -16,8 +16,8 @@ import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.InvalidKey;
-import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKey;
+import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
@@ -38,11 +38,11 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 
 	protected From from;
 
-	protected InvalidKey invalidKey;
+	protected InvalidKeyPhrase invalidKeyPhrase;
 
 	protected NotAtEndOfPage notAtEndOfPage;
 
-	protected NotInvalidKey notInvalidKey;
+	protected NotInvalidKeyPhrase notInvalidKeyPhrase;
 
 	protected Call recordCall;
 
@@ -164,8 +164,8 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 	}
 
 	@Override
-	public InvalidKey getInvalidKey() {
-		return invalidKey;
+	public InvalidKeyPhrase getInvalidKeyPhrase() {
+		return invalidKeyPhrase;
 	}
 
 	@Override
@@ -174,8 +174,8 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 	}
 
 	@Override
-	public NotInvalidKey getNotInvalidKey() {
-		return notInvalidKey;
+	public NotInvalidKeyPhrase getNotInvalidKeyPhrase() {
+		return notInvalidKeyPhrase;
 	}
 
 	@Override
@@ -189,13 +189,13 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 	}
 
 	@Override
-	public void setInvalidKey(final InvalidKey invalidKey) {
-		this.invalidKey = invalidKey;
+	public void setInvalidKeyPhrase(final InvalidKeyPhrase invalidKeyPhrase) {
+		this.invalidKeyPhrase = invalidKeyPhrase;
 	}
 
 	@Override
-	public void setNotInvalidKey(final NotInvalidKey notInvalidKey) {
-		this.notInvalidKey = notInvalidKey;
+	public void setNotInvalidKeyPhrase(final NotInvalidKeyPhrase notInvalidKeyPhrase) {
+		this.notInvalidKeyPhrase = notInvalidKeyPhrase;
 	}
 
 	@Override

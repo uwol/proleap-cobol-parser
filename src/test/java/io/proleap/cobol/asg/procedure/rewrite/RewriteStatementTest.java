@@ -12,8 +12,8 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.InvalidKey;
-import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKey;
+import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
@@ -57,7 +57,7 @@ public class RewriteStatementTest extends CobolTestBase {
 			}
 
 			{
-				final InvalidKey invalidKey = rewriteStatement.getInvalidKey();
+				final InvalidKeyPhrase invalidKey = rewriteStatement.getInvalidKeyPhrase();
 				assertNotNull(invalidKey);
 				assertEquals(1, invalidKey.getStatements().size());
 
@@ -66,7 +66,7 @@ public class RewriteStatementTest extends CobolTestBase {
 			}
 
 			{
-				final NotInvalidKey notInvalidKey = rewriteStatement.getNotInvalidKey();
+				final NotInvalidKeyPhrase notInvalidKey = rewriteStatement.getNotInvalidKeyPhrase();
 				assertNotNull(notInvalidKey);
 				assertEquals(1, notInvalidKey.getStatements().size());
 

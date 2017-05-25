@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.add;
 import io.proleap.cobol.Cobol85Parser.AddCorrespondingStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddToGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddToStatementContext;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeError;
-import io.proleap.cobol.asg.metamodel.procedure.OnSizeError;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -24,27 +24,27 @@ public interface AddStatement extends Statement {
 		CORRESPONDING, GIVING, TO
 	}
 
-	AddCorresponding addAddCorresponding(AddCorrespondingStatementContext ctx);
+	AddCorrespondingStatement addAddCorrespondingStatement(AddCorrespondingStatementContext ctx);
 
-	AddTo addAddTo(AddToStatementContext ctx);
+	AddToGivingStatement addAddToGivingStatement(AddToGivingStatementContext ctx);
 
-	AddToGiving addAddToGiving(AddToGivingStatementContext ctx);
+	AddToStatement addAddToStatement(AddToStatementContext ctx);
 
-	AddCorresponding getAddCorresponding();
+	AddCorrespondingStatement getAddCorrespondingStatement();
 
-	AddTo getAddTo();
+	AddToGivingStatement getAddToGivingStatement();
 
-	AddToGiving getAddToGiving();
+	AddToStatement getAddToStatement();
 
 	AddType getAddType();
 
-	NotOnSizeError getNotOnSizeError();
+	NotOnSizeErrorPhrase getNotOnSizeErrorPhrase();
 
-	OnSizeError getOnSizeError();
+	OnSizeErrorPhrase getOnSizeErrorPhrase();
 
 	void setAddType(AddType addType);
 
-	void setNotOnSize(NotOnSizeError notOnSizeError);
+	void setNotOnSizePhrase(NotOnSizeErrorPhrase notOnSizeErrorPhrase);
 
-	void setOnSizeError(OnSizeError onSizeError);
+	void setOnSizeErrorPhrase(OnSizeErrorPhrase onSizeErrorPhrase);
 }

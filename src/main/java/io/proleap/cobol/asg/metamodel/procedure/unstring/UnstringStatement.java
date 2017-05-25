@@ -12,8 +12,8 @@ import io.proleap.cobol.Cobol85Parser.UnstringIntoPhraseContext;
 import io.proleap.cobol.Cobol85Parser.UnstringSendingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.UnstringTallyingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.UnstringWithPointerPhraseContext;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflow;
-import io.proleap.cobol.asg.metamodel.procedure.OnOverflow;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflowPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -31,9 +31,9 @@ public interface UnstringStatement extends Statement {
 
 	Intos getIntos();
 
-	NotOnOverflow getNotOnOverflow();
+	NotOnOverflowPhrase getNotOnOverflowPhrase();
 
-	OnOverflow getOnOverflow();
+	OnOverflowPhrase getOnOverflowPhrase();
 
 	Sending getSending();
 
@@ -41,7 +41,7 @@ public interface UnstringStatement extends Statement {
 
 	WithPointer getWithPointer();
 
-	void setNotOnOverflow(NotOnOverflow notOnOverflow);
+	void setNotOnOverflowPhrase(NotOnOverflowPhrase notOnOverflowPhrase);
 
-	void setOnOverflow(OnOverflow onOverflow);
+	void setOnOverflowPhrase(OnOverflowPhrase onOverflowPhrase);
 }

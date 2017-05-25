@@ -12,8 +12,8 @@ import io.proleap.cobol.Cobol85Parser.DeleteStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.InvalidKey;
-import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKey;
+import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.delete.DeleteStatement;
@@ -25,9 +25,9 @@ public class DeleteStatementImpl extends StatementImpl implements DeleteStatemen
 
 	protected Call fileCall;
 
-	protected InvalidKey invalidKey;
+	protected InvalidKeyPhrase invalidKeyPhrase;
 
-	protected NotInvalidKey notInvalidKey;
+	protected NotInvalidKeyPhrase notInvalidKeyPhrase;
 
 	protected boolean record;
 
@@ -45,13 +45,13 @@ public class DeleteStatementImpl extends StatementImpl implements DeleteStatemen
 	}
 
 	@Override
-	public InvalidKey getInvalidKey() {
-		return invalidKey;
+	public InvalidKeyPhrase getInvalidKeyPhrase() {
+		return invalidKeyPhrase;
 	}
 
 	@Override
-	public NotInvalidKey getNotInvalidKey() {
-		return notInvalidKey;
+	public NotInvalidKeyPhrase getNotInvalidKeyPhrase() {
+		return notInvalidKeyPhrase;
 	}
 
 	@Override
@@ -70,13 +70,13 @@ public class DeleteStatementImpl extends StatementImpl implements DeleteStatemen
 	}
 
 	@Override
-	public void setInvalidKey(final InvalidKey invalidKey) {
-		this.invalidKey = invalidKey;
+	public void setInvalidKeyPhrase(final InvalidKeyPhrase invalidKeyPhrase) {
+		this.invalidKeyPhrase = invalidKeyPhrase;
 	}
 
 	@Override
-	public void setNotInvalidKey(final NotInvalidKey notInvalidKey) {
-		this.notInvalidKey = notInvalidKey;
+	public void setNotInvalidKeyPhrase(final NotInvalidKeyPhrase notInvalidKeyPhrase) {
+		this.notInvalidKeyPhrase = notInvalidKeyPhrase;
 	}
 
 	@Override

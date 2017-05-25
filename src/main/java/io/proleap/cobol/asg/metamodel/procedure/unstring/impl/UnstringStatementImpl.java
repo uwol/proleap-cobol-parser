@@ -18,8 +18,8 @@ import io.proleap.cobol.Cobol85Parser.UnstringWithPointerPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflow;
-import io.proleap.cobol.asg.metamodel.procedure.OnOverflow;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflowPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
@@ -35,9 +35,9 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 
 	protected Intos intos;
 
-	protected NotOnOverflow notOnOverflow;
+	protected NotOnOverflowPhrase notOnOverflowPhrase;
 
-	protected OnOverflow onOverflow;
+	protected OnOverflowPhrase onOverflowPhrase;
 
 	protected Sending sending;
 
@@ -140,13 +140,13 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 	}
 
 	@Override
-	public NotOnOverflow getNotOnOverflow() {
-		return notOnOverflow;
+	public NotOnOverflowPhrase getNotOnOverflowPhrase() {
+		return notOnOverflowPhrase;
 	}
 
 	@Override
-	public OnOverflow getOnOverflow() {
-		return onOverflow;
+	public OnOverflowPhrase getOnOverflowPhrase() {
+		return onOverflowPhrase;
 	}
 
 	@Override
@@ -170,13 +170,13 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 	}
 
 	@Override
-	public void setNotOnOverflow(final NotOnOverflow notOnOverflow) {
-		this.notOnOverflow = notOnOverflow;
+	public void setNotOnOverflowPhrase(final NotOnOverflowPhrase notOnOverflowPhrase) {
+		this.notOnOverflowPhrase = notOnOverflowPhrase;
 	}
 
 	@Override
-	public void setOnOverflow(final OnOverflow onOverflow) {
-		this.onOverflow = onOverflow;
+	public void setOnOverflowPhrase(final OnOverflowPhrase onOverflowPhrase) {
+		this.onOverflowPhrase = onOverflowPhrase;
 	}
 
 }

@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.rewrite;
 
 import io.proleap.cobol.Cobol85Parser.RewriteFromContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.InvalidKey;
-import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKey;
+import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -23,15 +23,15 @@ public interface RewriteStatement extends Statement {
 
 	From getFrom();
 
-	InvalidKey getInvalidKey();
+	InvalidKeyPhrase getInvalidKeyPhrase();
 
-	NotInvalidKey getNotInvalidKey();
+	NotInvalidKeyPhrase getNotInvalidKeyPhrase();
 
 	Call getRecordCall();
 
-	void setInvalidKey(InvalidKey invalidKey);
+	void setInvalidKeyPhrase(InvalidKeyPhrase invalidKeyPhrase);
 
-	void setNotInvalidKey(NotInvalidKey notInvalidKey);
+	void setNotInvalidKeyPhrase(NotInvalidKeyPhrase notInvalidKeyPhrase);
 
 	void setRecordCall(Call recordCall);
 

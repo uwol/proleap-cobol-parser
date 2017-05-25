@@ -10,9 +10,9 @@ package io.proleap.cobol.asg.metamodel.procedure.call;
 
 import io.proleap.cobol.Cobol85Parser.CallGivingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.CallUsingPhraseContext;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnException;
-import io.proleap.cobol.asg.metamodel.procedure.OnException;
-import io.proleap.cobol.asg.metamodel.procedure.OnOverflow;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
+import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
+import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
@@ -21,27 +21,27 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
  */
 public interface CallStatement extends Statement {
 
-	Giving addGiving(CallGivingPhraseContext ctx);
+	GivingPhrase addGivingPhrase(CallGivingPhraseContext ctx);
 
-	Using addUsing(CallUsingPhraseContext ctx);
+	UsingPhrase addUsingPhrase(CallUsingPhraseContext ctx);
 
-	Giving getGiving();
+	GivingPhrase getGivingPhrase();
 
-	NotOnException getNotOnException();
+	NotOnExceptionClause getNotOnExceptionClause();
 
-	OnException getOnException();
+	OnExceptionClause getOnExceptionClause();
 
-	OnOverflow getOnOverflow();
+	OnOverflowPhrase getOnOverflowPhrase();
 
 	ValueStmt getProgramValueStmt();
 
-	Using getUsing();
+	UsingPhrase getUsingPhrasePhrase();
 
-	void setNotOnException(NotOnException notOnExceptionClause);
+	void setNotOnException(NotOnExceptionClause notOnExceptionClause);
 
-	void setOnException(OnException onExceptionClause);
+	void setOnException(OnExceptionClause onExceptionClause);
 
-	void setOnOverflow(OnOverflow onOverflowPhrase);
+	void setOnOverflow(OnOverflowPhrase onOverflowPhrase);
 
 	void setProgramValueStmt(ValueStmt programValueStmt);
 }

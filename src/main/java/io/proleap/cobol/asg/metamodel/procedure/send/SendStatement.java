@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.send;
 
 import io.proleap.cobol.Cobol85Parser.SendStatementAsyncContext;
 import io.proleap.cobol.Cobol85Parser.SendStatementSyncContext;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnException;
-import io.proleap.cobol.asg.metamodel.procedure.OnException;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
+import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -29,17 +29,17 @@ public interface SendStatement extends Statement {
 
 	Async getAsync();
 
-	NotOnException getNotOnException();
+	NotOnExceptionClause getNotOnExceptionClause();
 
-	OnException getOnException();
+	OnExceptionClause getOnExceptionClause();
 
 	SendType getSendType();
 
 	Sync getSync();
 
-	void setNotOnException(NotOnException notOnException);
+	void setNotOnExceptionClause(NotOnExceptionClause notOnExceptionClause);
 
-	void setOnException(OnException onException);
+	void setOnExceptionClause(OnExceptionClause onExceptionClause);
 
 	void setSendType(SendType sendType);
 }

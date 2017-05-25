@@ -18,14 +18,14 @@ import io.proleap.cobol.Cobol85Parser.AddToStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeError;
-import io.proleap.cobol.asg.metamodel.procedure.OnSizeError;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.add.AddCorresponding;
+import io.proleap.cobol.asg.metamodel.procedure.add.AddCorrespondingStatement;
 import io.proleap.cobol.asg.metamodel.procedure.add.AddStatement;
-import io.proleap.cobol.asg.metamodel.procedure.add.AddTo;
-import io.proleap.cobol.asg.metamodel.procedure.add.AddToGiving;
+import io.proleap.cobol.asg.metamodel.procedure.add.AddToGivingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.add.AddToStatement;
 import io.proleap.cobol.asg.metamodel.procedure.add.From;
 import io.proleap.cobol.asg.metamodel.procedure.add.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.add.To;
@@ -34,19 +34,19 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class AddStatementImpl extends StatementImpl implements AddStatement {
 
-	protected AddCorresponding addCorresponding;
+	protected AddCorrespondingStatement addCorrespondingStatement;
 
-	protected AddTo addTo;
+	protected AddToGivingStatement addToGivingStatement;
 
-	protected AddToGiving addToGiving;
+	protected AddToStatement addToStatement;
 
 	protected AddType addType;
 
 	protected final AddStatementContext ctx;
 
-	protected NotOnSizeError notOnSizeError;
+	protected NotOnSizeErrorPhrase notOnSizeErrorPhrase;
 
-	protected OnSizeError onSizeError;
+	protected OnSizeErrorPhrase onSizeErrorPhrase;
 
 	protected final StatementType statementType = StatementTypeEnum.ADD;
 
@@ -57,11 +57,11 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 	}
 
 	@Override
-	public AddCorresponding addAddCorresponding(final AddCorrespondingStatementContext ctx) {
-		AddCorresponding result = (AddCorresponding) getASGElement(ctx);
+	public AddCorrespondingStatement addAddCorrespondingStatement(final AddCorrespondingStatementContext ctx) {
+		AddCorrespondingStatement result = (AddCorrespondingStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new AddCorrespondingImpl(programUnit, ctx);
+			result = new AddCorrespondingStatementImpl(programUnit, ctx);
 
 			/*
 			 * from
@@ -75,7 +75,7 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			final To to = createTo(ctx.addTo());
 			result.setTo(to);
 
-			addCorresponding = result;
+			addCorrespondingStatement = result;
 			registerASGElement(result);
 		}
 
@@ -83,41 +83,11 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 	}
 
 	@Override
-	public AddTo addAddTo(final AddToStatementContext ctx) {
-		AddTo result = (AddTo) getASGElement(ctx);
+	public AddToGivingStatement addAddToGivingStatement(final AddToGivingStatementContext ctx) {
+		AddToGivingStatement result = (AddToGivingStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new AddToImpl(programUnit, ctx);
-
-			/*
-			 * from
-			 */
-			for (final AddFromContext fromContext : ctx.addFrom()) {
-				final From from = createFrom(fromContext);
-				result.addFrom(from);
-			}
-
-			/*
-			 * to
-			 */
-			for (final AddToContext toContext : ctx.addTo()) {
-				final To to = createTo(toContext);
-				result.addTo(to);
-			}
-
-			addTo = result;
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public AddToGiving addAddToGiving(final AddToGivingStatementContext ctx) {
-		AddToGiving result = (AddToGiving) getASGElement(ctx);
-
-		if (result == null) {
-			result = new AddToGivingImpl(programUnit, ctx);
+			result = new AddToGivingStatementImpl(programUnit, ctx);
 
 			/*
 			 * from
@@ -143,7 +113,37 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 				result.addGiving(giving);
 			}
 
-			addToGiving = result;
+			addToGivingStatement = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public AddToStatement addAddToStatement(final AddToStatementContext ctx) {
+		AddToStatement result = (AddToStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new AddToStatementImpl(programUnit, ctx);
+
+			/*
+			 * from
+			 */
+			for (final AddFromContext fromContext : ctx.addFrom()) {
+				final From from = createFrom(fromContext);
+				result.addFrom(from);
+			}
+
+			/*
+			 * to
+			 */
+			for (final AddToContext toContext : ctx.addTo()) {
+				final To to = createTo(toContext);
+				result.addTo(to);
+			}
+
+			addToStatement = result;
 			registerASGElement(result);
 		}
 
@@ -219,18 +219,18 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 	}
 
 	@Override
-	public AddCorresponding getAddCorresponding() {
-		return addCorresponding;
+	public AddCorrespondingStatement getAddCorrespondingStatement() {
+		return addCorrespondingStatement;
 	}
 
 	@Override
-	public AddTo getAddTo() {
-		return addTo;
+	public AddToGivingStatement getAddToGivingStatement() {
+		return addToGivingStatement;
 	}
 
 	@Override
-	public AddToGiving getAddToGiving() {
-		return addToGiving;
+	public AddToStatement getAddToStatement() {
+		return addToStatement;
 	}
 
 	@Override
@@ -239,13 +239,13 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 	}
 
 	@Override
-	public NotOnSizeError getNotOnSizeError() {
-		return notOnSizeError;
+	public NotOnSizeErrorPhrase getNotOnSizeErrorPhrase() {
+		return notOnSizeErrorPhrase;
 	}
 
 	@Override
-	public OnSizeError getOnSizeError() {
-		return onSizeError;
+	public OnSizeErrorPhrase getOnSizeErrorPhrase() {
+		return onSizeErrorPhrase;
 	}
 
 	@Override
@@ -259,13 +259,13 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 	}
 
 	@Override
-	public void setNotOnSize(final NotOnSizeError notOnSizeError) {
-		this.notOnSizeError = notOnSizeError;
+	public void setNotOnSizePhrase(final NotOnSizeErrorPhrase notOnSizeErrorPhrase) {
+		this.notOnSizeErrorPhrase = notOnSizeErrorPhrase;
 	}
 
 	@Override
-	public void setOnSizeError(final OnSizeError onSizeError) {
-		this.onSizeError = onSizeError;
+	public void setOnSizeErrorPhrase(final OnSizeErrorPhrase onSizeErrorPhrase) {
+		this.onSizeErrorPhrase = onSizeErrorPhrase;
 	}
 
 }

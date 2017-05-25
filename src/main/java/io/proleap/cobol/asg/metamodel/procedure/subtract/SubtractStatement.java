@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.subtract;
 import io.proleap.cobol.Cobol85Parser.SubtractCorrespondingStatementContext;
 import io.proleap.cobol.Cobol85Parser.SubtractFromGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.SubtractFromStatementContext;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeError;
-import io.proleap.cobol.asg.metamodel.procedure.OnSizeError;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -30,9 +30,9 @@ public interface SubtractStatement extends Statement {
 
 	SubtractFromGiving addSubtractFromGiving(SubtractFromGivingStatementContext ctx);
 
-	NotOnSizeError getNotOnSizeError();
+	NotOnSizeErrorPhrase getNotOnSizeErrorPhrase();
 
-	OnSizeError getOnSizeError();
+	OnSizeErrorPhrase getOnSizeErrorPhrase();
 
 	SubtractCorresponding getSubtractCorresponding();
 
@@ -42,9 +42,9 @@ public interface SubtractStatement extends Statement {
 
 	SubtractType getSubtractType();
 
-	void setNotOnSizeError(NotOnSizeError notOnSizeError);
+	void setNotOnSizeErrorPhrase(NotOnSizeErrorPhrase notOnSizeErrorPhrase);
 
-	void setOnSizeError(OnSizeError onSizeError);
+	void setOnSizeErrorPhrase(OnSizeErrorPhrase onSizeErrorPhrase);
 
 	void setSubtractType(SubtractType subtractType);
 }

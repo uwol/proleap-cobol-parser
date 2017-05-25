@@ -1232,7 +1232,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (workingStorageSection != null) {
 			for (final DataDescriptionEntry dataDescriptionEntry : workingStorageSection.getDataDescriptionEntries()) {
-				if (DataDescriptionEntry.DataDescriptionEntryType.GROUP.equals(dataDescriptionEntry.getDataDescriptionEntryType())) {
+				if (DataDescriptionEntry.DataDescriptionEntryType.GROUP
+						.equals(dataDescriptionEntry.getDataDescriptionEntryType())) {
 					final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
 
 					for (final OccursClause occursClause : dataDescriptionEntryGroup.getOccursClauses()) {

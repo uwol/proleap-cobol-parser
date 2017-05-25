@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.compute;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.ComputeStoreContext;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeError;
-import io.proleap.cobol.asg.metamodel.procedure.OnSizeError;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 
@@ -25,15 +25,15 @@ public interface ComputeStatement extends Statement {
 
 	ArithmeticValueStmt getArithmeticExpression();
 
-	NotOnSizeError getNotOnSizeError();
+	NotOnSizeErrorPhrase getNotOnSizeErrorPhrase();
 
-	OnSizeError getOnSizeError();
+	OnSizeErrorPhrase getOnSizeErrorPhrase();
 
 	List<Store> getStores();
 
 	void setArithmeticExpression(ArithmeticValueStmt arithmeticExpression);
 
-	void setNotOnSizeError(NotOnSizeError notOnSizeError);
+	void setNotOnSizeErrorPhrase(NotOnSizeErrorPhrase notOnSizeErrorPhrase);
 
-	void setOnSizeError(OnSizeError onSizeError);
+	void setOnSizeErrorPhrase(OnSizeErrorPhrase onSizeErrorPhrase);
 }

@@ -18,7 +18,7 @@ import io.proleap.cobol.Cobol85Parser.StatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.AtEnd;
+import io.proleap.cobol.asg.metamodel.procedure.AtEndPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
@@ -29,7 +29,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
 
 public class SearchStatementImpl extends StatementImpl implements SearchStatement {
 
-	protected AtEnd atEnd;
+	protected AtEndPhrase atEndPhrase;
 
 	protected final SearchStatementContext ctx;
 
@@ -100,8 +100,8 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 	}
 
 	@Override
-	public AtEnd getAtEnd() {
-		return atEnd;
+	public AtEndPhrase getAtEndPhrase() {
+		return atEndPhrase;
 	}
 
 	@Override
@@ -125,8 +125,8 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 	}
 
 	@Override
-	public void setAtEnd(final AtEnd atEnd) {
-		this.atEnd = atEnd;
+	public void setAtEndPhrase(final AtEndPhrase atEndPhrase) {
+		this.atEndPhrase = atEndPhrase;
 	}
 
 	@Override

@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.start;
 
 import io.proleap.cobol.Cobol85Parser.StartKeyContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.InvalidKey;
-import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKey;
+import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -23,15 +23,15 @@ public interface StartStatement extends Statement {
 
 	Call getFileCall();
 
-	InvalidKey getInvalidKey();
+	InvalidKeyPhrase getInvalidKeyPhrase();
 
 	Key getKey();
 
-	NotInvalidKey getNotInvalidKey();
+	NotInvalidKeyPhrase getNotInvalidKeyPhrase();
 
 	void setFileCall(Call fileCall);
 
-	void setInvalidKey(InvalidKey invalidKey);
+	void setInvalidKeyPhrase(InvalidKeyPhrase invalidKey);
 
-	void setNotInvalidKey(NotInvalidKey notInvalidKey);
+	void setNotInvalidKeyPhrase(NotInvalidKeyPhrase notInvalidKeyPhrase);
 }

@@ -22,10 +22,10 @@ import io.proleap.cobol.asg.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.InputOutputSection;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
-import io.proleap.cobol.asg.metamodel.procedure.AtEnd;
-import io.proleap.cobol.asg.metamodel.procedure.InvalidKey;
-import io.proleap.cobol.asg.metamodel.procedure.NotAtEnd;
-import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKey;
+import io.proleap.cobol.asg.metamodel.procedure.AtEndPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotAtEndPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
@@ -127,7 +127,7 @@ public class ReadStatementTest extends CobolTestBase {
 			}
 
 			{
-				final InvalidKey invalidKey = readStatement.getInvalidKey();
+				final InvalidKeyPhrase invalidKey = readStatement.getInvalidKeyPhrase();
 				assertNotNull(invalidKey);
 				assertEquals(1, invalidKey.getStatements().size());
 
@@ -139,7 +139,7 @@ public class ReadStatementTest extends CobolTestBase {
 			}
 
 			{
-				final NotInvalidKey notInvalidKey = readStatement.getNotInvalidKey();
+				final NotInvalidKeyPhrase notInvalidKey = readStatement.getNotInvalidKeyPhrase();
 				assertNotNull(notInvalidKey);
 				assertEquals(1, notInvalidKey.getStatements().size());
 
@@ -151,7 +151,7 @@ public class ReadStatementTest extends CobolTestBase {
 			}
 
 			{
-				final AtEnd atEnd = readStatement.getAtEnd();
+				final AtEndPhrase atEnd = readStatement.getAtEnd();
 				assertNotNull(atEnd);
 				assertEquals(1, atEnd.getStatements().size());
 
@@ -163,7 +163,7 @@ public class ReadStatementTest extends CobolTestBase {
 			}
 
 			{
-				final NotAtEnd notAtEnd = readStatement.getNotAtEnd();
+				final NotAtEndPhrase notAtEnd = readStatement.getNotAtEndPhrase();
 				assertNotNull(notAtEnd);
 				assertEquals(1, notAtEnd.getStatements().size());
 

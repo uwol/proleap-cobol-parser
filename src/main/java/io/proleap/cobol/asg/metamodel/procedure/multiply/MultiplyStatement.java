@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.multiply;
 
 import io.proleap.cobol.Cobol85Parser.MultiplyGivingContext;
 import io.proleap.cobol.Cobol85Parser.MultiplyRegularContext;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeError;
-import io.proleap.cobol.asg.metamodel.procedure.OnSizeError;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
@@ -32,9 +32,9 @@ public interface MultiplyStatement extends Statement {
 
 	MultiplyType getMultiplyType();
 
-	NotOnSizeError getNotOnSizeError();
+	NotOnSizeErrorPhrase getNotOnSizeErrorPhrase();
 
-	OnSizeError getOnSizeError();
+	OnSizeErrorPhrase getOnSizeErrorPhrase();
 
 	ValueStmt getOperandValueStmt();
 
@@ -42,9 +42,9 @@ public interface MultiplyStatement extends Statement {
 
 	void setMultiplyType(MultiplyType multiply);
 
-	void setNotOnSizeError(NotOnSizeError notOnSizeError);
+	void setNotOnSizeErrorPhrase(NotOnSizeErrorPhrase notOnSizeErrorPhrase);
 
-	void setOnSizeError(OnSizeError onSizeError);
+	void setOnSizeErrorPhrase(OnSizeErrorPhrase onSizeErrorPhrase);
 
 	void setOperandValueStmt(ValueStmt operandValueStmt);
 

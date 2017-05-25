@@ -22,9 +22,9 @@ import io.proleap.cobol.asg.metamodel.procedure.call.CallByContent;
 import io.proleap.cobol.asg.metamodel.procedure.call.CallByReference;
 import io.proleap.cobol.asg.metamodel.procedure.call.CallByValue;
 import io.proleap.cobol.asg.metamodel.procedure.call.CallStatement;
-import io.proleap.cobol.asg.metamodel.procedure.call.Giving;
+import io.proleap.cobol.asg.metamodel.procedure.call.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.call.Parameter;
-import io.proleap.cobol.asg.metamodel.procedure.call.Using;
+import io.proleap.cobol.asg.metamodel.procedure.call.UsingPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -56,13 +56,13 @@ public class CallStatementTest extends CobolTestBase {
 			}
 
 			{
-				final Giving giving = callStatement.getGiving();
+				final GivingPhrase giving = callStatement.getGivingPhrase();
 				assertNotNull(giving.getGivingCall());
 				assertEquals(Call.CallType.UNDEFINED_CALL, giving.getGivingCall().getCallType());
 			}
 
 			{
-				final Using using = callStatement.getUsing();
+				final UsingPhrase using = callStatement.getUsingPhrasePhrase();
 				assertEquals(3, using.getParameters().size());
 
 				{

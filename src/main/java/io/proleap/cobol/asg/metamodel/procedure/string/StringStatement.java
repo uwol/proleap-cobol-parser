@@ -13,8 +13,8 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.StringIntoPhraseContext;
 import io.proleap.cobol.Cobol85Parser.StringSendingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.StringWithPointerPhraseContext;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflow;
-import io.proleap.cobol.asg.metamodel.procedure.OnOverflow;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflowPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -30,15 +30,15 @@ public interface StringStatement extends Statement {
 
 	Into getInto();
 
-	NotOnOverflow getNotOnOverflow();
+	NotOnOverflowPhrase getNotOnOverflowPhrase();
 
-	OnOverflow getOnOverflow();
+	OnOverflowPhrase getOnOverflowPhrase();
 
 	List<Sendings> getSendings();
 
 	WithPointer getWithPointer();
 
-	void setNotOnOverflow(NotOnOverflow notOnOverflow);
+	void setNotOnOverflowPhrase(NotOnOverflowPhrase notOnOverflowPhrase);
 
-	void setOnOverflow(OnOverflow onOverflow);
+	void setOnOverflowPhrase(OnOverflowPhrase onOverflowPhrase);
 }

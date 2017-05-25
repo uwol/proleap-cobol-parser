@@ -18,8 +18,8 @@ import io.proleap.cobol.Cobol85Parser.SubtractSubtrahendContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeError;
-import io.proleap.cobol.asg.metamodel.procedure.OnSizeError;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
@@ -32,9 +32,9 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 
 	protected final SubtractStatementContext ctx;
 
-	protected NotOnSizeError notOnSizeError;
+	protected NotOnSizeErrorPhrase notOnSizeErrorPhrase;
 
-	protected OnSizeError onSizeError;
+	protected OnSizeErrorPhrase onSizeErrorPhrase;
 
 	protected final StatementType statementType = StatementTypeEnum.SUBTRACT;
 
@@ -125,13 +125,13 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 	}
 
 	@Override
-	public NotOnSizeError getNotOnSizeError() {
-		return notOnSizeError;
+	public NotOnSizeErrorPhrase getNotOnSizeErrorPhrase() {
+		return notOnSizeErrorPhrase;
 	}
 
 	@Override
-	public OnSizeError getOnSizeError() {
-		return onSizeError;
+	public OnSizeErrorPhrase getOnSizeErrorPhrase() {
+		return onSizeErrorPhrase;
 	}
 
 	@Override
@@ -160,13 +160,13 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 	}
 
 	@Override
-	public void setNotOnSizeError(final NotOnSizeError notOnSizeError) {
-		this.notOnSizeError = notOnSizeError;
+	public void setNotOnSizeErrorPhrase(final NotOnSizeErrorPhrase notOnSizeErrorPhrase) {
+		this.notOnSizeErrorPhrase = notOnSizeErrorPhrase;
 	}
 
 	@Override
-	public void setOnSizeError(final OnSizeError onSizeError) {
-		this.onSizeError = onSizeError;
+	public void setOnSizeErrorPhrase(final OnSizeErrorPhrase onSizeErrorPhrase) {
+		this.onSizeErrorPhrase = onSizeErrorPhrase;
 	}
 
 	@Override

@@ -15,14 +15,14 @@ import io.proleap.cobol.Cobol85Parser.CallUsingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnException;
-import io.proleap.cobol.asg.metamodel.procedure.OnException;
-import io.proleap.cobol.asg.metamodel.procedure.OnOverflow;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
+import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
+import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.call.CallStatement;
-import io.proleap.cobol.asg.metamodel.procedure.call.Giving;
-import io.proleap.cobol.asg.metamodel.procedure.call.Using;
+import io.proleap.cobol.asg.metamodel.procedure.call.GivingPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.call.UsingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
@@ -30,19 +30,19 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 
 	protected final CallStatementContext ctx;
 
-	protected Giving giving;
+	protected GivingPhrase givingPhrase;
 
-	protected NotOnException notOnException;
+	protected NotOnExceptionClause notOnExceptionClause;
 
-	protected OnException onException;
+	protected OnExceptionClause onExceptionClause;
 
-	protected OnOverflow onOverflow;
+	protected OnOverflowPhrase onOverflowPhrase;
 
 	protected ValueStmt programValueStmt;
 
 	protected final StatementType statementType = StatementTypeEnum.CALL;
 
-	protected Using using;
+	protected UsingPhrase usingPhrase;
 
 	public CallStatementImpl(final ProgramUnit programUnit, final Scope scope, final CallStatementContext ctx) {
 		super(programUnit, scope, ctx);
@@ -51,16 +51,16 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 	}
 
 	@Override
-	public Giving addGiving(final CallGivingPhraseContext ctx) {
-		Giving result = (Giving) getASGElement(ctx);
+	public GivingPhrase addGivingPhrase(final CallGivingPhraseContext ctx) {
+		GivingPhrase result = (GivingPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new GivingImpl(programUnit, ctx);
+			result = new GivingPhraseImpl(programUnit, ctx);
 
 			final Call givingCall = createCall(ctx.identifier());
 			result.setGivingCall(givingCall);
 
-			giving = result;
+			givingPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -68,17 +68,17 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 	}
 
 	@Override
-	public Using addUsing(final CallUsingPhraseContext ctx) {
-		Using result = (Using) getASGElement(ctx);
+	public UsingPhrase addUsingPhrase(final CallUsingPhraseContext ctx) {
+		UsingPhrase result = (UsingPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new UsingImpl(programUnit, ctx);
+			result = new UsingPhraseImpl(programUnit, ctx);
 
 			for (final CallUsingParameterContext callUsingParameterContext : ctx.callUsingParameter()) {
 				result.addParameter(callUsingParameterContext);
 			}
 
-			using = result;
+			usingPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -86,23 +86,23 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 	}
 
 	@Override
-	public Giving getGiving() {
-		return giving;
+	public GivingPhrase getGivingPhrase() {
+		return givingPhrase;
 	}
 
 	@Override
-	public NotOnException getNotOnException() {
-		return notOnException;
+	public NotOnExceptionClause getNotOnExceptionClause() {
+		return notOnExceptionClause;
 	}
 
 	@Override
-	public OnException getOnException() {
-		return onException;
+	public OnExceptionClause getOnExceptionClause() {
+		return onExceptionClause;
 	}
 
 	@Override
-	public OnOverflow getOnOverflow() {
-		return onOverflow;
+	public OnOverflowPhrase getOnOverflowPhrase() {
+		return onOverflowPhrase;
 	}
 
 	@Override
@@ -116,23 +116,23 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 	}
 
 	@Override
-	public Using getUsing() {
-		return using;
+	public UsingPhrase getUsingPhrasePhrase() {
+		return usingPhrase;
 	}
 
 	@Override
-	public void setNotOnException(final NotOnException notOnException) {
-		this.notOnException = notOnException;
+	public void setNotOnException(final NotOnExceptionClause notOnExceptionClause) {
+		this.notOnExceptionClause = notOnExceptionClause;
 	}
 
 	@Override
-	public void setOnException(final OnException onException) {
-		this.onException = onException;
+	public void setOnException(final OnExceptionClause onExceptionClause) {
+		this.onExceptionClause = onExceptionClause;
 	}
 
 	@Override
-	public void setOnOverflow(final OnOverflow onOverflow) {
-		this.onOverflow = onOverflow;
+	public void setOnOverflow(final OnOverflowPhrase onOverflowPhrase) {
+		this.onOverflowPhrase = onOverflowPhrase;
 	}
 
 	@Override

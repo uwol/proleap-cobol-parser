@@ -12,10 +12,10 @@ import io.proleap.cobol.Cobol85Parser.ReadIntoContext;
 import io.proleap.cobol.Cobol85Parser.ReadKeyContext;
 import io.proleap.cobol.Cobol85Parser.ReadWithContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.AtEnd;
-import io.proleap.cobol.asg.metamodel.procedure.InvalidKey;
-import io.proleap.cobol.asg.metamodel.procedure.NotAtEnd;
-import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKey;
+import io.proleap.cobol.asg.metamodel.procedure.AtEndPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotAtEndPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -31,33 +31,33 @@ public interface ReadStatement extends Statement {
 
 	With addWith(ReadWithContext ctx);
 
-	AtEnd getAtEnd();
+	AtEndPhrase getAtEnd();
 
 	Call getFileCall();
 
 	Into getInto();
 
-	InvalidKey getInvalidKey();
+	InvalidKeyPhrase getInvalidKeyPhrase();
 
 	Key getKey();
 
-	NotAtEnd getNotAtEnd();
+	NotAtEndPhrase getNotAtEndPhrase();
 
-	NotInvalidKey getNotInvalidKey();
+	NotInvalidKeyPhrase getNotInvalidKeyPhrase();
 
 	With getWith();
 
 	boolean isNextRecord();
 
-	void setAtEnd(AtEnd atEnd);
+	void setAtEnd(AtEndPhrase atEnd);
 
 	void setFileCall(Call fileCall);
 
-	void setInvalidKey(InvalidKey invalidKey);
+	void setInvalidKeyPhrase(InvalidKeyPhrase invalidKey);
 
 	void setNextRecord(boolean nextRecord);
 
-	void setNotAtEnd(NotAtEnd notAtEnd);
+	void setNotAtEndPhrase(NotAtEndPhrase notAtEnd);
 
-	void setNotInvalidKey(NotInvalidKey notInvalidKey);
+	void setNotInvalidKeyPhrase(NotInvalidKeyPhrase notInvalidKey);
 }

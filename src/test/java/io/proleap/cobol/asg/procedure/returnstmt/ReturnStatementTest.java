@@ -12,8 +12,8 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.AtEnd;
-import io.proleap.cobol.asg.metamodel.procedure.NotAtEnd;
+import io.proleap.cobol.asg.metamodel.procedure.AtEndPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotAtEndPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
@@ -57,7 +57,7 @@ public class ReturnStatementTest extends CobolTestBase {
 			}
 
 			{
-				final AtEnd atEnd = returnStatement.getAtEnd();
+				final AtEndPhrase atEnd = returnStatement.getAtEndPhrase();
 				assertNotNull(atEnd);
 				assertEquals(1, atEnd.getStatements().size());
 
@@ -66,7 +66,7 @@ public class ReturnStatementTest extends CobolTestBase {
 			}
 
 			{
-				final NotAtEnd notAtEnd = returnStatement.getNotAtEnd();
+				final NotAtEndPhrase notAtEnd = returnStatement.getNotAtEndPhrase();
 				assertNotNull(notAtEnd);
 				assertEquals(1, notAtEnd.getStatements().size());
 

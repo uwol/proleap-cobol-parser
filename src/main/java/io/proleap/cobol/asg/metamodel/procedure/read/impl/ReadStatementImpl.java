@@ -15,10 +15,10 @@ import io.proleap.cobol.Cobol85Parser.ReadWithContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.AtEnd;
-import io.proleap.cobol.asg.metamodel.procedure.InvalidKey;
-import io.proleap.cobol.asg.metamodel.procedure.NotAtEnd;
-import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKey;
+import io.proleap.cobol.asg.metamodel.procedure.AtEndPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotAtEndPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
@@ -29,7 +29,7 @@ import io.proleap.cobol.asg.metamodel.procedure.read.With;
 
 public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 
-	protected AtEnd atEnd;
+	protected AtEndPhrase atEnd;
 
 	protected final ReadStatementContext ctx;
 
@@ -37,15 +37,15 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 
 	protected Into into;
 
-	protected InvalidKey invalidKey;
+	protected InvalidKeyPhrase invalidKeyPhrase;
 
 	protected Key key;
 
 	protected boolean nextRecord;
 
-	protected NotAtEnd notAtEnd;
+	protected NotAtEndPhrase notAtEndPhrase;
 
-	protected NotInvalidKey notInvalidKey;
+	protected NotInvalidKeyPhrase notInvalidKeyPhrase;
 
 	protected final StatementType statementType = StatementTypeEnum.READ;
 
@@ -121,7 +121,7 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 	}
 
 	@Override
-	public AtEnd getAtEnd() {
+	public AtEndPhrase getAtEnd() {
 		return atEnd;
 	}
 
@@ -136,8 +136,8 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 	}
 
 	@Override
-	public InvalidKey getInvalidKey() {
-		return invalidKey;
+	public InvalidKeyPhrase getInvalidKeyPhrase() {
+		return invalidKeyPhrase;
 	}
 
 	@Override
@@ -146,13 +146,13 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 	}
 
 	@Override
-	public NotAtEnd getNotAtEnd() {
-		return notAtEnd;
+	public NotAtEndPhrase getNotAtEndPhrase() {
+		return notAtEndPhrase;
 	}
 
 	@Override
-	public NotInvalidKey getNotInvalidKey() {
-		return notInvalidKey;
+	public NotInvalidKeyPhrase getNotInvalidKeyPhrase() {
+		return notInvalidKeyPhrase;
 	}
 
 	@Override
@@ -171,7 +171,7 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 	}
 
 	@Override
-	public void setAtEnd(final AtEnd atEnd) {
+	public void setAtEnd(final AtEndPhrase atEnd) {
 		this.atEnd = atEnd;
 	}
 
@@ -181,8 +181,8 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 	}
 
 	@Override
-	public void setInvalidKey(final InvalidKey invalidKey) {
-		this.invalidKey = invalidKey;
+	public void setInvalidKeyPhrase(final InvalidKeyPhrase invalidKeyPhrase) {
+		this.invalidKeyPhrase = invalidKeyPhrase;
 	}
 
 	@Override
@@ -191,13 +191,13 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 	}
 
 	@Override
-	public void setNotAtEnd(final NotAtEnd notAtEnd) {
-		this.notAtEnd = notAtEnd;
+	public void setNotAtEndPhrase(final NotAtEndPhrase notAtEndPhrase) {
+		this.notAtEndPhrase = notAtEndPhrase;
 	}
 
 	@Override
-	public void setNotInvalidKey(final NotInvalidKey notInvalidKey) {
-		this.notInvalidKey = notInvalidKey;
+	public void setNotInvalidKeyPhrase(final NotInvalidKeyPhrase notInvalidKeyPhrase) {
+		this.notInvalidKeyPhrase = notInvalidKeyPhrase;
 	}
 
 }

@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
-import io.proleap.cobol.asg.metamodel.procedure.add.AddCorresponding;
+import io.proleap.cobol.asg.metamodel.procedure.add.AddCorrespondingStatement;
 import io.proleap.cobol.asg.metamodel.procedure.add.AddStatement;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -35,10 +35,10 @@ public class AddCorrespondingStatementTest extends CobolTestBase {
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(0);
 			assertEquals(AddStatement.AddType.CORRESPONDING, addStatement.getAddType());
-			assertNotNull(addStatement.getAddCorresponding());
+			assertNotNull(addStatement.getAddCorrespondingStatement());
 
 			{
-				final AddCorresponding addCorresponding = addStatement.getAddCorresponding();
+				final AddCorrespondingStatement addCorresponding = addStatement.getAddCorrespondingStatement();
 				assertNotNull(addCorresponding.getFrom());
 				assertNotNull(addCorresponding.getTo());
 				assertNotNull(addCorresponding.getTo().getTo());

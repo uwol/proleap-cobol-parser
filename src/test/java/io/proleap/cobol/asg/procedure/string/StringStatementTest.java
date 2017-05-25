@@ -12,8 +12,8 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflow;
-import io.proleap.cobol.asg.metamodel.procedure.OnOverflow;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflowPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
@@ -81,7 +81,7 @@ public class StringStatementTest extends CobolTestBase {
 			}
 
 			{
-				final OnOverflow onOverflow = stringStatement.getOnOverflow();
+				final OnOverflowPhrase onOverflow = stringStatement.getOnOverflowPhrase();
 				assertNotNull(onOverflow);
 				assertEquals(1, onOverflow.getStatements().size());
 
@@ -90,7 +90,7 @@ public class StringStatementTest extends CobolTestBase {
 			}
 
 			{
-				final NotOnOverflow notOnOverflow = stringStatement.getNotOnOverflow();
+				final NotOnOverflowPhrase notOnOverflow = stringStatement.getNotOnOverflowPhrase();
 				assertNotNull(notOnOverflow);
 				assertEquals(1, notOnOverflow.getStatements().size());
 

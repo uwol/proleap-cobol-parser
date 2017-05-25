@@ -13,8 +13,8 @@ import io.proleap.cobol.Cobol85Parser.ReturnStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.AtEnd;
-import io.proleap.cobol.asg.metamodel.procedure.NotAtEnd;
+import io.proleap.cobol.asg.metamodel.procedure.AtEndPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotAtEndPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
@@ -23,7 +23,7 @@ import io.proleap.cobol.asg.metamodel.procedure.returnstmt.ReturnStatement;
 
 public class ReturnStatementImpl extends StatementImpl implements ReturnStatement {
 
-	protected AtEnd atEnd;
+	protected AtEndPhrase atEndPhrase;
 
 	protected final ReturnStatementContext ctx;
 
@@ -31,7 +31,7 @@ public class ReturnStatementImpl extends StatementImpl implements ReturnStatemen
 
 	protected Into into;
 
-	protected NotAtEnd notAtEnd;
+	protected NotAtEndPhrase notAtEndPhrase;
 
 	protected final StatementType statementType = StatementTypeEnum.RETURN;
 
@@ -64,8 +64,8 @@ public class ReturnStatementImpl extends StatementImpl implements ReturnStatemen
 	}
 
 	@Override
-	public AtEnd getAtEnd() {
-		return atEnd;
+	public AtEndPhrase getAtEndPhrase() {
+		return atEndPhrase;
 	}
 
 	@Override
@@ -79,8 +79,8 @@ public class ReturnStatementImpl extends StatementImpl implements ReturnStatemen
 	}
 
 	@Override
-	public NotAtEnd getNotAtEnd() {
-		return notAtEnd;
+	public NotAtEndPhrase getNotAtEndPhrase() {
+		return notAtEndPhrase;
 	}
 
 	@Override
@@ -89,13 +89,13 @@ public class ReturnStatementImpl extends StatementImpl implements ReturnStatemen
 	}
 
 	@Override
-	public void setAtEnd(final AtEnd atEnd) {
-		this.atEnd = atEnd;
+	public void setAtEndPhrase(final AtEndPhrase atEndPhrase) {
+		this.atEndPhrase = atEndPhrase;
 	}
 
 	@Override
-	public void setNotAtEnd(final NotAtEnd notAtEnd) {
-		this.notAtEnd = notAtEnd;
+	public void setNotAtEndPhrase(final NotAtEndPhrase notAtEndPhrase) {
+		this.notAtEndPhrase = notAtEndPhrase;
 	}
 
 }

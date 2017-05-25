@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.add.AddStatement;
-import io.proleap.cobol.asg.metamodel.procedure.add.AddToGiving;
+import io.proleap.cobol.asg.metamodel.procedure.add.AddToGivingStatement;
 import io.proleap.cobol.asg.metamodel.procedure.add.From;
 import io.proleap.cobol.asg.metamodel.procedure.add.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.add.To;
@@ -38,10 +38,10 @@ public class AddToGivingStatementTest extends CobolTestBase {
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(0);
 			assertEquals(AddStatement.AddType.GIVING, addStatement.getAddType());
-			assertNotNull(addStatement.getAddToGiving());
+			assertNotNull(addStatement.getAddToGivingStatement());
 
 			{
-				final AddToGiving addToGiving = addStatement.getAddToGiving();
+				final AddToGivingStatement addToGiving = addStatement.getAddToGivingStatement();
 				assertEquals(1, addToGiving.getFroms().size());
 
 				{
@@ -68,10 +68,10 @@ public class AddToGivingStatementTest extends CobolTestBase {
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(1);
 			assertEquals(AddStatement.AddType.GIVING, addStatement.getAddType());
-			assertNotNull(addStatement.getAddToGiving());
+			assertNotNull(addStatement.getAddToGivingStatement());
 
 			{
-				final AddToGiving addToGiving = addStatement.getAddToGiving();
+				final AddToGivingStatement addToGiving = addStatement.getAddToGivingStatement();
 				assertEquals(2, addToGiving.getFroms().size());
 
 				{

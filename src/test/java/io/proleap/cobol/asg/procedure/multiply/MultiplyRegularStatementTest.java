@@ -14,8 +14,8 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeError;
-import io.proleap.cobol.asg.metamodel.procedure.OnSizeError;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
@@ -80,7 +80,7 @@ public class MultiplyRegularStatementTest extends CobolTestBase {
 			}
 
 			{
-				final OnSizeError onSizeError = multiplyStatement.getOnSizeError();
+				final OnSizeErrorPhrase onSizeError = multiplyStatement.getOnSizeErrorPhrase();
 				assertNotNull(onSizeError);
 				assertEquals(1, onSizeError.getStatements().size());
 
@@ -89,7 +89,7 @@ public class MultiplyRegularStatementTest extends CobolTestBase {
 			}
 
 			{
-				final NotOnSizeError notOnSizeError = multiplyStatement.getNotOnSizeError();
+				final NotOnSizeErrorPhrase notOnSizeError = multiplyStatement.getNotOnSizeErrorPhrase();
 				assertNotNull(notOnSizeError);
 				assertEquals(1, notOnSizeError.getStatements().size());
 

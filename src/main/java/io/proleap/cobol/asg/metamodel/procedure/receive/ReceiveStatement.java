@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.receive;
 
 import io.proleap.cobol.Cobol85Parser.ReceiveFromStatementContext;
 import io.proleap.cobol.Cobol85Parser.ReceiveIntoStatementContext;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnException;
-import io.proleap.cobol.asg.metamodel.procedure.OnException;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
+import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -27,9 +27,9 @@ public interface ReceiveStatement extends Statement {
 
 	ReceiveIntoStatement addReceiveIntoStatement(ReceiveIntoStatementContext ctx);
 
-	NotOnException getNotOnException();
+	NotOnExceptionClause getNotOnExceptionClause();
 
-	OnException getOnException();
+	OnExceptionClause getOnExceptionClause();
 
 	ReceiveFromStatement getReceiveFromStatement();
 
@@ -37,9 +37,9 @@ public interface ReceiveStatement extends Statement {
 
 	ReceiveType getReceiveType();
 
-	void setNotOnException(NotOnException notOnException);
+	void setNotOnExceptionClause(NotOnExceptionClause notOnExceptionClause);
 
-	void setOnException(OnException onException);
+	void setOnExceptionClause(OnExceptionClause onExceptionClause);
 
 	void setReceiveType(ReceiveType receiveType);
 

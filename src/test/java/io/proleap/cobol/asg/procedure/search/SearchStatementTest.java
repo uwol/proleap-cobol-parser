@@ -51,7 +51,7 @@ public class SearchStatementTest extends CobolTestBase {
 				assertEquals(Call.CallType.UNDEFINED_CALL, varying.getDataCall().getCallType());
 			}
 
-			assertNotNull(searchStatement.getAtEnd());
+			assertNotNull(searchStatement.getAtEndPhrase());
 
 			{
 				assertEquals(2, searchStatement.getWhens().size());

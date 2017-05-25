@@ -14,10 +14,10 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromDate;
-import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromEscapeKey;
-import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromMnemonic;
-import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptMessageCount;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromDateStatement;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromEscapeKeyStatement;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromMnemonicStatement;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptMessageCountStatement;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptStatement;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -44,9 +44,9 @@ public class AcceptStatementTest extends CobolTestBase {
 			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
 
 			{
-				final AcceptFromDate acceptFromDate = acceptStatement.getAcceptFromDate();
+				final AcceptFromDateStatement acceptFromDate = acceptStatement.getAcceptFromDateStatement();
 				assertNotNull(acceptFromDate);
-				assertEquals(AcceptFromDate.DateType.TODAYS_NAME, acceptFromDate.getDateType());
+				assertEquals(AcceptFromDateStatement.DateType.TODAYS_NAME, acceptFromDate.getDateType());
 			}
 		}
 
@@ -59,7 +59,7 @@ public class AcceptStatementTest extends CobolTestBase {
 			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
 
 			{
-				final AcceptFromMnemonic acceptFromMnemonic = acceptStatement.getAcceptFromMnemonic();
+				final AcceptFromMnemonicStatement acceptFromMnemonic = acceptStatement.getAcceptFromMnemonicStatement();
 				assertNotNull(acceptFromMnemonic);
 				assertNotNull(acceptFromMnemonic.getMnemonicCall());
 				assertEquals(Call.CallType.MNEMONIC_CALL, acceptFromMnemonic.getMnemonicCall().getCallType());
@@ -75,7 +75,7 @@ public class AcceptStatementTest extends CobolTestBase {
 			assertEquals(Call.CallType.UNDEFINED_CALL, acceptStatement.getAcceptCall().getCallType());
 
 			{
-				final AcceptMessageCount acceptMessageCount = acceptStatement.getAcceptMessageCount();
+				final AcceptMessageCountStatement acceptMessageCount = acceptStatement.getAcceptMessageCountStatement();
 				assertNotNull(acceptMessageCount);
 			}
 		}
@@ -88,7 +88,7 @@ public class AcceptStatementTest extends CobolTestBase {
 			assertNotNull(acceptStatement.getAcceptCall());
 
 			{
-				final AcceptFromEscapeKey acceptFromEscapeKey = acceptStatement.getAcceptFromEscapeKey();
+				final AcceptFromEscapeKeyStatement acceptFromEscapeKey = acceptStatement.getAcceptFromEscapeKeyStatement();
 				assertNotNull(acceptFromEscapeKey);
 			}
 		}

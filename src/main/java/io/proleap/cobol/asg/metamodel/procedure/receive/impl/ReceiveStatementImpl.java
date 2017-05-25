@@ -19,8 +19,8 @@ import io.proleap.cobol.Cobol85Parser.ReceiveWithContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.NotOnException;
-import io.proleap.cobol.asg.metamodel.procedure.OnException;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
+import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
@@ -32,9 +32,9 @@ public class ReceiveStatementImpl extends StatementImpl implements ReceiveStatem
 
 	protected final ReceiveStatementContext ctx;
 
-	protected NotOnException notOnException;
+	protected NotOnExceptionClause notOnExceptionClause;
 
-	protected OnException onException;
+	protected OnExceptionClause onExceptionClause;
 
 	protected ReceiveFromStatement receiveFromStatement;
 
@@ -142,13 +142,13 @@ public class ReceiveStatementImpl extends StatementImpl implements ReceiveStatem
 	}
 
 	@Override
-	public NotOnException getNotOnException() {
-		return notOnException;
+	public NotOnExceptionClause getNotOnExceptionClause() {
+		return notOnExceptionClause;
 	}
 
 	@Override
-	public OnException getOnException() {
-		return onException;
+	public OnExceptionClause getOnExceptionClause() {
+		return onExceptionClause;
 	}
 
 	@Override
@@ -172,13 +172,13 @@ public class ReceiveStatementImpl extends StatementImpl implements ReceiveStatem
 	}
 
 	@Override
-	public void setNotOnException(final NotOnException notOnException) {
-		this.notOnException = notOnException;
+	public void setNotOnExceptionClause(final NotOnExceptionClause notOnExceptionClause) {
+		this.notOnExceptionClause = notOnExceptionClause;
 	}
 
 	@Override
-	public void setOnException(final OnException onException) {
-		this.onException = onException;
+	public void setOnExceptionClause(final OnExceptionClause onExceptionClause) {
+		this.onExceptionClause = onExceptionClause;
 	}
 
 	@Override

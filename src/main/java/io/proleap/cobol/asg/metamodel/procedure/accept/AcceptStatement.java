@@ -25,23 +25,23 @@ public interface AcceptStatement extends Statement {
 		DATE, FROM_ESCAPE_KEY, MESSAGE_COUNT, MNEMONIC, NO_FROM
 	}
 
-	AcceptFromDate addAcceptFromDate(AcceptFromDateStatementContext ctx);
+	AcceptFromDateStatement addAcceptFromDate(AcceptFromDateStatementContext ctx);
 
-	AcceptFromEscapeKey addAcceptFromEscapeKey(AcceptFromEscapeKeyStatementContext ctx);
+	AcceptFromEscapeKeyStatement addAcceptFromEscapeKey(AcceptFromEscapeKeyStatementContext ctx);
 
-	AcceptFromMnemonic addAcceptFromMnemonic(AcceptFromMnemonicStatementContext ctx);
+	AcceptFromMnemonicStatement addAcceptFromMnemonic(AcceptFromMnemonicStatementContext ctx);
 
-	AcceptMessageCount addAcceptMessageCount(AcceptMessageCountStatementContext ctx);
+	AcceptMessageCountStatement addAcceptMessageCount(AcceptMessageCountStatementContext ctx);
 
 	Call getAcceptCall();
 
-	AcceptFromDate getAcceptFromDate();
+	AcceptFromDateStatement getAcceptFromDateStatement();
 
-	AcceptFromEscapeKey getAcceptFromEscapeKey();
+	AcceptFromEscapeKeyStatement getAcceptFromEscapeKeyStatement();
 
-	AcceptFromMnemonic getAcceptFromMnemonic();
+	AcceptFromMnemonicStatement getAcceptFromMnemonicStatement();
 
-	AcceptMessageCount getAcceptMessageCount();
+	AcceptMessageCountStatement getAcceptMessageCountStatement();
 
 	AcceptType getAcceptType();
 

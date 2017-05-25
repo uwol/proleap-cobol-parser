@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.returnstmt;
 
 import io.proleap.cobol.Cobol85Parser.ReturnIntoContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.AtEnd;
-import io.proleap.cobol.asg.metamodel.procedure.NotAtEnd;
+import io.proleap.cobol.asg.metamodel.procedure.AtEndPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotAtEndPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -23,16 +23,16 @@ public interface ReturnStatement extends Statement {
 
 	Into addInto(ReturnIntoContext ctx);
 
-	AtEnd getAtEnd();
+	AtEndPhrase getAtEndPhrase();
 
 	Call getFileCall();
 
 	Into getInto();
 
-	NotAtEnd getNotAtEnd();
+	NotAtEndPhrase getNotAtEndPhrase();
 
-	void setAtEnd(AtEnd atEnd);
+	void setAtEndPhrase(AtEndPhrase atEndPhrase);
 
-	void setNotAtEnd(NotAtEnd notAtEnd);
+	void setNotAtEndPhrase(NotAtEndPhrase notAtEndPhrase);
 
 }

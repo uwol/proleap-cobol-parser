@@ -15,7 +15,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.add.AddStatement;
-import io.proleap.cobol.asg.metamodel.procedure.add.AddTo;
+import io.proleap.cobol.asg.metamodel.procedure.add.AddToStatement;
 import io.proleap.cobol.asg.metamodel.procedure.add.From;
 import io.proleap.cobol.asg.metamodel.procedure.add.To;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -38,10 +38,10 @@ public class AddToStatementTest extends CobolTestBase {
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(0);
 			assertEquals(StatementTypeEnum.ADD, addStatement.getStatementType());
 			assertEquals(AddStatement.AddType.TO, addStatement.getAddType());
-			assertNotNull(addStatement.getAddTo());
+			assertNotNull(addStatement.getAddToStatement());
 
 			{
-				final AddTo addTo = addStatement.getAddTo();
+				final AddToStatement addTo = addStatement.getAddToStatement();
 				assertEquals(1, addTo.getFroms().size());
 
 				{
@@ -62,10 +62,10 @@ public class AddToStatementTest extends CobolTestBase {
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(1);
 			assertEquals(StatementTypeEnum.ADD, addStatement.getStatementType());
 			assertEquals(AddStatement.AddType.TO, addStatement.getAddType());
-			assertNotNull(addStatement.getAddTo());
+			assertNotNull(addStatement.getAddToStatement());
 
 			{
-				final AddTo addTo = addStatement.getAddTo();
+				final AddToStatement addTo = addStatement.getAddToStatement();
 				assertEquals(2, addTo.getFroms().size());
 
 				{

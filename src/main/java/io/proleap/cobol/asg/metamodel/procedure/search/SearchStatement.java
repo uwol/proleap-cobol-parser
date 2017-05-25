@@ -13,7 +13,7 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.SearchVaryingContext;
 import io.proleap.cobol.Cobol85Parser.SearchWhenContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.AtEnd;
+import io.proleap.cobol.asg.metamodel.procedure.AtEndPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -26,7 +26,7 @@ public interface SearchStatement extends Statement {
 
 	When addWhen(SearchWhenContext ctx);
 
-	AtEnd getAtEnd();
+	AtEndPhrase getAtEndPhrase();
 
 	Call getDataCall();
 
@@ -34,7 +34,7 @@ public interface SearchStatement extends Statement {
 
 	List<When> getWhens();
 
-	void setAtEnd(AtEnd atEnd);
+	void setAtEndPhrase(AtEndPhrase atEndPhrase);
 
 	void setDataCall(Call dataCall);
 

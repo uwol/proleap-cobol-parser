@@ -12,8 +12,8 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.procedure.InvalidKey;
-import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKey;
+import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
@@ -59,7 +59,7 @@ public class StartStatementTest extends CobolTestBase {
 			}
 
 			{
-				final InvalidKey invalidKey = startStatement.getInvalidKey();
+				final InvalidKeyPhrase invalidKey = startStatement.getInvalidKeyPhrase();
 				assertNotNull(invalidKey);
 				assertEquals(1, invalidKey.getStatements().size());
 
@@ -69,7 +69,7 @@ public class StartStatementTest extends CobolTestBase {
 			}
 
 			{
-				final NotInvalidKey notInvalidKey = startStatement.getNotInvalidKey();
+				final NotInvalidKeyPhrase notInvalidKey = startStatement.getNotInvalidKeyPhrase();
 				assertNotNull(notInvalidKey);
 				assertEquals(1, notInvalidKey.getStatements().size());
 
