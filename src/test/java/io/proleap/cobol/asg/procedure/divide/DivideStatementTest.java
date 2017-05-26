@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideByGivingStatement;
-import io.proleap.cobol.asg.metamodel.procedure.divide.DivideGivingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.divide.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideIntoGivingStatement;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideIntoStatement;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideStatement;
@@ -63,7 +63,7 @@ public class DivideStatementTest extends CobolTestBase {
 				assertEquals(1, divideIntoStatement.getGivingPhrase().getGivings().size());
 
 				{
-					final DivideGivingStatement giving = divideIntoStatement.getGivingPhrase().getGivings().get(0);
+					final Giving giving = divideIntoStatement.getGivingPhrase().getGivings().get(0);
 					assertTrue(giving.isRounded());
 					assertEquals(CallType.UNDEFINED_CALL, giving.getCall().getCallType());
 				}
@@ -96,13 +96,13 @@ public class DivideStatementTest extends CobolTestBase {
 				assertEquals(2, divideIntoGivingStatement.getGivings().size());
 
 				{
-					final DivideGivingStatement giving = divideIntoGivingStatement.getGivings().get(0);
+					final Giving giving = divideIntoGivingStatement.getGivings().get(0);
 					assertTrue(giving.isRounded());
 					assertEquals(CallType.UNDEFINED_CALL, giving.getCall().getCallType());
 				}
 
 				{
-					final DivideGivingStatement giving = divideIntoGivingStatement.getGivings().get(1);
+					final Giving giving = divideIntoGivingStatement.getGivings().get(1);
 					assertFalse(giving.isRounded());
 					assertEquals(CallType.UNDEFINED_CALL, giving.getCall().getCallType());
 				}
@@ -142,7 +142,7 @@ public class DivideStatementTest extends CobolTestBase {
 				assertEquals(1, divideIntoByGivingStatement.getGivingPhrase().getGivings().size());
 
 				{
-					final DivideGivingStatement giving = divideIntoByGivingStatement.getGivingPhrase().getGivings()
+					final Giving giving = divideIntoByGivingStatement.getGivingPhrase().getGivings()
 							.get(0);
 					assertTrue(giving.isRounded());
 					assertEquals(CallType.UNDEFINED_CALL, giving.getCall().getCallType());

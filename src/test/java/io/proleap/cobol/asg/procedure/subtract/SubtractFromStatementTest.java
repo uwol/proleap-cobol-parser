@@ -18,7 +18,7 @@ import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Minuend;
-import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFrom;
+import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFromStatement;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractStatement;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Subtrahend;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
@@ -45,14 +45,14 @@ public class SubtractFromStatementTest extends CobolTestBase {
 			assertNotNull(subtractStatement);
 			assertEquals(StatementTypeEnum.SUBTRACT, subtractStatement.getStatementType());
 			assertEquals(SubtractStatement.SubtractType.FROM, subtractStatement.getSubtractType());
-			assertNotNull(subtractStatement.getSubtractFrom());
+			assertNotNull(subtractStatement.getSubtractFromStatement());
 
 			{
-				final SubtractFrom subtractFrom = subtractStatement.getSubtractFrom();
-				assertEquals(2, subtractFrom.getSubtrahends().size());
+				final SubtractFromStatement subtractFromStatement = subtractStatement.getSubtractFromStatement();
+				assertEquals(2, subtractFromStatement.getSubtrahends().size());
 
 				{
-					final Subtrahend subtrahend = subtractFrom.getSubtrahends().get(0);
+					final Subtrahend subtrahend = subtractFromStatement.getSubtrahends().get(0);
 					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
 
 					final CallValueStmt subtrahendCallValueStmt = (CallValueStmt) subtrahendValueStmt;
@@ -60,15 +60,15 @@ public class SubtractFromStatementTest extends CobolTestBase {
 				}
 
 				{
-					final Subtrahend subtrahend = subtractFrom.getSubtrahends().get(1);
+					final Subtrahend subtrahend = subtractFromStatement.getSubtrahends().get(1);
 					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
 					assertEquals(1, subtrahendValueStmt.getValue());
 				}
 
-				assertEquals(2, subtractFrom.getMinuends().size());
+				assertEquals(2, subtractFromStatement.getMinuends().size());
 
 				{
-					final Minuend minuend = subtractFrom.getMinuends().get(0);
+					final Minuend minuend = subtractFromStatement.getMinuends().get(0);
 					assertFalse(minuend.isRounded());
 
 					final Call minuendCall = minuend.getMinuendCall();
@@ -76,7 +76,7 @@ public class SubtractFromStatementTest extends CobolTestBase {
 				}
 
 				{
-					final Minuend minuend = subtractFrom.getMinuends().get(1);
+					final Minuend minuend = subtractFromStatement.getMinuends().get(1);
 					assertTrue(minuend.isRounded());
 
 					final Call minuendCall = minuend.getMinuendCall();

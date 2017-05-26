@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.MinuendCorresponding;
-import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractCorresponding;
+import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractCorrespondingStatement;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractStatement;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -41,18 +41,19 @@ public class SubtractCorrespondingStatementTest extends CobolTestBase {
 			assertNotNull(subtractStatement);
 			assertEquals(StatementTypeEnum.SUBTRACT, subtractStatement.getStatementType());
 			assertEquals(SubtractStatement.SubtractType.CORRESPONDING, subtractStatement.getSubtractType());
-			assertNotNull(subtractStatement.getSubtractCorresponding());
+			assertNotNull(subtractStatement.getSubtractCorrespondingStatement());
 
 			{
-				final SubtractCorresponding subtractCorresponding = subtractStatement.getSubtractCorresponding();
+				final SubtractCorrespondingStatement subtractCorrespondingStatement = subtractStatement
+						.getSubtractCorrespondingStatement();
 
 				{
-					final Call subtrahendCall = subtractCorresponding.getSubtrahendCall();
+					final Call subtrahendCall = subtractCorrespondingStatement.getSubtrahendCall();
 					assertEquals(CallType.UNDEFINED_CALL, subtrahendCall.getCallType());
 				}
 
 				{
-					final MinuendCorresponding minuend = subtractCorresponding.getMinuend();
+					final MinuendCorresponding minuend = subtractCorrespondingStatement.getMinuend();
 					assertTrue(minuend.isRounded());
 
 					final Call minuendCall = minuend.getMinuendCall();

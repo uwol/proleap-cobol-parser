@@ -20,11 +20,11 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.MinuendGiving;
-import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFromGiving;
+import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFromGivingStatement;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Subtrahend;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public class SubtractFromGivingImpl extends CobolDivisionElementImpl implements SubtractFromGiving {
+public class SubtractFromGivingStatementImpl extends CobolDivisionElementImpl implements SubtractFromGivingStatement {
 
 	protected final SubtractFromGivingStatementContext ctx;
 
@@ -34,7 +34,7 @@ public class SubtractFromGivingImpl extends CobolDivisionElementImpl implements 
 
 	protected List<Subtrahend> subtrahends = new ArrayList<Subtrahend>();
 
-	public SubtractFromGivingImpl(final ProgramUnit programUnit, final SubtractFromGivingStatementContext ctx) {
+	public SubtractFromGivingStatementImpl(final ProgramUnit programUnit, final SubtractFromGivingStatementContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

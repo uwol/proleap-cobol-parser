@@ -16,16 +16,16 @@ import io.proleap.cobol.Cobol85Parser.UseDebugOnContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.use.Debug;
+import io.proleap.cobol.asg.metamodel.procedure.use.UseDebugStatement;
 import io.proleap.cobol.asg.metamodel.procedure.use.DebugOn;
 
-public class DebugImpl extends CobolDivisionElementImpl implements Debug {
+public class UseDebugStatementImpl extends CobolDivisionElementImpl implements UseDebugStatement {
 
 	protected UseDebugClauseContext ctx;
 
 	protected List<DebugOn> debugOns = new ArrayList<DebugOn>();
 
-	public DebugImpl(final ProgramUnit programUnit, final UseDebugClauseContext ctx) {
+	public UseDebugStatementImpl(final ProgramUnit programUnit, final UseDebugClauseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

@@ -21,13 +21,13 @@ public interface UseStatement extends Statement {
 		AFTER, DEBUG
 	}
 
-	After addAfter(UseAfterClauseContext ctx);
+	UseAfterStatement addUseAfterStatement(UseAfterClauseContext ctx);
 
-	Debug addDebug(UseDebugClauseContext ctx);
+	UseDebugStatement addUseDebugStatement(UseDebugClauseContext ctx);
 
-	After getAfter();
+	UseAfterStatement getUseAfterStatement();
 
-	Debug getDebug();
+	UseDebugStatement getUseDebugStatement();
 
 	UseType getUseType();
 

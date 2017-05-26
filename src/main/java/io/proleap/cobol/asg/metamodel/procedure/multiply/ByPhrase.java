@@ -6,17 +6,17 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.asg.metamodel.procedure.use;
+package io.proleap.cobol.asg.metamodel.procedure.multiply;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.UseDebugOnContext;
+import io.proleap.cobol.Cobol85Parser.MultiplyRegularOperandContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
-public interface Debug extends CobolDivisionElement {
+public interface ByPhrase extends CobolDivisionElement {
 
-	DebugOn addDebugOn(UseDebugOnContext ctx);
+	ByOperand addOperand(MultiplyRegularOperandContext ctx);
 
-	List<DebugOn> getDebugOns();
+	List<ByOperand> getByOperands();
 
 }

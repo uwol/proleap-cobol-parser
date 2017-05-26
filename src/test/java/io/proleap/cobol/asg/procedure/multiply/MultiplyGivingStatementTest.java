@@ -20,8 +20,8 @@ import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
-import io.proleap.cobol.asg.metamodel.procedure.multiply.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.GivingOperand;
+import io.proleap.cobol.asg.metamodel.procedure.multiply.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.GivingResult;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.MultiplyStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
@@ -47,7 +47,7 @@ public class MultiplyGivingStatementTest extends CobolTestBase {
 			final MultiplyStatement multiplyStatement = (MultiplyStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(multiplyStatement);
 			assertEquals(StatementTypeEnum.MULTIPLY, multiplyStatement.getStatementType());
-			assertEquals(MultiplyStatement.MultiplyType.GIVING, multiplyStatement.getMultiplyType());
+			assertEquals(MultiplyStatement.MultiplyType.BY_GIVING, multiplyStatement.getMultiplyType());
 
 			{
 				final ValueStmt operandValueStmt = multiplyStatement.getOperandValueStmt();
@@ -58,36 +58,36 @@ public class MultiplyGivingStatementTest extends CobolTestBase {
 			}
 
 			{
-				final Giving giving = multiplyStatement.getGiving();
-				assertNotNull(giving);
+				final GivingPhrase givingPhrase = multiplyStatement.getGivingPhrase();
+				assertNotNull(givingPhrase);
 
 				{
-					final GivingOperand operand = giving.getOperand();
-					assertNotNull(operand);
+					final GivingOperand givingOperand = givingPhrase.getGivingOperand();
+					assertNotNull(givingOperand);
 
-					final ValueStmt operandValueStmt = operand.getOperandValueStmt();
+					final ValueStmt operandValueStmt = givingOperand.getOperandValueStmt();
 					assertNotNull(operandValueStmt);
 
 					final CallValueStmt operandCallValueStmt = (CallValueStmt) operandValueStmt;
 					assertEquals(CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
 				}
 
-				assertEquals(2, giving.getResults().size());
+				assertEquals(2, givingPhrase.getGivingResults().size());
 
 				{
-					final GivingResult result = giving.getResults().get(0);
-					assertFalse(result.isRounded());
+					final GivingResult givingResult = givingPhrase.getGivingResults().get(0);
+					assertFalse(givingResult.isRounded());
 
-					final Call resultCall = result.getResultCall();
+					final Call resultCall = givingResult.getResultCall();
 					assertNotNull(resultCall);
 					assertEquals(CallType.UNDEFINED_CALL, resultCall.getCallType());
 				}
 
 				{
-					final GivingResult result = giving.getResults().get(1);
-					assertTrue(result.isRounded());
+					final GivingResult givingResult = givingPhrase.getGivingResults().get(1);
+					assertTrue(givingResult.isRounded());
 
-					final Call resultCall = result.getResultCall();
+					final Call resultCall = givingResult.getResultCall();
 					assertNotNull(resultCall);
 					assertEquals(CallType.UNDEFINED_CALL, resultCall.getCallType());
 				}

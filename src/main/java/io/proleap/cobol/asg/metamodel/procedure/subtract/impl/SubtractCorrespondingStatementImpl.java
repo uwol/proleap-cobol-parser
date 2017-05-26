@@ -14,9 +14,9 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.MinuendCorresponding;
-import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractCorresponding;
+import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractCorrespondingStatement;
 
-public class SubtractCorrespondingImpl extends CobolDivisionElementImpl implements SubtractCorresponding {
+public class SubtractCorrespondingStatementImpl extends CobolDivisionElementImpl implements SubtractCorrespondingStatement {
 
 	protected final SubtractCorrespondingStatementContext ctx;
 
@@ -24,7 +24,7 @@ public class SubtractCorrespondingImpl extends CobolDivisionElementImpl implemen
 
 	protected Call subtrahendCall;
 
-	public SubtractCorrespondingImpl(final ProgramUnit programUnit, final SubtractCorrespondingStatementContext ctx) {
+	public SubtractCorrespondingStatementImpl(final ProgramUnit programUnit, final SubtractCorrespondingStatementContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

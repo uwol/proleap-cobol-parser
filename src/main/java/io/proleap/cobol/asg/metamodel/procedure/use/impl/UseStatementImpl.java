@@ -17,19 +17,19 @@ import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.use.After;
-import io.proleap.cobol.asg.metamodel.procedure.use.Debug;
+import io.proleap.cobol.asg.metamodel.procedure.use.UseAfterStatement;
+import io.proleap.cobol.asg.metamodel.procedure.use.UseDebugStatement;
 import io.proleap.cobol.asg.metamodel.procedure.use.UseStatement;
 
 public class UseStatementImpl extends StatementImpl implements UseStatement {
 
 	protected final UseStatementContext ctx;
 
-	protected Debug debug;
-
-	protected After procedure;
-
 	protected final StatementType statementType = StatementTypeEnum.USE;
+
+	protected UseAfterStatement useAfterStatement;
+
+	protected UseDebugStatement useDebugStatement;
 
 	protected UseType useType;
 
@@ -40,11 +40,11 @@ public class UseStatementImpl extends StatementImpl implements UseStatement {
 	}
 
 	@Override
-	public After addAfter(final UseAfterClauseContext ctx) {
-		After result = (After) getASGElement(ctx);
+	public UseAfterStatement addUseAfterStatement(final UseAfterClauseContext ctx) {
+		UseAfterStatement result = (UseAfterStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new AfterImpl(programUnit, ctx);
+			result = new UseAfterStatementImpl(programUnit, ctx);
 
 			// global
 			if (ctx.GLOBAL() != null) {
@@ -54,7 +54,7 @@ public class UseStatementImpl extends StatementImpl implements UseStatement {
 			// on
 			result.addAfterOn(ctx.useAfterOn());
 
-			procedure = result;
+			useAfterStatement = result;
 			registerASGElement(result);
 		}
 
@@ -62,18 +62,18 @@ public class UseStatementImpl extends StatementImpl implements UseStatement {
 	}
 
 	@Override
-	public Debug addDebug(final UseDebugClauseContext ctx) {
-		Debug result = (Debug) getASGElement(ctx);
+	public UseDebugStatement addUseDebugStatement(final UseDebugClauseContext ctx) {
+		UseDebugStatement result = (UseDebugStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new DebugImpl(programUnit, ctx);
+			result = new UseDebugStatementImpl(programUnit, ctx);
 
 			// debug on
 			for (final UseDebugOnContext useDebugOnContext : ctx.useDebugOn()) {
 				result.addDebugOn(useDebugOnContext);
 			}
 
-			debug = result;
+			useDebugStatement = result;
 			registerASGElement(result);
 		}
 
@@ -81,18 +81,18 @@ public class UseStatementImpl extends StatementImpl implements UseStatement {
 	}
 
 	@Override
-	public After getAfter() {
-		return procedure;
-	}
-
-	@Override
-	public Debug getDebug() {
-		return debug;
-	}
-
-	@Override
 	public StatementType getStatementType() {
 		return statementType;
+	}
+
+	@Override
+	public UseAfterStatement getUseAfterStatement() {
+		return useAfterStatement;
+	}
+
+	@Override
+	public UseDebugStatement getUseDebugStatement() {
+		return useDebugStatement;
 	}
 
 	@Override

@@ -23,9 +23,9 @@ import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractCorresponding;
-import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFrom;
-import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFromGiving;
+import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractCorrespondingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFromGivingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFromStatement;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractStatement;
 
 public class SubtractStatementImpl extends StatementImpl implements SubtractStatement {
@@ -38,11 +38,11 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 
 	protected final StatementType statementType = StatementTypeEnum.SUBTRACT;
 
-	protected SubtractCorresponding subtractCorresponding;
+	protected SubtractCorrespondingStatement subtractCorrespondingStatement;
 
-	protected SubtractFrom subtractFrom;
+	protected SubtractFromGivingStatement subtractFromGivingStatement;
 
-	protected SubtractFromGiving subtractFromGiving;
+	protected SubtractFromStatement subtractFromStatement;
 
 	protected SubtractType subtractType;
 
@@ -53,11 +53,12 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 	}
 
 	@Override
-	public SubtractCorresponding addSubtractCorresponding(final SubtractCorrespondingStatementContext ctx) {
-		SubtractCorresponding result = (SubtractCorresponding) getASGElement(ctx);
+	public SubtractCorrespondingStatement addSubtractCorrespondingStatement(
+			final SubtractCorrespondingStatementContext ctx) {
+		SubtractCorrespondingStatement result = (SubtractCorrespondingStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new SubtractCorrespondingImpl(programUnit, ctx);
+			result = new SubtractCorrespondingStatementImpl(programUnit, ctx);
 
 			// subtrahend call
 			final Call subtrahendCall = createCall(ctx.qualifiedDataName());
@@ -66,7 +67,7 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 			// minuend
 			result.addMinuend(ctx.subtractMinuendCorresponding());
 
-			subtractCorresponding = result;
+			subtractCorrespondingStatement = result;
 			registerASGElement(result);
 		}
 
@@ -74,35 +75,11 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 	}
 
 	@Override
-	public SubtractFrom addSubtractFrom(final SubtractFromStatementContext ctx) {
-		SubtractFrom result = (SubtractFrom) getASGElement(ctx);
+	public SubtractFromGivingStatement addSubtractFromGivingStatement(final SubtractFromGivingStatementContext ctx) {
+		SubtractFromGivingStatement result = (SubtractFromGivingStatement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new SubtractFromImpl(programUnit, ctx);
-
-			// subtrahends
-			for (final SubtractSubtrahendContext subtractSubtrahendContext : ctx.subtractSubtrahend()) {
-				result.addSubtrahend(subtractSubtrahendContext);
-			}
-
-			// minuends
-			for (final SubtractMinuendContext subtractMinuendContext : ctx.subtractMinuend()) {
-				result.addMinuend(subtractMinuendContext);
-			}
-
-			subtractFrom = result;
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public SubtractFromGiving addSubtractFromGiving(final SubtractFromGivingStatementContext ctx) {
-		SubtractFromGiving result = (SubtractFromGiving) getASGElement(ctx);
-
-		if (result == null) {
-			result = new SubtractFromGivingImpl(programUnit, ctx);
+			result = new SubtractFromGivingStatementImpl(programUnit, ctx);
 
 			// subtrahends
 			for (final SubtractSubtrahendContext subtractSubtrahendContext : ctx.subtractSubtrahend()) {
@@ -117,7 +94,31 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 				result.addGiving(subtractGivingContext);
 			}
 
-			subtractFromGiving = result;
+			subtractFromGivingStatement = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public SubtractFromStatement addSubtractFromStatement(final SubtractFromStatementContext ctx) {
+		SubtractFromStatement result = (SubtractFromStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SubtractFromStatementImpl(programUnit, ctx);
+
+			// subtrahends
+			for (final SubtractSubtrahendContext subtractSubtrahendContext : ctx.subtractSubtrahend()) {
+				result.addSubtrahend(subtractSubtrahendContext);
+			}
+
+			// minuends
+			for (final SubtractMinuendContext subtractMinuendContext : ctx.subtractMinuend()) {
+				result.addMinuend(subtractMinuendContext);
+			}
+
+			subtractFromStatement = result;
 			registerASGElement(result);
 		}
 
@@ -140,18 +141,18 @@ public class SubtractStatementImpl extends StatementImpl implements SubtractStat
 	}
 
 	@Override
-	public SubtractCorresponding getSubtractCorresponding() {
-		return subtractCorresponding;
+	public SubtractCorrespondingStatement getSubtractCorrespondingStatement() {
+		return subtractCorrespondingStatement;
 	}
 
 	@Override
-	public SubtractFrom getSubtractFrom() {
-		return subtractFrom;
+	public SubtractFromGivingStatement getSubtractFromGivingStatement() {
+		return subtractFromGivingStatement;
 	}
 
 	@Override
-	public SubtractFromGiving getSubtractFromGiving() {
-		return subtractFromGiving;
+	public SubtractFromStatement getSubtractFromStatement() {
+		return subtractFromStatement;
 	}
 
 	@Override

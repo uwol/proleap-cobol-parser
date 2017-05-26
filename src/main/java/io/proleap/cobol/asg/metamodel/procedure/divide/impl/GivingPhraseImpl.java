@@ -16,14 +16,14 @@ import io.proleap.cobol.Cobol85Parser.DivideGivingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.divide.DivideGivingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.divide.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.GivingPhrase;
 
 public class GivingPhraseImpl extends CobolDivisionElementImpl implements GivingPhrase {
 
 	protected DivideGivingPhraseContext ctx;
 
-	protected List<DivideGivingStatement> givings = new ArrayList<DivideGivingStatement>();
+	protected List<Giving> givings = new ArrayList<Giving>();
 
 	public GivingPhraseImpl(final ProgramUnit programUnit, final DivideGivingPhraseContext ctx) {
 		super(programUnit, ctx);
@@ -32,11 +32,11 @@ public class GivingPhraseImpl extends CobolDivisionElementImpl implements Giving
 	}
 
 	@Override
-	public DivideGivingStatement addGiving(final DivideGivingContext ctx) {
-		DivideGivingStatement result = (DivideGivingStatement) getASGElement(ctx);
+	public Giving addGiving(final DivideGivingContext ctx) {
+		Giving result = (Giving) getASGElement(ctx);
 
 		if (result == null) {
-			result = new DivideGivingStatementImpl(programUnit, ctx);
+			result = new GivingImpl(programUnit, ctx);
 
 			// call
 			final Call call = createCall(ctx.identifier());
@@ -55,7 +55,7 @@ public class GivingPhraseImpl extends CobolDivisionElementImpl implements Giving
 	}
 
 	@Override
-	public List<DivideGivingStatement> getGivings() {
+	public List<Giving> getGivings() {
 		return givings;
 	}
 

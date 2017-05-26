@@ -37,7 +37,7 @@ public class AddToGivingStatementTest extends CobolTestBase {
 
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(0);
-			assertEquals(AddStatement.AddType.GIVING, addStatement.getAddType());
+			assertEquals(AddStatement.AddType.TO_GIVING, addStatement.getAddType());
 			assertNotNull(addStatement.getAddToGivingStatement());
 
 			{
@@ -67,7 +67,7 @@ public class AddToGivingStatementTest extends CobolTestBase {
 
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(1);
-			assertEquals(AddStatement.AddType.GIVING, addStatement.getAddType());
+			assertEquals(AddStatement.AddType.TO_GIVING, addStatement.getAddType());
 			assertNotNull(addStatement.getAddToGivingStatement());
 
 			{

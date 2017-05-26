@@ -17,27 +17,27 @@ import io.proleap.cobol.Cobol85Parser.MultiplyGivingResultContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.multiply.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.GivingOperand;
+import io.proleap.cobol.asg.metamodel.procedure.multiply.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.GivingResult;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public class GivingImpl extends CobolDivisionElementImpl implements Giving {
+public class GivingPhraseImpl extends CobolDivisionElementImpl implements GivingPhrase {
 
 	protected final MultiplyGivingContext ctx;
 
-	protected GivingOperand operand;
+	protected GivingOperand givingOperand;
 
 	protected List<GivingResult> results = new ArrayList<GivingResult>();
 
-	public GivingImpl(final ProgramUnit programUnit, final MultiplyGivingContext ctx) {
+	public GivingPhraseImpl(final ProgramUnit programUnit, final MultiplyGivingContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}
 
 	@Override
-	public GivingOperand addOperand(final MultiplyGivingOperandContext ctx) {
+	public GivingOperand addGivingOperand(final MultiplyGivingOperandContext ctx) {
 		GivingOperand result = (GivingOperand) getASGElement(ctx);
 
 		if (result == null) {
@@ -47,7 +47,7 @@ public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 			final ValueStmt operandValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
 			result.setOperandValueStmt(operandValueStmt);
 
-			operand = result;
+			givingOperand = result;
 			registerASGElement(result);
 		}
 
@@ -55,7 +55,7 @@ public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 	}
 
 	@Override
-	public GivingResult addResult(final MultiplyGivingResultContext ctx) {
+	public GivingResult addGivingResult(final MultiplyGivingResultContext ctx) {
 		GivingResult result = (GivingResult) getASGElement(ctx);
 
 		if (result == null) {
@@ -78,12 +78,12 @@ public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 	}
 
 	@Override
-	public GivingOperand getOperand() {
-		return operand;
+	public GivingOperand getGivingOperand() {
+		return givingOperand;
 	}
 
 	@Override
-	public List<GivingResult> getResults() {
+	public List<GivingResult> getGivingResults() {
 		return results;
 	}
 

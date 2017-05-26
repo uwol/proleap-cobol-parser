@@ -6,31 +6,31 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.asg.metamodel.procedure.divide.impl;
+package io.proleap.cobol.asg.metamodel.procedure.multiply.impl;
 
-import io.proleap.cobol.Cobol85Parser.DivideGivingContext;
+import io.proleap.cobol.Cobol85Parser.MultiplyRegularOperandContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.divide.DivideGivingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.multiply.ByOperand;
 
-public class DivideGivingStatementImpl extends CobolDivisionElementImpl implements DivideGivingStatement {
+public class ByOperandImpl extends CobolDivisionElementImpl implements ByOperand {
 
-	protected Call call;
+	protected final MultiplyRegularOperandContext ctx;
 
-	protected DivideGivingContext ctx;
+	protected Call operandCall;
 
 	protected boolean rounded;
 
-	public DivideGivingStatementImpl(final ProgramUnit programUnit, final DivideGivingContext ctx) {
+	public ByOperandImpl(final ProgramUnit programUnit, final MultiplyRegularOperandContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}
 
 	@Override
-	public Call getCall() {
-		return call;
+	public Call getOperandCall() {
+		return operandCall;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class DivideGivingStatementImpl extends CobolDivisionElementImpl implemen
 	}
 
 	@Override
-	public void setCall(final Call call) {
-		this.call = call;
+	public void setOperandCall(final Call operandCall) {
+		this.operandCall = operandCall;
 	}
 
 	@Override

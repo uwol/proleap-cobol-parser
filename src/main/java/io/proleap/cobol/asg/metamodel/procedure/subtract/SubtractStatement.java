@@ -24,21 +24,21 @@ public interface SubtractStatement extends Statement {
 		CORRESPONDING, FROM, FROM_GIVING
 	}
 
-	SubtractCorresponding addSubtractCorresponding(SubtractCorrespondingStatementContext ctx);
+	SubtractCorrespondingStatement addSubtractCorrespondingStatement(SubtractCorrespondingStatementContext ctx);
 
-	SubtractFrom addSubtractFrom(SubtractFromStatementContext ctx);
+	SubtractFromGivingStatement addSubtractFromGivingStatement(SubtractFromGivingStatementContext ctx);
 
-	SubtractFromGiving addSubtractFromGiving(SubtractFromGivingStatementContext ctx);
+	SubtractFromStatement addSubtractFromStatement(SubtractFromStatementContext ctx);
 
 	NotOnSizeErrorPhrase getNotOnSizeErrorPhrase();
 
 	OnSizeErrorPhrase getOnSizeErrorPhrase();
 
-	SubtractCorresponding getSubtractCorresponding();
+	SubtractCorrespondingStatement getSubtractCorrespondingStatement();
 
-	SubtractFrom getSubtractFrom();
+	SubtractFromGivingStatement getSubtractFromGivingStatement();
 
-	SubtractFromGiving getSubtractFromGiving();
+	SubtractFromStatement getSubtractFromStatement();
 
 	SubtractType getSubtractType();
 

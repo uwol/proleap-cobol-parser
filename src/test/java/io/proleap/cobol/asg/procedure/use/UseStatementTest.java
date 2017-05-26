@@ -18,8 +18,8 @@ import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.declaratives.Declarative;
 import io.proleap.cobol.asg.metamodel.procedure.declaratives.Declaratives;
-import io.proleap.cobol.asg.metamodel.procedure.use.Debug;
 import io.proleap.cobol.asg.metamodel.procedure.use.DebugOn;
+import io.proleap.cobol.asg.metamodel.procedure.use.UseDebugStatement;
 import io.proleap.cobol.asg.metamodel.procedure.use.UseStatement;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -46,11 +46,11 @@ public class UseStatementTest extends CobolTestBase {
 			assertEquals(UseStatement.UseType.DEBUG, useStatement.getUseType());
 
 			{
-				final Debug debug = useStatement.getDebug();
-				assertEquals(3, debug.getDebugOns().size());
+				final UseDebugStatement useDebugStatement = useStatement.getUseDebugStatement();
+				assertEquals(3, useDebugStatement.getDebugOns().size());
 
 				{
-					final DebugOn debugOn = debug.getDebugOns().get(0);
+					final DebugOn debugOn = useDebugStatement.getDebugOns().get(0);
 					assertEquals(DebugOn.DebugOnType.ALL_REFERENCES, debugOn.getDebugOnType());
 
 					final Call onCall = debugOn.getOnCall();
@@ -58,13 +58,13 @@ public class UseStatementTest extends CobolTestBase {
 				}
 
 				{
-					final DebugOn debugOn = debug.getDebugOns().get(1);
+					final DebugOn debugOn = useDebugStatement.getDebugOns().get(1);
 					assertEquals(DebugOn.DebugOnType.ALL_PROCEDURES, debugOn.getDebugOnType());
 					assertNull(debugOn.getOnCall());
 				}
 
 				{
-					final DebugOn debugOn = debug.getDebugOns().get(2);
+					final DebugOn debugOn = useDebugStatement.getDebugOns().get(2);
 					assertEquals(DebugOn.DebugOnType.PROCEDURE, debugOn.getDebugOnType());
 
 					final Call onCall = debugOn.getOnCall();
@@ -78,7 +78,7 @@ public class UseStatementTest extends CobolTestBase {
 			final UseStatement useStatement = declarative.getUseStament();
 			assertNotNull(useStatement);
 			assertEquals(UseStatement.UseType.AFTER, useStatement.getUseType());
-			assertTrue(useStatement.getAfter().isGlobal());
+			assertTrue(useStatement.getUseAfterStatement().isGlobal());
 		}
 	}
 }

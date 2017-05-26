@@ -20,9 +20,9 @@ import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
+import io.proleap.cobol.asg.metamodel.procedure.multiply.ByOperand;
+import io.proleap.cobol.asg.metamodel.procedure.multiply.ByPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.MultiplyStatement;
-import io.proleap.cobol.asg.metamodel.procedure.multiply.Regular;
-import io.proleap.cobol.asg.metamodel.procedure.multiply.RegularOperand;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -46,7 +46,7 @@ public class MultiplyRegularStatementTest extends CobolTestBase {
 			final MultiplyStatement multiplyStatement = (MultiplyStatement) procedureDivision.getStatements().get(0);
 			assertNotNull(multiplyStatement);
 			assertEquals(StatementTypeEnum.MULTIPLY, multiplyStatement.getStatementType());
-			assertEquals(MultiplyStatement.MultiplyType.REGULAR, multiplyStatement.getMultiplyType());
+			assertEquals(MultiplyStatement.MultiplyType.BY, multiplyStatement.getMultiplyType());
 
 			{
 				final ValueStmt operandValueStmt = multiplyStatement.getOperandValueStmt();
@@ -57,24 +57,24 @@ public class MultiplyRegularStatementTest extends CobolTestBase {
 			}
 
 			{
-				final Regular regular = multiplyStatement.getRegular();
-				assertNotNull(regular);
-				assertEquals(2, regular.getOperands().size());
+				final ByPhrase byPhrase = multiplyStatement.getByPhrase();
+				assertNotNull(byPhrase);
+				assertEquals(2, byPhrase.getByOperands().size());
 
 				{
-					final RegularOperand operand = regular.getOperands().get(0);
-					assertTrue(operand.isRounded());
+					final ByOperand byOperand = byPhrase.getByOperands().get(0);
+					assertTrue(byOperand.isRounded());
 
-					final Call operandCall = operand.getOperandCall();
+					final Call operandCall = byOperand.getOperandCall();
 					assertNotNull(operandCall);
 					assertEquals(CallType.UNDEFINED_CALL, operandCall.getCallType());
 				}
 
 				{
-					final RegularOperand operand = regular.getOperands().get(1);
-					assertFalse(operand.isRounded());
+					final ByOperand byOperand = byPhrase.getByOperands().get(1);
+					assertFalse(byOperand.isRounded());
 
-					final Call operandCall = operand.getOperandCall();
+					final Call operandCall = byOperand.getOperandCall();
 					assertNotNull(operandCall);
 					assertEquals(CallType.UNDEFINED_CALL, operandCall.getCallType());
 				}

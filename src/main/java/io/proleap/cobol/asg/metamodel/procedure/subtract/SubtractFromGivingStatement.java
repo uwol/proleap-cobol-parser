@@ -15,7 +15,7 @@ import io.proleap.cobol.Cobol85Parser.SubtractMinuendGivingContext;
 import io.proleap.cobol.Cobol85Parser.SubtractSubtrahendContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
-public interface SubtractFromGiving extends CobolDivisionElement {
+public interface SubtractFromGivingStatement extends CobolDivisionElement {
 
 	Giving addGiving(SubtractGivingContext ctx);
 

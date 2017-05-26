@@ -15,7 +15,7 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface GivingPhrase extends CobolDivisionElement {
 
-	DivideGivingStatement addGiving(DivideGivingContext ctx);
+	Giving addGiving(DivideGivingContext ctx);
 
-	List<DivideGivingStatement> getGivings();
+	List<Giving> getGivings();
 }

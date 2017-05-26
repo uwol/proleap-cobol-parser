@@ -20,16 +20,18 @@ import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.multiply.Giving;
+import io.proleap.cobol.asg.metamodel.procedure.multiply.ByPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.multiply.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.MultiplyStatement;
-import io.proleap.cobol.asg.metamodel.procedure.multiply.Regular;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class MultiplyStatementImpl extends StatementImpl implements MultiplyStatement {
 
+	protected ByPhrase byPhrase;
+
 	protected final MultiplyStatementContext ctx;
 
-	protected Giving giving;
+	protected GivingPhrase givingPhrase;
 
 	protected MultiplyType multiplyType;
 
@@ -38,8 +40,6 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 	protected OnSizeErrorPhrase onSizeErrorPhrase;
 
 	protected ValueStmt operandValueStmt;
-
-	protected Regular regular;
 
 	protected final StatementType statementType = StatementTypeEnum.MULTIPLY;
 
@@ -50,39 +50,17 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 	}
 
 	@Override
-	public Giving addGiving(final MultiplyGivingContext ctx) {
-		Giving result = (Giving) getASGElement(ctx);
+	public ByPhrase addByPhrase(final MultiplyRegularContext ctx) {
+		ByPhrase result = (ByPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new GivingImpl(programUnit, ctx);
-
-			// giving operand
-			result.addOperand(ctx.multiplyGivingOperand());
-
-			// giving results
-			for (final MultiplyGivingResultContext multiplyGivingResultContext : ctx.multiplyGivingResult()) {
-				result.addResult(multiplyGivingResultContext);
-			}
-
-			giving = result;
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public Regular addRegular(final MultiplyRegularContext ctx) {
-		Regular result = (Regular) getASGElement(ctx);
-
-		if (result == null) {
-			result = new RegularImpl(programUnit, ctx);
+			result = new ByPhraseImpl(programUnit, ctx);
 
 			for (final MultiplyRegularOperandContext multiplyRegularOperandContext : ctx.multiplyRegularOperand()) {
 				result.addOperand(multiplyRegularOperandContext);
 			}
 
-			regular = result;
+			byPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -90,8 +68,35 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 	}
 
 	@Override
-	public Giving getGiving() {
-		return giving;
+	public GivingPhrase addGivingPhrase(final MultiplyGivingContext ctx) {
+		GivingPhrase result = (GivingPhrase) getASGElement(ctx);
+
+		if (result == null) {
+			result = new GivingPhraseImpl(programUnit, ctx);
+
+			// giving operand
+			result.addGivingOperand(ctx.multiplyGivingOperand());
+
+			// giving results
+			for (final MultiplyGivingResultContext multiplyGivingResultContext : ctx.multiplyGivingResult()) {
+				result.addGivingResult(multiplyGivingResultContext);
+			}
+
+			givingPhrase = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public ByPhrase getByPhrase() {
+		return byPhrase;
+	}
+
+	@Override
+	public GivingPhrase getGivingPhrase() {
+		return givingPhrase;
 	}
 
 	@Override
@@ -112,11 +117,6 @@ public class MultiplyStatementImpl extends StatementImpl implements MultiplyStat
 	@Override
 	public ValueStmt getOperandValueStmt() {
 		return operandValueStmt;
-	}
-
-	@Override
-	public Regular getRegular() {
-		return regular;
 	}
 
 	@Override

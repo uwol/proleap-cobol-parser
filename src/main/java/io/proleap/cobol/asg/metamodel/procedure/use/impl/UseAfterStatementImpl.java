@@ -14,10 +14,10 @@ import io.proleap.cobol.Cobol85Parser.UseAfterOnContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.use.After;
+import io.proleap.cobol.asg.metamodel.procedure.use.UseAfterStatement;
 import io.proleap.cobol.asg.metamodel.procedure.use.AfterOn;
 
-public class AfterImpl extends CobolDivisionElementImpl implements After {
+public class UseAfterStatementImpl extends CobolDivisionElementImpl implements UseAfterStatement {
 
 	protected UseAfterClauseContext ctx;
 
@@ -25,7 +25,7 @@ public class AfterImpl extends CobolDivisionElementImpl implements After {
 
 	protected AfterOn afterOn;
 
-	public AfterImpl(final ProgramUnit programUnit, final UseAfterClauseContext ctx) {
+	public UseAfterStatementImpl(final ProgramUnit programUnit, final UseAfterClauseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;

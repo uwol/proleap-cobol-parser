@@ -12,7 +12,7 @@ import io.proleap.cobol.Cobol85Parser.SubtractMinuendCorrespondingContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 
-public interface SubtractCorresponding extends CobolDivisionElement {
+public interface SubtractCorrespondingStatement extends CobolDivisionElement {
 
 	MinuendCorresponding addMinuend(SubtractMinuendCorrespondingContext ctx);
 

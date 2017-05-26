@@ -16,27 +16,27 @@ import io.proleap.cobol.Cobol85Parser.MultiplyRegularOperandContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.multiply.Regular;
-import io.proleap.cobol.asg.metamodel.procedure.multiply.RegularOperand;
+import io.proleap.cobol.asg.metamodel.procedure.multiply.ByPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.multiply.ByOperand;
 
-public class RegularImpl extends CobolDivisionElementImpl implements Regular {
+public class ByPhraseImpl extends CobolDivisionElementImpl implements ByPhrase {
 
 	protected final MultiplyRegularContext ctx;
 
-	protected List<RegularOperand> operands = new ArrayList<RegularOperand>();
+	protected List<ByOperand> byOperands = new ArrayList<ByOperand>();
 
-	public RegularImpl(final ProgramUnit programUnit, final MultiplyRegularContext ctx) {
+	public ByPhraseImpl(final ProgramUnit programUnit, final MultiplyRegularContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}
 
 	@Override
-	public RegularOperand addOperand(final MultiplyRegularOperandContext ctx) {
-		RegularOperand result = (RegularOperand) getASGElement(ctx);
+	public ByOperand addOperand(final MultiplyRegularOperandContext ctx) {
+		ByOperand result = (ByOperand) getASGElement(ctx);
 
 		if (result == null) {
-			result = new RegularOperandImpl(programUnit, ctx);
+			result = new ByOperandImpl(programUnit, ctx);
 
 			// call
 			final Call operandCall = createCall(ctx.identifier());
@@ -47,7 +47,7 @@ public class RegularImpl extends CobolDivisionElementImpl implements Regular {
 				result.setRounded(true);
 			}
 
-			operands.add(result);
+			byOperands.add(result);
 			registerASGElement(result);
 		}
 
@@ -55,8 +55,8 @@ public class RegularImpl extends CobolDivisionElementImpl implements Regular {
 	}
 
 	@Override
-	public List<RegularOperand> getOperands() {
-		return operands;
+	public List<ByOperand> getByOperands() {
+		return byOperands;
 	}
 
 }

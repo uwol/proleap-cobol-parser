@@ -14,14 +14,14 @@ import io.proleap.cobol.Cobol85Parser.MultiplyGivingOperandContext;
 import io.proleap.cobol.Cobol85Parser.MultiplyGivingResultContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
-public interface Giving extends CobolDivisionElement {
+public interface GivingPhrase extends CobolDivisionElement {
 
-	GivingOperand addOperand(MultiplyGivingOperandContext ctx);
+	GivingOperand addGivingOperand(MultiplyGivingOperandContext ctx);
 
-	GivingResult addResult(MultiplyGivingResultContext ctx);
+	GivingResult addGivingResult(MultiplyGivingResultContext ctx);
 
-	GivingOperand getOperand();
+	GivingOperand getGivingOperand();
 
-	List<GivingResult> getResults();
+	List<GivingResult> getGivingResults();
 
 }

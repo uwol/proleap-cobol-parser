@@ -21,7 +21,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
 public interface AddStatement extends Statement {
 
 	enum AddType {
-		CORRESPONDING, GIVING, TO
+		CORRESPONDING, TO_GIVING, TO
 	}
 
 	AddCorrespondingStatement addAddCorrespondingStatement(AddCorrespondingStatementContext ctx);

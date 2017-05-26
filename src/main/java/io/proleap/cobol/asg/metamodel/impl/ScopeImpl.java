@@ -291,7 +291,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 				type = AddStatement.AddType.TO;
 			} else if (ctx.addToGivingStatement() != null) {
 				result.addAddToGivingStatement(ctx.addToGivingStatement());
-				type = AddStatement.AddType.GIVING;
+				type = AddStatement.AddType.TO_GIVING;
 			} else if (ctx.addCorrespondingStatement() != null) {
 				result.addAddCorrespondingStatement(ctx.addCorrespondingStatement());
 				type = AddStatement.AddType.CORRESPONDING;
@@ -1056,11 +1056,11 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			final MultiplyStatement.MultiplyType type;
 
 			if (ctx.multiplyRegular() != null) {
-				result.addRegular(ctx.multiplyRegular());
-				type = MultiplyStatement.MultiplyType.REGULAR;
+				result.addByPhrase(ctx.multiplyRegular());
+				type = MultiplyStatement.MultiplyType.BY;
 			} else if (ctx.multiplyGiving() != null) {
-				result.addGiving(ctx.multiplyGiving());
-				type = MultiplyStatement.MultiplyType.GIVING;
+				result.addGivingPhrase(ctx.multiplyGiving());
+				type = MultiplyStatement.MultiplyType.BY_GIVING;
 			} else {
 				type = null;
 			}
@@ -1631,13 +1631,13 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			final SubtractStatement.SubtractType type;
 
 			if (ctx.subtractFromStatement() != null) {
-				result.addSubtractFrom(ctx.subtractFromStatement());
+				result.addSubtractFromStatement(ctx.subtractFromStatement());
 				type = SubtractStatement.SubtractType.FROM;
 			} else if (ctx.subtractFromGivingStatement() != null) {
-				result.addSubtractFromGiving(ctx.subtractFromGivingStatement());
+				result.addSubtractFromGivingStatement(ctx.subtractFromGivingStatement());
 				type = SubtractStatement.SubtractType.FROM_GIVING;
 			} else if (ctx.subtractCorrespondingStatement() != null) {
-				result.addSubtractCorresponding(ctx.subtractCorrespondingStatement());
+				result.addSubtractCorrespondingStatement(ctx.subtractCorrespondingStatement());
 				type = SubtractStatement.SubtractType.CORRESPONDING;
 			} else {
 				type = null;

@@ -6,18 +6,18 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.asg.metamodel.procedure.multiply;
+package io.proleap.cobol.asg.metamodel.procedure.divide;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 
-public interface RegularOperand extends CobolDivisionElement {
+public interface Giving extends CobolDivisionElement {
 
-	Call getOperandCall();
+	Call getCall();
 
 	boolean isRounded();
 
-	void setOperandCall(Call operandCall);
+	void setCall(Call call);
 
 	void setRounded(boolean rounded);
 

@@ -19,7 +19,7 @@ import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.MinuendGiving;
-import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFromGiving;
+import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFromGivingStatement;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractStatement;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Subtrahend;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
@@ -46,14 +46,15 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 			assertNotNull(subtractStatement);
 			assertEquals(StatementTypeEnum.SUBTRACT, subtractStatement.getStatementType());
 			assertEquals(SubtractStatement.SubtractType.FROM_GIVING, subtractStatement.getSubtractType());
-			assertNotNull(subtractStatement.getSubtractFromGiving());
+			assertNotNull(subtractStatement.getSubtractFromGivingStatement());
 
 			{
-				final SubtractFromGiving subtractFromGiving = subtractStatement.getSubtractFromGiving();
-				assertEquals(2, subtractFromGiving.getSubtrahends().size());
+				final SubtractFromGivingStatement subtractFromGivingStatement = subtractStatement
+						.getSubtractFromGivingStatement();
+				assertEquals(2, subtractFromGivingStatement.getSubtrahends().size());
 
 				{
-					final Subtrahend subtrahend = subtractFromGiving.getSubtrahends().get(0);
+					final Subtrahend subtrahend = subtractFromGivingStatement.getSubtrahends().get(0);
 					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
 
 					final CallValueStmt subtrahendCallValueStmt = (CallValueStmt) subtrahendValueStmt;
@@ -61,21 +62,21 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 				}
 
 				{
-					final Subtrahend subtrahend = subtractFromGiving.getSubtrahends().get(1);
+					final Subtrahend subtrahend = subtractFromGivingStatement.getSubtrahends().get(1);
 					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
 					assertEquals(1, subtrahendValueStmt.getValue());
 				}
 
 				{
-					final MinuendGiving minuend = subtractFromGiving.getMinuend();
+					final MinuendGiving minuend = subtractFromGivingStatement.getMinuend();
 					final Call minuendCall = minuend.getMinuendCall();
 					assertEquals(CallType.UNDEFINED_CALL, minuendCall.getCallType());
 				}
 
-				assertEquals(2, subtractFromGiving.getGivings().size());
+				assertEquals(2, subtractFromGivingStatement.getGivings().size());
 
 				{
-					final Giving giving = subtractFromGiving.getGivings().get(0);
+					final Giving giving = subtractFromGivingStatement.getGivings().get(0);
 					assertFalse(giving.isRounded());
 
 					final Call givingCall = giving.getGivingCall();
@@ -83,7 +84,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 				}
 
 				{
-					final Giving giving = subtractFromGiving.getGivings().get(1);
+					final Giving giving = subtractFromGivingStatement.getGivings().get(1);
 					assertTrue(giving.isRounded());
 
 					final Call givingCall = giving.getGivingCall();
