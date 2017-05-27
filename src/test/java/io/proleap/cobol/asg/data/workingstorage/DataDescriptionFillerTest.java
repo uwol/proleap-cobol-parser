@@ -41,7 +41,8 @@ public class DataDescriptionFillerTest extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntry);
 			assertNull(dataDescriptionEntry.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+					dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;

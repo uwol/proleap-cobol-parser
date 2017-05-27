@@ -82,7 +82,8 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestBase {
 				assertEquals(Literal.LiteralType.FIGURATIVE_CONSTANT, literal.getLiteralType());
 
 				assertNotNull(literal.getFigurativeConstant());
-				assertEquals(FigurativeConstantType.HIGH_VALUE, literal.getFigurativeConstant().getFigurativeConstantType());
+				assertEquals(FigurativeConstantType.HIGH_VALUE,
+						literal.getFigurativeConstant().getFigurativeConstantType());
 			}
 		}
 
@@ -103,7 +104,8 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestBase {
 				assertEquals(Literal.LiteralType.FIGURATIVE_CONSTANT, literal.getLiteralType());
 
 				assertNotNull(literal.getFigurativeConstant());
-				assertEquals(FigurativeConstantType.HIGH_VALUES, literal.getFigurativeConstant().getFigurativeConstantType());
+				assertEquals(FigurativeConstantType.HIGH_VALUES,
+						literal.getFigurativeConstant().getFigurativeConstantType());
 			}
 		}
 
@@ -124,7 +126,8 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestBase {
 				assertEquals(Literal.LiteralType.FIGURATIVE_CONSTANT, literal.getLiteralType());
 
 				assertNotNull(literal.getFigurativeConstant());
-				assertEquals(FigurativeConstantType.LOW_VALUE, literal.getFigurativeConstant().getFigurativeConstantType());
+				assertEquals(FigurativeConstantType.LOW_VALUE,
+						literal.getFigurativeConstant().getFigurativeConstantType());
 			}
 		}
 
@@ -145,7 +148,8 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestBase {
 				assertEquals(Literal.LiteralType.FIGURATIVE_CONSTANT, literal.getLiteralType());
 
 				assertNotNull(literal.getFigurativeConstant());
-				assertEquals(FigurativeConstantType.LOW_VALUES, literal.getFigurativeConstant().getFigurativeConstantType());
+				assertEquals(FigurativeConstantType.LOW_VALUES,
+						literal.getFigurativeConstant().getFigurativeConstantType());
 			}
 		}
 
@@ -229,7 +233,8 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestBase {
 				assertEquals(Literal.LiteralType.FIGURATIVE_CONSTANT, literal.getLiteralType());
 
 				assertNotNull(literal.getFigurativeConstant());
-				assertEquals(FigurativeConstantType.QUOTES, literal.getFigurativeConstant().getFigurativeConstantType());
+				assertEquals(FigurativeConstantType.QUOTES,
+						literal.getFigurativeConstant().getFigurativeConstantType());
 			}
 		}
 
@@ -276,7 +281,8 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestBase {
 					assertEquals(Literal.LiteralType.FIGURATIVE_CONSTANT, literal.getLiteralType());
 
 					assertNotNull(literal.getFigurativeConstant());
-					assertEquals(FigurativeConstantType.SPACES, literal.getFigurativeConstant().getFigurativeConstantType());
+					assertEquals(FigurativeConstantType.SPACES,
+							literal.getFigurativeConstant().getFigurativeConstantType());
 				}
 			}
 		}
@@ -303,7 +309,8 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestBase {
 					assertEquals(Literal.LiteralType.FIGURATIVE_CONSTANT, literal.getLiteralType());
 
 					assertNotNull(literal.getFigurativeConstant());
-					assertEquals(FigurativeConstantType.ZERO, literal.getFigurativeConstant().getFigurativeConstantType());
+					assertEquals(FigurativeConstantType.ZERO,
+							literal.getFigurativeConstant().getFigurativeConstantType());
 				}
 			}
 		}
@@ -330,7 +337,8 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestBase {
 					assertEquals(Literal.LiteralType.FIGURATIVE_CONSTANT, literal.getLiteralType());
 
 					assertNotNull(literal.getFigurativeConstant());
-					assertEquals(FigurativeConstantType.ZEROS, literal.getFigurativeConstant().getFigurativeConstantType());
+					assertEquals(FigurativeConstantType.ZEROS,
+							literal.getFigurativeConstant().getFigurativeConstantType());
 				}
 			}
 		}
@@ -352,7 +360,8 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestBase {
 				assertEquals(Literal.LiteralType.FIGURATIVE_CONSTANT, literal.getLiteralType());
 
 				assertNotNull(literal.getFigurativeConstant());
-				assertEquals(FigurativeConstantType.ZEROES, literal.getFigurativeConstant().getFigurativeConstantType());
+				assertEquals(FigurativeConstantType.ZEROES,
+						literal.getFigurativeConstant().getFigurativeConstantType());
 			}
 		}
 	}

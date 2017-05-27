@@ -37,7 +37,8 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 
 	protected void assertProperties(final DataDescriptionEntry dataDescriptionEntryItem) {
 		assertNotNull(dataDescriptionEntryItem);
-		assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItem.getDataDescriptionEntryType());
+		assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+				dataDescriptionEntryItem.getDataDescriptionEntryType());
 		assertEquals(new Integer(2), dataDescriptionEntryItem.getLevelNumber());
 	}
 
@@ -370,7 +371,8 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getUsingClause());
-		assertEquals(UsingClause.UsingClauseType.LANGUAGE, dataDescriptionEntryGroup.getUsingClause().getUsingClauseType());
+		assertEquals(UsingClause.UsingClauseType.LANGUAGE,
+				dataDescriptionEntryGroup.getUsingClause().getUsingClauseType());
 		assertNotNull(dataDescriptionEntryGroup.getUsingClause().getOfValueStmt());
 	}
 
@@ -382,7 +384,8 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 		assertEquals("9(1)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
 
 		assertNotNull(dataDescriptionEntryGroup.getUsingClause());
-		assertEquals(UsingClause.UsingClauseType.CONVENTION, dataDescriptionEntryGroup.getUsingClause().getUsingClauseType());
+		assertEquals(UsingClause.UsingClauseType.CONVENTION,
+				dataDescriptionEntryGroup.getUsingClause().getUsingClauseType());
 		assertNotNull(dataDescriptionEntryGroup.getUsingClause().getOfValueStmt());
 	}
 

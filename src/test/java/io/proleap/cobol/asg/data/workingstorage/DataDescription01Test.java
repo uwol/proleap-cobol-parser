@@ -50,12 +50,13 @@ public class DataDescription01Test extends CobolTestBase {
 			assertEquals("ITEMS1", dataDescriptionEntryItems1.getName());
 			assertEquals(new Integer(1), dataDescriptionEntryItems1.getLevelNumber());
 			assertNull(dataDescriptionEntryItems1.getParentDataDescriptionEntryGroup());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItems1.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+					dataDescriptionEntryItems1.getDataDescriptionEntryType());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroupItems = (DataDescriptionEntryGroup) dataDescriptionEntryItems1;
-			assertNull(dataDescriptionEntryGroupItems.getPredecessor());
-			assertNotNull(dataDescriptionEntryGroupItems.getSuccessor());
-			assertEquals(dataDescriptionEntryItems2, dataDescriptionEntryItems1.getSuccessor());
+			assertNull(dataDescriptionEntryGroupItems.getDataDescriptionEntryPredecessor());
+			assertNotNull(dataDescriptionEntryGroupItems.getDataDescriptionEntrySuccessor());
+			assertEquals(dataDescriptionEntryItems2, dataDescriptionEntryItems1.getDataDescriptionEntrySuccessor());
 
 			{
 				assertNotNull(dataDescriptionEntryItem1);
@@ -63,12 +64,13 @@ public class DataDescription01Test extends CobolTestBase {
 				assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems1,
 						dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItem1.getDataDescriptionEntryType());
+				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+						dataDescriptionEntryItem1.getDataDescriptionEntryType());
 
 				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem1 = (DataDescriptionEntryGroup) dataDescriptionEntryItem1;
-				assertNull(dataDescriptionEntryGroupItem1.getPredecessor());
-				assertNotNull(dataDescriptionEntryGroupItem1.getSuccessor());
-				assertEquals(dataDescriptionEntryItem2, dataDescriptionEntryItem1.getSuccessor());
+				assertNull(dataDescriptionEntryGroupItem1.getDataDescriptionEntryPredecessor());
+				assertNotNull(dataDescriptionEntryGroupItem1.getDataDescriptionEntrySuccessor());
+				assertEquals(dataDescriptionEntryItem2, dataDescriptionEntryItem1.getDataDescriptionEntrySuccessor());
 			}
 
 			{
@@ -77,12 +79,13 @@ public class DataDescription01Test extends CobolTestBase {
 				assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems1,
 						dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItem2.getDataDescriptionEntryType());
+				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+						dataDescriptionEntryItem2.getDataDescriptionEntryType());
 
 				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem2 = (DataDescriptionEntryGroup) dataDescriptionEntryItem2;
-				assertNotNull(dataDescriptionEntryGroupItem2.getPredecessor());
-				assertEquals(dataDescriptionEntryItem1, dataDescriptionEntryItem2.getPredecessor());
-				assertNull(dataDescriptionEntryGroupItem2.getSuccessor());
+				assertNotNull(dataDescriptionEntryGroupItem2.getDataDescriptionEntryPredecessor());
+				assertEquals(dataDescriptionEntryItem1, dataDescriptionEntryItem2.getDataDescriptionEntryPredecessor());
+				assertNull(dataDescriptionEntryGroupItem2.getDataDescriptionEntrySuccessor());
 			}
 		}
 
@@ -91,12 +94,13 @@ public class DataDescription01Test extends CobolTestBase {
 			assertEquals("ITEMS2", dataDescriptionEntryItems2.getName());
 			assertEquals(new Integer(1), dataDescriptionEntryItems2.getLevelNumber());
 			assertNull(dataDescriptionEntryItems2.getParentDataDescriptionEntryGroup());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItems2.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+					dataDescriptionEntryItems2.getDataDescriptionEntryType());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroupItems = (DataDescriptionEntryGroup) dataDescriptionEntryItems2;
-			assertNotNull(dataDescriptionEntryGroupItems.getPredecessor());
-			assertEquals(dataDescriptionEntryItems1, dataDescriptionEntryItems2.getPredecessor());
-			assertNull(dataDescriptionEntryGroupItems.getSuccessor());
+			assertNotNull(dataDescriptionEntryGroupItems.getDataDescriptionEntryPredecessor());
+			assertEquals(dataDescriptionEntryItems1, dataDescriptionEntryItems2.getDataDescriptionEntryPredecessor());
+			assertNull(dataDescriptionEntryGroupItems.getDataDescriptionEntrySuccessor());
 		}
 	}
 }

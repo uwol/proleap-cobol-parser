@@ -43,8 +43,8 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 
 	protected void linkDataDescriptionEntries(final DataDescriptionEntry predecessor,
 			final DataDescriptionEntry successor) {
-		predecessor.setSuccessor(successor);
-		successor.setPredecessor(predecessor);
+		predecessor.setDataDescriptionEntrySuccessor(successor);
+		successor.setDataDescriptionEntryPredecessor(predecessor);
 	}
 
 	protected void linkDataDescriptionEntries(final DataDescriptionEntryContainer container) {

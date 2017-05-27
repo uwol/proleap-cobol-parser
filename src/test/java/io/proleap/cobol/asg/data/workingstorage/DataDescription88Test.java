@@ -40,7 +40,8 @@ public class DataDescription88Test extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntryGender);
 			assertEquals("GENDER", dataDescriptionEntryGender.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryGender.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+					dataDescriptionEntryGender.getDataDescriptionEntryType());
 			assertEquals(new Integer(1), dataDescriptionEntryGender.getLevelNumber());
 			assertNull(dataDescriptionEntryGender.getParentDataDescriptionEntryGroup());
 
@@ -50,7 +51,8 @@ public class DataDescription88Test extends CobolTestBase {
 
 				assertNotNull(dataDescriptionEntryMale);
 				assertEquals("MALE", dataDescriptionEntryMale.getName());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.CONDITION, dataDescriptionEntryMale.getDataDescriptionEntryType());
+				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.CONDITION,
+						dataDescriptionEntryMale.getDataDescriptionEntryType());
 				assertEquals(new Integer(88), dataDescriptionEntryMale.getLevelNumber());
 				assertEquals(dataDescriptionEntryGender, dataDescriptionEntryMale.getParentDataDescriptionEntryGroup());
 			}
@@ -61,7 +63,8 @@ public class DataDescription88Test extends CobolTestBase {
 
 				assertNotNull(dataDescriptionEntryFemale);
 				assertEquals("FEMALE", dataDescriptionEntryFemale.getName());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.CONDITION, dataDescriptionEntryFemale.getDataDescriptionEntryType());
+				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.CONDITION,
+						dataDescriptionEntryFemale.getDataDescriptionEntryType());
 				assertEquals(new Integer(88), dataDescriptionEntryFemale.getLevelNumber());
 				assertEquals(dataDescriptionEntryGender,
 						dataDescriptionEntryFemale.getParentDataDescriptionEntryGroup());

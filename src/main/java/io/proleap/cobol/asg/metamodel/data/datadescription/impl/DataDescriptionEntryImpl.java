@@ -26,15 +26,15 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 
 	protected DataDescriptionEntryContainer dataDescriptionEntryContainer;
 
+	protected DataDescriptionEntry dataDescriptionEntryPredecessor;
+
+	protected DataDescriptionEntry dataDescriptionEntrySuccessor;
+
 	protected Integer levelNumber;
 
 	protected final String name;
 
 	protected DataDescriptionEntryGroup parentDataDescriptionEntryGroup;
-
-	protected DataDescriptionEntry predecessor;
-
-	protected DataDescriptionEntry successor;
 
 	public DataDescriptionEntryImpl(final String name,
 			final DataDescriptionEntryContainer dataDescriptionEntryContainer, final ProgramUnit programUnit,
@@ -61,6 +61,16 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	}
 
 	@Override
+	public DataDescriptionEntry getDataDescriptionEntryPredecessor() {
+		return dataDescriptionEntryPredecessor;
+	}
+
+	@Override
+	public DataDescriptionEntry getDataDescriptionEntrySuccessor() {
+		return dataDescriptionEntrySuccessor;
+	}
+
+	@Override
 	public Integer getLevelNumber() {
 		return levelNumber;
 	}
@@ -76,13 +86,13 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	}
 
 	@Override
-	public DataDescriptionEntry getPredecessor() {
-		return predecessor;
+	public void setDataDescriptionEntryPredecessor(final DataDescriptionEntry predecessor) {
+		dataDescriptionEntryPredecessor = predecessor;
 	}
 
 	@Override
-	public DataDescriptionEntry getSuccessor() {
-		return successor;
+	public void setDataDescriptionEntrySuccessor(final DataDescriptionEntry successor) {
+		dataDescriptionEntrySuccessor = successor;
 	}
 
 	@Override
@@ -93,16 +103,6 @@ public abstract class DataDescriptionEntryImpl extends CobolDivisionElementImpl 
 	@Override
 	public void setParentDataDescriptionEntryGroup(final DataDescriptionEntryGroup parentDataDescriptionEntryGroup) {
 		this.parentDataDescriptionEntryGroup = parentDataDescriptionEntryGroup;
-	}
-
-	@Override
-	public void setPredecessor(final DataDescriptionEntry predecessor) {
-		this.predecessor = predecessor;
-	}
-
-	@Override
-	public void setSuccessor(final DataDescriptionEntry successor) {
-		this.successor = successor;
 	}
 
 	@Override
