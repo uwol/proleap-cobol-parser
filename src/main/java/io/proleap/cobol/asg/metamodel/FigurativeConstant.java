@@ -9,8 +9,9 @@
 package io.proleap.cobol.asg.metamodel;
 
 import io.proleap.cobol.Cobol85Parser.FigurativeConstantContext;
+import io.proleap.cobol.asg.metamodel.type.TypedElement;
 
-public interface FigurativeConstant extends CobolDivisionElement {
+public interface FigurativeConstant extends CobolDivisionElement, TypedElement {
 
 	public enum FigurativeConstantType {
 		ALL, HIGH_VALUE, HIGH_VALUES, LOW_VALUE, LOW_VALUES, NULL, NULLS, QUOTE, QUOTES, SPACE, SPACES, ZERO, ZEROES, ZEROS

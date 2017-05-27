@@ -13,6 +13,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.FileControlEntryCall;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class FileControlEntryCallImpl extends CallImpl implements FileControlEntryCall {
 
@@ -35,6 +36,11 @@ public class FileControlEntryCallImpl extends CallImpl implements FileControlEnt
 	@Override
 	public FileControlEntry getFileControlEntry() {
 		return fileControlEntry;
+	}
+
+	@Override
+	public Type getType() {
+		return null;
 	}
 
 	@Override

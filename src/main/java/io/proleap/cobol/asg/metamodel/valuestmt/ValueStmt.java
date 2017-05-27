@@ -11,8 +11,9 @@ package io.proleap.cobol.asg.metamodel.valuestmt;
 import java.util.List;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
+import io.proleap.cobol.asg.metamodel.type.TypedElement;
 
-public interface ValueStmt extends CobolDivisionElement {
+public interface ValueStmt extends CobolDivisionElement, TypedElement {
 
 	void addSubValueStmt(ValueStmt subValueStmt);
 

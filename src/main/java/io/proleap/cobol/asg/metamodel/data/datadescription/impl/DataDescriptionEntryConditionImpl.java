@@ -15,6 +15,7 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryCondition;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
 import io.proleap.cobol.asg.metamodel.data.datadescription.ValueClause;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class DataDescriptionEntryConditionImpl extends DataDescriptionEntryImpl
 		implements DataDescriptionEntryCondition {
@@ -52,6 +53,11 @@ public class DataDescriptionEntryConditionImpl extends DataDescriptionEntryImpl
 	@Override
 	public DataDescriptionEntryType getDataDescriptionEntryType() {
 		return DataDescriptionEntryType.CONDITION;
+	}
+
+	@Override
+	public Type getType() {
+		return null;
 	}
 
 	@Override

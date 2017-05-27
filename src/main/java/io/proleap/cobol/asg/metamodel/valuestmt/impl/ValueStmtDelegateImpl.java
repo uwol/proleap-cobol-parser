@@ -11,6 +11,7 @@ package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class ValueStmtDelegateImpl extends ValueStmtImpl implements ValueStmt {
@@ -21,6 +22,11 @@ public class ValueStmtDelegateImpl extends ValueStmtImpl implements ValueStmt {
 		super(programUnit, ctx);
 
 		this.delegate = delegate;
+	}
+
+	@Override
+	public Type getType() {
+		return delegate.getType();
 	}
 
 	@Override

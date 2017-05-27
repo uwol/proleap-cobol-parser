@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.MultDivContext;
 import io.proleap.cobol.Cobol85Parser.MultDivsContext;
 import io.proleap.cobol.Cobol85Parser.PlusMinusContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinus;
@@ -98,6 +99,11 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 	@Override
 	public List<PlusMinus> getPlusMinus() {
 		return plusMinus;
+	}
+
+	@Override
+	public Type getType() {
+		return multDivs.getType();
 	}
 
 	@Override

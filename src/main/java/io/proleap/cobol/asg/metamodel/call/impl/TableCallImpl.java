@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.TableCallContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.TableCall;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.SubscriptImpl;
@@ -74,5 +75,10 @@ public class TableCallImpl extends CallImpl implements TableCall {
 	@Override
 	public List<Subscript> getSubscripts() {
 		return subscripts;
+	}
+
+	@Override
+	public Type getType() {
+		return dataDescriptionEntry.getType();
 	}
 }

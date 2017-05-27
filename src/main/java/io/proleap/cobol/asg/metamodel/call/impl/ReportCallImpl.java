@@ -13,6 +13,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.ReportCall;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class ReportCallImpl extends CallImpl implements ReportCall {
 
@@ -20,7 +21,8 @@ public class ReportCallImpl extends CallImpl implements ReportCall {
 
 	protected ReportDescription report;
 
-	public ReportCallImpl(final String name, final ReportDescription report, final ProgramUnit programUnit, final ParserRuleContext ctx) {
+	public ReportCallImpl(final String name, final ReportDescription report, final ProgramUnit programUnit,
+			final ParserRuleContext ctx) {
 		super(name, programUnit, ctx);
 
 		this.report = report;
@@ -34,6 +36,11 @@ public class ReportCallImpl extends CallImpl implements ReportCall {
 	@Override
 	public ReportDescription getReport() {
 		return report;
+	}
+
+	@Override
+	public Type getType() {
+		return null;
 	}
 
 	@Override

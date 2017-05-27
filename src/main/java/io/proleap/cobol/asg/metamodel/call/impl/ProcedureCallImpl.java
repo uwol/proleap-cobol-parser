@@ -13,6 +13,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class ProcedureCallImpl extends CallImpl implements ProcedureCall {
 
@@ -35,6 +36,11 @@ public class ProcedureCallImpl extends CallImpl implements ProcedureCall {
 	@Override
 	public Paragraph getParagraph() {
 		return paragraph;
+	}
+
+	@Override
+	public Type getType() {
+		return null;
 	}
 
 	@Override

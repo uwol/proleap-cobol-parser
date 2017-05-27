@@ -13,6 +13,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class CallDelegateImpl extends CobolDivisionElementImpl implements Call {
 
@@ -48,6 +49,11 @@ public class CallDelegateImpl extends CobolDivisionElementImpl implements Call {
 	@Override
 	public String getName() {
 		return delegate.getName();
+	}
+
+	@Override
+	public Type getType() {
+		return delegate.getType();
 	}
 
 	@Override

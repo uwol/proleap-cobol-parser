@@ -12,6 +12,7 @@ import io.proleap.cobol.Cobol85Parser.SpecialRegisterContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.SpecialRegisterCall;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class SpecialRegisterCallImpl extends CallImpl implements SpecialRegisterCall {
 
@@ -23,7 +24,8 @@ public class SpecialRegisterCallImpl extends CallImpl implements SpecialRegister
 
 	protected final SpecialRegisterType type;
 
-	public SpecialRegisterCallImpl(final SpecialRegisterType type, final ProgramUnit programUnit, final SpecialRegisterContext ctx) {
+	public SpecialRegisterCallImpl(final SpecialRegisterType type, final ProgramUnit programUnit,
+			final SpecialRegisterContext ctx) {
 		super(null, programUnit, ctx);
 
 		this.ctx = ctx;
@@ -48,6 +50,11 @@ public class SpecialRegisterCallImpl extends CallImpl implements SpecialRegister
 	@Override
 	public SpecialRegisterType getSpecialRegisterType() {
 		return type;
+	}
+
+	@Override
+	public Type getType() {
+		return null;
 	}
 
 	@Override

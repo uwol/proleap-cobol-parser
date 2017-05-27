@@ -10,6 +10,7 @@ package io.proleap.cobol.asg.metamodel.valuestmt.relation.impl;
 
 import io.proleap.cobol.Cobol85Parser.AbbreviationContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.Abbreviation;
 
@@ -64,6 +65,11 @@ public class AbbreviationImpl extends AbstractComparisonValueStmtImpl implements
 	@Override
 	public ArithmeticValueStmt getArithmeticExpression() {
 		return arithmeticExpression;
+	}
+
+	@Override
+	public Type getType() {
+		return null;
 	}
 
 	@Override

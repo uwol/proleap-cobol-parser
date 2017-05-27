@@ -11,6 +11,8 @@ package io.proleap.cobol.asg.metamodel.impl;
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class IntegerLiteralImpl extends CobolDivisionElementImpl implements IntegerLiteral {
 
@@ -28,6 +30,11 @@ public class IntegerLiteralImpl extends CobolDivisionElementImpl implements Inte
 	@Override
 	public IntegerLiteralContext getCtx() {
 		return ctx;
+	}
+
+	@Override
+	public Type getType() {
+		return CobolBaseType.INTEGER;
 	}
 
 	@Override

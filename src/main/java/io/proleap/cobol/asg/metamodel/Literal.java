@@ -9,8 +9,9 @@
 package io.proleap.cobol.asg.metamodel;
 
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.asg.metamodel.type.TypedElement;
 
-public interface Literal extends CobolDivisionElement {
+public interface Literal extends CobolDivisionElement, TypedElement {
 
 	public enum LiteralType {
 		BOOLEAN, CICS_DFH_RESP, CICS_DFH_VALUE, FIGURATIVE_CONSTANT, NON_NUMERIC, NUMERIC

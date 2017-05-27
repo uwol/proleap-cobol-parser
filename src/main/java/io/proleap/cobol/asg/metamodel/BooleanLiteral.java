@@ -9,8 +9,9 @@
 package io.proleap.cobol.asg.metamodel;
 
 import io.proleap.cobol.Cobol85Parser.BooleanLiteralContext;
+import io.proleap.cobol.asg.metamodel.type.TypedElement;
 
-public interface BooleanLiteral extends CobolDivisionElement {
+public interface BooleanLiteral extends CobolDivisionElement, TypedElement {
 
 	@Override
 	BooleanLiteralContext getCtx();

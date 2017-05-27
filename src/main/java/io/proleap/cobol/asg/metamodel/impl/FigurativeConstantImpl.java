@@ -12,6 +12,8 @@ import io.proleap.cobol.Cobol85Parser.FigurativeConstantContext;
 import io.proleap.cobol.asg.metamodel.FigurativeConstant;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class FigurativeConstantImpl extends CobolDivisionElementImpl implements FigurativeConstant {
 
@@ -42,6 +44,43 @@ public class FigurativeConstantImpl extends CobolDivisionElementImpl implements 
 	@Override
 	public Literal getLiteral() {
 		return literal;
+	}
+
+	@Override
+	public Type getType() {
+		final Type result;
+
+		switch (figurativeConstantType) {
+		case ALL:
+		case HIGH_VALUE:
+		case HIGH_VALUES:
+		case LOW_VALUE:
+		case LOW_VALUES:
+			result = null;
+			break;
+		case NULL:
+		case NULLS:
+			result = null;
+			break;
+		case QUOTE:
+		case QUOTES:
+			result = null;
+			break;
+		case SPACE:
+		case SPACES:
+			result = CobolBaseType.STRING;
+			break;
+		case ZERO:
+		case ZEROES:
+		case ZEROS:
+			result = CobolBaseType.FLOAT;
+			break;
+		default:
+			result = null;
+			break;
+		}
+
+		return result;
 	}
 
 	@Override

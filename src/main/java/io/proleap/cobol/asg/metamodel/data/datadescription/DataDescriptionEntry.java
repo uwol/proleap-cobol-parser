@@ -13,8 +13,9 @@ import java.util.List;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.Declaration;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
+import io.proleap.cobol.asg.metamodel.type.TypedElement;
 
-public interface DataDescriptionEntry extends CobolDivisionElement, Declaration {
+public interface DataDescriptionEntry extends CobolDivisionElement, TypedElement, Declaration {
 
 	enum DataDescriptionEntryType {
 		CONDITION, EXEC_SQL, GROUP, RENAME, SCALAR

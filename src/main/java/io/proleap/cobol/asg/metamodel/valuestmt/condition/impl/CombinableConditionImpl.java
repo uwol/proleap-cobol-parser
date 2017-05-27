@@ -11,6 +11,7 @@ package io.proleap.cobol.asg.metamodel.valuestmt.condition.impl;
 import io.proleap.cobol.Cobol85Parser.CombinableConditionContext;
 import io.proleap.cobol.Cobol85Parser.SimpleConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.CombinableCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.SimpleCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
@@ -65,6 +66,11 @@ public class CombinableConditionImpl extends ValueStmtImpl implements Combinable
 	@Override
 	public SimpleCondition getSimpleCondition() {
 		return simpleCondition;
+	}
+
+	@Override
+	public Type getType() {
+		return simpleCondition.getType();
 	}
 
 	@Override

@@ -9,8 +9,9 @@
 package io.proleap.cobol.asg.metamodel;
 
 import io.proleap.cobol.Cobol85Parser.NumericLiteralContext;
+import io.proleap.cobol.asg.metamodel.type.TypedElement;
 
-public interface NumericLiteral extends CobolDivisionElement {
+public interface NumericLiteral extends CobolDivisionElement, TypedElement {
 
 	enum NumericLiteralType {
 		DOUBLE, INTEGER

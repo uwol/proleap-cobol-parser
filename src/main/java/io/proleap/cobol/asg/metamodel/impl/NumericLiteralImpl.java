@@ -11,6 +11,8 @@ package io.proleap.cobol.asg.metamodel.impl;
 import io.proleap.cobol.Cobol85Parser.NumericLiteralContext;
 import io.proleap.cobol.asg.metamodel.NumericLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class NumericLiteralImpl extends CobolDivisionElementImpl implements NumericLiteral {
 
@@ -46,6 +48,23 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 	@Override
 	public NumericLiteralType getNumericLiteralType() {
 		return numericLiteralType;
+	}
+
+	@Override
+	public Type getType() {
+		final Type result;
+
+		switch (numericLiteralType) {
+		case INTEGER:
+			result = CobolBaseType.INTEGER;
+			break;
+		case DOUBLE:
+		default:
+			result = CobolBaseType.FLOAT;
+			break;
+		}
+
+		return result;
 	}
 
 	@Override

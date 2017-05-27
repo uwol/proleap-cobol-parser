@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 
 public class CallValueStmtImpl extends ValueStmtImpl implements CallValueStmt {
@@ -27,6 +28,11 @@ public class CallValueStmtImpl extends ValueStmtImpl implements CallValueStmt {
 	@Override
 	public Call getCall() {
 		return call;
+	}
+
+	@Override
+	public Type getType() {
+		return call.getType();
 	}
 
 	@Override

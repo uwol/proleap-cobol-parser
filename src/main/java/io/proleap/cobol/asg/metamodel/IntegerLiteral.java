@@ -9,8 +9,9 @@
 package io.proleap.cobol.asg.metamodel;
 
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
+import io.proleap.cobol.asg.metamodel.type.TypedElement;
 
-public interface IntegerLiteral extends CobolDivisionElement {
+public interface IntegerLiteral extends CobolDivisionElement, TypedElement {
 
 	@Override
 	IntegerLiteralContext getCtx();

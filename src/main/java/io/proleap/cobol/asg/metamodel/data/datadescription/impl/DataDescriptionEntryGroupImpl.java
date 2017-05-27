@@ -68,9 +68,12 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.TypeDefClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.UsageClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.UsingClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.ValueClause;
+import io.proleap.cobol.asg.metamodel.data.datadescription.ValueInterval;
 import io.proleap.cobol.asg.metamodel.data.datadescription.WithLowerBoundsClause;
+import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.asg.util.PictureUtils;
 
 public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryGroup {
 
@@ -725,6 +728,19 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
+	public DataDescriptionEntryType getDataDescriptionEntryType() {
+		final DataDescriptionEntryType result;
+
+		if (DataDescriptionEntry.LEVEL_NUMBER_SCALAR == levelNumber) {
+			result = DataDescriptionEntryType.SCALAR;
+		} else {
+			result = DataDescriptionEntryType.GROUP;
+		}
+
+		return result;
+	}
+
+	@Override
 	public ExternalClause getExternalClause() {
 		return externalClause;
 	}
@@ -790,13 +806,17 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
-	public DataDescriptionEntryType getDataDescriptionEntryType() {
-		final DataDescriptionEntryType result;
+	public Type getType() {
+		final Type result;
 
-		if (DataDescriptionEntry.LEVEL_NUMBER_SCALAR == levelNumber) {
-			result = DataDescriptionEntryType.SCALAR;
+		if (pictureClause != null) {
+			final String pictureString = pictureClause.getPictureString();
+			result = PictureUtils.determineType(pictureString);
+		} else if (valueClause != null) {
+			final ValueInterval valueInterval = valueClause.getValueIntervals().get(0);
+			result = valueInterval.getFromValueStmt().getType();
 		} else {
-			result = DataDescriptionEntryType.GROUP;
+			result = null;
 		}
 
 		return result;

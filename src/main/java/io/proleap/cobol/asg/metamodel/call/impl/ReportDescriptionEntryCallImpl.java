@@ -13,6 +13,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.ReportDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class ReportDescriptionEntryCallImpl extends CallImpl implements ReportDescriptionEntryCall {
 
@@ -35,6 +36,11 @@ public class ReportDescriptionEntryCallImpl extends CallImpl implements ReportDe
 	@Override
 	public ReportDescriptionEntry getReportDescriptionEntry() {
 		return reportDescriptionEntry;
+	}
+
+	@Override
+	public Type getType() {
+		return null;
 	}
 
 	@Override

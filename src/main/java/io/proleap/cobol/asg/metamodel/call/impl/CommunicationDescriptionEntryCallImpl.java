@@ -13,6 +13,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.CommunicationDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class CommunicationDescriptionEntryCallImpl extends CallImpl implements CommunicationDescriptionEntryCall {
 
@@ -36,6 +37,11 @@ public class CommunicationDescriptionEntryCallImpl extends CallImpl implements C
 	@Override
 	public CommunicationDescriptionEntry getCommunicationDescriptionEntry() {
 		return communicationDescriptionEntry;
+	}
+
+	@Override
+	public Type getType() {
+		return null;
 	}
 
 	@Override

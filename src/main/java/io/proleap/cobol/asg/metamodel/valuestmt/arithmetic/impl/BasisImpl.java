@@ -10,6 +10,7 @@ package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl;
 
 import io.proleap.cobol.Cobol85Parser.BasisContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Basis;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
@@ -29,6 +30,11 @@ public class BasisImpl extends ValueStmtImpl implements Basis {
 	@Override
 	public ValueStmt getBasisValueStmt() {
 		return basisValueStmt;
+	}
+
+	@Override
+	public Type getType() {
+		return basisValueStmt.getType();
 	}
 
 	@Override

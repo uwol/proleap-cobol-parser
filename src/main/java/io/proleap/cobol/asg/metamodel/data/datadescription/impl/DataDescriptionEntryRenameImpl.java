@@ -24,6 +24,7 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryC
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryRename;
 import io.proleap.cobol.asg.metamodel.data.datadescription.RenamesClause;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryRename {
 
@@ -123,13 +124,18 @@ public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl imp
 	}
 
 	@Override
+	public DataDescriptionEntryType getDataDescriptionEntryType() {
+		return DataDescriptionEntryType.RENAME;
+	}
+
+	@Override
 	public RenamesClause getRenamesClause() {
 		return renamesClause;
 	}
 
 	@Override
-	public DataDescriptionEntryType getDataDescriptionEntryType() {
-		return DataDescriptionEntryType.RENAME;
+	public Type getType() {
+		return null;
 	}
 
 }

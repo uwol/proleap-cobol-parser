@@ -10,6 +10,8 @@ package io.proleap.cobol.asg.metamodel.valuestmt.relation.impl;
 
 import io.proleap.cobol.Cobol85Parser.RelationSignConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
+import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.SignCondition;
@@ -34,6 +36,11 @@ public class SignConditionImpl extends ValueStmtImpl implements SignCondition {
 	@Override
 	public SignConditionType getSignConditionType() {
 		return signConditionType;
+	}
+
+	@Override
+	public Type getType() {
+		return CobolBaseType.BOOLEAN;
 	}
 
 	@Override

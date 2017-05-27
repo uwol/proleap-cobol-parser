@@ -16,6 +16,7 @@ import io.proleap.cobol.Cobol85Parser.AndOrConditionContext;
 import io.proleap.cobol.Cobol85Parser.CombinableConditionContext;
 import io.proleap.cobol.Cobol85Parser.ConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.AndOrCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.CombinableCondition;
@@ -104,6 +105,11 @@ public class ConditionValueStmtImpl extends ValueStmtImpl implements ConditionVa
 	@Override
 	public CombinableCondition getCombinableCondition() {
 		return combinableCondition;
+	}
+
+	@Override
+	public Type getType() {
+		return combinableCondition.getType();
 	}
 
 	@Override

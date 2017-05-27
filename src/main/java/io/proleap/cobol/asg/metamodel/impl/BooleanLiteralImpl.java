@@ -11,6 +11,8 @@ package io.proleap.cobol.asg.metamodel.impl;
 import io.proleap.cobol.Cobol85Parser.BooleanLiteralContext;
 import io.proleap.cobol.asg.metamodel.BooleanLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
+import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class BooleanLiteralImpl extends CobolDivisionElementImpl implements BooleanLiteral {
 
@@ -28,6 +30,11 @@ public class BooleanLiteralImpl extends CobolDivisionElementImpl implements Bool
 	@Override
 	public BooleanLiteralContext getCtx() {
 		return ctx;
+	}
+
+	@Override
+	public Type getType() {
+		return CobolBaseType.BOOLEAN;
 	}
 
 	@Override
