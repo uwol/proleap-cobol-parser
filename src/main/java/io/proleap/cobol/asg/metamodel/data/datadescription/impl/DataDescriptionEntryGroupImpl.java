@@ -815,6 +815,8 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 		} else if (valueClause != null) {
 			final ValueInterval valueInterval = valueClause.getValueIntervals().get(0);
 			result = valueInterval.getFromValueStmt().getType();
+		} else if (!dataDescriptionEntries.isEmpty()) {
+			result = this;
 		} else {
 			result = null;
 		}

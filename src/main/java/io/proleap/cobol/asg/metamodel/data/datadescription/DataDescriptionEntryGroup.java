@@ -31,8 +31,9 @@ import io.proleap.cobol.Cobol85Parser.DataUsageClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataUsingClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataWithLowerBoundsClauseContext;
+import io.proleap.cobol.asg.metamodel.type.ComplexType;
 
-public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
+public interface DataDescriptionEntryGroup extends DataDescriptionEntry, ComplexType {
 
 	AlignedClause addAlignedClause(DataAlignedClauseContext ctx);
 

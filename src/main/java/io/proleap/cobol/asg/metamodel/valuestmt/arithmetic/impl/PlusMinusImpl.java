@@ -71,7 +71,18 @@ public class PlusMinusImpl extends ValueStmtImpl implements PlusMinus {
 
 	@Override
 	public Object getValue() {
-		return null;
+		final Object result;
+
+		switch (plusMinusType) {
+		case MINUS:
+			result = null;
+			break;
+		default:
+			result = multDivs.getValue();
+			break;
+		}
+
+		return result;
 	}
 
 	@Override

@@ -120,7 +120,15 @@ public class MultDivsImpl extends ValueStmtImpl implements MultDivs {
 
 	@Override
 	public Object getValue() {
-		return null;
+		final Object result;
+
+		if (multDivs.isEmpty()) {
+			result = powers.getValue();
+		} else {
+			result = null;
+		}
+
+		return result;
 	}
 
 }

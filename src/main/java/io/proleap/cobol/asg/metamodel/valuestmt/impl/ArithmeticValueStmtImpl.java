@@ -108,7 +108,15 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 
 	@Override
 	public Object getValue() {
-		return null;
+		final Object result;
+
+		if (plusMinus.isEmpty()) {
+			result = multDivs.getValue();
+		} else {
+			result = null;
+		}
+
+		return result;
 	}
 
 }

@@ -98,7 +98,15 @@ public class PowersImpl extends ValueStmtImpl implements Powers {
 
 	@Override
 	public Object getValue() {
-		return null;
+		final Object result;
+
+		if (powers.isEmpty()) {
+			result = basis.getValue();
+		} else {
+			result = null;
+		}
+
+		return result;
 	}
 
 	@Override
