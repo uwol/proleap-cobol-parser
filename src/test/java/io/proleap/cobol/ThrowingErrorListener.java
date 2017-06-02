@@ -11,16 +11,14 @@ package io.proleap.cobol;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
-import org.antlr.v4.runtime.misc.NotNull;
 
 public class ThrowingErrorListener extends BaseErrorListener {
 
 	public static final ThrowingErrorListener INSTANCE = new ThrowingErrorListener();
 
 	@Override
-	public void syntaxError(@NotNull final Recognizer<?, ?> recognizer, final Object offendingSymbol,
-			final int line, final int charPositionInLine, @NotNull final String msg,
-			final RecognitionException e) {
+	public void syntaxError(final Recognizer<?, ?> recognizer, final Object offendingSymbol, final int line,
+			final int charPositionInLine, final String msg, final RecognitionException e) {
 		throw new RuntimeException("syntax error in line " + line + ":" + charPositionInLine + " " + msg);
 	}
 }
