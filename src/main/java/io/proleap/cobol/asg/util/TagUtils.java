@@ -16,13 +16,18 @@ import io.proleap.cobol.preprocessor.CobolPreprocessor;
 
 public class TagUtils {
 
-	public static String getUntaggedText(final String tag, final List<TerminalNode> terminalNodes) {
+	public static String getUntaggedText(final List<TerminalNode> terminalNodes, final String... tags) {
 		final StringBuffer sb = new StringBuffer();
 
 		for (final TerminalNode terminalNode : terminalNodes) {
 			final String rawLineText = terminalNode.getText();
-			final String execLineText = rawLineText.replace(tag, "");
-			final String execLineTextCleaned = execLineText.trim() + CobolPreprocessor.WS;
+			String untaggedText = rawLineText;
+
+			for (final String tag : tags) {
+				untaggedText = untaggedText.replace(tag, "");
+			}
+
+			final String execLineTextCleaned = untaggedText.trim() + CobolPreprocessor.WS;
 
 			sb.append(execLineTextCleaned);
 		}

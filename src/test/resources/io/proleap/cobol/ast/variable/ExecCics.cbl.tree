@@ -68,7 +68,7 @@
 														(cobolWord ws-length)))))))) .\n       \n      ) 
 						(sentence 
 							(statement 
-								(execCicsStatement >*EXECCICS EXEC CICS RECEIVE >*EXECCICS INTO(ws-input) >*EXECCICS LENGTH(ws-length) >*EXECCICS END-EXEC)) .\n       \n         ) 
+								(execCicsStatement >*EXECCICS EXEC CICS RECEIVE\n >*EXECCICS INTO(ws-input)\n >*EXECCICS LENGTH(ws-length)\n >*EXECCICS END-EXEC ^)) .\n       \n         ) 
 						(sentence 
 							(statement 
 								(moveStatement MOVE 
@@ -86,10 +86,10 @@
 														(cobolWord ws-message-out)))))))) .\n       \n      ) 
 						(sentence 
 							(statement 
-								(execCicsStatement >*EXECCICS EXEC CICS SEND >*EXECCICS FROM(ws-output) >*EXECCICS LENGTH(ws-length) >*EXECCICS END-EXEC)) .\n       \n      ) 
+								(execCicsStatement >*EXECCICS EXEC CICS SEND\n >*EXECCICS FROM(ws-output)\n >*EXECCICS LENGTH(ws-length)\n >*EXECCICS END-EXEC ^)) .\n       \n      ) 
 						(sentence 
 							(statement 
-								(execCicsStatement >*EXECCICS EXEC CICS RETURN END-EXEC)) .\n       \n         ) 
+								(execCicsStatement >*EXECCICS EXEC CICS RETURN END-EXEC ^)) .\n       \n         ) 
 						(sentence 
 							(statement 
 								(exitStatement Exit)) .)))))) <EOF>)

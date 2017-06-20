@@ -65,13 +65,17 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		boolean firstLine = true;
 
 		while (scanner.hasNextLine()) {
-			final String line = scanner.nextLine();
-
 			if (!firstLine) {
 				sb.append(CobolPreprocessor.NEWLINE);
 			}
 
-			sb.append(linePrefix + CobolPreprocessor.WS + line.trim());
+			final String line = scanner.nextLine();
+			final String trimmedLine = line.trim();
+			final String prefixedLine = linePrefix + CobolPreprocessor.WS + trimmedLine;
+			final String suffixedLine = prefixedLine.replaceAll("(?i)(end-exec)",
+					"$1 " + CobolPreprocessor.END_EXEC_TAG);
+
+			sb.append(suffixedLine);
 			firstLine = false;
 		}
 
