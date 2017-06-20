@@ -54,7 +54,7 @@ public class MultiplyGivingStatementTest extends CobolTestBase {
 				assertNotNull(operandValueStmt);
 
 				final CallValueStmt operandCallValueStmt = (CallValueStmt) operandValueStmt;
-				assertEquals(CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
+				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, operandCallValueStmt.getCall().getCallType());
 			}
 
 			{
@@ -69,7 +69,7 @@ public class MultiplyGivingStatementTest extends CobolTestBase {
 					assertNotNull(operandValueStmt);
 
 					final CallValueStmt operandCallValueStmt = (CallValueStmt) operandValueStmt;
-					assertEquals(CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, operandCallValueStmt.getCall().getCallType());
 				}
 
 				assertEquals(2, givingPhrase.getGivingResults().size());
@@ -80,7 +80,7 @@ public class MultiplyGivingStatementTest extends CobolTestBase {
 
 					final Call resultCall = givingResult.getResultCall();
 					assertNotNull(resultCall);
-					assertEquals(CallType.UNDEFINED_CALL, resultCall.getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, resultCall.getCallType());
 				}
 
 				{
@@ -89,7 +89,7 @@ public class MultiplyGivingStatementTest extends CobolTestBase {
 
 					final Call resultCall = givingResult.getResultCall();
 					assertNotNull(resultCall);
-					assertEquals(CallType.UNDEFINED_CALL, resultCall.getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, resultCall.getCallType());
 				}
 			}
 

@@ -49,7 +49,7 @@ public class SubtractCorrespondingStatementTest extends CobolTestBase {
 
 				{
 					final Call subtrahendCall = subtractCorrespondingStatement.getSubtrahendCall();
-					assertEquals(CallType.UNDEFINED_CALL, subtrahendCall.getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, subtrahendCall.getCallType());
 				}
 
 				{
@@ -57,7 +57,7 @@ public class SubtractCorrespondingStatementTest extends CobolTestBase {
 					assertTrue(minuend.isRounded());
 
 					final Call minuendCall = minuend.getMinuendCall();
-					assertEquals(CallType.UNDEFINED_CALL, minuendCall.getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, minuendCall.getCallType());
 				}
 			}
 		}

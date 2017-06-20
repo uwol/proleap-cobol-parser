@@ -53,7 +53,7 @@ public class MultiplyRegularStatementTest extends CobolTestBase {
 				assertNotNull(operandValueStmt);
 
 				final CallValueStmt operandCallValueStmt = (CallValueStmt) operandValueStmt;
-				assertEquals(CallType.UNDEFINED_CALL, operandCallValueStmt.getCall().getCallType());
+				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, operandCallValueStmt.getCall().getCallType());
 			}
 
 			{
@@ -67,7 +67,7 @@ public class MultiplyRegularStatementTest extends CobolTestBase {
 
 					final Call operandCall = byOperand.getOperandCall();
 					assertNotNull(operandCall);
-					assertEquals(CallType.UNDEFINED_CALL, operandCall.getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, operandCall.getCallType());
 				}
 
 				{
@@ -76,7 +76,7 @@ public class MultiplyRegularStatementTest extends CobolTestBase {
 
 					final Call operandCall = byOperand.getOperandCall();
 					assertNotNull(operandCall);
-					assertEquals(CallType.UNDEFINED_CALL, operandCall.getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, operandCall.getCallType());
 				}
 			}
 

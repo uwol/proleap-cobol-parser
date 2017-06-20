@@ -58,7 +58,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
 
 					final CallValueStmt subtrahendCallValueStmt = (CallValueStmt) subtrahendValueStmt;
-					assertEquals(CallType.UNDEFINED_CALL, subtrahendCallValueStmt.getCall().getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, subtrahendCallValueStmt.getCall().getCallType());
 				}
 
 				{
@@ -70,7 +70,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 				{
 					final MinuendGiving minuend = subtractFromGivingStatement.getMinuend();
 					final Call minuendCall = minuend.getMinuendCall();
-					assertEquals(CallType.UNDEFINED_CALL, minuendCall.getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, minuendCall.getCallType());
 				}
 
 				assertEquals(2, subtractFromGivingStatement.getGivings().size());
@@ -80,7 +80,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 					assertFalse(giving.isRounded());
 
 					final Call givingCall = giving.getGivingCall();
-					assertEquals(CallType.UNDEFINED_CALL, givingCall.getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, givingCall.getCallType());
 				}
 
 				{
@@ -88,7 +88,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 					assertTrue(giving.isRounded());
 
 					final Call givingCall = giving.getGivingCall();
-					assertEquals(CallType.UNDEFINED_CALL, givingCall.getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, givingCall.getCallType());
 				}
 			}
 		}
