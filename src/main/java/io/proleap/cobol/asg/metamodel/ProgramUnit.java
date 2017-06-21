@@ -35,4 +35,6 @@ public interface ProgramUnit extends CompilationUnitElement {
 
 	ProcedureDivision getProcedureDivision();
 
+	int incrementFillerCounter();
+
 }

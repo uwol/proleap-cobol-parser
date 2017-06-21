@@ -136,6 +136,7 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			 */
 			if (ctx.FILLER() != null) {
 				result.setFiller(true);
+				result.setFillerNumber(programUnit.incrementFillerCounter());
 			}
 
 			/*

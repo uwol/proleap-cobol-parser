@@ -95,6 +95,8 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 
 	protected Boolean filler;
 
+	protected Integer fillerNumber;
+
 	protected GlobalClause globalClause;
 
 	protected IntegerStringClause integerStringClause;
@@ -751,6 +753,11 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
+	public Integer getFillerNumber() {
+		return fillerNumber;
+	}
+
+	@Override
 	public GlobalClause getGlobalClause() {
 		return globalClause;
 	}
@@ -857,6 +864,11 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	@Override
 	public void setFiller(final Boolean filler) {
 		this.filler = filler;
+	}
+
+	@Override
+	public void setFillerNumber(final Integer fillerNumber) {
+		this.fillerNumber = fillerNumber;
 	}
 
 }

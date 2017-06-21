@@ -33,20 +33,37 @@ public class DataDescriptionFillerTest extends CobolTestBase {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final WorkingStorageSection workingStorageSection = dataDivision.getWorkingStorageSection();
 
-		assertEquals(1, workingStorageSection.getDataDescriptionEntries().size());
-		assertEquals(1, workingStorageSection.getRootDataDescriptionEntries().size());
+		assertEquals(2, workingStorageSection.getDataDescriptionEntries().size());
+		assertEquals(2, workingStorageSection.getRootDataDescriptionEntries().size());
 
 		{
 			final DataDescriptionEntry dataDescriptionEntry = workingStorageSection.getDataDescriptionEntries().get(0);
-
 			assertNotNull(dataDescriptionEntry);
 			assertNull(dataDescriptionEntry.getName());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
 
-			final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
-			assertTrue(dataDescriptionEntryGroup.getFiller());
+			{
+				final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+				assertTrue(dataDescriptionEntryGroup.getFiller());
+				assertEquals(new Integer(0), dataDescriptionEntryGroup.getFillerNumber());
+			}
+		}
+
+		{
+			final DataDescriptionEntry dataDescriptionEntry = workingStorageSection.getDataDescriptionEntries().get(1);
+			assertNotNull(dataDescriptionEntry);
+			assertNull(dataDescriptionEntry.getName());
+			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+					dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
+
+			{
+				final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+				assertTrue(dataDescriptionEntryGroup.getFiller());
+				assertEquals(new Integer(1), dataDescriptionEntryGroup.getFillerNumber());
+			}
 		}
 	}
 }

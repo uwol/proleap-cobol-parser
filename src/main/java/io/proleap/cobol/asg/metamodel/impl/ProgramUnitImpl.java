@@ -42,6 +42,8 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 
 	protected EnvironmentDivision environmentDivision;
 
+	protected int fillerCounter = 0;
+
 	protected IdentificationDivision identificationDivision;
 
 	protected ProcedureDivision procedureDivision;
@@ -203,6 +205,11 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 	@Override
 	public ProcedureDivision getProcedureDivision() {
 		return procedureDivision;
+	}
+
+	@Override
+	public int incrementFillerCounter() {
+		return fillerCounter++;
 	}
 
 	protected void registerASGElement(final ASGElement asgElement) {

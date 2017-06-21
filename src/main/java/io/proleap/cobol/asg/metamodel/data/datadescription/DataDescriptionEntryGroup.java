@@ -93,6 +93,8 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry, Complex
 
 	Boolean getFiller();
 
+	Integer getFillerNumber();
+
 	GlobalClause getGlobalClause();
 
 	IntegerStringClause getIntegerStringClause();
@@ -128,5 +130,7 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry, Complex
 	WithLowerBoundsClause getWithLowerBoundsClause();
 
 	void setFiller(Boolean filler);
+
+	void setFillerNumber(Integer fillerNumber);
 
 }
