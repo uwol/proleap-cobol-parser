@@ -18,6 +18,7 @@ import io.proleap.cobol.asg.metamodel.environment.configuration.object.ObjectCom
 import io.proleap.cobol.asg.metamodel.environment.configuration.source.SourceComputerParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.asg.metamodel.procedure.Section;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -54,22 +55,30 @@ public class SG302MTest extends CobolTestBase {
 
 		{
 			final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
-			assertEquals(1, procedureDivision.getParagraphs().size());
+			assertEquals(1, procedureDivision.getSections().size());
+			assertEquals(0, procedureDivision.getParagraphs().size());
 			assertEquals(0, procedureDivision.getStatements().size());
 
 			{
-				final Paragraph paragraph = procedureDivision.getParagraphs().get(0);
-				assertEquals("SG302M-CONTROL", paragraph.getParagraphName().getName());
-				assertEquals(2, paragraph.getStatements().size());
+				final Section section = procedureDivision.getSections().get(0);
+				assertEquals("BEANO", section.getName());
+				assertEquals(0, section.getStatements().size());
+				assertEquals(1, section.getParagraphs().size());
 
 				{
-					final Statement statement = paragraph.getStatements().get(0);
-					assertEquals(StatementTypeEnum.DISPLAY, statement.getStatementType());
-				}
+					final Paragraph paragraph = section.getParagraphs().get(0);
+					assertEquals("SG302M-CONTROL", paragraph.getParagraphName().getName());
+					assertEquals(2, paragraph.getStatements().size());
 
-				{
-					final Statement statement = paragraph.getStatements().get(1);
-					assertEquals(StatementTypeEnum.STOP, statement.getStatementType());
+					{
+						final Statement statement = paragraph.getStatements().get(0);
+						assertEquals(StatementTypeEnum.DISPLAY, statement.getStatementType());
+					}
+
+					{
+						final Statement statement = paragraph.getStatements().get(1);
+						assertEquals(StatementTypeEnum.STOP, statement.getStatementType());
+					}
 				}
 			}
 		}

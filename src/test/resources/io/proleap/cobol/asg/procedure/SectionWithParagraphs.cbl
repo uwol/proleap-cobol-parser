@@ -1,0 +1,9 @@
+ IDENTIFICATION DIVISION.
+ PROGRAM-ID. SCTN.
+ PROCEDURE DIVISION.
+    SOME-SECTION SECTION.
+       INIT.
+          STOP RUN.
+       AFTER-INIT.
+          DISPLAY "Hello World".
+          STOP RUN.

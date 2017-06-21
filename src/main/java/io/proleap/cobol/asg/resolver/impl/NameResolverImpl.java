@@ -33,6 +33,8 @@ import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureSectionContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureSectionHeaderContext;
 import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
@@ -45,6 +47,7 @@ import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat3Context;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.ScreenDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.ScreenNameContext;
+import io.proleap.cobol.Cobol85Parser.SectionNameContext;
 import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
 import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
 import io.proleap.cobol.Cobol85Parser.SpecialRegisterContext;
@@ -214,6 +217,10 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((ParagraphNameContext) ctx);
 		} else if (ctx instanceof ProcedureNameContext) {
 			result = determineName((ProcedureNameContext) ctx);
+		} else if (ctx instanceof ProcedureSectionContext) {
+			result = determineName((ProcedureSectionContext) ctx);
+		} else if (ctx instanceof ProcedureSectionHeaderContext) {
+			result = determineName((ProcedureSectionHeaderContext) ctx);
 		} else if (ctx instanceof ProgramIdParagraphContext) {
 			result = determineName((ProgramIdParagraphContext) ctx);
 		} else if (ctx instanceof ProgramNameContext) {
@@ -234,6 +241,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((ReportNameContext) ctx);
 		} else if (ctx instanceof QualifiedDataNameContext) {
 			result = determineName((QualifiedDataNameContext) ctx);
+		} else if (ctx instanceof SectionNameContext) {
+			result = determineName((SectionNameContext) ctx);
 		} else if (ctx instanceof SelectClauseContext) {
 			result = determineName((SelectClauseContext) ctx);
 		} else if (ctx instanceof ScreenNameContext) {
@@ -257,6 +266,16 @@ public class NameResolverImpl implements NameResolver {
 
 	public String determineName(final ProcedureNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;
+		return result;
+	}
+
+	public String determineName(final ProcedureSectionContext ctx) {
+		final String result = ctx != null ? determineName(ctx.procedureSectionHeader()) : null;
+		return result;
+	}
+
+	public String determineName(final ProcedureSectionHeaderContext ctx) {
+		final String result = ctx != null ? determineName(ctx.sectionName()) : null;
 		return result;
 	}
 
@@ -316,6 +335,11 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final ScreenNameContext ctx) {
+		final String result = ctx != null ? ctx.getText() : null;
+		return result;
+	}
+
+	public String determineName(final SectionNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}

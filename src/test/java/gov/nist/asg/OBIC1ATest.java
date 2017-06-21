@@ -21,6 +21,7 @@ import io.proleap.cobol.asg.metamodel.environment.configuration.object.ObjectCom
 import io.proleap.cobol.asg.metamodel.environment.configuration.source.SourceComputerParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.asg.metamodel.procedure.Section;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -59,7 +60,8 @@ public class OBIC1ATest extends CobolTestBase {
 				{
 					final DataDescriptionEntry sortLink = workingStorageSection.getDataDescriptionEntry("SORT-LINK");
 					assertEquals(new Integer(1), sortLink.getLevelNumber());
-					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, sortLink.getDataDescriptionEntryType());
+					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+							sortLink.getDataDescriptionEntryType());
 
 					{
 						final DataDescriptionEntryGroup sortLinkGroup = (DataDescriptionEntryGroup) sortLink;
@@ -72,7 +74,8 @@ public class OBIC1ATest extends CobolTestBase {
 					final DataDescriptionEntry printLineValues = workingStorageSection
 							.getDataDescriptionEntry("PRINT-LINE-VALUES");
 					assertEquals(new Integer(1), printLineValues.getLevelNumber());
-					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, printLineValues.getDataDescriptionEntryType());
+					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+							printLineValues.getDataDescriptionEntryType());
 
 					final DataDescriptionEntryGroup printLineValuesGroup = (DataDescriptionEntryGroup) printLineValues;
 
@@ -80,7 +83,8 @@ public class OBIC1ATest extends CobolTestBase {
 						final DataDescriptionEntry passOrFail = printLineValuesGroup
 								.getDataDescriptionEntry("PASS-OR-FAIL");
 						assertEquals(new Integer(2), passOrFail.getLevelNumber());
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, passOrFail.getDataDescriptionEntryType());
+						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+								passOrFail.getDataDescriptionEntryType());
 
 						{
 							final DataDescriptionEntryGroup passOrFailGroup = (DataDescriptionEntryGroup) passOrFail;
@@ -92,7 +96,8 @@ public class OBIC1ATest extends CobolTestBase {
 					{
 						final DataDescriptionEntry rCount = printLineValuesGroup.getDataDescriptionEntry("R-COUNT");
 						assertEquals(new Integer(2), rCount.getLevelNumber());
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, rCount.getDataDescriptionEntryType());
+						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+								rCount.getDataDescriptionEntryType());
 
 						{
 							final DataDescriptionEntryGroup rCountGroup = (DataDescriptionEntryGroup) rCount;
@@ -105,7 +110,8 @@ public class OBIC1ATest extends CobolTestBase {
 						final DataDescriptionEntry featureTested = printLineValuesGroup
 								.getDataDescriptionEntry("FEATURE-TESTED");
 						assertEquals(new Integer(2), featureTested.getLevelNumber());
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, featureTested.getDataDescriptionEntryType());
+						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+								featureTested.getDataDescriptionEntryType());
 
 						{
 							final DataDescriptionEntryGroup featureTestedGroup = (DataDescriptionEntryGroup) featureTested;
@@ -118,7 +124,8 @@ public class OBIC1ATest extends CobolTestBase {
 						final DataDescriptionEntry computedSortKey = printLineValuesGroup
 								.getDataDescriptionEntry("COMPUTED-SORT-KEY");
 						assertEquals(new Integer(2), computedSortKey.getLevelNumber());
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, computedSortKey.getDataDescriptionEntryType());
+						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+								computedSortKey.getDataDescriptionEntryType());
 
 						{
 							final DataDescriptionEntryGroup computedSortKeyGroup = (DataDescriptionEntryGroup) computedSortKey;
@@ -131,7 +138,8 @@ public class OBIC1ATest extends CobolTestBase {
 						final DataDescriptionEntry correctSortKey = printLineValuesGroup
 								.getDataDescriptionEntry("CORRECT-SORT-KEY");
 						assertEquals(new Integer(2), correctSortKey.getLevelNumber());
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, correctSortKey.getDataDescriptionEntryType());
+						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+								correctSortKey.getDataDescriptionEntryType());
 
 						{
 							final DataDescriptionEntryGroup correctSortKeyGroup = (DataDescriptionEntryGroup) correctSortKey;
@@ -144,7 +152,8 @@ public class OBIC1ATest extends CobolTestBase {
 						final DataDescriptionEntry paragraphName = printLineValuesGroup
 								.getDataDescriptionEntry("PARAGRAPH-NAME");
 						assertEquals(new Integer(2), paragraphName.getLevelNumber());
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, paragraphName.getDataDescriptionEntryType());
+						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+								paragraphName.getDataDescriptionEntryType());
 
 						{
 							final DataDescriptionEntryGroup paragraphNameGroup = (DataDescriptionEntryGroup) paragraphName;
@@ -157,7 +166,8 @@ public class OBIC1ATest extends CobolTestBase {
 				{
 					final DataDescriptionEntry printFlag = workingStorageSection.getDataDescriptionEntry("PRINT-FLAG");
 					assertEquals(new Integer(1), printFlag.getLevelNumber());
-					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, printFlag.getDataDescriptionEntryType());
+					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+							printFlag.getDataDescriptionEntryType());
 
 					{
 						final DataDescriptionEntryGroup printFlagGroup = (DataDescriptionEntryGroup) printFlag;
@@ -170,89 +180,97 @@ public class OBIC1ATest extends CobolTestBase {
 
 		{
 			final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
-			assertEquals(3, procedureDivision.getParagraphs().size());
+			assertEquals(1, procedureDivision.getSections().size());
+			assertEquals(0, procedureDivision.getParagraphs().size());
 			assertEquals(0, procedureDivision.getStatements().size());
 
 			{
-				final Paragraph paragraph = procedureDivision.getParagraph("CALL-IC219");
-				assertNotNull(paragraph);
-				assertEquals(2, paragraph.getStatements().size());
+				final Section section = procedureDivision.getSections().get(0);
+				assertEquals("SECT-IC218-0001", section.getName());
+				assertEquals(0, section.getStatements().size());
+				assertEquals(3, section.getParagraphs().size());
 
 				{
-					final Statement statement = paragraph.getStatements().get(0);
-					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
+					final Paragraph paragraph = section.getParagraph("CALL-IC219");
+					assertNotNull(paragraph);
+					assertEquals(2, paragraph.getStatements().size());
+
+					{
+						final Statement statement = paragraph.getStatements().get(0);
+						assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
+					}
+
+					{
+						final Statement statement = paragraph.getStatements().get(1);
+						assertEquals(StatementTypeEnum.CALL, statement.getStatementType());
+					}
 				}
 
 				{
-					final Statement statement = paragraph.getStatements().get(1);
-					assertEquals(StatementTypeEnum.CALL, statement.getStatementType());
-				}
-			}
+					final Paragraph paragraph = section.getParagraph("CALL-FAIL");
+					assertNotNull(paragraph);
+					assertEquals(10, paragraph.getStatements().size());
 
-			{
-				final Paragraph paragraph = procedureDivision.getParagraph("CALL-FAIL");
-				assertNotNull(paragraph);
-				assertEquals(10, paragraph.getStatements().size());
+					{
+						final Statement statement = paragraph.getStatements().get(0);
+						assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
+					}
+
+					{
+						final Statement statement = paragraph.getStatements().get(1);
+						assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
+					}
+
+					{
+						final Statement statement = paragraph.getStatements().get(2);
+						assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
+					}
+
+					{
+						final Statement statement = paragraph.getStatements().get(3);
+						assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
+					}
+
+					{
+						final Statement statement = paragraph.getStatements().get(4);
+						assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
+					}
+
+					{
+						final Statement statement = paragraph.getStatements().get(5);
+						assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
+					}
+
+					{
+						final Statement statement = paragraph.getStatements().get(6);
+						assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
+					}
+
+					{
+						final Statement statement = paragraph.getStatements().get(7);
+						assertEquals(StatementTypeEnum.CALL, statement.getStatementType());
+					}
+
+					{
+						final Statement statement = paragraph.getStatements().get(8);
+						assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
+					}
+
+					{
+						final Statement statement = paragraph.getStatements().get(9);
+						assertEquals(StatementTypeEnum.CALL, statement.getStatementType());
+					}
+				}
 
 				{
-					final Statement statement = paragraph.getStatements().get(0);
-					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
-				}
+					final Paragraph paragraph = section.getParagraph("END-OF-PROGRAM");
+					assertNotNull(paragraph);
+					assertEquals(1, paragraph.getStatements().size());
 
-				{
-					final Statement statement = paragraph.getStatements().get(1);
-					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
-				}
-
-				{
-					final Statement statement = paragraph.getStatements().get(2);
-					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
-				}
-
-				{
-					final Statement statement = paragraph.getStatements().get(3);
-					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
-				}
-
-				{
-					final Statement statement = paragraph.getStatements().get(4);
-					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
-				}
-
-				{
-					final Statement statement = paragraph.getStatements().get(5);
-					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
-				}
-
-				{
-					final Statement statement = paragraph.getStatements().get(6);
-					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
-				}
-
-				{
-					final Statement statement = paragraph.getStatements().get(7);
-					assertEquals(StatementTypeEnum.CALL, statement.getStatementType());
-				}
-
-				{
-					final Statement statement = paragraph.getStatements().get(8);
-					assertEquals(StatementTypeEnum.MOVE, statement.getStatementType());
-				}
-
-				{
-					final Statement statement = paragraph.getStatements().get(9);
-					assertEquals(StatementTypeEnum.CALL, statement.getStatementType());
-				}
-			}
-
-			{
-				final Paragraph paragraph = procedureDivision.getParagraph("END-OF-PROGRAM");
-				assertNotNull(paragraph);
-				assertEquals(1, paragraph.getStatements().size());
-
-				{
-					final Statement statement = paragraph.getStatements().get(0);
-					assertEquals(StatementTypeEnum.EXIT, statement.getStatementType());
+					{
+						final Statement statement = paragraph.getStatements().get(0);
+						assertEquals(StatementTypeEnum.EXIT, statement.getStatementType());
+					}
 				}
 			}
 		}

@@ -13,6 +13,7 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativesContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureSectionContext;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.declaratives.Declaratives;
 
@@ -27,10 +28,16 @@ public interface ProcedureDivision extends Scope {
 
 	ParagraphName addParagraphName(ParagraphNameContext ctx);
 
+	Section addSection(ProcedureSectionContext ctx);
+
 	Declaratives getDeclaratives();
 
 	Paragraph getParagraph(String name);
 
 	List<Paragraph> getParagraphs();
+
+	Section getSection(String name);
+
+	List<Section> getSections();
 
 }
