@@ -24,6 +24,8 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 
 	protected CompilationUnitContext ctx;
 
+	protected int fillerCounter = 0;
+
 	protected List<String> lines;
 
 	protected final String name;
@@ -108,6 +110,11 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 	@Override
 	public List<ProgramUnit> getProgramUnits() {
 		return programUnits;
+	}
+
+	@Override
+	public int incrementFillerCounter() {
+		return fillerCounter++;
 	}
 
 	protected void registerASGElement(final ASGElement asgElement) {

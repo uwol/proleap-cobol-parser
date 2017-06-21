@@ -22,5 +22,8 @@ public interface CompilationUnit extends ASGElement, NamedElement {
 
 	List<ProgramUnit> getProgramUnits();
 
+	int incrementFillerCounter();
+
 	void setLines(List<String> lines);
+
 }
