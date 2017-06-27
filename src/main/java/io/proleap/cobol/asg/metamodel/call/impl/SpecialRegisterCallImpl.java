@@ -12,6 +12,7 @@ import io.proleap.cobol.Cobol85Parser.SpecialRegisterContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.SpecialRegisterCall;
+import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
 import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class SpecialRegisterCallImpl extends CallImpl implements SpecialRegisterCall {
@@ -54,7 +55,33 @@ public class SpecialRegisterCallImpl extends CallImpl implements SpecialRegister
 
 	@Override
 	public Type getType() {
-		return null;
+		final Type result;
+
+		switch (type) {
+		case ADDRESS_OF:
+			result = CobolBaseType.INTEGER;
+			break;
+		case LENGTH_OF:
+			result = CobolBaseType.INTEGER;
+			break;
+		case LINAGE_COUNTER:
+			result = CobolBaseType.INTEGER;
+			break;
+		case LINE_COUNTER:
+			result = CobolBaseType.INTEGER;
+			break;
+		case PAGE_COUNTER:
+			result = CobolBaseType.INTEGER;
+			break;
+		case SORT_FILE_SIZE:
+			result = CobolBaseType.INTEGER;
+			break;
+		default:
+			result = null;
+			break;
+		}
+
+		return result;
 	}
 
 	@Override
