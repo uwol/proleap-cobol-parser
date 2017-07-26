@@ -10,6 +10,8 @@ package io.proleap.cobol.preprocessor.sub.document.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
@@ -22,6 +24,7 @@ import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85PreprocessorBaseListener;
 import io.proleap.cobol.Cobol85PreprocessorParser;
+import io.proleap.cobol.Cobol85PreprocessorParser.CopySourceContext;
 import io.proleap.cobol.Cobol85PreprocessorParser.ReplaceClauseContext;
 import io.proleap.cobol.Cobol85PreprocessorParser.ReplacingPhraseContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
@@ -29,6 +32,7 @@ import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
+import io.proleap.cobol.preprocessor.sub.util.StringUtils;
 import io.proleap.cobol.preprocessor.sub.util.TokenUtils;
 
 /**
@@ -157,12 +161,12 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		/*
 		 * copy the copy file
 		 */
-		final String copyFileIdentifier = ctx.copySource().getText();
+		final CopySourceContext copySource = ctx.copySource();
 
 		if (copyFiles == null || copyFiles.isEmpty()) {
-			LOG.warn("Could not identify copy file {} due to missing copy files.", copyFileIdentifier);
+			LOG.warn("Could not identify copy file {} due to missing copy files.", copySource.getText());
 		} else {
-			final String fileContent = getCopyFileContent(copyFileIdentifier, copyFiles, dialect, format);
+			final String fileContent = getCopyFileContent(copySource, copyFiles, dialect, format);
 
 			if (fileContent != null) {
 				context().write(fileContent + CobolPreprocessor.NEWLINE);
@@ -272,13 +276,13 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		pop();
 	};
 
-	protected String getCopyFileContent(final String filename, final List<File> copyFiles, final CobolDialect dialect,
-			final CobolSourceFormatEnum format) {
-		final File copyFile = identifyCopyFile(filename, copyFiles);
+	protected String getCopyFileContent(final CopySourceContext copySource, final List<File> copyFiles,
+			final CobolDialect dialect, final CobolSourceFormatEnum format) {
+		final File copyFile = identifyCopyFile(copySource, copyFiles);
 		String result;
 
 		if (copyFile == null) {
-			LOG.warn("Copy file {} not found in copy files {}.", filename, copyFiles);
+			LOG.warn("Copy file {} not found in copy files {}.", copySource.getText(), copyFiles);
 			result = null;
 		} else {
 			try {
@@ -295,20 +299,42 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	/**
 	 * Identifies a copy file by its name and directory.
 	 */
-	protected File identifyCopyFile(final String filename, final List<File> copyFiles) {
-		File copyFile = null;
+	protected File identifyCopyFile(final CopySourceContext copySource, final List<File> copyFiles) {
+		File result = null;
 
-		for (final File file : copyFiles) {
-			final String baseName = FilenameUtils.getBaseName(file.getName());
-			final boolean matchingBaseName = filename.toLowerCase().equals(baseName.toLowerCase());
+		final String copyFileIdentifier = copySource.getText();
 
-			if (matchingBaseName) {
-				copyFile = file;
-				break;
+		if (copySource.cobolWord() != null) {
+			for (final File file : copyFiles) {
+				final String baseName = FilenameUtils.getBaseName(file.getName());
+				final boolean matchingBaseName = copyFileIdentifier.toLowerCase().equals(baseName.toLowerCase());
+
+				if (matchingBaseName) {
+					result = file;
+				}
+			}
+		} else if (copySource.literal() != null) {
+			final String copyFileIdentifierCleaned = StringUtils.trimQuotes(copyFileIdentifier);
+			final String copyFileIdentifierPathString = normalizeCopyFilePath(Paths.get(copyFileIdentifierCleaned));
+
+			for (final File file : copyFiles) {
+				final String filePathString = normalizeCopyFilePath(file.toPath());
+				final boolean matching = filePathString.endsWith(copyFileIdentifierPathString);
+
+				if (matching) {
+					result = file;
+					break;
+				}
 			}
 		}
 
-		return copyFile;
+		return result;
+	}
+
+	protected String normalizeCopyFilePath(final Path copFilePath) {
+		final Path normalizedPath = copFilePath.normalize();
+		final String result = normalizedPath.toString().toLowerCase();
+		return result;
 	}
 
 	/**
