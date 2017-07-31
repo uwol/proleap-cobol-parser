@@ -5,5 +5,5 @@
 				(programIdParagraph PROGRAM-ID .       
 					(programName 
 						(cobolWord SOMEPROGRAM)) .\n       
-					(commentEntry >*CE ))) 
+					(commentEntry *>CE )))
 			(environmentDivision ENVIRONMENT DIVISION .))) <EOF>)

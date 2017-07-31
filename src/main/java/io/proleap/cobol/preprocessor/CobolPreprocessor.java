@@ -87,17 +87,17 @@ public interface CobolPreprocessor {
 
 	final static String CHAR_SLASH = "/";
 
-	final static String COMMENT_ENTRY_TAG = ">*CE";
+	final static String COMMENT_TAG = "*>";
 
-	final static String COMMENT_TAG = ">*";
+	final static String COMMENT_ENTRY_TAG = COMMENT_TAG+"CE";
 
 	final static String END_EXEC_TAG = "^";
 
-	final static String EXEC_CICS_TAG = ">*EXECCICS";
+	final static String EXEC_CICS_TAG = COMMENT_TAG+"EXECCICS";
 
-	final static String EXEC_SQL_TAG = ">*EXECSQL";
+	final static String EXEC_SQL_TAG = COMMENT_TAG+"EXECSQL";
 
-	final static String EXEC_SQLIMS_TAG = ">*EXECSQLIMS";
+	final static String EXEC_SQLIMS_TAG = COMMENT_TAG+"EXECSQLIMS";
 
 	final static String INDICATOR_FIELD = "([ABCdD\\t\\-/*# ])";
 

@@ -2,10 +2,10 @@
        PROGRAM-ID.
            SECURITYTEST.
        SECURITY.
-      >*CE     NONE.
-      >*CE 
-      >*CE     SOME QUOTE"S
-      >*CE 
+      *>CE     NONE.
+      *>CE 
+      *>CE     SOME QUOTE"S
+      *>CE 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01  LEVEL1.
