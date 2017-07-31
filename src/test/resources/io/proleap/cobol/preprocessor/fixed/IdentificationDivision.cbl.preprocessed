@@ -2,14 +2,14 @@
        PROGRAM-ID.
           CONFIGSECTION.
        AUTHOR.
-      >*CE     SOMEAUTH.
+      *>CE     SOMEAUTH.
        INSTALLATION.
-      >*CE     SOMEINSTALL.
+      *>CE     SOMEINSTALL.
        DATE-COMPILED.
-      >*CE     SOMECOMPILED.
+      *>CE     SOMECOMPILED.
        DATE-WRITTEN.
-      >*CE     SOMEWRITTEN.
+      *>CE     SOMEWRITTEN.
        SECURITY.
-      >*CE     SOMESEC.
+      *>CE     SOMESEC.
        REMARKS.
-      >*CE     SOMEREM.
+      *>CE     SOMEREM.
