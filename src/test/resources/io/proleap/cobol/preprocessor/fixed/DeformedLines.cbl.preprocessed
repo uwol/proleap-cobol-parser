@@ -1,0 +1,8 @@
+       Identification Division.
+         Program-ID. DeformedLine.
+       Procedure Division.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+              10 P321-FILLER       PIC X(36).
+       
+           05 FILLER REDEFINES P321-LISTINFO.

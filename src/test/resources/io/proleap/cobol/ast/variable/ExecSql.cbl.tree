@@ -9,7 +9,7 @@
 				(dataDivisionBody 
 					(workingStorageSection Working-Storage Section .\n       \n       
 						(dataDescriptionEntry 
-							(dataDescriptionEntryExecSql *>EXECSQL EXEC SQL BEGIN DECLARE SECTION END-EXEC ^ .\n       \n       ))
+							(dataDescriptionEntryExecSql *>EXECSQL EXEC SQL BEGIN DECLARE SECTION END-EXEC ^ .\n       \n       )) 
 						(dataDescriptionEntry 
 							(dataDescriptionEntryFormat1 01 
 								(dataName 
@@ -22,13 +22,13 @@
 											(integerLiteral 8)) 
 										(pictureChars )))) .\n       \n      )) 
 						(dataDescriptionEntry 
-							(dataDescriptionEntryExecSql *>EXECSQL EXEC SQL END DECLARE SECTION END-EXEC ^ .\n       \n       )))))
+							(dataDescriptionEntryExecSql *>EXECSQL EXEC SQL END DECLARE SECTION END-EXEC ^ .\n       \n       ))))) 
 			(procedureDivision Procedure Division .\n       
 				(procedureDivisionBody 
 					(paragraphs 
 						(sentence 
 							(statement 
-								(execSqlStatement *>EXECSQL EXEC SQL CONNECT TO demo END-EXEC ^))
+								(execSqlStatement *>EXECSQL EXEC SQL CONNECT TO demo END-EXEC ^)) 
 							(statement 
 								(displayStatement Display 
 									(displayOperand 
