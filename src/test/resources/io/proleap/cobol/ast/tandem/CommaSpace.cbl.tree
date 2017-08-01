@@ -1,0 +1,99 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision IDENTIFICATION DIVISION .\n  
+				(programIdParagraph PROGRAM-ID .  
+					(programName 
+						(cobolWord COMMASPACE)) .\n )) 
+			(dataDivision DATA DIVISION .\n  
+				(dataDivisionBody 
+					(workingStorageSection WORKING-STORAGE SECTION .\n  
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 01 
+								(dataName 
+									(cobolWord Student)) .\n   )) 
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 03 
+								(dataName 
+									(cobolWord nachname)) 
+								(dataPictureClause pic 
+									(pictureString 
+										(pictureChars x) 
+										(pictureChars () 
+										(pictureChars 
+											(integerLiteral 20)) 
+										(pictureChars )))) .\n   )) 
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 03 
+								(dataName 
+									(cobolWord vorname)) 
+								(dataPictureClause pic 
+									(pictureString 
+										(pictureChars x) 
+										(pictureChars () 
+										(pictureChars 
+											(integerLiteral 20)) 
+										(pictureChars )))) .\n   )) 
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat1 03 
+								(dataName 
+									(cobolWord geschlecht)) 
+								(dataPictureClause pic 
+									(pictureString 
+										(pictureChars x) 
+										(pictureChars () 
+										(pictureChars 
+											(integerLiteral 1)) 
+										(pictureChars )))) .\n     )) 
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat3 88 
+								(conditionName 
+									(cobolWord mann)) 
+								(dataValueClause values 
+									(dataValueInterval 
+										(dataValueIntervalFrom 
+											(literal 'M'))) 
+									(dataValueInterval 
+										(dataValueIntervalFrom 
+											(literal 'm')))) .\n  )) 
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat3 88 
+								(conditionName 
+									(cobolWord frau)) 
+								(dataValueClause value 
+									(dataValueInterval 
+										(dataValueIntervalFrom 
+											(literal 'F'))) 
+									(dataValueInterval 
+										(dataValueIntervalFrom 
+											(literal 'f'))) 
+									(dataValueInterval 
+										(dataValueIntervalFrom 
+											(literal 'W'))) 
+									(dataValueInterval 
+										(dataValueIntervalFrom 
+											(literal 'w')))) .\n  )) 
+						(dataDescriptionEntry 
+							(dataDescriptionEntryFormat3 88 
+								(conditionName 
+									(cobolWord egal)) 
+								(dataValueClause values 
+									(dataValueInterval 
+										(dataValueIntervalFrom 
+											(literal 'a')) 
+										(dataValueIntervalTo thru 
+											(literal 'z'))) 
+									(dataValueInterval 
+										(dataValueIntervalFrom 
+											(literal 'A')) 
+										(dataValueIntervalTo thru 
+											(literal 'Z'))) 
+									(dataValueInterval 
+										(dataValueIntervalFrom 
+											(literal '1'))) 
+									(dataValueInterval 
+										(dataValueIntervalFrom 
+											(literal '2'))) , 
+									(dataValueInterval 
+										(dataValueIntervalFrom 
+											(literal '3')))) .))))))) <EOF>)

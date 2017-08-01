@@ -1086,7 +1086,7 @@ dataUsingClause
    ;
 
 dataValueClause
-   : (VALUE IS? | VALUES ARE?)? dataValueInterval+
+   : (VALUE IS? | VALUES ARE?)? dataValueInterval (COMMACHAR? dataValueInterval)*
    ;
 
 dataValueInterval
