@@ -27,6 +27,7 @@ import io.proleap.cobol.Cobol85Parser.DataNameContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentNameContext;
 import io.proleap.cobol.Cobol85Parser.FigurativeConstantContext;
 import io.proleap.cobol.Cobol85Parser.FileNameContext;
+import io.proleap.cobol.Cobol85Parser.FunctionCallContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.IndexNameContext;
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
@@ -59,6 +60,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.CommunicationDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.FileControlEntryCall;
+import io.proleap.cobol.asg.metamodel.call.FunctionCall;
 import io.proleap.cobol.asg.metamodel.call.IndexCall;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.call.ReportCall;
@@ -70,6 +72,7 @@ import io.proleap.cobol.asg.metamodel.call.impl.CommunicationDescriptionEntryCal
 import io.proleap.cobol.asg.metamodel.call.impl.DataDescriptionEntryCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.EnvironmentCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.FileControlEntryCallImpl;
+import io.proleap.cobol.asg.metamodel.call.impl.FunctionCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.IndexCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.MnemonicCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ProcedureCallImpl;
@@ -273,6 +276,20 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected Call createCall(final FunctionCallContext ctx) {
+		Call result = (FunctionCall) getASGElement(ctx);
+
+		if (result == null) {
+			final String name = determineName(ctx);
+			final FunctionCall functionCall = new FunctionCallImpl(name, programUnit, ctx);
+
+			result = functionCall;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
 	protected Call createCall(final IdentifierContext ctx) {
 		final Call result;
 
@@ -284,6 +301,11 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		} else if (ctx.tableCall() != null) {
 			final Call tableCall = createCall(ctx.tableCall());
 			result = new CallDelegateImpl(tableCall, programUnit, ctx);
+
+			registerASGElement(result);
+		} else if (ctx.functionCall() != null) {
+			final Call functionCall = createCall(ctx.functionCall());
+			result = new CallDelegateImpl(functionCall, programUnit, ctx);
 
 			registerASGElement(result);
 		} else {
@@ -542,6 +564,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 			if (dataDescriptionEntry != null) {
 				final TableCall tableCall = new TableCallImpl(name, dataDescriptionEntry, programUnit, ctx);
+				linkDataDescriptionEntryCallWithDataDescriptionEntry(tableCall, dataDescriptionEntry);
 
 				for (final SubscriptContext subscriptContext : ctx.subscript()) {
 					tableCall.addSubscript(subscriptContext);

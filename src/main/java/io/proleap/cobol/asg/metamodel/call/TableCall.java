@@ -11,14 +11,11 @@ package io.proleap.cobol.asg.metamodel.call;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.SubscriptContext;
-import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
 
-public interface TableCall extends Call {
+public interface TableCall extends DataDescriptionEntryCall {
 
 	Subscript addSubscript(SubscriptContext ctx);
-
-	DataDescriptionEntry getDataDescriptionEntry();
 
 	List<Subscript> getSubscripts();
 }

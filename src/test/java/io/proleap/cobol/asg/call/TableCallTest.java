@@ -91,7 +91,8 @@ public class TableCallTest extends CobolTestBase {
 				dataDescriptionEntryTbl = workingStorageSection.getRootDataDescriptionEntries().get(0);
 				assertEquals("WS-TBL", dataDescriptionEntryTbl.getName());
 				assertEquals(new Integer(1), dataDescriptionEntryTbl.getLevelNumber());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryTbl.getDataDescriptionEntryType());
+				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+						dataDescriptionEntryTbl.getDataDescriptionEntryType());
 
 				final DataDescriptionEntryGroup dataDescriptionEntryGroupTbl = (DataDescriptionEntryGroup) dataDescriptionEntryTbl;
 				assertEquals(1, dataDescriptionEntryGroupTbl.getDataDescriptionEntries().size());
@@ -101,7 +102,8 @@ public class TableCallTest extends CobolTestBase {
 							.getDataDescriptionEntries().get(0);
 					assertEquals("WS-RECORD", dataDescriptionEntryRecord.getName());
 					assertEquals(new Integer(5), dataDescriptionEntryRecord.getLevelNumber());
-					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryRecord.getDataDescriptionEntryType());
+					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+							dataDescriptionEntryRecord.getDataDescriptionEntryType());
 
 					final DataDescriptionEntryGroup dataDescriptionEntryGroupRecord = (DataDescriptionEntryGroup) dataDescriptionEntryRecord;
 					assertEquals(2, dataDescriptionEntryGroupRecord.getDataDescriptionEntries().size());
@@ -127,7 +129,8 @@ public class TableCallTest extends CobolTestBase {
 								.getDataDescriptionEntries().get(0);
 						assertEquals("WS-DELIMITER", dataDescriptionEntryDelimiter.getName());
 						assertEquals(new Integer(10), dataDescriptionEntryDelimiter.getLevelNumber());
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryDelimiter.getDataDescriptionEntryType());
+						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+								dataDescriptionEntryDelimiter.getDataDescriptionEntryType());
 
 						final DataDescriptionEntryGroup dataDescriptionEntryGroupDelimiter = (DataDescriptionEntryGroup) dataDescriptionEntryDelimiter;
 
@@ -142,10 +145,12 @@ public class TableCallTest extends CobolTestBase {
 								.getDataDescriptionEntries().get(1);
 						assertEquals("WS-CONTENT", dataDescriptionEntryContent.getName());
 						assertEquals(new Integer(10), dataDescriptionEntryContent.getLevelNumber());
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryContent.getDataDescriptionEntryType());
+						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+								dataDescriptionEntryContent.getDataDescriptionEntryType());
 
 						final DataDescriptionEntryGroup dataDescriptionEntryGroupContent = (DataDescriptionEntryGroup) dataDescriptionEntryContent;
 						assertEquals(1, dataDescriptionEntryGroupContent.getDataDescriptionEntries().size());
+						assertEquals(1, dataDescriptionEntryGroupContent.getCalls().size());
 
 						{
 							final OccursClause occursClause = dataDescriptionEntryGroupContent.getOccursClauses()
@@ -169,7 +174,8 @@ public class TableCallTest extends CobolTestBase {
 									.getDataDescriptionEntries().get(0);
 							assertEquals("WS-COLUMN", dataDescriptionEntryColumn.getName());
 							assertEquals(new Integer(20), dataDescriptionEntryColumn.getLevelNumber());
-							assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryColumn.getDataDescriptionEntryType());
+							assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+									dataDescriptionEntryColumn.getDataDescriptionEntryType());
 
 							final DataDescriptionEntryGroup dataDescriptionEntryGroupColumn = (DataDescriptionEntryGroup) dataDescriptionEntryColumn;
 
