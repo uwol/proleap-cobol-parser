@@ -29,6 +29,12 @@
 			</properties>
 		</profile>
 	</profiles>
+	<distributionManagement>
+		<repository>
+			<id>maven.nitroventures.de</id>
+			<url>ftps://wp12684198.server-he.de</url>
+		</repository>
+	</distributionManagement>
 	<build>
 		<resources>
 			<resource>
@@ -123,6 +129,12 @@
 				<version>4.3.0</version>
 			</plugin>
 		</plugins>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+			</extension>
+		</extensions>
 		<defaultGoal>package</defaultGoal>
 	</build>
 	<dependencies>
