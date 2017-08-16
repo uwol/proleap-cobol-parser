@@ -39,6 +39,9 @@ import io.proleap.cobol.Cobol85Parser.ProcedureSectionHeaderContext;
 import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
+import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat1Context;
+import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat2Context;
+import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat3Context;
 import io.proleap.cobol.Cobol85Parser.RecordNameContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionEntryContext;
@@ -139,7 +142,16 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final IdentifierContext ctx) {
-		final String result = ctx != null ? ctx.getText() : null;
+		final String result;
+
+		if (ctx == null) {
+			result = null;
+		} else if (ctx.qualifiedDataName() != null) {
+			result = determineName(ctx.qualifiedDataName());
+		} else {
+			result = ctx.getText();
+		}
+
 		return result;
 	}
 
@@ -233,6 +245,14 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((ProgramIdParagraphContext) ctx);
 		} else if (ctx instanceof ProgramNameContext) {
 			result = determineName((ProgramNameContext) ctx);
+		} else if (ctx instanceof QualifiedDataNameContext) {
+			result = determineName((QualifiedDataNameContext) ctx);
+		} else if (ctx instanceof QualifiedDataNameFormat1Context) {
+			result = determineName((QualifiedDataNameFormat1Context) ctx);
+		} else if (ctx instanceof QualifiedDataNameFormat2Context) {
+			result = determineName((QualifiedDataNameFormat2Context) ctx);
+		} else if (ctx instanceof QualifiedDataNameFormat3Context) {
+			result = determineName((QualifiedDataNameFormat3Context) ctx);
 		} else if (ctx instanceof RecordNameContext) {
 			result = determineName((RecordNameContext) ctx);
 		} else if (ctx instanceof ReportDescriptionContext) {
@@ -247,8 +267,6 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((ReportGroupDescriptionEntryFormat3Context) ctx);
 		} else if (ctx instanceof ReportNameContext) {
 			result = determineName((ReportNameContext) ctx);
-		} else if (ctx instanceof QualifiedDataNameContext) {
-			result = determineName((QualifiedDataNameContext) ctx);
 		} else if (ctx instanceof SectionNameContext) {
 			result = determineName((SectionNameContext) ctx);
 		} else if (ctx instanceof SelectClauseContext) {
@@ -298,12 +316,53 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final QualifiedDataNameContext ctx) {
-		final String result = ctx != null ? ctx.getText() : null;
+		final String result;
+
+		if (ctx == null) {
+			result = null;
+		} else if (ctx.qualifiedDataNameFormat1() != null) {
+			result = determineName(ctx.qualifiedDataNameFormat1());
+		} else if (ctx.qualifiedDataNameFormat2() != null) {
+			result = determineName(ctx.qualifiedDataNameFormat2());
+		} else if (ctx.qualifiedDataNameFormat3() != null) {
+			result = determineName(ctx.qualifiedDataNameFormat3());
+		} else if (ctx.qualifiedDataNameFormat4() != null) {
+			result = determineName(ctx.qualifiedDataNameFormat4());
+		} else {
+			result = null;
+		}
+
+		return result;
+	}
+
+	public String determineName(final QualifiedDataNameFormat1Context ctx) {
+		final String result;
+
+		if (ctx == null) {
+			result = null;
+		} else if (ctx.dataName() != null) {
+			result = determineName(ctx.dataName());
+		} else if (ctx.conditionName() != null) {
+			result = determineName(ctx.conditionName());
+		} else {
+			result = null;
+		}
+
+		return result;
+	}
+
+	public String determineName(final QualifiedDataNameFormat2Context ctx) {
+		final String result = ctx != null ? determineName(ctx.paragraphName()) : null;
+		return result;
+	}
+
+	public String determineName(final QualifiedDataNameFormat3Context ctx) {
+		final String result = ctx != null ? determineName(ctx.textName()) : null;
 		return result;
 	}
 
 	public String determineName(final RecordNameContext ctx) {
-		final String result = ctx != null ? ctx.getText() : null;
+		final String result = ctx != null ? determineName(ctx.qualifiedDataName()) : null;
 		return result;
 	}
 
