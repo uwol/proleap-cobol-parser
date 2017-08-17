@@ -134,7 +134,9 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 			result = new IdentificationDivisionImpl(this, ctx);
 			identificationDivision = result;
 
-			result.addProgramIdParagraph(ctx.programIdParagraph());
+			if (ctx.programIdParagraph() != null) {
+				result.addProgramIdParagraph(ctx.programIdParagraph());
+			}
 
 			for (final IdentificationDivisionBodyContext identificationDivisionBodyContext : ctx
 					.identificationDivisionBody()) {
