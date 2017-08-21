@@ -10,6 +10,8 @@ package io.proleap.cobol.asg.metamodel;
 
 import java.util.List;
 
+import org.antlr.v4.runtime.CommonTokenStream;
+
 import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
 
 public interface CompilationUnit extends ASGElement, NamedElement {
@@ -21,6 +23,8 @@ public interface CompilationUnit extends ASGElement, NamedElement {
 	ProgramUnit getProgramUnit();
 
 	List<ProgramUnit> getProgramUnits();
+
+	CommonTokenStream getTokens();
 
 	int incrementFillerCounter();
 

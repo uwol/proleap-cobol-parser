@@ -10,6 +10,8 @@ package io.proleap.cobol.asg.visitor.impl;
 
 import java.util.List;
 
+import org.antlr.v4.runtime.CommonTokenStream;
+
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
@@ -24,17 +26,20 @@ public class CobolCompilationUnitVisitorImpl extends AbstractCobolParserVisitorI
 
 	protected final List<String> lines;
 
+	protected final CommonTokenStream tokens;
+
 	public CobolCompilationUnitVisitorImpl(final String compilationUnitName, final List<String> lines,
-			final Program program) {
+			final CommonTokenStream tokens, final Program program) {
 		super(program);
 
 		this.compilationUnitName = compilationUnitName;
 		this.lines = lines;
+		this.tokens = tokens;
 	}
 
 	@Override
 	public Boolean visitCompilationUnit(final Cobol85Parser.CompilationUnitContext ctx) {
-		final CompilationUnit compilationUnit = new CompilationUnitImpl(compilationUnitName, program, ctx);
+		final CompilationUnit compilationUnit = new CompilationUnitImpl(compilationUnitName, program, tokens, ctx);
 		compilationUnit.setLines(lines);
 
 		return visitChildren(ctx);

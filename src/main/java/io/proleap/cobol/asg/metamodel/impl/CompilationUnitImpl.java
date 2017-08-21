@@ -11,6 +11,7 @@ package io.proleap.cobol.asg.metamodel.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.Cobol85Parser.CompilationUnitContext;
@@ -32,11 +33,15 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 
 	protected final List<ProgramUnit> programUnits = new ArrayList<ProgramUnit>();
 
-	public CompilationUnitImpl(final String name, final Program program, final CompilationUnitContext ctx) {
+	protected CommonTokenStream tokens;
+
+	public CompilationUnitImpl(final String name, final Program program, final CommonTokenStream tokens,
+			final CompilationUnitContext ctx) {
 		super(program, ctx);
 
 		this.name = name;
 		this.ctx = ctx;
+		this.tokens = tokens;
 
 		registerASGElement(this);
 		program.registerCompilationUnit(this);
@@ -110,6 +115,11 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 	@Override
 	public List<ProgramUnit> getProgramUnits() {
 		return programUnits;
+	}
+
+	@Override
+	public CommonTokenStream getTokens() {
+		return tokens;
 	}
 
 	@Override
