@@ -3197,14 +3197,14 @@ NUMERICLITERAL : (PLUSCHAR | MINUSCHAR)? [0-9]* (DOT | COMMACHAR) [0-9]+ (('e' |
 IDENTIFIER : [a-zA-Z0-9]+ ([-_]+ [a-zA-Z0-9]+)*;
 
 // whitespace, line breaks, comments, ...
-NEWLINE : '\r'? '\n' -> skip;
+NEWLINE : '\r'? '\n' -> channel(HIDDEN);
 EXECCICSLINE : EXECCICSTAG WS ~('\n' | '\r' | '^')+ ('\n' | '\r' | '^');
 EXECSQLIMSLINE : EXECSQLIMSTAG WS ~('\n' | '\r' | '^')+ ('\n' | '\r' | '^');
 EXECSQLLINE : EXECSQLTAG WS ~('\n' | '\r' | '^')+ ('\n' | '\r' | '^');
 COMMENTENTRYLINE : COMMENTENTRYTAG WS ~('\n' | '\r')*;
 COMMENTLINE : COMMENTTAG WS ~('\n' | '\r')* -> skip;
-WS : [ \t\f;]+ -> skip;
-SEPARATOR : ', ' -> skip;
+WS : [ \t\f;]+ -> channel(HIDDEN);
+SEPARATOR : ', ' -> channel(HIDDEN);
 
 // case insensitive chars
 fragment A:('a'|'A');
