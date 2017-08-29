@@ -102,6 +102,7 @@ import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileCo
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.asg.metamodel.procedure.Section;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.BooleanLiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
@@ -1318,8 +1319,19 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (procedureDivision == null) {
 			result = null;
-		} else {
+		} else if (procedureDivision.getParagraph(name) != null) {
 			result = procedureDivision.getParagraph(name);
+		} else {
+			Paragraph paragraphInSection = null;
+
+			for (final Section section : procedureDivision.getSections()) {
+				if (section.getParagraph(name) != null) {
+					paragraphInSection = section.getParagraph(name);
+					break;
+				}
+			}
+
+			result = paragraphInSection;
 		}
 
 		return result;

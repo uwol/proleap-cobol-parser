@@ -3202,7 +3202,7 @@ EXECCICSLINE : EXECCICSTAG WS ~('\n' | '\r' | '^')+ ('\n' | '\r' | '^');
 EXECSQLIMSLINE : EXECSQLIMSTAG WS ~('\n' | '\r' | '^')+ ('\n' | '\r' | '^');
 EXECSQLLINE : EXECSQLTAG WS ~('\n' | '\r' | '^')+ ('\n' | '\r' | '^');
 COMMENTENTRYLINE : COMMENTENTRYTAG WS ~('\n' | '\r')*;
-COMMENTLINE : COMMENTTAG WS ~('\n' | '\r')* -> skip;
+COMMENTLINE : COMMENTTAG WS ~('\n' | '\r')* -> channel(HIDDEN);
 WS : [ \t\f;]+ -> channel(HIDDEN);
 SEPARATOR : ', ' -> channel(HIDDEN);
 
