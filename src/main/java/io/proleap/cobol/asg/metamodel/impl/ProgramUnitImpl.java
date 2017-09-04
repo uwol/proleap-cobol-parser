@@ -62,36 +62,38 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 
 			final DataDivisionBodyContext dataDivisionBodyContext = ctx.dataDivisionBody();
 
-			if (dataDivisionBodyContext.communicationSection() != null) {
-				result.addCommunicationSection(dataDivisionBodyContext.communicationSection());
-			}
+			if (dataDivisionBodyContext != null) {
+				if (dataDivisionBodyContext.communicationSection() != null) {
+					result.addCommunicationSection(dataDivisionBodyContext.communicationSection());
+				}
 
-			if (dataDivisionBodyContext.dataBaseSection() != null) {
-				result.addDataBaseSection(dataDivisionBodyContext.dataBaseSection());
-			}
+				if (dataDivisionBodyContext.dataBaseSection() != null) {
+					result.addDataBaseSection(dataDivisionBodyContext.dataBaseSection());
+				}
 
-			if (dataDivisionBodyContext.fileSection() != null) {
-				result.addFileSection(dataDivisionBodyContext.fileSection());
-			}
+				if (dataDivisionBodyContext.fileSection() != null) {
+					result.addFileSection(dataDivisionBodyContext.fileSection());
+				}
 
-			if (dataDivisionBodyContext.linkageSection() != null) {
-				result.addLinkageSection(dataDivisionBodyContext.linkageSection());
-			}
+				if (dataDivisionBodyContext.linkageSection() != null) {
+					result.addLinkageSection(dataDivisionBodyContext.linkageSection());
+				}
 
-			if (dataDivisionBodyContext.localStorageSection() != null) {
-				result.addLocalStorageSection(dataDivisionBodyContext.localStorageSection());
-			}
+				if (dataDivisionBodyContext.localStorageSection() != null) {
+					result.addLocalStorageSection(dataDivisionBodyContext.localStorageSection());
+				}
 
-			if (dataDivisionBodyContext.programLibrarySection() != null) {
-				result.addProgramLibrarySection(dataDivisionBodyContext.programLibrarySection());
-			}
+				if (dataDivisionBodyContext.programLibrarySection() != null) {
+					result.addProgramLibrarySection(dataDivisionBodyContext.programLibrarySection());
+				}
 
-			if (dataDivisionBodyContext.screenSection() != null) {
-				result.addScreenSection(dataDivisionBodyContext.screenSection());
-			}
+				if (dataDivisionBodyContext.screenSection() != null) {
+					result.addScreenSection(dataDivisionBodyContext.screenSection());
+				}
 
-			if (dataDivisionBodyContext.workingStorageSection() != null) {
-				result.addWorkingStorageSection(dataDivisionBodyContext.workingStorageSection());
+				if (dataDivisionBodyContext.workingStorageSection() != null) {
+					result.addWorkingStorageSection(dataDivisionBodyContext.workingStorageSection());
+				}
 			}
 
 			registerASGElement(result);
