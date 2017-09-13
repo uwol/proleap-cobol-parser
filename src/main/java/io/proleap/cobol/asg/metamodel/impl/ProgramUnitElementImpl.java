@@ -202,7 +202,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final CommunicationDescriptionEntry communicationDescriptionEntry = findCommunicationDescriptionEntry(name);
 
 			if (communicationDescriptionEntry == null) {
-				LOG.warn("call to unknown communication description element {}", name);
+				LOG.debug("call to unknown communication description element {}", name);
 				result = createUndefinedCall(ctx);
 			} else {
 				result = createCommunicationDescriptionEntryCall(name, communicationDescriptionEntry, ctx);
@@ -574,7 +574,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = tableCall;
 				registerASGElement(result);
 			} else {
-				LOG.warn("call to unknown data element {}", name);
+				LOG.debug("call to unknown data element {}", name);
 				result = createUndefinedCall(ctx);
 			}
 		}
@@ -720,7 +720,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			} else if (dataDescriptionEntry != null) {
 				result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
 			} else {
-				LOG.warn("call to unknown data element {}", name);
+				LOG.debug("call to unknown data element {}", name);
 				result = createUndefinedCall(ctx);
 			}
 		}
