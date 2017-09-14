@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.PerformAfterContext;
@@ -22,7 +23,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class VaryingClauseImpl extends CobolDivisionElementImpl implements VaryingClause {
 
-	protected List<After> afters;
+	protected List<After> afters = new ArrayList<After>();
 
 	protected final PerformVaryingClauseContext ctx;
 
