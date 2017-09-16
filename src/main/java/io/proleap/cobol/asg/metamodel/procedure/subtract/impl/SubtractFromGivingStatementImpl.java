@@ -34,7 +34,8 @@ public class SubtractFromGivingStatementImpl extends CobolDivisionElementImpl im
 
 	protected List<Subtrahend> subtrahends = new ArrayList<Subtrahend>();
 
-	public SubtractFromGivingStatementImpl(final ProgramUnit programUnit, final SubtractFromGivingStatementContext ctx) {
+	public SubtractFromGivingStatementImpl(final ProgramUnit programUnit,
+			final SubtractFromGivingStatementContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
@@ -48,8 +49,10 @@ public class SubtractFromGivingStatementImpl extends CobolDivisionElementImpl im
 			result = new GivingImpl(programUnit, ctx);
 
 			// giving call
-			final Call givingCall = createCall(ctx.identifier());
-			result.setGivingCall(givingCall);
+			if (ctx.identifier() != null) {
+				final Call givingCall = createCall(ctx.identifier());
+				result.setGivingCall(givingCall);
+			}
 
 			// rounded
 			if (ctx.ROUNDED() != null) {
@@ -71,8 +74,10 @@ public class SubtractFromGivingStatementImpl extends CobolDivisionElementImpl im
 			result = new MinuendGivingImpl(programUnit, ctx);
 
 			// minuend
-			final Call minuendCall = createCall(ctx.identifier());
-			result.setMinuendCall(minuendCall);
+			if (ctx.identifier() != null) {
+				final Call minuendCall = createCall(ctx.identifier());
+				result.setMinuendCall(minuendCall);
+			}
 
 			minuend = result;
 			registerASGElement(result);

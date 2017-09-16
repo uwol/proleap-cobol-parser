@@ -81,8 +81,10 @@ public abstract class InspectPhraseImpl extends CobolDivisionElementImpl {
 			result = new ForImpl(programUnit, ctx);
 
 			// tally count
-			final Call tallyCountDataItemCall = createCall(ctx.identifier());
-			result.setTallyCountDataItemCall(tallyCountDataItemCall);
+			if (ctx.identifier() != null) {
+				final Call tallyCountDataItemCall = createCall(ctx.identifier());
+				result.setTallyCountDataItemCall(tallyCountDataItemCall);
+			}
 
 			// characters
 			for (final InspectCharactersContext inspectCharactersContext : ctx.inspectCharacters()) {

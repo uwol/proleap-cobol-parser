@@ -16,14 +16,14 @@ import io.proleap.cobol.Cobol85Parser.MultiplyRegularOperandContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.multiply.ByPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.multiply.ByOperand;
+import io.proleap.cobol.asg.metamodel.procedure.multiply.ByPhrase;
 
 public class ByPhraseImpl extends CobolDivisionElementImpl implements ByPhrase {
 
-	protected final MultiplyRegularContext ctx;
-
 	protected List<ByOperand> byOperands = new ArrayList<ByOperand>();
+
+	protected final MultiplyRegularContext ctx;
 
 	public ByPhraseImpl(final ProgramUnit programUnit, final MultiplyRegularContext ctx) {
 		super(programUnit, ctx);
@@ -39,8 +39,10 @@ public class ByPhraseImpl extends CobolDivisionElementImpl implements ByPhrase {
 			result = new ByOperandImpl(programUnit, ctx);
 
 			// call
-			final Call operandCall = createCall(ctx.identifier());
-			result.setOperandCall(operandCall);
+			if (ctx.identifier() != null) {
+				final Call operandCall = createCall(ctx.identifier());
+				result.setOperandCall(operandCall);
+			}
 
 			// rounded
 			if (ctx.ROUNDED() != null) {

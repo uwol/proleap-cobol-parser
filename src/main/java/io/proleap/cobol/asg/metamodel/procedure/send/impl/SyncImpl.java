@@ -93,8 +93,10 @@ public class SyncImpl extends CobolDivisionElementImpl implements Sync {
 			result = new FromImpl(programUnit, ctx);
 
 			// from
-			final Call fromCall = createCall(ctx.identifier());
-			result.setFromCall(fromCall);
+			if (ctx.identifier() != null) {
+				final Call fromCall = createCall(ctx.identifier());
+				result.setFromCall(fromCall);
+			}
 
 			from = result;
 			registerASGElement(result);

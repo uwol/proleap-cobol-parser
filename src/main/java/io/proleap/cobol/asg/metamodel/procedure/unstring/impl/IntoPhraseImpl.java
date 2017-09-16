@@ -39,8 +39,10 @@ public class IntoPhraseImpl extends CobolDivisionElementImpl implements IntoPhra
 			result = new IntoImpl(programUnit, ctx);
 
 			// call
-			final Call intoCall = createCall(ctx.identifier());
-			result.setIntoCall(intoCall);
+			if (ctx.identifier() != null) {
+				final Call intoCall = createCall(ctx.identifier());
+				result.setIntoCall(intoCall);
+			}
 
 			// delimiter in
 			if (ctx.unstringDelimiterIn() != null) {

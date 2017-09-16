@@ -52,8 +52,10 @@ public class RerunClauseImpl extends CobolDivisionElementImpl implements RerunCl
 		if (result == null) {
 			result = new RerunEveryClockImpl(programUnit, ctx);
 
-			final IntegerLiteral integerLiteral = createIntegerLiteral(ctx.integerLiteral());
-			result.setClockUnits(integerLiteral);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral integerLiteral = createIntegerLiteral(ctx.integerLiteral());
+				result.setClockUnits(integerLiteral);
+			}
 
 			rerunEveryClock = result;
 			registerASGElement(result);
@@ -105,8 +107,10 @@ public class RerunClauseImpl extends CobolDivisionElementImpl implements RerunCl
 		if (result == null) {
 			result = new RerunEveryRecordsImpl(programUnit, ctx);
 
-			final IntegerLiteral integerLiteral = createIntegerLiteral(ctx.integerLiteral());
-			result.setRecords(integerLiteral);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral integerLiteral = createIntegerLiteral(ctx.integerLiteral());
+				result.setRecords(integerLiteral);
+			}
 
 			rerunEveryRecords = result;
 			registerASGElement(result);

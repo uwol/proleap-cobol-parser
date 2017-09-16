@@ -66,8 +66,10 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			/*
 			 * from
 			 */
-			final Call fromCall = createCall(ctx.identifier());
-			result.setFrom(fromCall);
+			if (ctx.identifier() != null) {
+				final Call fromCall = createCall(ctx.identifier());
+				result.setFrom(fromCall);
+			}
 
 			/*
 			 * to
@@ -177,8 +179,10 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			/*
 			 * giving
 			 */
-			final Call giving = createCall(ctx.identifier());
-			result.setGiving(giving);
+			if (ctx.identifier() != null) {
+				final Call giving = createCall(ctx.identifier());
+				result.setGiving(giving);
+			}
 
 			/*
 			 * rounded
@@ -202,8 +206,10 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			/*
 			 * to
 			 */
-			final Call to = createCall(ctx.identifier());
-			result.setTo(to);
+			if (ctx.identifier() != null) {
+				final Call to = createCall(ctx.identifier());
+				result.setTo(to);
+			}
 
 			/*
 			 * rounded

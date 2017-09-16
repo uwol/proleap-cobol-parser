@@ -62,8 +62,10 @@ public class GivingPhraseImpl extends CobolDivisionElementImpl implements Giving
 			result = new GivingResultImpl(programUnit, ctx);
 
 			// result
-			final Call resultCall = createCall(ctx.identifier());
-			result.setResultCall(resultCall);
+			if (ctx.identifier() != null) {
+				final Call resultCall = createCall(ctx.identifier());
+				result.setResultCall(resultCall);
+			}
 
 			// rounded
 			if (ctx.ROUNDED() != null) {

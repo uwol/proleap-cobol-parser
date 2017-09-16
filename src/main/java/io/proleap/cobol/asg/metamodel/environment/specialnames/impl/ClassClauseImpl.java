@@ -45,20 +45,25 @@ public class ClassClauseImpl extends CobolDivisionElementImpl implements ClassCl
 		if (result == null) {
 			result = new ClassThroughImpl(programUnit, ctx);
 
-			final ClassClauseFromContext fromContext = ctx.classClauseFrom();
-			final ClassClauseToContext toContext = ctx.classClauseTo();
-
 			/*
 			 * from
 			 */
-			final ValueStmt fromValueStmt = createValueStmt(fromContext.identifier(), fromContext.literal());
-			result.setFrom(fromValueStmt);
+			final ClassClauseFromContext fromContext = ctx.classClauseFrom();
+
+			if (fromContext != null) {
+				final ValueStmt fromValueStmt = createValueStmt(fromContext.identifier(), fromContext.literal());
+				result.setFrom(fromValueStmt);
+			}
 
 			/*
 			 * to
 			 */
-			final ValueStmt toValueStmt = createValueStmt(toContext.identifier(), toContext.literal());
-			result.setTo(toValueStmt);
+			final ClassClauseToContext toContext = ctx.classClauseTo();
+
+			if (toContext != null) {
+				final ValueStmt toValueStmt = createValueStmt(toContext.identifier(), toContext.literal());
+				result.setTo(toValueStmt);
+			}
 
 			classThroughs.add(result);
 			registerASGElement(result);

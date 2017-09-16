@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.LibraryAttributeClauseFormat2Context;
+import io.proleap.cobol.Cobol85Parser.LibraryAttributeFunctionContext;
+import io.proleap.cobol.Cobol85Parser.LibraryAttributeParameterContext;
+import io.proleap.cobol.Cobol85Parser.LibraryAttributeTitleContext;
 import io.proleap.cobol.Cobol85Parser.LibraryDescriptionEntryFormat2Context;
 import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureClauseFormat2Context;
 import io.proleap.cobol.Cobol85Parser.LibraryIsCommonClauseContext;
@@ -103,24 +106,36 @@ public class LibraryDescriptionEntryImportImpl extends LibraryDescriptionEntryIm
 			 * function
 			 */
 			if (ctx.libraryAttributeFunction() != null) {
-				final Literal functionLiteral = createLiteral(ctx.libraryAttributeFunction().literal());
-				result.setFunctionLiteral(functionLiteral);
+				final LibraryAttributeFunctionContext libraryAttributeFunction = ctx.libraryAttributeFunction();
+
+				if (libraryAttributeFunction.literal() != null) {
+					final Literal functionLiteral = createLiteral(libraryAttributeFunction.literal());
+					result.setFunctionLiteral(functionLiteral);
+				}
 			}
 
 			/*
 			 * parameter
 			 */
 			if (ctx.libraryAttributeParameter() != null) {
-				final Literal parameterLiteral = createLiteral(ctx.libraryAttributeParameter().literal());
-				result.setParameterLiteral(parameterLiteral);
+				final LibraryAttributeParameterContext libraryAttributeParameter = ctx.libraryAttributeParameter();
+
+				if (libraryAttributeParameter != null) {
+					final Literal parameterLiteral = createLiteral(libraryAttributeParameter.literal());
+					result.setParameterLiteral(parameterLiteral);
+				}
 			}
 
 			/*
 			 * title
 			 */
 			if (ctx.libraryAttributeTitle() != null) {
-				final Literal titleLiteral = createLiteral(ctx.libraryAttributeTitle().literal());
-				result.setTitleLiteral(titleLiteral);
+				final LibraryAttributeTitleContext libraryAttributeTitle = ctx.libraryAttributeTitle();
+
+				if (libraryAttributeTitle.literal() != null) {
+					final Literal titleLiteral = createLiteral(libraryAttributeTitle.literal());
+					result.setTitleLiteral(titleLiteral);
+				}
 			}
 
 			importAttributes.add(result);

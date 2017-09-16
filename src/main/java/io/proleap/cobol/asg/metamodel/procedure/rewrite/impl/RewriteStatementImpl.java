@@ -48,8 +48,10 @@ public class RewriteStatementImpl extends StatementImpl implements RewriteStatem
 		if (result == null) {
 			result = new FromImpl(programUnit, ctx);
 
-			final Call fromCall = createCall(ctx.identifier());
-			result.setFromCall(fromCall);
+			if (ctx.identifier() != null) {
+				final Call fromCall = createCall(ctx.identifier());
+				result.setFromCall(fromCall);
+			}
 
 			from = result;
 			registerASGElement(result);

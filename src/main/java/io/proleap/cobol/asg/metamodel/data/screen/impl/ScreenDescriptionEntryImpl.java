@@ -324,8 +324,10 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result.setColumnNumberClauseType(type);
 
 			// line number
-			final IntegerLiteral lineNumber = createIntegerLiteral(ctx.integerLiteral());
-			result.setIntegerLiteral(lineNumber);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral lineNumber = createIntegerLiteral(ctx.integerLiteral());
+				result.setIntegerLiteral(lineNumber);
+			}
 
 			columnNumberClause = result;
 			registerASGElement(result);
@@ -341,8 +343,10 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new ControlClauseImpl(programUnit, ctx);
 
-			final Call controlCall = createCall(ctx.identifier());
-			result.setControlCall(controlCall);
+			if (ctx.identifier() != null) {
+				final Call controlCall = createCall(ctx.identifier());
+				result.setControlCall(controlCall);
+			}
 
 			controlClause = result;
 			registerASGElement(result);
@@ -549,8 +553,10 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 			result.setLineNumberClauseType(type);
 
 			// line number
-			final IntegerLiteral lineNumber = createIntegerLiteral(ctx.integerLiteral());
-			result.setIntegerLiteral(lineNumber);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral lineNumber = createIntegerLiteral(ctx.integerLiteral());
+				result.setIntegerLiteral(lineNumber);
+			}
 
 			lineNumberClause = result;
 			registerASGElement(result);
@@ -771,8 +777,10 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new UsingClauseImpl(programUnit, ctx);
 
-			final Call usingCall = createCall(ctx.identifier());
-			result.setUsingCall(usingCall);
+			if (ctx.identifier() != null) {
+				final Call usingCall = createCall(ctx.identifier());
+				result.setUsingCall(usingCall);
+			}
 
 			usingClause = result;
 			registerASGElement(result);
@@ -788,8 +796,10 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new ValueClauseImpl(programUnit, ctx);
 
-			final Literal literal = createLiteral(ctx.literal());
-			result.setLiteral(literal);
+			if (ctx.literal() != null) {
+				final Literal literal = createLiteral(ctx.literal());
+				result.setLiteral(literal);
+			}
 
 			valueClause = result;
 			registerASGElement(result);

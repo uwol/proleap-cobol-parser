@@ -26,6 +26,7 @@ import io.proleap.cobol.Cobol85Parser.DataIntegerStringClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataJustifiedClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataOccursClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataOccursSortContext;
+import io.proleap.cobol.Cobol85Parser.DataOccursToContext;
 import io.proleap.cobol.Cobol85Parser.DataPictureClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataReceivedByClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataRecordAreaClauseContext;
@@ -313,15 +314,21 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			/*
 			 * from
 			 */
-			final IntegerLiteral from = createIntegerLiteral(ctx.integerLiteral());
-			result.setFrom(from);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral from = createIntegerLiteral(ctx.integerLiteral());
+				result.setFrom(from);
+			}
 
 			/*
 			 * to
 			 */
 			if (ctx.dataOccursTo() != null) {
-				final IntegerLiteral to = createIntegerLiteral(ctx.dataOccursTo().integerLiteral());
-				result.setTo(to);
+				final DataOccursToContext dataOccursTo = ctx.dataOccursTo();
+
+				if (dataOccursTo.integerLiteral() != null) {
+					final IntegerLiteral to = createIntegerLiteral(dataOccursTo.integerLiteral());
+					result.setTo(to);
+				}
 			}
 
 			/*

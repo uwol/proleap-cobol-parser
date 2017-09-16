@@ -16,8 +16,8 @@ import io.proleap.cobol.Cobol85Parser.DivideIntoGivingStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.divide.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideIntoGivingStatement;
+import io.proleap.cobol.asg.metamodel.procedure.divide.Giving;
 
 public class DivideIntoGivingStatementImpl extends CobolDivisionElementImpl implements DivideIntoGivingStatement {
 
@@ -39,8 +39,10 @@ public class DivideIntoGivingStatementImpl extends CobolDivisionElementImpl impl
 			result = new GivingImpl(programUnit, ctx);
 
 			// call
-			final Call call = createCall(ctx.identifier());
-			result.setCall(call);
+			if (ctx.identifier() != null) {
+				final Call call = createCall(ctx.identifier());
+				result.setCall(call);
+			}
 
 			// rounded
 			if (ctx.ROUNDED() != null) {

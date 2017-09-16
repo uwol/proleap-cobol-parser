@@ -52,8 +52,10 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 			result = new ClassConditionImpl(programUnit, ctx);
 
 			// identifier
-			final Call identifierCall = createCall(ctx.identifier());
-			result.setIdentifierCall(identifierCall);
+			if (ctx.identifier() != null) {
+				final Call identifierCall = createCall(ctx.identifier());
+				result.setIdentifierCall(identifierCall);
+			}
 
 			// not
 			final boolean not = ctx.NOT() != null;

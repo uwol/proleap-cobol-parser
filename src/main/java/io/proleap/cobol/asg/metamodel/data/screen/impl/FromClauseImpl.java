@@ -38,8 +38,10 @@ public class FromClauseImpl extends CobolDivisionElementImpl implements FromClau
 		if (result == null) {
 			result = new ToImpl(programUnit, ctx);
 
-			final Call toCall = createCall(ctx.identifier());
-			result.setToCall(toCall);
+			if (ctx.identifier() != null) {
+				final Call toCall = createCall(ctx.identifier());
+				result.setToCall(toCall);
+			}
 
 			to = result;
 			registerASGElement(result);

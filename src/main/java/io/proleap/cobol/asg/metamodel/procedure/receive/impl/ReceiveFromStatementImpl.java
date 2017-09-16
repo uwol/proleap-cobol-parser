@@ -125,8 +125,10 @@ public class ReceiveFromStatementImpl extends CobolDivisionElementImpl implement
 		if (result == null) {
 			result = new StatusImpl(programUnit, ctx);
 
-			final Call statusCall = createCall(ctx.identifier());
-			result.setStatusCall(statusCall);
+			if (ctx.identifier() != null) {
+				final Call statusCall = createCall(ctx.identifier());
+				result.setStatusCall(statusCall);
+			}
 
 			status = result;
 			registerASGElement(result);

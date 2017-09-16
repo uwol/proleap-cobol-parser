@@ -43,8 +43,10 @@ public class SetToImpl extends CobolDivisionElementImpl implements SetTo {
 		if (result == null) {
 			result = new ToImpl(programUnit, ctx);
 
-			final Call toCall = createCall(ctx.identifier());
-			result.setToCall(toCall);
+			if (ctx.identifier() != null) {
+				final Call toCall = createCall(ctx.identifier());
+				result.setToCall(toCall);
+			}
 
 			tos.add(result);
 			registerASGElement(result);

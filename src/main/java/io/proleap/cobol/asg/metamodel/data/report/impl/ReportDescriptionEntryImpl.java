@@ -73,8 +73,10 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new FirstDetailClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral firstDetailIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
-			result.setFirstDetailIntegerLiteral(firstDetailIntegerLiteral);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral firstDetailIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
+				result.setFirstDetailIntegerLiteral(firstDetailIntegerLiteral);
+			}
 
 			firstDetailClause = result;
 			registerASGElement(result);
@@ -90,8 +92,10 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new FootingClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral footingIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
-			result.setFootingIntegerLiteral(footingIntegerLiteral);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral footingIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
+				result.setFootingIntegerLiteral(footingIntegerLiteral);
+			}
 
 			footingClause = result;
 			registerASGElement(result);
@@ -123,8 +127,10 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new HeadingClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral headingIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
-			result.setHeadingIntegerLiteral(headingIntegerLiteral);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral headingIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
+				result.setHeadingIntegerLiteral(headingIntegerLiteral);
+			}
 
 			headingClause = result;
 			registerASGElement(result);
@@ -140,8 +146,10 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new LastDetailClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral lastDetailIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
-			result.setLastDetailIntegerLiteral(lastDetailIntegerLiteral);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral lastDetailIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
+				result.setLastDetailIntegerLiteral(lastDetailIntegerLiteral);
+			}
 
 			lastDetailClause = result;
 			registerASGElement(result);
@@ -157,8 +165,10 @@ public class ReportDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		if (result == null) {
 			result = new PageLimitClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral pageLimitIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
-			result.setPageLimitIntegerLiteral(pageLimitIntegerLiteral);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral pageLimitIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
+				result.setPageLimitIntegerLiteral(pageLimitIntegerLiteral);
+			}
 
 			pageLimitClause = result;
 			registerASGElement(result);

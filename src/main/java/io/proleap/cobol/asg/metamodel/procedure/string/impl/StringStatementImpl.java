@@ -60,8 +60,10 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 			result = new IntoPhraseImpl(programUnit, ctx);
 
 			// into
-			final Call intoCall = createCall(ctx.identifier());
-			result.setIntoCall(intoCall);
+			if (ctx.identifier() != null) {
+				final Call intoCall = createCall(ctx.identifier());
+				result.setIntoCall(intoCall);
+			}
 
 			intoPhrase = result;
 			registerASGElement(result);

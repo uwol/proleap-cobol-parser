@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.unstring.impl;
 
+import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.UnstringCountInContext;
 import io.proleap.cobol.Cobol85Parser.UnstringDelimiterInContext;
 import io.proleap.cobol.Cobol85Parser.UnstringIntoContext;
@@ -41,8 +42,10 @@ public class IntoImpl extends CobolDivisionElementImpl implements Into {
 		if (result == null) {
 			result = new CountInImpl(programUnit, ctx);
 
-			final Call countInCall = createCall(ctx.identifier());
-			result.setCountInCall(countInCall);
+			if (ctx.identifier() != null) {
+				final Call countInCall = createCall(ctx.identifier());
+				result.setCountInCall(countInCall);
+			}
 
 			countIn = result;
 			registerASGElement(result);
@@ -58,8 +61,10 @@ public class IntoImpl extends CobolDivisionElementImpl implements Into {
 		if (result == null) {
 			result = new DelimiterInImpl(programUnit, ctx);
 
-			final Call delimiterInCall = createCall(ctx.identifier());
-			result.setDelimiterInCall(delimiterInCall);
+			if (ctx.identifier() != null) {
+				final Call delimiterInCall = createCall(ctx.identifier());
+				result.setDelimiterInCall(delimiterInCall);
+			}
 
 			delimiterIn = result;
 			registerASGElement(result);

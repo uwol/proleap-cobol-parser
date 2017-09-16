@@ -57,8 +57,10 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 		if (result == null) {
 			result = new GivingPhraseImpl(programUnit, ctx);
 
-			final Call givingCall = createCall(ctx.identifier());
-			result.setGivingCall(givingCall);
+			if (ctx.identifier() != null) {
+				final Call givingCall = createCall(ctx.identifier());
+				result.setGivingCall(givingCall);
+			}
 
 			givingPhrase = result;
 			registerASGElement(result);

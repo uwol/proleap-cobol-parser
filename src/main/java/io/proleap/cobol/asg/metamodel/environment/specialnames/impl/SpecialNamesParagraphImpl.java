@@ -184,11 +184,15 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 		if (result == null) {
 			result = new ChannelClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral integerLiteral = createIntegerLiteral(ctx.integerLiteral());
-			result.setIntegerLiteral(integerLiteral);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral integerLiteral = createIntegerLiteral(ctx.integerLiteral());
+				result.setIntegerLiteral(integerLiteral);
+			}
 
-			final MnemonicName mnemonicName = createMnemonicName(ctx.mnemonicName());
-			result.setMnemonicName(mnemonicName);
+			if (ctx.mnemonicName() != null) {
+				final MnemonicName mnemonicName = createMnemonicName(ctx.mnemonicName());
+				result.setMnemonicName(mnemonicName);
+			}
 
 			channelClause = result;
 			registerASGElement(result);
@@ -311,8 +315,10 @@ public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implemen
 		if (result == null) {
 			result = new OdtClauseImpl(programUnit, ctx);
 
-			final MnemonicName mnemonicName = createMnemonicName(ctx.mnemonicName());
-			result.setMnemonicName(mnemonicName);
+			if (ctx.mnemonicName() != null) {
+				final MnemonicName mnemonicName = createMnemonicName(ctx.mnemonicName());
+				result.setMnemonicName(mnemonicName);
+			}
 
 			odtClause = result;
 			registerASGElement(result);

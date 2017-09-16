@@ -64,8 +64,10 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 		if (result == null) {
 			result = new IntoImpl(programUnit, ctx);
 
-			final Call intoCall = createCall(ctx.identifier());
-			result.setIntoCall(intoCall);
+			if (ctx.identifier() != null) {
+				final Call intoCall = createCall(ctx.identifier());
+				result.setIntoCall(intoCall);
+			}
 
 			into = result;
 			registerASGElement(result);

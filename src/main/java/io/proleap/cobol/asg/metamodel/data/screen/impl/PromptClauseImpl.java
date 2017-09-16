@@ -38,8 +38,10 @@ public class PromptClauseImpl extends CobolDivisionElementImpl implements Prompt
 		if (result == null) {
 			result = new OccursImpl(programUnit, ctx);
 
-			final IntegerLiteral occursTimes = createIntegerLiteral(ctx.integerLiteral());
-			result.setOccursTimes(occursTimes);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral occursTimes = createIntegerLiteral(ctx.integerLiteral());
+				result.setOccursTimes(occursTimes);
+			}
 
 			occurs = result;
 			registerASGElement(result);

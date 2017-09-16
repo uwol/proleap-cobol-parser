@@ -80,8 +80,10 @@ public class CommunicationDescriptionEntryOutputImpl extends CommunicationDescri
 			/*
 			 * occurs
 			 */
-			final IntegerLiteral occursIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
-			result.setIntegerLiteral(occursIntegerLiteral);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral occursIntegerLiteral = createIntegerLiteral(ctx.integerLiteral());
+				result.setIntegerLiteral(occursIntegerLiteral);
+			}
 
 			/*
 			 * indexes

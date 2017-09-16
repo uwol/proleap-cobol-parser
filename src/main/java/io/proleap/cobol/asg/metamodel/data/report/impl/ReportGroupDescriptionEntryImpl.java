@@ -18,6 +18,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.ReportGroupLineNumberClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupLineNumberNextPageContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupLineNumberPlusContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupUsageClauseContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -47,7 +49,8 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 
 	protected UsageClause usageClause;
 
-	public ReportGroupDescriptionEntryImpl(final String name, final ProgramUnit programUnit, final ParserRuleContext ctx) {
+	public ReportGroupDescriptionEntryImpl(final String name, final ProgramUnit programUnit,
+			final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
@@ -96,10 +99,23 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 
 			if (ctx.reportGroupLineNumberNextPage() != null) {
 				type = LineNumberClause.LineNumberClauseType.NEXT_PAGE;
-				integerLiteral = createIntegerLiteral(ctx.reportGroupLineNumberNextPage().integerLiteral());
+				final ReportGroupLineNumberNextPageContext reportGroupLineNumberNextPage = ctx
+						.reportGroupLineNumberNextPage();
+
+				if (reportGroupLineNumberNextPage.integerLiteral() != null) {
+					integerLiteral = createIntegerLiteral(reportGroupLineNumberNextPage.integerLiteral());
+				} else {
+					integerLiteral = null;
+				}
 			} else if (ctx.reportGroupLineNumberPlus() != null) {
 				type = LineNumberClause.LineNumberClauseType.PLUS;
-				integerLiteral = createIntegerLiteral(ctx.reportGroupLineNumberPlus().integerLiteral());
+				final ReportGroupLineNumberPlusContext reportGroupLineNumberPlus = ctx.reportGroupLineNumberPlus();
+
+				if (reportGroupLineNumberPlus.integerLiteral() != null) {
+					integerLiteral = createIntegerLiteral(reportGroupLineNumberPlus.integerLiteral());
+				} else {
+					integerLiteral = null;
+				}
 			} else {
 				LOG.warn("unknown line number at {}", ctx);
 				type = null;

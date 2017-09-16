@@ -129,8 +129,10 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 			result = new RemainderImpl(programUnit, ctx);
 
 			// call
-			final Call remainderCall = createCall(ctx.identifier());
-			result.setRemainderCall(remainderCall);
+			if (ctx.identifier() != null) {
+				final Call remainderCall = createCall(ctx.identifier());
+				result.setRemainderCall(remainderCall);
+			}
 
 			remainder = result;
 			registerASGElement(result);

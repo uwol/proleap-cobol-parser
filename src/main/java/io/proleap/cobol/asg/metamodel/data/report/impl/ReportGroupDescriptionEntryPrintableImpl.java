@@ -93,8 +93,10 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 		if (result == null) {
 			result = new ColumnNumberClauseImpl(programUnit, ctx);
 
-			final IntegerLiteral integerLiteral = createIntegerLiteral(ctx.integerLiteral());
-			result.setIntegerLiteral(integerLiteral);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral integerLiteral = createIntegerLiteral(ctx.integerLiteral());
+				result.setIntegerLiteral(integerLiteral);
+			}
 
 			columnNumberClause = result;
 			registerASGElement(result);
@@ -223,8 +225,10 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 		if (result == null) {
 			result = new SourceClauseImpl(programUnit, ctx);
 
-			final Call sourceCall = createCall(ctx.identifier());
-			result.setSourceCall(sourceCall);
+			if (ctx.identifier() != null) {
+				final Call sourceCall = createCall(ctx.identifier());
+				result.setSourceCall(sourceCall);
+			}
 
 			sourceClause = result;
 			registerASGElement(result);
@@ -270,8 +274,10 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 		if (result == null) {
 			result = new ValueClauseImpl(programUnit, ctx);
 
-			final Literal literal = createLiteral(ctx.literal());
-			result.setLiteral(literal);
+			if (ctx.literal() != null) {
+				final Literal literal = createLiteral(ctx.literal());
+				result.setLiteral(literal);
+			}
 
 			valueClause = result;
 			registerASGElement(result);
@@ -306,6 +312,11 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 	}
 
 	@Override
+	public ReportGroupDescriptionEntryType getReportGroupDescriptionEntryType() {
+		return ReportGroupDescriptionEntryType.PRINTABLE;
+	}
+
+	@Override
 	public ResetClause getResetClause() {
 		return resetClause;
 	}
@@ -323,11 +334,6 @@ public class ReportGroupDescriptionEntryPrintableImpl extends ReportGroupDescrip
 	@Override
 	public SumClause getSumClause() {
 		return sumClause;
-	}
-
-	@Override
-	public ReportGroupDescriptionEntryType getReportGroupDescriptionEntryType() {
-		return ReportGroupDescriptionEntryType.PRINTABLE;
 	}
 
 	@Override

@@ -121,8 +121,10 @@ public class ReceiveStatementImpl extends StatementImpl implements ReceiveStatem
 			result.setReceiveIntoType(type);
 
 			// into call
-			final Call intoCall = createCall(ctx.identifier());
-			result.setIntoCall(intoCall);
+			if (ctx.identifier() != null) {
+				final Call intoCall = createCall(ctx.identifier());
+				result.setIntoCall(intoCall);
+			}
 
 			// no data
 			if (ctx.receiveNoData() != null) {

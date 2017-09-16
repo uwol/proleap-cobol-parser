@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
+import io.proleap.cobol.Cobol85Parser.BlockContainsToContext;
 import io.proleap.cobol.Cobol85Parser.CodeSetClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataNameContext;
 import io.proleap.cobol.Cobol85Parser.DataRecordsClauseContext;
@@ -25,7 +26,10 @@ import io.proleap.cobol.Cobol85Parser.LinageFootingAtContext;
 import io.proleap.cobol.Cobol85Parser.LinageLinesAtBottomContext;
 import io.proleap.cobol.Cobol85Parser.LinageLinesAtTopContext;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseContext;
+import io.proleap.cobol.Cobol85Parser.RecordContainsClauseFormat1Context;
 import io.proleap.cobol.Cobol85Parser.RecordContainsClauseFormat2Context;
+import io.proleap.cobol.Cobol85Parser.RecordContainsClauseFormat3Context;
+import io.proleap.cobol.Cobol85Parser.RecordContainsToContext;
 import io.proleap.cobol.Cobol85Parser.ReportClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
 import io.proleap.cobol.Cobol85Parser.ValueOfClauseContext;
@@ -101,15 +105,21 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			/*
 			 * from
 			 */
-			final IntegerLiteral from = createIntegerLiteral(ctx.integerLiteral());
-			result.setFrom(from);
+			if (ctx.integerLiteral() != null) {
+				final IntegerLiteral from = createIntegerLiteral(ctx.integerLiteral());
+				result.setFrom(from);
+			}
 
 			/*
 			 * to
 			 */
 			if (ctx.blockContainsTo() != null) {
-				final IntegerLiteral to = createIntegerLiteral(ctx.blockContainsTo().integerLiteral());
-				result.setTo(to);
+				final BlockContainsToContext blockContainsTo = ctx.blockContainsTo();
+
+				if (blockContainsTo.integerLiteral() != null) {
+					final IntegerLiteral to = createIntegerLiteral(blockContainsTo.integerLiteral());
+					result.setTo(to);
+				}
 			}
 
 			/*
@@ -335,8 +345,13 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 			result = new RecordContainsClauseImpl(programUnit, ctx);
 
 			if (ctx.recordContainsClauseFormat1() != null) {
-				final IntegerLiteral from = createIntegerLiteral(ctx.recordContainsClauseFormat1().integerLiteral());
-				result.setFrom(from);
+				final RecordContainsClauseFormat1Context recordContainsClauseFormat1 = ctx
+						.recordContainsClauseFormat1();
+
+				if (recordContainsClauseFormat1.integerLiteral() != null) {
+					final IntegerLiteral from = createIntegerLiteral(recordContainsClauseFormat1.integerLiteral());
+					result.setFrom(from);
+				}
 			} else if (ctx.recordContainsClauseFormat2() != null) {
 				final RecordContainsClauseFormat2Context recordContainsClauseFormat2 = ctx
 						.recordContainsClauseFormat2();
@@ -344,16 +359,21 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 				/*
 				 * from
 				 */
-				final IntegerLiteral from = createIntegerLiteral(recordContainsClauseFormat2.integerLiteral());
-				result.setFrom(from);
+				if (recordContainsClauseFormat2.integerLiteral() != null) {
+					final IntegerLiteral from = createIntegerLiteral(recordContainsClauseFormat2.integerLiteral());
+					result.setFrom(from);
+				}
 
 				/*
 				 * to
 				 */
 				if (recordContainsClauseFormat2.recordContainsTo() != null) {
-					final IntegerLiteral to = createIntegerLiteral(
-							recordContainsClauseFormat2.recordContainsTo().integerLiteral());
-					result.setTo(to);
+					final RecordContainsToContext recordContainsTo = recordContainsClauseFormat2.recordContainsTo();
+
+					if (recordContainsTo.integerLiteral() != null) {
+						final IntegerLiteral to = createIntegerLiteral(recordContainsTo.integerLiteral());
+						result.setTo(to);
+					}
 				}
 
 				/*
@@ -371,18 +391,28 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 					result.setDependingOnCall(dependingOnCall);
 				}
 			} else if (ctx.recordContainsClauseFormat3() != null) {
+				final RecordContainsClauseFormat3Context recordContainsClauseFormat3 = ctx
+						.recordContainsClauseFormat3();
+
 				/*
 				 * from
 				 */
-				final IntegerLiteral from = createIntegerLiteral(ctx.recordContainsClauseFormat3().integerLiteral());
-				result.setFrom(from);
+				if (recordContainsClauseFormat3.integerLiteral() != null) {
+					final IntegerLiteral from = createIntegerLiteral(recordContainsClauseFormat3.integerLiteral());
+					result.setFrom(from);
+				}
 
 				/*
 				 * to
 				 */
-				final IntegerLiteral to = createIntegerLiteral(
-						ctx.recordContainsClauseFormat2().recordContainsTo().integerLiteral());
-				result.setTo(to);
+				if (recordContainsClauseFormat3.recordContainsTo() != null) {
+					final RecordContainsToContext recordContainsTo = recordContainsClauseFormat3.recordContainsTo();
+
+					if (recordContainsTo.integerLiteral() != null) {
+						final IntegerLiteral to = createIntegerLiteral(recordContainsTo.integerLiteral());
+						result.setTo(to);
+					}
+				}
 			}
 
 			recordContainsClause = result;

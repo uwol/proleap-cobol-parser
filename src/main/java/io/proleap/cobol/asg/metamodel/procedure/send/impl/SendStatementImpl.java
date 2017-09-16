@@ -67,8 +67,10 @@ public class SendStatementImpl extends StatementImpl implements SendStatement {
 			result.setAsyncType(type);
 
 			// call
-			final Call dateDescriptionEntryCall = createCall(ctx.identifier());
-			result.setDataDescriptionEntryCall(dateDescriptionEntryCall);
+			if (ctx.identifier() != null) {
+				final Call dateDescriptionEntryCall = createCall(ctx.identifier());
+				result.setDataDescriptionEntryCall(dateDescriptionEntryCall);
+			}
 
 			async = result;
 			registerASGElement(result);

@@ -246,8 +246,10 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new AcceptStatementImpl(programUnit, this, ctx);
 
 			// accept call
-			final Call acceptCall = createCall(ctx.identifier());
-			result.setAcceptCall(acceptCall);
+			if (ctx.identifier() != null) {
+				final Call acceptCall = createCall(ctx.identifier());
+				result.setAcceptCall(acceptCall);
+			}
 
 			// type
 			final AcceptType type;
@@ -943,8 +945,10 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new InspectStatementImpl(programUnit, this, ctx);
 
 			// data item call
-			final Call dataItemCall = createCall(ctx.identifier());
-			result.setDataItemCall(dataItemCall);
+			if (ctx.identifier() != null) {
+				final Call dataItemCall = createCall(ctx.identifier());
+				result.setDataItemCall(dataItemCall);
+			}
 
 			// type
 			final InspectStatement.InspectType type;

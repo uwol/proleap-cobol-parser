@@ -62,8 +62,10 @@ public class SetByImpl extends CobolDivisionElementImpl implements SetBy {
 		if (result == null) {
 			result = new ToImpl(programUnit, ctx);
 
-			final Call toCall = createCall(ctx.identifier());
-			result.setToCall(toCall);
+			if (ctx.identifier() != null) {
+				final Call toCall = createCall(ctx.identifier());
+				result.setToCall(toCall);
+			}
 
 			tos.add(result);
 			registerASGElement(result);

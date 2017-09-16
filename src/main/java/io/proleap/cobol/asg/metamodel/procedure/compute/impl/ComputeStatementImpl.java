@@ -58,8 +58,10 @@ public class ComputeStatementImpl extends StatementImpl implements ComputeStatem
 			}
 
 			// store target call
-			final Call storeCall = createCall(ctx.identifier());
-			result.setStoreCall(storeCall);
+			if (ctx.identifier() != null) {
+				final Call storeCall = createCall(ctx.identifier());
+				result.setStoreCall(storeCall);
+			}
 
 			stores.add(result);
 			registerASGElement(result);

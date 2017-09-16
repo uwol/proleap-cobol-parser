@@ -10,6 +10,7 @@ package io.proleap.cobol.asg.metamodel.data.report.impl;
 
 import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.ReportGroupNextGroupClauseContext;
+import io.proleap.cobol.Cobol85Parser.ReportGroupNextGroupPlusContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupTypeClauseContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -52,7 +53,13 @@ public class ReportGroupDescriptionEntryVerticalImpl extends ReportGroupDescript
 				integerLiteral = null;
 			} else if (ctx.reportGroupNextGroupPlus() != null) {
 				type = NextGroupClause.NextGroupClauseType.PLUS;
-				integerLiteral = createIntegerLiteral(ctx.reportGroupNextGroupPlus().integerLiteral());
+				final ReportGroupNextGroupPlusContext reportGroupNextGroupPlus = ctx.reportGroupNextGroupPlus();
+
+				if (reportGroupNextGroupPlus.integerLiteral() != null) {
+					integerLiteral = createIntegerLiteral(reportGroupNextGroupPlus.integerLiteral());
+				} else {
+					integerLiteral = null;
+				}
 			} else {
 				type = NextGroupClause.NextGroupClauseType.ABSOLUTE;
 				integerLiteral = createIntegerLiteral(ctx.integerLiteral());
