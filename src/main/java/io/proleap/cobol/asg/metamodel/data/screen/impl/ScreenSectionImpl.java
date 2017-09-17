@@ -253,7 +253,6 @@ public class ScreenSectionImpl extends CobolDivisionElementImpl implements Scree
 		final List<ScreenDescriptionEntry> result = new ArrayList<ScreenDescriptionEntry>();
 
 		for (final ScreenDescriptionEntry screenDescriptionEntry : screenDescriptionEntries) {
-
 			if (screenDescriptionEntry.getParentScreenDescriptionEntry() == null) {
 				result.add(screenDescriptionEntry);
 			}

@@ -181,7 +181,7 @@ public class OBIC1ATest extends CobolTestBase {
 		{
 			final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 			assertEquals(1, procedureDivision.getSections().size());
-			assertEquals(0, procedureDivision.getParagraphs().size());
+			assertEquals(0, procedureDivision.getRootParagraphs().size());
 			assertEquals(0, procedureDivision.getStatements().size());
 
 			{

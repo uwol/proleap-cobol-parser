@@ -102,7 +102,6 @@ import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileCo
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
-import io.proleap.cobol.asg.metamodel.procedure.Section;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.BooleanLiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
@@ -420,7 +419,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			final Paragraph paragraph = findProcedure(name);
+			final Paragraph paragraph = findParagraph(name);
 
 			if (paragraph == null) {
 				result = createUndefinedCall(ctx);
@@ -1313,25 +1312,14 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected Paragraph findProcedure(final String name) {
+	protected Paragraph findParagraph(final String name) {
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		final Paragraph result;
 
 		if (procedureDivision == null) {
 			result = null;
-		} else if (procedureDivision.getParagraph(name) != null) {
-			result = procedureDivision.getParagraph(name);
 		} else {
-			Paragraph paragraphInSection = null;
-
-			for (final Section section : procedureDivision.getSections()) {
-				if (section.getParagraph(name) != null) {
-					paragraphInSection = section.getParagraph(name);
-					break;
-				}
-			}
-
-			result = paragraphInSection;
+			result = procedureDivision.getParagraph(name);
 		}
 
 		return result;

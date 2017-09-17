@@ -23,4 +23,8 @@ public interface Paragraph extends Scope, Declaration {
 	List<ProcedureCall> getCalls();
 
 	ParagraphName getParagraphName();
+
+	Section getSection();
+
+	void setSection(Section section);
 }

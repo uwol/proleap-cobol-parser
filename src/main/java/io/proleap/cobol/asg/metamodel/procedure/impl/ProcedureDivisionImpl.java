@@ -24,8 +24,10 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ParagraphName;
+import io.proleap.cobol.asg.metamodel.procedure.ParagraphsSymbolTableEntry;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.Section;
+import io.proleap.cobol.asg.metamodel.procedure.SectionsSymbolTableEntry;
 import io.proleap.cobol.asg.metamodel.procedure.declaratives.Declaratives;
 import io.proleap.cobol.asg.metamodel.procedure.declaratives.impl.DeclarativesImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
@@ -39,11 +41,11 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 
 	protected List<Paragraph> paragraphs = new ArrayList<Paragraph>();
 
-	protected Map<String, Paragraph> paragraphsSymbolTable = new HashMap<String, Paragraph>();
+	protected Map<String, ParagraphsSymbolTableEntry> paragraphsSymbolTable = new HashMap<String, ParagraphsSymbolTableEntry>();
 
 	protected List<Section> sections = new ArrayList<Section>();
 
-	protected Map<String, Section> sectionsSymbolTable = new HashMap<String, Section>();
+	protected Map<String, SectionsSymbolTableEntry> sectionsSymbolTable = new HashMap<String, SectionsSymbolTableEntry>();
 
 	public ProcedureDivisionImpl(final ProgramUnit programUnit, final ProcedureDivisionContext ctx) {
 		super(programUnit, ctx);
@@ -71,6 +73,14 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 	}
 
 	@Override
+	public void addParagraph(final Paragraph paragraph) {
+		final String name = paragraph.getName();
+
+		paragraphs.add(paragraph);
+		assureParagraphsSymbolTableEntry(name).addParagraph(paragraph);
+	}
+
+	@Override
 	public Paragraph addParagraph(final ParagraphContext ctx) {
 		Paragraph result = (Paragraph) getASGElement(ctx);
 
@@ -78,8 +88,7 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 			final String name = determineName(ctx);
 			result = new ParagraphImpl(name, programUnit, ctx);
 
-			paragraphs.add(result);
-			paragraphsSymbolTable.put(name, result);
+			addParagraph(result);
 
 			final ParagraphName paragraphName = addParagraphName(ctx.paragraphName());
 			result.addParagraphName(paragraphName);
@@ -113,7 +122,7 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 			result = new SectionImpl(name, programUnit, ctx);
 
 			sections.add(result);
-			sectionsSymbolTable.put(name, result);
+			assureSectionsSymbolTableEntry(name).addSection(result);
 
 			registerASGElement(result);
 		}
@@ -133,6 +142,28 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 		return result;
 	}
 
+	protected ParagraphsSymbolTableEntry assureParagraphsSymbolTableEntry(final String name) {
+		ParagraphsSymbolTableEntry paragraphsSymbolTableEntry = paragraphsSymbolTable.get(name);
+
+		if (paragraphsSymbolTableEntry == null) {
+			paragraphsSymbolTableEntry = new ParagraphsSymbolTableEntryImpl();
+			paragraphsSymbolTable.put(name, paragraphsSymbolTableEntry);
+		}
+
+		return paragraphsSymbolTableEntry;
+	}
+
+	protected SectionsSymbolTableEntry assureSectionsSymbolTableEntry(final String name) {
+		SectionsSymbolTableEntry sectionsSymbolTableEntry = sectionsSymbolTable.get(name);
+
+		if (sectionsSymbolTableEntry == null) {
+			sectionsSymbolTableEntry = new SectionsSymbolTableEntryImpl();
+			sectionsSymbolTable.put(name, sectionsSymbolTableEntry);
+		}
+
+		return sectionsSymbolTableEntry;
+	}
+
 	@Override
 	public Declaratives getDeclaratives() {
 		return declaratives;
@@ -140,7 +171,7 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 
 	@Override
 	public Paragraph getParagraph(final String name) {
-		return paragraphsSymbolTable.get(name);
+		return paragraphsSymbolTable.get(name) == null ? null : paragraphsSymbolTable.get(name).getParagraph();
 	}
 
 	@Override
@@ -149,13 +180,30 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 	}
 
 	@Override
+	public List<Paragraph> getParagraphs(final String name) {
+		return paragraphsSymbolTable.get(name).getParagraphs();
+	}
+
+	@Override
+	public List<Paragraph> getRootParagraphs() {
+		final List<Paragraph> result = new ArrayList<Paragraph>();
+
+		for (final Paragraph paragraph : paragraphs) {
+			if (paragraph.getSection() == null) {
+				result.add(paragraph);
+			}
+		}
+
+		return result;
+	}
+
+	@Override
 	public Section getSection(final String name) {
-		return sectionsSymbolTable.get(name);
+		return sectionsSymbolTable.get(name) == null ? null : sectionsSymbolTable.get(name).getSection();
 	}
 
 	@Override
 	public List<Section> getSections() {
 		return sections;
 	}
-
 }

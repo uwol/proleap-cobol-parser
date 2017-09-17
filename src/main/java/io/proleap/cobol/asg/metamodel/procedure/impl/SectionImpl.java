@@ -21,6 +21,7 @@ import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ParagraphName;
+import io.proleap.cobol.asg.metamodel.procedure.ParagraphsSymbolTableEntry;
 import io.proleap.cobol.asg.metamodel.procedure.Section;
 
 public class SectionImpl extends ScopeImpl implements Section {
@@ -33,7 +34,7 @@ public class SectionImpl extends ScopeImpl implements Section {
 
 	protected List<Paragraph> paragraphs = new ArrayList<Paragraph>();
 
-	protected Map<String, Paragraph> paragraphsSymbolTable = new HashMap<String, Paragraph>();
+	protected Map<String, ParagraphsSymbolTableEntry> paragraphsSymbolTable = new HashMap<String, ParagraphsSymbolTableEntry>();
 
 	public SectionImpl(final String name, final ProgramUnit programUnit, final ProcedureSectionContext ctx) {
 		super(programUnit, ctx);
@@ -56,7 +57,10 @@ public class SectionImpl extends ScopeImpl implements Section {
 			result = new ParagraphImpl(name, programUnit, ctx);
 
 			paragraphs.add(result);
-			paragraphsSymbolTable.put(name, result);
+			result.setSection(this);
+
+			assureParagraphsSymbolTableEntry(name).addParagraph(result);
+			programUnit.getProcedureDivision().addParagraph(result);
 
 			final ParagraphName paragraphName = addParagraphName(ctx.paragraphName());
 			result.addParagraphName(paragraphName);
@@ -81,6 +85,17 @@ public class SectionImpl extends ScopeImpl implements Section {
 		return result;
 	}
 
+	protected ParagraphsSymbolTableEntry assureParagraphsSymbolTableEntry(final String name) {
+		ParagraphsSymbolTableEntry paragraphsSymbolTableEntry = paragraphsSymbolTable.get(name);
+
+		if (paragraphsSymbolTableEntry == null) {
+			paragraphsSymbolTableEntry = new ParagraphsSymbolTableEntryImpl();
+			paragraphsSymbolTable.put(name, paragraphsSymbolTableEntry);
+		}
+
+		return paragraphsSymbolTableEntry;
+	}
+
 	@Override
 	public List<ProcedureCall> getCalls() {
 		return calls;
@@ -93,7 +108,7 @@ public class SectionImpl extends ScopeImpl implements Section {
 
 	@Override
 	public Paragraph getParagraph(final String name) {
-		return paragraphsSymbolTable.get(name);
+		return paragraphsSymbolTable.get(name) == null ? null : paragraphsSymbolTable.get(name).getParagraph();
 	}
 
 	@Override
@@ -102,8 +117,12 @@ public class SectionImpl extends ScopeImpl implements Section {
 	}
 
 	@Override
+	public List<Paragraph> getParagraphs(final String name) {
+		return paragraphsSymbolTable.get(name).getParagraphs();
+	}
+
+	@Override
 	public String toString() {
 		return "name=[" + name + "]";
 	}
-
 }

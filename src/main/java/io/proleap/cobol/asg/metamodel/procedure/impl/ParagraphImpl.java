@@ -17,6 +17,7 @@ import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ParagraphName;
+import io.proleap.cobol.asg.metamodel.procedure.Section;
 
 public class ParagraphImpl extends ScopeImpl implements Paragraph {
 
@@ -27,6 +28,8 @@ public class ParagraphImpl extends ScopeImpl implements Paragraph {
 	protected final String name;
 
 	protected ParagraphName paragraphName;
+
+	protected Section section;
 
 	public ParagraphImpl(final String name, final ProgramUnit programUnit, final ParagraphContext ctx) {
 		super(programUnit, ctx);
@@ -61,8 +64,17 @@ public class ParagraphImpl extends ScopeImpl implements Paragraph {
 	}
 
 	@Override
+	public Section getSection() {
+		return section;
+	}
+
+	@Override
+	public void setSection(final Section section) {
+		this.section = section;
+	}
+
+	@Override
 	public String toString() {
 		return "name=[" + name + "]";
 	}
-
 }

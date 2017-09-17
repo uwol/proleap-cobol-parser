@@ -29,4 +29,6 @@ public interface Section extends Scope, Declaration {
 	Paragraph getParagraph(String name);
 
 	List<Paragraph> getParagraphs();
+
+	List<Paragraph> getParagraphs(String name);
 }

@@ -412,7 +412,6 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 		final List<DataDescriptionEntry> result = new ArrayList<DataDescriptionEntry>();
 
 		for (final DataDescriptionEntry dataDescriptionEntry : dataDescriptionEntries) {
-
 			if (dataDescriptionEntry.getParentDataDescriptionEntryGroup() == null) {
 				result.add(dataDescriptionEntry);
 			}

@@ -29,5 +29,4 @@ public class WorkingStorageSectionImpl extends DataDescriptionEntryContainerImpl
 	public DataDescriptionEntryContainerType getContainerType() {
 		return containerType;
 	}
-
 }

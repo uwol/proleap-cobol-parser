@@ -35,7 +35,7 @@ public class SectionWithParagraphsTest extends CobolTestBase {
 		final CompilationUnit compilationUnit = program.getCompilationUnit("SectionWithParagraphs");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
-		assertEquals(0, procedureDivision.getParagraphs().size());
+		assertEquals(0, procedureDivision.getRootParagraphs().size());
 		assertEquals(1, procedureDivision.getSections().size());
 		assertEquals(0, procedureDivision.getStatements().size());
 
