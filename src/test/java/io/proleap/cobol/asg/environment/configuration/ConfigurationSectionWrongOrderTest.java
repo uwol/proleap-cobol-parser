@@ -16,6 +16,7 @@ import io.proleap.cobol.asg.metamodel.environment.configuration.object.ObjectCom
 import io.proleap.cobol.asg.metamodel.environment.configuration.source.SourceComputerParagraph;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.InputOutputSection;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
+import io.proleap.cobol.asg.metamodel.environment.specialnames.SpecialNamesParagraph;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -38,6 +39,11 @@ public class ConfigurationSectionWrongOrderTest extends CobolTestBase {
 
 			final ObjectComputerParagraph objectComputerParagraph = configurationSection.getObjectComputerParagraph();
 			assertNotNull(objectComputerParagraph);
+		}
+
+		{
+			final SpecialNamesParagraph specialNamesParagraph = environmentDivision.getSpecialNamesParagraph();
+			assertNotNull(specialNamesParagraph);
 		}
 
 		{
