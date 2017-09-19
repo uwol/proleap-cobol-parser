@@ -1,0 +1,7 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision IDENTIFICATION DIVISION .\n        
+				(programIdParagraph PROGRAM-ID .        
+					(programName 
+						(cobolWord ABC01)))))) <EOF>)
