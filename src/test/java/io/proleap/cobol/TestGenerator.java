@@ -45,6 +45,8 @@ public class TestGenerator {
 
 	private final static String OUTPUT_FILE_SUFFIX = "Test";
 
+	private final static boolean RENEW_TREE_FILE = false;
+
 	private static final String TREE_EXTENSION = ".tree";
 
 	public static String firstToUpper(final String str) {
@@ -88,7 +90,6 @@ public class TestGenerator {
 			pWriter.flush();
 			pWriter.close();
 		}
-
 	}
 
 	public static void generateTestClasses(final File inputDirectory, final File outputDirectory,
@@ -110,8 +111,7 @@ public class TestGenerator {
 
 					if (!".".equals(subInputDirectoryName) && !"..".equals(subInputDirectoryName)) {
 						/*
-						 * determine the output directory, where test classes
-						 * should be placed
+						 * determine the output directory, where test classes should be placed
 						 */
 						final File subOutputDirectory = new File(outputDirectoryPath + "/" + subInputDirectoryName);
 						subOutputDirectory.mkdirs();
@@ -132,7 +132,7 @@ public class TestGenerator {
 
 		final boolean createdNewFile = outputFile.createNewFile();
 
-		if (createdNewFile) {
+		if (createdNewFile || RENEW_TREE_FILE) {
 			LOG.info("Creating tree file {}.", outputFile);
 
 			final File parentDirectory = cobolInputFile.getParentFile();
