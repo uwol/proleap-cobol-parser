@@ -122,7 +122,8 @@ configurationSection
 // - configuration section paragraph ----------------------------------
 
 configurationSectionParagraph
-   : sourceComputerParagraph | objectComputerParagraph
+   : sourceComputerParagraph | objectComputerParagraph | specialNamesParagraph
+   // strictly, specialNamesParagraph does not belong into configurationSectionParagraph, but ibm-cobol allows this
    ;
 
 // - source computer paragraph ----------------------------------

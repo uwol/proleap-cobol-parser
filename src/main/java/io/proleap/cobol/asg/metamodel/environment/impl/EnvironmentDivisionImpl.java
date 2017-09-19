@@ -60,6 +60,9 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 					result.addSourceComputerParagraph(configurationSectionParagraphContext.sourceComputerParagraph());
 				} else if (configurationSectionParagraphContext.objectComputerParagraph() != null) {
 					result.addObjectComputerParagraph(configurationSectionParagraphContext.objectComputerParagraph());
+				} else if (configurationSectionParagraphContext.specialNamesParagraph() != null) {
+					addSpecialNamesParagraphNonStandardsCompliant(
+							configurationSectionParagraphContext.specialNamesParagraph());
 				} else {
 					LOG.warn("unknown configuration section paragraph {}", configurationSectionParagraphContext);
 				}
@@ -132,6 +135,17 @@ public class EnvironmentDivisionImpl extends CobolDivisionImpl implements Enviro
 		}
 
 		return result;
+	}
+
+	/**
+	 * per specification, a special names paragraph has to be contained in the
+	 * environment division; however, IBM COBOL allows a special names paragraph to
+	 * be contained in the configuration section; this method bridges the gap
+	 * between the denormalized AST and the standards-compliant ASG.
+	 */
+	protected SpecialNamesParagraph addSpecialNamesParagraphNonStandardsCompliant(
+			final SpecialNamesParagraphContext ctx) {
+		return addSpecialNamesParagraph(ctx);
 	}
 
 	@Override
