@@ -142,9 +142,10 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			/*
 			 * aligned clause
 			 */
-			final DataAlignedClauseContext dataAlignedClauseContext = ctx.dataAlignedClause();
+			final List<DataAlignedClauseContext> dataAlignedClauseContexts = ctx.dataAlignedClause();
 
-			if (dataAlignedClauseContext != null) {
+			if (!dataAlignedClauseContexts.isEmpty()) {
+				final DataAlignedClauseContext dataAlignedClauseContext = dataAlignedClauseContexts.get(0);
 				result.addAlignedClause(dataAlignedClauseContext);
 			}
 
@@ -174,27 +175,31 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			/*
 			 * external clause
 			 */
-			final DataExternalClauseContext dataExternalClauseContext = ctx.dataExternalClause();
+			final List<DataExternalClauseContext> dataExternalClauseContexts = ctx.dataExternalClause();
 
-			if (dataExternalClauseContext != null) {
+			if (!dataExternalClauseContexts.isEmpty()) {
+				final DataExternalClauseContext dataExternalClauseContext = dataExternalClauseContexts.get(0);
 				result.addExternalClause(dataExternalClauseContext);
 			}
 
 			/*
 			 * global clause
 			 */
-			final DataGlobalClauseContext dataGlobalClauseContext = ctx.dataGlobalClause();
+			final List<DataGlobalClauseContext> dataGlobalClauseContexts = ctx.dataGlobalClause();
 
-			if (dataGlobalClauseContext != null) {
+			if (!dataGlobalClauseContexts.isEmpty()) {
+				final DataGlobalClauseContext dataGlobalClauseContext = dataGlobalClauseContexts.get(0);
 				result.addGlobalClause(dataGlobalClauseContext);
 			}
 
 			/*
 			 * data integer string clause
 			 */
-			final DataIntegerStringClauseContext dataIntegerStringClauseContext = ctx.dataIntegerStringClause();
+			final List<DataIntegerStringClauseContext> dataIntegerStringClauseContexts = ctx.dataIntegerStringClause();
 
-			if (dataIntegerStringClauseContext != null) {
+			if (!dataIntegerStringClauseContexts.isEmpty()) {
+				final DataIntegerStringClauseContext dataIntegerStringClauseContext = dataIntegerStringClauseContexts
+						.get(0);
 				result.addIntegerStringClause(dataIntegerStringClauseContext);
 			}
 
@@ -240,18 +245,20 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			/*
 			 * record area clause
 			 */
-			final DataRecordAreaClauseContext dataRecordAreaClauseContext = ctx.dataRecordAreaClause();
+			final List<DataRecordAreaClauseContext> dataRecordAreaClauseContexts = ctx.dataRecordAreaClause();
 
-			if (dataRecordAreaClauseContext != null) {
+			if (!dataRecordAreaClauseContexts.isEmpty()) {
+				final DataRecordAreaClauseContext dataRecordAreaClauseContext = dataRecordAreaClauseContexts.get(0);
 				result.addRecordAreaClause(dataRecordAreaClauseContext);
 			}
 
 			/*
 			 * redefines clause
 			 */
-			final DataRedefinesClauseContext dataRedefinesClauseContext = ctx.dataRedefinesClause();
+			final List<DataRedefinesClauseContext> dataRedefinesClauseContexts = ctx.dataRedefinesClause();
 
-			if (dataRedefinesClauseContext != null) {
+			if (!dataRedefinesClauseContexts.isEmpty()) {
+				final DataRedefinesClauseContext dataRedefinesClauseContext = dataRedefinesClauseContexts.get(0);
 				result.addRedefinesClause(dataRedefinesClauseContext);
 			}
 
@@ -279,9 +286,10 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			/*
 			 * thread local
 			 */
-			final DataThreadLocalClauseContext dataThreadLocalClauseContext = ctx.dataThreadLocalClause();
+			final List<DataThreadLocalClauseContext> dataThreadLocalClauseContexts = ctx.dataThreadLocalClause();
 
-			if (dataThreadLocalClauseContext != null) {
+			if (!dataThreadLocalClauseContexts.isEmpty()) {
+				final DataThreadLocalClauseContext dataThreadLocalClauseContext = dataThreadLocalClauseContexts.get(0);
 				result.addThreadLocalClause(dataThreadLocalClauseContext);
 			}
 
@@ -298,9 +306,10 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			/*
 			 * type def
 			 */
-			final DataTypeDefClauseContext dataTypeDefClauseContext = ctx.dataTypeDefClause();
+			final List<DataTypeDefClauseContext> dataTypeDefClauseContexts = ctx.dataTypeDefClause();
 
-			if (dataTypeDefClauseContext != null) {
+			if (!dataTypeDefClauseContexts.isEmpty()) {
+				final DataTypeDefClauseContext dataTypeDefClauseContext = dataTypeDefClauseContexts.get(0);
 				result.addTypeDefClause(dataTypeDefClauseContext);
 			}
 
@@ -337,9 +346,12 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			/*
 			 * with lower bounds
 			 */
-			final DataWithLowerBoundsClauseContext dataWithLowerBoundsClauseContext = ctx.dataWithLowerBoundsClause();
+			final List<DataWithLowerBoundsClauseContext> dataWithLowerBoundsClauseContexts = ctx
+					.dataWithLowerBoundsClause();
 
-			if (dataWithLowerBoundsClauseContext != null) {
+			if (!dataWithLowerBoundsClauseContexts.isEmpty()) {
+				final DataWithLowerBoundsClauseContext dataWithLowerBoundsClauseContext = dataWithLowerBoundsClauseContexts
+						.get(0);
 				result.addWithLowerBoundClause(dataWithLowerBoundsClauseContext);
 			}
 

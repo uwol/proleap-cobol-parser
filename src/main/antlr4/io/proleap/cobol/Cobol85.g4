@@ -967,7 +967,7 @@ dataDescriptionEntry
    ;
 
 dataDescriptionEntryFormat1
-   : (INTEGERLITERAL | LEVEL_NUMBER_77) (FILLER | dataName)? dataRedefinesClause? dataIntegerStringClause? dataExternalClause? dataGlobalClause? dataTypeDefClause? dataThreadLocalClause? (dataPictureClause | dataCommonOwnLocalClause | dataTypeClause | dataUsingClause | dataValueClause | dataUsageClause | dataReceivedByClause | dataOccursClause | dataSignClause | dataSynchronizedClause | dataJustifiedClause | dataBlankWhenZeroClause)* dataWithLowerBoundsClause? dataAlignedClause? dataRecordAreaClause? DOT_FS
+   : (INTEGERLITERAL | LEVEL_NUMBER_77) (FILLER | dataName)? (dataRedefinesClause | dataIntegerStringClause | dataExternalClause | dataGlobalClause | dataTypeDefClause | dataThreadLocalClause | dataPictureClause | dataCommonOwnLocalClause | dataTypeClause | dataUsingClause | dataUsageClause | dataValueClause | dataReceivedByClause | dataOccursClause | dataSignClause | dataSynchronizedClause | dataJustifiedClause | dataBlankWhenZeroClause | dataWithLowerBoundsClause | dataAlignedClause | dataRecordAreaClause)* DOT_FS
    ;
 
 dataDescriptionEntryFormat2
@@ -2536,7 +2536,7 @@ cobolWord
    : IDENTIFIER
    | COBOL | PROGRAM
    | ABORT | APOST | ARITH | AS | ASCII | ASSOCIATED_DATA | ASSOCIATED_DATA_LENGTH | ATTRIBUTE | AUTO | AUTO_SKIP
-   | BACKGROUND_COLOR | BACKGROUND_COLOUR | BEEP | BELL | BIT | BLINK | BOUNDS
+   | BACKGROUND_COLOR | BACKGROUND_COLOUR | BEEP | BELL | BINARY | BIT | BLINK | BOUNDS
    | CAPABLE | CCSVERSION | CHANGED | CHANNEL | CLOSE_DISPOSITION | CODEPAGE | COMMITMENT | CONTROL_POINT | CONVENTION | CRUNCH | CURSOR
    | DEFAULT | DEFAULT_DISPLAY | DEFINITION | DFHRESP | DFHVALUE | DISK | DONTCARE | DOUBLE
    | EBCDIC | EMPTY_CHECK | ENTER | ENTRY_PROCEDURE | EOL | EOS | ERASE | ESCAPE | EVENT | EXCLUSIVE | EXPORT | EXTENDED

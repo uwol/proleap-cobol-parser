@@ -877,5 +877,4 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	public void setFillerNumber(final Integer fillerNumber) {
 		this.fillerNumber = fillerNumber;
 	}
-
 }
