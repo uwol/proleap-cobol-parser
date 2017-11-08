@@ -94,7 +94,7 @@ public class FileControlParagraphImpl extends CobolDivisionElementImpl implement
 			registerASGElement(result);
 
 			fileControlEntries.add(result);
-			fileControlEntriesSymbolTable.put(name, result);
+			fileControlEntriesSymbolTable.put(getSymbol(name), result);
 		}
 
 		return result;
@@ -107,7 +107,7 @@ public class FileControlParagraphImpl extends CobolDivisionElementImpl implement
 
 	@Override
 	public FileControlEntry getFileControlEntry(final String name) {
-		return fileControlEntriesSymbolTable.get(name);
+		return fileControlEntriesSymbolTable.get(getSymbol(name));
 	}
 
 }

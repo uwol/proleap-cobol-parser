@@ -11,6 +11,7 @@ package io.proleap.cobol.asg.metamodel.impl;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.util.Strings;
 
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
 import io.proleap.cobol.Cobol85Parser.AndOrConditionContext;
@@ -201,7 +202,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final CommunicationDescriptionEntry communicationDescriptionEntry = findCommunicationDescriptionEntry(name);
 
 			if (communicationDescriptionEntry == null) {
-				LOG.debug("call to unknown communication description element {}", name);
+				LOG.warn("call to unknown communication description element {}", name);
 				result = createUndefinedCall(ctx);
 			} else {
 				result = createCommunicationDescriptionEntryCall(name, communicationDescriptionEntry, ctx);
@@ -573,7 +574,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = tableCall;
 				registerASGElement(result);
 			} else {
-				LOG.debug("call to unknown data element {}", name);
+				LOG.warn("call to unknown data element {}", name);
 				result = createUndefinedCall(ctx);
 			}
 		}
@@ -719,7 +720,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			} else if (dataDescriptionEntry != null) {
 				result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
 			} else {
-				LOG.debug("call to unknown data element {}", name);
+				LOG.warn("call to unknown data element {}", name);
 				result = createUndefinedCall(ctx);
 			}
 		}
@@ -1387,6 +1388,10 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return programUnit;
 	}
 
+	protected String getSymbol(final String name) {
+		return Strings.isBlank(name) ? name : name.toUpperCase();
+	}
+
 	protected void linkCommunicationDescriptionEntryCallWithCommunicationDescriptionEntry(
 			final CommunicationDescriptionEntryCall call,
 			final CommunicationDescriptionEntry communicationDescriptionEntry) {
@@ -1423,5 +1428,4 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	protected void registerASGElement(final ASGElement asgElement) {
 		programUnit.getProgram().getASGElementRegistry().addASGElement(asgElement);
 	}
-
 }

@@ -242,7 +242,7 @@ public class ScreenSectionImpl extends CobolDivisionElementImpl implements Scree
 			registerASGElement(result);
 
 			screenDescriptionEntries.add(result);
-			screenDescriptionEntriesSymbolTable.put(name, result);
+			screenDescriptionEntriesSymbolTable.put(getSymbol(name), result);
 		}
 
 		return result;
@@ -268,7 +268,7 @@ public class ScreenSectionImpl extends CobolDivisionElementImpl implements Scree
 
 	@Override
 	public ScreenDescriptionEntry getScreenDescriptionEntry(final String name) {
-		return screenDescriptionEntriesSymbolTable.get(name);
+		return screenDescriptionEntriesSymbolTable.get(getSymbol(name));
 	}
 
 }

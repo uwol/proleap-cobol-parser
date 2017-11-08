@@ -208,7 +208,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 		final String name = dataDescriptionEntry.getName();
 
 		dataDescriptionEntries.add(dataDescriptionEntry);
-		dataDescriptionEntriesSymbolTable.put(name, dataDescriptionEntry);
+		dataDescriptionEntriesSymbolTable.put(getSymbol(name), dataDescriptionEntry);
 	}
 
 	@Override
@@ -733,7 +733,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 
 	@Override
 	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
-		return dataDescriptionEntriesSymbolTable.get(name);
+		return dataDescriptionEntriesSymbolTable.get(getSymbol(name));
 	}
 
 	@Override

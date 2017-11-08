@@ -67,5 +67,4 @@ public class CobolProgramUnitVisitorImpl extends AbstractCobolParserVisitorImpl 
 
 		return visitChildren(ctx);
 	}
-
 }

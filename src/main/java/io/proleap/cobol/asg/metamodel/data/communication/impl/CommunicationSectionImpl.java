@@ -162,7 +162,7 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 			}
 
 			communicationDescriptionEntries.add(result);
-			communicationDescriptionEntriesSymbolTable.put(name, result);
+			communicationDescriptionEntriesSymbolTable.put(getSymbol(name), result);
 			registerASGElement(result);
 		}
 
@@ -240,7 +240,7 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 			}
 
 			communicationDescriptionEntries.add(result);
-			communicationDescriptionEntriesSymbolTable.put(name, result);
+			communicationDescriptionEntriesSymbolTable.put(getSymbol(name), result);
 			registerASGElement(result);
 		}
 
@@ -321,7 +321,7 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 			}
 
 			communicationDescriptionEntries.add(result);
-			communicationDescriptionEntriesSymbolTable.put(name, result);
+			communicationDescriptionEntriesSymbolTable.put(getSymbol(name), result);
 			registerASGElement(result);
 		}
 
@@ -354,7 +354,7 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 
 	@Override
 	public CommunicationDescriptionEntry getCommunicationDescriptionEntry(final String name) {
-		return communicationDescriptionEntriesSymbolTable.get(name);
+		return communicationDescriptionEntriesSymbolTable.get(getSymbol(name));
 	}
 
 	@Override

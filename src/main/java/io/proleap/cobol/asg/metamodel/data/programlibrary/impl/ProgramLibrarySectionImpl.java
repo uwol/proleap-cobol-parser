@@ -71,7 +71,7 @@ public class ProgramLibrarySectionImpl extends CobolDivisionElementImpl implemen
 			}
 
 			libraryDescriptionEntries.add(result);
-			libraryDescriptionEntriesSymbolTable.put(name, result);
+			libraryDescriptionEntriesSymbolTable.put(getSymbol(name), result);
 			registerASGElement(result);
 		}
 
@@ -122,7 +122,7 @@ public class ProgramLibrarySectionImpl extends CobolDivisionElementImpl implemen
 			}
 
 			libraryDescriptionEntries.add(result);
-			libraryDescriptionEntriesSymbolTable.put(name, result);
+			libraryDescriptionEntriesSymbolTable.put(getSymbol(name), result);
 			registerASGElement(result);
 		}
 
@@ -152,6 +152,6 @@ public class ProgramLibrarySectionImpl extends CobolDivisionElementImpl implemen
 
 	@Override
 	public LibraryDescriptionEntry getLibraryDescriptionEntry(final String name) {
-		return libraryDescriptionEntriesSymbolTable.get(name);
+		return libraryDescriptionEntriesSymbolTable.get(getSymbol(name));
 	}
 }

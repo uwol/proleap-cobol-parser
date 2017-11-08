@@ -56,7 +56,7 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 			final Index index = new IndexImpl(name, programUnit, ctx);
 
 			indices.add(index);
-			indicesSymbolTable.put(name, index);
+			indicesSymbolTable.put(getSymbol(name), index);
 
 			registerASGElement(index);
 		}
@@ -113,7 +113,7 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 
 	@Override
 	public Index getIndex(final String name) {
-		return indicesSymbolTable.get(name);
+		return indicesSymbolTable.get(getSymbol(name));
 	}
 
 	@Override

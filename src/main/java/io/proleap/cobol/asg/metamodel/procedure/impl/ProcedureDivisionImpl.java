@@ -143,22 +143,22 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 	}
 
 	protected ParagraphsSymbolTableEntry assureParagraphsSymbolTableEntry(final String name) {
-		ParagraphsSymbolTableEntry paragraphsSymbolTableEntry = paragraphsSymbolTable.get(name);
+		ParagraphsSymbolTableEntry paragraphsSymbolTableEntry = paragraphsSymbolTable.get(getSymbol(name));
 
 		if (paragraphsSymbolTableEntry == null) {
 			paragraphsSymbolTableEntry = new ParagraphsSymbolTableEntryImpl();
-			paragraphsSymbolTable.put(name, paragraphsSymbolTableEntry);
+			paragraphsSymbolTable.put(getSymbol(name), paragraphsSymbolTableEntry);
 		}
 
 		return paragraphsSymbolTableEntry;
 	}
 
 	protected SectionsSymbolTableEntry assureSectionsSymbolTableEntry(final String name) {
-		SectionsSymbolTableEntry sectionsSymbolTableEntry = sectionsSymbolTable.get(name);
+		SectionsSymbolTableEntry sectionsSymbolTableEntry = sectionsSymbolTable.get(getSymbol(name));
 
 		if (sectionsSymbolTableEntry == null) {
 			sectionsSymbolTableEntry = new SectionsSymbolTableEntryImpl();
-			sectionsSymbolTable.put(name, sectionsSymbolTableEntry);
+			sectionsSymbolTable.put(getSymbol(name), sectionsSymbolTableEntry);
 		}
 
 		return sectionsSymbolTableEntry;
@@ -171,7 +171,8 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 
 	@Override
 	public Paragraph getParagraph(final String name) {
-		return paragraphsSymbolTable.get(name) == null ? null : paragraphsSymbolTable.get(name).getParagraph();
+		return paragraphsSymbolTable.get(getSymbol(name)) == null ? null
+				: paragraphsSymbolTable.get(getSymbol(name)).getParagraph();
 	}
 
 	@Override
@@ -181,7 +182,7 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 
 	@Override
 	public List<Paragraph> getParagraphs(final String name) {
-		return paragraphsSymbolTable.get(name).getParagraphs();
+		return paragraphsSymbolTable.get(getSymbol(name)).getParagraphs();
 	}
 
 	@Override
@@ -199,7 +200,8 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 
 	@Override
 	public Section getSection(final String name) {
-		return sectionsSymbolTable.get(name) == null ? null : sectionsSymbolTable.get(name).getSection();
+		return sectionsSymbolTable.get(getSymbol(name)) == null ? null
+				: sectionsSymbolTable.get(getSymbol(name)).getSection();
 	}
 
 	@Override

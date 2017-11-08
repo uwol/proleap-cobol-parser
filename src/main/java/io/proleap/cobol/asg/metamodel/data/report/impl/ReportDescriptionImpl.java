@@ -273,7 +273,7 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 			}
 
 			reportGroupDescriptionEntries.add(result);
-			reportGroupDescriptionEntriesSymbolTable.put(name, result);
+			reportGroupDescriptionEntriesSymbolTable.put(getSymbol(name), result);
 
 			registerASGElement(result);
 		}
@@ -313,7 +313,7 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 			}
 
 			reportGroupDescriptionEntries.add(result);
-			reportGroupDescriptionEntriesSymbolTable.put(name, result);
+			reportGroupDescriptionEntriesSymbolTable.put(getSymbol(name), result);
 
 			registerASGElement(result);
 		}
@@ -369,7 +369,7 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 			}
 
 			reportGroupDescriptionEntries.add(result);
-			reportGroupDescriptionEntriesSymbolTable.put(name, result);
+			reportGroupDescriptionEntriesSymbolTable.put(getSymbol(name), result);
 
 			registerASGElement(result);
 		}
@@ -423,7 +423,7 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 
 	@Override
 	public ReportGroupDescriptionEntry getReportGroupDescriptionEntry(final String name) {
-		return reportGroupDescriptionEntriesSymbolTable.get(name);
+		return reportGroupDescriptionEntriesSymbolTable.get(getSymbol(name));
 	}
 
 	@Override

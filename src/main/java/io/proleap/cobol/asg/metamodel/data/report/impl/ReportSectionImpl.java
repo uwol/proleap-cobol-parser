@@ -65,7 +65,7 @@ public class ReportSectionImpl extends CobolDivisionElementImpl implements Repor
 			}
 
 			reportDescriptions.add(result);
-			reportDescriptionsSymbolTable.put(name, result);
+			reportDescriptionsSymbolTable.put(getSymbol(name), result);
 			registerASGElement(result);
 		}
 
@@ -74,7 +74,7 @@ public class ReportSectionImpl extends CobolDivisionElementImpl implements Repor
 
 	@Override
 	public ReportDescription getReportDescription(final String name) {
-		return reportDescriptionsSymbolTable.get(name);
+		return reportDescriptionsSymbolTable.get(getSymbol(name));
 	}
 
 	@Override

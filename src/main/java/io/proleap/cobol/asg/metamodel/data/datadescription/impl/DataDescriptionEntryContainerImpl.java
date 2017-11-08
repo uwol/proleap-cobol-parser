@@ -83,7 +83,7 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
-			dataDescriptionEntriesSymbolTable.put(name, result);
+			dataDescriptionEntriesSymbolTable.put(getSymbol(name), result);
 		}
 
 		return result;
@@ -358,7 +358,7 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
-			dataDescriptionEntriesSymbolTable.put(name, result);
+			dataDescriptionEntriesSymbolTable.put(getSymbol(name), result);
 		}
 
 		return result;
@@ -378,7 +378,7 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
-			dataDescriptionEntriesSymbolTable.put(name, result);
+			dataDescriptionEntriesSymbolTable.put(getSymbol(name), result);
 		}
 
 		return result;
@@ -416,7 +416,7 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 
 	@Override
 	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
-		return dataDescriptionEntriesSymbolTable.get(name);
+		return dataDescriptionEntriesSymbolTable.get(getSymbol(name));
 	}
 
 	@Override

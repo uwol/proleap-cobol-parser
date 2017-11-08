@@ -137,7 +137,7 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 		final String name = reportGroupDescriptionEntry.getName();
 
 		reportGroupDescriptionEntries.add(reportGroupDescriptionEntry);
-		reportGroupDescriptionEntriesSymbolTable.put(name, reportGroupDescriptionEntry);
+		reportGroupDescriptionEntriesSymbolTable.put(getSymbol(name), reportGroupDescriptionEntry);
 	}
 
 	@Override
@@ -167,7 +167,7 @@ public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionEleme
 
 	@Override
 	public ReportGroupDescriptionEntry getReportGroupDescriptionEntry(final String name) {
-		return reportGroupDescriptionEntriesSymbolTable.get(name);
+		return reportGroupDescriptionEntriesSymbolTable.get(getSymbol(name));
 	}
 
 	@Override

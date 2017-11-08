@@ -653,7 +653,7 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 		final String name = screenDescriptionEntry.getName();
 
 		screenDescriptionEntries.add(screenDescriptionEntry);
-		screenDescriptionEntriesSymbolTable.put(name, screenDescriptionEntry);
+		screenDescriptionEntriesSymbolTable.put(getSymbol(name), screenDescriptionEntry);
 	}
 
 	@Override
@@ -961,7 +961,7 @@ public class ScreenDescriptionEntryImpl extends CobolDivisionElementImpl impleme
 
 	@Override
 	public ScreenDescriptionEntry getScreenDescriptionEntry(final String name) {
-		return screenDescriptionEntriesSymbolTable.get(name);
+		return screenDescriptionEntriesSymbolTable.get(getSymbol(name));
 	}
 
 	@Override

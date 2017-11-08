@@ -86,11 +86,11 @@ public class SectionImpl extends ScopeImpl implements Section {
 	}
 
 	protected ParagraphsSymbolTableEntry assureParagraphsSymbolTableEntry(final String name) {
-		ParagraphsSymbolTableEntry paragraphsSymbolTableEntry = paragraphsSymbolTable.get(name);
+		ParagraphsSymbolTableEntry paragraphsSymbolTableEntry = paragraphsSymbolTable.get(getSymbol(name));
 
 		if (paragraphsSymbolTableEntry == null) {
 			paragraphsSymbolTableEntry = new ParagraphsSymbolTableEntryImpl();
-			paragraphsSymbolTable.put(name, paragraphsSymbolTableEntry);
+			paragraphsSymbolTable.put(getSymbol(name), paragraphsSymbolTableEntry);
 		}
 
 		return paragraphsSymbolTableEntry;
@@ -108,7 +108,8 @@ public class SectionImpl extends ScopeImpl implements Section {
 
 	@Override
 	public Paragraph getParagraph(final String name) {
-		return paragraphsSymbolTable.get(name) == null ? null : paragraphsSymbolTable.get(name).getParagraph();
+		return paragraphsSymbolTable.get(getSymbol(name)) == null ? null
+				: paragraphsSymbolTable.get(getSymbol(name)).getParagraph();
 	}
 
 	@Override
@@ -118,7 +119,7 @@ public class SectionImpl extends ScopeImpl implements Section {
 
 	@Override
 	public List<Paragraph> getParagraphs(final String name) {
-		return paragraphsSymbolTable.get(name).getParagraphs();
+		return paragraphsSymbolTable.get(getSymbol(name)).getParagraphs();
 	}
 
 	@Override

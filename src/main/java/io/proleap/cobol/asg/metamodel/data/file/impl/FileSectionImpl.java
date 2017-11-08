@@ -48,6 +48,9 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 			final String name = determineName(ctx);
 			result = new FileDescriptionEntryImpl(name, programUnit, ctx);
 
+			fileDescriptionEntries.add(result);
+			fileDescriptionEntriesSymbolTable.put(getSymbol(name), result);
+
 			final FileControlEntry fileControlEntry = findFileControlEntry(name);
 
 			if (fileControlEntry != null) {
@@ -56,6 +59,20 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 
 			final Call fileCall = createCall(ctx.fileName());
 			result.setFileCall(fileCall);
+
+			/*
+			 * data description entries
+			 */
+			DataDescriptionEntryGroup currentDataDescriptionEntryGroup = null;
+
+			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
+				final DataDescriptionEntry dataDescriptionEntry = result
+						.createDataDescriptionEntry(currentDataDescriptionEntryGroup, dataDescriptionEntryContext);
+
+				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
+					currentDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+				}
+			}
 
 			/*
 			 * file description entries
@@ -103,23 +120,6 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 				}
 			}
 
-			/*
-			 * data description entries
-			 */
-			DataDescriptionEntryGroup currentDataDescriptionEntryGroup = null;
-
-			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
-				final DataDescriptionEntry dataDescriptionEntry = result
-						.createDataDescriptionEntry(currentDataDescriptionEntryGroup, dataDescriptionEntryContext);
-
-				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
-					currentDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
-				}
-			}
-
-			fileDescriptionEntries.add(result);
-			fileDescriptionEntriesSymbolTable.put(name, result);
-
 			registerASGElement(result);
 		}
 
@@ -133,7 +133,7 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 
 	@Override
 	public FileDescriptionEntry getFileDescriptionEntry(final String name) {
-		return fileDescriptionEntriesSymbolTable.get(name);
+		return fileDescriptionEntriesSymbolTable.get(getSymbol(name));
 	}
 
 	protected void linkFileDescriptionEntryWithFileControlEntry(final FileDescriptionEntry fileDescriptionEntry,
