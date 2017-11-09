@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.proleap.cobol.Cobol85Parser.FileControlClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -43,53 +42,11 @@ public class FileControlParagraphImpl extends CobolDivisionElementImpl implement
 			final String name = determineName(ctx);
 			result = new FileControlEntryImpl(name, programUnit, ctx);
 
-			result.addSelectClause(ctx.selectClause());
-
-			for (final FileControlClauseContext fileControlClause : ctx.fileControlClause()) {
-				if (fileControlClause.assignClause() != null) {
-					result.addAssignClause(fileControlClause.assignClause());
-				}
-
-				if (fileControlClause.reserveClause() != null) {
-					result.addReserveClause(fileControlClause.reserveClause());
-				}
-
-				if (fileControlClause.organizationClause() != null) {
-					result.addOrganizationClause(fileControlClause.organizationClause());
-				}
-
-				if (fileControlClause.paddingCharacterClause() != null) {
-					result.addPaddingCharacterClause(fileControlClause.paddingCharacterClause());
-				}
-
-				if (fileControlClause.recordDelimiterClause() != null) {
-					result.addRecordDelimiterClause(fileControlClause.recordDelimiterClause());
-				}
-
-				if (fileControlClause.accessModeClause() != null) {
-					result.addAccessModeClause(fileControlClause.accessModeClause());
-				}
-
-				if (fileControlClause.recordKeyClause() != null) {
-					result.addRecordKeyClause(fileControlClause.recordKeyClause());
-				}
-
-				if (fileControlClause.alternateRecordKeyClause() != null) {
-					result.addAlternateRecordKeyClause(fileControlClause.alternateRecordKeyClause());
-				}
-
-				if (fileControlClause.passwordClause() != null) {
-					result.addPasswordClause(fileControlClause.passwordClause());
-				}
-
-				if (fileControlClause.fileStatusClause() != null) {
-					result.addFileStatusClause(fileControlClause.fileStatusClause());
-				}
-
-				if (fileControlClause.relativeKeyClause() != null) {
-					result.addRelativeKeyClause(fileControlClause.relativeKeyClause());
-				}
-			}
+			/*
+			 * no clauses here, children are added later by
+			 * CobolFileControlClauseVisitorImpl after DataDescriptionEntries have been
+			 * analyzed
+			 */
 
 			registerASGElement(result);
 
@@ -109,5 +66,4 @@ public class FileControlParagraphImpl extends CobolDivisionElementImpl implement
 	public FileControlEntry getFileControlEntry(final String name) {
 		return fileControlEntriesSymbolTable.get(getSymbol(name));
 	}
-
 }

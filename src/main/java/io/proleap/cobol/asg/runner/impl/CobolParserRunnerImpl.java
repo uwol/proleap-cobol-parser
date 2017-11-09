@@ -34,6 +34,8 @@ import io.proleap.cobol.asg.visitor.ParserVisitor;
 import io.proleap.cobol.asg.visitor.impl.CobolCompilationUnitVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolDataDivisionVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolEnvironmentDivisionVisitorImpl;
+import io.proleap.cobol.asg.visitor.impl.CobolFileControlClauseVisitorImpl;
+import io.proleap.cobol.asg.visitor.impl.CobolFileDescriptionEntryClauseVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolIdentificationDivisionVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProcedureDivisionVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProcedureStatementVisitorImpl;
@@ -51,9 +53,13 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 		analyzeIdentificationDivisions(program);
 		analyzeEnvironmentDivisions(program);
-		analyzeDataDivisions(program);
-		analyzeProcedureDivisions(program);
 
+		analyzeDataDivisions(program);
+
+		analyzeFileControlClauses(program);
+		analyzeFileDescriptionEntryClauses(program);
+
+		analyzeProcedureDivisions(program);
 		analyzeProcedureStatements(program);
 	}
 
@@ -92,6 +98,24 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		analyze(program);
 
 		return program;
+	}
+
+	protected void analyzeFileControlClauses(final Program program) {
+		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
+			final ParserVisitor visitor = new CobolFileControlClauseVisitorImpl(program);
+
+			LOG.info("Analyzing file control clauses of compilation unit {}.", compilationUnit.getName());
+			visitor.visit(compilationUnit.getCtx());
+		}
+	}
+
+	protected void analyzeFileDescriptionEntryClauses(final Program program) {
+		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
+			final ParserVisitor visitor = new CobolFileDescriptionEntryClauseVisitorImpl(program);
+
+			LOG.info("Analyzing file control description entry of compilation unit {}.", compilationUnit.getName());
+			visitor.visit(compilationUnit.getCtx());
+		}
 	}
 
 	@Override

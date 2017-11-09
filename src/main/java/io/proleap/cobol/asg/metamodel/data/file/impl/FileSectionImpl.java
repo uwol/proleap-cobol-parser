@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryContext;
-import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryClauseContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -75,50 +74,10 @@ public class FileSectionImpl extends CobolDivisionElementImpl implements FileSec
 			}
 
 			/*
-			 * file description entries
+			 * no clauses here, children are added later by
+			 * CobolFileDescriptionEntryClauseVisitorImpl after DataDescriptionEntries have
+			 * been analyzed
 			 */
-			for (final FileDescriptionEntryClauseContext fileDescriptionEntryClause : ctx
-					.fileDescriptionEntryClause()) {
-				if (fileDescriptionEntryClause.blockContainsClause() != null) {
-					result.addBlockContainsClause(fileDescriptionEntryClause.blockContainsClause());
-				}
-
-				if (fileDescriptionEntryClause.externalClause() != null) {
-					result.addExternalClause(fileDescriptionEntryClause.externalClause());
-				}
-
-				if (fileDescriptionEntryClause.globalClause() != null) {
-					result.addGlobalClause(fileDescriptionEntryClause.globalClause());
-				}
-
-				if (fileDescriptionEntryClause.codeSetClause() != null) {
-					result.addCodeSetClause(fileDescriptionEntryClause.codeSetClause());
-				}
-
-				if (fileDescriptionEntryClause.recordContainsClause() != null) {
-					result.addRecordContainsClause(fileDescriptionEntryClause.recordContainsClause());
-				}
-
-				if (fileDescriptionEntryClause.labelRecordsClause() != null) {
-					result.addLabelRecordsClause(fileDescriptionEntryClause.labelRecordsClause());
-				}
-
-				if (fileDescriptionEntryClause.valueOfClause() != null) {
-					result.addValueOfClause(fileDescriptionEntryClause.valueOfClause());
-				}
-
-				if (fileDescriptionEntryClause.linageClause() != null) {
-					result.addLinageClause(fileDescriptionEntryClause.linageClause());
-				}
-
-				if (fileDescriptionEntryClause.dataRecordsClause() != null) {
-					result.addDataRecordsClause(fileDescriptionEntryClause.dataRecordsClause());
-				}
-
-				if (fileDescriptionEntryClause.reportClause() != null) {
-					result.addReportClause(fileDescriptionEntryClause.reportClause());
-				}
-			}
 
 			registerASGElement(result);
 		}
