@@ -65,5 +65,4 @@ public class PerformInlineStatementImpl extends ScopeImpl implements PerformInli
 	public PerformType getPerformType() {
 		return performType;
 	}
-
 }

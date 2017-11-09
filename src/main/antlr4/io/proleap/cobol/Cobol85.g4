@@ -1729,7 +1729,7 @@ performStatement
    ;
 
 performInlineStatement
-   : performType? statement+ END_PERFORM
+   : performType? statement* END_PERFORM
    ;
 
 performProcedureStatement

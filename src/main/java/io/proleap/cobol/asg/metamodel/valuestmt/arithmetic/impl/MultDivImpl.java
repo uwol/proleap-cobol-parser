@@ -52,7 +52,9 @@ public class MultDivImpl extends ValueStmtImpl implements MultDiv {
 			result.setPowersType(type);
 
 			// basis
-			result.addBasis(ctx.basis());
+			if (ctx.basis() != null) {
+				result.addBasis(ctx.basis());
+			}
 
 			// power
 			for (final PowerContext powerContext : ctx.power()) {
