@@ -44,5 +44,4 @@ public class CobolCompilationUnitVisitorImpl extends AbstractCobolParserVisitorI
 
 		return visitChildren(ctx);
 	}
-
 }

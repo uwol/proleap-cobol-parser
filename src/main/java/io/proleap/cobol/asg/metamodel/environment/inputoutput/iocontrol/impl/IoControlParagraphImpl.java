@@ -185,5 +185,4 @@ public class IoControlParagraphImpl extends CobolDivisionElementImpl implements 
 	public void setFileCall(final Call fileCall) {
 		this.fileCall = fileCall;
 	}
-
 }
