@@ -1,4 +1,4 @@
-package io.proleap.cobol.asg.data.file;
+package io.proleap.cobol.asg.call;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -19,15 +19,15 @@ import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class FileDescriptionEntryCallsTest extends CobolTestBase {
+public class FileDataDescriptionEntryCallTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/data/file/FileDescriptionEntryCalls.cbl");
+				"src/test/resources/io/proleap/cobol/asg/call/FileDataDescriptionEntryCall.cbl");
 		final Program program = new CobolParserRunnerImpl().analyzeFile(inputFile, CobolSourceFormatEnum.VARIABLE);
 
-		final CompilationUnit compilationUnit = program.getCompilationUnit("FileDescriptionEntryCalls");
+		final CompilationUnit compilationUnit = program.getCompilationUnit("FileDataDescriptionEntryCall");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final FileSection fileSection = dataDivision.getFileSection();
