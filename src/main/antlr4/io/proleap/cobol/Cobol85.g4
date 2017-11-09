@@ -2105,7 +2105,7 @@ unstringStatement
    ;
 
 unstringSendingPhrase
-   : qualifiedDataName (unstringDelimitedByPhrase unstringOrAllPhrase*)?
+   : identifier (unstringDelimitedByPhrase unstringOrAllPhrase*)?
    ;
 
 unstringDelimitedByPhrase

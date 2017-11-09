@@ -80,7 +80,7 @@ public class UnstringStatementImpl extends StatementImpl implements UnstringStat
 			result = new SendingImpl(programUnit, ctx);
 
 			// sending call
-			final Call sendingCall = createCall(ctx.qualifiedDataName());
+			final Call sendingCall = createCall(ctx.identifier());
 			result.setSendingCall(sendingCall);
 
 			// delimited by
