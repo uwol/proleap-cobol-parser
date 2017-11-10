@@ -62,4 +62,9 @@ public interface ProcedureDivision extends Scope {
 	Section getSection(String name);
 
 	List<Section> getSections();
+
+	/**
+	 * Returns every @Section with the given name, including duplicate ones.
+	 */
+	List<Section> getSections(String name);
 }

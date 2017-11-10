@@ -14,7 +14,6 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.Section;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.asg.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -33,22 +32,14 @@ public class SectionTest extends CobolTestBase {
 		assertEquals(1, procedureDivision.getSections().size());
 		assertEquals(0, procedureDivision.getStatements().size());
 
+		final Section section = procedureDivision.getSection("SOME-SECTION");
+		assertNotNull(section);
+		assertEquals(1, section.getStatements().size());
+
 		{
-			final Section section = procedureDivision.getSection("SOME-SECTION");
-			assertNotNull(section);
-			assertEquals(2, section.getStatements().size());
-
-			{
-				final DisplayStatement displayStatement = (DisplayStatement) section.getStatements().get(0);
-				assertNotNull(displayStatement);
-				assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
-			}
-
-			{
-				final StopStatement stopStatement = (StopStatement) section.getStatements().get(1);
-				assertNotNull(stopStatement);
-				assertEquals(StatementTypeEnum.STOP, stopStatement.getStatementType());
-			}
+			final StopStatement stopStatement = (StopStatement) section.getStatements().get(0);
+			assertNotNull(stopStatement);
+			assertEquals(StatementTypeEnum.STOP, stopStatement.getStatementType());
 		}
 	}
 }

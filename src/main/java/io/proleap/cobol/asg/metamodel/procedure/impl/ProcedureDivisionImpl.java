@@ -208,4 +208,9 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 	public List<Section> getSections() {
 		return sections;
 	}
+
+	@Override
+	public List<Section> getSections(final String name) {
+		return sectionsSymbolTable.get(getSymbol(name)).getSections();
+	}
 }
