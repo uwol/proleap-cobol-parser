@@ -32,13 +32,15 @@ public class ParagraphTest extends CobolTestBase {
 		assertEquals(0, procedureDivision.getSections().size());
 		assertEquals(0, procedureDivision.getStatements().size());
 
-		final Paragraph paragraph = procedureDivision.getParagraph("INIT");
-		assertNotNull(paragraph);
-
 		{
-			final StopStatement stopStatement = (StopStatement) paragraph.getStatements().get(0);
-			assertNotNull(stopStatement);
-			assertEquals(StatementTypeEnum.STOP, stopStatement.getStatementType());
+			final Paragraph paragraph = procedureDivision.getParagraph("INIT");
+			assertNotNull(paragraph);
+
+			{
+				final StopStatement stopStatement = (StopStatement) paragraph.getStatements().get(0);
+				assertNotNull(stopStatement);
+				assertEquals(StatementTypeEnum.STOP, stopStatement.getStatementType());
+			}
 		}
 	}
 }

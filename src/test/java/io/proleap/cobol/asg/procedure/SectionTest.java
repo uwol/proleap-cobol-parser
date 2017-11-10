@@ -32,14 +32,16 @@ public class SectionTest extends CobolTestBase {
 		assertEquals(1, procedureDivision.getSections().size());
 		assertEquals(0, procedureDivision.getStatements().size());
 
-		final Section section = procedureDivision.getSection("SOME-SECTION");
-		assertNotNull(section);
-		assertEquals(1, section.getStatements().size());
-
 		{
-			final StopStatement stopStatement = (StopStatement) section.getStatements().get(0);
-			assertNotNull(stopStatement);
-			assertEquals(StatementTypeEnum.STOP, stopStatement.getStatementType());
+			final Section section = procedureDivision.getSection("SOME-SECTION");
+			assertNotNull(section);
+			assertEquals(1, section.getStatements().size());
+
+			{
+				final StopStatement stopStatement = (StopStatement) section.getStatements().get(0);
+				assertNotNull(stopStatement);
+				assertEquals(StatementTypeEnum.STOP, stopStatement.getStatementType());
+			}
 		}
 	}
 }

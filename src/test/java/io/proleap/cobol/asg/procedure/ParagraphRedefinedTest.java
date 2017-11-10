@@ -40,7 +40,7 @@ public class ParagraphRedefinedTest extends CobolTestBase {
 
 		{
 			final Paragraph paragraph = paragraphs.get(0);
-			assertEquals(paragraph, procedureDivision.getParagraph("INIT"));
+			assertEquals(procedureDivision.getParagraph("INIT"), paragraph);
 
 			{
 				final StopStatement stopStatement = (StopStatement) paragraph.getStatements().get(0);
@@ -51,7 +51,7 @@ public class ParagraphRedefinedTest extends CobolTestBase {
 
 		{
 			final Paragraph paragraph = paragraphs.get(1);
-			assertNotEquals(paragraph, procedureDivision.getParagraph("INIT"));
+			assertNotEquals(procedureDivision.getParagraph("INIT"), paragraph);
 
 			{
 				final DisplayStatement displayStatement = (DisplayStatement) paragraph.getStatements().get(0);

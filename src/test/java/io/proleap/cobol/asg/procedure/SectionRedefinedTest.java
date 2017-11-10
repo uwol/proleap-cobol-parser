@@ -40,7 +40,7 @@ public class SectionRedefinedTest extends CobolTestBase {
 
 		{
 			final Section section = sections.get(0);
-			assertEquals(section, procedureDivision.getSection("SOME-SECTION"));
+			assertEquals(procedureDivision.getSection("SOME-SECTION"), section);
 
 			{
 				final StopStatement stopStatement = (StopStatement) section.getStatements().get(0);
@@ -51,7 +51,7 @@ public class SectionRedefinedTest extends CobolTestBase {
 
 		{
 			final Section section = sections.get(1);
-			assertNotEquals(section, procedureDivision.getSection("SOME-SECTION"));
+			assertNotEquals(procedureDivision.getSection("SOME-SECTION"), section);
 
 			{
 				final DisplayStatement displayStatement = (DisplayStatement) section.getStatements().get(0);
