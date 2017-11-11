@@ -48,8 +48,9 @@ public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl imp
 				&& CallType.DATA_DESCRIPTION_ENTRY_CALL.equals(lastCall.getCallType());
 
 		if (callTypedResolved) {
-			final DataDescriptionEntryCall dataDescriptionEntryFirstCall = (DataDescriptionEntryCall) firstCall;
-			final DataDescriptionEntryCall dataDescriptionEntryLastCall = (DataDescriptionEntryCall) lastCall;
+			final DataDescriptionEntryCall dataDescriptionEntryFirstCall = (DataDescriptionEntryCall) firstCall
+					.unwrap();
+			final DataDescriptionEntryCall dataDescriptionEntryLastCall = (DataDescriptionEntryCall) lastCall.unwrap();
 
 			final DataDescriptionEntry firstDataDescriptionEntry = dataDescriptionEntryFirstCall
 					.getDataDescriptionEntry();

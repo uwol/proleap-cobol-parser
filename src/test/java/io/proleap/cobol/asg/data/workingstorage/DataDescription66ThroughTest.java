@@ -129,14 +129,14 @@ public class DataDescription66ThroughTest extends CobolTestBase {
 				{
 					assertNotNull(renamesClause.getFrom());
 
-					final DataDescriptionEntryCall from = (DataDescriptionEntryCall) renamesClause.getFrom();
+					final DataDescriptionEntryCall from = (DataDescriptionEntryCall) renamesClause.getFrom().unwrap();
 					assertEquals(dataDescriptionEntryItem1, from.getDataDescriptionEntry());
 				}
 
 				{
 					assertNotNull(renamesClause.getTo());
 
-					final DataDescriptionEntryCall to = (DataDescriptionEntryCall) renamesClause.getTo();
+					final DataDescriptionEntryCall to = (DataDescriptionEntryCall) renamesClause.getTo().unwrap();
 					assertEquals(dataDescriptionEntryItem3, to.getDataDescriptionEntry());
 				}
 
@@ -145,19 +145,19 @@ public class DataDescription66ThroughTest extends CobolTestBase {
 
 					{
 						final DataDescriptionEntryCall call1 = (DataDescriptionEntryCall) renamesClause.getCalls()
-								.get(0);
+								.get(0).unwrap();
 						assertEquals(dataDescriptionEntryItem1, call1.getDataDescriptionEntry());
 					}
 
 					{
 						final DataDescriptionEntryCall call2 = (DataDescriptionEntryCall) renamesClause.getCalls()
-								.get(1);
+								.get(1).unwrap();
 						assertEquals(dataDescriptionEntryItem2, call2.getDataDescriptionEntry());
 					}
 
 					{
 						final DataDescriptionEntryCall call3 = (DataDescriptionEntryCall) renamesClause.getCalls()
-								.get(2);
+								.get(2).unwrap();
 						assertEquals(dataDescriptionEntryItem3, call3.getDataDescriptionEntry());
 					}
 				}

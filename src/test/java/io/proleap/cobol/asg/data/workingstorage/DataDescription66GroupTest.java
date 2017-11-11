@@ -90,7 +90,7 @@ public class DataDescription66GroupTest extends CobolTestBase {
 
 				{
 					assertNotNull(renamesClause.getFrom());
-					final DataDescriptionEntryCall from = (DataDescriptionEntryCall) renamesClause.getFrom();
+					final DataDescriptionEntryCall from = (DataDescriptionEntryCall) renamesClause.getFrom().unwrap();
 					assertEquals(dataDescriptionEntryItems, from.getDataDescriptionEntry());
 				}
 
@@ -101,7 +101,7 @@ public class DataDescription66GroupTest extends CobolTestBase {
 
 					{
 						final DataDescriptionEntryCall call1 = (DataDescriptionEntryCall) renamesClause.getCalls()
-								.get(0);
+								.get(0).unwrap();
 						assertEquals(dataDescriptionEntryItems, call1.getDataDescriptionEntry());
 					}
 				}

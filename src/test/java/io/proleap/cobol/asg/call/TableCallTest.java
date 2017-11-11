@@ -437,7 +437,7 @@ public class TableCallTest extends CobolTestBase {
 								final Call subscriptCall = subscriptCallValueStmt.getCall();
 								assertEquals(Call.CallType.INDEX_CALL, subscriptCall.getCallType());
 
-								final IndexCall subscriptIndexCall = (IndexCall) subscriptCall;
+								final IndexCall subscriptIndexCall = (IndexCall) subscriptCall.unwrap();
 								assertEquals(indexI, subscriptIndexCall.getIndex());
 							}
 						}
@@ -451,7 +451,7 @@ public class TableCallTest extends CobolTestBase {
 								final Call subscriptCall = subscriptCallValueStmt.getCall();
 								assertEquals(Call.CallType.INDEX_CALL, subscriptCall.getCallType());
 
-								final IndexCall subscriptIndexCall = (IndexCall) subscriptCall;
+								final IndexCall subscriptIndexCall = (IndexCall) subscriptCall.unwrap();
 								assertEquals(indexJ, subscriptIndexCall.getIndex());
 							}
 						}
