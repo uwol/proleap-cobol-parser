@@ -27,6 +27,8 @@ import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.FunctionCallContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
+import io.proleap.cobol.Cobol85Parser.InDataContext;
+import io.proleap.cobol.Cobol85Parser.InTableContext;
 import io.proleap.cobol.Cobol85Parser.IndexNameContext;
 import io.proleap.cobol.Cobol85Parser.LibraryNameContext;
 import io.proleap.cobol.Cobol85Parser.LocalNameContext;
@@ -42,6 +44,7 @@ import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat1Context;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat2Context;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat3Context;
+import io.proleap.cobol.Cobol85Parser.QualifiedInDataContext;
 import io.proleap.cobol.Cobol85Parser.RecordNameContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionEntryContext;
@@ -155,8 +158,18 @@ public class NameResolverImpl implements NameResolver {
 		return result;
 	}
 
+	public String determineName(final InDataContext ctx) {
+		final String result = ctx != null ? determineName(ctx.dataName()) : null;
+		return result;
+	}
+
 	public String determineName(final IndexNameContext ctx) {
 		final String result = ctx != null ? ctx.getText() : null;
+		return result;
+	}
+
+	public String determineName(final InTableContext ctx) {
+		final String result = ctx != null ? determineName(ctx.tableCall()) : null;
 		return result;
 	}
 
@@ -176,7 +189,7 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final ParagraphContext ctx) {
-		final String result = determineName(ctx.paragraphName());
+		final String result = ctx != null ? determineName(ctx.paragraphName()) : null;
 		return result;
 	}
 
@@ -225,6 +238,10 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((IdentifierContext) ctx);
 		} else if (ctx instanceof IndexNameContext) {
 			result = determineName((IndexNameContext) ctx);
+		} else if (ctx instanceof InDataContext) {
+			result = determineName((InDataContext) ctx);
+		} else if (ctx instanceof InTableContext) {
+			result = determineName((InTableContext) ctx);
 		} else if (ctx instanceof LibraryNameContext) {
 			result = determineName((LibraryNameContext) ctx);
 		} else if (ctx instanceof LocalNameContext) {
@@ -253,6 +270,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((QualifiedDataNameFormat2Context) ctx);
 		} else if (ctx instanceof QualifiedDataNameFormat3Context) {
 			result = determineName((QualifiedDataNameFormat3Context) ctx);
+		} else if (ctx instanceof QualifiedInDataContext) {
+			result = determineName((QualifiedInDataContext) ctx);
 		} else if (ctx instanceof RecordNameContext) {
 			result = determineName((RecordNameContext) ctx);
 		} else if (ctx instanceof ReportDescriptionContext) {
@@ -358,6 +377,22 @@ public class NameResolverImpl implements NameResolver {
 
 	public String determineName(final QualifiedDataNameFormat3Context ctx) {
 		final String result = ctx != null ? determineName(ctx.textName()) : null;
+		return result;
+	}
+
+	public String determineName(final QualifiedInDataContext ctx) {
+		final String result;
+
+		if (ctx == null) {
+			result = null;
+		} else if (ctx.inData() != null) {
+			result = determineName(ctx.inData());
+		} else if (ctx.inTable() != null) {
+			result = determineName(ctx.inTable());
+		} else {
+			result = null;
+		}
+
 		return result;
 	}
 

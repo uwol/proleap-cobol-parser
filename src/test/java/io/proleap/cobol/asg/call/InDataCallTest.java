@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNull;
 
 import java.io.File;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
@@ -23,7 +22,6 @@ import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class InDataCallTest extends CobolTestBase {
 
-	@Ignore
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/call/InDataCall.cbl");
@@ -76,7 +74,7 @@ public class InDataCallTest extends CobolTestBase {
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntryItems2.getDataDescriptionEntryType());
 			assertNull(dataDescriptionEntryItems2.getParentDataDescriptionEntryGroup());
-			assertEquals(1, dataDescriptionEntryItems2.getCalls().size());
+			assertEquals(0, dataDescriptionEntryItems2.getCalls().size());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroupItems2 = (DataDescriptionEntryGroup) dataDescriptionEntryItems2;
 

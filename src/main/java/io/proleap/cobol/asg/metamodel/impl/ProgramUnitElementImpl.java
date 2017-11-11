@@ -8,10 +8,16 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.util.Strings;
+
+import com.google.common.collect.Lists;
 
 import io.proleap.cobol.Cobol85Parser.AlphabetNameContext;
 import io.proleap.cobol.Cobol85Parser.AndOrConditionContext;
@@ -45,6 +51,7 @@ import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat1Context;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat2Context;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat3Context;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat4Context;
+import io.proleap.cobol.Cobol85Parser.QualifiedInDataContext;
 import io.proleap.cobol.Cobol85Parser.RecordNameContext;
 import io.proleap.cobol.Cobol85Parser.RelationConditionContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
@@ -469,13 +476,25 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		final Call result;
 
 		if (ctx.qualifiedDataNameFormat1() != null) {
-			result = createCall(ctx.qualifiedDataNameFormat1());
+			final Call dataCall = createCall(ctx.qualifiedDataNameFormat1());
+			result = new CallDelegateImpl(dataCall, programUnit, ctx);
+
+			registerASGElement(result);
 		} else if (ctx.qualifiedDataNameFormat2() != null) {
-			result = createCall(ctx.qualifiedDataNameFormat2());
+			final Call dataCall = createCall(ctx.qualifiedDataNameFormat2());
+			result = new CallDelegateImpl(dataCall, programUnit, ctx);
+
+			registerASGElement(result);
 		} else if (ctx.qualifiedDataNameFormat3() != null) {
-			result = createCall(ctx.qualifiedDataNameFormat3());
+			final Call dataCall = createCall(ctx.qualifiedDataNameFormat3());
+			result = new CallDelegateImpl(dataCall, programUnit, ctx);
+
+			registerASGElement(result);
 		} else if (ctx.qualifiedDataNameFormat4() != null) {
-			result = createCall(ctx.qualifiedDataNameFormat4());
+			final Call dataCall = createCall(ctx.qualifiedDataNameFormat4());
+			result = new CallDelegateImpl(dataCall, programUnit, ctx);
+
+			registerASGElement(result);
 		} else {
 			result = createDataDescriptionEntryCall(ctx);
 		}
@@ -485,11 +504,31 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected Call createCall(final QualifiedDataNameFormat1Context ctx) {
 		final Call result;
+		final boolean isQualifiedData = !ctx.qualifiedInData().isEmpty();
 
-		final boolean isInData = !ctx.qualifiedInData().isEmpty();
+		if (isQualifiedData) {
+			final String name = determineName(ctx);
+			final List<DataDescriptionEntry> candidateDataDescriptionEntries = findDataDescriptionEntries(name);
+			final List<QualifiedInDataContext> parentInDataCtxs = Lists.newArrayList(ctx.qualifiedInData());
+			Collections.reverse(parentInDataCtxs);
 
-		if (isInData) {
-			result = createDataDescriptionEntryCall(ctx);
+			DataDescriptionEntry validDataDescriptionEntry = null;
+
+			for (final DataDescriptionEntry candidateDataDescriptionEntry : candidateDataDescriptionEntries) {
+				final boolean isCandidateQualified = isFittingQualifiedInData(candidateDataDescriptionEntry,
+						parentInDataCtxs);
+
+				if (isCandidateQualified) {
+					validDataDescriptionEntry = candidateDataDescriptionEntry;
+					break;
+				}
+			}
+
+			if (validDataDescriptionEntry == null) {
+				result = createUndefinedCall(ctx);
+			} else {
+				result = createDataDescriptionEntryCall(name, validDataDescriptionEntry, ctx);
+			}
 		} else if (ctx.dataName() != null) {
 			result = createCall(ctx.dataName());
 		} else if (ctx.conditionName() != null) {
@@ -502,6 +541,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final QualifiedDataNameFormat2Context ctx) {
+		// FIXME check in SECTION
 		final Call result = createCall(ctx.paragraphName());
 		return result;
 	}
@@ -629,9 +669,13 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (result == null) {
 			final String name = determineName(ctx);
-			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
+			final List<DataDescriptionEntry> dataDescriptionEntries = findDataDescriptionEntries(name);
 
-			if (dataDescriptionEntry != null) {
+			if (dataDescriptionEntries.isEmpty()) {
+				LOG.warn("call to unknown data element {}", name);
+				result = createUndefinedCall(ctx);
+			} else {
+				final DataDescriptionEntry dataDescriptionEntry = dataDescriptionEntries.get(0);
 				final TableCall tableCall = new TableCallImpl(name, dataDescriptionEntry, programUnit, ctx);
 				linkDataDescriptionEntryCallWithDataDescriptionEntry(tableCall, dataDescriptionEntry);
 
@@ -641,9 +685,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 				result = tableCall;
 				registerASGElement(result);
-			} else {
-				LOG.warn("call to unknown data element {}", name);
-				result = createUndefinedCall(ctx);
 			}
 		}
 
@@ -781,15 +822,19 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (result == null) {
 			final String name = determineName(ctx);
 			final Index index = findIndex(name);
-			final DataDescriptionEntry dataDescriptionEntry = findDataDescriptionEntry(name);
 
 			if (index != null) {
 				result = createIndexCall(ctx);
-			} else if (dataDescriptionEntry != null) {
-				result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
 			} else {
-				LOG.warn("call to unknown data element {}", name);
-				result = createUndefinedCall(ctx);
+				final List<DataDescriptionEntry> dataDescriptionEntries = findDataDescriptionEntries(name);
+
+				if (dataDescriptionEntries.isEmpty()) {
+					LOG.warn("call to unknown data element {}", name);
+					result = createUndefinedCall(ctx);
+				} else {
+					final DataDescriptionEntry dataDescriptionEntry = dataDescriptionEntries.get(0);
+					result = createDataDescriptionEntryCall(name, dataDescriptionEntry, ctx);
+				}
 			}
 		}
 
@@ -1204,77 +1249,35 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
-	protected DataDescriptionEntry findDataDescriptionEntry(final String name) {
+	protected List<DataDescriptionEntry> findDataDescriptionEntries(final String name) {
 		final WorkingStorageSection workingStorageSection = findWorkingStorageSection();
-		final DataDescriptionEntry workingStorageSectionResult;
-
-		if (workingStorageSection == null) {
-			workingStorageSectionResult = null;
-		} else {
-			workingStorageSectionResult = workingStorageSection.getDataDescriptionEntry(name);
-		}
-
-		final CommunicationSection communicationSection = findCommunicationSection();
-		final DataDescriptionEntry communicationSectionResult;
-
-		if (communicationSection == null) {
-			communicationSectionResult = null;
-		} else {
-			communicationSectionResult = communicationSection.getDataDescriptionEntry(name);
-		}
-
-		final LinkageSection linkageSection = findLinkageSection();
-		final DataDescriptionEntry linkageSectionResult;
-
-		if (linkageSection == null) {
-			linkageSectionResult = null;
-		} else {
-			linkageSectionResult = linkageSection.getDataDescriptionEntry(name);
-		}
-
-		final LocalStorageSection localStorageSection = findLocalStorageSection();
-		final DataDescriptionEntry localStorageSectionResult;
-
-		if (localStorageSection == null) {
-			localStorageSectionResult = null;
-		} else {
-			localStorageSectionResult = localStorageSection.getDataDescriptionEntry(name);
-		}
-
 		final FileSection fileSection = findFileSection();
-		final DataDescriptionEntry fileSectionResult;
+		final CommunicationSection communicationSection = findCommunicationSection();
+		final LinkageSection linkageSection = findLinkageSection();
+		final LocalStorageSection localStorageSection = findLocalStorageSection();
 
-		if (fileSection == null) {
-			fileSectionResult = null;
-		} else {
-			DataDescriptionEntry dataDescriptionEntryFound = null;
+		final List<DataDescriptionEntry> result = new ArrayList<DataDescriptionEntry>();
 
-			for (final FileDescriptionEntry fileDescriptionEntry : fileSection.getFileDescriptionEntries()) {
-				final DataDescriptionEntry dataDescriptionEntry = fileDescriptionEntry.getDataDescriptionEntry(name);
-
-				if (dataDescriptionEntry != null) {
-					dataDescriptionEntryFound = dataDescriptionEntry;
-					break;
-				}
-			}
-
-			fileSectionResult = dataDescriptionEntryFound;
+		if (workingStorageSection != null) {
+			result.addAll(workingStorageSection.getDataDescriptionEntries(name));
 		}
 
-		final DataDescriptionEntry result;
+		if (fileSection != null) {
+			for (final FileDescriptionEntry fileDescriptionEntry : fileSection.getFileDescriptionEntries()) {
+				result.addAll(fileDescriptionEntry.getDataDescriptionEntries(name));
+			}
+		}
 
-		if (workingStorageSectionResult != null) {
-			result = workingStorageSectionResult;
-		} else if (fileSectionResult != null) {
-			result = fileSectionResult;
-		} else if (communicationSectionResult != null) {
-			result = communicationSectionResult;
-		} else if (linkageSectionResult != null) {
-			result = linkageSectionResult;
-		} else if (localStorageSectionResult != null) {
-			result = localStorageSectionResult;
-		} else {
-			result = null;
+		if (communicationSection != null) {
+			result.addAll(communicationSection.getDataDescriptionEntries(name));
+		}
+
+		if (linkageSection != null) {
+			result.addAll(linkageSection.getDataDescriptionEntries(name));
+		}
+
+		if (localStorageSection != null) {
+			result.addAll(localStorageSection.getDataDescriptionEntries(name));
 		}
 
 		return result;
@@ -1484,6 +1487,27 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 	protected String getSymbol(final String name) {
 		return Strings.isBlank(name) ? name : name.toUpperCase();
+	}
+
+	protected boolean isFittingQualifiedInData(final DataDescriptionEntry candidateDataDescriptionEntry,
+			final List<QualifiedInDataContext> parentInDataCtxs) {
+		DataDescriptionEntryGroup currentParent = candidateDataDescriptionEntry.getParentDataDescriptionEntryGroup();
+		boolean result = true;
+
+		for (final QualifiedInDataContext parentCtx : parentInDataCtxs) {
+			final String parentGroupName = currentParent.getName();
+			final String parentInDataCtxName = determineName(parentCtx);
+			final boolean sameName = parentGroupName.equalsIgnoreCase(parentInDataCtxName);
+
+			if (!sameName) {
+				result = false;
+				break;
+			}
+
+			currentParent = currentParent.getParentDataDescriptionEntryGroup();
+		}
+
+		return result;
 	}
 
 	protected void linkCommunicationDescriptionEntryCallWithCommunicationDescriptionEntry(
