@@ -54,5 +54,4 @@ public abstract class ASGElementImpl implements ASGElement {
 	public Program getProgram() {
 		return program;
 	}
-
 }
