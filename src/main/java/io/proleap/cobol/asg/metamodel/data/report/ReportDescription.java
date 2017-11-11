@@ -43,6 +43,8 @@ public interface ReportDescription extends CobolDivisionElement, Declaration {
 
 	List<ReportGroupDescriptionEntry> getReportGroupDescriptionEntries();
 
+	List<ReportGroupDescriptionEntry> getReportGroupDescriptionEntries(String name);
+
 	ReportGroupDescriptionEntry getReportGroupDescriptionEntry(String name);
 
 	List<ReportGroupDescriptionEntry> getRootReportGroupDescriptionEntries();

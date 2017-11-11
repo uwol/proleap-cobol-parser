@@ -49,6 +49,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.datadescription.AlignedClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.BlankWhenZeroClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.CommonOwnLocalClause;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntriesSymbolTableEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
@@ -90,7 +91,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 
 	protected List<DataDescriptionEntry> dataDescriptionEntries = new ArrayList<DataDescriptionEntry>();
 
-	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesSymbolTable = new HashMap<String, DataDescriptionEntry>();
+	protected Map<String, DataDescriptionEntriesSymbolTableEntry> dataDescriptionEntriesSymbolTable = new HashMap<String, DataDescriptionEntriesSymbolTableEntry>();
 
 	protected ExternalClause externalClause;
 
@@ -208,7 +209,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 		final String name = dataDescriptionEntry.getName();
 
 		dataDescriptionEntries.add(dataDescriptionEntry);
-		dataDescriptionEntriesSymbolTable.put(getSymbol(name), dataDescriptionEntry);
+		assureDataDescriptionEntriesSymbolTableEntry(name).addDataDescriptionEntry(dataDescriptionEntry);
 	}
 
 	@Override
@@ -711,6 +712,18 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 		return result;
 	}
 
+	protected DataDescriptionEntriesSymbolTableEntry assureDataDescriptionEntriesSymbolTableEntry(final String name) {
+		DataDescriptionEntriesSymbolTableEntry dataDescriptionEntriesSymbolTableEntry = dataDescriptionEntriesSymbolTable
+				.get(getSymbol(name));
+
+		if (dataDescriptionEntriesSymbolTableEntry == null) {
+			dataDescriptionEntriesSymbolTableEntry = new DataDescriptionEntriesSymbolTableEntryImpl();
+			dataDescriptionEntriesSymbolTable.put(getSymbol(name), dataDescriptionEntriesSymbolTableEntry);
+		}
+
+		return dataDescriptionEntriesSymbolTableEntry;
+	}
+
 	@Override
 	public AlignedClause getAlignedClause() {
 		return alignedClause;
@@ -732,8 +745,14 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	}
 
 	@Override
+	public List<DataDescriptionEntry> getDataDescriptionEntries(final String name) {
+		return dataDescriptionEntriesSymbolTable.get(getSymbol(name)).getDataDescriptionEntries();
+	}
+
+	@Override
 	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
-		return dataDescriptionEntriesSymbolTable.get(getSymbol(name));
+		return dataDescriptionEntriesSymbolTable.get(getSymbol(name)) == null ? null
+				: dataDescriptionEntriesSymbolTable.get(getSymbol(name)).getDataDescriptionEntry();
 	}
 
 	@Override

@@ -36,6 +36,7 @@ import io.proleap.cobol.Cobol85Parser.SymbolicSubQueueClauseContext;
 import io.proleap.cobol.Cobol85Parser.SymbolicTerminalClauseContext;
 import io.proleap.cobol.Cobol85Parser.TextLengthClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntriesSymbolTableEntry;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntryInput;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntryInputOutput;
@@ -49,7 +50,7 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 
 	protected List<CommunicationDescriptionEntry> communicationDescriptionEntries = new ArrayList<CommunicationDescriptionEntry>();
 
-	protected Map<String, CommunicationDescriptionEntry> communicationDescriptionEntriesSymbolTable = new HashMap<String, CommunicationDescriptionEntry>();
+	protected Map<String, CommunicationDescriptionEntriesSymbolTableEntry> communicationDescriptionEntriesSymbolTable = new HashMap<String, CommunicationDescriptionEntriesSymbolTableEntry>();
 
 	protected final DataDescriptionEntryContainerType containerType = DataDescriptionEntryContainerType.COMMUNICATION_SECTION;
 
@@ -162,7 +163,7 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 			}
 
 			communicationDescriptionEntries.add(result);
-			communicationDescriptionEntriesSymbolTable.put(getSymbol(name), result);
+			assureCommunicationDescriptionEntriesSymbolTableEntry(name).addCommunicationDescriptionEntry(result);
 			registerASGElement(result);
 		}
 
@@ -240,7 +241,7 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 			}
 
 			communicationDescriptionEntries.add(result);
-			communicationDescriptionEntriesSymbolTable.put(getSymbol(name), result);
+			assureCommunicationDescriptionEntriesSymbolTableEntry(name).addCommunicationDescriptionEntry(result);
 			registerASGElement(result);
 		}
 
@@ -321,11 +322,25 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 			}
 
 			communicationDescriptionEntries.add(result);
-			communicationDescriptionEntriesSymbolTable.put(getSymbol(name), result);
+			assureCommunicationDescriptionEntriesSymbolTableEntry(name).addCommunicationDescriptionEntry(result);
 			registerASGElement(result);
 		}
 
 		return result;
+	}
+
+	protected CommunicationDescriptionEntriesSymbolTableEntry assureCommunicationDescriptionEntriesSymbolTableEntry(
+			final String name) {
+		CommunicationDescriptionEntriesSymbolTableEntry communicationDescriptionEntriesSymbolTableEntry = communicationDescriptionEntriesSymbolTable
+				.get(getSymbol(name));
+
+		if (communicationDescriptionEntriesSymbolTableEntry == null) {
+			communicationDescriptionEntriesSymbolTableEntry = new CommunicationDescriptionEntriesSymbolTableEntryImpl();
+			communicationDescriptionEntriesSymbolTable.put(getSymbol(name),
+					communicationDescriptionEntriesSymbolTableEntry);
+		}
+
+		return communicationDescriptionEntriesSymbolTableEntry;
 	}
 
 	@Override
@@ -353,13 +368,19 @@ public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl 
 	}
 
 	@Override
+	public List<CommunicationDescriptionEntry> getCommunicationDescriptionEntries(final String name) {
+		return communicationDescriptionEntriesSymbolTable.get(getSymbol(name)) == null ? null
+				: communicationDescriptionEntriesSymbolTable.get(getSymbol(name)).getCommunicationDescriptionEntries();
+	}
+
+	@Override
 	public CommunicationDescriptionEntry getCommunicationDescriptionEntry(final String name) {
-		return communicationDescriptionEntriesSymbolTable.get(getSymbol(name));
+		return communicationDescriptionEntriesSymbolTable.get(getSymbol(name)) == null ? null
+				: communicationDescriptionEntriesSymbolTable.get(getSymbol(name)).getCommunicationDescriptionEntry();
 	}
 
 	@Override
 	public DataDescriptionEntryContainerType getContainerType() {
 		return containerType;
 	}
-
 }

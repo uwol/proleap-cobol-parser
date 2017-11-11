@@ -21,5 +21,7 @@ public interface ScreenSection extends CobolDivisionElement {
 
 	List<ScreenDescriptionEntry> getScreenDescriptionEntries();
 
+	List<ScreenDescriptionEntry> getScreenDescriptionEntries(String name);
+
 	ScreenDescriptionEntry getScreenDescriptionEntry(String name);
 }

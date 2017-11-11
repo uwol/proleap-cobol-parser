@@ -87,6 +87,8 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry, Complex
 
 	List<DataDescriptionEntry> getDataDescriptionEntries();
 
+	List<DataDescriptionEntry> getDataDescriptionEntries(String name);
+
 	DataDescriptionEntry getDataDescriptionEntry(String name);
 
 	ExternalClause getExternalClause();
@@ -132,5 +134,4 @@ public interface DataDescriptionEntryGroup extends DataDescriptionEntry, Complex
 	void setFiller(Boolean filler);
 
 	void setFillerNumber(Integer fillerNumber);
-
 }

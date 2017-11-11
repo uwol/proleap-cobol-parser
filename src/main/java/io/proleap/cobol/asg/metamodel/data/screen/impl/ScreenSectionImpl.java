@@ -44,6 +44,7 @@ import io.proleap.cobol.Cobol85Parser.ScreenDescriptionValueClauseContext;
 import io.proleap.cobol.Cobol85Parser.ScreenDescriptionZeroFillClauseContext;
 import io.proleap.cobol.Cobol85Parser.ScreenSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.data.screen.ScreenDescriptionEntriesSymbolTableEntry;
 import io.proleap.cobol.asg.metamodel.data.screen.ScreenDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.screen.ScreenSection;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
@@ -55,7 +56,7 @@ public class ScreenSectionImpl extends CobolDivisionElementImpl implements Scree
 
 	protected List<ScreenDescriptionEntry> screenDescriptionEntries = new ArrayList<ScreenDescriptionEntry>();
 
-	protected Map<String, ScreenDescriptionEntry> screenDescriptionEntriesSymbolTable = new HashMap<String, ScreenDescriptionEntry>();
+	protected Map<String, ScreenDescriptionEntriesSymbolTableEntry> screenDescriptionEntriesSymbolTable = new HashMap<String, ScreenDescriptionEntriesSymbolTableEntry>();
 
 	public ScreenSectionImpl(final ProgramUnit programUnit, final ScreenSectionContext ctx) {
 		super(programUnit, ctx);
@@ -242,10 +243,23 @@ public class ScreenSectionImpl extends CobolDivisionElementImpl implements Scree
 			registerASGElement(result);
 
 			screenDescriptionEntries.add(result);
-			screenDescriptionEntriesSymbolTable.put(getSymbol(name), result);
+			assureScreenDescriptionEntriesSymbolTableEntry(name).addScreenDescriptionEntry(result);
 		}
 
 		return result;
+	}
+
+	protected ScreenDescriptionEntriesSymbolTableEntry assureScreenDescriptionEntriesSymbolTableEntry(
+			final String name) {
+		ScreenDescriptionEntriesSymbolTableEntry screenDescriptionEntriesSymbolTableEntry = screenDescriptionEntriesSymbolTable
+				.get(getSymbol(name));
+
+		if (screenDescriptionEntriesSymbolTableEntry == null) {
+			screenDescriptionEntriesSymbolTableEntry = new ScreenDescriptionEntriesSymbolTableEntryImpl();
+			screenDescriptionEntriesSymbolTable.put(getSymbol(name), screenDescriptionEntriesSymbolTableEntry);
+		}
+
+		return screenDescriptionEntriesSymbolTableEntry;
 	}
 
 	@Override
@@ -267,8 +281,14 @@ public class ScreenSectionImpl extends CobolDivisionElementImpl implements Scree
 	}
 
 	@Override
-	public ScreenDescriptionEntry getScreenDescriptionEntry(final String name) {
-		return screenDescriptionEntriesSymbolTable.get(getSymbol(name));
+	public List<ScreenDescriptionEntry> getScreenDescriptionEntries(final String name) {
+		return screenDescriptionEntriesSymbolTable.get(getSymbol(name)) == null ? null
+				: screenDescriptionEntriesSymbolTable.get(getSymbol(name)).getScreenDescriptionEntries();
 	}
 
+	@Override
+	public ScreenDescriptionEntry getScreenDescriptionEntry(final String name) {
+		return screenDescriptionEntriesSymbolTable.get(getSymbol(name)) == null ? null
+				: screenDescriptionEntriesSymbolTable.get(getSymbol(name)).getScreenDescriptionEntry();
+	}
 }

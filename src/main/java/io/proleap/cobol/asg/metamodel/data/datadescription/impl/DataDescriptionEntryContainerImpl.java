@@ -44,6 +44,7 @@ import io.proleap.cobol.Cobol85Parser.DataUsingClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataWithLowerBoundsClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntriesSymbolTableEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryCondition;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
@@ -62,7 +63,7 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 
 	protected List<DataDescriptionEntry> dataDescriptionEntries = new ArrayList<DataDescriptionEntry>();
 
-	protected Map<String, DataDescriptionEntry> dataDescriptionEntriesSymbolTable = new HashMap<String, DataDescriptionEntry>();
+	protected Map<String, DataDescriptionEntriesSymbolTableEntry> dataDescriptionEntriesSymbolTable = new HashMap<String, DataDescriptionEntriesSymbolTableEntry>();
 
 	public DataDescriptionEntryContainerImpl(final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
@@ -83,7 +84,7 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
-			dataDescriptionEntriesSymbolTable.put(getSymbol(name), result);
+			assureDataDescriptionEntriesSymbolTableEntry(name).addDataDescriptionEntry(result);
 		}
 
 		return result;
@@ -358,7 +359,7 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
-			dataDescriptionEntriesSymbolTable.put(getSymbol(name), result);
+			assureDataDescriptionEntriesSymbolTableEntry(name).addDataDescriptionEntry(result);
 		}
 
 		return result;
@@ -378,10 +379,22 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			registerASGElement(result);
 
 			dataDescriptionEntries.add(result);
-			dataDescriptionEntriesSymbolTable.put(getSymbol(name), result);
+			assureDataDescriptionEntriesSymbolTableEntry(name).addDataDescriptionEntry(result);
 		}
 
 		return result;
+	}
+
+	protected DataDescriptionEntriesSymbolTableEntry assureDataDescriptionEntriesSymbolTableEntry(final String name) {
+		DataDescriptionEntriesSymbolTableEntry dataDescriptionEntriesSymbolTableEntry = dataDescriptionEntriesSymbolTable
+				.get(getSymbol(name));
+
+		if (dataDescriptionEntriesSymbolTableEntry == null) {
+			dataDescriptionEntriesSymbolTableEntry = new DataDescriptionEntriesSymbolTableEntryImpl();
+			dataDescriptionEntriesSymbolTable.put(getSymbol(name), dataDescriptionEntriesSymbolTableEntry);
+		}
+
+		return dataDescriptionEntriesSymbolTableEntry;
 	}
 
 	@Override
@@ -415,8 +428,15 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 	}
 
 	@Override
+	public List<DataDescriptionEntry> getDataDescriptionEntries(final String name) {
+		return dataDescriptionEntriesSymbolTable.get(getSymbol(name)) == null ? null
+				: dataDescriptionEntriesSymbolTable.get(getSymbol(name)).getDataDescriptionEntries();
+	}
+
+	@Override
 	public DataDescriptionEntry getDataDescriptionEntry(final String name) {
-		return dataDescriptionEntriesSymbolTable.get(getSymbol(name));
+		return dataDescriptionEntriesSymbolTable.get(getSymbol(name)) == null ? null
+				: dataDescriptionEntriesSymbolTable.get(getSymbol(name)).getDataDescriptionEntry();
 	}
 
 	@Override

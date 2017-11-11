@@ -40,6 +40,7 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.ReportCall;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntriesSymbolTableEntry;
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntryPrintable;
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntrySingle;
@@ -61,7 +62,7 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 
 	protected List<ReportGroupDescriptionEntry> reportGroupDescriptionEntries = new ArrayList<ReportGroupDescriptionEntry>();
 
-	protected Map<String, ReportGroupDescriptionEntry> reportGroupDescriptionEntriesSymbolTable = new HashMap<String, ReportGroupDescriptionEntry>();
+	protected Map<String, ReportGroupDescriptionEntriesSymbolTableEntry> reportGroupDescriptionEntriesSymbolTable = new HashMap<String, ReportGroupDescriptionEntriesSymbolTableEntry>();
 
 	public ReportDescriptionImpl(final String name, final ProgramUnit programUnit, final ReportDescriptionContext ctx) {
 		super(programUnit, ctx);
@@ -273,7 +274,7 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 			}
 
 			reportGroupDescriptionEntries.add(result);
-			reportGroupDescriptionEntriesSymbolTable.put(getSymbol(name), result);
+			assureReportGroupDescriptionEntriesSymbolTableEntry(name).addReportGroupDescriptionEntry(result);
 
 			registerASGElement(result);
 		}
@@ -313,7 +314,7 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 			}
 
 			reportGroupDescriptionEntries.add(result);
-			reportGroupDescriptionEntriesSymbolTable.put(getSymbol(name), result);
+			assureReportGroupDescriptionEntriesSymbolTableEntry(name).addReportGroupDescriptionEntry(result);
 
 			registerASGElement(result);
 		}
@@ -369,12 +370,26 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 			}
 
 			reportGroupDescriptionEntries.add(result);
-			reportGroupDescriptionEntriesSymbolTable.put(getSymbol(name), result);
+			assureReportGroupDescriptionEntriesSymbolTableEntry(name).addReportGroupDescriptionEntry(result);
 
 			registerASGElement(result);
 		}
 
 		return result;
+	}
+
+	protected ReportGroupDescriptionEntriesSymbolTableEntry assureReportGroupDescriptionEntriesSymbolTableEntry(
+			final String name) {
+		ReportGroupDescriptionEntriesSymbolTableEntry reportGroupDescriptionEntriesSymbolTableEntry = reportGroupDescriptionEntriesSymbolTable
+				.get(getSymbol(name));
+
+		if (reportGroupDescriptionEntriesSymbolTableEntry == null) {
+			reportGroupDescriptionEntriesSymbolTableEntry = new ReportGroupDescriptionEntriesSymbolTableEntryImpl();
+			reportGroupDescriptionEntriesSymbolTable.put(getSymbol(name),
+					reportGroupDescriptionEntriesSymbolTableEntry);
+		}
+
+		return reportGroupDescriptionEntriesSymbolTableEntry;
 	}
 
 	@Override
@@ -422,8 +437,15 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 	}
 
 	@Override
+	public List<ReportGroupDescriptionEntry> getReportGroupDescriptionEntries(final String name) {
+		return reportGroupDescriptionEntriesSymbolTable.get(getSymbol(name)) == null ? null
+				: reportGroupDescriptionEntriesSymbolTable.get(getSymbol(name)).getReportGroupDescriptionEntries();
+	}
+
+	@Override
 	public ReportGroupDescriptionEntry getReportGroupDescriptionEntry(final String name) {
-		return reportGroupDescriptionEntriesSymbolTable.get(getSymbol(name));
+		return reportGroupDescriptionEntriesSymbolTable.get(getSymbol(name)) == null ? null
+				: reportGroupDescriptionEntriesSymbolTable.get(getSymbol(name)).getReportGroupDescriptionEntry();
 	}
 
 	@Override

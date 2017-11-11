@@ -32,6 +32,8 @@ public interface CommunicationSection extends DataDescriptionEntryContainer {
 
 	List<CommunicationDescriptionEntry> getCommunicationDescriptionEntries();
 
+	List<CommunicationDescriptionEntry> getCommunicationDescriptionEntries(String name);
+
 	CommunicationDescriptionEntry getCommunicationDescriptionEntry(String name);
 
 }
