@@ -108,7 +108,8 @@ public class ReadStatementTest extends CobolTestBase {
 				assertNotNull(into.getIntoCall());
 				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, into.getIntoCall().getCallType());
 
-				final DataDescriptionEntryCall dataDescriptionEntryCall = (DataDescriptionEntryCall) into.getIntoCall();
+				final DataDescriptionEntryCall dataDescriptionEntryCall = (DataDescriptionEntryCall) into.getIntoCall()
+						.unwrap();
 				assertNotNull(dataDescriptionEntryCall.getDataDescriptionEntry());
 				assertEquals(dataDescriptionEntry, dataDescriptionEntryCall.getDataDescriptionEntry());
 			}

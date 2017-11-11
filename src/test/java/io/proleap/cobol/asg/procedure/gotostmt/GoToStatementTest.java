@@ -149,7 +149,8 @@ public class GoToStatementTest extends CobolTestBase {
 						final Call dependingOnCall = dependingOnPhrase.getDependingOnCall();
 						assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, dependingOnCall.getCallType());
 
-						final DataDescriptionEntryCall dataDescriptionEntryCall = (DataDescriptionEntryCall) dependingOnCall;
+						final DataDescriptionEntryCall dataDescriptionEntryCall = (DataDescriptionEntryCall) dependingOnCall
+								.unwrap();
 						assertEquals(dataDescriptionEntry, dataDescriptionEntryCall.getDataDescriptionEntry());
 					}
 				}

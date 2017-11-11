@@ -69,7 +69,8 @@ public class InitializeStatementTest extends CobolTestBase {
 				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, dataItemCall.getCallType());
 
 				{
-					final DataDescriptionEntryCall dataItemDataDescriptionEntryCall = (DataDescriptionEntryCall) dataItemCall;
+					final DataDescriptionEntryCall dataItemDataDescriptionEntryCall = (DataDescriptionEntryCall) dataItemCall
+							.unwrap();
 					assertEquals(someGroup, dataItemDataDescriptionEntryCall.getDataDescriptionEntry());
 				}
 			}
@@ -89,7 +90,8 @@ public class InitializeStatementTest extends CobolTestBase {
 				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, dataItemCall.getCallType());
 
 				{
-					final DataDescriptionEntryCall dataItemDataDescriptionEntryCall = (DataDescriptionEntryCall) dataItemCall;
+					final DataDescriptionEntryCall dataItemDataDescriptionEntryCall = (DataDescriptionEntryCall) dataItemCall
+							.unwrap();
 					assertEquals(someName, dataItemDataDescriptionEntryCall.getDataDescriptionEntry());
 				}
 			}

@@ -41,6 +41,10 @@ import io.proleap.cobol.Cobol85Parser.PlusMinusContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
 import io.proleap.cobol.Cobol85Parser.ProgramNameContext;
 import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
+import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat1Context;
+import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat2Context;
+import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat3Context;
+import io.proleap.cobol.Cobol85Parser.QualifiedDataNameFormat4Context;
 import io.proleap.cobol.Cobol85Parser.RecordNameContext;
 import io.proleap.cobol.Cobol85Parser.RelationConditionContext;
 import io.proleap.cobol.Cobol85Parser.ReportNameContext;
@@ -66,6 +70,7 @@ import io.proleap.cobol.asg.metamodel.call.IndexCall;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.call.ReportCall;
 import io.proleap.cobol.asg.metamodel.call.ReportDescriptionEntryCall;
+import io.proleap.cobol.asg.metamodel.call.SectionCall;
 import io.proleap.cobol.asg.metamodel.call.SpecialRegisterCall;
 import io.proleap.cobol.asg.metamodel.call.TableCall;
 import io.proleap.cobol.asg.metamodel.call.impl.CallDelegateImpl;
@@ -79,6 +84,7 @@ import io.proleap.cobol.asg.metamodel.call.impl.MnemonicCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ProcedureCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ReportCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.ReportDescriptionEntryCallImpl;
+import io.proleap.cobol.asg.metamodel.call.impl.SectionCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.SpecialRegisterCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.TableCallImpl;
 import io.proleap.cobol.asg.metamodel.call.impl.UndefinedCallImpl;
@@ -103,6 +109,7 @@ import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileCo
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
+import io.proleap.cobol.asg.metamodel.procedure.Section;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.BooleanLiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
@@ -294,9 +301,9 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	protected Call createCall(final IdentifierContext ctx) {
 		final Call result;
 
-		if (ctx.specialRegister() != null) {
-			final Call specialRegisterCall = createCall(ctx.specialRegister());
-			result = new CallDelegateImpl(specialRegisterCall, programUnit, ctx);
+		if (ctx.qualifiedDataName() != null) {
+			final Call dataCall = createCall(ctx.qualifiedDataName());
+			result = new CallDelegateImpl(dataCall, programUnit, ctx);
 
 			registerASGElement(result);
 		} else if (ctx.tableCall() != null) {
@@ -307,6 +314,11 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		} else if (ctx.functionCall() != null) {
 			final Call functionCall = createCall(ctx.functionCall());
 			result = new CallDelegateImpl(functionCall, programUnit, ctx);
+
+			registerASGElement(result);
+		} else if (ctx.specialRegister() != null) {
+			final Call specialRegisterCall = createCall(ctx.specialRegister());
+			result = new CallDelegateImpl(specialRegisterCall, programUnit, ctx);
 
 			registerASGElement(result);
 		} else {
@@ -395,6 +407,14 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCall((ProgramNameContext) ctx);
 			} else if (ctx instanceof QualifiedDataNameContext) {
 				result = createCall((QualifiedDataNameContext) ctx);
+			} else if (ctx instanceof QualifiedDataNameFormat1Context) {
+				result = createCall((QualifiedDataNameFormat1Context) ctx);
+			} else if (ctx instanceof QualifiedDataNameFormat2Context) {
+				result = createCall((QualifiedDataNameFormat2Context) ctx);
+			} else if (ctx instanceof QualifiedDataNameFormat3Context) {
+				result = createCall((QualifiedDataNameFormat3Context) ctx);
+			} else if (ctx instanceof QualifiedDataNameFormat4Context) {
+				result = createCall((QualifiedDataNameFormat4Context) ctx);
 			} else if (ctx instanceof RecordNameContext) {
 				result = createCall((RecordNameContext) ctx);
 			} else if (ctx instanceof ReportNameContext) {
@@ -420,12 +440,15 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 
 		if (result == null) {
 			final String name = determineName(ctx);
+			final Section section = findSection(name);
 			final Paragraph paragraph = findParagraph(name);
 
-			if (paragraph == null) {
-				result = createUndefinedCall(ctx);
-			} else {
+			if (paragraph != null) {
 				result = createProcedureCall(name, paragraph, ctx);
+			} else if (section != null) {
+				result = createSectionCall(name, section, ctx);
+			} else {
+				result = createUndefinedCall(ctx);
 			}
 		}
 
@@ -443,8 +466,53 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final QualifiedDataNameContext ctx) {
-		final Call result = createDataDescriptionEntryCall(ctx);
+		final Call result;
+
+		if (ctx.qualifiedDataNameFormat1() != null) {
+			result = createCall(ctx.qualifiedDataNameFormat1());
+		} else if (ctx.qualifiedDataNameFormat2() != null) {
+			result = createCall(ctx.qualifiedDataNameFormat2());
+		} else if (ctx.qualifiedDataNameFormat3() != null) {
+			result = createCall(ctx.qualifiedDataNameFormat3());
+		} else if (ctx.qualifiedDataNameFormat4() != null) {
+			result = createCall(ctx.qualifiedDataNameFormat4());
+		} else {
+			result = createDataDescriptionEntryCall(ctx);
+		}
+
 		return result;
+	}
+
+	protected Call createCall(final QualifiedDataNameFormat1Context ctx) {
+		final Call result;
+
+		final boolean isInData = !ctx.qualifiedInData().isEmpty();
+
+		if (isInData) {
+			result = createDataDescriptionEntryCall(ctx);
+		} else if (ctx.dataName() != null) {
+			result = createCall(ctx.dataName());
+		} else if (ctx.conditionName() != null) {
+			result = createCall(ctx.conditionName());
+		} else {
+			result = createDataDescriptionEntryCall(ctx);
+		}
+
+		return result;
+	}
+
+	protected Call createCall(final QualifiedDataNameFormat2Context ctx) {
+		final Call result = createCall(ctx.paragraphName());
+		return result;
+	}
+
+	protected Call createCall(final QualifiedDataNameFormat3Context ctx) {
+		final Call result = createCall(ctx.textName());
+		return result;
+	}
+
+	protected Call createCall(final QualifiedDataNameFormat4Context ctx) {
+		return createUndefinedCall(ctx);
 	}
 
 	protected Call createCall(final RecordNameContext ctx) {
@@ -1024,6 +1092,19 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected Call createSectionCall(final String name, final Section section, final ProcedureNameContext ctx) {
+		SectionCall result = (SectionCall) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SectionCallImpl(name, section, programUnit, ctx);
+			linkSectionCallWithSection(result, section);
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
 	protected Call createUndefinedCall(final ParserRuleContext ctx) {
 		Call result = (Call) getASGElement(ctx);
 
@@ -1365,6 +1446,19 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected Section findSection(final String name) {
+		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
+		final Section result;
+
+		if (procedureDivision == null) {
+			result = null;
+		} else {
+			result = procedureDivision.getSection(name);
+		}
+
+		return result;
+	}
+
 	protected WorkingStorageSection findWorkingStorageSection() {
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final WorkingStorageSection result;
@@ -1423,6 +1517,10 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	protected void linkReportDescriptionEntryCallWithReportDescriptionEntry(final ReportDescriptionEntryCall call,
 			final ReportDescriptionEntry reportDescriptionEntry) {
 		reportDescriptionEntry.addCall(call);
+	}
+
+	protected void linkSectionCallWithSection(final SectionCall call, final Section section) {
+		section.addCall(call);
 	}
 
 	protected void registerASGElement(final ASGElement asgElement) {

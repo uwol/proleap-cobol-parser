@@ -212,7 +212,8 @@ public class TableCallTest extends CobolTestBase {
 						final Call receivingCall = moveTo.getReceivingAreaCalls().get(0);
 						assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingCall.getCallType());
 
-						final DataDescriptionEntryCall dataDescriptionEntryReceivingCall = (DataDescriptionEntryCall) receivingCall;
+						final DataDescriptionEntryCall dataDescriptionEntryReceivingCall = (DataDescriptionEntryCall) receivingCall
+								.unwrap();
 						assertEquals(dataDescriptionEntryTbl,
 								dataDescriptionEntryReceivingCall.getDataDescriptionEntry());
 					}
@@ -255,7 +256,7 @@ public class TableCallTest extends CobolTestBase {
 								final Call call = varyingCallValueStmt.getCall();
 								assertEquals(Call.CallType.INDEX_CALL, call.getCallType());
 
-								final IndexCall indexCall = (IndexCall) call;
+								final IndexCall indexCall = (IndexCall) call.unwrap();
 								assertEquals(indexI, indexCall.getIndex());
 							}
 						}
@@ -293,7 +294,7 @@ public class TableCallTest extends CobolTestBase {
 
 									final CallValueStmt basisCallValueStmt = (CallValueStmt) basisValueStmt;
 									final Call call = basisCallValueStmt.getCall();
-									final IndexCall indexCall = (IndexCall) call;
+									final IndexCall indexCall = (IndexCall) call.unwrap();
 									assertEquals(indexI, indexCall.getIndex());
 								}
 
@@ -352,7 +353,7 @@ public class TableCallTest extends CobolTestBase {
 								final Call call = varyingCallValueStmt.getCall();
 								assertEquals(Call.CallType.INDEX_CALL, call.getCallType());
 
-								final IndexCall indexCall = (IndexCall) call;
+								final IndexCall indexCall = (IndexCall) call.unwrap();
 								assertEquals(indexJ, indexCall.getIndex());
 							}
 						}
@@ -390,7 +391,7 @@ public class TableCallTest extends CobolTestBase {
 
 									final CallValueStmt basisCallValueStmt = (CallValueStmt) basisValueStmt;
 									final Call call = basisCallValueStmt.getCall();
-									final IndexCall indexCall = (IndexCall) call;
+									final IndexCall indexCall = (IndexCall) call.unwrap();
 									assertEquals(indexJ, indexCall.getIndex());
 								}
 

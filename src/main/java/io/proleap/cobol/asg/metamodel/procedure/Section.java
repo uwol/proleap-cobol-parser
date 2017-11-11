@@ -14,17 +14,17 @@ import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.asg.metamodel.Declaration;
 import io.proleap.cobol.asg.metamodel.Scope;
-import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
+import io.proleap.cobol.asg.metamodel.call.SectionCall;
 
 public interface Section extends Scope, Declaration {
 
-	void addCall(ProcedureCall procedureCall);
+	void addCall(SectionCall sectionCall);
 
 	Paragraph addParagraph(ParagraphContext ctx);
 
 	ParagraphName addParagraphName(ParagraphNameContext ctx);
 
-	List<ProcedureCall> getCalls();
+	List<SectionCall> getCalls();
 
 	Paragraph getParagraph(String name);
 

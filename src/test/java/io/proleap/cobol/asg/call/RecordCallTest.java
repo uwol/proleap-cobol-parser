@@ -29,9 +29,9 @@ import io.proleap.cobol.asg.metamodel.procedure.close.CloseFile;
 import io.proleap.cobol.asg.metamodel.procedure.close.CloseStatement;
 import io.proleap.cobol.asg.metamodel.procedure.open.Input;
 import io.proleap.cobol.asg.metamodel.procedure.open.InputPhrase;
-import io.proleap.cobol.asg.metamodel.procedure.open.OutputPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.open.OpenStatement;
 import io.proleap.cobol.asg.metamodel.procedure.open.Output;
+import io.proleap.cobol.asg.metamodel.procedure.open.OutputPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.read.ReadStatement;
 import io.proleap.cobol.asg.metamodel.procedure.write.From;
 import io.proleap.cobol.asg.metamodel.procedure.write.WriteStatement;
@@ -188,7 +188,7 @@ public class RecordCallTest extends CobolTestBase {
 					final Call call = fromCallValueStmt.getCall();
 					assertEquals(Call.CallType.DATA_DESCRIPTION_ENTRY_CALL, call.getCallType());
 
-					final DataDescriptionEntryCall dataDescriptionEntryCall = (DataDescriptionEntryCall) call;
+					final DataDescriptionEntryCall dataDescriptionEntryCall = (DataDescriptionEntryCall) call.unwrap();
 					assertEquals(dataDescriptionEntryFileInZ, dataDescriptionEntryCall.getDataDescriptionEntry());
 				}
 			}

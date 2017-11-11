@@ -17,7 +17,7 @@ import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
+import io.proleap.cobol.asg.metamodel.call.SectionCall;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ParagraphName;
@@ -26,7 +26,7 @@ import io.proleap.cobol.asg.metamodel.procedure.Section;
 
 public class SectionImpl extends ScopeImpl implements Section {
 
-	protected final List<ProcedureCall> calls = new ArrayList<ProcedureCall>();
+	protected final List<SectionCall> calls = new ArrayList<SectionCall>();
 
 	protected final ProcedureSectionContext ctx;
 
@@ -44,8 +44,8 @@ public class SectionImpl extends ScopeImpl implements Section {
 	}
 
 	@Override
-	public void addCall(final ProcedureCall procedureCall) {
-		calls.add(procedureCall);
+	public void addCall(final SectionCall sectionCall) {
+		calls.add(sectionCall);
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public class SectionImpl extends ScopeImpl implements Section {
 	}
 
 	@Override
-	public List<ProcedureCall> getCalls() {
+	public List<SectionCall> getCalls() {
 		return calls;
 	}
 

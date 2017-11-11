@@ -86,5 +86,4 @@ public class PerformProcedureStatementImpl extends CobolDivisionElementImpl impl
 	public PerformType getPerformType() {
 		return performType;
 	}
-
 }

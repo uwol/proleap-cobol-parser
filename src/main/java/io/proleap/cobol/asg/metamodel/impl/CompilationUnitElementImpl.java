@@ -32,5 +32,4 @@ public class CompilationUnitElementImpl extends ASGElementImpl implements Compil
 	public CompilationUnit getCompilationUnit() {
 		return compilationUnit;
 	}
-
 }
