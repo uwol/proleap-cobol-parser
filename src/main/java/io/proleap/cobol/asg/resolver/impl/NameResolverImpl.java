@@ -28,6 +28,7 @@ import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.FunctionCallContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.InDataContext;
+import io.proleap.cobol.Cobol85Parser.InSectionContext;
 import io.proleap.cobol.Cobol85Parser.InTableContext;
 import io.proleap.cobol.Cobol85Parser.IndexNameContext;
 import io.proleap.cobol.Cobol85Parser.LibraryNameContext;
@@ -168,6 +169,11 @@ public class NameResolverImpl implements NameResolver {
 		return result;
 	}
 
+	public String determineName(final InSectionContext ctx) {
+		final String result = ctx != null ? determineName(ctx.sectionName()) : null;
+		return result;
+	}
+
 	public String determineName(final InTableContext ctx) {
 		final String result = ctx != null ? determineName(ctx.tableCall()) : null;
 		return result;
@@ -240,6 +246,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((IndexNameContext) ctx);
 		} else if (ctx instanceof InDataContext) {
 			result = determineName((InDataContext) ctx);
+		} else if (ctx instanceof InSectionContext) {
+			result = determineName((InSectionContext) ctx);
 		} else if (ctx instanceof InTableContext) {
 			result = determineName((InTableContext) ctx);
 		} else if (ctx instanceof LibraryNameContext) {
@@ -310,7 +318,7 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final ProcedureNameContext ctx) {
-		final String result = ctx != null ? ctx.getText() : null;
+		final String result = ctx != null ? determineName(ctx.paragraphName()) : null;
 		return result;
 	}
 

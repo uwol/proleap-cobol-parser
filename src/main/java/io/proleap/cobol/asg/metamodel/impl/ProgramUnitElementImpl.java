@@ -446,16 +446,34 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		Call result = (Call) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			final Section section = findSection(name);
-			final Paragraph paragraph = findParagraph(name);
+			final String paragraphName = determineName(ctx);
 
-			if (paragraph != null) {
-				result = createProcedureCall(name, paragraph, ctx);
-			} else if (section != null) {
-				result = createSectionCall(name, section, ctx);
+			if (ctx.inSection() == null) {
+				final Section section = findSection(paragraphName);
+				final Paragraph paragraph = findParagraph(paragraphName);
+
+				if (paragraph != null) {
+					result = createProcedureCall(paragraphName, paragraph, ctx);
+				} else if (section != null) {
+					result = createSectionCall(paragraphName, section, ctx);
+				} else {
+					result = createUndefinedCall(ctx);
+				}
 			} else {
-				result = createUndefinedCall(ctx);
+				final String sectionName = determineName(ctx.inSection());
+				final Section section = findSection(sectionName);
+
+				if (section == null) {
+					result = createUndefinedCall(ctx);
+				} else {
+					final Paragraph paragraph = section.getParagraph(paragraphName);
+
+					if (paragraph == null) {
+						result = createUndefinedCall(ctx);
+					} else {
+						result = createProcedureCall(paragraphName, paragraph, ctx);
+					}
+				}
 			}
 		}
 
@@ -515,8 +533,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			DataDescriptionEntry validDataDescriptionEntry = null;
 
 			for (final DataDescriptionEntry candidateDataDescriptionEntry : candidateDataDescriptionEntries) {
-				final boolean isCandidateQualified = isFittingQualifiedInData(candidateDataDescriptionEntry,
-						parentInDataCtxs);
+				final boolean isCandidateQualified = isSameInData(candidateDataDescriptionEntry, parentInDataCtxs);
 
 				if (isCandidateQualified) {
 					validDataDescriptionEntry = candidateDataDescriptionEntry;
@@ -541,8 +558,24 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected Call createCall(final QualifiedDataNameFormat2Context ctx) {
-		// FIXME check in SECTION
-		final Call result = createCall(ctx.paragraphName());
+		final String paragraphName = determineName(ctx);
+		final String sectionName = determineName(ctx.inSection());
+		final Section section = findSection(sectionName);
+
+		final Call result;
+
+		if (section == null) {
+			result = createUndefinedCall(ctx);
+		} else {
+			final Paragraph paragraph = section.getParagraph(paragraphName);
+
+			if (paragraph == null) {
+				result = createUndefinedCall(ctx);
+			} else {
+				result = new ProcedureCallImpl(paragraphName, paragraph, programUnit, ctx);
+			}
+		}
+
 		return result;
 	}
 
@@ -1489,17 +1522,16 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return Strings.isBlank(name) ? name : name.toUpperCase();
 	}
 
-	protected boolean isFittingQualifiedInData(final DataDescriptionEntry candidateDataDescriptionEntry,
+	private boolean isSameInData(final DataDescriptionEntry candidateDataDescriptionEntry,
 			final List<QualifiedInDataContext> parentInDataCtxs) {
 		DataDescriptionEntryGroup currentParent = candidateDataDescriptionEntry.getParentDataDescriptionEntryGroup();
 		boolean result = true;
 
 		for (final QualifiedInDataContext parentCtx : parentInDataCtxs) {
-			final String parentGroupName = currentParent.getName();
-			final String parentInDataCtxName = determineName(parentCtx);
-			final boolean sameName = parentGroupName.equalsIgnoreCase(parentInDataCtxName);
+			final String parentGroupName = getSymbol(currentParent.getName());
+			final String parentInDataCtxName = getSymbol(determineName(parentCtx));
 
-			if (!sameName) {
+			if (!parentGroupName.equals(parentInDataCtxName)) {
 				result = false;
 				break;
 			}
