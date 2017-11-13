@@ -160,6 +160,10 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 
 			if (ctx.DISK() != null) {
 				type = AssignClause.AssignClauseType.DISK;
+			} else if (ctx.DISPLAY() != null) {
+				type = AssignClause.AssignClauseType.DISPLAY;
+			} else if (ctx.KEYBOARD() != null) {
+				type = AssignClause.AssignClauseType.KEYBOARD;
 			} else if (ctx.PORT() != null) {
 				type = AssignClause.AssignClauseType.PORT;
 			} else if (ctx.PRINTER() != null) {

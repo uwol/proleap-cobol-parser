@@ -47,5 +47,4 @@ public class AssignClauseImpl extends CobolDivisionElementImpl implements Assign
 	public void setToValueStmt(final ValueStmt toValueStmt) {
 		this.toValueStmt = toValueStmt;
 	}
-
 }
