@@ -26,6 +26,7 @@ import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.FileNameContext;
 import io.proleap.cobol.Cobol85Parser.FunctionCallContext;
+import io.proleap.cobol.Cobol85Parser.FunctionNameContext;
 import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.InDataContext;
 import io.proleap.cobol.Cobol85Parser.InSectionContext;
@@ -141,7 +142,12 @@ public class NameResolverImpl implements NameResolver {
 	}
 
 	public String determineName(final FunctionCallContext ctx) {
-		final String result = ctx != null ? ctx.functionName().getText() : null;
+		final String result = ctx != null ? determineName(ctx.functionName()) : null;
+		return result;
+	}
+
+	public String determineName(final FunctionNameContext ctx) {
+		final String result = ctx != null ? ctx.getText() : null;
 		return result;
 	}
 
@@ -240,6 +246,8 @@ public class NameResolverImpl implements NameResolver {
 			result = determineName((FileNameContext) ctx);
 		} else if (ctx instanceof FunctionCallContext) {
 			result = determineName((FunctionCallContext) ctx);
+		} else if (ctx instanceof FunctionNameContext) {
+			result = determineName((FunctionNameContext) ctx);
 		} else if (ctx instanceof IdentifierContext) {
 			result = determineName((IdentifierContext) ctx);
 		} else if (ctx instanceof IndexNameContext) {

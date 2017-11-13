@@ -18,16 +18,16 @@ import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class FileDescriptionEntryCallFromFileControlClauseTest extends CobolTestBase {
+public class FileDescriptionEntryFromFileControlClauseCallTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/call/FileDescriptionEntryCallFromFileControlClause.cbl");
+				"src/test/resources/io/proleap/cobol/asg/call/FileDescriptionEntryFromFileControlClauseCall.cbl");
 		final Program program = new CobolParserRunnerImpl().analyzeFile(inputFile, CobolSourceFormatEnum.VARIABLE);
 
 		final CompilationUnit compilationUnit = program
-				.getCompilationUnit("FileDescriptionEntryCallFromFileControlClause");
+				.getCompilationUnit("FileDescriptionEntryFromFileControlClauseCall");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final DataDivision dataDivision = programUnit.getDataDivision();
 		final FileSection fileSection = dataDivision.getFileSection();

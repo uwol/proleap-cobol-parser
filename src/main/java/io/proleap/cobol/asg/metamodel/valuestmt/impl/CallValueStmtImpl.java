@@ -39,5 +39,4 @@ public class CallValueStmtImpl extends ValueStmtImpl implements CallValueStmt {
 	public Object getValue() {
 		return null;
 	}
-
 }

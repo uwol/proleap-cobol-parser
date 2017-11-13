@@ -35,5 +35,4 @@ public class SendingAreaImpl extends CobolDivisionElementImpl implements Sending
 	public void setSendingAreaValueStmt(final ValueStmt sendingAreaValueStmt) {
 		this.sendingAreaValueStmt = sendingAreaValueStmt;
 	}
-
 }
