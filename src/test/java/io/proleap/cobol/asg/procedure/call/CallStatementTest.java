@@ -19,12 +19,14 @@ import io.proleap.cobol.asg.metamodel.procedure.call.ByContent;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByContentPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByReference;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByReferencePhrase;
+import io.proleap.cobol.asg.metamodel.procedure.call.ByValue;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByValuePhrase;
 import io.proleap.cobol.asg.metamodel.procedure.call.CallStatement;
 import io.proleap.cobol.asg.metamodel.procedure.call.GivingPhrase;
-import io.proleap.cobol.asg.metamodel.procedure.call.Parameter;
+import io.proleap.cobol.asg.metamodel.procedure.call.UsingParameter;
 import io.proleap.cobol.asg.metamodel.procedure.call.UsingPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -62,11 +64,11 @@ public class CallStatementTest extends CobolTestBase {
 
 			{
 				final UsingPhrase usingPhrase = callStatement.getUsingPhrasePhrase();
-				assertEquals(3, usingPhrase.getParameters().size());
+				assertEquals(3, usingPhrase.getUsingParameters().size());
 
 				{
-					final Parameter parameter = usingPhrase.getParameters().get(0);
-					assertEquals(Parameter.ParameterType.REFERENCE, parameter.getParameterType());
+					final UsingParameter parameter = usingPhrase.getUsingParameters().get(0);
+					assertEquals(UsingParameter.ParameterType.REFERENCE, parameter.getParameterType());
 
 					{
 						final ByReferencePhrase byReferencePhrase = parameter.getByReferencePhrase();
@@ -75,43 +77,53 @@ public class CallStatementTest extends CobolTestBase {
 						{
 							final ByReference byReference = byReferencePhrase.getByReferences().get(0);
 							assertEquals(ByReference.ByReferenceType.INTEGER, byReference.getByReferenceType());
-							assertEquals(CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
+
+							final CallValueStmt callValueStmt = (CallValueStmt) byReference.getValueStmt();
+							assertEquals(CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 						}
 
 						{
 							final ByReference byReference = byReferencePhrase.getByReferences().get(1);
 							assertNull(byReference.getByReferenceType());
-							assertEquals(CallType.UNDEFINED_CALL, byReference.getCall().getCallType());
+
+							final CallValueStmt callValueStmt = (CallValueStmt) byReference.getValueStmt();
+							assertEquals(CallType.UNDEFINED_CALL, callValueStmt.getCall().getCallType());
 						}
 					}
 				}
 
 				{
-					final Parameter parameter = usingPhrase.getParameters().get(1);
-					assertEquals(Parameter.ParameterType.VALUE, parameter.getParameterType());
+					final UsingParameter parameter = usingPhrase.getUsingParameters().get(1);
+					assertEquals(UsingParameter.ParameterType.VALUE, parameter.getParameterType());
 
 					final ByValuePhrase byValuePhrase = parameter.getByValuePhrase();
-					assertEquals(3, byValuePhrase.getValueStmts().size());
+					assertEquals(3, byValuePhrase.getByValues().size());
 
 					{
-						final ValueStmt valueStmt = byValuePhrase.getValueStmts().get(0);
-						assertEquals(1, valueStmt.getValue());
+						final ByValue byValue = byValuePhrase.getByValues().get(0);
+						final ValueStmt valueStmt = byValue.getValueStmt();
+
+						final LiteralValueStmt literalValueStmt = (LiteralValueStmt) valueStmt;
+						assertEquals(1, literalValueStmt.getValue());
 					}
 
 					{
-						final ValueStmt valueStmt = byValuePhrase.getValueStmts().get(1);
-						assertEquals(2, valueStmt.getValue());
+						final ByValue byValue = byValuePhrase.getByValues().get(1);
+						final ValueStmt valueStmt = byValue.getValueStmt();
+
+						final LiteralValueStmt literalValueStmt = (LiteralValueStmt) valueStmt;
+						assertEquals(2, literalValueStmt.getValue());
 					}
 
 					{
-						final ValueStmt valueStmt = byValuePhrase.getValueStmts().get(2);
-						assertNotNull(valueStmt);
+						final ByValue byValue = byValuePhrase.getByValues().get(2);
+						assertNotNull(byValue.getValueStmt());
 					}
 				}
 
 				{
-					final Parameter parameter = usingPhrase.getParameters().get(2);
-					assertEquals(Parameter.ParameterType.CONTENT, parameter.getParameterType());
+					final UsingParameter parameter = usingPhrase.getUsingParameters().get(2);
+					assertEquals(UsingParameter.ParameterType.CONTENT, parameter.getParameterType());
 
 					{
 						final ByContentPhrase byContentPhrase = parameter.getByContentPhrase();

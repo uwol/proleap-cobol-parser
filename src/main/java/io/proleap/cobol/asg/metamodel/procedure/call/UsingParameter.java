@@ -13,7 +13,7 @@ import io.proleap.cobol.Cobol85Parser.CallByReferencePhraseContext;
 import io.proleap.cobol.Cobol85Parser.CallByValuePhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
-public interface Parameter extends CobolDivisionElement {
+public interface UsingParameter extends CobolDivisionElement {
 
 	enum ParameterType {
 		CONTENT, REFERENCE, VALUE

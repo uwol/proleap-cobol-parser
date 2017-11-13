@@ -1245,7 +1245,7 @@ callByReferencePhrase
    ;
 
 callByReference
-   : (ADDRESS OF | INTEGER | STRING)? identifier | fileName
+   : ((ADDRESS OF | INTEGER | STRING)? identifier | literal | fileName) | OMITTED
    ;
 
 callByValuePhrase
@@ -1253,7 +1253,7 @@ callByValuePhrase
    ;
 
 callByValue
-   : identifier | literal
+   : (ADDRESS OF | LENGTH OF?)? (identifier | literal)
    ;
 
 callByContentPhrase
@@ -1261,11 +1261,11 @@ callByContentPhrase
    ;
 
 callByContent
-   : (ADDRESS OF | LENGTH OF)? identifier | literal
+   : (ADDRESS OF | LENGTH OF?)? identifier | literal | OMITTED
    ;
 
 callGivingPhrase
-   : GIVING identifier
+   : (GIVING | RETURNING) identifier
    ;
 
 // cancel statement
@@ -3020,6 +3020,7 @@ REVERSE_VIDEO : R E S E R V E MINUSCHAR V I D E O;
 RESET : R E S E T;
 RETURN : R E T U R N;
 RETURN_CODE : R E T U R N MINUSCHAR C O D E;
+RETURNING: R E T U R N I N G;
 REVERSED : R E V E R S E D;
 REWIND : R E W I N D;
 REWRITE : R E W R I T E;

@@ -9,19 +9,19 @@
 package io.proleap.cobol.asg.metamodel.procedure.call;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface ByReference extends CobolDivisionElement {
 
 	enum ByReferenceType {
-		ADDRESS_OF, INTEGER, STRING
+		ADDRESS_OF, INTEGER, OMITTED, STRING
 	}
 
 	ByReferenceType getByReferenceType();
 
-	Call getCall();
+	ValueStmt getValueStmt();
 
 	void setByReferenceType(ByReferenceType byReferenceType);
 
-	void setCall(Call call);
+	void setValueStmt(ValueStmt valueStmt);
 }

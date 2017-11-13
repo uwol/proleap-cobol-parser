@@ -12,11 +12,10 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.CallByValueContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface ByValuePhrase extends CobolDivisionElement {
 
-	ValueStmt addValueStmt(CallByValueContext ctx);
+	ByValue addByValue(CallByValueContext ctx);
 
-	List<ValueStmt> getValueStmts();
+	List<ByValue> getByValues();
 }

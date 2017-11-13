@@ -14,18 +14,18 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.CallByReferenceContext;
 import io.proleap.cobol.Cobol85Parser.CallByReferencePhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByReference;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByReferencePhrase;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public class CallByReferenceImpl extends CobolDivisionElementImpl implements ByReferencePhrase {
+public class ByReferencePhraseImpl extends CobolDivisionElementImpl implements ByReferencePhrase {
 
 	protected List<ByReference> byReferences = new ArrayList<ByReference>();
 
 	protected final CallByReferencePhraseContext ctx;
 
-	public CallByReferenceImpl(final ProgramUnit programUnit, final CallByReferencePhraseContext ctx) {
+	public ByReferencePhraseImpl(final ProgramUnit programUnit, final CallByReferencePhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
@@ -38,9 +38,9 @@ public class CallByReferenceImpl extends CobolDivisionElementImpl implements ByR
 		if (result == null) {
 			result = new ByReferenceImpl(programUnit, ctx);
 
-			// call and type
-			final Call call = createCall(ctx.fileName(), ctx.identifier());
-			result.setCall(call);
+			// call
+			final ValueStmt valueStmt = createValueStmt(ctx.fileName(), ctx.identifier(), ctx.literal());
+			result.setValueStmt(valueStmt);
 
 			// type
 			final ByReference.ByReferenceType type;
@@ -51,6 +51,8 @@ public class CallByReferenceImpl extends CobolDivisionElementImpl implements ByR
 				type = ByReference.ByReferenceType.INTEGER;
 			} else if (ctx.STRING() != null) {
 				type = ByReference.ByReferenceType.STRING;
+			} else if (ctx.OMITTED() != null) {
+				type = ByReference.ByReferenceType.OMITTED;
 			} else {
 				type = null;
 			}
@@ -68,5 +70,4 @@ public class CallByReferenceImpl extends CobolDivisionElementImpl implements ByR
 	public List<ByReference> getByReferences() {
 		return byReferences;
 	}
-
 }

@@ -8,15 +8,20 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.call;
 
-import java.util.List;
-
-import io.proleap.cobol.Cobol85Parser.CallUsingParameterContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public interface UsingPhrase extends CobolDivisionElement {
+public interface ByValue extends CobolDivisionElement {
 
-	UsingParameter addUsingParameter(CallUsingParameterContext ctx);
+	enum ByValueType {
+		ADDRESS_OF, LENGTH_OF
+	}
 
-	List<UsingParameter> getUsingParameters();
+	ByValueType getByValueType();
 
+	ValueStmt getValueStmt();
+
+	void setByValueType(ByValueType byValueType);
+
+	void setValueStmt(ValueStmt balueStmt);
 }

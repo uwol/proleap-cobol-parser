@@ -19,13 +19,13 @@ import io.proleap.cobol.asg.metamodel.procedure.call.ByContent;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByContentPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public class CallByContentImpl extends CobolDivisionElementImpl implements ByContentPhrase {
+public class ByContentPhraseImpl extends CobolDivisionElementImpl implements ByContentPhrase {
 
 	protected List<ByContent> byContents = new ArrayList<ByContent>();
 
 	protected final CallByContentPhraseContext ctx;
 
-	public CallByContentImpl(final ProgramUnit programUnit, final CallByContentPhraseContext ctx) {
+	public ByContentPhraseImpl(final ProgramUnit programUnit, final CallByContentPhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
@@ -66,5 +66,4 @@ public class CallByContentImpl extends CobolDivisionElementImpl implements ByCon
 	public List<ByContent> getByContents() {
 		return byContents;
 	}
-
 }

@@ -20,9 +20,9 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByContentPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByReferencePhrase;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByValuePhrase;
-import io.proleap.cobol.asg.metamodel.procedure.call.Parameter;
+import io.proleap.cobol.asg.metamodel.procedure.call.UsingParameter;
 
-public class ParameterImpl extends CobolDivisionElementImpl implements Parameter {
+public class UsingParameterImpl extends CobolDivisionElementImpl implements UsingParameter {
 
 	protected ByContentPhrase byContentPhrase;
 
@@ -34,7 +34,7 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 
 	protected ParameterType parameterType;
 
-	public ParameterImpl(final ProgramUnit programUnit, final CallUsingParameterContext ctx) {
+	public UsingParameterImpl(final ProgramUnit programUnit, final CallUsingParameterContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
@@ -45,7 +45,7 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 		ByContentPhrase result = (ByContentPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new CallByContentImpl(programUnit, ctx);
+			result = new ByContentPhraseImpl(programUnit, ctx);
 
 			for (final CallByContentContext callByContentContext : ctx.callByContent()) {
 				result.addByContent(callByContentContext);
@@ -63,7 +63,7 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 		ByReferencePhrase result = (ByReferencePhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new CallByReferenceImpl(programUnit, ctx);
+			result = new ByReferencePhraseImpl(programUnit, ctx);
 
 			for (final CallByReferenceContext callByReferenceContext : ctx.callByReference()) {
 				result.addByReference(callByReferenceContext);
@@ -81,10 +81,10 @@ public class ParameterImpl extends CobolDivisionElementImpl implements Parameter
 		ByValuePhrase result = (ByValuePhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new CallByValueImpl(programUnit, ctx);
+			result = new ByValuePhraseImpl(programUnit, ctx);
 
 			for (final CallByValueContext callByValueContext : ctx.callByValue()) {
-				result.addValueStmt(callByValueContext);
+				result.addByValue(callByValueContext);
 			}
 
 			byValuePhrase = result;

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016, Ulrich Wolffgang <u.wol@wwu.de>
+ * Copyright (C) 2017, Ulrich Wolffgang <u.wol@wwu.de>
  * All rights reserved.
  *
  * This software may be modified and distributed under the terms
@@ -8,29 +8,29 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.call.impl;
 
-import io.proleap.cobol.Cobol85Parser.CallByReferenceContext;
+import io.proleap.cobol.Cobol85Parser.CallByValueContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.call.ByReference;
+import io.proleap.cobol.asg.metamodel.procedure.call.ByValue;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public class ByReferenceImpl extends CobolDivisionElementImpl implements ByReference {
+public class ByValueImpl extends CobolDivisionElementImpl implements ByValue {
 
-	protected ByReferenceType byReferenceType;
+	protected ByValueType byValueType;
 
-	protected final CallByReferenceContext ctx;
+	protected final CallByValueContext ctx;
 
 	protected ValueStmt valueStmt;
 
-	public ByReferenceImpl(final ProgramUnit programUnit, final CallByReferenceContext ctx) {
+	public ByValueImpl(final ProgramUnit programUnit, final CallByValueContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}
 
 	@Override
-	public ByReferenceType getByReferenceType() {
-		return byReferenceType;
+	public ByValueType getByValueType() {
+		return byValueType;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class ByReferenceImpl extends CobolDivisionElementImpl implements ByRefer
 	}
 
 	@Override
-	public void setByReferenceType(final ByReferenceType byReferenceType) {
-		this.byReferenceType = byReferenceType;
+	public void setByValueType(final ByValueType byValueType) {
+		this.byValueType = byValueType;
 	}
 
 	@Override

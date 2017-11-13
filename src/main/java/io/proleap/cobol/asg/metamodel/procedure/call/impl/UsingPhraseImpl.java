@@ -15,14 +15,14 @@ import io.proleap.cobol.Cobol85Parser.CallUsingParameterContext;
 import io.proleap.cobol.Cobol85Parser.CallUsingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.call.Parameter;
+import io.proleap.cobol.asg.metamodel.procedure.call.UsingParameter;
 import io.proleap.cobol.asg.metamodel.procedure.call.UsingPhrase;
 
 public class UsingPhraseImpl extends CobolDivisionElementImpl implements UsingPhrase {
 
 	protected final CallUsingPhraseContext ctx;
 
-	protected List<Parameter> parameters = new ArrayList<Parameter>();
+	protected List<UsingParameter> usingParameters = new ArrayList<UsingParameter>();
 
 	public UsingPhraseImpl(final ProgramUnit programUnit, final CallUsingPhraseContext ctx) {
 		super(programUnit, ctx);
@@ -31,35 +31,35 @@ public class UsingPhraseImpl extends CobolDivisionElementImpl implements UsingPh
 	}
 
 	@Override
-	public Parameter addParameter(final CallUsingParameterContext ctx) {
-		Parameter result = (Parameter) getASGElement(ctx);
+	public UsingParameter addUsingParameter(final CallUsingParameterContext ctx) {
+		UsingParameter result = (UsingParameter) getASGElement(ctx);
 
 		if (result == null) {
-			result = new ParameterImpl(programUnit, ctx);
+			result = new UsingParameterImpl(programUnit, ctx);
 
-			final Parameter.ParameterType type;
+			final UsingParameter.ParameterType type;
 
 			// using call by reference
 			if (ctx.callByReferencePhrase() != null) {
 				result.addByReferencePhrase(ctx.callByReferencePhrase());
-				type = Parameter.ParameterType.REFERENCE;
+				type = UsingParameter.ParameterType.REFERENCE;
 			}
 			// using call by value
 			else if (ctx.callByValuePhrase() != null) {
 				result.addByValuePhrase(ctx.callByValuePhrase());
-				type = Parameter.ParameterType.VALUE;
+				type = UsingParameter.ParameterType.VALUE;
 			}
 			// using call by content
 			else if (ctx.callByContentPhrase() != null) {
 				result.addByContentPhrase(ctx.callByContentPhrase());
-				type = Parameter.ParameterType.CONTENT;
+				type = UsingParameter.ParameterType.CONTENT;
 			} else {
 				type = null;
 			}
 
 			result.setParameterType(type);
 
-			parameters.add(result);
+			usingParameters.add(result);
 			registerASGElement(result);
 		}
 
@@ -67,8 +67,7 @@ public class UsingPhraseImpl extends CobolDivisionElementImpl implements UsingPh
 	}
 
 	@Override
-	public List<Parameter> getParameters() {
-		return parameters;
+	public List<UsingParameter> getUsingParameters() {
+		return usingParameters;
 	}
-
 }

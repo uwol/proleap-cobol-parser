@@ -26,7 +26,7 @@ public class ParagraphsSymbolTableEntryImpl implements ParagraphsSymbolTableEntr
 	@Override
 	public void addParagraph(final Paragraph paragraph) {
 		if (!paragraphs.isEmpty()) {
-			LOG.info("multiple declarations of paragraph {}", paragraph);
+			LOG.debug("multiple declarations of paragraph {}", paragraph);
 		}
 
 		paragraphs.add(paragraph);

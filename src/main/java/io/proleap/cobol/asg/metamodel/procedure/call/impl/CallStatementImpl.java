@@ -77,7 +77,7 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 			result = new UsingPhraseImpl(programUnit, ctx);
 
 			for (final CallUsingParameterContext callUsingParameterContext : ctx.callUsingParameter()) {
-				result.addParameter(callUsingParameterContext);
+				result.addUsingParameter(callUsingParameterContext);
 			}
 
 			usingPhrase = result;
