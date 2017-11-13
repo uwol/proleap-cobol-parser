@@ -27,7 +27,7 @@ public class ReportGroupDescriptionEntriesSymbolTableEntryImpl
 	@Override
 	public void addReportGroupDescriptionEntry(final ReportGroupDescriptionEntry reportGroupDescriptionEntry) {
 		if (!reportGroupDescriptionEntries.isEmpty()) {
-			LOG.info("multiple declarations of report group description entry {}", reportGroupDescriptionEntry);
+			LOG.debug("multiple declarations of report group description entry {}", reportGroupDescriptionEntry);
 		}
 
 		reportGroupDescriptionEntries.add(reportGroupDescriptionEntry);

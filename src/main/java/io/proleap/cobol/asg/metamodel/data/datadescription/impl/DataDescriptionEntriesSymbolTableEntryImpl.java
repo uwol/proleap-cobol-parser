@@ -26,7 +26,7 @@ public class DataDescriptionEntriesSymbolTableEntryImpl implements DataDescripti
 	@Override
 	public void addDataDescriptionEntry(final DataDescriptionEntry dataDescriptionEntry) {
 		if (!dataDescriptionEntries.isEmpty()) {
-			LOG.info("multiple declarations of data description entry {}", dataDescriptionEntry);
+			LOG.debug("multiple declarations of data description entry {}", dataDescriptionEntry);
 		}
 
 		dataDescriptionEntries.add(dataDescriptionEntry);

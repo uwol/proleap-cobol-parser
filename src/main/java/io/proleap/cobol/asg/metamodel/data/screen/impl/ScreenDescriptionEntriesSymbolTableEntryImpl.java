@@ -26,7 +26,7 @@ public class ScreenDescriptionEntriesSymbolTableEntryImpl implements ScreenDescr
 	@Override
 	public void addScreenDescriptionEntry(final ScreenDescriptionEntry screenDescriptionEntry) {
 		if (!screenDescriptionEntries.isEmpty()) {
-			LOG.info("multiple declarations of screen description entry {}", screenDescriptionEntry);
+			LOG.debug("multiple declarations of screen description entry {}", screenDescriptionEntry);
 		}
 
 		screenDescriptionEntries.add(screenDescriptionEntry);

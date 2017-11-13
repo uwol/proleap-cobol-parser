@@ -26,7 +26,7 @@ public class SectionsSymbolTableEntryImpl implements SectionsSymbolTableEntry {
 	@Override
 	public void addSection(final Section section) {
 		if (!sections.isEmpty()) {
-			LOG.info("multiple declarations of section {}", section);
+			LOG.debug("multiple declarations of section {}", section);
 		}
 
 		sections.add(section);

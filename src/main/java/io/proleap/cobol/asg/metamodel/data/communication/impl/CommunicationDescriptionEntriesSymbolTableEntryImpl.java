@@ -27,7 +27,7 @@ public class CommunicationDescriptionEntriesSymbolTableEntryImpl
 	@Override
 	public void addCommunicationDescriptionEntry(final CommunicationDescriptionEntry communicationDescriptionEntry) {
 		if (!communicationDescriptionEntries.isEmpty()) {
-			LOG.info("multiple declarations of communication description entry {}", communicationDescriptionEntry);
+			LOG.debug("multiple declarations of communication description entry {}", communicationDescriptionEntry);
 		}
 
 		communicationDescriptionEntries.add(communicationDescriptionEntry);
