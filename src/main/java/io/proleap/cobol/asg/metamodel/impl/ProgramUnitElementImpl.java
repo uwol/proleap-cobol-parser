@@ -705,7 +705,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final List<DataDescriptionEntry> dataDescriptionEntries = findDataDescriptionEntries(name);
 
 			if (dataDescriptionEntries.isEmpty()) {
-				LOG.warn("call to unknown data element {}", name);
 				result = createUndefinedCall(ctx);
 			} else {
 				final DataDescriptionEntry dataDescriptionEntry = dataDescriptionEntries.get(0);
@@ -814,6 +813,12 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		return result;
 	}
 
+	protected CallValueStmt createCallValueStmt(final TableCallContext ctx) {
+		final Call delegatedCall = createCall(ctx);
+		final CallValueStmt result = new CallValueStmtImpl(delegatedCall, programUnit, ctx);
+		return result;
+	}
+
 	protected CommunicationDescriptionEntryCall createCommunicationDescriptionEntryCall(final String name,
 			final CommunicationDescriptionEntry communicationDescriptionEntry, final CdNameContext ctx) {
 		CommunicationDescriptionEntryCall result = (CommunicationDescriptionEntryCall) getASGElement(ctx);
@@ -862,7 +867,6 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				final List<DataDescriptionEntry> dataDescriptionEntries = findDataDescriptionEntries(name);
 
 				if (dataDescriptionEntries.isEmpty()) {
-					LOG.warn("call to unknown data element {}", name);
 					result = createUndefinedCall(ctx);
 				} else {
 					final DataDescriptionEntry dataDescriptionEntry = dataDescriptionEntries.get(0);
@@ -1220,6 +1224,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCallValueStmt((ClassNameContext) ctx);
 			} else if (ctx instanceof CobolWordContext) {
 				result = createCallValueStmt((CobolWordContext) ctx);
+			} else if (ctx instanceof ConditionContext) {
+				result = createConditionValueStmt((ConditionContext) ctx);
 			} else if (ctx instanceof DataDescNameContext) {
 				result = createCallValueStmt((DataDescNameContext) ctx);
 			} else if (ctx instanceof DataNameContext) {
@@ -1228,28 +1234,28 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = createCallValueStmt((FileNameContext) ctx);
 			} else if (ctx instanceof IndexNameContext) {
 				result = createCallValueStmt((IndexNameContext) ctx);
+			} else if (ctx instanceof IntegerLiteralContext) {
+				result = createIntegerLiteralValueStmt((IntegerLiteralContext) ctx);
 			} else if (ctx instanceof LibraryNameContext) {
 				result = createCallValueStmt((LibraryNameContext) ctx);
+			} else if (ctx instanceof LiteralContext) {
+				result = createLiteralValueStmt((LiteralContext) ctx);
 			} else if (ctx instanceof LocalNameContext) {
 				result = createCallValueStmt((LocalNameContext) ctx);
 			} else if (ctx instanceof ProgramNameContext) {
 				result = createCallValueStmt((ProgramNameContext) ctx);
 			} else if (ctx instanceof QualifiedDataNameContext) {
 				result = createCallValueStmt((QualifiedDataNameContext) ctx);
+			} else if (ctx instanceof RelationConditionContext) {
+				result = createRelationConditionValueStmt((RelationConditionContext) ctx);
 			} else if (ctx instanceof ReportNameContext) {
 				result = createCallValueStmt((ReportNameContext) ctx);
 			} else if (ctx instanceof SystemNameContext) {
 				result = createCallValueStmt((SystemNameContext) ctx);
-			} else if (ctx instanceof ConditionContext) {
-				result = createConditionValueStmt((ConditionContext) ctx);
-			} else if (ctx instanceof RelationConditionContext) {
-				result = createRelationConditionValueStmt((RelationConditionContext) ctx);
-			} else if (ctx instanceof IntegerLiteralContext) {
-				result = createIntegerLiteralValueStmt((IntegerLiteralContext) ctx);
-			} else if (ctx instanceof LiteralContext) {
-				result = createLiteralValueStmt((LiteralContext) ctx);
+			} else if (ctx instanceof TableCallContext) {
+				result = createCallValueStmt((TableCallContext) ctx);
 			} else {
-				LOG.warn("unknown value stmt at {}", ctx);
+				LOG.debug("unknown value stmt at {}", ctx);
 			}
 		}
 
