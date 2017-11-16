@@ -1,0 +1,7 @@
+       Identification Division.
+       Program-ID.
+        HELLOWORLD.
+       Procedure Division.
+       DISPLAY Needle-SRC.
+
+       DISPLAY Needle-DST.

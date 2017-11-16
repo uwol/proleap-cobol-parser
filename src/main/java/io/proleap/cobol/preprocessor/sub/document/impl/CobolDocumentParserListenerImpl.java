@@ -152,9 +152,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		/*
 		 * replacement phrase
 		 */
-		final ReplacingPhraseContext replacingPhrase = ctx.replacingPhrase();
-
-		if (replacingPhrase != null) {
+		for (final ReplacingPhraseContext replacingPhrase : ctx.replacingPhrase()) {
 			context().storeReplaceablesAndReplacements(replacingPhrase.replaceClause());
 		}
 

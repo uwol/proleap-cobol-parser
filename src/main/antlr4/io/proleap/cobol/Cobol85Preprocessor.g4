@@ -39,7 +39,7 @@ execSqlImsStatement
 // copy statement
 
 copyStatement
-   : COPY copySource (NEWLINE* directoryPhrase)? (NEWLINE* familyPhrase)? (NEWLINE* replacingPhrase)? SUPPRESS? NEWLINE* DOT
+   : COPY copySource (NEWLINE* (directoryPhrase | familyPhrase | replacingPhrase | SUPPRESS))* NEWLINE* DOT
    ;
 
 copySource
