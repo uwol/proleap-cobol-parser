@@ -21,9 +21,15 @@ import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
+import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParser;
 import io.proleap.cobol.preprocessor.sub.document.impl.CobolDocumentParserImpl;
+import io.proleap.cobol.preprocessor.sub.line.reader.CobolLineReader;
 import io.proleap.cobol.preprocessor.sub.line.reader.impl.CobolLineReaderImpl;
+import io.proleap.cobol.preprocessor.sub.line.rewriter.CobolCommentEntriesMarker;
+import io.proleap.cobol.preprocessor.sub.line.rewriter.CobolInlineCommentEntriesNormalizer;
+import io.proleap.cobol.preprocessor.sub.line.rewriter.CobolLineIndicatorProcessor;
 import io.proleap.cobol.preprocessor.sub.line.rewriter.impl.CobolCommentEntriesMarkerImpl;
+import io.proleap.cobol.preprocessor.sub.line.rewriter.impl.CobolInlineCommentEntriesNormalizerImpl;
 import io.proleap.cobol.preprocessor.sub.line.rewriter.impl.CobolLineIndicatorProcessorImpl;
 import io.proleap.cobol.preprocessor.sub.line.writer.CobolLineWriter;
 import io.proleap.cobol.preprocessor.sub.line.writer.impl.CobolLineWriterImpl;
@@ -32,19 +38,23 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 
 	private final static Logger LOG = LogManager.getLogger(CobolPreprocessorImpl.class);
 
-	protected CobolCommentEntriesMarkerImpl createCommentEntriesMarker() {
+	protected CobolCommentEntriesMarker createCommentEntriesMarker() {
 		return new CobolCommentEntriesMarkerImpl();
 	}
 
-	protected CobolDocumentParserImpl createDocumentParser(final List<File> copyFiles) {
+	protected CobolDocumentParser createDocumentParser(final List<File> copyFiles) {
 		return new CobolDocumentParserImpl(copyFiles);
 	}
 
-	protected CobolLineIndicatorProcessorImpl createLineIndicatorProcessor() {
+	protected CobolInlineCommentEntriesNormalizer createInlineCommentEntriesNormalizer() {
+		return new CobolInlineCommentEntriesNormalizerImpl();
+	}
+
+	protected CobolLineIndicatorProcessor createLineIndicatorProcessor() {
 		return new CobolLineIndicatorProcessorImpl();
 	}
 
-	protected CobolLineReaderImpl createLineReader() {
+	protected CobolLineReader createLineReader() {
 		return new CobolLineReaderImpl();
 	}
 
@@ -112,12 +122,14 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 	}
 
 	/**
-	 * Normalizes lines of given COBOL source code, so that comment entries can
-	 * be parsed and lines have a unified line format.
+	 * Normalizes lines of given COBOL source code, so that comment entries can be
+	 * parsed and lines have a unified line format.
 	 */
 	protected List<CobolLine> rewriteLines(final List<CobolLine> lines) {
 		final List<CobolLine> lineIndicatorProcessedLines = createLineIndicatorProcessor().processLines(lines);
-		final List<CobolLine> result = createCommentEntriesMarker().processLines(lineIndicatorProcessedLines);
+		final List<CobolLine> normalizedInlineCommentEntriesLines = createInlineCommentEntriesNormalizer()
+				.processLines(lineIndicatorProcessedLines);
+		final List<CobolLine> result = createCommentEntriesMarker().processLines(normalizedInlineCommentEntriesLines);
 		return result;
 	}
 }
