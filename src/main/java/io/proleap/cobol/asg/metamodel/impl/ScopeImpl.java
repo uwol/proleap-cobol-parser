@@ -34,6 +34,7 @@ import io.proleap.cobol.Cobol85Parser.DisableStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayOperandContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
+import io.proleap.cobol.Cobol85Parser.EjectStatementContext;
 import io.proleap.cobol.Cobol85Parser.EnableStatementContext;
 import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateAlsoSelectContext;
@@ -86,6 +87,7 @@ import io.proleap.cobol.Cobol85Parser.SearchWhenContext;
 import io.proleap.cobol.Cobol85Parser.SendStatementContext;
 import io.proleap.cobol.Cobol85Parser.SetStatementContext;
 import io.proleap.cobol.Cobol85Parser.SetToStatementContext;
+import io.proleap.cobol.Cobol85Parser.SkipStatementContext;
 import io.proleap.cobol.Cobol85Parser.SortGivingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.SortOnKeyClauseContext;
 import io.proleap.cobol.Cobol85Parser.SortStatementContext;
@@ -138,6 +140,8 @@ import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.asg.metamodel.procedure.display.impl.DisplayStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideStatement;
 import io.proleap.cobol.asg.metamodel.procedure.divide.impl.DivideStatementImpl;
+import io.proleap.cobol.asg.metamodel.procedure.eject.EjectStatement;
+import io.proleap.cobol.asg.metamodel.procedure.eject.impl.EjectStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.enable.EnableStatement;
 import io.proleap.cobol.asg.metamodel.procedure.enable.impl.EnableStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.entry.EntryStatement;
@@ -206,6 +210,8 @@ import io.proleap.cobol.asg.metamodel.procedure.send.SendStatement;
 import io.proleap.cobol.asg.metamodel.procedure.send.impl.SendStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.set.SetStatement;
 import io.proleap.cobol.asg.metamodel.procedure.set.impl.SetStatementImpl;
+import io.proleap.cobol.asg.metamodel.procedure.skip.SkipStatement;
+import io.proleap.cobol.asg.metamodel.procedure.skip.impl.SkipStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.sort.SortStatement;
 import io.proleap.cobol.asg.metamodel.procedure.sort.impl.SortStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.start.StartStatement;
@@ -285,7 +291,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		if (result == null) {
 			result = new AddStatementImpl(programUnit, this, ctx);
 
-			// add sub statement
+			// add add statement
 			final AddStatement.AddType type;
 
 			if (ctx.addToStatement() != null) {
@@ -617,6 +623,19 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 				final NotOnSizeErrorPhrase notOnSizeError = createNotOnSizeErrorPhrase(ctx.notOnSizeErrorPhrase());
 				result.setNotOnSizeErrorPhrase(notOnSizeError);
 			}
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public EjectStatement addEjectStatement(final EjectStatementContext ctx) {
+		EjectStatement result = (EjectStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new EjectStatementImpl(programUnit, this, ctx);
 
 			registerStatement(result);
 		}
@@ -1466,6 +1485,35 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 	}
 
 	@Override
+	public SkipStatement addSkipStatement(final SkipStatementContext ctx) {
+		SkipStatement result = (SkipStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new SkipStatementImpl(programUnit, this, ctx);
+
+			// add skip statement
+			final SkipStatement.SkipType type;
+
+			if (ctx.SKIP1() != null) {
+				type = SkipStatement.SkipType.SKIP1;
+			} else if (ctx.SKIP2() != null) {
+				type = SkipStatement.SkipType.SKIP2;
+			} else if (ctx.SKIP3() != null) {
+				type = SkipStatement.SkipType.SKIP3;
+			} else {
+				LOG.warn("unknown skip statement at {}", ctx);
+				type = null;
+			}
+
+			result.setSkipType(type);
+
+			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	@Override
 	public SortStatement addSortStatement(final SortStatementContext ctx) {
 		SortStatement result = (SortStatement) getASGElement(ctx);
 
@@ -1947,5 +1995,4 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		registerASGElement(statement);
 		statements.add(statement);
 	}
-
 }
