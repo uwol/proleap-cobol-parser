@@ -1534,15 +1534,20 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		boolean result = true;
 
 		for (final QualifiedInDataContext parentCtx : parentInDataCtxs) {
-			final String parentGroupName = getSymbol(currentParent.getName());
-			final String parentInDataCtxName = getSymbol(determineName(parentCtx));
-
-			if (!parentGroupName.equals(parentInDataCtxName)) {
+			if (currentParent == null) {
 				result = false;
 				break;
-			}
+			} else {
+				final String parentGroupName = getSymbol(currentParent.getName());
+				final String parentInDataCtxName = getSymbol(determineName(parentCtx));
 
-			currentParent = currentParent.getParentDataDescriptionEntryGroup();
+				if (!parentGroupName.equals(parentInDataCtxName)) {
+					result = false;
+					break;
+				}
+
+				currentParent = currentParent.getParentDataDescriptionEntryGroup();
+			}
 		}
 
 		return result;
