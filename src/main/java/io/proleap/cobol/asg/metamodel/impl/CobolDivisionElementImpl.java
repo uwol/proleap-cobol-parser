@@ -39,5 +39,4 @@ public abstract class CobolDivisionElementImpl extends ProgramUnitElementImpl im
 
 		programUnit.getProgram().getASGElementRegistry().addASGElement(asgElement);
 	}
-
 }

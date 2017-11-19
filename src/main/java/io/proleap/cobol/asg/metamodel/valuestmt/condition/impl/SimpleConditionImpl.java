@@ -85,8 +85,10 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 			result.setClassConditionType(type);
 
 			// class call
-			final Call classCall = createCall(ctx.className());
-			result.setClassCall(classCall);
+			if (ctx.className() != null) {
+				final Call classCall = createCall(ctx.className());
+				result.setClassCall(classCall);
+			}
 
 			classCondition = result;
 			subValueStmts.add(result);
@@ -105,7 +107,6 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 
 			condition = result;
 			subValueStmts.add(result);
-			registerASGElement(result);
 		}
 
 		return result;
@@ -224,5 +225,4 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 	public void setSimpleConditionType(final SimpleConditionType simpleConditionType) {
 		this.simpleConditionType = simpleConditionType;
 	}
-
 }
