@@ -1538,10 +1538,10 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				result = false;
 				break;
 			} else {
-				final String parentGroupName = getSymbol(currentParent.getName());
-				final String parentInDataCtxName = getSymbol(determineName(parentCtx));
+				final String currentParentSymbol = getSymbol(currentParent.getName());
+				final String parentInDataCtxSymbol = getSymbol(determineName(parentCtx));
 
-				if (!parentGroupName.equals(parentInDataCtxName)) {
+				if (Strings.isBlank(currentParentSymbol) || !currentParentSymbol.equals(parentInDataCtxSymbol)) {
 					result = false;
 					break;
 				}

@@ -6,7 +6,7 @@
 					(programName 
 						(cobolWord COMMASPACE)) .\n )) 
 			(dataDivision DATA DIVISION .\n  
-				(dataDivisionBody 
+				(dataDivisionSection 
 					(workingStorageSection WORKING-STORAGE SECTION .\n  
 						(dataDescriptionEntry 
 							(dataDescriptionEntryFormat1 01 

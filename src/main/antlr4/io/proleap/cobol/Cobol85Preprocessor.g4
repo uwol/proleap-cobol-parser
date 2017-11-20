@@ -87,19 +87,19 @@ replacement
 // eject statement
 
 ejectStatement
-   : EJECT DOT
+   : EJECT DOT?
    ;
 
 // skip statement
 
 skipStatement
-   : (SKIP1 | SKIP2 | SKIP3) DOT
+   : (SKIP1 | SKIP2 | SKIP3) DOT?
    ;
 
 // title statement
 
 titleStatement
-   : TITLE literal DOT
+   : TITLE literal DOT?
    ;
 
 // literal ----------------------------------

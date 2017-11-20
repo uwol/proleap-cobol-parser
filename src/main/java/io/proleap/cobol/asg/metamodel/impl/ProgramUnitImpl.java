@@ -12,8 +12,8 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import io.proleap.cobol.Cobol85Parser.DataDivisionBodyContext;
 import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
+import io.proleap.cobol.Cobol85Parser.DataDivisionSectionContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionBodyContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionBodyContext;
@@ -60,39 +60,37 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 			result = new DataDivisionImpl(this, ctx);
 			dataDivision = result;
 
-			final DataDivisionBodyContext dataDivisionBodyContext = ctx.dataDivisionBody();
-
-			if (dataDivisionBodyContext != null) {
-				if (dataDivisionBodyContext.communicationSection() != null) {
-					result.addCommunicationSection(dataDivisionBodyContext.communicationSection());
+			for (final DataDivisionSectionContext dataDivisionSection : ctx.dataDivisionSection()) {
+				if (dataDivisionSection.communicationSection() != null) {
+					result.addCommunicationSection(dataDivisionSection.communicationSection());
 				}
 
-				if (dataDivisionBodyContext.dataBaseSection() != null) {
-					result.addDataBaseSection(dataDivisionBodyContext.dataBaseSection());
+				if (dataDivisionSection.dataBaseSection() != null) {
+					result.addDataBaseSection(dataDivisionSection.dataBaseSection());
 				}
 
-				if (dataDivisionBodyContext.fileSection() != null) {
-					result.addFileSection(dataDivisionBodyContext.fileSection());
+				if (dataDivisionSection.fileSection() != null) {
+					result.addFileSection(dataDivisionSection.fileSection());
 				}
 
-				if (dataDivisionBodyContext.linkageSection() != null) {
-					result.addLinkageSection(dataDivisionBodyContext.linkageSection());
+				if (dataDivisionSection.linkageSection() != null) {
+					result.addLinkageSection(dataDivisionSection.linkageSection());
 				}
 
-				if (dataDivisionBodyContext.localStorageSection() != null) {
-					result.addLocalStorageSection(dataDivisionBodyContext.localStorageSection());
+				if (dataDivisionSection.localStorageSection() != null) {
+					result.addLocalStorageSection(dataDivisionSection.localStorageSection());
 				}
 
-				if (dataDivisionBodyContext.programLibrarySection() != null) {
-					result.addProgramLibrarySection(dataDivisionBodyContext.programLibrarySection());
+				if (dataDivisionSection.programLibrarySection() != null) {
+					result.addProgramLibrarySection(dataDivisionSection.programLibrarySection());
 				}
 
-				if (dataDivisionBodyContext.screenSection() != null) {
-					result.addScreenSection(dataDivisionBodyContext.screenSection());
+				if (dataDivisionSection.screenSection() != null) {
+					result.addScreenSection(dataDivisionSection.screenSection());
 				}
 
-				if (dataDivisionBodyContext.workingStorageSection() != null) {
-					result.addWorkingStorageSection(dataDivisionBodyContext.workingStorageSection());
+				if (dataDivisionSection.workingStorageSection() != null) {
+					result.addWorkingStorageSection(dataDivisionSection.workingStorageSection());
 				}
 			}
 

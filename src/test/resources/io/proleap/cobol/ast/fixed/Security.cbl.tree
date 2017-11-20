@@ -9,7 +9,7 @@
 					(securityParagraph SECURITY .\n       
 						(commentEntry *>CE     NONE. *>CE  *>CE     SOME QUOTE"S *>CE )))) 
 			(dataDivision DATA DIVISION .\n        
-				(dataDivisionBody 
+				(dataDivisionSection 
 					(workingStorageSection WORKING-STORAGE SECTION .\n        
 						(dataDescriptionEntry 
 							(dataDescriptionEntryFormat1 01 

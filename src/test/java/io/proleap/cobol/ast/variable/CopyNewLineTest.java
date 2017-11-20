@@ -2,11 +2,10 @@ package io.proleap.cobol.ast.variable;
 
 import java.io.File;
 
-import org.junit.Test;
-
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.runner.CobolParseTestRunner;
 import io.proleap.cobol.runner.impl.CobolParseTestRunnerImpl;
+import org.junit.Test;
 
 public class CopyNewLineTest {
 

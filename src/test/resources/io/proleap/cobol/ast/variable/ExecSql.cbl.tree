@@ -6,7 +6,7 @@
 					(programName 
 						(cobolWord ExecSql)) .\n       \n       )) 
 			(dataDivision Data Division .\n        
-				(dataDivisionBody 
+				(dataDivisionSection 
 					(workingStorageSection Working-Storage Section .\n       \n       
 						(dataDescriptionEntry 
 							(dataDescriptionEntryExecSql *>EXECSQL EXEC SQL BEGIN DECLARE SECTION END-EXEC ^ .\n       \n       )) 

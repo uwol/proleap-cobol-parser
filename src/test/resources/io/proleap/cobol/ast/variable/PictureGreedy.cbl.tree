@@ -7,7 +7,7 @@
 						(cobolWord testcase)) .\n       )) 
 			(environmentDivision environment division .\n       ) 
 			(dataDivision data division .\n        
-				(dataDivisionBody 
+				(dataDivisionSection 
 					(workingStorageSection working-storage section .\n        
 						(dataDescriptionEntry 
 							(dataDescriptionEntryFormat1 01 

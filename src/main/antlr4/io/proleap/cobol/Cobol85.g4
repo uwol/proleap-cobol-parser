@@ -383,11 +383,11 @@ commitmentControlClause
 // --- data division --------------------------------------------------------------------
 
 dataDivision
-   : DATA DIVISION DOT_FS dataDivisionBody
+   : DATA DIVISION DOT_FS dataDivisionSection*
    ;
 
-dataDivisionBody
-   : fileSection? dataBaseSection? workingStorageSection? linkageSection? communicationSection? localStorageSection? screenSection? reportSection? programLibrarySection?
+dataDivisionSection
+   : fileSection | dataBaseSection | workingStorageSection | linkageSection | communicationSection | localStorageSection | screenSection | reportSection | programLibrarySection
    ;
 
 // -- file section ----------------------------------
@@ -979,7 +979,7 @@ dataDescriptionEntryFormat3
    ;
 
 dataDescriptionEntryExecSql
-   : EXECSQLLINE+ DOT_FS
+   : EXECSQLLINE+ DOT_FS?
    ;
 
 dataAlignedClause
