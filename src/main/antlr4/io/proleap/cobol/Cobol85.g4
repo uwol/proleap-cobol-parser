@@ -1155,7 +1155,7 @@ sentence
    ;
 
 statement
-   : acceptStatement | addStatement | alterStatement | callStatement | cancelStatement | closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement | displayStatement | divideStatement | ejectStatement | enableStatement | entryStatement | evaluateStatement | exhibitStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | exitStatement | generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement | inspectStatement | mergeStatement | moveStatement | multiplyStatement | openStatement | performStatement | purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement | searchStatement | sendStatement | setStatement | skipStatement | sortStatement | startStatement | stopStatement | stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
+   : acceptStatement | addStatement | alterStatement | callStatement | cancelStatement | closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement | displayStatement | divideStatement | enableStatement | entryStatement | evaluateStatement | exhibitStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | exitStatement | generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement | inspectStatement | mergeStatement | moveStatement | multiplyStatement | openStatement | performStatement | purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement | searchStatement | sendStatement | setStatement | sortStatement | startStatement | stopStatement | stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
    ;
 
 // accept statement
@@ -1394,12 +1394,6 @@ divideGiving
 
 divideRemainder
    : REMAINDER identifier
-   ;
-
-// eject statement
-
-ejectStatement
-   : EJECT
    ;
 
 // enable statement
@@ -1958,12 +1952,6 @@ setToValue
 
 setByValue
    : identifier | literal
-   ;
-
-// skip statement
-
-skipStatement
-   : SKIP1 | SKIP2 | SKIP3
    ;
 
 // sort statement
@@ -2779,7 +2767,6 @@ DYNAMIC : D Y N A M I C;
 EBCDIC : E B C D I C;
 EGCS : E G C S; // E X T E N S I O N
 EGI : E G I;
-EJECT : E J E C T;
 ELSE : E L S E;
 EMI : E M I;
 EMPTY_CHECK : E M P T Y MINUSCHAR C H E C K;
@@ -3067,9 +3054,6 @@ SHIFT_OUT : S H I F T MINUSCHAR O U T;
 SHORT_DATE : S H O R T MINUSCHAR D A T E;
 SIGN : S I G N;
 SIZE : S I Z E;
-SKIP1 : S K I P '1';
-SKIP2 : S K I P '2';
-SKIP3 : S K I P '3';
 SORT : S O R T;
 SORT_CONTROL : S O R T MINUSCHAR C O N T R O L;
 SORT_CORE_SIZE : S O R T MINUSCHAR C O R E MINUSCHAR S I Z E;

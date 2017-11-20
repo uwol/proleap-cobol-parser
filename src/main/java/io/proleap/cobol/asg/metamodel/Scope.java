@@ -22,7 +22,6 @@ import io.proleap.cobol.Cobol85Parser.DeleteStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisableStatementContext;
 import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
-import io.proleap.cobol.Cobol85Parser.EjectStatementContext;
 import io.proleap.cobol.Cobol85Parser.EnableStatementContext;
 import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateStatementContext;
@@ -52,7 +51,6 @@ import io.proleap.cobol.Cobol85Parser.RewriteStatementContext;
 import io.proleap.cobol.Cobol85Parser.SearchStatementContext;
 import io.proleap.cobol.Cobol85Parser.SendStatementContext;
 import io.proleap.cobol.Cobol85Parser.SetStatementContext;
-import io.proleap.cobol.Cobol85Parser.SkipStatementContext;
 import io.proleap.cobol.Cobol85Parser.SortStatementContext;
 import io.proleap.cobol.Cobol85Parser.StartStatementContext;
 import io.proleap.cobol.Cobol85Parser.StatementContext;
@@ -75,7 +73,6 @@ import io.proleap.cobol.asg.metamodel.procedure.delete.DeleteStatement;
 import io.proleap.cobol.asg.metamodel.procedure.disable.DisableStatement;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideStatement;
-import io.proleap.cobol.asg.metamodel.procedure.eject.EjectStatement;
 import io.proleap.cobol.asg.metamodel.procedure.enable.EnableStatement;
 import io.proleap.cobol.asg.metamodel.procedure.entry.EntryStatement;
 import io.proleap.cobol.asg.metamodel.procedure.evaluate.EvaluateStatement;
@@ -105,7 +102,6 @@ import io.proleap.cobol.asg.metamodel.procedure.rewrite.RewriteStatement;
 import io.proleap.cobol.asg.metamodel.procedure.search.SearchStatement;
 import io.proleap.cobol.asg.metamodel.procedure.send.SendStatement;
 import io.proleap.cobol.asg.metamodel.procedure.set.SetStatement;
-import io.proleap.cobol.asg.metamodel.procedure.skip.SkipStatement;
 import io.proleap.cobol.asg.metamodel.procedure.sort.SortStatement;
 import io.proleap.cobol.asg.metamodel.procedure.start.StartStatement;
 import io.proleap.cobol.asg.metamodel.procedure.stop.StopStatement;
@@ -140,8 +136,6 @@ public interface Scope extends CobolDivisionElement {
 	DisplayStatement addDisplayStatement(DisplayStatementContext ctx);
 
 	DivideStatement addDivideStatement(DivideStatementContext ctx);
-
-	EjectStatement addEjectStatement(EjectStatementContext ctx);
 
 	EnableStatement addEnableStatement(EnableStatementContext ctx);
 
@@ -200,8 +194,6 @@ public interface Scope extends CobolDivisionElement {
 	SendStatement addSendStatement(SendStatementContext ctx);
 
 	SetStatement addSetStatement(SetStatementContext ctx);
-
-	SkipStatement addSkipStatement(SkipStatementContext ctx);
 
 	SortStatement addSortStatement(SortStatementContext ctx);
 

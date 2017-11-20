@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2016, Ulrich Wolffgang <u.wol@wwu.de>
+* Copyright (C) 2017, Ulrich Wolffgang <u.wol@wwu.de>
 * All rights reserved.
 *
 * This software may be modified and distributed under the terms
@@ -15,7 +15,7 @@
 grammar Cobol85Preprocessor;
 
 startRule
-   : (copyStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | replaceOffStatement | replaceArea | charData | controlSpacingStatement)* EOF
+   : (copyStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | replaceOffStatement | replaceArea | ejectStatement | skipStatement | titleStatement | charDataLine | NEWLINE)* EOF
    ;
 
 // exec cics statement
@@ -84,8 +84,22 @@ replacement
    : literal | cobolWord | pseudoText | charDataLine
    ;
 
-controlSpacingStatement
-   : SKIP1 | SKIP2 | SKIP3 | EJECT
+// eject statement
+
+ejectStatement
+   : EJECT DOT
+   ;
+
+// skip statement
+
+skipStatement
+   : (SKIP1 | SKIP2 | SKIP3) DOT
+   ;
+
+// title statement
+
+titleStatement
+   : TITLE literal DOT
    ;
 
 // literal ----------------------------------
@@ -113,7 +127,7 @@ charDataLine
 // keywords ----------------------------------
 
 charDataKeyword
-   : BY | IN | OF | OFF | ON | REPLACING
+   : BY | EJECT | IN | OF | OFF | ON | REPLACING | TITLE
    ;
 
 // lexer rules --------------------------------------------------------------------------------
@@ -137,6 +151,7 @@ SKIP1 : S K I P '1';
 SKIP2 : S K I P '2';
 SKIP3 : S K I P '3';
 SUPPRESS : S U P P R E S S;
+TITLE : T I T L E;
 
 // symbols
 COMMENTTAG : '*>';

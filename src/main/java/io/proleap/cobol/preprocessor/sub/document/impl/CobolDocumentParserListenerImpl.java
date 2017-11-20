@@ -92,13 +92,13 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	@Override
-	public void enterControlSpacingStatement(final Cobol85PreprocessorParser.ControlSpacingStatementContext ctx) {
+	public void enterCopyStatement(final Cobol85PreprocessorParser.CopyStatementContext ctx) {
+		// push a new context for COPY terminals
 		push();
 	}
 
 	@Override
-	public void enterCopyStatement(final Cobol85PreprocessorParser.CopyStatementContext ctx) {
-		// push a new context for COPY terminals
+	public void enterEjectStatement(final Cobol85PreprocessorParser.EjectStatementContext ctx) {
 		push();
 	}
 
@@ -136,10 +136,14 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	@Override
-	public void exitControlSpacingStatement(final Cobol85PreprocessorParser.ControlSpacingStatementContext ctx) {
-		// throw away control spacing statement
-		pop();
-	};
+	public void enterSkipStatement(final Cobol85PreprocessorParser.SkipStatementContext ctx) {
+		push();
+	}
+
+	@Override
+	public void enterTitleStatement(final Cobol85PreprocessorParser.TitleStatementContext ctx) {
+		push();
+	}
 
 	@Override
 	public void exitCopyStatement(final Cobol85PreprocessorParser.CopyStatementContext ctx) {
@@ -176,6 +180,12 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		pop();
 
 		context().write(content);
+	}
+
+	@Override
+	public void exitEjectStatement(final Cobol85PreprocessorParser.EjectStatementContext ctx) {
+		// throw away eject statement
+		pop();
 	}
 
 	@Override
@@ -264,7 +274,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 
 	@Override
 	public void exitReplaceByStatement(final Cobol85PreprocessorParser.ReplaceByStatementContext ctx) {
-		// throw away REPLACE BY terminals
+		// throw away terminals
 		pop();
 	}
 
@@ -272,7 +282,19 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	public void exitReplaceOffStatement(final Cobol85PreprocessorParser.ReplaceOffStatementContext ctx) {
 		// throw away REPLACE OFF terminals
 		pop();
-	};
+	}
+
+	@Override
+	public void exitSkipStatement(final Cobol85PreprocessorParser.SkipStatementContext ctx) {
+		// throw away skip statement
+		pop();
+	}
+
+	@Override
+	public void exitTitleStatement(final Cobol85PreprocessorParser.TitleStatementContext ctx) {
+		// throw away title statement
+		pop();
+	}
 
 	protected String getCopyFileContent(final CopySourceContext copySource, final List<File> copyFiles,
 			final CobolDialect dialect, final CobolSourceFormatEnum format) {

@@ -138,15 +138,6 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 	}
 
 	@Override
-	public Boolean visitEjectStatement(final Cobol85Parser.EjectStatementContext ctx) {
-		final Scope scope = findScope(ctx);
-
-		scope.addEjectStatement(ctx);
-
-		return visitChildren(ctx);
-	}
-
-	@Override
 	public Boolean visitEnableStatement(final Cobol85Parser.EnableStatementContext ctx) {
 		final Scope scope = findScope(ctx);
 
@@ -403,15 +394,6 @@ public class CobolProcedureStatementVisitorImpl extends AbstractCobolParserVisit
 		final Scope scope = findScope(ctx);
 
 		scope.addSetStatement(ctx);
-
-		return visitChildren(ctx);
-	}
-
-	@Override
-	public Boolean visitSkipStatement(final Cobol85Parser.SkipStatementContext ctx) {
-		final Scope scope = findScope(ctx);
-
-		scope.addSkipStatement(ctx);
 
 		return visitChildren(ctx);
 	}
