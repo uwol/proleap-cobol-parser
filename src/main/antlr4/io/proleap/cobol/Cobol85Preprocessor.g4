@@ -27,7 +27,7 @@ execCicsStatement
 // exec sql statement
 
 execSqlStatement
-   : EXEC SQL charData END_EXEC DOT?
+   : EXEC SQL charDataSql END_EXEC DOT?
    ;
 
 // exec sql ims statement
@@ -118,6 +118,10 @@ pseudoText
 
 charData
    : (charDataLine | NEWLINE)+
+   ;
+
+charDataSql
+   : (charDataLine | REPLACE | NEWLINE)+
    ;
 
 charDataLine

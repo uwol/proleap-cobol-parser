@@ -1,0 +1,12 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision Identification Division .\n        
+				(programIdParagraph Program-ID .  
+					(programName 
+						(cobolWord ExecSqlEmptyLine)) .\n       )) 
+			(dataDivision Data Division .\n        
+				(dataDivisionSection 
+					(workingStorageSection Working-Storage Section .\n       
+						(dataDescriptionEntry 
+							(dataDescriptionEntryExecSql *>EXECSQL EXEC SQL\n *>EXECSQL SELECT REPLACE('sometext, ',', '.')\n *>EXECSQL END-EXEC } .))))))) <EOF>)
