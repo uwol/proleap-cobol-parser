@@ -20,13 +20,13 @@
       *>EXECCICS EXEC CICS RECEIVE
       *>EXECCICS INTO(ws-input)
       *>EXECCICS LENGTH(ws-length)
-      *>EXECCICS END-EXEC ^.
+      *>EXECCICS END-EXEC }.
        
          MOVE ws-message-in TO ws-message-out.
        
       *>EXECCICS EXEC CICS SEND
       *>EXECCICS FROM(ws-output)
       *>EXECCICS LENGTH(ws-length)
-      *>EXECCICS END-EXEC ^.
+      *>EXECCICS END-EXEC }.
        
-      *>EXECCICS EXEC CICS RETURN END-EXEC ^.
+      *>EXECCICS EXEC CICS RETURN END-EXEC }.

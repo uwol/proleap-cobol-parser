@@ -100,7 +100,7 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			result = new DataDescriptionEntryExecSqlImpl(this, programUnit, ctx);
 
 			final String execSqlText = TagUtils.getUntaggedText(ctx.EXECSQLLINE(), CobolPreprocessor.EXEC_SQL_TAG,
-					CobolPreprocessor.END_EXEC_TAG);
+					CobolPreprocessor.EXEC_END_TAG);
 			result.setExecSqlText(execSqlText);
 
 			registerASGElement(result);

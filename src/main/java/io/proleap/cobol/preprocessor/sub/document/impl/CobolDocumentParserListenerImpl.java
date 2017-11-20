@@ -77,7 +77,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 			final String trimmedLine = line.trim();
 			final String prefixedLine = linePrefix + CobolPreprocessor.WS + trimmedLine;
 			final String suffixedLine = prefixedLine.replaceAll("(?i)(end-exec)",
-					"$1 " + CobolPreprocessor.END_EXEC_TAG);
+					"$1 " + CobolPreprocessor.EXEC_END_TAG);
 
 			sb.append(suffixedLine);
 			firstLine = false;

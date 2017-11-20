@@ -22,8 +22,7 @@ public interface CobolPreprocessor {
 	public enum CobolSourceFormatEnum {
 
 		/**
-		 * Fixed format, standard ANSI / IBM reference. Each line 80
-		 * chars.<br />
+		 * Fixed format, standard ANSI / IBM reference. Each line 80 chars.<br />
 		 * <br />
 		 * 1-6: sequence area<br />
 		 * 7: indicator field<br />
@@ -91,9 +90,9 @@ public interface CobolPreprocessor {
 
 	final static String COMMENT_TAG = "*>";
 
-	final static String END_EXEC_TAG = "^";
-
 	final static String EXEC_CICS_TAG = "*>EXECCICS";
+
+	final static String EXEC_END_TAG = "}";
 
 	final static String EXEC_SQL_TAG = "*>EXECSQL";
 

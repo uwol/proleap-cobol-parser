@@ -43,5 +43,4 @@ public class ProgramIdParagraphImpl extends CobolDivisionElementImpl implements 
 	public void setAttribute(final Attribute attribute) {
 		this.attribute = attribute;
 	}
-
 }

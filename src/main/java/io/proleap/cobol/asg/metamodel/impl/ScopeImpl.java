@@ -727,7 +727,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new ExecCicsStatementImpl(programUnit, this, ctx);
 
 			final String execCicsText = TagUtils.getUntaggedText(ctx.EXECCICSLINE(), CobolPreprocessor.EXEC_CICS_TAG,
-					CobolPreprocessor.END_EXEC_TAG);
+					CobolPreprocessor.EXEC_END_TAG);
 			result.setExecCicsText(execCicsText);
 
 			registerStatement(result);
@@ -744,7 +744,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new ExecSqlImsStatementImpl(programUnit, this, ctx);
 
 			final String execSqlImsText = TagUtils.getUntaggedText(ctx.EXECSQLIMSLINE(),
-					CobolPreprocessor.EXEC_SQLIMS_TAG, CobolPreprocessor.END_EXEC_TAG);
+					CobolPreprocessor.EXEC_SQLIMS_TAG, CobolPreprocessor.EXEC_END_TAG);
 			result.setExecSqlImsText(execSqlImsText);
 
 			registerStatement(result);
@@ -761,7 +761,7 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new ExecSqlStatementImpl(programUnit, this, ctx);
 
 			final String execSqlText = TagUtils.getUntaggedText(ctx.EXECSQLLINE(), CobolPreprocessor.EXEC_SQL_TAG,
-					CobolPreprocessor.END_EXEC_TAG);
+					CobolPreprocessor.EXEC_END_TAG);
 			result.setExecSqlText(execSqlText);
 
 			registerStatement(result);

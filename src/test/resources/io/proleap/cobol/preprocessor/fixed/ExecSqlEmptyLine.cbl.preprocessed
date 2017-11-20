@@ -1,0 +1,7 @@
+       Identification Division.
+       Program-ID. ExecSqlEmptyLine.
+       Data Division.
+       Working-Storage Section.
+      *>EXECSQL EXEC SQL
+      *>EXECSQL 
+      *>EXECSQL END-EXEC }.
