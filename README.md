@@ -1,24 +1,24 @@
-ProLeap ANTLR4-based parser for Cobol 85
-========================================
+ProLeap ANTLR4-based parser for COBOL
+=====================================
 
 [![Build](https://img.shields.io/travis/uwol/cobol85parser.svg)](https://travis-ci.org/uwol/cobol85parser)
 [![Coverage](https://coveralls.io/repos/github/uwol/cobol85parser/badge.svg?branch=master)](https://coveralls.io/github/uwol/cobol85parser?branch=master)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
-This is a parser and grammar for Cobol 85, which generates an
-Abstract Syntax Tree (AST) and Abstract Semantic Graph (ASG) for COBOL 85 code.
+This is an ANTLR4-based parser for COBOL, which generates an
+Abstract Syntax Tree (AST) and Abstract Semantic Graph (ASG) for COBOL code.
 The AST represents plain COBOL source code in a syntax tree structure.
 The ASG is generated from the AST by semantic analysis and provides data and control
 flow information (e. g. variable access). EXEC SQL, EXEC SQLIMS and EXEC CICS 
 statements are extracted as texts.
 
-The parser is developed test-driven and passes the NIST test suite.
+The parser is developed test-driven, passes the NIST test suite and has successfully been applied to large real-life COBOL files in banking and insurance.
 
 
 Example
 -------
 
-### Input: COBOL 85 code
+### Input: COBOL code
 
 ```
  Identification Division.
@@ -178,16 +178,6 @@ Tests run: 680, Failures: 0, Errors: 0, Skipped: 0
 $ mvn clean install
 ```
 
-* To use the JAR in your Maven project, add following dependency to the pom.xml of your project:
-
-```
-<dependency>
-  <groupId>io.github.uwol</groupId>
-  <artifactId>cobol85parser</artifactId>
-  <version>2.0.0</version>
-</dependency>
-```
-
 * To only run the tests:
 
 ```
@@ -198,7 +188,7 @@ $ mvn clean test
 Release process
 ---------------
 
-* Milestones are published in the [ANTLR grammars repo](https://github.com/antlr/grammars-v4).
+* Milestones of the grammar are published in the [ANTLR grammars repo](https://github.com/antlr/grammars-v4).
 
 
 License
