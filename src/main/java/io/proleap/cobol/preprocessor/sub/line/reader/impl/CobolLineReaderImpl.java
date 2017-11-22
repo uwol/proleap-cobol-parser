@@ -40,6 +40,9 @@ public class CobolLineReaderImpl implements CobolLineReader {
 		case CobolPreprocessor.CHAR_SLASH:
 			result = CobolLineTypeEnum.COMMENT;
 			break;
+		case CobolPreprocessor.CHAR_DOLLAR_SIGN:
+			result = CobolLineTypeEnum.COMPILER_DIRECTIVE;
+			break;
 		case CobolPreprocessor.WS:
 		default:
 			result = CobolLineTypeEnum.NORMAL;

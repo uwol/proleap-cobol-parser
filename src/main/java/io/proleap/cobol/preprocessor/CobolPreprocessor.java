@@ -82,6 +82,8 @@ public interface CobolPreprocessor {
 
 	final static String CHAR_D_ = "d";
 
+	final static String CHAR_DOLLAR_SIGN = "$";
+
 	final static String CHAR_MINUS = "-";
 
 	final static String CHAR_SLASH = "/";
@@ -98,7 +100,7 @@ public interface CobolPreprocessor {
 
 	final static String EXEC_SQLIMS_TAG = "*>EXECSQLIMS";
 
-	final static String INDICATOR_FIELD = "([ABCdD\\t\\-/*# ])";
+	final static String INDICATOR_FIELD = "([ABCdD$\\t\\-/*# ])";
 
 	final static String NEWLINE = "\n";
 

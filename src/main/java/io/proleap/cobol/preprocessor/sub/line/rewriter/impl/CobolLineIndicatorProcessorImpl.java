@@ -39,8 +39,8 @@ public class CobolLineIndicatorProcessorImpl implements CobolLineIndicatorProces
 	}
 
 	/**
-	 * Normalizes a line by stripping the sequence number and line indicator,
-	 * and interpreting the line indicator.
+	 * Normalizes a line by stripping the sequence number and line indicator, and
+	 * interpreting the line indicator.
 	 */
 	@Override
 	public CobolLine processLine(final CobolLine line) {
@@ -49,7 +49,6 @@ public class CobolLineIndicatorProcessorImpl implements CobolLineIndicatorProces
 
 		// handle trailing comma
 		final String handledContentArea = handleTrailingComma(trimmedTrailWsContentArea);
-
 		final CobolLine result;
 
 		switch (line.type) {
@@ -72,6 +71,9 @@ public class CobolLineIndicatorProcessorImpl implements CobolLineIndicatorProces
 			break;
 		case COMMENT:
 			result = CobolLine.with(line, CobolPreprocessor.COMMENT_TAG + CobolPreprocessor.WS, handledContentArea);
+			break;
+		case COMPILER_DIRECTIVE:
+			result = CobolLine.with(line, CobolPreprocessor.WS, "");
 			break;
 		case NORMAL:
 		default:

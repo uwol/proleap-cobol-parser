@@ -10,5 +10,5 @@ package io.proleap.cobol.preprocessor.sub;
 
 public enum CobolLineTypeEnum {
 
-	BLANK, COMMENT, CONTINUATION, DEBUG, NORMAL
+	BLANK, COMMENT, COMPILER_DIRECTIVE, CONTINUATION, DEBUG, NORMAL
 }
