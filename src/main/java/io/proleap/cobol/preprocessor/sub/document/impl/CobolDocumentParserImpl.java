@@ -30,8 +30,8 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 
 	protected final List<File> copyFiles;
 
-	protected final String[] triggers = new String[] { "copy", "exec sql", "exec sqlims", "exec cics", "replace",
-			"eject", "skip1", "skip2", "skip3", "title" };
+	protected final String[] triggers = new String[] { "cbl", "copy", "exec sql", "exec sqlims", "exec cics", "process",
+			"replace", "eject", "skip1", "skip2", "skip3", "title" };
 
 	public CobolDocumentParserImpl(final List<File> copyFiles) {
 		this.copyFiles = copyFiles;

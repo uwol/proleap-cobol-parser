@@ -1,14 +1,6 @@
 (startRule 
 	(compilationUnit 
 		(programUnit 
-			(compilerOptions PROCESS 
-				(compilerOption XOPTS ( 
-					(compilerSubOption SP) 
-					(compilerSubOption APOST) )) PROCESS 
-				(compilerOption NOSEQ) 
-				(compilerOption LIB) 
-				(compilerOption OPTIMIZE ( FULL )) 
-				(compilerOption ARITH ( EXTEND ))) 
 			(identificationDivision Identification Division .\n        
 				(programIdParagraph Program-ID .\n         
 					(programName 

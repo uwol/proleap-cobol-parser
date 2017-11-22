@@ -92,6 +92,12 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	@Override
+	public void enterCompilerOptions(final Cobol85PreprocessorParser.CompilerOptionsContext ctx) {
+		// push a new context for COMPILER OPTIONS terminals
+		push();
+	}
+
+	@Override
 	public void enterCopyStatement(final Cobol85PreprocessorParser.CopyStatementContext ctx) {
 		// push a new context for COPY terminals
 		push();
@@ -143,6 +149,12 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	@Override
 	public void enterTitleStatement(final Cobol85PreprocessorParser.TitleStatementContext ctx) {
 		push();
+	}
+
+	@Override
+	public void exitCompilerOptions(final Cobol85PreprocessorParser.CompilerOptionsContext ctx) {
+		// throw away COMPILER OPTIONS terminals
+		pop();
 	}
 
 	@Override

@@ -1,0 +1,6 @@
+000100 CBL XOPTS(APOST)
+000100 CBL NOSEQ LIB OPTIMIZE(FULL)
+000100 Identification Division.
+000100 Program-ID. 
+000100  Opts.
+000100 Procedure Division.

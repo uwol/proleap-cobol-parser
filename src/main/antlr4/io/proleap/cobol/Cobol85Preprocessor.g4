@@ -15,7 +15,17 @@
 grammar Cobol85Preprocessor;
 
 startRule
-   : (copyStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | replaceOffStatement | replaceArea | ejectStatement | skipStatement | titleStatement | charDataLine | NEWLINE)* EOF
+   : (compilerOptions | copyStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | replaceOffStatement | replaceArea | ejectStatement | skipStatement | titleStatement | charDataLine | NEWLINE)* EOF
+   ;
+
+// compiler options
+
+compilerOptions
+   : (PROCESS | CBL) compilerOption+
+   ;
+
+compilerOption
+   : APOST | ARITH LPARENCHAR EXTEND RPARENCHAR | CODEPAGE LPARENCHAR literal RPARENCHAR | DBCS | LIB | NOSEQ | NOSTDTRUNC | OPTIMIZE LPARENCHAR FULL RPARENCHAR | XOPTS LPARENCHAR (SP | APOST)+ RPARENCHAR
    ;
 
 // exec cics statement
@@ -109,7 +119,7 @@ cobolWord
    ;
 
 literal
-   : NONNUMERICLITERAL
+   : NONNUMERICLITERAL | NUMERICLITERAL
    ;
 
 pseudoText
@@ -131,24 +141,39 @@ charDataLine
 // keywords ----------------------------------
 
 charDataKeyword
-   : BY | EJECT | IN | OF | OFF | ON | REPLACING | TITLE
+   : APOST | ARITH | BY | CBL | CODEPAGE | DBCS | EJECT | EXTEND | FULL | IN | LIB | LPARENCHAR | NOSEQ | NOSTDTRUNC | OF | OFF | OPTIMIZE | ON | PROCESS | REPLACING | RPARENCHAR | SP | TITLE | XOPTS
    ;
 
 // lexer rules --------------------------------------------------------------------------------
 
 // keywords
+APOST : A P O S T;
+ARITH : A R I T H;
 BY : B Y;
+CBL : C B L;
 CICS : C I C S;
+CODEPAGE : C O D E P A G E;
 COPY : C O P Y;
+DBCS : D B C S;
 EJECT : E J E C T;
 END_EXEC : E N D '-' E X E C;
 EXEC : E X E C;
+EXTEND : E X T E N D;
+FULL : F U L L;
 IN : I N;
+LIB : L I B;
+LPARENCHAR : '(';
+NOSEQ : N O S E Q;
+NOSTDTRUNC : N O S T D T R U N C;
 OF : O F;
 OFF : O F F;
 ON : O N;
+OPTIMIZE : O P T I M I Z E;
+PROCESS : P R O C E S S;
 REPLACE : R E P L A C E;
 REPLACING : R E P L A C I N G;
+RPARENCHAR : ')';
+SP : S P;
 SQL : S Q L;
 SQLIMS : S Q L I M S;
 SKIP1 : S K I P '1';
@@ -156,6 +181,7 @@ SKIP2 : S K I P '2';
 SKIP3 : S K I P '3';
 SUPPRESS : S U P P R E S S;
 TITLE : T I T L E;
+XOPTS: X O P T S;
 
 // symbols
 COMMENTTAG : '*>';
@@ -164,6 +190,7 @@ DOUBLEEQUALCHAR : '==';
 
 // literals
 NONNUMERICLITERAL : STRINGLITERAL | HEXNUMBER;
+NUMERICLITERAL : [0-9]+;
 
 fragment HEXNUMBER :
 	X '"' [0-9A-F]+ '"'
