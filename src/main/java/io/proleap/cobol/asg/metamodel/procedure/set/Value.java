@@ -14,7 +14,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 public interface Value extends CobolDivisionElement {
 
 	enum ValueType {
-		CALL, OFF, ON
+		CALL, ENTRY, OFF, ON
 	}
 
 	ValueStmt getValueStmt();

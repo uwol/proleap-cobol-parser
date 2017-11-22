@@ -1929,7 +1929,7 @@ setTo
    ;
 
 setToValue
-   : ON | OFF | identifier | literal
+   : ON | OFF | ENTRY (identifier | literal) | identifier | literal
    ;
 
 setByValue

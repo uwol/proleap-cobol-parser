@@ -36,7 +36,7 @@ public class SetToStatementTest extends CobolTestBase {
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(0, procedureDivision.getParagraphs().size());
-		assertEquals(1, procedureDivision.getStatements().size());
+		assertEquals(4, procedureDivision.getStatements().size());
 
 		{
 			final SetStatement setStatement = (SetStatement) procedureDivision.getStatements().get(0);
@@ -114,6 +114,64 @@ public class SetToStatementTest extends CobolTestBase {
 					final Value value = setTo.getValues().get(1);
 					assertEquals(Value.ValueType.ON, value.getValueType());
 					assertNull(value.getValueStmt());
+				}
+			}
+		}
+
+		{
+			final SetStatement setStatement = (SetStatement) procedureDivision.getStatements().get(1);
+			assertNotNull(setStatement);
+			assertEquals(StatementTypeEnum.SET, setStatement.getStatementType());
+			assertEquals(SetStatement.SetType.TO, setStatement.getSetType());
+			assertEquals(1, setStatement.getSetTos().size());
+
+			{
+				final SetTo setTo = setStatement.getSetTos().get(0);
+				assertEquals(1, setTo.getTos().size());
+				assertEquals(1, setTo.getValues().size());
+
+				{
+					final Value value = setTo.getValues().get(0);
+					assertEquals(Value.ValueType.CALL, value.getValueType());
+					assertNotNull(value.getValueStmt());
+				}
+			}
+		}
+
+		{
+			final SetStatement setStatement = (SetStatement) procedureDivision.getStatements().get(2);
+			assertNotNull(setStatement);
+			assertEquals(StatementTypeEnum.SET, setStatement.getStatementType());
+			assertEquals(SetStatement.SetType.TO, setStatement.getSetType());
+			assertEquals(1, setStatement.getSetTos().size());
+
+			{
+				final SetTo setTo = setStatement.getSetTos().get(0);
+				assertEquals(1, setTo.getTos().size());
+				assertEquals(1, setTo.getValues().size());
+
+				{
+					final Value value = setTo.getValues().get(0);
+					assertEquals(Value.ValueType.OFF, value.getValueType());
+				}
+			}
+		}
+
+		{
+			final SetStatement setStatement = (SetStatement) procedureDivision.getStatements().get(3);
+			assertNotNull(setStatement);
+			assertEquals(StatementTypeEnum.SET, setStatement.getStatementType());
+			assertEquals(SetStatement.SetType.TO, setStatement.getSetType());
+			assertEquals(1, setStatement.getSetTos().size());
+
+			{
+				final SetTo setTo = setStatement.getSetTos().get(0);
+				assertEquals(1, setTo.getTos().size());
+				assertEquals(1, setTo.getValues().size());
+
+				{
+					final Value value = setTo.getValues().get(0);
+					assertEquals(Value.ValueType.ENTRY, value.getValueType());
 				}
 			}
 		}

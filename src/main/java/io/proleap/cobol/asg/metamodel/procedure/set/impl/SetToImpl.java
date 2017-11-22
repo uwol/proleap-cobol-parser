@@ -69,15 +69,17 @@ public class SetToImpl extends CobolDivisionElementImpl implements SetTo {
 				type = Value.ValueType.ON;
 			} else if (ctx.OFF() != null) {
 				type = Value.ValueType.OFF;
+			} else if (ctx.ENTRY() != null) {
+				type = Value.ValueType.ENTRY;
 			} else {
 				type = Value.ValueType.CALL;
-
-				// call
-				final ValueStmt valueStmt = createValueStmt(ctx.identifier(), ctx.literal());
-				result.setValueStmt(valueStmt);
 			}
 
 			result.setValueType(type);
+
+			// call
+			final ValueStmt valueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setValueStmt(valueStmt);
 
 			values.add(result);
 			registerASGElement(result);
