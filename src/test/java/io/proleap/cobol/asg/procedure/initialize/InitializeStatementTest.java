@@ -55,7 +55,7 @@ public class InitializeStatementTest extends CobolTestBase {
 
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(0, procedureDivision.getParagraphs().size());
-		assertEquals(2, procedureDivision.getStatements().size());
+		assertEquals(3, procedureDivision.getStatements().size());
 
 		{
 			final InitializeStatement initializeStatement = (InitializeStatement) procedureDivision.getStatements()
@@ -108,6 +108,27 @@ public class InitializeStatementTest extends CobolTestBase {
 					assertEquals("ABC", by.getValueStmt().getValue());
 				}
 			}
+		}
+
+		{
+			final InitializeStatement initializeStatement = (InitializeStatement) procedureDivision.getStatements()
+					.get(2);
+			assertNotNull(initializeStatement);
+			assertEquals(StatementTypeEnum.INITIALIZE, initializeStatement.getStatementType());
+			assertEquals(1, initializeStatement.getDataItemCalls().size());
+
+			{
+				final Call dataItemCall = initializeStatement.getDataItemCalls().get(0);
+				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, dataItemCall.getCallType());
+
+				{
+					final DataDescriptionEntryCall dataItemDataDescriptionEntryCall = (DataDescriptionEntryCall) dataItemCall
+							.unwrap();
+					assertEquals(someName, dataItemDataDescriptionEntryCall.getDataDescriptionEntry());
+				}
+			}
+
+			assertNull(initializeStatement.getReplacingPhrase());
 		}
 	}
 }

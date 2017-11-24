@@ -78,5 +78,4 @@ public class InitializeStatementImpl extends StatementImpl implements Initialize
 	public StatementType getStatementType() {
 		return statementType;
 	}
-
 }
