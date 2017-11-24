@@ -1,0 +1,53 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision Identification Division .\n        
+				(programIdParagraph Program-ID .  
+					(programName 
+						(cobolWord LTRL)) .\n       )) 
+			(procedureDivision Procedure Division .\n         
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(literal "Hello world")))) .\n        ) 
+						(sentence 
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(literal 'Hello world')))) .\n        ) 
+						(sentence 
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(literal 
+											(numericLiteral 
+												(integerLiteral 1)))))) .\n        ) 
+						(sentence 
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(literal 
+											(figurativeConstant ZERO))))) .\n        ) 
+						(sentence 
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(literal X"40")))) .\n        ) 
+						(sentence 
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(literal X'40')))) .\n        ) 
+						(sentence 
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(literal Z"Hello world")))) .\n        ) 
+						(sentence 
+							(statement 
+								(displayStatement Display 
+									(displayOperand 
+										(literal Z'Hello world')))) .)))))) <EOF>)

@@ -3169,11 +3169,16 @@ RPARENCHAR : ')';
 SLASHCHAR : '/';
 
 // literals
-NONNUMERICLITERAL : STRINGLITERAL | DBCSLITERAL | HEXNUMBER;
+NONNUMERICLITERAL : STRINGLITERAL | DBCSLITERAL | HEXNUMBER  | NULLTERMINATED;
 
 fragment HEXNUMBER :
 	X '"' [0-9A-F]+ '"'
 	| X '\'' [0-9A-F]+ '\''
+;
+
+fragment NULLTERMINATED :
+	Z '"' (~["\n\r] | '""' | '\'')* '"'
+	| Z '\'' (~['\n\r] | '\'\'' | '"')* '\''
 ;
 
 fragment STRINGLITERAL :
