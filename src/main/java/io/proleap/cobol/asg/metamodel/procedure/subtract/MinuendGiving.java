@@ -13,8 +13,8 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface MinuendGiving extends CobolDivisionElement {
 
-	ValueStmt getMinuend();
+	ValueStmt getMinuendValueStmt();
 
-	void setMinuend(ValueStmt minuend);
+	void setMinuendValueStmt(ValueStmt minuend);
 
 }

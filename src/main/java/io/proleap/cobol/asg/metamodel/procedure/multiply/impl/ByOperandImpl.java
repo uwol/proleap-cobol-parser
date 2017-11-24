@@ -47,5 +47,4 @@ public class ByOperandImpl extends CobolDivisionElementImpl implements ByOperand
 	public void setRounded(final boolean rounded) {
 		this.rounded = rounded;
 	}
-
 }

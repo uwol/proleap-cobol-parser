@@ -75,7 +75,7 @@ public class SubtractFromGivingStatementImpl extends CobolDivisionElementImpl im
 
 			// minuend
 			final ValueStmt minuendValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
-			result.setMinuend(minuendValueStmt);
+			result.setMinuendValueStmt(minuendValueStmt);
 
 			minuend = result;
 			registerASGElement(result);
@@ -116,5 +116,4 @@ public class SubtractFromGivingStatementImpl extends CobolDivisionElementImpl im
 	public List<Subtrahend> getSubtrahends() {
 		return subtrahends;
 	}
-
 }

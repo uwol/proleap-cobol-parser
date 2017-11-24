@@ -34,5 +34,4 @@ public class WithImpl extends CobolDivisionElementImpl implements With {
 	public void setNoAdvancing(final boolean noAdvancing) {
 		this.noAdvancing = noAdvancing;
 	}
-
 }

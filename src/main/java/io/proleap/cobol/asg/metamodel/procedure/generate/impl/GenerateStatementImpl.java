@@ -45,5 +45,4 @@ public class GenerateStatementImpl extends StatementImpl implements GenerateStat
 	public void setReportDescriptionCall(final Call reportDescriptionCall) {
 		this.reportDescriptionCall = reportDescriptionCall;
 	}
-
 }

@@ -40,8 +40,8 @@ public class GivingPhraseImpl extends CobolDivisionElementImpl implements Giving
 
 			// call
 			if (ctx.identifier() != null) {
-				final Call call = createCall(ctx.identifier());
-				result.setCall(call);
+				final Call givingCall = createCall(ctx.identifier());
+				result.setGivingCall(givingCall);
 			}
 
 			// rounded
@@ -60,5 +60,4 @@ public class GivingPhraseImpl extends CobolDivisionElementImpl implements Giving
 	public List<Giving> getGivings() {
 		return givings;
 	}
-
 }

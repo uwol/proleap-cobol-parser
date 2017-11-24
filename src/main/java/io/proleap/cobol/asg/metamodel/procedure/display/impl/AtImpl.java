@@ -35,5 +35,4 @@ public class AtImpl extends CobolDivisionElementImpl implements At {
 	public void setAtValueStmt(final ValueStmt atValueStmt) {
 		this.atValueStmt = atValueStmt;
 	}
-
 }

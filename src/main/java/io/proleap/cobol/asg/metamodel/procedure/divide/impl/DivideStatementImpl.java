@@ -205,5 +205,4 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	public void setOnSizeErrorPhrase(final OnSizeErrorPhrase onSizeErrorPhrase) {
 		this.onSizeErrorPhrase = onSizeErrorPhrase;
 	}
-
 }

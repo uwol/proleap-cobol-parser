@@ -35,5 +35,4 @@ public class SubtrahendImpl extends CobolDivisionElementImpl implements Subtrahe
 	public void setSubtrahendValueStmt(final ValueStmt subtrahendValueStmt) {
 		this.subtrahendValueStmt = subtrahendValueStmt;
 	}
-
 }

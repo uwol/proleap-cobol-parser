@@ -18,7 +18,7 @@ public class FromImpl extends CobolDivisionElementImpl implements From {
 
 	protected final AddFromContext ctx;
 
-	protected ValueStmt from;
+	protected ValueStmt fromValueStmt;
 
 	public FromImpl(final ProgramUnit programUnit, final AddFromContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,12 @@ public class FromImpl extends CobolDivisionElementImpl implements From {
 	}
 
 	@Override
-	public ValueStmt getFrom() {
-		return from;
+	public ValueStmt getFromValueStmt() {
+		return fromValueStmt;
 	}
 
 	@Override
-	public void setFrom(final ValueStmt from) {
-		this.from = from;
+	public void setFromValueStmt(final ValueStmt fromValueStmt) {
+		this.fromValueStmt = fromValueStmt;
 	}
-
 }

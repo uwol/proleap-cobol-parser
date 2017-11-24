@@ -70,7 +70,7 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			 */
 			if (ctx.identifier() != null) {
 				final Call fromCall = createCall(ctx.identifier());
-				result.setFrom(fromCall);
+				result.setFromCall(fromCall);
 			}
 
 			/*
@@ -164,7 +164,7 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			 * from
 			 */
 			final ValueStmt fromValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
-			result.setFrom(fromValueStmt);
+			result.setFromValueStmt(fromValueStmt);
 
 			registerASGElement(result);
 		}
@@ -182,8 +182,8 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			 * giving
 			 */
 			if (ctx.identifier() != null) {
-				final Call giving = createCall(ctx.identifier());
-				result.setGiving(giving);
+				final Call givingCall = createCall(ctx.identifier());
+				result.setGivingCall(givingCall);
 			}
 
 			/*
@@ -209,8 +209,8 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			 * to
 			 */
 			if (ctx.identifier() != null) {
-				final Call to = createCall(ctx.identifier());
-				result.setTo(to);
+				final Call toCall = createCall(ctx.identifier());
+				result.setToCall(toCall);
 			}
 
 			/*
@@ -235,8 +235,8 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			/*
 			 * to
 			 */
-			final ValueStmt to = createValueStmt(ctx.identifier(), ctx.literal());
-			result.setTo(to);
+			final ValueStmt toValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setToValueStmt(toValueStmt);
 
 			registerASGElement(result);
 		}

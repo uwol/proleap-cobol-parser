@@ -19,7 +19,7 @@ public class AddCorrespondingStatementImpl extends CobolDivisionElementImpl impl
 
 	protected final AddCorrespondingStatementContext ctx;
 
-	protected Call from;
+	protected Call fromCall;
 
 	protected To to;
 
@@ -30,8 +30,8 @@ public class AddCorrespondingStatementImpl extends CobolDivisionElementImpl impl
 	}
 
 	@Override
-	public Call getFrom() {
-		return from;
+	public Call getFromCall() {
+		return fromCall;
 	}
 
 	@Override
@@ -40,13 +40,12 @@ public class AddCorrespondingStatementImpl extends CobolDivisionElementImpl impl
 	}
 
 	@Override
-	public void setFrom(final Call from) {
-		this.from = from;
+	public void setFromCall(final Call fromCall) {
+		this.fromCall = fromCall;
 	}
 
 	@Override
 	public void setTo(final To to) {
 		this.to = to;
 	}
-
 }

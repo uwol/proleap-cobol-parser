@@ -35,5 +35,4 @@ public class GivingOperandImpl extends CobolDivisionElementImpl implements Givin
 	public void setOperandValueStmt(final ValueStmt operandValueStmt) {
 		this.operandValueStmt = operandValueStmt;
 	}
-
 }

@@ -46,14 +46,14 @@ public class AddToStatementTest extends CobolTestBase {
 
 				{
 					final From from = addToStatement.getFroms().get(0);
-					assertNotNull(from.getFrom());
+					assertNotNull(from.getFromValueStmt());
 					assertEquals(1, addToStatement.getTos().size());
 				}
 
 				{
 					final To to = addToStatement.getTos().get(0);
-					assertNotNull(to.getTo());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to.getTo().getCallType());
+					assertNotNull(to.getToCall());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to.getToCall().getCallType());
 				}
 			}
 		}
@@ -70,26 +70,26 @@ public class AddToStatementTest extends CobolTestBase {
 
 				{
 					final From from1 = addTo.getFroms().get(0);
-					assertNotNull(from1.getFrom());
+					assertNotNull(from1.getFromValueStmt());
 				}
 
 				{
 					final From from2 = addTo.getFroms().get(1);
-					assertNotNull(from2.getFrom());
+					assertNotNull(from2.getFromValueStmt());
 				}
 
 				assertEquals(2, addTo.getTos().size());
 
 				{
 					final To to1 = addTo.getTos().get(0);
-					assertNotNull(to1.getTo());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to1.getTo().getCallType());
+					assertNotNull(to1.getToCall());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to1.getToCall().getCallType());
 				}
 
 				{
 					final To to2 = addTo.getTos().get(1);
-					assertNotNull(to2.getTo());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to2.getTo().getCallType());
+					assertNotNull(to2.getToCall());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to2.getToCall().getCallType());
 				}
 			}
 		}

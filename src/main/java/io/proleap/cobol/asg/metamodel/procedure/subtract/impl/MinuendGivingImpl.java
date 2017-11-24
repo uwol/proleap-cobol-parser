@@ -18,7 +18,7 @@ public class MinuendGivingImpl extends CobolDivisionElementImpl implements Minue
 
 	protected final SubtractMinuendGivingContext ctx;
 
-	protected ValueStmt minuend;
+	protected ValueStmt minuendValueStmt;
 
 	public MinuendGivingImpl(final ProgramUnit programUnit, final SubtractMinuendGivingContext ctx) {
 		super(programUnit, ctx);
@@ -27,12 +27,12 @@ public class MinuendGivingImpl extends CobolDivisionElementImpl implements Minue
 	}
 
 	@Override
-	public ValueStmt getMinuend() {
-		return minuend;
+	public ValueStmt getMinuendValueStmt() {
+		return minuendValueStmt;
 	}
 
 	@Override
-	public void setMinuend(final ValueStmt minuend) {
-		this.minuend = minuend;
+	public void setMinuendValueStmt(final ValueStmt minuendValueStmt) {
+		this.minuendValueStmt = minuendValueStmt;
 	}
 }

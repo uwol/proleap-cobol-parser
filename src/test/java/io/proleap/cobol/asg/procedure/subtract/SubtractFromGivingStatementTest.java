@@ -72,7 +72,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 
 				{
 					final MinuendGiving minuend = subtractFromGivingStatement.getMinuend();
-					final ValueStmt minuendValueStmt = minuend.getMinuend();
+					final ValueStmt minuendValueStmt = minuend.getMinuendValueStmt();
 					final CallValueStmt minuendCallValueStmt = (CallValueStmt) minuendValueStmt;
 					final Call minuendCall = minuendCallValueStmt.getCall();
 					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, minuendCall.getCallType());
@@ -120,7 +120,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 
 				{
 					final MinuendGiving minuend = subtractFromGivingStatement.getMinuend();
-					final ValueStmt minuendValueStmt = minuend.getMinuend();
+					final ValueStmt minuendValueStmt = minuend.getMinuendValueStmt();
 
 					final LiteralValueStmt literalMinuendValueStmt = (LiteralValueStmt) minuendValueStmt;
 					final Literal literal = literalMinuendValueStmt.getLiteral();

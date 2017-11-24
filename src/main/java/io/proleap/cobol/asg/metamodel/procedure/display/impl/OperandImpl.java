@@ -35,5 +35,4 @@ public class OperandImpl extends CobolDivisionElementImpl implements Operand {
 	public void setOperandValueStmt(final ValueStmt operandValueStmt) {
 		this.operandValueStmt = operandValueStmt;
 	}
-
 }

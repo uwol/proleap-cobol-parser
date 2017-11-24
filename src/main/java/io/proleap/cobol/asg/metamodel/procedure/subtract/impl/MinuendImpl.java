@@ -18,7 +18,7 @@ public class MinuendImpl extends CobolDivisionElementImpl implements Minuend {
 
 	protected final SubtractMinuendContext ctx;
 
-	protected Call minuend;
+	protected Call minuendCall;
 
 	protected boolean rounded;
 
@@ -29,8 +29,8 @@ public class MinuendImpl extends CobolDivisionElementImpl implements Minuend {
 	}
 
 	@Override
-	public Call getMinuend() {
-		return minuend;
+	public Call getMinuendCall() {
+		return minuendCall;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class MinuendImpl extends CobolDivisionElementImpl implements Minuend {
 	}
 
 	@Override
-	public void setMinuend(final Call minuend) {
-		this.minuend = minuend;
+	public void setMinuendCall(final Call minuendCall) {
+		this.minuendCall = minuendCall;
 	}
 
 	@Override

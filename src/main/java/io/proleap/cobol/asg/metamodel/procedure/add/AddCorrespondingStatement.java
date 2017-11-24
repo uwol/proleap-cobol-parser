@@ -16,11 +16,11 @@ import io.proleap.cobol.asg.metamodel.call.Call;
  */
 public interface AddCorrespondingStatement extends CobolDivisionElement {
 
-	Call getFrom();
+	Call getFromCall();
 
 	To getTo();
 
-	void setFrom(Call from);
+	void setFromCall(Call fromCall);
 
 	void setTo(To to);
 

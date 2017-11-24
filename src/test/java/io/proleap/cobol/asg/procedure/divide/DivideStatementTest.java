@@ -65,7 +65,7 @@ public class DivideStatementTest extends CobolTestBase {
 				{
 					final Giving giving = divideIntoStatement.getGivingPhrase().getGivings().get(0);
 					assertTrue(giving.isRounded());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getCall().getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getGivingCall().getCallType());
 				}
 			}
 
@@ -98,13 +98,13 @@ public class DivideStatementTest extends CobolTestBase {
 				{
 					final Giving giving = divideIntoGivingStatement.getGivings().get(0);
 					assertTrue(giving.isRounded());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getCall().getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getGivingCall().getCallType());
 				}
 
 				{
 					final Giving giving = divideIntoGivingStatement.getGivings().get(1);
 					assertFalse(giving.isRounded());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getCall().getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getGivingCall().getCallType());
 				}
 			}
 
@@ -144,7 +144,7 @@ public class DivideStatementTest extends CobolTestBase {
 				{
 					final Giving giving = divideIntoByGivingStatement.getGivingPhrase().getGivings().get(0);
 					assertTrue(giving.isRounded());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getCall().getCallType());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getGivingCall().getCallType());
 				}
 			}
 

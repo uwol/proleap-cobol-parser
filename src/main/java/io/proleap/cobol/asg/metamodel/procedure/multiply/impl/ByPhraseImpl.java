@@ -60,5 +60,4 @@ public class ByPhraseImpl extends CobolDivisionElementImpl implements ByPhrase {
 	public List<ByOperand> getByOperands() {
 		return byOperands;
 	}
-
 }

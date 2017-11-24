@@ -13,7 +13,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface ToGiving extends CobolDivisionElement {
 
-	ValueStmt getTo();
+	ValueStmt getToValueStmt();
 
-	void setTo(ValueStmt toGiving);
+	void setToValueStmt(ValueStmt toValueStmt);
 }

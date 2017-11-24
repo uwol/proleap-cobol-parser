@@ -64,5 +64,4 @@ public class ByGivingImpl extends CobolDivisionElementImpl implements DivideByGi
 	public void setByValueStmt(final ValueStmt byValueStmt) {
 		this.byValueStmt = byValueStmt;
 	}
-
 }

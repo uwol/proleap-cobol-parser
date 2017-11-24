@@ -18,7 +18,7 @@ public class ToGivingImpl extends CobolDivisionElementImpl implements ToGiving {
 
 	protected final AddToGivingContext ctx;
 
-	protected ValueStmt to;
+	protected ValueStmt toValueStmt;
 
 	public ToGivingImpl(final ProgramUnit programUnit, final AddToGivingContext ctx) {
 		super(programUnit, ctx);
@@ -27,12 +27,12 @@ public class ToGivingImpl extends CobolDivisionElementImpl implements ToGiving {
 	}
 
 	@Override
-	public ValueStmt getTo() {
-		return to;
+	public ValueStmt getToValueStmt() {
+		return toValueStmt;
 	}
 
 	@Override
-	public void setTo(final ValueStmt to) {
-		this.to = to;
+	public void setToValueStmt(final ValueStmt toValueStmt) {
+		this.toValueStmt = toValueStmt;
 	}
 }

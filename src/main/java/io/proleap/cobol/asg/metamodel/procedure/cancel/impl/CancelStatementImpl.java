@@ -76,5 +76,4 @@ public class CancelStatementImpl extends StatementImpl implements CancelStatemen
 	public StatementType getStatementType() {
 		return statementType;
 	}
-
 }

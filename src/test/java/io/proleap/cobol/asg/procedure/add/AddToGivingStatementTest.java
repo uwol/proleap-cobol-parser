@@ -52,15 +52,15 @@ public class AddToGivingStatementTest extends CobolTestBase {
 
 				{
 					final From from = addToGivingStatement.getFroms().get(0);
-					assertNotNull(from.getFrom());
+					assertNotNull(from.getFromValueStmt());
 					assertEquals(1, addToGivingStatement.getTos().size());
 				}
 
 				{
 					final ToGiving to = addToGivingStatement.getTos().get(0);
-					assertNotNull(to.getTo());
+					assertNotNull(to.getToValueStmt());
 
-					final ValueStmt toValueStmt = to.getTo();
+					final ValueStmt toValueStmt = to.getToValueStmt();
 					final CallValueStmt toCallValueStmt = (CallValueStmt) toValueStmt;
 					final Call toCall = toCallValueStmt.getCall();
 
@@ -70,8 +70,8 @@ public class AddToGivingStatementTest extends CobolTestBase {
 
 				{
 					final Giving giving = addToGivingStatement.getGivings().get(0);
-					assertNotNull(giving.getGiving());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getGiving().getCallType());
+					assertNotNull(giving.getGivingCall());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving.getGivingCall().getCallType());
 				}
 			}
 		}
@@ -87,21 +87,21 @@ public class AddToGivingStatementTest extends CobolTestBase {
 
 				{
 					final From from1 = addToGivingStatement.getFroms().get(0);
-					assertNotNull(from1.getFrom());
+					assertNotNull(from1.getFromValueStmt());
 				}
 
 				{
 					final From from2 = addToGivingStatement.getFroms().get(1);
-					assertNotNull(from2.getFrom());
+					assertNotNull(from2.getFromValueStmt());
 				}
 
 				assertEquals(2, addToGivingStatement.getTos().size());
 
 				{
 					final ToGiving to1 = addToGivingStatement.getTos().get(0);
-					assertNotNull(to1.getTo());
+					assertNotNull(to1.getToValueStmt());
 
-					final ValueStmt to1ValueStmt = to1.getTo();
+					final ValueStmt to1ValueStmt = to1.getToValueStmt();
 					final CallValueStmt to1CallValueStmt = (CallValueStmt) to1ValueStmt;
 					final Call to1Call = to1CallValueStmt.getCall();
 
@@ -110,9 +110,9 @@ public class AddToGivingStatementTest extends CobolTestBase {
 
 				{
 					final ToGiving to2 = addToGivingStatement.getTos().get(1);
-					assertNotNull(to2.getTo());
+					assertNotNull(to2.getToValueStmt());
 
-					final ValueStmt to2ValueStmt = to2.getTo();
+					final ValueStmt to2ValueStmt = to2.getToValueStmt();
 					final CallValueStmt to2CallValueStmt = (CallValueStmt) to2ValueStmt;
 					final Call to2Call = to2CallValueStmt.getCall();
 
@@ -123,14 +123,14 @@ public class AddToGivingStatementTest extends CobolTestBase {
 
 				{
 					final Giving giving1 = addToGivingStatement.getGivings().get(0);
-					assertNotNull(giving1.getGiving());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving1.getGiving().getCallType());
+					assertNotNull(giving1.getGivingCall());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving1.getGivingCall().getCallType());
 				}
 
 				{
 					final Giving giving2 = addToGivingStatement.getGivings().get(1);
-					assertNotNull(giving2.getGiving());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving2.getGiving().getCallType());
+					assertNotNull(giving2.getGivingCall());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving2.getGivingCall().getCallType());
 				}
 			}
 		}
@@ -146,9 +146,9 @@ public class AddToGivingStatementTest extends CobolTestBase {
 
 				{
 					final From from1 = addToGivingStatement.getFroms().get(0);
-					assertNotNull(from1.getFrom());
+					assertNotNull(from1.getFromValueStmt());
 
-					final ValueStmt fromValueStmt = from1.getFrom();
+					final ValueStmt fromValueStmt = from1.getFromValueStmt();
 					final LiteralValueStmt fromLiteralValueStmt = (LiteralValueStmt) fromValueStmt;
 					assertEquals(0, fromLiteralValueStmt.getValue());
 				}
@@ -157,9 +157,9 @@ public class AddToGivingStatementTest extends CobolTestBase {
 
 				{
 					final ToGiving to = addToGivingStatement.getTos().get(0);
-					assertNotNull(to.getTo());
+					assertNotNull(to.getToValueStmt());
 
-					final ValueStmt toValueStmt = to.getTo();
+					final ValueStmt toValueStmt = to.getToValueStmt();
 					final LiteralValueStmt literalToValueStmt = (LiteralValueStmt) toValueStmt;
 					final Literal literal = literalToValueStmt.getLiteral();
 					assertEquals(Literal.LiteralType.FIGURATIVE_CONSTANT, literal.getLiteralType());
@@ -173,8 +173,8 @@ public class AddToGivingStatementTest extends CobolTestBase {
 
 				{
 					final Giving giving1 = addToGivingStatement.getGivings().get(0);
-					assertNotNull(giving1.getGiving());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving1.getGiving().getCallType());
+					assertNotNull(giving1.getGivingCall());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving1.getGivingCall().getCallType());
 				}
 			}
 		}

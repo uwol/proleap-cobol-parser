@@ -13,8 +13,8 @@ import io.proleap.cobol.Cobol85Parser.DivideGivingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.DivideIntoStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.divide.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideIntoStatement;
+import io.proleap.cobol.asg.metamodel.procedure.divide.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class DivideIntoStatementImpl extends CobolDivisionElementImpl implements DivideIntoStatement {
@@ -64,5 +64,4 @@ public class DivideIntoStatementImpl extends CobolDivisionElementImpl implements
 	public void setIntoValueStmt(final ValueStmt intoValueStmt) {
 		this.intoValueStmt = intoValueStmt;
 	}
-
 }

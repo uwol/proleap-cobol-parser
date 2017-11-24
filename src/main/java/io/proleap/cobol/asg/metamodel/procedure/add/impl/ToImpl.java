@@ -20,7 +20,7 @@ public class ToImpl extends CobolDivisionElementImpl implements To {
 
 	protected boolean rounded;
 
-	protected Call to;
+	protected Call toCall;
 
 	public ToImpl(final ProgramUnit programUnit, final AddToContext ctx) {
 		super(programUnit, ctx);
@@ -29,8 +29,8 @@ public class ToImpl extends CobolDivisionElementImpl implements To {
 	}
 
 	@Override
-	public Call getTo() {
-		return to;
+	public Call getToCall() {
+		return toCall;
 	}
 
 	@Override
@@ -44,8 +44,7 @@ public class ToImpl extends CobolDivisionElementImpl implements To {
 	}
 
 	@Override
-	public void setTo(final Call to) {
-		this.to = to;
+	public void setToCall(final Call toCall) {
+		this.toCall = toCall;
 	}
-
 }

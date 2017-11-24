@@ -13,11 +13,11 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface To extends CobolDivisionElement {
 
-	Call getTo();
+	Call getToCall();
 
 	boolean isRounded();
 
 	void setRounded(boolean rounded);
 
-	void setTo(Call to);
+	void setToCall(Call toCall);
 }

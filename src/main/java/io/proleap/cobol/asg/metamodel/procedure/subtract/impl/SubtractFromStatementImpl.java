@@ -45,8 +45,8 @@ public class SubtractFromStatementImpl extends CobolDivisionElementImpl implemen
 
 			// minuend
 			if (ctx.identifier() != null) {
-				final Call minuend = createCall(ctx.identifier());
-				result.setMinuend(minuend);
+				final Call minuendCall = createCall(ctx.identifier());
+				result.setMinuendCall(minuendCall);
 			}
 
 			// rounded
@@ -88,5 +88,4 @@ public class SubtractFromStatementImpl extends CobolDivisionElementImpl implemen
 	public List<Subtrahend> getSubtrahends() {
 		return subtrahends;
 	}
-
 }

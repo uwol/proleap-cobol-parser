@@ -35,5 +35,4 @@ public class UponImpl extends CobolDivisionElementImpl implements Upon {
 	public void setUponCall(final Call uponCall) {
 		this.uponCall = uponCall;
 	}
-
 }

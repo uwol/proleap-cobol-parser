@@ -51,5 +51,4 @@ public class AddToStatementImpl extends CobolDivisionElementImpl implements AddT
 	public List<To> getTos() {
 		return tos;
 	}
-
 }

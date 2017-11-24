@@ -13,11 +13,11 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface Giving extends CobolDivisionElement {
 
-	Call getCall();
+	Call getGivingCall();
 
 	boolean isRounded();
 
-	void setCall(Call call);
+	void setGivingCall(Call givingCall);
 
 	void setRounded(boolean rounded);
 

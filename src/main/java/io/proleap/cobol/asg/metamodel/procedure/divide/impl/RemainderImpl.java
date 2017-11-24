@@ -35,5 +35,4 @@ public class RemainderImpl extends CobolDivisionElementImpl implements Remainder
 	public void setRemainderCall(final Call remainderCall) {
 		this.remainderCall = remainderCall;
 	}
-
 }

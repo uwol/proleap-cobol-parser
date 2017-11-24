@@ -16,9 +16,9 @@ import io.proleap.cobol.asg.metamodel.procedure.divide.Giving;
 
 public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 
-	protected Call call;
-
 	protected DivideGivingContext ctx;
+
+	protected Call givingCall;
 
 	protected boolean rounded;
 
@@ -29,8 +29,8 @@ public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 	}
 
 	@Override
-	public Call getCall() {
-		return call;
+	public Call getGivingCall() {
+		return givingCall;
 	}
 
 	@Override
@@ -39,13 +39,12 @@ public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 	}
 
 	@Override
-	public void setCall(final Call call) {
-		this.call = call;
+	public void setGivingCall(final Call givingCall) {
+		this.givingCall = givingCall;
 	}
 
 	@Override
 	public void setRounded(final boolean rounded) {
 		this.rounded = rounded;
 	}
-
 }
