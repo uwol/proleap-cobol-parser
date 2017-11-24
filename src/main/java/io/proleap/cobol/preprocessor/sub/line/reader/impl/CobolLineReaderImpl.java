@@ -14,8 +14,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.logging.log4j.util.Strings;
-
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -60,10 +58,7 @@ public class CobolLineReaderImpl implements CobolLineReader {
 
 		final CobolLine result;
 
-		if (Strings.isBlank(line)) {
-			result = new CobolLine(CobolLine.blankSequenceArea(format), CobolPreprocessor.WS, "", "", "", format,
-					dialect, lineNumber, CobolLineTypeEnum.BLANK);
-		} else if (!matcher.matches()) {
+		if (!matcher.matches()) {
 			throw new RuntimeException("Is " + format + " the correct line format? Could not parse line "
 					+ (lineNumber + 1) + ": " + line);
 		} else {

@@ -30,7 +30,7 @@ public interface CobolPreprocessor {
 		 * 13-72: area B<br />
 		 * 73-80: comments<br />
 		 */
-		FIXED("(.{6})(?:" + INDICATOR_FIELD + "(.{0,4})(.{0,61})(.*))?", true),
+		FIXED("(.{0,6})(?:" + INDICATOR_FIELD + "(.{0,4})(.{0,61})(.*))?", true),
 
 		/**
 		 * HP Tandem format.<br />
@@ -39,7 +39,7 @@ public interface CobolPreprocessor {
 		 * 2-5: optional area A<br />
 		 * 6-132: optional area B<br />
 		 */
-		TANDEM("()" + INDICATOR_FIELD + "(.{0,4})(.*)()", false),
+		TANDEM("()(?:" + INDICATOR_FIELD + "(.{0,4})(.*)())?", false),
 
 		/**
 		 * Variable format.<br />
@@ -49,7 +49,7 @@ public interface CobolPreprocessor {
 		 * 8-12: optional area A<br />
 		 * 13-*: optional area B<br />
 		 */
-		VARIABLE("(.{6})(?:" + INDICATOR_FIELD + "(.{0,4})(.*)())?", true);
+		VARIABLE("(.{0,6})(?:" + INDICATOR_FIELD + "(.{0,4})(.*)())?", true);
 
 		private final boolean commentEntryMultiLine;
 
