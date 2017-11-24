@@ -36,14 +36,14 @@ import io.proleap.cobol.asg.metamodel.valuestmt.relation.RelationalOperator;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class ConditionTest extends CobolTestBase {
+public class ConditionOrTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/valuestmt/Condition.cbl");
+		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/valuestmt/ConditionOr.cbl");
 		final Program program = new CobolParserRunnerImpl().analyzeFile(inputFile, CobolSourceFormatEnum.TANDEM);
 
-		final CompilationUnit compilationUnit = program.getCompilationUnit("Condition");
+		final CompilationUnit compilationUnit = program.getCompilationUnit("ConditionOr");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(1, procedureDivision.getStatements().size());
@@ -67,12 +67,14 @@ public class ConditionTest extends CobolTestBase {
 					{
 						final SimpleCondition simpleCondition = combinableCondition.getSimpleCondition();
 						assertNotNull(simpleCondition);
-						assertEquals(SimpleCondition.SimpleConditionType.RELATION_CONDITION, simpleCondition.getSimpleConditionType());
+						assertEquals(SimpleCondition.SimpleConditionType.RELATION_CONDITION,
+								simpleCondition.getSimpleConditionType());
 
 						{
 							final RelationConditionValueStmt relationCondition = simpleCondition.getRelationCondition();
 							assertNotNull(relationCondition);
-							assertEquals(RelationConditionValueStmt.RelationConditionType.ARITHMETIC, relationCondition.getRelationConditionType());
+							assertEquals(RelationConditionValueStmt.RelationConditionType.ARITHMETIC,
+									relationCondition.getRelationConditionType());
 
 							{
 								final ArithmeticComparison arithmeticComparison = relationCondition
@@ -82,7 +84,8 @@ public class ConditionTest extends CobolTestBase {
 								{
 									final RelationalOperator operator = arithmeticComparison.getOperator();
 									assertNotNull(operator);
-									assertEquals(RelationalOperator.RelationalOperatorType.GREATER, operator.getRelationalOperatorType());
+									assertEquals(RelationalOperator.RelationalOperatorType.GREATER,
+											operator.getRelationalOperatorType());
 								}
 
 								{
@@ -165,7 +168,8 @@ public class ConditionTest extends CobolTestBase {
 						{
 							final SimpleCondition simpleCondition = combinableCondition.getSimpleCondition();
 							assertNotNull(simpleCondition);
-							assertEquals(SimpleCondition.SimpleConditionType.CONDITION_NAME_REFERENCE, simpleCondition.getSimpleConditionType());
+							assertEquals(SimpleCondition.SimpleConditionType.CONDITION_NAME_REFERENCE,
+									simpleCondition.getSimpleConditionType());
 
 							{
 								final ConditionNameReference conditionNameReference = simpleCondition

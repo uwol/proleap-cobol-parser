@@ -1,0 +1,22 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision IDENTIFICATION DIVISION .\n  
+				(programIdParagraph PROGRAM-ID .  
+					(programName 
+						(cobolWord CONDTN)) .\n )) 
+			(procedureDivision PROCEDURE DIVISION .\n     
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(conditionNameReference 
+													(conditionName 
+														(cobolWord SOME-COND)))))) 
+									(ifThen 
+										(statement 
+											(stopStatement STOP RUN))) END-IF)) .)))))) <EOF>)

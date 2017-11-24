@@ -2279,7 +2279,7 @@ conditionNameReference
    ;
 
 conditionNameSubscriptReference
-   : LPARENCHAR subscript+ RPARENCHAR
+   : LPARENCHAR subscript (COMMACHAR? subscript)* RPARENCHAR
    ;
 
 // relation ----------------------------------

@@ -1,0 +1,33 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision IDENTIFICATION DIVISION .\n  
+				(programIdParagraph PROGRAM-ID .  
+					(programName 
+						(cobolWord CONDTN)) .\n )) 
+			(procedureDivision PROCEDURE DIVISION .\n     
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition NOT 
+											(simpleCondition 
+												(conditionNameReference 
+													(conditionName 
+														(cobolWord SOME-COND)) 
+													(conditionNameSubscriptReference ( 
+														(subscript 
+															(qualifiedDataName 
+																(qualifiedDataNameFormat1 
+																	(dataName 
+																		(cobolWord SOME-INDEX))))) , 
+														(subscript 
+															(qualifiedDataName 
+																(qualifiedDataNameFormat1 
+																	(dataName 
+																		(cobolWord SOME-MONTH))))) )))))) 
+									(ifThen 
+										(statement 
+											(stopStatement STOP RUN))) END-IF)) .)))))) <EOF>)
