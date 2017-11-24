@@ -22,11 +22,11 @@ public interface AddToGivingStatement extends CobolDivisionElement {
 
 	void addGiving(Giving giving);
 
-	void addTo(To to);
+	void addTo(ToGiving to);
 
 	List<From> getFroms();
 
 	List<Giving> getGivings();
 
-	List<To> getTos();
+	List<ToGiving> getTos();
 }

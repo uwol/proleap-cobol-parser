@@ -1095,11 +1095,31 @@ procedureDivision
    ;
 
 procedureDivisionUsingClause
-   : USING (STRING dataName | INTEGER dataName | dataName | fileName)+
+   : (USING | CHAINING) procedureDivisionUsingParameter+
    ;
 
 procedureDivisionGivingClause
-   : GIVING dataName
+   : (GIVING | RETURNING) dataName
+   ;
+
+procedureDivisionUsingParameter
+   : procedureDivisionByReferencePhrase | procedureDivisionByValuePhrase
+   ;
+
+procedureDivisionByReferencePhrase
+   : (BY? REFERENCE)? procedureDivisionByReference+
+   ;
+
+procedureDivisionByReference
+   : (OPTIONAL? (identifier | fileName)) | ANY
+   ;
+
+procedureDivisionByValuePhrase
+   : BY? VALUE procedureDivisionByValue+
+   ;
+
+procedureDivisionByValue
+   : identifier | literal | ANY
    ;
 
 procedureDeclaratives
@@ -1173,7 +1193,7 @@ addToStatement
    ;
 
 addToGivingStatement
-   : addFrom+ (TO addTo+)? GIVING addGiving+
+   : addFrom+ (TO addToGiving+)? GIVING addGiving+
    ;
 
 addCorrespondingStatement
@@ -1186,6 +1206,10 @@ addFrom
 
 addTo
    : identifier ROUNDED?
+   ;
+
+addToGiving
+   : identifier | literal
    ;
 
 addGiving
@@ -2650,6 +2674,7 @@ CCSVERSION : C C S V E R S I O N;
 CD : C D;
 CF : C F;
 CH : C H;
+CHAINING : C H A I N I N G;
 CHANGED : C H A N G E D;
 CHANNEL : C H A N N E L;
 CHARACTER : C H A R A C T E R;

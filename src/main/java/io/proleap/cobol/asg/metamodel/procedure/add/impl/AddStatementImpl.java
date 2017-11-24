@@ -13,6 +13,7 @@ import io.proleap.cobol.Cobol85Parser.AddFromContext;
 import io.proleap.cobol.Cobol85Parser.AddGivingContext;
 import io.proleap.cobol.Cobol85Parser.AddStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddToContext;
+import io.proleap.cobol.Cobol85Parser.AddToGivingContext;
 import io.proleap.cobol.Cobol85Parser.AddToGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddToStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -29,6 +30,7 @@ import io.proleap.cobol.asg.metamodel.procedure.add.AddToStatement;
 import io.proleap.cobol.asg.metamodel.procedure.add.From;
 import io.proleap.cobol.asg.metamodel.procedure.add.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.add.To;
+import io.proleap.cobol.asg.metamodel.procedure.add.ToGiving;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
@@ -102,8 +104,8 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			/*
 			 * to
 			 */
-			for (final AddToContext toContext : ctx.addTo()) {
-				final To to = createTo(toContext);
+			for (final AddToGivingContext toGivingContext : ctx.addToGiving()) {
+				final ToGiving to = createToGiving(toGivingContext);
 				result.addTo(to);
 			}
 
@@ -217,6 +219,24 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 			if (ctx.ROUNDED() != null) {
 				result.setRounded(true);
 			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected ToGiving createToGiving(final AddToGivingContext ctx) {
+		ToGiving result = (ToGiving) getASGElement(ctx);
+
+		if (result == null) {
+			result = new ToGivingImpl(programUnit, ctx);
+
+			/*
+			 * to
+			 */
+			final ValueStmt to = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setTo(to);
 
 			registerASGElement(result);
 		}

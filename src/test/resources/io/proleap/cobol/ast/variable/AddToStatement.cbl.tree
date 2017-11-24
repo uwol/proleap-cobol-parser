@@ -1,0 +1,27 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision IDENTIFICATION DIVISION .\n        
+				(programIdParagraph PROGRAM-ID .  
+					(programName 
+						(cobolWord ADDSTMT)) .\n       )) 
+			(dataDivision DATA DIVISION .\n        
+				(dataDivisionSection 
+					(workingStorageSection WORKING-STORAGE SECTION .\n       ))) 
+			(procedureDivision PROCEDURE DIVISION .\n           
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statement 
+								(addStatement ADD 
+									(addToGivingStatement 
+										(addFrom 
+											(literal 
+												(numericLiteral 
+													(integerLiteral 0)))) TO 
+										(addToGiving 
+											(literal 
+												(figurativeConstant ZERO))) GIVING 
+										(addGiving 
+											(identifier 
+												(specialRegister RETURN-CODE)))))) .)))))) <EOF>)

@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.add.AddToGivingStatement;
 import io.proleap.cobol.asg.metamodel.procedure.add.From;
 import io.proleap.cobol.asg.metamodel.procedure.add.Giving;
-import io.proleap.cobol.asg.metamodel.procedure.add.To;
+import io.proleap.cobol.asg.metamodel.procedure.add.ToGiving;
 
 public class AddToGivingStatementImpl extends CobolDivisionElementImpl implements AddToGivingStatement {
 
@@ -27,7 +27,7 @@ public class AddToGivingStatementImpl extends CobolDivisionElementImpl implement
 
 	protected List<Giving> givings = new ArrayList<Giving>();
 
-	protected List<To> tos = new ArrayList<To>();
+	protected List<ToGiving> tos = new ArrayList<ToGiving>();
 
 	public AddToGivingStatementImpl(final ProgramUnit programUnit, final AddToGivingStatementContext ctx) {
 		super(programUnit, ctx);
@@ -46,7 +46,7 @@ public class AddToGivingStatementImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
-	public void addTo(final To to) {
+	public void addTo(final ToGiving to) {
 		tos.add(to);
 	}
 
@@ -61,7 +61,7 @@ public class AddToGivingStatementImpl extends CobolDivisionElementImpl implement
 	}
 
 	@Override
-	public List<To> getTos() {
+	public List<ToGiving> getTos() {
 		return tos;
 	}
 }

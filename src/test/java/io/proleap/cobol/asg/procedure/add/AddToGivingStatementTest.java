@@ -9,15 +9,21 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.FigurativeConstant.FigurativeConstantType;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.add.AddStatement;
 import io.proleap.cobol.asg.metamodel.procedure.add.AddToGivingStatement;
 import io.proleap.cobol.asg.metamodel.procedure.add.From;
 import io.proleap.cobol.asg.metamodel.procedure.add.Giving;
-import io.proleap.cobol.asg.metamodel.procedure.add.To;
+import io.proleap.cobol.asg.metamodel.procedure.add.ToGiving;
+import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -33,7 +39,7 @@ public class AddToGivingStatementTest extends CobolTestBase {
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(0, procedureDivision.getParagraphs().size());
-		assertEquals(2, procedureDivision.getStatements().size());
+		assertEquals(3, procedureDivision.getStatements().size());
 
 		{
 			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(0);
@@ -51,9 +57,14 @@ public class AddToGivingStatementTest extends CobolTestBase {
 				}
 
 				{
-					final To to = addToGivingStatement.getTos().get(0);
+					final ToGiving to = addToGivingStatement.getTos().get(0);
 					assertNotNull(to.getTo());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to.getTo().getCallType());
+
+					final ValueStmt toValueStmt = to.getTo();
+					final CallValueStmt toCallValueStmt = (CallValueStmt) toValueStmt;
+					final Call toCall = toCallValueStmt.getCall();
+
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, toCall.getCallType());
 					assertEquals(1, addToGivingStatement.getGivings().size());
 				}
 
@@ -87,15 +98,25 @@ public class AddToGivingStatementTest extends CobolTestBase {
 				assertEquals(2, addToGivingStatement.getTos().size());
 
 				{
-					final To to1 = addToGivingStatement.getTos().get(0);
+					final ToGiving to1 = addToGivingStatement.getTos().get(0);
 					assertNotNull(to1.getTo());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to1.getTo().getCallType());
+
+					final ValueStmt to1ValueStmt = to1.getTo();
+					final CallValueStmt to1CallValueStmt = (CallValueStmt) to1ValueStmt;
+					final Call to1Call = to1CallValueStmt.getCall();
+
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to1Call.getCallType());
 				}
 
 				{
-					final To to2 = addToGivingStatement.getTos().get(1);
+					final ToGiving to2 = addToGivingStatement.getTos().get(1);
 					assertNotNull(to2.getTo());
-					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to2.getTo().getCallType());
+
+					final ValueStmt to2ValueStmt = to2.getTo();
+					final CallValueStmt to2CallValueStmt = (CallValueStmt) to2ValueStmt;
+					final Call to2Call = to2CallValueStmt.getCall();
+
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, to2Call.getCallType());
 				}
 
 				assertEquals(2, addToGivingStatement.getGivings().size());
@@ -110,6 +131,46 @@ public class AddToGivingStatementTest extends CobolTestBase {
 					final Giving giving2 = addToGivingStatement.getGivings().get(1);
 					assertNotNull(giving2.getGiving());
 					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving2.getGiving().getCallType());
+				}
+			}
+		}
+
+		{
+			final AddStatement addStatement = (AddStatement) procedureDivision.getStatements().get(2);
+			assertEquals(AddStatement.AddType.TO_GIVING, addStatement.getAddType());
+			assertNotNull(addStatement.getAddToGivingStatement());
+
+			{
+				final AddToGivingStatement addToGivingStatement = addStatement.getAddToGivingStatement();
+				assertEquals(1, addToGivingStatement.getFroms().size());
+
+				{
+					final From from1 = addToGivingStatement.getFroms().get(0);
+					assertNotNull(from1.getFrom());
+				}
+
+				assertEquals(1, addToGivingStatement.getTos().size());
+
+				{
+					final ToGiving to = addToGivingStatement.getTos().get(0);
+					assertNotNull(to.getTo());
+
+					final ValueStmt toValueStmt = to.getTo();
+					final LiteralValueStmt literalToValueStmt = (LiteralValueStmt) toValueStmt;
+					final Literal literal = literalToValueStmt.getLiteral();
+					assertEquals(Literal.LiteralType.FIGURATIVE_CONSTANT, literal.getLiteralType());
+
+					assertNotNull(literal.getFigurativeConstant());
+					assertEquals(FigurativeConstantType.ZERO,
+							literal.getFigurativeConstant().getFigurativeConstantType());
+				}
+
+				assertEquals(1, addToGivingStatement.getGivings().size());
+
+				{
+					final Giving giving1 = addToGivingStatement.getGivings().get(0);
+					assertNotNull(giving1.getGiving());
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, giving1.getGiving().getCallType());
 				}
 			}
 		}
