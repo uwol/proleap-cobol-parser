@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.CombinedComparison;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.CombinedCondition;
-import io.proleap.cobol.asg.metamodel.valuestmt.relation.RelationalOperator;
+import io.proleap.cobol.asg.metamodel.valuestmt.relation.CombinedCondition.CombinedConditionType;
 
 public class CombinedComparisonImpl extends AbstractComparisonValueStmtImpl implements CombinedComparison {
 
@@ -26,8 +26,6 @@ public class CombinedComparisonImpl extends AbstractComparisonValueStmtImpl impl
 	protected CombinedCondition combinedCondition;
 
 	protected RelationCombinedComparisonContext ctx;
-
-	protected RelationalOperator operator;
 
 	public CombinedComparisonImpl(final ProgramUnit programUnit, final RelationCombinedComparisonContext ctx) {
 		super(programUnit, ctx);
@@ -43,6 +41,19 @@ public class CombinedComparisonImpl extends AbstractComparisonValueStmtImpl impl
 			for (final ArithmeticExpressionContext arithmeticExpressionContext : ctx.arithmeticExpression()) {
 				final ArithmeticValueStmt arithmeticExpression = createArithmeticValueStmt(arithmeticExpressionContext);
 				result.addArithmeticExpression(arithmeticExpression);
+
+				// type
+				final CombinedConditionType combinedConditionType;
+
+				if (!ctx.AND().isEmpty()) {
+					combinedConditionType = CombinedConditionType.AND;
+				} else if (!ctx.OR().isEmpty()) {
+					combinedConditionType = CombinedConditionType.OR;
+				} else {
+					combinedConditionType = null;
+				}
+
+				result.setCombinedConditionType(combinedConditionType);
 			}
 
 			combinedCondition = result;
@@ -77,5 +88,4 @@ public class CombinedComparisonImpl extends AbstractComparisonValueStmtImpl impl
 	public void setArithmeticExpression(final ArithmeticValueStmt arithmeticExpression) {
 		this.arithmeticExpression = arithmeticExpression;
 	}
-
 }

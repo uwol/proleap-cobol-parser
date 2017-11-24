@@ -23,6 +23,8 @@ public class CombinedConditionImpl extends ValueStmtImpl implements CombinedCond
 
 	protected List<ArithmeticValueStmt> arithmeticExpressions = new ArrayList<ArithmeticValueStmt>();
 
+	protected CombinedConditionType combinedConditionType;
+
 	protected RelationCombinedConditionContext ctx;
 
 	public CombinedConditionImpl(final ProgramUnit programUnit, final RelationCombinedConditionContext ctx) {
@@ -40,6 +42,11 @@ public class CombinedConditionImpl extends ValueStmtImpl implements CombinedCond
 	}
 
 	@Override
+	public CombinedConditionType getCombinedConditionType() {
+		return combinedConditionType;
+	}
+
+	@Override
 	public Type getType() {
 		return CobolBaseType.BOOLEAN;
 	}
@@ -49,4 +56,8 @@ public class CombinedConditionImpl extends ValueStmtImpl implements CombinedCond
 		return null;
 	}
 
+	@Override
+	public void setCombinedConditionType(final CombinedConditionType combinedConditionType) {
+		this.combinedConditionType = combinedConditionType;
+	}
 }

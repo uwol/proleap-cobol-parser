@@ -44,5 +44,4 @@ public class RelationalOperatorImpl extends ValueStmtImpl implements RelationalO
 	public void setRelationalOperatorType(final RelationalOperatorType relationalOperatorType) {
 		this.relationalOperatorType = relationalOperatorType;
 	}
-
 }

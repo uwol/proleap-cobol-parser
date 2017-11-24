@@ -1,0 +1,46 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision IDENTIFICATION DIVISION .\n  
+				(programIdParagraph PROGRAM-ID .  
+					(programName 
+						(cobolWord CONDTN)) .\n )) 
+			(procedureDivision PROCEDURE DIVISION .\n     
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(relationCondition 
+													(relationCombinedComparison 
+														(arithmeticExpression 
+															(multDivs 
+																(powers 
+																	(basis 
+																		(identifier 
+																			(qualifiedDataName 
+																				(qualifiedDataNameFormat1 
+																					(dataName 
+																						(cobolWord SOME-DATA)) 
+																					(qualifiedInData 
+																						(inData IN 
+																							(dataName 
+																								(cobolWord SOME-OTHER-DATA))))))))))) 
+														(relationalOperator NOT =) ( 
+														(relationCombinedCondition 
+															(arithmeticExpression 
+																(multDivs 
+																	(powers 
+																		(basis 
+																			(literal 'A'))))) AND 
+															(arithmeticExpression 
+																(multDivs 
+																	(powers 
+																		(basis 
+																			(literal 'B')))))) )))))) 
+									(ifThen 
+										(statement 
+											(stopStatement STOP RUN))) END-IF)) .)))))) <EOF>)

@@ -15,8 +15,16 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface CombinedCondition extends ValueStmt {
 
+	enum CombinedConditionType {
+		AND, OR
+	}
+
 	void addArithmeticExpression(ArithmeticValueStmt arithmeticExpression);
 
 	List<ArithmeticValueStmt> getArithmeticExpressions();
+
+	CombinedConditionType getCombinedConditionType();
+
+	void setCombinedConditionType(CombinedConditionType combinedConditionType);
 
 }

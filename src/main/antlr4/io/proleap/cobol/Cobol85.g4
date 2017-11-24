@@ -2325,7 +2325,7 @@ relationCombinedComparison
    ;
 
 relationCombinedCondition
-   : arithmeticExpression (OR arithmeticExpression)+
+   : arithmeticExpression ((AND | OR) arithmeticExpression)+
    ;
 
 relationalOperator
