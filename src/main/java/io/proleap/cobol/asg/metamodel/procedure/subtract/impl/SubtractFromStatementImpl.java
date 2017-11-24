@@ -45,8 +45,8 @@ public class SubtractFromStatementImpl extends CobolDivisionElementImpl implemen
 
 			// minuend
 			if (ctx.identifier() != null) {
-				final Call minuendCall = createCall(ctx.identifier());
-				result.setMinuendCall(minuendCall);
+				final Call minuend = createCall(ctx.identifier());
+				result.setMinuend(minuend);
 			}
 
 			// rounded

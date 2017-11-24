@@ -71,7 +71,7 @@ public class SubtractFromStatementTest extends CobolTestBase {
 					final Minuend minuend = subtractFromStatement.getMinuends().get(0);
 					assertFalse(minuend.isRounded());
 
-					final Call minuendCall = minuend.getMinuendCall();
+					final Call minuendCall = minuend.getMinuend();
 					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, minuendCall.getCallType());
 				}
 
@@ -79,7 +79,7 @@ public class SubtractFromStatementTest extends CobolTestBase {
 					final Minuend minuend = subtractFromStatement.getMinuends().get(1);
 					assertTrue(minuend.isRounded());
 
-					final Call minuendCall = minuend.getMinuendCall();
+					final Call minuendCall = minuend.getMinuend();
 					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, minuendCall.getCallType());
 				}
 			}

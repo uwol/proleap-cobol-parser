@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.FigurativeConstant.FigurativeConstantType;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -23,6 +25,7 @@ import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFromGivingState
 import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractStatement;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Subtrahend;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -39,7 +42,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(0, procedureDivision.getParagraphs().size());
-		assertEquals(1, procedureDivision.getStatements().size());
+		assertEquals(2, procedureDivision.getStatements().size());
 
 		{
 			final SubtractStatement subtractStatement = (SubtractStatement) procedureDivision.getStatements().get(0);
@@ -69,7 +72,9 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 
 				{
 					final MinuendGiving minuend = subtractFromGivingStatement.getMinuend();
-					final Call minuendCall = minuend.getMinuendCall();
+					final ValueStmt minuendValueStmt = minuend.getMinuend();
+					final CallValueStmt minuendCallValueStmt = (CallValueStmt) minuendValueStmt;
+					final Call minuendCall = minuendCallValueStmt.getCall();
 					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, minuendCall.getCallType());
 				}
 
@@ -86,6 +91,51 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 				{
 					final Giving giving = subtractFromGivingStatement.getGivings().get(1);
 					assertTrue(giving.isRounded());
+
+					final Call givingCall = giving.getGivingCall();
+					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, givingCall.getCallType());
+				}
+			}
+		}
+
+		{
+			final SubtractStatement subtractStatement = (SubtractStatement) procedureDivision.getStatements().get(1);
+			assertNotNull(subtractStatement);
+			assertEquals(StatementTypeEnum.SUBTRACT, subtractStatement.getStatementType());
+			assertEquals(SubtractStatement.SubtractType.FROM_GIVING, subtractStatement.getSubtractType());
+			assertNotNull(subtractStatement.getSubtractFromGivingStatement());
+
+			{
+				final SubtractFromGivingStatement subtractFromGivingStatement = subtractStatement
+						.getSubtractFromGivingStatement();
+				assertEquals(1, subtractFromGivingStatement.getSubtrahends().size());
+
+				{
+					final Subtrahend subtrahend = subtractFromGivingStatement.getSubtrahends().get(0);
+					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
+
+					final LiteralValueStmt subtrahendLiteralValueStmt = (LiteralValueStmt) subtrahendValueStmt;
+					assertEquals(0, subtrahendLiteralValueStmt.getValue());
+				}
+
+				{
+					final MinuendGiving minuend = subtractFromGivingStatement.getMinuend();
+					final ValueStmt minuendValueStmt = minuend.getMinuend();
+
+					final LiteralValueStmt literalMinuendValueStmt = (LiteralValueStmt) minuendValueStmt;
+					final Literal literal = literalMinuendValueStmt.getLiteral();
+					assertEquals(Literal.LiteralType.FIGURATIVE_CONSTANT, literal.getLiteralType());
+
+					assertNotNull(literal.getFigurativeConstant());
+					assertEquals(FigurativeConstantType.ZERO,
+							literal.getFigurativeConstant().getFigurativeConstantType());
+				}
+
+				assertEquals(1, subtractFromGivingStatement.getGivings().size());
+
+				{
+					final Giving giving = subtractFromGivingStatement.getGivings().get(0);
+					assertFalse(giving.isRounded());
 
 					final Call givingCall = giving.getGivingCall();
 					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, givingCall.getCallType());

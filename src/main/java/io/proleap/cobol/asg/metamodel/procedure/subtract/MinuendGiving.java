@@ -9,12 +9,12 @@
 package io.proleap.cobol.asg.metamodel.procedure.subtract;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface MinuendGiving extends CobolDivisionElement {
 
-	Call getMinuendCall();
+	ValueStmt getMinuend();
 
-	void setMinuendCall(Call minuendCall);
+	void setMinuend(ValueStmt minuend);
 
 }

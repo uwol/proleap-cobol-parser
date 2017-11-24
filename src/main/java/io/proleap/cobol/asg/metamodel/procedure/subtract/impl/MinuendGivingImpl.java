@@ -10,15 +10,15 @@ package io.proleap.cobol.asg.metamodel.procedure.subtract.impl;
 
 import io.proleap.cobol.Cobol85Parser.SubtractMinuendGivingContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.MinuendGiving;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class MinuendGivingImpl extends CobolDivisionElementImpl implements MinuendGiving {
 
 	protected final SubtractMinuendGivingContext ctx;
 
-	protected Call minuendCall;
+	protected ValueStmt minuend;
 
 	public MinuendGivingImpl(final ProgramUnit programUnit, final SubtractMinuendGivingContext ctx) {
 		super(programUnit, ctx);
@@ -27,13 +27,12 @@ public class MinuendGivingImpl extends CobolDivisionElementImpl implements Minue
 	}
 
 	@Override
-	public Call getMinuendCall() {
-		return minuendCall;
+	public ValueStmt getMinuend() {
+		return minuend;
 	}
 
 	@Override
-	public void setMinuendCall(final Call minuendCall) {
-		this.minuendCall = minuendCall;
+	public void setMinuend(final ValueStmt minuend) {
+		this.minuend = minuend;
 	}
-
 }

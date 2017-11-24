@@ -74,10 +74,8 @@ public class SubtractFromGivingStatementImpl extends CobolDivisionElementImpl im
 			result = new MinuendGivingImpl(programUnit, ctx);
 
 			// minuend
-			if (ctx.identifier() != null) {
-				final Call minuendCall = createCall(ctx.identifier());
-				result.setMinuendCall(minuendCall);
-			}
+			final ValueStmt minuendValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setMinuend(minuendValueStmt);
 
 			minuend = result;
 			registerASGElement(result);

@@ -13,11 +13,11 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface Minuend extends CobolDivisionElement {
 
-	Call getMinuendCall();
+	Call getMinuend();
 
 	boolean isRounded();
 
-	void setMinuendCall(Call minuendCall);
+	void setMinuend(Call minuend);
 
 	void setRounded(boolean rounded);
 }

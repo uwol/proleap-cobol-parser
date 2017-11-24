@@ -147,6 +147,10 @@ public class AddToGivingStatementTest extends CobolTestBase {
 				{
 					final From from1 = addToGivingStatement.getFroms().get(0);
 					assertNotNull(from1.getFrom());
+
+					final ValueStmt fromValueStmt = from1.getFrom();
+					final LiteralValueStmt fromLiteralValueStmt = (LiteralValueStmt) fromValueStmt;
+					assertEquals(0, fromLiteralValueStmt.getValue());
 				}
 
 				assertEquals(1, addToGivingStatement.getTos().size());
