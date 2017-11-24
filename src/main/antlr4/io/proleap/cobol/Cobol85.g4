@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2016, Ulrich Wolffgang <u.wol@wwu.de>
+* Copyright (C) 2017, Ulrich Wolffgang <u.wol@wwu.de>
 * All rights reserved.
 *
 * This software may be modified and distributed under the terms
@@ -1657,7 +1657,7 @@ mergeGiving
 // move statement
 
 moveStatement
-   : MOVE (moveToStatement | moveCorrespondingToStatement)
+   : MOVE ALL? (moveToStatement | moveCorrespondingToStatement)
    ;
 
 moveToStatement

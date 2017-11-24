@@ -18,4 +18,16 @@
 											(qualifiedDataName 
 												(qualifiedDataNameFormat1 
 													(dataName 
+														(cobolWord TESTVAR)))))))) .\n         ) 
+						(sentence 
+							(statement 
+								(moveStatement MOVE ALL 
+									(moveToStatement 
+										(moveToSendingArea 
+											(literal 
+												(figurativeConstant ZEROS))) TO 
+										(identifier 
+											(qualifiedDataName 
+												(qualifiedDataNameFormat1 
+													(dataName 
 														(cobolWord TESTVAR)))))))) .)))))) <EOF>)
