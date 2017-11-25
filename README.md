@@ -1,6 +1,8 @@
 ProLeap ANTLR4-based parser for COBOL
 =====================================
 
+💫 **Please star**, if you like our work.
+
 This is an ANTLR4-based **COBOL parser**, which generates an
 **Abstract Syntax Tree** (AST) and **Abstract Semantic Graph** (ASG) for COBOL code.
 The AST represents plain COBOL source code in a syntax tree structure.
@@ -13,6 +15,7 @@ The parser is developed test-driven, passes the **NIST test suite** and has succ
 [![Build](https://img.shields.io/travis/uwol/cobol85parser.svg)](https://travis-ci.org/uwol/cobol85parser)
 [![Coverage](https://coveralls.io/repos/github/uwol/cobol85parser/badge.svg?branch=master)](https://coveralls.io/github/uwol/cobol85parser?branch=master)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![ProLeap on Twitter](https://img.shields.io/twitter/follow/proleap_io.svg?style=social&label=Follow)](https://twitter.com/proleap_io)
 
 
 Example
@@ -119,19 +122,13 @@ for (final io.proleap.cobol.asg.metamodel.CompilationUnit compilationUnit : prog
 ```
 
 
-Characteristics
----------------
+Features
+--------
 
-1. The parser passes the NIST test suite.
-
-2. To be used in conjunction with the provided preprocessor, which executes
-   COPY and REPLACE statements.
-
-3. EXEC SQL statements, EXEC SQLIMS statements and EXEC CICS statements are extracted by 
-   the preprocessor and provided as texts in the ASG.
-
-4. For parsing large Cobol source code files, following VM args have to be set: `-Xmx2048m`.
-   Intellij Plugin for ANTLR 4 has to be provided with those VM args in file `idea.vmoptions`.
+* `EXEC SQL` statements, `EXEC SQLIMS` statements and `EXEC CICS` statements are extracted by the preprocessor and provided as texts in the ASG.
+* Passes the [NIST test suite](http://www.itl.nist.gov/div897/ctg/cobol_form.htm).
+* Rigorous test-driven development.
+* To be used in conjunction with the provided preprocessor, which executes `COPY`, `REPLACE`, `CBL` and `PROCESS` statements.
 
 
 Build process
@@ -188,6 +185,7 @@ $ mvn clean test
 Release process
 ---------------
 
+* Releases and snapshots are published in the MAVEN repository `maven.proleap.io`.
 * Milestones of the grammar are published in the [ANTLR grammars repo](https://github.com/antlr/grammars-v4).
 
 
@@ -195,8 +193,3 @@ License
 -------
 
 Licensed under the BSD 3-Clause License. See LICENSE for details.
-
-### And finally...
-
-Patches accepted, or create an issue!
-I'd love, if you could send me a note in which context you're using the parser. Thank you!
