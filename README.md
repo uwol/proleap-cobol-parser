@@ -1,18 +1,18 @@
 ProLeap ANTLR4-based parser for COBOL
 =====================================
 
-[![Build](https://img.shields.io/travis/uwol/cobol85parser.svg)](https://travis-ci.org/uwol/cobol85parser)
-[![Coverage](https://coveralls.io/repos/github/uwol/cobol85parser/badge.svg?branch=master)](https://coveralls.io/github/uwol/cobol85parser?branch=master)
-[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-
-This is an ANTLR4-based parser for COBOL, which generates an
-Abstract Syntax Tree (AST) and Abstract Semantic Graph (ASG) for COBOL code.
+This is an ANTLR4-based **COBOL parser**, which generates an
+**Abstract Syntax Tree** (AST) and **Abstract Semantic Graph** (ASG) for COBOL code.
 The AST represents plain COBOL source code in a syntax tree structure.
-The ASG is generated from the AST by semantic analysis and provides data and control
+The ASG is generated from the AST by **semantic analysis** and provides data and control
 flow information (e. g. variable access). EXEC SQL, EXEC SQLIMS and EXEC CICS 
 statements are extracted as texts.
 
-The parser is developed test-driven, passes the NIST test suite and has successfully been applied to large real-life COBOL files in banking and insurance.
+The parser is developed test-driven, passes the **NIST test suite** and has successfully been **applied to numerous COBOL files** from banking and insurance.
+
+[![Build](https://img.shields.io/travis/uwol/cobol85parser.svg)](https://travis-ci.org/uwol/cobol85parser)
+[![Coverage](https://coveralls.io/repos/github/uwol/cobol85parser/badge.svg?branch=master)](https://coveralls.io/github/uwol/cobol85parser?branch=master)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 
 Example
