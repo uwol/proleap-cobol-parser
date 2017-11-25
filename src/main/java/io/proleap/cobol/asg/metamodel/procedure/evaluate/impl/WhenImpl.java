@@ -13,7 +13,6 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.EvaluateAlsoConditionContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateConditionContext;
-import io.proleap.cobol.Cobol85Parser.EvaluateValueContext;
 import io.proleap.cobol.Cobol85Parser.EvaluateWhenContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
@@ -109,11 +108,6 @@ public class WhenImpl extends CobolDivisionElementImpl implements When {
 		return result;
 	}
 
-	protected ValueStmt createValueStmt(final EvaluateValueContext ctx) {
-		final ValueStmt result = createValueStmt(ctx.identifier(), ctx.literal(), ctx.arithmeticExpression());
-		return result;
-	}
-
 	@Override
 	public List<AlsoCondition> getAlsoConditions() {
 		return alsoConditions;
@@ -123,5 +117,4 @@ public class WhenImpl extends CobolDivisionElementImpl implements When {
 	public Condition getCondition() {
 		return condition;
 	}
-
 }

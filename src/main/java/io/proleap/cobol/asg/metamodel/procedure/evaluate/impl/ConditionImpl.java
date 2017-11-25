@@ -110,5 +110,4 @@ public class ConditionImpl extends CobolDivisionElementImpl implements Condition
 	public void setNot(final boolean not) {
 		this.not = not;
 	}
-
 }

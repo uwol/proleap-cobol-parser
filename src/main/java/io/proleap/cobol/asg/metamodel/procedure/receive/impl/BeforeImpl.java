@@ -35,5 +35,4 @@ public class BeforeImpl extends CobolDivisionElementImpl implements Before {
 	public void setTimeValueStmt(final ValueStmt timeValueStmt) {
 		this.timeValueStmt = timeValueStmt;
 	}
-
 }
