@@ -5,7 +5,7 @@ This is an ANTLR4-based **COBOL parser**, which generates an
 **Abstract Syntax Tree** (AST) and **Abstract Semantic Graph** (ASG) for COBOL code.
 The AST represents plain COBOL source code in a syntax tree structure.
 The ASG is generated from the AST by **semantic analysis** and provides data and control
-flow information (e. g. variable access). EXEC SQL, EXEC SQLIMS and EXEC CICS 
+flow information (e. g. variable access). EXEC SQL, EXEC SQLIMS and EXEC CICS
 statements are extracted as texts.
 
 The parser is developed test-driven, passes the **NIST test suite** and has successfully been **applied to numerous COBOL files** from banking and insurance.
@@ -75,7 +75,7 @@ To include the parser in your Maven project edit your `pom.xml` file as follows
 <dependency>
 	<groupId>io.github.uwol</groupId>
 	<artifactId>cobol85parser</artifactId>
-	<version>2.1.0</version>
+	<version>2.2.0</version>
 </dependency>
 ```
 
