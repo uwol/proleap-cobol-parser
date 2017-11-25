@@ -1280,12 +1280,16 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			result = new ReleaseStatementImpl(programUnit, this, ctx);
 
 			// record
-			final Call recordCall = createCall(ctx.recordName());
-			result.setRecordCall(recordCall);
+			if (ctx.recordName() != null) {
+				final Call recordCall = createCall(ctx.recordName());
+				result.setRecordCall(recordCall);
+			}
 
 			// content
-			final Call contentCall = createCall(ctx.qualifiedDataName());
-			result.setContentCall(contentCall);
+			if (ctx.qualifiedDataName() != null) {
+				final Call contentCall = createCall(ctx.qualifiedDataName());
+				result.setContentCall(contentCall);
+			}
 
 			registerStatement(result);
 		}
