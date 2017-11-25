@@ -19,15 +19,21 @@ import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativeContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativesContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureDivisionGivingClauseContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureDivisionUsingClauseContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureDivisionUsingParameterContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
+import io.proleap.cobol.asg.metamodel.procedure.GivingClause;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.ParagraphName;
 import io.proleap.cobol.asg.metamodel.procedure.ParagraphsSymbolTableEntry;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.Section;
 import io.proleap.cobol.asg.metamodel.procedure.SectionsSymbolTableEntry;
+import io.proleap.cobol.asg.metamodel.procedure.UsingClause;
 import io.proleap.cobol.asg.metamodel.procedure.declaratives.Declaratives;
 import io.proleap.cobol.asg.metamodel.procedure.declaratives.impl.DeclarativesImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
@@ -39,6 +45,8 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 
 	protected Declaratives declaratives;
 
+	protected GivingClause givingClause;
+
 	protected List<Paragraph> paragraphs = new ArrayList<Paragraph>();
 
 	protected Map<String, ParagraphsSymbolTableEntry> paragraphsSymbolTable = new HashMap<String, ParagraphsSymbolTableEntry>();
@@ -46,6 +54,8 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 	protected List<Section> sections = new ArrayList<Section>();
 
 	protected Map<String, SectionsSymbolTableEntry> sectionsSymbolTable = new HashMap<String, SectionsSymbolTableEntry>();
+
+	protected UsingClause usingClause;
 
 	public ProcedureDivisionImpl(final ProgramUnit programUnit, final ProcedureDivisionContext ctx) {
 		super(programUnit, ctx);
@@ -66,6 +76,23 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 				result.addDeclarative(procedureDeclarativeContext);
 			}
 
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public GivingClause addGivingClause(final ProcedureDivisionGivingClauseContext ctx) {
+		GivingClause result = (GivingClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new GivingClauseImpl(programUnit, ctx);
+
+			final Call givingCall = createCall(ctx.dataName());
+			result.setGivingCall(givingCall);
+
+			givingClause = result;
 			registerASGElement(result);
 		}
 
@@ -130,6 +157,26 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 		return result;
 	}
 
+	@Override
+	public UsingClause addUsingClause(final ProcedureDivisionUsingClauseContext ctx) {
+		UsingClause result = (UsingClause) getASGElement(ctx);
+
+		if (result == null) {
+			result = new UsingClauseImpl(programUnit, ctx);
+
+			// parameters
+			for (final ProcedureDivisionUsingParameterContext procedureDivisionUsingParameterContext : ctx
+					.procedureDivisionUsingParameter()) {
+				result.addUsingParameter(procedureDivisionUsingParameterContext);
+			}
+
+			usingClause = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
 	public ValueStmt addValueStmt(final LiteralContext ctx) {
 		ValueStmt result = (ValueStmt) getASGElement(ctx);
 
@@ -167,6 +214,11 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 	@Override
 	public Declaratives getDeclaratives() {
 		return declaratives;
+	}
+
+	@Override
+	public GivingClause getGivingClause() {
+		return givingClause;
 	}
 
 	@Override
@@ -212,5 +264,10 @@ public class ProcedureDivisionImpl extends ScopeImpl implements ProcedureDivisio
 	@Override
 	public List<Section> getSections(final String name) {
 		return sectionsSymbolTable.get(getSymbol(name)).getSections();
+	}
+
+	@Override
+	public UsingClause getUsingClause() {
+		return usingClause;
 	}
 }

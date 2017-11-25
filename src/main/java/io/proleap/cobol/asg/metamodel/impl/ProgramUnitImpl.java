@@ -173,6 +173,16 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 
 			registerASGElement(result);
 
+			// giving
+			if (ctx.procedureDivisionGivingClause() != null) {
+				result.addGivingClause(ctx.procedureDivisionGivingClause());
+			}
+
+			// using
+			if (ctx.procedureDivisionUsingClause() != null) {
+				result.addUsingClause(ctx.procedureDivisionUsingClause());
+			}
+
 			// declaratives
 			if (ctx.procedureDeclaratives() != null) {
 				result.addDeclaratives(ctx.procedureDeclaratives());

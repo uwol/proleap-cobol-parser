@@ -62,31 +62,31 @@ public class OpenStatementTest extends CobolTestBase {
 					{
 						fileControlEntry1 = fileControlParagraph.getFileControlEntry("SOMEFILE1");
 						assertNotNull(fileControlEntry1);
-						assertEquals(2, fileControlEntry1.getCalls().size());
+						assertEquals(3, fileControlEntry1.getCalls().size());
 					}
 
 					{
 						fileControlEntry2 = fileControlParagraph.getFileControlEntry("SOMEFILE2");
 						assertNotNull(fileControlEntry2);
-						assertEquals(2, fileControlEntry2.getCalls().size());
+						assertEquals(3, fileControlEntry2.getCalls().size());
 					}
 
 					{
 						fileControlEntry3 = fileControlParagraph.getFileControlEntry("SOMEFILE3");
 						assertNotNull(fileControlEntry3);
-						assertEquals(2, fileControlEntry3.getCalls().size());
+						assertEquals(3, fileControlEntry3.getCalls().size());
 					}
 
 					{
 						fileControlEntry4 = fileControlParagraph.getFileControlEntry("SOMEFILE4");
 						assertNotNull(fileControlEntry4);
-						assertEquals(3, fileControlEntry4.getCalls().size());
+						assertEquals(4, fileControlEntry4.getCalls().size());
 					}
 
 					{
 						fileControlEntry5 = fileControlParagraph.getFileControlEntry("SOMEFILE5");
 						assertNotNull(fileControlEntry5);
-						assertEquals(3, fileControlEntry5.getCalls().size());
+						assertEquals(4, fileControlEntry5.getCalls().size());
 					}
 				}
 			}

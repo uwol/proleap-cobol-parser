@@ -61,7 +61,7 @@ public class ReadStatementTest extends CobolTestBase {
 					{
 						fileControlEntry = fileControlParagraph.getFileControlEntry("SOMEFILE1");
 						assertNotNull(fileControlEntry);
-						assertEquals(1, fileControlEntry.getCalls().size());
+						assertEquals(2, fileControlEntry.getCalls().size());
 					}
 				}
 			}

@@ -402,6 +402,13 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 			final String name = determineName(ctx);
 			result = new SelectClauseImpl(name, programUnit, ctx);
 
+			final Call fileCall = createCall(ctx.fileName());
+			result.addFileCall(fileCall);
+
+			if (ctx.OPTIONAL() != null) {
+				result.setOptional(true);
+			}
+
 			selectClause = result;
 			registerASGElement(result);
 		}

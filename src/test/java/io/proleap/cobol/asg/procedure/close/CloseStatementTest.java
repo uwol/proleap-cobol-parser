@@ -65,37 +65,37 @@ public class CloseStatementTest extends CobolTestBase {
 					{
 						fileControlEntry1a = fileControlParagraph.getFileControlEntry("SOMEFILE1A");
 						assertNotNull(fileControlEntry1a);
-						assertEquals(2, fileControlEntry1a.getCalls().size());
+						assertEquals(3, fileControlEntry1a.getCalls().size());
 					}
 
 					{
 						fileControlEntry1b = fileControlParagraph.getFileControlEntry("SOMEFILE1B");
 						assertNotNull(fileControlEntry1b);
-						assertEquals(2, fileControlEntry1b.getCalls().size());
+						assertEquals(3, fileControlEntry1b.getCalls().size());
 					}
 
 					{
 						fileControlEntry2 = fileControlParagraph.getFileControlEntry("SOMEFILE2");
 						assertNotNull(fileControlEntry2);
-						assertEquals(2, fileControlEntry2.getCalls().size());
+						assertEquals(3, fileControlEntry2.getCalls().size());
 					}
 
 					{
 						fileControlEntry3 = fileControlParagraph.getFileControlEntry("SOMEFILE3");
 						assertNotNull(fileControlEntry3);
-						assertEquals(2, fileControlEntry3.getCalls().size());
+						assertEquals(3, fileControlEntry3.getCalls().size());
 					}
 
 					{
 						fileControlEntry4 = fileControlParagraph.getFileControlEntry("SOMEFILE4");
 						assertNotNull(fileControlEntry4);
-						assertEquals(2, fileControlEntry4.getCalls().size());
+						assertEquals(3, fileControlEntry4.getCalls().size());
 					}
 
 					{
 						fileControlEntry5 = fileControlParagraph.getFileControlEntry("SOMEFILE5");
 						assertNotNull(fileControlEntry5);
-						assertEquals(2, fileControlEntry5.getCalls().size());
+						assertEquals(3, fileControlEntry5.getCalls().size());
 					}
 				}
 			}

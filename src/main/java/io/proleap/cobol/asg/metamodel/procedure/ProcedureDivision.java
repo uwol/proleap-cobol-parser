@@ -13,6 +13,8 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.ParagraphContext;
 import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativesContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureDivisionGivingClauseContext;
+import io.proleap.cobol.Cobol85Parser.ProcedureDivisionUsingClauseContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureSectionContext;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.declaratives.Declaratives;
@@ -24,6 +26,8 @@ public interface ProcedureDivision extends Scope {
 
 	Declaratives addDeclaratives(ProcedureDeclarativesContext ctx);
 
+	GivingClause addGivingClause(ProcedureDivisionGivingClauseContext ctx);
+
 	void addParagraph(Paragraph paragraph);
 
 	Paragraph addParagraph(ParagraphContext ctx);
@@ -32,7 +36,11 @@ public interface ProcedureDivision extends Scope {
 
 	Section addSection(ProcedureSectionContext ctx);
 
+	UsingClause addUsingClause(ProcedureDivisionUsingClauseContext ctx);
+
 	Declaratives getDeclaratives();
+
+	GivingClause getGivingClause();
 
 	/**
 	 * Returns the first @Paragraph with the given name, including ones nested in
@@ -61,10 +69,15 @@ public interface ProcedureDivision extends Scope {
 	 */
 	Section getSection(String name);
 
+	/**
+	 * Returns every @Section
+	 */
 	List<Section> getSections();
 
 	/**
 	 * Returns every @Section with the given name, including duplicate ones.
 	 */
 	List<Section> getSections(String name);
+
+	UsingClause getUsingClause();
 }

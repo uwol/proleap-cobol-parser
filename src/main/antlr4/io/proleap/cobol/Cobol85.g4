@@ -1854,8 +1854,8 @@ receiveStatus
 
 // release statement
 
-releaseStatement :
-   RELEASE recordName (FROM qualifiedDataName)?
+releaseStatement 
+   : RELEASE recordName (FROM qualifiedDataName)?
    ;
 
 // return statement
