@@ -1,8 +1,6 @@
 ProLeap ANTLR4-based parser for COBOL
 =====================================
 
-💫 **Star** if you like our work.
-
 This is an ANTLR4-based **COBOL parser**, which generates an
 **Abstract Syntax Tree** (AST) and **Abstract Semantic Graph** (ASG) for COBOL code.
 The AST represents plain COBOL source code in a syntax tree structure.
@@ -11,6 +9,8 @@ flow information (e. g. variable access). EXEC SQL, EXEC SQLIMS and EXEC CICS
 statements are extracted as texts.
 
 The parser is developed test-driven, passes the **NIST test suite** and has successfully been **applied to numerous COBOL files** from banking and insurance.
+
+💫 **Star** if you like our work.
 
 [![Build](https://img.shields.io/travis/uwol/cobol85parser.svg)](https://travis-ci.org/uwol/cobol85parser)
 [![Coverage](https://coveralls.io/repos/github/uwol/cobol85parser/badge.svg?branch=master)](https://coveralls.io/github/uwol/cobol85parser?branch=master)
