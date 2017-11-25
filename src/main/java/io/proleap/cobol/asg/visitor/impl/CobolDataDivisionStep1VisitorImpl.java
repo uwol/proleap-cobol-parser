@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016, Ulrich Wolffgang <u.wol@wwu.de>
+ * Copyright (C) 2017, Ulrich Wolffgang <u.wol@wwu.de>
  * All rights reserved.
  *
  * This software may be modified and distributed under the terms
@@ -23,17 +23,15 @@ import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.file.FileSection;
 import io.proleap.cobol.asg.metamodel.data.linkage.LinkageSection;
 import io.proleap.cobol.asg.metamodel.data.localstorage.LocalStorageSection;
-import io.proleap.cobol.asg.metamodel.data.screen.ScreenDescriptionEntry;
-import io.proleap.cobol.asg.metamodel.data.screen.ScreenSection;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.util.ANTLRUtils;
 
 /**
  * Visitor for analyzing declarations in the AST.
  */
-public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl {
+public class CobolDataDivisionStep1VisitorImpl extends AbstractCobolParserVisitorImpl {
 
-	public CobolDataDivisionVisitorImpl(final Program program) {
+	public CobolDataDivisionStep1VisitorImpl(final Program program) {
 		super(program);
 	}
 
@@ -69,31 +67,6 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 		}
 	}
 
-	protected void linkScreenDescriptionEntries(final List<ScreenDescriptionEntry> screenDescriptionEntries) {
-		ScreenDescriptionEntry predecessor = null;
-
-		for (final ScreenDescriptionEntry successor : screenDescriptionEntries) {
-			if (predecessor != null) {
-				linkScreenDescriptionEntries(predecessor, successor);
-			}
-
-			linkScreenDescriptionEntries(successor.getScreenDescriptionEntries());
-			predecessor = successor;
-		}
-	}
-
-	protected void linkScreenDescriptionEntries(final ScreenDescriptionEntry predecessor,
-			final ScreenDescriptionEntry successor) {
-		predecessor.setSuccessor(successor);
-		successor.setPredecessor(predecessor);
-	}
-
-	protected void linkScreenDescriptionEntries(final ScreenSection screenSection) {
-		final List<ScreenDescriptionEntry> rootScreenDescriptionEntries = screenSection
-				.getRootScreenDescriptionEntries();
-		linkScreenDescriptionEntries(rootScreenDescriptionEntries);
-	}
-
 	@Override
 	public Boolean visitCommunicationSection(final Cobol85Parser.CommunicationSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
@@ -103,15 +76,6 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 		linkDataDescriptionEntries(communicationSection);
 
 		return result;
-	}
-
-	@Override
-	public Boolean visitDataBaseSection(final Cobol85Parser.DataBaseSectionContext ctx) {
-		final DataDivision dataDivision = findDataDivision(ctx);
-
-		dataDivision.addDataBaseSection(ctx);
-
-		return visitChildren(ctx);
 	}
 
 	@Override
@@ -156,26 +120,6 @@ public class CobolDataDivisionVisitorImpl extends AbstractCobolParserVisitorImpl
 		dataDivision.addProgramLibrarySection(ctx);
 
 		return visitChildren(ctx);
-	}
-
-	@Override
-	public Boolean visitReportSection(final Cobol85Parser.ReportSectionContext ctx) {
-		final DataDivision dataDivision = findDataDivision(ctx);
-
-		dataDivision.addReportSection(ctx);
-
-		return visitChildren(ctx);
-	}
-
-	@Override
-	public Boolean visitScreenSection(final Cobol85Parser.ScreenSectionContext ctx) {
-		final DataDivision dataDivision = findDataDivision(ctx);
-		final ScreenSection screenSection = dataDivision.addScreenSection(ctx);
-		final Boolean result = visitChildren(ctx);
-
-		linkScreenDescriptionEntries(screenSection);
-
-		return result;
 	}
 
 	@Override

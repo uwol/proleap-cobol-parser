@@ -55,6 +55,33 @@ public class CobolProcedureDivisionVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
+	public Boolean visitProcedureDeclaratives(final Cobol85Parser.ProcedureDeclarativesContext ctx) {
+		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+
+		procedureDivision.addDeclaratives(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitProcedureDivisionGivingClause(final Cobol85Parser.ProcedureDivisionGivingClauseContext ctx) {
+		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+
+		procedureDivision.addGivingClause(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
+	public Boolean visitProcedureDivisionUsingClause(final Cobol85Parser.ProcedureDivisionUsingClauseContext ctx) {
+		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
+
+		procedureDivision.addUsingClause(ctx);
+
+		return visitChildren(ctx);
+	}
+
+	@Override
 	public Boolean visitProcedureSection(final Cobol85Parser.ProcedureSectionContext ctx) {
 		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
 

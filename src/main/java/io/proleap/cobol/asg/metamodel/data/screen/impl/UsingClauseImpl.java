@@ -35,5 +35,4 @@ public class UsingClauseImpl extends CobolDivisionElementImpl implements UsingCl
 	public void setUsingCall(final Call usingCall) {
 		this.usingCall = usingCall;
 	}
-
 }

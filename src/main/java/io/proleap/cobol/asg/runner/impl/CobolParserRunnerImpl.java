@@ -32,11 +32,10 @@ import io.proleap.cobol.asg.metamodel.impl.ProgramImpl;
 import io.proleap.cobol.asg.runner.CobolParserRunner;
 import io.proleap.cobol.asg.visitor.ParserVisitor;
 import io.proleap.cobol.asg.visitor.impl.CobolCompilationUnitVisitorImpl;
-import io.proleap.cobol.asg.visitor.impl.CobolDataDivisionVisitorImpl;
-import io.proleap.cobol.asg.visitor.impl.CobolEnvironmentDivisionVisitorImpl;
+import io.proleap.cobol.asg.visitor.impl.CobolDataDivisionStep1VisitorImpl;
+import io.proleap.cobol.asg.visitor.impl.CobolDataDivisionStep2VisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolFileControlClauseVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolFileDescriptionEntryClauseVisitorImpl;
-import io.proleap.cobol.asg.visitor.impl.CobolIdentificationDivisionVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProcedureDivisionVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProcedureStatementVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProgramUnitVisitorImpl;
@@ -51,32 +50,30 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	protected void analyze(final Program program) {
 		analyzeProgramUnits(program);
 
-		analyzeIdentificationDivisions(program);
-		analyzeEnvironmentDivisions(program);
-
-		analyzeDataDivisions(program);
+		analyzeDataDivisionsStep1(program);
+		analyzeDataDivisionsStep2(program);
 
 		analyzeFileControlClauses(program);
-		analyzeFileDescriptionEntryClauses(program);
+		analyzeFileDescriptionEntriesClauses(program);
 
 		analyzeProcedureDivisions(program);
 		analyzeProcedureStatements(program);
 	}
 
-	protected void analyzeDataDivisions(final Program program) {
+	protected void analyzeDataDivisionsStep1(final Program program) {
 		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
-			final ParserVisitor visitor = new CobolDataDivisionVisitorImpl(program);
+			final ParserVisitor visitor = new CobolDataDivisionStep1VisitorImpl(program);
 
-			LOG.info("Analyzing data divisions of compilation unit {}.", compilationUnit.getName());
+			LOG.info("Analyzing data divisions of compilation unit {} in step 1.", compilationUnit.getName());
 			visitor.visit(compilationUnit.getCtx());
 		}
 	}
 
-	protected void analyzeEnvironmentDivisions(final Program program) {
+	protected void analyzeDataDivisionsStep2(final Program program) {
 		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
-			final ParserVisitor visitor = new CobolEnvironmentDivisionVisitorImpl(program);
+			final ParserVisitor visitor = new CobolDataDivisionStep2VisitorImpl(program);
 
-			LOG.info("Analyzing environment divisions of compilation unit {}.", compilationUnit.getName());
+			LOG.info("Analyzing data divisions of compilation unit {} in step 2.", compilationUnit.getName());
 			visitor.visit(compilationUnit.getCtx());
 		}
 	}
@@ -109,11 +106,11 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		}
 	}
 
-	protected void analyzeFileDescriptionEntryClauses(final Program program) {
+	protected void analyzeFileDescriptionEntriesClauses(final Program program) {
 		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
 			final ParserVisitor visitor = new CobolFileDescriptionEntryClauseVisitorImpl(program);
 
-			LOG.info("Analyzing file control description entry of compilation unit {}.", compilationUnit.getName());
+			LOG.info("Analyzing file description entries of compilation unit {}.", compilationUnit.getName());
 			visitor.visit(compilationUnit.getCtx());
 		}
 	}
@@ -138,15 +135,6 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		analyze(program);
 
 		return program;
-	}
-
-	protected void analyzeIdentificationDivisions(final Program program) {
-		for (final CompilationUnit compilationUnit : program.getCompilationUnits()) {
-			final ParserVisitor visitor = new CobolIdentificationDivisionVisitorImpl(program);
-
-			LOG.info("Analyzing identification divisions of compilation unit {}.", compilationUnit.getName());
-			visitor.visit(compilationUnit.getCtx());
-		}
 	}
 
 	protected void analyzeProcedureDivisions(final Program program) {

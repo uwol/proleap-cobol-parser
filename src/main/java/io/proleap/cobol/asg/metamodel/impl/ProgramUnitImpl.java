@@ -13,7 +13,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
-import io.proleap.cobol.Cobol85Parser.DataDivisionSectionContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionBodyContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
 import io.proleap.cobol.Cobol85Parser.IdentificationDivisionBodyContext;
@@ -60,40 +59,6 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 			result = new DataDivisionImpl(this, ctx);
 			dataDivision = result;
 
-			for (final DataDivisionSectionContext dataDivisionSection : ctx.dataDivisionSection()) {
-				if (dataDivisionSection.communicationSection() != null) {
-					result.addCommunicationSection(dataDivisionSection.communicationSection());
-				}
-
-				if (dataDivisionSection.dataBaseSection() != null) {
-					result.addDataBaseSection(dataDivisionSection.dataBaseSection());
-				}
-
-				if (dataDivisionSection.fileSection() != null) {
-					result.addFileSection(dataDivisionSection.fileSection());
-				}
-
-				if (dataDivisionSection.linkageSection() != null) {
-					result.addLinkageSection(dataDivisionSection.linkageSection());
-				}
-
-				if (dataDivisionSection.localStorageSection() != null) {
-					result.addLocalStorageSection(dataDivisionSection.localStorageSection());
-				}
-
-				if (dataDivisionSection.programLibrarySection() != null) {
-					result.addProgramLibrarySection(dataDivisionSection.programLibrarySection());
-				}
-
-				if (dataDivisionSection.screenSection() != null) {
-					result.addScreenSection(dataDivisionSection.screenSection());
-				}
-
-				if (dataDivisionSection.workingStorageSection() != null) {
-					result.addWorkingStorageSection(dataDivisionSection.workingStorageSection());
-				}
-			}
-
 			registerASGElement(result);
 		}
 
@@ -111,10 +76,10 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 			for (final EnvironmentDivisionBodyContext environmentDivisionBodyContext : ctx.environmentDivisionBody()) {
 				if (environmentDivisionBodyContext.configurationSection() != null) {
 					result.addConfigurationSection(environmentDivisionBodyContext.configurationSection());
-				} else if (environmentDivisionBodyContext.specialNamesParagraph() != null) {
-					result.addSpecialNamesParagraph(environmentDivisionBodyContext.specialNamesParagraph());
 				} else if (environmentDivisionBodyContext.inputOutputSection() != null) {
 					result.addInputOutputSection(environmentDivisionBodyContext.inputOutputSection());
+				} else if (environmentDivisionBodyContext.specialNamesParagraph() != null) {
+					result.addSpecialNamesParagraph(environmentDivisionBodyContext.specialNamesParagraph());
 				} else {
 					LOG.warn("unknown environment division body {}", environmentDivisionBodyContext);
 				}
@@ -142,16 +107,16 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 					.identificationDivisionBody()) {
 				if (identificationDivisionBodyContext.authorParagraph() != null) {
 					result.addAuthorParagraph(identificationDivisionBodyContext.authorParagraph());
-				} else if (identificationDivisionBodyContext.installationParagraph() != null) {
-					result.addInstallationParagraph(identificationDivisionBodyContext.installationParagraph());
 				} else if (identificationDivisionBodyContext.dateWrittenParagraph() != null) {
 					result.addDateWrittenParagraph(identificationDivisionBodyContext.dateWrittenParagraph());
 				} else if (identificationDivisionBodyContext.dateCompiledParagraph() != null) {
 					result.addDateCompiledParagraph(identificationDivisionBodyContext.dateCompiledParagraph());
-				} else if (identificationDivisionBodyContext.securityParagraph() != null) {
-					result.addSecurityParagraph(identificationDivisionBodyContext.securityParagraph());
+				} else if (identificationDivisionBodyContext.installationParagraph() != null) {
+					result.addInstallationParagraph(identificationDivisionBodyContext.installationParagraph());
 				} else if (identificationDivisionBodyContext.remarksParagraph() != null) {
 					result.addRemarksParagraph(identificationDivisionBodyContext.remarksParagraph());
+				} else if (identificationDivisionBodyContext.securityParagraph() != null) {
+					result.addSecurityParagraph(identificationDivisionBodyContext.securityParagraph());
 				} else {
 					LOG.warn("unknown identification division body {}", identificationDivisionBodyContext);
 				}
@@ -172,21 +137,6 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 			procedureDivision = result;
 
 			registerASGElement(result);
-
-			// giving
-			if (ctx.procedureDivisionGivingClause() != null) {
-				result.addGivingClause(ctx.procedureDivisionGivingClause());
-			}
-
-			// using
-			if (ctx.procedureDivisionUsingClause() != null) {
-				result.addUsingClause(ctx.procedureDivisionUsingClause());
-			}
-
-			// declaratives
-			if (ctx.procedureDeclaratives() != null) {
-				result.addDeclaratives(ctx.procedureDeclaratives());
-			}
 		}
 
 		return result;
@@ -220,5 +170,4 @@ public class ProgramUnitImpl extends CompilationUnitElementImpl implements Progr
 	protected void registerASGElement(final ASGElement asgElement) {
 		compilationUnit.getProgram().getASGElementRegistry().addASGElement(asgElement);
 	}
-
 }

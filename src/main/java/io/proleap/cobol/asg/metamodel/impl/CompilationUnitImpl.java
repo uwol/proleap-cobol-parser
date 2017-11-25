@@ -56,24 +56,6 @@ public class CompilationUnitImpl extends ASGElementImpl implements CompilationUn
 
 			registerASGElement(result);
 			programUnits.add(result);
-
-			// identification division
-			result.addIdentificationDivision(ctx.identificationDivision());
-
-			// environment division
-			if (ctx.environmentDivision() != null) {
-				result.addEnvironmentDivision(ctx.environmentDivision());
-			}
-
-			// data division
-			if (ctx.dataDivision() != null) {
-				result.addDataDivision(ctx.dataDivision());
-			}
-
-			// procedure division
-			if (ctx.procedureDivision() != null) {
-				result.addProcedureDivision(ctx.procedureDivision());
-			}
 		}
 
 		return result;

@@ -35,5 +35,4 @@ public class SourceClauseImpl extends CobolDivisionElementImpl implements Source
 	public void setSourceCall(final Call sourceCall) {
 		this.sourceCall = sourceCall;
 	}
-
 }
