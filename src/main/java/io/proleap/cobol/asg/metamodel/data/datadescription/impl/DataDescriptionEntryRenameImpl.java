@@ -138,5 +138,4 @@ public class DataDescriptionEntryRenameImpl extends DataDescriptionEntryImpl imp
 	public Type getType() {
 		return null;
 	}
-
 }

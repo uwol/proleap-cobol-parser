@@ -34,5 +34,4 @@ public class InstallationParagraphImpl extends CobolDivisionElementImpl implemen
 	public void setInstallation(final String installation) {
 		this.installation = installation;
 	}
-
 }

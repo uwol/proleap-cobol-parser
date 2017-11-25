@@ -293,5 +293,4 @@ public class AddStatementImpl extends StatementImpl implements AddStatement {
 	public void setOnSizeErrorPhrase(final OnSizeErrorPhrase onSizeErrorPhrase) {
 		this.onSizeErrorPhrase = onSizeErrorPhrase;
 	}
-
 }

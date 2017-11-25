@@ -34,5 +34,4 @@ public class DateWrittenParagraphImpl extends CobolDivisionElementImpl implement
 	public void setDateWritten(final String dateWritten) {
 		this.dateWritten = dateWritten;
 	}
-
 }

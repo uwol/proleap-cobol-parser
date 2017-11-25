@@ -46,5 +46,4 @@ public class DataDescriptionEntryExecSqlImpl extends DataDescriptionEntryImpl im
 	public void setExecSqlText(final String execSqlText) {
 		this.execSqlText = execSqlText;
 	}
-
 }

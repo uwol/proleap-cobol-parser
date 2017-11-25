@@ -64,5 +64,4 @@ public class DataDescriptionEntryConditionImpl extends DataDescriptionEntryImpl
 	public ValueClause getValueClause() {
 		return valueClause;
 	}
-
 }

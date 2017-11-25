@@ -34,5 +34,4 @@ public class AuthorParagraphImpl extends CobolDivisionElementImpl implements Aut
 	public void setAuthor(final String author) {
 		this.author = author;
 	}
-
 }

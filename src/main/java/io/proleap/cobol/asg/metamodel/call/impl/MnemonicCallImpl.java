@@ -31,5 +31,4 @@ public class MnemonicCallImpl extends CallImpl implements MnemonicCall {
 	public Type getType() {
 		return null;
 	}
-
 }

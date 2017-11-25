@@ -65,5 +65,4 @@ public class CallDelegateImpl extends CobolDivisionElementImpl implements Call {
 	public Call unwrap() {
 		return delegate.unwrap();
 	}
-
 }

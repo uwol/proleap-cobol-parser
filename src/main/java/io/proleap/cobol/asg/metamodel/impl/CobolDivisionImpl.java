@@ -18,5 +18,4 @@ public abstract class CobolDivisionImpl extends ProgramUnitElementImpl implement
 	public CobolDivisionImpl(final ProgramUnit programUnit, final ParserRuleContext ctx) {
 		super(programUnit, ctx);
 	}
-
 }

@@ -241,5 +241,4 @@ public class IdentificationDivisionImpl extends CobolDivisionImpl implements Ide
 	public SecurityParagraph getSecurityParagraph() {
 		return securityParagraph;
 	}
-
 }

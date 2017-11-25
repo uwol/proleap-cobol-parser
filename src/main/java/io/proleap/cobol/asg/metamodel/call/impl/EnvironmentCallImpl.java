@@ -31,5 +31,4 @@ public class EnvironmentCallImpl extends CallImpl implements EnvironmentCall {
 	public Type getType() {
 		return null;
 	}
-
 }

@@ -34,5 +34,4 @@ public class RemarksParagraphImpl extends CobolDivisionElementImpl implements Re
 	public void setRemarks(final String remarks) {
 		this.remarks = remarks;
 	}
-
 }

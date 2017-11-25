@@ -34,5 +34,4 @@ public class DateCompiledParagraphImpl extends CobolDivisionElementImpl implemen
 	public void setDateCompiled(final String dateCompiled) {
 		this.dateCompiled = dateCompiled;
 	}
-
 }

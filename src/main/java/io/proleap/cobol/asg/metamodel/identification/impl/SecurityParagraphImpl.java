@@ -34,5 +34,4 @@ public class SecurityParagraphImpl extends CobolDivisionElementImpl implements S
 	public void setSecurity(final String security) {
 		this.security = security;
 	}
-
 }

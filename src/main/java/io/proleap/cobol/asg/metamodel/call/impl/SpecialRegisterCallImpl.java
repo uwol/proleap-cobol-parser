@@ -88,5 +88,4 @@ public class SpecialRegisterCallImpl extends CallImpl implements SpecialRegister
 	public void setIdentifierCall(final Call identifierCall) {
 		this.identifierCall = identifierCall;
 	}
-
 }

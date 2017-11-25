@@ -42,5 +42,4 @@ public class IndexCallImpl extends CallImpl implements IndexCall {
 	public Type getType() {
 		return null;
 	}
-
 }
