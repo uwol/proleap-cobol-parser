@@ -349,15 +349,25 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	protected File identifyCopyBookByCobolWord(final List<File> copyBooks, final CobolWordContext ctx) {
-		final String copyBookIdentifier = ctx.getText();
 		File result = null;
 
 		for (final File copyBook : copyBooks) {
-			final String baseName = FilenameUtils.getBaseName(copyBook.getName());
-			final boolean matchingBaseName = copyBookIdentifier.toLowerCase().equals(baseName.toLowerCase());
+			if (copyBook.isDirectory()) {
+				for (final File copyBookInDir : copyBook.listFiles()) {
+					final boolean isMatchingCopyBook = isMatchingCopyBookByCobolWord(copyBookInDir, ctx);
 
-			if (matchingBaseName) {
-				result = copyBook;
+					if (isMatchingCopyBook) {
+						result = copyBookInDir;
+						break;
+					}
+				}
+			} else {
+				final boolean isMatchingCopyBook = isMatchingCopyBookByCobolWord(copyBook, ctx);
+
+				if (isMatchingCopyBook) {
+					result = copyBook;
+					break;
+				}
 			}
 		}
 
@@ -365,21 +375,35 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	protected File identifyCopyBookByLiteral(final List<File> copyBooks, final LiteralContext ctx) {
-		final String copyBookIdentifier = ctx.getText();
-		final String copyBookIdentifierCleaned = StringUtils.trimQuotes(copyBookIdentifier);
-		final String copyBookIdentifierPathString = normalizeCopyBookPath(Paths.get(copyBookIdentifierCleaned));
 		File result = null;
 
 		for (final File file : copyBooks) {
-			final String filePathString = normalizeCopyBookPath(file.toPath());
-			final boolean matching = filePathString.endsWith(copyBookIdentifierPathString);
+			final boolean isMatchingCopyBook = isMatchingCopyBookByLiteral(file, ctx);
 
-			if (matching) {
+			if (isMatchingCopyBook) {
 				result = file;
 				break;
 			}
 		}
 
+		return result;
+	}
+
+	protected boolean isMatchingCopyBookByCobolWord(final File copyBook, final CobolWordContext ctx) {
+		final String copyBookIdentifier = ctx.getText();
+		final String baseName = FilenameUtils.getBaseName(copyBook.getName());
+
+		final boolean result = copyBookIdentifier.toLowerCase().equals(baseName.toLowerCase());
+		return result;
+	}
+
+	protected boolean isMatchingCopyBookByLiteral(final File copyBook, final LiteralContext ctx) {
+		final String copyBookIdentifier = ctx.getText();
+		final String copyBookIdentifierCleaned = StringUtils.trimQuotes(copyBookIdentifier);
+		final String copyBookIdentifierPathString = normalizeCopyBookPath(Paths.get(copyBookIdentifierCleaned));
+		final String filePathString = normalizeCopyBookPath(copyBook.toPath());
+
+		final boolean result = filePathString.endsWith(copyBookIdentifierPathString);
 		return result;
 	}
 
