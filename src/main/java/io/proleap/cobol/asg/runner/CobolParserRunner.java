@@ -20,12 +20,11 @@ public interface CobolParserRunner {
 
 	Program analyzeFile(File inputFile, CobolSourceFormatEnum format) throws IOException;
 
-	Program analyzeFile(File inputFile, List<File> copyFiles, CobolSourceFormatEnum format, CobolDialect dialect)
+	Program analyzeFile(File inputFile, List<File> copyBooks, CobolSourceFormatEnum format, CobolDialect dialect)
 			throws IOException;
 
 	Program analyzeFiles(List<File> inputFiles, CobolSourceFormatEnum format) throws IOException;
 
-	Program analyzeFiles(List<File> inputFiles, List<File> copyFiles, CobolSourceFormatEnum format,
+	Program analyzeFiles(List<File> inputFiles, List<File> copyBooks, CobolSourceFormatEnum format,
 			CobolDialect dialect) throws IOException;
-
 }

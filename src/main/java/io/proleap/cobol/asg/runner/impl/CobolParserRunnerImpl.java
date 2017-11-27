@@ -81,17 +81,17 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	@Override
 	public Program analyzeFile(final File inputFile, final CobolSourceFormatEnum format) throws IOException {
 		final File libDirectory = inputFile.getParentFile();
-		final List<File> copyFiles = getCopyFiles(libDirectory);
+		final List<File> copyBooks = getCopyBooks(libDirectory);
 
-		return analyzeFile(inputFile, copyFiles, format, null);
+		return analyzeFile(inputFile, copyBooks, format, null);
 	}
 
 	@Override
-	public Program analyzeFile(final File inputFile, final List<File> copyFiles, final CobolSourceFormatEnum format,
+	public Program analyzeFile(final File inputFile, final List<File> copyBooks, final CobolSourceFormatEnum format,
 			final CobolDialect dialect) throws IOException {
 		final Program program = new ProgramImpl();
 
-		parseFile(inputFile, copyFiles, program, format, dialect);
+		parseFile(inputFile, copyBooks, program, format, dialect);
 		analyze(program);
 
 		return program;
@@ -118,18 +118,18 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	@Override
 	public Program analyzeFiles(final List<File> inputFiles, final CobolSourceFormatEnum format) throws IOException {
 		final File libDirectory = inputFiles.isEmpty() ? null : inputFiles.get(0).getParentFile();
-		final List<File> copyFiles = getCopyFiles(libDirectory);
+		final List<File> copyBooks = getCopyBooks(libDirectory);
 
-		return analyzeFiles(inputFiles, copyFiles, format, null);
+		return analyzeFiles(inputFiles, copyBooks, format, null);
 	}
 
 	@Override
-	public Program analyzeFiles(final List<File> inputFiles, final List<File> copyFiles,
+	public Program analyzeFiles(final List<File> inputFiles, final List<File> copyBooks,
 			final CobolSourceFormatEnum format, final CobolDialect dialect) throws IOException {
 		final Program program = new ProgramImpl();
 
 		for (final File inputFile : inputFiles) {
-			parseFile(inputFile, copyFiles, program, format, dialect);
+			parseFile(inputFile, copyBooks, program, format, dialect);
 		}
 
 		analyze(program);
@@ -168,7 +168,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		return StringUtils.capitalize(FilenameUtils.removeExtension(inputFile.getName()));
 	}
 
-	protected List<File> getCopyFiles(final File libDirectory) {
+	protected List<File> getCopyBooks(final File libDirectory) {
 		return Lists.newArrayList(libDirectory.listFiles());
 	}
 
@@ -177,13 +177,13 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		return "cbl".equals(extension);
 	}
 
-	protected void parseFile(final File inputFile, final List<File> copyFiles, final Program program,
+	protected void parseFile(final File inputFile, final List<File> copyBooks, final Program program,
 			final CobolSourceFormatEnum format, final CobolDialect dialect) throws IOException {
 		if (!inputFile.isFile()) {
 			LOG.warn("Could not find file {}", inputFile.getAbsolutePath());
 		} else {
 			// preprocess input stream
-			final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles, format, dialect);
+			final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyBooks, format, dialect);
 
 			LOG.info("Parsing file {}.", inputFile.getName());
 

@@ -45,7 +45,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 
 	private final Stack<CobolDocumentContext> contexts = new Stack<CobolDocumentContext>();
 
-	private final List<File> copyFiles;
+	private final List<File> copyBooks;
 
 	private final CobolDialect dialect;
 
@@ -53,9 +53,9 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 
 	private final BufferedTokenStream tokens;
 
-	public CobolDocumentParserListenerImpl(final List<File> copyFiles, final CobolSourceFormatEnum format,
+	public CobolDocumentParserListenerImpl(final List<File> copyBooks, final CobolSourceFormatEnum format,
 			final CobolDialect dialect, final BufferedTokenStream tokens) {
-		this.copyFiles = copyFiles;
+		this.copyBooks = copyBooks;
 		this.dialect = dialect;
 		this.tokens = tokens;
 		this.format = format;
@@ -162,7 +162,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		// throw away COPY terminals
 		pop();
 
-		// a new context for the copy file content
+		// a new context for the copy book content
 		push();
 
 		/*
@@ -173,14 +173,14 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		}
 
 		/*
-		 * copy the copy file
+		 * copy the copy book
 		 */
 		final CopySourceContext copySource = ctx.copySource();
 
-		if (copyFiles == null || copyFiles.isEmpty()) {
-			LOG.warn("Could not identify copy file {} due to missing copy files.", copySource.getText());
+		if (copyBooks == null || copyBooks.isEmpty()) {
+			LOG.warn("Could not identify copy book {} due to missing copy books.", copySource.getText());
 		} else {
-			final String fileContent = getCopyFileContent(copySource, copyFiles, dialect, format);
+			final String fileContent = getCopyBookContent(copySource, copyBooks, dialect, format);
 
 			if (fileContent != null) {
 				context().write(fileContent + CobolPreprocessor.NEWLINE);
@@ -308,17 +308,17 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		pop();
 	}
 
-	protected String getCopyFileContent(final CopySourceContext copySource, final List<File> copyFiles,
+	protected String getCopyBookContent(final CopySourceContext copySource, final List<File> copyBooks,
 			final CobolDialect dialect, final CobolSourceFormatEnum format) {
-		final File copyFile = identifyCopyFile(copySource, copyFiles);
+		final File copyBook = identifyCopyBook(copySource, copyBooks);
 		String result;
 
-		if (copyFile == null) {
-			LOG.warn("Copy file {} not found in copy files {}.", copySource.getText(), copyFiles);
+		if (copyBook == null) {
+			LOG.warn("Copy book {} not found in copy books {}.", copySource.getText(), copyBooks);
 			result = null;
 		} else {
 			try {
-				result = new CobolPreprocessorImpl().process(copyFile, copyFiles, format, dialect);
+				result = new CobolPreprocessorImpl().process(copyBook, copyBooks, format, dialect);
 			} catch (final IOException e) {
 				result = null;
 				LOG.warn(e.getMessage());
@@ -329,29 +329,29 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	/**
-	 * Identifies a copy file by its name and directory.
+	 * Identifies a copy book by its name and directory.
 	 */
-	protected File identifyCopyFile(final CopySourceContext copySource, final List<File> copyFiles) {
+	protected File identifyCopyBook(final CopySourceContext copySource, final List<File> copyBooks) {
 		File result = null;
 
-		final String copyFileIdentifier = copySource.getText();
+		final String copyBookIdentifier = copySource.getText();
 
 		if (copySource.cobolWord() != null) {
-			for (final File file : copyFiles) {
-				final String baseName = FilenameUtils.getBaseName(file.getName());
-				final boolean matchingBaseName = copyFileIdentifier.toLowerCase().equals(baseName.toLowerCase());
+			for (final File copyBook : copyBooks) {
+				final String baseName = FilenameUtils.getBaseName(copyBook.getName());
+				final boolean matchingBaseName = copyBookIdentifier.toLowerCase().equals(baseName.toLowerCase());
 
 				if (matchingBaseName) {
-					result = file;
+					result = copyBook;
 				}
 			}
 		} else if (copySource.literal() != null) {
-			final String copyFileIdentifierCleaned = StringUtils.trimQuotes(copyFileIdentifier);
-			final String copyFileIdentifierPathString = normalizeCopyFilePath(Paths.get(copyFileIdentifierCleaned));
+			final String copyBookIdentifierCleaned = StringUtils.trimQuotes(copyBookIdentifier);
+			final String copyBookIdentifierPathString = normalizeCopyBookPath(Paths.get(copyBookIdentifierCleaned));
 
-			for (final File file : copyFiles) {
-				final String filePathString = normalizeCopyFilePath(file.toPath());
-				final boolean matching = filePathString.endsWith(copyFileIdentifierPathString);
+			for (final File file : copyBooks) {
+				final String filePathString = normalizeCopyBookPath(file.toPath());
+				final boolean matching = filePathString.endsWith(copyBookIdentifierPathString);
 
 				if (matching) {
 					result = file;
@@ -363,8 +363,8 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		return result;
 	}
 
-	protected String normalizeCopyFilePath(final Path copFilePath) {
-		final Path normalizedPath = copFilePath.normalize();
+	protected String normalizeCopyBookPath(final Path copBookPath) {
+		final Path normalizedPath = copBookPath.normalize();
 		final String result = normalizedPath.toString().toLowerCase();
 		return result;
 	}

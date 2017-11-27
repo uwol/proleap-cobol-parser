@@ -42,8 +42,8 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		return new CobolCommentEntriesMarkerImpl();
 	}
 
-	protected CobolDocumentParser createDocumentParser(final List<File> copyFiles) {
-		return new CobolDocumentParserImpl(copyFiles);
+	protected CobolDocumentParser createDocumentParser(final List<File> copyBooks) {
+		return new CobolDocumentParserImpl(copyBooks);
 	}
 
 	protected CobolInlineCommentEntriesNormalizer createInlineCommentEntriesNormalizer() {
@@ -62,21 +62,21 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		return new CobolLineWriterImpl();
 	}
 
-	protected String parseDocument(final List<CobolLine> lines, final List<File> copyFiles,
+	protected String parseDocument(final List<CobolLine> lines, final List<File> copyBooks,
 			final CobolSourceFormatEnum format, final CobolDialect dialect) {
 		final String code = createLineWriter().serialize(lines);
-		final String result = createDocumentParser(copyFiles).processLines(code, format, dialect);
+		final String result = createDocumentParser(copyBooks).processLines(code, format, dialect);
 		return result;
 	}
 
 	@Override
-	public String process(final File cobolFile, final List<File> copyFiles, final CobolSourceFormatEnum format)
+	public String process(final File cobolFile, final List<File> copyBooks, final CobolSourceFormatEnum format)
 			throws IOException {
-		return process(cobolFile, copyFiles, format, null);
+		return process(cobolFile, copyBooks, format, null);
 	}
 
 	@Override
-	public String process(final File cobolFile, final List<File> copyFiles, final CobolSourceFormatEnum format,
+	public String process(final File cobolFile, final List<File> copyBooks, final CobolSourceFormatEnum format,
 			final CobolDialect dialect) throws IOException {
 		LOG.info("Preprocessing file {}.", cobolFile.getName());
 
@@ -93,22 +93,22 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 
 		bufferedInputStreamReader.close();
 
-		final String result = process(outputBuffer.toString(), copyFiles, format, dialect);
+		final String result = process(outputBuffer.toString(), copyBooks, format, dialect);
 		return result;
 	}
 
 	@Override
-	public String process(final String cobolSourceCode, final List<File> copyFiles,
+	public String process(final String cobolSourceCode, final List<File> copyBooks,
 			final CobolSourceFormatEnum format) {
-		return process(cobolSourceCode, copyFiles, format, null);
+		return process(cobolSourceCode, copyBooks, format, null);
 	}
 
 	@Override
-	public String process(final String cobolCode, final List<File> copyFiles, final CobolSourceFormatEnum format,
+	public String process(final String cobolCode, final List<File> copyBooks, final CobolSourceFormatEnum format,
 			final CobolDialect dialect) {
 		final List<CobolLine> lines = readLines(cobolCode, format, dialect);
 		final List<CobolLine> rewrittenLines = rewriteLines(lines);
-		final String result = parseDocument(rewrittenLines, copyFiles, format, dialect);
+		final String result = parseDocument(rewrittenLines, copyBooks, format, dialect);
 
 		LOG.debug("Processed input:\n\n{}\n\n", result);
 

@@ -106,13 +106,12 @@ public interface CobolPreprocessor {
 
 	final static String WS = " ";
 
-	String process(File cobolFile, List<File> copyFiles, CobolSourceFormatEnum format) throws IOException;
+	String process(File cobolFile, List<File> copyBooks, CobolSourceFormatEnum format) throws IOException;
 
-	String process(File cobolFile, List<File> copyFiles, CobolSourceFormatEnum format, CobolDialect dialect)
+	String process(File cobolFile, List<File> copyBooks, CobolSourceFormatEnum format, CobolDialect dialect)
 			throws IOException;
 
-	String process(String cobolCode, List<File> copyFiles, CobolSourceFormatEnum format);
+	String process(String cobolCode, List<File> copyBooks, CobolSourceFormatEnum format);
 
-	String process(String cobolCode, List<File> copyFiles, CobolSourceFormatEnum format, CobolDialect dialect);
-
+	String process(String cobolCode, List<File> copyBooks, CobolSourceFormatEnum format, CobolDialect dialect);
 }

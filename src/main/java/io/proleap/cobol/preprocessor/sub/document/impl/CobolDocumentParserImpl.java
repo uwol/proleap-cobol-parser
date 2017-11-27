@@ -28,13 +28,13 @@ import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParser;
  */
 public class CobolDocumentParserImpl implements CobolDocumentParser {
 
-	protected final List<File> copyFiles;
+	protected final List<File> copyBooks;
 
 	protected final String[] triggers = new String[] { "cbl", "copy", "exec sql", "exec sqlims", "exec cics", "process",
 			"replace", "eject", "skip1", "skip2", "skip3", "title" };
 
-	public CobolDocumentParserImpl(final List<File> copyFiles) {
-		this.copyFiles = copyFiles;
+	public CobolDocumentParserImpl(final List<File> copyBooks) {
+		this.copyBooks = copyBooks;
 	}
 
 	protected boolean containsTrigger(final String code, final String[] triggers) {
@@ -59,7 +59,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		final String result;
 
 		if (requiresProcessorExecution) {
-			result = processWithParser(code, copyFiles, format, dialect);
+			result = processWithParser(code, copyBooks, format, dialect);
 		} else {
 			result = code;
 		}
@@ -67,7 +67,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		return result;
 	}
 
-	protected String processWithParser(final String code, final List<File> copyFiles,
+	protected String processWithParser(final String code, final List<File> copyBooks,
 			final CobolSourceFormatEnum format, final CobolDialect dialect) {
 		// run the lexer
 		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(CharStreams.fromString(code));
@@ -86,7 +86,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		final StartRuleContext startRule = parser.startRule();
 
 		// analyze contained copy books
-		final CobolDocumentParserListenerImpl listener = new CobolDocumentParserListenerImpl(copyFiles, format, dialect,
+		final CobolDocumentParserListenerImpl listener = new CobolDocumentParserListenerImpl(copyBooks, format, dialect,
 				tokens);
 		final ParseTreeWalker walker = new ParseTreeWalker();
 
