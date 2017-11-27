@@ -24,7 +24,9 @@ import org.apache.logging.log4j.Logger;
 
 import io.proleap.cobol.Cobol85PreprocessorBaseListener;
 import io.proleap.cobol.Cobol85PreprocessorParser;
+import io.proleap.cobol.Cobol85PreprocessorParser.CobolWordContext;
 import io.proleap.cobol.Cobol85PreprocessorParser.CopySourceContext;
+import io.proleap.cobol.Cobol85PreprocessorParser.LiteralContext;
 import io.proleap.cobol.Cobol85PreprocessorParser.ReplaceClauseContext;
 import io.proleap.cobol.Cobol85PreprocessorParser.ReplacingPhraseContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
@@ -332,31 +334,49 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	 * Identifies a copy book by its name and directory.
 	 */
 	protected File identifyCopyBook(final CopySourceContext copySource, final List<File> copyBooks) {
-		File result = null;
-
-		final String copyBookIdentifier = copySource.getText();
+		final File result;
 
 		if (copySource.cobolWord() != null) {
-			for (final File copyBook : copyBooks) {
-				final String baseName = FilenameUtils.getBaseName(copyBook.getName());
-				final boolean matchingBaseName = copyBookIdentifier.toLowerCase().equals(baseName.toLowerCase());
-
-				if (matchingBaseName) {
-					result = copyBook;
-				}
-			}
+			result = identifyCopyBookByCobolWord(copyBooks, copySource.cobolWord());
 		} else if (copySource.literal() != null) {
-			final String copyBookIdentifierCleaned = StringUtils.trimQuotes(copyBookIdentifier);
-			final String copyBookIdentifierPathString = normalizeCopyBookPath(Paths.get(copyBookIdentifierCleaned));
+			result = identifyCopyBookByLiteral(copyBooks, copySource.literal());
+		} else {
+			LOG.warn("unknown copy source type {}", copySource);
+			result = null;
+		}
 
-			for (final File file : copyBooks) {
-				final String filePathString = normalizeCopyBookPath(file.toPath());
-				final boolean matching = filePathString.endsWith(copyBookIdentifierPathString);
+		return result;
+	}
 
-				if (matching) {
-					result = file;
-					break;
-				}
+	protected File identifyCopyBookByCobolWord(final List<File> copyBooks, final CobolWordContext ctx) {
+		final String copyBookIdentifier = ctx.getText();
+		File result = null;
+
+		for (final File copyBook : copyBooks) {
+			final String baseName = FilenameUtils.getBaseName(copyBook.getName());
+			final boolean matchingBaseName = copyBookIdentifier.toLowerCase().equals(baseName.toLowerCase());
+
+			if (matchingBaseName) {
+				result = copyBook;
+			}
+		}
+
+		return result;
+	}
+
+	protected File identifyCopyBookByLiteral(final List<File> copyBooks, final LiteralContext ctx) {
+		final String copyBookIdentifier = ctx.getText();
+		final String copyBookIdentifierCleaned = StringUtils.trimQuotes(copyBookIdentifier);
+		final String copyBookIdentifierPathString = normalizeCopyBookPath(Paths.get(copyBookIdentifierCleaned));
+		File result = null;
+
+		for (final File file : copyBooks) {
+			final String filePathString = normalizeCopyBookPath(file.toPath());
+			final boolean matching = filePathString.endsWith(copyBookIdentifierPathString);
+
+			if (matching) {
+				result = file;
+				break;
 			}
 		}
 
