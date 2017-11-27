@@ -377,12 +377,23 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	protected File identifyCopyBookByLiteral(final List<File> copyBooks, final LiteralContext ctx) {
 		File result = null;
 
-		for (final File file : copyBooks) {
-			final boolean isMatchingCopyBook = isMatchingCopyBookByLiteral(file, ctx);
+		for (final File copyBook : copyBooks) {
+			if (copyBook.isDirectory()) {
+				for (final File copyBookInDir : copyBook.listFiles()) {
+					final boolean isMatchingCopyBook = isMatchingCopyBookByLiteral(copyBookInDir, ctx);
 
-			if (isMatchingCopyBook) {
-				result = file;
-				break;
+					if (isMatchingCopyBook) {
+						result = copyBookInDir;
+						break;
+					}
+				}
+			} else {
+				final boolean isMatchingCopyBook = isMatchingCopyBookByLiteral(copyBook, ctx);
+
+				if (isMatchingCopyBook) {
+					result = copyBook;
+					break;
+				}
 			}
 		}
 

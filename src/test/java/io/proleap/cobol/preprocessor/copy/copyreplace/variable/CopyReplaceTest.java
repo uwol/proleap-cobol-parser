@@ -16,7 +16,7 @@ import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 public class CopyReplaceTest {
 
 	@Test
-	public void test() throws Exception {
+	public void testCopyBooks() throws Exception {
 		final File inputFile = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/copy/copyreplace/variable/CopyReplace.cbl");
 		final File copyFile1 = new File(
@@ -24,6 +24,22 @@ public class CopyReplaceTest {
 		final File copyFile2 = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/copy/copyreplace/variable/CopyReplace2.cpy");
 		final ArrayList<File> copyFiles = Lists.newArrayList(copyFile1, copyFile2);
+
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles,
+				CobolSourceFormatEnum.VARIABLE);
+
+		final File expectedFile = new File(
+				"src/test/resources/io/proleap/cobol/preprocessor/copy/copyreplace/variable/CopyReplace.cbl.preprocessed");
+		final String expected = FileUtils.readFileToString(expectedFile);
+		assertEquals(expected, preProcessedInput);
+	}
+
+	@Test
+	public void testCopyDir() throws Exception {
+		final File inputFile = new File(
+				"src/test/resources/io/proleap/cobol/preprocessor/copy/copyreplace/variable/CopyReplace.cbl");
+		final File copyDir = new File("src/test/resources/io/proleap/cobol/preprocessor/copy/copyreplace/variable");
+		final ArrayList<File> copyFiles = Lists.newArrayList(copyDir);
 
 		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles,
 				CobolSourceFormatEnum.VARIABLE);

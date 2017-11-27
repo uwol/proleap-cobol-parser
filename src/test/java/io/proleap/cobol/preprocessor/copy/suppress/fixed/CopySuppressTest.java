@@ -16,7 +16,7 @@ import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 public class CopySuppressTest {
 
 	@Test
-	public void test() throws Exception {
+	public void testCopyBooks() throws Exception {
 		final File inputFile = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed/CopySuppress.cbl");
 		final File copyFile1 = new File(
@@ -24,6 +24,22 @@ public class CopySuppressTest {
 		final ArrayList<File> copyFiles = Lists.newArrayList(copyFile1);
 
 		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles,
+				CobolSourceFormatEnum.FIXED);
+
+		final File expectedFile = new File(
+				"src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed/CopySuppress.cbl.preprocessed");
+		final String expected = FileUtils.readFileToString(expectedFile);
+		assertEquals(expected, preProcessedInput);
+	}
+
+	@Test
+	public void testCopyDir() throws Exception {
+		final File inputFile = new File(
+				"src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed/CopySuppress.cbl");
+		final File copyDir = new File("src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed");
+		final ArrayList<File> copyDirs = Lists.newArrayList(copyDir);
+
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyDirs,
 				CobolSourceFormatEnum.FIXED);
 
 		final File expectedFile = new File(
