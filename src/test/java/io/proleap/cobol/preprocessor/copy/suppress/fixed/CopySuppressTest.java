@@ -15,35 +15,32 @@ import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 
 public class CopySuppressTest {
 
+	private static final String DIR = "src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed";
+
 	@Test
 	public void testCopyBooks() throws Exception {
-		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed/CopySuppress.cbl");
-		final File copyFile1 = new File(
-				"src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed/CopyReplace.cpy");
+		final File inputFile = new File(DIR + "/CopySuppress.cbl");
+		final File copyFile1 = new File(DIR + "/CopyReplace.cpy");
 		final ArrayList<File> copyFiles = Lists.newArrayList(copyFile1);
 
 		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles,
 				CobolSourceFormatEnum.FIXED);
 
-		final File expectedFile = new File(
-				"src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed/CopySuppress.cbl.preprocessed");
+		final File expectedFile = new File(DIR + "/CopySuppress.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile);
 		assertEquals(expected, preProcessedInput);
 	}
 
 	@Test
 	public void testCopyDir() throws Exception {
-		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed/CopySuppress.cbl");
-		final File copyDir = new File("src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed");
+		final File inputFile = new File(DIR + "/CopySuppress.cbl");
+		final File copyDir = new File(DIR);
 		final ArrayList<File> copyDirs = Lists.newArrayList(copyDir);
 
 		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyDirs,
 				CobolSourceFormatEnum.FIXED);
 
-		final File expectedFile = new File(
-				"src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed/CopySuppress.cbl.preprocessed");
+		final File expectedFile = new File(DIR + "/CopySuppress.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile);
 		assertEquals(expected, preProcessedInput);
 	}

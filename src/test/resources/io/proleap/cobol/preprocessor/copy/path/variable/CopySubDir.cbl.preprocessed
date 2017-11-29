@@ -6,4 +6,10 @@
 
        DISPLAY "hello world 2"
 
+       DISPLAY "hello world 3"
+
+       DISPLAY "hello world 4"
+
+       DISPLAY "hello world 5"
+
         STOP RUN.
