@@ -150,7 +150,7 @@ titleStatement
 // literal ----------------------------------
 
 cobolWord
-   : IDENTIFIER
+   : IDENTIFIER | charDataKeyword
    ;
 
 literal
@@ -170,7 +170,7 @@ charDataSql
    ;
 
 charDataLine
-   : (charDataKeyword | cobolWord | literal | TEXT | DOT)+
+   : (cobolWord | literal | TEXT | DOT)+
    ;
 
 // keywords ----------------------------------
