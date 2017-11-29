@@ -21,6 +21,7 @@ import io.proleap.cobol.Cobol85PreprocessorParser.StartRuleContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParser;
+import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParserListener;
 
 /**
  * Preprocessor, which parses and processes COPY REPLACE and EXEC SQL
@@ -28,13 +29,13 @@ import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParser;
  */
 public class CobolDocumentParserImpl implements CobolDocumentParser {
 
-	protected final List<File> copyBooks;
+	protected final List<File> copyBookFilesAndDirs;
 
 	protected final String[] triggers = new String[] { "cbl", "copy", "exec sql", "exec sqlims", "exec cics", "process",
 			"replace", "eject", "skip1", "skip2", "skip3", "title" };
 
 	public CobolDocumentParserImpl(final List<File> copyBooks) {
-		this.copyBooks = copyBooks;
+		copyBookFilesAndDirs = copyBooks;
 	}
 
 	protected boolean containsTrigger(final String code, final String[] triggers) {
@@ -53,6 +54,11 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		return result;
 	}
 
+	protected CobolDocumentParserListener createDocumentParserListener(final List<File> copyBookFilesAndDirs,
+			final CobolSourceFormatEnum format, final CobolPreprocessorParams params, final CommonTokenStream tokens) {
+		return new CobolDocumentParserListenerImpl(copyBookFilesAndDirs, format, params, tokens);
+	}
+
 	@Override
 	public String processLines(final String code, final CobolSourceFormatEnum format,
 			final CobolPreprocessorParams params) {
@@ -60,7 +66,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		final String result;
 
 		if (requiresProcessorExecution) {
-			result = processWithParser(code, copyBooks, format, params);
+			result = processWithParser(code, copyBookFilesAndDirs, format, params);
 		} else {
 			result = code;
 		}
@@ -68,7 +74,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		return result;
 	}
 
-	protected String processWithParser(final String code, final List<File> copyBooks,
+	protected String processWithParser(final String code, final List<File> copyBookFilesAndDirs,
 			final CobolSourceFormatEnum format, final CobolPreprocessorParams params) {
 		// run the lexer
 		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(CharStreams.fromString(code));
@@ -87,7 +93,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		final StartRuleContext startRule = parser.startRule();
 
 		// analyze contained copy books
-		final CobolDocumentParserListenerImpl listener = new CobolDocumentParserListenerImpl(copyBooks, format, params,
+		final CobolDocumentParserListener listener = createDocumentParserListener(copyBookFilesAndDirs, format, params,
 				tokens);
 		final ParseTreeWalker walker = new ParseTreeWalker();
 

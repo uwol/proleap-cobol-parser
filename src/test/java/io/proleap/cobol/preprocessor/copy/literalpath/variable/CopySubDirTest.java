@@ -1,4 +1,4 @@
-package io.proleap.cobol.preprocessor.copy.path.variable;
+package io.proleap.cobol.preprocessor.copy.literalpath.variable;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,7 +15,7 @@ import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 
 public class CopySubDirTest {
 
-	private static final String DIR = "src/test/resources/io/proleap/cobol/preprocessor/copy/path/variable";
+	private static final String DIR = "src/test/resources/io/proleap/cobol/preprocessor/copy/literalpath/variable";
 
 	@Test
 	public void testCopyBooks() throws Exception {

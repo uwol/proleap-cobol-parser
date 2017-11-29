@@ -20,8 +20,8 @@ public class CopyReplaceTest {
 	@Test
 	public void testCopyBooks() throws Exception {
 		final File inputFile = new File(DIR + "/CopyReplace.cbl");
-		final File copyFile1 = new File(DIR + "/CopyReplace1.cpy");
-		final File copyFile2 = new File(DIR + "/CopyReplace2.cpy");
+		final File copyFile1 = new File(DIR + "/copybooks/CopyReplace1.cpy");
+		final File copyFile2 = new File(DIR + "/copybooks/CopyReplace2.cpy");
 		final ArrayList<File> copyFiles = Lists.newArrayList(copyFile1, copyFile2);
 
 		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles,
@@ -35,7 +35,7 @@ public class CopyReplaceTest {
 	@Test
 	public void testCopyDir() throws Exception {
 		final File inputFile = new File(DIR + "/CopyReplace.cbl");
-		final File copyDir = new File(DIR);
+		final File copyDir = new File(DIR + "/copybooks");
 		final ArrayList<File> copyFiles = Lists.newArrayList(copyDir);
 
 		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles,

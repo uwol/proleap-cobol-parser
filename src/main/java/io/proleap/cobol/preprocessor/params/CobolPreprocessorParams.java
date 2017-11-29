@@ -8,9 +8,15 @@
 
 package io.proleap.cobol.preprocessor.params;
 
+import java.util.List;
+
 public interface CobolPreprocessorParams {
 
+	List<String> getCopyBookExtensions();
+
 	CobolDialect getDialect();
+
+	void setCopyBookExtensions(List<String> copyBookExtensions);
 
 	void setDialect(CobolDialect dialect);
 }

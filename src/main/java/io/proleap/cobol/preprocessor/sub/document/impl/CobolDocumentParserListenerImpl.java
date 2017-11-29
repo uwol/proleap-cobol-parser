@@ -19,6 +19,8 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.common.collect.Lists;
+
 import io.proleap.cobol.Cobol85PreprocessorBaseListener;
 import io.proleap.cobol.Cobol85PreprocessorParser;
 import io.proleap.cobol.Cobol85PreprocessorParser.CopySourceContext;
@@ -29,20 +31,25 @@ import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
+import io.proleap.cobol.preprocessor.sub.copybook.CobolWordCopyBookFinder;
+import io.proleap.cobol.preprocessor.sub.copybook.LiteralCopyBookFinder;
+import io.proleap.cobol.preprocessor.sub.copybook.impl.CobolWordCopyBookFinderImpl;
+import io.proleap.cobol.preprocessor.sub.copybook.impl.LiteralCopyBookFinderImpl;
+import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParserListener;
 import io.proleap.cobol.preprocessor.sub.util.TokenUtils;
-import io.proleap.cobol.preprocessor.util.CopyBookUtils;
 
 /**
  * ANTLR visitor, which preprocesses a given COBOL program by executing COPY and
  * REPLACE statements.
  */
-public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseListener {
+public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseListener
+		implements CobolDocumentParserListener {
 
 	private final static Logger LOG = LogManager.getLogger(CobolDocumentParserListenerImpl.class);
 
 	private final Stack<CobolDocumentContext> contexts = new Stack<CobolDocumentContext>();
 
-	private final List<File> copyBooks;
+	private final List<File> copyBookFilesAndDirs;
 
 	private final CobolSourceFormatEnum format;
 
@@ -50,9 +57,9 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 
 	private final BufferedTokenStream tokens;
 
-	public CobolDocumentParserListenerImpl(final List<File> copyBooks, final CobolSourceFormatEnum format,
+	public CobolDocumentParserListenerImpl(final List<File> copyBookFilesAndDirs, final CobolSourceFormatEnum format,
 			final CobolPreprocessorParams params, final BufferedTokenStream tokens) {
-		this.copyBooks = copyBooks;
+		this.copyBookFilesAndDirs = copyBookFilesAndDirs;
 		this.params = params;
 		this.tokens = tokens;
 		this.format = format;
@@ -84,8 +91,31 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		return sb.toString();
 	}
 
+	protected List<String> cleanCopyBookExtensions(final CobolPreprocessorParams params) {
+		final List<String> result;
+
+		if (params.getCopyBookExtensions() == null) {
+			result = Lists.newArrayList("");
+		} else if (params.getCopyBookExtensions().isEmpty()) {
+			result = Lists.newArrayList("");
+		} else {
+			result = params.getCopyBookExtensions();
+		}
+
+		return result;
+	}
+
+	@Override
 	public CobolDocumentContext context() {
 		return contexts.peek();
+	}
+
+	protected CobolWordCopyBookFinder createCobolWordCopyBookFinder() {
+		return new CobolWordCopyBookFinderImpl();
+	}
+
+	protected LiteralCopyBookFinder createLiteralCopyBookFinder() {
+		return new LiteralCopyBookFinderImpl();
 	}
 
 	@Override
@@ -174,13 +204,13 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		 */
 		final CopySourceContext copySource = ctx.copySource();
 
-		if (copyBooks == null || copyBooks.isEmpty()) {
+		if (copyBookFilesAndDirs == null || copyBookFilesAndDirs.isEmpty()) {
 			LOG.warn("Could not identify copy book {} due to missing copy books.", copySource.getText());
 		} else {
-			final String fileContent = getCopyBookContent(copySource, copyBooks, format, params);
+			final String copyBookContent = getCopyBookContent(copySource, copyBookFilesAndDirs, format, params);
 
-			if (fileContent != null) {
-				context().write(fileContent + CobolPreprocessor.NEWLINE);
+			if (copyBookContent != null) {
+				context().write(copyBookContent + CobolPreprocessor.NEWLINE);
 				context().replaceReplaceablesByReplacements(tokens);
 			}
 		}
@@ -305,39 +335,39 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		pop();
 	}
 
-	protected String getCopyBookContent(final CopySourceContext copySource, final List<File> copyBooks,
-			final CobolSourceFormatEnum format, final CobolPreprocessorParams params) {
-		final File copyBook = identifyCopyBook(copySource, copyBooks);
-		String result;
+	protected File findCopyBook(final CopySourceContext copySource, final List<File> copyBookFilesAndDirs,
+			final CobolPreprocessorParams params) {
+		final File result;
 
-		if (copyBook == null) {
-			LOG.warn("Copy book {} not found in {}.", copySource.getText(), copyBooks);
-			result = null;
+		if (copySource.cobolWord() != null) {
+			final List<String> extensions = cleanCopyBookExtensions(params);
+			result = createCobolWordCopyBookFinder().findCopyBook(copyBookFilesAndDirs, extensions,
+					copySource.cobolWord());
+		} else if (copySource.literal() != null) {
+			result = createLiteralCopyBookFinder().findCopyBook(copyBookFilesAndDirs, copySource.literal());
 		} else {
-			try {
-				result = new CobolPreprocessorImpl().process(copyBook, copyBooks, format, params);
-			} catch (final IOException e) {
-				result = null;
-				LOG.warn(e.getMessage());
-			}
+			LOG.warn("unknown copy book reference type {}", copySource);
+			result = null;
 		}
 
 		return result;
 	}
 
-	/**
-	 * Identifies a copy book by its name and directory.
-	 */
-	protected File identifyCopyBook(final CopySourceContext copySource, final List<File> copyBooks) {
-		final File result;
+	protected String getCopyBookContent(final CopySourceContext copySource, final List<File> copyBookFilesAndDirs,
+			final CobolSourceFormatEnum format, final CobolPreprocessorParams params) {
+		final File copyBook = findCopyBook(copySource, copyBookFilesAndDirs, params);
+		String result;
 
-		if (copySource.cobolWord() != null) {
-			result = CopyBookUtils.findCopyBookByCobolWord(copyBooks, copySource.cobolWord());
-		} else if (copySource.literal() != null) {
-			result = CopyBookUtils.findCopyBookByLiteral(copyBooks, copySource.literal());
-		} else {
-			LOG.warn("unknown copy source type {}", copySource);
+		if (copyBook == null) {
+			LOG.warn("Copy book {} not found in {}.", copySource.getText(), copyBookFilesAndDirs);
 			result = null;
+		} else {
+			try {
+				result = new CobolPreprocessorImpl().process(copyBook, copyBookFilesAndDirs, format, params);
+			} catch (final IOException e) {
+				result = null;
+				LOG.warn(e.getMessage());
+			}
 		}
 
 		return result;
