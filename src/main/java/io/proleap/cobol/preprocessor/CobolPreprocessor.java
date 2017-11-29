@@ -13,11 +13,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public interface CobolPreprocessor {
+import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 
-	public enum CobolDialect {
-		ANSI85, MF, OSVS
-	}
+public interface CobolPreprocessor {
 
 	public enum CobolSourceFormatEnum {
 
@@ -106,12 +104,13 @@ public interface CobolPreprocessor {
 
 	final static String WS = " ";
 
-	String process(File cobolFile, List<File> copyBooks, CobolSourceFormatEnum format) throws IOException;
+	String process(File cobolFile, List<File> copyBookFilesAndDirs, CobolSourceFormatEnum format) throws IOException;
 
-	String process(File cobolFile, List<File> copyBooks, CobolSourceFormatEnum format, CobolDialect dialect)
-			throws IOException;
+	String process(File cobolFile, List<File> copyBookFilesAndDirs, CobolSourceFormatEnum format,
+			CobolPreprocessorParams params) throws IOException;
 
-	String process(String cobolCode, List<File> copyBooks, CobolSourceFormatEnum format);
+	String process(String cobolCode, List<File> copyBookFilesAndDirs, CobolSourceFormatEnum format);
 
-	String process(String cobolCode, List<File> copyBooks, CobolSourceFormatEnum format, CobolDialect dialect);
+	String process(String cobolCode, List<File> copyBookFilesAndDirs, CobolSourceFormatEnum format,
+			CobolPreprocessorParams params);
 }

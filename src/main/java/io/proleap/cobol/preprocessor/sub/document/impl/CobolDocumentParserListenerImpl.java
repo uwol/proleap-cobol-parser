@@ -25,9 +25,9 @@ import io.proleap.cobol.Cobol85PreprocessorParser.CopySourceContext;
 import io.proleap.cobol.Cobol85PreprocessorParser.ReplaceClauseContext;
 import io.proleap.cobol.Cobol85PreprocessorParser.ReplacingPhraseContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
+import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.util.TokenUtils;
 import io.proleap.cobol.preprocessor.util.CopyBookUtils;
@@ -44,16 +44,16 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 
 	private final List<File> copyBooks;
 
-	private final CobolDialect dialect;
-
 	private final CobolSourceFormatEnum format;
+
+	private final CobolPreprocessorParams params;
 
 	private final BufferedTokenStream tokens;
 
 	public CobolDocumentParserListenerImpl(final List<File> copyBooks, final CobolSourceFormatEnum format,
-			final CobolDialect dialect, final BufferedTokenStream tokens) {
+			final CobolPreprocessorParams params, final BufferedTokenStream tokens) {
 		this.copyBooks = copyBooks;
-		this.dialect = dialect;
+		this.params = params;
 		this.tokens = tokens;
 		this.format = format;
 
@@ -177,7 +177,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		if (copyBooks == null || copyBooks.isEmpty()) {
 			LOG.warn("Could not identify copy book {} due to missing copy books.", copySource.getText());
 		} else {
-			final String fileContent = getCopyBookContent(copySource, copyBooks, dialect, format);
+			final String fileContent = getCopyBookContent(copySource, copyBooks, format, params);
 
 			if (fileContent != null) {
 				context().write(fileContent + CobolPreprocessor.NEWLINE);
@@ -306,7 +306,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	protected String getCopyBookContent(final CopySourceContext copySource, final List<File> copyBooks,
-			final CobolDialect dialect, final CobolSourceFormatEnum format) {
+			final CobolSourceFormatEnum format, final CobolPreprocessorParams params) {
 		final File copyBook = identifyCopyBook(copySource, copyBooks);
 		String result;
 
@@ -315,7 +315,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 			result = null;
 		} else {
 			try {
-				result = new CobolPreprocessorImpl().process(copyBook, copyBooks, format, dialect);
+				result = new CobolPreprocessorImpl().process(copyBook, copyBooks, format, params);
 			} catch (final IOException e) {
 				result = null;
 				LOG.warn(e.getMessage());

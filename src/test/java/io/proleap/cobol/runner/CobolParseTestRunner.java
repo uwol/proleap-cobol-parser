@@ -12,14 +12,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 
 public interface CobolParseTestRunner {
 
 	void parseFile(File inputFile, CobolSourceFormatEnum format) throws IOException;
 
-	void parseFile(File inputFile, List<File> copyFiles, CobolSourceFormatEnum format, CobolDialect dialect)
+	void parseFile(File inputFile, List<File> copyFiles, CobolSourceFormatEnum format, CobolPreprocessorParams params)
 			throws IOException;
 
 }

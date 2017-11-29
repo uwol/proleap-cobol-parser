@@ -14,7 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
+import io.proleap.cobol.preprocessor.params.CobolDialect;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.CobolLineTypeEnum;
 import io.proleap.cobol.preprocessor.sub.line.rewriter.CobolCommentEntriesMarker;
@@ -73,10 +73,10 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 	}
 
 	/**
-	 * OSVS: The comment-entry can be contained in either area A or area B of
-	 * the comment-entry lines. However, the next occurrence in area A of any
-	 * one of the following COBOL words or phrases terminates the comment-entry
-	 * and begin the next paragraph or division.
+	 * OSVS: The comment-entry can be contained in either area A or area B of the
+	 * comment-entry lines. However, the next occurrence in area A of any one of the
+	 * following COBOL words or phrases terminates the comment-entry and begin the
+	 * next paragraph or division.
 	 */
 	protected boolean isInOsvsCommentEntry(final CobolLine line) {
 		final boolean result = CobolDialect.OSVS.equals(line.dialect) && !startsWithTrigger(line, triggersEnd);
@@ -109,10 +109,10 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 	}
 
 	/**
-	 * If the Compiler directive SOURCEFORMAT is specified as or defaulted to
-	 * FIXED, the comment-entry can be contained on one or more lines but is
-	 * restricted to area B of those lines; the next line commencing in area A
-	 * begins the next non-comment entry.
+	 * If the Compiler directive SOURCEFORMAT is specified as or defaulted to FIXED,
+	 * the comment-entry can be contained on one or more lines but is restricted to
+	 * area B of those lines; the next line commencing in area A begins the next
+	 * non-comment entry.
 	 */
 	protected CobolLine processMultiLineCommentEntry(final CobolLine line) {
 		final boolean foundCommentEntryTriggerInCurrentLine = startsWithTrigger(line, triggersStart);
@@ -154,8 +154,8 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 	}
 
 	/**
-	 * Checks, whether given line starts with a trigger keyword indicating a
-	 * comment entry.
+	 * Checks, whether given line starts with a trigger keyword indicating a comment
+	 * entry.
 	 */
 	protected boolean startsWithTrigger(final CobolLine line, final String[] triggers) {
 		final String contentAreaUpperCase = new String(line.getContentArea()).toUpperCase();

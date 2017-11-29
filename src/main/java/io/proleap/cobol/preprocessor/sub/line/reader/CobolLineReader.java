@@ -10,8 +10,8 @@ package io.proleap.cobol.preprocessor.sub.line.reader;
 
 import java.util.List;
 
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 
 /**
@@ -19,8 +19,8 @@ import io.proleap.cobol.preprocessor.sub.CobolLine;
  */
 public interface CobolLineReader {
 
-	CobolLine parseLine(String line, int lineNumber, CobolSourceFormatEnum format, CobolDialect dialect);
+	CobolLine parseLine(String line, int lineNumber, CobolSourceFormatEnum format, CobolPreprocessorParams params);
 
-	List<CobolLine> processLines(String lines, CobolSourceFormatEnum format, CobolDialect dialect);
+	List<CobolLine> processLines(String lines, CobolSourceFormatEnum format, CobolPreprocessorParams params);
 
 }

@@ -39,9 +39,10 @@ import io.proleap.cobol.asg.visitor.impl.CobolFileDescriptionEntryClauseVisitorI
 import io.proleap.cobol.asg.visitor.impl.CobolProcedureDivisionVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProcedureStatementVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProgramUnitVisitorImpl;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
+import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
+import io.proleap.cobol.preprocessor.params.impl.CobolPreprocessorParamsImpl;
 
 public class CobolParserRunnerImpl implements CobolParserRunner {
 
@@ -83,15 +84,15 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		final File libDirectory = inputFile.getParentFile();
 		final List<File> copyBooks = getCopyBooks(libDirectory);
 
-		return analyzeFile(inputFile, copyBooks, format, null);
+		return analyzeFile(inputFile, copyBooks, format, new CobolPreprocessorParamsImpl());
 	}
 
 	@Override
 	public Program analyzeFile(final File inputFile, final List<File> copyBooks, final CobolSourceFormatEnum format,
-			final CobolDialect dialect) throws IOException {
+			final CobolPreprocessorParams params) throws IOException {
 		final Program program = new ProgramImpl();
 
-		parseFile(inputFile, copyBooks, program, format, dialect);
+		parseFile(inputFile, copyBooks, program, format, params);
 		analyze(program);
 
 		return program;
@@ -120,16 +121,16 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		final File libDirectory = inputFiles.isEmpty() ? null : inputFiles.get(0).getParentFile();
 		final List<File> copyBooks = getCopyBooks(libDirectory);
 
-		return analyzeFiles(inputFiles, copyBooks, format, null);
+		return analyzeFiles(inputFiles, copyBooks, format, new CobolPreprocessorParamsImpl());
 	}
 
 	@Override
 	public Program analyzeFiles(final List<File> inputFiles, final List<File> copyBooks,
-			final CobolSourceFormatEnum format, final CobolDialect dialect) throws IOException {
+			final CobolSourceFormatEnum format, final CobolPreprocessorParams params) throws IOException {
 		final Program program = new ProgramImpl();
 
 		for (final File inputFile : inputFiles) {
-			parseFile(inputFile, copyBooks, program, format, dialect);
+			parseFile(inputFile, copyBooks, program, format, params);
 		}
 
 		analyze(program);
@@ -178,12 +179,12 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	protected void parseFile(final File inputFile, final List<File> copyBooks, final Program program,
-			final CobolSourceFormatEnum format, final CobolDialect dialect) throws IOException {
+			final CobolSourceFormatEnum format, final CobolPreprocessorParams params) throws IOException {
 		if (!inputFile.isFile()) {
 			LOG.warn("Could not find file {}", inputFile.getAbsolutePath());
 		} else {
 			// preprocess input stream
-			final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyBooks, format, dialect);
+			final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyBooks, format, params);
 
 			LOG.info("Parsing file {}.", inputFile.getName());
 

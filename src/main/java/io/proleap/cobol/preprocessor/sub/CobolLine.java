@@ -11,8 +11,8 @@ package io.proleap.cobol.preprocessor.sub;
 import com.google.common.base.Strings;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.params.CobolDialect;
 
 /**
  * Representation of a Cobol line.

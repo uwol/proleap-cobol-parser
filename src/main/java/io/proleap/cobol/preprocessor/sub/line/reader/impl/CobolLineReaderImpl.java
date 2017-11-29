@@ -15,8 +15,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.CobolLineTypeEnum;
 import io.proleap.cobol.preprocessor.sub.line.reader.CobolLineReader;
@@ -52,7 +52,7 @@ public class CobolLineReaderImpl implements CobolLineReader {
 
 	@Override
 	public CobolLine parseLine(final String line, final int lineNumber, final CobolSourceFormatEnum format,
-			final CobolDialect dialect) {
+			final CobolPreprocessorParams params) {
 		final Pattern pattern = format.getPattern();
 		final Matcher matcher = pattern.matcher(line);
 
@@ -77,7 +77,7 @@ public class CobolLineReaderImpl implements CobolLineReader {
 			final CobolLineTypeEnum type = determineType(indicatorArea);
 
 			result = new CobolLine(sequenceArea, indicatorArea, contentAreaA, contentAreaB, commentArea, format,
-					dialect, lineNumber, type);
+					params.getDialect(), lineNumber, type);
 		}
 
 		return result;
@@ -85,7 +85,7 @@ public class CobolLineReaderImpl implements CobolLineReader {
 
 	@Override
 	public List<CobolLine> processLines(final String lines, final CobolSourceFormatEnum format,
-			final CobolDialect dialect) {
+			final CobolPreprocessorParams params) {
 		final Scanner scanner = new Scanner(lines);
 		final List<CobolLine> result = new ArrayList<CobolLine>();
 
@@ -95,7 +95,7 @@ public class CobolLineReaderImpl implements CobolLineReader {
 		while (scanner.hasNextLine()) {
 			currentLine = scanner.nextLine();
 
-			final CobolLine parsedLine = parseLine(currentLine, lineNumber, format, dialect);
+			final CobolLine parsedLine = parseLine(currentLine, lineNumber, format, params);
 			result.add(parsedLine);
 
 			lineNumber++;

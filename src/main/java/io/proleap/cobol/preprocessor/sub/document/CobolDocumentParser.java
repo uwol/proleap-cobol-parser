@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.preprocessor.sub.document;
 
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 
 public interface CobolDocumentParser {
 
-	String processLines(String code, CobolSourceFormatEnum format, CobolDialect dialect);
+	String processLines(String code, CobolSourceFormatEnum format, CobolPreprocessorParams params);
 }
