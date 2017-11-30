@@ -81,7 +81,7 @@ public class CobolWordCopyBookFinderImpl implements CobolWordCopyBookFinder {
 
 	protected boolean isMatchingCopyBookWithoutExtension(final File copyBookCandidate,
 			final String copyBookIdentifier) {
-		final String copyBookCandidateBaseName = FilenameUtils.getBaseName(copyBookCandidate.getAbsolutePath());
+		final String copyBookCandidateBaseName = FilenameUtils.getBaseName(copyBookCandidate.getName());
 		final boolean result = copyBookCandidateBaseName.equalsIgnoreCase(copyBookIdentifier);
 		return result;
 	}
