@@ -9,30 +9,32 @@
 package io.proleap.cobol.preprocessor.sub.copybook.impl;
 
 import java.io.File;
-import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.util.Strings;
 
 import io.proleap.cobol.Cobol85PreprocessorParser.CobolWordContext;
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.copybook.CobolWordCopyBookFinder;
 
 public class CobolWordCopyBookFinderImpl implements CobolWordCopyBookFinder {
 
 	@Override
-	public File findCopyBook(final List<File> copyBookFilesAndDirs, final List<String> copyBookExtensions,
-			final CobolWordContext ctx) {
-		for (final String copyBookExtension : copyBookExtensions) {
-			for (final File copyBookCandidate : copyBookFilesAndDirs) {
-				if (!copyBookCandidate.isDirectory()) {
-					if (isMatchingCopyBook(copyBookCandidate, copyBookExtension, ctx)) {
-						return copyBookCandidate;
-					}
-				} else {
-					final File validCopyBook = findCopyBookInDirectory(copyBookCandidate, copyBookExtension, ctx);
+	public File findCopyBook(final CobolPreprocessorParams params, final CobolWordContext ctx) {
+		if (params.getCopyBookFiles() != null) {
+			for (final File copyBookFile : params.getCopyBookFiles()) {
+				if (isMatchingCopyBook(copyBookFile, params, ctx)) {
+					return copyBookFile;
+				}
+			}
+		}
 
-					if (validCopyBook != null) {
-						return validCopyBook;
-					}
+		if (params.getCopyBookDirectories() != null) {
+			for (final File copyBookDirectory : params.getCopyBookDirectories()) {
+				final File validCopyBook = findCopyBookInDirectory(copyBookDirectory, params, ctx);
+
+				if (validCopyBook != null) {
+					return validCopyBook;
 				}
 			}
 		}
@@ -40,12 +42,10 @@ public class CobolWordCopyBookFinderImpl implements CobolWordCopyBookFinder {
 		return null;
 	}
 
-	protected File findCopyBookInDirectory(final File copyBooksDirectory, final String copyBookExtension,
+	protected File findCopyBookInDirectory(final File copyBooksDirectory, final CobolPreprocessorParams params,
 			final CobolWordContext ctx) {
 		for (final File copyBookCandidate : copyBooksDirectory.listFiles()) {
-			final boolean isMatchingCopyBook = isMatchingCopyBook(copyBookCandidate, copyBookExtension, ctx);
-
-			if (isMatchingCopyBook) {
+			if (isMatchingCopyBook(copyBookCandidate, params, ctx)) {
 				return copyBookCandidate;
 			}
 		}
@@ -53,17 +53,36 @@ public class CobolWordCopyBookFinderImpl implements CobolWordCopyBookFinder {
 		return null;
 	}
 
-	protected boolean isMatchingCopyBook(final File copyBookCandidate, final String generatedCopyBookFilename) {
+	protected boolean isMatchingCopyBook(final File copyBookCandidate, final CobolPreprocessorParams params,
+			final CobolWordContext ctx) {
+		final String copyBookIdentifier = ctx.getText();
+
+		if (params.getCopyBookExtensions() != null) {
+			for (final String copyBookExtension : params.getCopyBookExtensions()) {
+				if (isMatchingCopyBookWithExtension(copyBookCandidate, copyBookIdentifier, copyBookExtension)) {
+					return true;
+				}
+			}
+
+			return false;
+		} else {
+			return isMatchingCopyBookWithoutExtension(copyBookCandidate, copyBookIdentifier);
+		}
+	}
+
+	protected boolean isMatchingCopyBookWithExtension(final File copyBookCandidate, final String copyBookIdentifier,
+			final String copyBookExtension) {
+		final String copyBookFilename = Strings.isBlank(copyBookExtension) ? copyBookIdentifier
+				: copyBookIdentifier + "." + copyBookExtension;
 		final String copyBookCandidateName = copyBookCandidate.getName();
-		final boolean result = generatedCopyBookFilename.equalsIgnoreCase(copyBookCandidateName);
+		final boolean result = copyBookFilename.equalsIgnoreCase(copyBookCandidateName);
 		return result;
 	}
 
-	protected boolean isMatchingCopyBook(final File copyBookCandidate, final String copyBookExtension,
-			final CobolWordContext ctx) {
-		final String copyBookIdentifier = ctx.getText();
-		final String generatedCopyBookFilename = Strings.isBlank(copyBookExtension) ? copyBookIdentifier
-				: copyBookIdentifier + "." + copyBookExtension;
-		return isMatchingCopyBook(copyBookCandidate, generatedCopyBookFilename);
+	protected boolean isMatchingCopyBookWithoutExtension(final File copyBookCandidate,
+			final String copyBookIdentifier) {
+		final String copyBookCandidateBaseName = FilenameUtils.getBaseName(copyBookCandidate.getAbsolutePath());
+		final boolean result = copyBookCandidateBaseName.equalsIgnoreCase(copyBookIdentifier);
+		return result;
 	}
 }

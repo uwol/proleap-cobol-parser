@@ -22,15 +22,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.util.Strings;
 
-import com.google.common.collect.Lists;
-
 import io.proleap.cobol.Cobol85Lexer;
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
 import io.proleap.cobol.ThrowingErrorListener;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
-import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 import io.proleap.cobol.runner.CobolParseTestRunner;
 
 /**
@@ -79,15 +77,9 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 		}
 	}
 
-	protected List<File> getCopyFiles(final File libDirectory) {
-		return Lists.newArrayList(libDirectory.listFiles());
-	}
-
 	@Override
 	public void parseFile(final File inputFile, final CobolSourceFormatEnum format) throws IOException {
-		final File libDirectory = inputFile.getParentFile();
-		final List<File> copyFiles = getCopyFiles(libDirectory);
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles, format);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, format);
 
 		LOG.info("Parsing file {}.", inputFile.getName());
 
@@ -97,7 +89,7 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 	@Override
 	public void parseFile(final File inputFile, final List<File> copyFiles, final CobolSourceFormatEnum format,
 			final CobolPreprocessorParams params) throws IOException {
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles, format, params);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, format, params);
 
 		LOG.info("Parsing file {}.", inputFile.getName());
 

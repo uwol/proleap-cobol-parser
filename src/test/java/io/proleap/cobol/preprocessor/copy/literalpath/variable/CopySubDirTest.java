@@ -11,7 +11,9 @@ import org.junit.Test;
 import com.google.common.collect.Lists;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
+import io.proleap.cobol.preprocessor.impl.CobolPreprocessorParamsImpl;
 
 public class CopySubDirTest {
 
@@ -19,16 +21,20 @@ public class CopySubDirTest {
 
 	@Test
 	public void testCopyBooks() throws Exception {
-		final File inputFile = new File(DIR + "/CopySubDir.cbl");
-		final File copyFile1 = new File(DIR + "/copybooks/somedir/CopyBook1.cpy");
-		final File copyFile2 = new File(DIR + "/copybooks/somedir/CopyBook2.cpy");
-		final File copyFile3 = new File(DIR + "/copybooks/somedir/CopyBook3.cpy");
-		final File copyFile4 = new File(DIR + "/copybooks/somedir/CopyBook4.cpy");
-		final File copyFile5 = new File(DIR + "/copybooks/somedir/CopyBook5.cpy");
-		final ArrayList<File> copyFiles = Lists.newArrayList(copyFile1, copyFile2, copyFile3, copyFile4, copyFile5);
+		final File copyBookFile1 = new File(DIR + "/copybooks/somedir/CopyBook1.cpy");
+		final File copyBookFile2 = new File(DIR + "/copybooks/somedir/CopyBook2.cpy");
+		final File copyBookFile3 = new File(DIR + "/copybooks/somedir/CopyBook3.cpy");
+		final File copyBookFile4 = new File(DIR + "/copybooks/somedir/CopyBook4.cpy");
+		final File copyBookFile5 = new File(DIR + "/copybooks/somedir/CopyBook5.cpy");
+		final ArrayList<File> copyBookFiles = Lists.newArrayList(copyBookFile1, copyBookFile2, copyBookFile3,
+				copyBookFile4, copyBookFile5);
 
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles,
-				CobolSourceFormatEnum.VARIABLE);
+		final CobolPreprocessorParams params = new CobolPreprocessorParamsImpl();
+		params.setCopyBookFiles(copyBookFiles);
+
+		final File inputFile = new File(DIR + "/CopySubDir.cbl");
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.VARIABLE,
+				params);
 
 		final File expectedFile = new File(DIR + "/CopySubDir.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile);
@@ -37,12 +43,15 @@ public class CopySubDirTest {
 
 	@Test
 	public void testCopyDirs() throws Exception {
-		final File inputFile = new File(DIR + "/CopySubDir.cbl");
-		final File copyDir = new File(DIR + "/copybooks");
-		final ArrayList<File> copyDirs = Lists.newArrayList(copyDir);
+		final File copyBookDirectory = new File(DIR + "/copybooks");
+		final ArrayList<File> copyBookDirectories = Lists.newArrayList(copyBookDirectory);
 
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyDirs,
-				CobolSourceFormatEnum.VARIABLE);
+		final CobolPreprocessorParams params = new CobolPreprocessorParamsImpl();
+		params.setCopyBookDirectories(copyBookDirectories);
+
+		final File inputFile = new File(DIR + "/CopySubDir.cbl");
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.VARIABLE,
+				params);
 
 		final File expectedFile = new File(DIR + "/CopySubDir.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile);

@@ -12,8 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
-import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 
 public interface CobolParseTestRunner {
 

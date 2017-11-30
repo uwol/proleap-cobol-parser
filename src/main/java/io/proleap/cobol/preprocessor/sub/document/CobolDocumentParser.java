@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.preprocessor.sub.document;
 
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
-import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 
 public interface CobolDocumentParser {
 

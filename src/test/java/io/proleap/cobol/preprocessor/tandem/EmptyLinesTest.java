@@ -15,8 +15,7 @@ public class EmptyLinesTest {
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File("src/test/resources/io/proleap/cobol/preprocessor/tandem/EmptyLines.cbl");
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, null,
-				CobolSourceFormatEnum.TANDEM);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.TANDEM);
 
 		final File expectedFile = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/tandem/EmptyLines.cbl.preprocessed");

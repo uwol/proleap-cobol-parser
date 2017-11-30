@@ -11,9 +11,9 @@ import org.junit.Test;
 import com.google.common.collect.Lists;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
-import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
-import io.proleap.cobol.preprocessor.params.impl.CobolPreprocessorParamsImpl;
+import io.proleap.cobol.preprocessor.impl.CobolPreprocessorParamsImpl;
 
 public class CopyTxtExtensionTest {
 
@@ -21,15 +21,15 @@ public class CopyTxtExtensionTest {
 
 	@Test
 	public void testCopyBooks() throws Exception {
-		final File inputFile = new File(DIR + "/CopyTxtExtension.cbl");
-		final File copyFile1 = new File(DIR + "/copybooks/SomeCopyBook.txt");
-		final ArrayList<File> copyFiles = Lists.newArrayList(copyFile1);
+		final File copyBookFile = new File(DIR + "/copybooks/SomeCopyBook.txt");
+		final ArrayList<File> copyBookFiles = Lists.newArrayList(copyBookFile);
 
 		final CobolPreprocessorParams params = new CobolPreprocessorParamsImpl();
-		params.setCopyBookExtensions(Lists.newArrayList("txt"));
+		params.setCopyBookFiles(copyBookFiles);
 
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles,
-				CobolSourceFormatEnum.FIXED, params);
+		final File inputFile = new File(DIR + "/CopyTxtExtension.cbl");
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.FIXED,
+				params);
 
 		final File expectedFile = new File(DIR + "/CopyTxtExtension.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile);
@@ -38,15 +38,16 @@ public class CopyTxtExtensionTest {
 
 	@Test
 	public void testCopyDir() throws Exception {
-		final File inputFile = new File(DIR + "/CopyTxtExtension.cbl");
-		final File copyDir = new File(DIR + "/copybooks");
-		final ArrayList<File> copyDirs = Lists.newArrayList(copyDir);
+		final File copyBookDirectory = new File(DIR + "/copybooks");
+		final ArrayList<File> copyBookDirectories = Lists.newArrayList(copyBookDirectory);
 
 		final CobolPreprocessorParams params = new CobolPreprocessorParamsImpl();
+		params.setCopyBookDirectories(copyBookDirectories);
 		params.setCopyBookExtensions(Lists.newArrayList("txt"));
 
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyDirs,
-				CobolSourceFormatEnum.FIXED, params);
+		final File inputFile = new File(DIR + "/CopyTxtExtension.cbl");
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.FIXED,
+				params);
 
 		final File expectedFile = new File(DIR + "/CopyTxtExtension.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile);

@@ -40,9 +40,9 @@ import io.proleap.cobol.asg.visitor.impl.CobolProcedureDivisionVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProcedureStatementVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProgramUnitVisitorImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
-import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
-import io.proleap.cobol.preprocessor.params.impl.CobolPreprocessorParamsImpl;
+import io.proleap.cobol.preprocessor.impl.CobolPreprocessorParamsImpl;
 
 public class CobolParserRunnerImpl implements CobolParserRunner {
 
@@ -80,19 +80,17 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	@Override
-	public Program analyzeFile(final File inputFile, final CobolSourceFormatEnum format) throws IOException {
-		final File libDirectory = inputFile.getParentFile();
-		final List<File> copyBooks = getCopyBooks(libDirectory);
-
-		return analyzeFile(inputFile, copyBooks, format, new CobolPreprocessorParamsImpl());
+	public Program analyzeFile(final File cobolFile, final CobolSourceFormatEnum format) throws IOException {
+		final CobolPreprocessorParams params = createDefaultParams(cobolFile);
+		return analyzeFile(cobolFile, format, params);
 	}
 
 	@Override
-	public Program analyzeFile(final File inputFile, final List<File> copyBooks, final CobolSourceFormatEnum format,
+	public Program analyzeFile(final File inputFile, final CobolSourceFormatEnum format,
 			final CobolPreprocessorParams params) throws IOException {
 		final Program program = new ProgramImpl();
 
-		parseFile(inputFile, copyBooks, program, format, params);
+		parseFile(inputFile, program, format, params);
 		analyze(program);
 
 		return program;
@@ -114,28 +112,6 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			LOG.info("Analyzing file description entries of compilation unit {}.", compilationUnit.getName());
 			visitor.visit(compilationUnit.getCtx());
 		}
-	}
-
-	@Override
-	public Program analyzeFiles(final List<File> inputFiles, final CobolSourceFormatEnum format) throws IOException {
-		final File libDirectory = inputFiles.isEmpty() ? null : inputFiles.get(0).getParentFile();
-		final List<File> copyBooks = getCopyBooks(libDirectory);
-
-		return analyzeFiles(inputFiles, copyBooks, format, new CobolPreprocessorParamsImpl());
-	}
-
-	@Override
-	public Program analyzeFiles(final List<File> inputFiles, final List<File> copyBooks,
-			final CobolSourceFormatEnum format, final CobolPreprocessorParams params) throws IOException {
-		final Program program = new ProgramImpl();
-
-		for (final File inputFile : inputFiles) {
-			parseFile(inputFile, copyBooks, program, format, params);
-		}
-
-		analyze(program);
-
-		return program;
 	}
 
 	protected void analyzeProcedureDivisions(final Program program) {
@@ -165,28 +141,28 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		}
 	}
 
-	protected String getCompilationUnitName(final File inputFile) {
-		return StringUtils.capitalize(FilenameUtils.removeExtension(inputFile.getName()));
+	protected CobolPreprocessorParams createDefaultParams(final File cobolFile) {
+		final CobolPreprocessorParams result = new CobolPreprocessorParamsImpl();
+
+		final File copyBooksDirectory = cobolFile.getParentFile();
+		result.setCopyBookDirectories(Lists.newArrayList(copyBooksDirectory));
+
+		return result;
 	}
 
-	protected List<File> getCopyBooks(final File libDirectory) {
-		return Lists.newArrayList(libDirectory.listFiles());
+	protected String getCompilationUnitName(final File cobolFile) {
+		return StringUtils.capitalize(FilenameUtils.removeExtension(cobolFile.getName()));
 	}
 
-	protected boolean isCobolFile(final File inputFile) {
-		final String extension = FilenameUtils.getExtension(inputFile.getName()).toLowerCase();
-		return "cbl".equals(extension);
-	}
-
-	protected void parseFile(final File inputFile, final List<File> copyBooks, final Program program,
-			final CobolSourceFormatEnum format, final CobolPreprocessorParams params) throws IOException {
-		if (!inputFile.isFile()) {
-			LOG.warn("Could not find file {}", inputFile.getAbsolutePath());
+	protected void parseFile(final File cobolFile, final Program program, final CobolSourceFormatEnum format,
+			final CobolPreprocessorParams params) throws IOException {
+		if (!cobolFile.isFile()) {
+			LOG.warn("Could not find file {}", cobolFile.getAbsolutePath());
 		} else {
 			// preprocess input stream
-			final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyBooks, format, params);
+			final String preProcessedInput = new CobolPreprocessorImpl().process(cobolFile, format, params);
 
-			LOG.info("Parsing file {}.", inputFile.getName());
+			LOG.info("Parsing file {}.", cobolFile.getName());
 
 			// run the lexer
 			final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
@@ -201,19 +177,19 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			final StartRuleContext ctx = parser.startRule();
 
 			// determine the copy book name
-			final String compilationUnitName = getCompilationUnitName(inputFile);
+			final String compilationUnitName = getCompilationUnitName(cobolFile);
 
 			// analyze contained compilation units
 			final List<String> lines = splitLines(preProcessedInput);
 			final ParserVisitor visitor = new CobolCompilationUnitVisitorImpl(compilationUnitName, lines, tokens,
 					program);
 
-			LOG.info("Collecting units in file {}.", inputFile.getName());
+			LOG.info("Collecting units in file {}.", cobolFile.getName());
 			visitor.visit(ctx);
 		}
 	}
 
-	public List<String> splitLines(final String preProcessedInput) {
+	protected List<String> splitLines(final String preProcessedInput) {
 		final Scanner scanner = new Scanner(preProcessedInput);
 		final List<String> result = new ArrayList<String>();
 

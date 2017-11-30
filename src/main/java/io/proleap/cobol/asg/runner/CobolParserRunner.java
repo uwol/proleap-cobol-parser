@@ -10,21 +10,15 @@ package io.proleap.cobol.asg.runner;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
-import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 
 public interface CobolParserRunner {
 
-	Program analyzeFile(File inputFile, CobolSourceFormatEnum format) throws IOException;
+	Program analyzeFile(File cobolFile, CobolSourceFormatEnum format) throws IOException;
 
-	Program analyzeFile(File inputFile, List<File> copyBooks, CobolSourceFormatEnum format,
-			CobolPreprocessorParams params) throws IOException;
-
-	Program analyzeFiles(List<File> inputFiles, CobolSourceFormatEnum format) throws IOException;
-
-	Program analyzeFiles(List<File> inputFiles, List<File> copyBooks, CobolSourceFormatEnum format,
-			CobolPreprocessorParams params) throws IOException;
+	Program analyzeFile(File cobolFile, CobolSourceFormatEnum format, CobolPreprocessorParams params)
+			throws IOException;
 }

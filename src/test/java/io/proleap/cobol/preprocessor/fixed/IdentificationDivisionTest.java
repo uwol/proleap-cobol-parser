@@ -16,8 +16,7 @@ public class IdentificationDivisionTest {
 	public void test() throws Exception {
 		final File inputFile = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/fixed/IdentificationDivision.cbl");
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, null,
-				CobolSourceFormatEnum.FIXED);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.FIXED);
 
 		final File expectedFile = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/fixed/IdentificationDivision.cbl.preprocessed");

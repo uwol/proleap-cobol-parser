@@ -13,7 +13,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.List;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -21,8 +20,6 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.util.Strings;
-
-import com.google.common.collect.Lists;
 
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -136,10 +133,9 @@ public class TestGenerator {
 			LOG.info("Creating tree file {}.", outputFile);
 
 			final File parentDirectory = cobolInputFile.getParentFile();
-			final List<File> copyFiles = getCopyFiles(parentDirectory);
 			final CobolSourceFormatEnum format = getCobolSourceFormat(parentDirectory);
 
-			final String preProcessedInput = new CobolPreprocessorImpl().process(cobolInputFile, copyFiles, format);
+			final String preProcessedInput = new CobolPreprocessorImpl().process(cobolInputFile, format);
 
 			final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
 			final CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -174,10 +170,6 @@ public class TestGenerator {
 		}
 
 		return result;
-	}
-
-	protected static List<File> getCopyFiles(final File libDirectory) {
-		return Lists.newArrayList(libDirectory.listFiles());
 	}
 
 	protected static String getInputFilename(final File inputFile) {

@@ -11,25 +11,29 @@ package io.proleap.cobol.preprocessor.sub.copybook.impl;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
 import io.proleap.cobol.Cobol85PreprocessorParser.LiteralContext;
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.copybook.LiteralCopyBookFinder;
 import io.proleap.cobol.preprocessor.sub.util.StringUtils;
 
 public class LiteralCopyBookFinderImpl implements LiteralCopyBookFinder {
 
 	@Override
-	public File findCopyBook(final List<File> copyBookFilesAndDirs, final LiteralContext ctx) {
-		for (final File copyBookCandidate : copyBookFilesAndDirs) {
-			if (!copyBookCandidate.isDirectory()) {
-				if (isMatchingCopyBook(copyBookCandidate, null, ctx)) {
-					return copyBookCandidate;
+	public File findCopyBook(final CobolPreprocessorParams params, final LiteralContext ctx) {
+		if (params.getCopyBookFiles() != null) {
+			for (final File copyBookFile : params.getCopyBookFiles()) {
+				if (isMatchingCopyBook(copyBookFile, null, ctx)) {
+					return copyBookFile;
 				}
-			} else {
-				final File validCopyBook = findCopyBookInDirectory(copyBookCandidate, ctx);
+			}
+		}
+
+		if (params.getCopyBookDirectories() != null) {
+			for (final File copyBookDirectory : params.getCopyBookDirectories()) {
+				final File validCopyBook = findCopyBookInDirectory(copyBookDirectory, ctx);
 
 				if (validCopyBook != null) {
 					return validCopyBook;
@@ -42,9 +46,7 @@ public class LiteralCopyBookFinderImpl implements LiteralCopyBookFinder {
 
 	protected File findCopyBookInDirectory(final File copyBooksDirectory, final LiteralContext ctx) {
 		for (final File copyBookCandidate : FileUtils.listFiles(copyBooksDirectory, null, true)) {
-			final boolean isMatchingCopyBook = isMatchingCopyBook(copyBookCandidate, copyBooksDirectory, ctx);
-
-			if (isMatchingCopyBook) {
+			if (isMatchingCopyBook(copyBookCandidate, copyBooksDirectory, ctx)) {
 				return copyBookCandidate;
 			}
 		}

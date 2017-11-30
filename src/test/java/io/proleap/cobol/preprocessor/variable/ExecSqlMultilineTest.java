@@ -16,8 +16,7 @@ public class ExecSqlMultilineTest {
 	public void test() throws Exception {
 		final File inputFile = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/variable/ExecSqlMultiline.cbl");
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, null,
-				CobolSourceFormatEnum.VARIABLE);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.VARIABLE);
 
 		final File expectedFile = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/variable/ExecSqlMultiline.cbl.preprocessed");

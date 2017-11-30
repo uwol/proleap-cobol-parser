@@ -19,9 +19,10 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.common.collect.Lists;
+
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
-import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
-import io.proleap.cobol.preprocessor.params.impl.CobolPreprocessorParamsImpl;
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParser;
 import io.proleap.cobol.preprocessor.sub.document.impl.CobolDocumentParserImpl;
@@ -44,8 +45,17 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		return new CobolCommentEntriesMarkerImpl();
 	}
 
-	protected CobolDocumentParser createDocumentParser(final List<File> copyBooks) {
-		return new CobolDocumentParserImpl(copyBooks);
+	protected CobolPreprocessorParams createDefaultParams(final File cobolFile) {
+		final CobolPreprocessorParams result = new CobolPreprocessorParamsImpl();
+
+		final File copyBooksDirectory = cobolFile.getParentFile();
+		result.setCopyBookDirectories(Lists.newArrayList(copyBooksDirectory));
+
+		return result;
+	}
+
+	protected CobolDocumentParser createDocumentParser() {
+		return new CobolDocumentParserImpl();
 	}
 
 	protected CobolInlineCommentEntriesNormalizer createInlineCommentEntriesNormalizer() {
@@ -64,22 +74,21 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		return new CobolLineWriterImpl();
 	}
 
-	protected String parseDocument(final List<CobolLine> lines, final List<File> copyBookFilesAndDirs,
-			final CobolSourceFormatEnum format, final CobolPreprocessorParams params) {
+	protected String parseDocument(final List<CobolLine> lines, final CobolSourceFormatEnum format,
+			final CobolPreprocessorParams params) {
 		final String code = createLineWriter().serialize(lines);
-		final String result = createDocumentParser(copyBookFilesAndDirs).processLines(code, format, params);
+		final String result = createDocumentParser().processLines(code, format, params);
 		return result;
 	}
 
 	@Override
-	public String process(final File cobolFile, final List<File> copyBookFilesAndDirs,
-			final CobolSourceFormatEnum format) throws IOException {
-		return process(cobolFile, copyBookFilesAndDirs, format, new CobolPreprocessorParamsImpl());
+	public String process(final File cobolFile, final CobolSourceFormatEnum format) throws IOException {
+		return process(cobolFile, format, createDefaultParams(cobolFile));
 	}
 
 	@Override
-	public String process(final File cobolFile, final List<File> copyBookFilesAndDirs,
-			final CobolSourceFormatEnum format, final CobolPreprocessorParams params) throws IOException {
+	public String process(final File cobolFile, final CobolSourceFormatEnum format,
+			final CobolPreprocessorParams params) throws IOException {
 		LOG.info("Preprocessing file {}.", cobolFile.getName());
 
 		final InputStream inputStream = new FileInputStream(cobolFile);
@@ -95,22 +104,21 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 
 		bufferedInputStreamReader.close();
 
-		final String result = process(outputBuffer.toString(), copyBookFilesAndDirs, format, params);
+		final String result = process(outputBuffer.toString(), format, params);
 		return result;
 	}
 
 	@Override
-	public String process(final String cobolSourceCode, final List<File> copyBookFilesAndDirs,
-			final CobolSourceFormatEnum format) {
-		return process(cobolSourceCode, copyBookFilesAndDirs, format, new CobolPreprocessorParamsImpl());
+	public String process(final String cobolSourceCode, final CobolSourceFormatEnum format) {
+		return process(cobolSourceCode, format, new CobolPreprocessorParamsImpl());
 	}
 
 	@Override
-	public String process(final String cobolCode, final List<File> copyBookFilesAndDirs,
-			final CobolSourceFormatEnum format, final CobolPreprocessorParams params) {
+	public String process(final String cobolCode, final CobolSourceFormatEnum format,
+			final CobolPreprocessorParams params) {
 		final List<CobolLine> lines = readLines(cobolCode, format, params);
 		final List<CobolLine> rewrittenLines = rewriteLines(lines);
-		final String result = parseDocument(rewrittenLines, copyBookFilesAndDirs, format, params);
+		final String result = parseDocument(rewrittenLines, format, params);
 
 		LOG.debug("Processed input:\n\n{}\n\n", result);
 

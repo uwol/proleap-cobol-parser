@@ -9,11 +9,11 @@
 package io.proleap.cobol.preprocessor.sub.copybook;
 
 import java.io.File;
-import java.util.List;
 
 import io.proleap.cobol.Cobol85PreprocessorParser.LiteralContext;
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 
 public interface LiteralCopyBookFinder {
 
-	File findCopyBook(List<File> copyBookFilesAndDirs, LiteralContext ctx);
+	File findCopyBook(CobolPreprocessorParams params, LiteralContext ctx);
 }

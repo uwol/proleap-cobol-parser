@@ -12,7 +12,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
-import io.proleap.cobol.preprocessor.params.impl.CobolPreprocessorParamsImpl;
+import io.proleap.cobol.preprocessor.impl.CobolPreprocessorParamsImpl;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.line.reader.impl.CobolLineReaderImpl;
 

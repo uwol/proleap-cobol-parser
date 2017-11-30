@@ -10,10 +10,7 @@ package io.proleap.cobol.preprocessor;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.regex.Pattern;
-
-import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 
 public interface CobolPreprocessor {
 
@@ -104,13 +101,11 @@ public interface CobolPreprocessor {
 
 	final static String WS = " ";
 
-	String process(File cobolFile, List<File> copyBookFilesAndDirs, CobolSourceFormatEnum format) throws IOException;
+	String process(File cobolFile, CobolSourceFormatEnum format) throws IOException;
 
-	String process(File cobolFile, List<File> copyBookFilesAndDirs, CobolSourceFormatEnum format,
-			CobolPreprocessorParams params) throws IOException;
+	String process(File cobolFile, CobolSourceFormatEnum format, CobolPreprocessorParams params) throws IOException;
 
-	String process(String cobolCode, List<File> copyBookFilesAndDirs, CobolSourceFormatEnum format);
+	String process(String cobolCode, CobolSourceFormatEnum format);
 
-	String process(String cobolCode, List<File> copyBookFilesAndDirs, CobolSourceFormatEnum format,
-			CobolPreprocessorParams params);
+	String process(String cobolCode, CobolSourceFormatEnum format, CobolPreprocessorParams params);
 }

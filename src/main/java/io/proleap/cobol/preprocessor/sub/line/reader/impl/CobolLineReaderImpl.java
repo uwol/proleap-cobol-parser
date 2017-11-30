@@ -15,8 +15,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
-import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.CobolLineTypeEnum;
 import io.proleap.cobol.preprocessor.sub.line.reader.CobolLineReader;

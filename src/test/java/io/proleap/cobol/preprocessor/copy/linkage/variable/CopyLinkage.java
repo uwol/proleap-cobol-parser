@@ -11,7 +11,9 @@ import org.junit.Test;
 import com.google.common.collect.Lists;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
+import io.proleap.cobol.preprocessor.impl.CobolPreprocessorParamsImpl;
 
 public class CopyLinkage {
 
@@ -19,12 +21,15 @@ public class CopyLinkage {
 
 	@Test
 	public void testCopyBooks() throws Exception {
-		final File inputFile = new File(DIR + "/CopyLinkage.cbl");
-		final File copyFile = new File(DIR + "/copybooks/Linkage");
-		final ArrayList<File> copyFiles = Lists.newArrayList(copyFile);
+		final File copyBookFile = new File(DIR + "/copybooks/Linkage");
+		final ArrayList<File> copyBookFiles = Lists.newArrayList(copyBookFile);
 
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyFiles,
-				CobolSourceFormatEnum.VARIABLE);
+		final CobolPreprocessorParams params = new CobolPreprocessorParamsImpl();
+		params.setCopyBookFiles(copyBookFiles);
+
+		final File inputFile = new File(DIR + "/CopyLinkage.cbl");
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.VARIABLE,
+				params);
 
 		final File expectedFile = new File(DIR + "/CopyLinkage.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile);
@@ -33,12 +38,15 @@ public class CopyLinkage {
 
 	@Test
 	public void testCopyDirs() throws Exception {
-		final File inputFile = new File(DIR + "/CopyLinkage.cbl");
-		final File copyDir = new File(DIR + "/copybooks");
-		final ArrayList<File> copyDirs = Lists.newArrayList(copyDir);
+		final File copyBookDirectory = new File(DIR + "/copybooks");
+		final ArrayList<File> copyBookDirectories = Lists.newArrayList(copyBookDirectory);
 
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, copyDirs,
-				CobolSourceFormatEnum.VARIABLE);
+		final CobolPreprocessorParams params = new CobolPreprocessorParamsImpl();
+		params.setCopyBookDirectories(copyBookDirectories);
+
+		final File inputFile = new File(DIR + "/CopyLinkage.cbl");
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.VARIABLE,
+				params);
 
 		final File expectedFile = new File(DIR + "/CopyLinkage.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile);

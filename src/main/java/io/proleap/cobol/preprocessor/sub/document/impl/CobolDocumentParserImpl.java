@@ -8,9 +8,6 @@
 
 package io.proleap.cobol.preprocessor.sub.document.impl;
 
-import java.io.File;
-import java.util.List;
-
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -19,7 +16,7 @@ import io.proleap.cobol.Cobol85PreprocessorLexer;
 import io.proleap.cobol.Cobol85PreprocessorParser;
 import io.proleap.cobol.Cobol85PreprocessorParser.StartRuleContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
-import io.proleap.cobol.preprocessor.params.CobolPreprocessorParams;
+import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParser;
 import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParserListener;
 
@@ -29,14 +26,8 @@ import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParserListener;
  */
 public class CobolDocumentParserImpl implements CobolDocumentParser {
 
-	protected final List<File> copyBookFilesAndDirs;
-
 	protected final String[] triggers = new String[] { "cbl", "copy", "exec sql", "exec sqlims", "exec cics", "process",
 			"replace", "eject", "skip1", "skip2", "skip3", "title" };
-
-	public CobolDocumentParserImpl(final List<File> copyBooks) {
-		copyBookFilesAndDirs = copyBooks;
-	}
 
 	protected boolean containsTrigger(final String code, final String[] triggers) {
 		final String codeLowerCase = code.toLowerCase();
@@ -54,9 +45,9 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		return result;
 	}
 
-	protected CobolDocumentParserListener createDocumentParserListener(final List<File> copyBookFilesAndDirs,
-			final CobolSourceFormatEnum format, final CobolPreprocessorParams params, final CommonTokenStream tokens) {
-		return new CobolDocumentParserListenerImpl(copyBookFilesAndDirs, format, params, tokens);
+	protected CobolDocumentParserListener createDocumentParserListener(final CobolSourceFormatEnum format,
+			final CobolPreprocessorParams params, final CommonTokenStream tokens) {
+		return new CobolDocumentParserListenerImpl(format, params, tokens);
 	}
 
 	@Override
@@ -66,7 +57,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		final String result;
 
 		if (requiresProcessorExecution) {
-			result = processWithParser(code, copyBookFilesAndDirs, format, params);
+			result = processWithParser(code, format, params);
 		} else {
 			result = code;
 		}
@@ -74,8 +65,8 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		return result;
 	}
 
-	protected String processWithParser(final String code, final List<File> copyBookFilesAndDirs,
-			final CobolSourceFormatEnum format, final CobolPreprocessorParams params) {
+	protected String processWithParser(final String code, final CobolSourceFormatEnum format,
+			final CobolPreprocessorParams params) {
 		// run the lexer
 		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(CharStreams.fromString(code));
 
@@ -93,8 +84,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		final StartRuleContext startRule = parser.startRule();
 
 		// analyze contained copy books
-		final CobolDocumentParserListener listener = createDocumentParserListener(copyBookFilesAndDirs, format, params,
-				tokens);
+		final CobolDocumentParserListener listener = createDocumentParserListener(format, params, tokens);
 		final ParseTreeWalker walker = new ParseTreeWalker();
 
 		walker.walk(listener, startRule);
