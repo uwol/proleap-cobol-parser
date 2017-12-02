@@ -20,17 +20,12 @@ public class CopySubDirTest {
 	private static final String DIR = "src/test/resources/io/proleap/cobol/preprocessor/copy/literalpath/variable";
 
 	@Test
-	public void testCopyBooks() throws Exception {
-		final File copyBookFile1 = new File(DIR + "/copybooks/somedir/CopyBook1.cpy");
-		final File copyBookFile2 = new File(DIR + "/copybooks/somedir/CopyBook2.cpy");
-		final File copyBookFile3 = new File(DIR + "/copybooks/somedir/CopyBook3.cpy");
-		final File copyBookFile4 = new File(DIR + "/copybooks/somedir/CopyBook4.cpy");
-		final File copyBookFile5 = new File(DIR + "/copybooks/somedir/CopyBook5.cpy");
-		final ArrayList<File> copyBookFiles = Lists.newArrayList(copyBookFile1, copyBookFile2, copyBookFile3,
-				copyBookFile4, copyBookFile5);
+	public void testCopyBookDirectories() throws Exception {
+		final File copyBookDirectory = new File(DIR + "/copybooks");
+		final ArrayList<File> copyBookDirectories = Lists.newArrayList(copyBookDirectory);
 
 		final CobolPreprocessorParams params = new CobolPreprocessorParamsImpl();
-		params.setCopyBookFiles(copyBookFiles);
+		params.setCopyBookDirectories(copyBookDirectories);
 
 		final File inputFile = new File(DIR + "/CopySubDir.cbl");
 		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.VARIABLE,
@@ -42,12 +37,17 @@ public class CopySubDirTest {
 	}
 
 	@Test
-	public void testCopyDirs() throws Exception {
-		final File copyBookDirectory = new File(DIR + "/copybooks");
-		final ArrayList<File> copyBookDirectories = Lists.newArrayList(copyBookDirectory);
+	public void testCopyBookFiles() throws Exception {
+		final File copyBookFile1 = new File(DIR + "/copybooks/somedir/CopyBook1.cpy");
+		final File copyBookFile2 = new File(DIR + "/copybooks/somedir/CopyBook2.cpy");
+		final File copyBookFile3 = new File(DIR + "/copybooks/somedir/CopyBook3.cpy");
+		final File copyBookFile4 = new File(DIR + "/copybooks/somedir/CopyBook4.cpy");
+		final File copyBookFile5 = new File(DIR + "/copybooks/somedir/CopyBook5.cpy");
+		final ArrayList<File> copyBookFiles = Lists.newArrayList(copyBookFile1, copyBookFile2, copyBookFile3,
+				copyBookFile4, copyBookFile5);
 
 		final CobolPreprocessorParams params = new CobolPreprocessorParamsImpl();
-		params.setCopyBookDirectories(copyBookDirectories);
+		params.setCopyBookFiles(copyBookFiles);
 
 		final File inputFile = new File(DIR + "/CopySubDir.cbl");
 		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.VARIABLE,

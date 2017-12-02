@@ -20,7 +20,7 @@ public class CopySuppressTest {
 	private static final String DIR = "src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed";
 
 	@Test
-	public void testCopyBooks() throws Exception {
+	public void testCopyBookFiles() throws Exception {
 		final File copyBookFile = new File(DIR + "/copybooks/CopySuppress.cpy");
 		final ArrayList<File> copyBookFiles = Lists.newArrayList(copyBookFile);
 
@@ -37,7 +37,7 @@ public class CopySuppressTest {
 	}
 
 	@Test
-	public void testCopyDir() throws Exception {
+	public void testCopyBookDirectories() throws Exception {
 		final File copyBookDirectory = new File(DIR + "/copybooks");
 		final ArrayList<File> copyBookDirectories = Lists.newArrayList(copyBookDirectory);
 
