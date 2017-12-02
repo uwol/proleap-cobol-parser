@@ -19,5 +19,4 @@ public interface RelationalOperator extends ValueStmt {
 	RelationalOperatorType getRelationalOperatorType();
 
 	void setRelationalOperatorType(RelationalOperatorType type);
-
 }

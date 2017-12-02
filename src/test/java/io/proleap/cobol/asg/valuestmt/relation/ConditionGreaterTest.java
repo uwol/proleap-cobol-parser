@@ -1,4 +1,4 @@
-package io.proleap.cobol.asg.valuestmt;
+package io.proleap.cobol.asg.valuestmt.relation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -36,14 +36,15 @@ import io.proleap.cobol.asg.metamodel.valuestmt.relation.RelationalOperator;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class ConditionOrTest extends CobolTestBase {
+public class ConditionGreaterTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/valuestmt/ConditionOr.cbl");
+		final File inputFile = new File(
+				"src/test/resources/io/proleap/cobol/asg/valuestmt/relation/ConditionGreater.cbl");
 		final Program program = new CobolParserRunnerImpl().analyzeFile(inputFile, CobolSourceFormatEnum.TANDEM);
 
-		final CompilationUnit compilationUnit = program.getCompilationUnit("ConditionOr");
+		final CompilationUnit compilationUnit = program.getCompilationUnit("ConditionGreater");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(1, procedureDivision.getStatements().size());
@@ -54,7 +55,7 @@ public class ConditionOrTest extends CobolTestBase {
 
 			{
 				final Then then = ifStatement.getThen();
-				assertEquals(1, then.getStatements().size());
+				assertTrue(then.getStatements().isEmpty());
 			}
 
 			{
@@ -148,38 +149,6 @@ public class ConditionOrTest extends CobolTestBase {
 											}
 										}
 									}
-								}
-							}
-						}
-					}
-				}
-
-				assertEquals(1, condition.getAndOrConditions().size());
-
-				{
-					final AndOrCondition andOrCondition = condition.getAndOrConditions().get(0);
-					assertNotNull(andOrCondition);
-
-					{
-						final CombinableCondition combinableCondition = andOrCondition.getCombinableCondition();
-						assertTrue(combinableCondition.isNot());
-						assertNotNull(combinableCondition);
-
-						{
-							final SimpleCondition simpleCondition = combinableCondition.getSimpleCondition();
-							assertNotNull(simpleCondition);
-							assertEquals(SimpleCondition.SimpleConditionType.CONDITION_NAME_REFERENCE,
-									simpleCondition.getSimpleConditionType());
-
-							{
-								final ConditionNameReference conditionNameReference = simpleCondition
-										.getConditionNameReference();
-								assertNotNull(conditionNameReference);
-
-								{
-									final Call conditionCall = conditionNameReference.getConditionCall();
-									assertNotNull(conditionCall);
-									assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, conditionCall.getCallType());
 								}
 							}
 						}

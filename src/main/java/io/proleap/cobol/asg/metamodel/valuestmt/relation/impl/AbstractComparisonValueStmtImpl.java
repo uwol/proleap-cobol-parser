@@ -58,7 +58,9 @@ public abstract class AbstractComparisonValueStmtImpl extends ValueStmtImpl impl
 				type = RelationalOperator.RelationalOperatorType.NOT_EQUAL;
 			}
 			// without not
-			else if (ctx.MORETHANCHAR() != null) {
+			else if (ctx.NOTEQUALCHAR() != null) {
+				type = RelationalOperator.RelationalOperatorType.NOT_EQUAL;
+			} else if (ctx.MORETHANCHAR() != null) {
 				type = RelationalOperator.RelationalOperatorType.GREATER;
 			} else if (ctx.LESSTHANCHAR() != null) {
 				type = RelationalOperator.RelationalOperatorType.LESS;

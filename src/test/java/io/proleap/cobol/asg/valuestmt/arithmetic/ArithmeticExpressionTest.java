@@ -1,4 +1,4 @@
-package io.proleap.cobol.asg.valuestmt;
+package io.proleap.cobol.asg.valuestmt.arithmetic;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -29,7 +29,8 @@ public class ArithmeticExpressionTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {
-		final File inputFile = new File("src/test/resources/io/proleap/cobol/asg/valuestmt/ArithmeticExpression.cbl");
+		final File inputFile = new File(
+				"src/test/resources/io/proleap/cobol/asg/valuestmt/arithmetic/ArithmeticExpression.cbl");
 		final Program program = new CobolParserRunnerImpl().analyzeFile(inputFile, CobolSourceFormatEnum.TANDEM);
 
 		final CompilationUnit compilationUnit = program.getCompilationUnit("ArithmeticExpression");
