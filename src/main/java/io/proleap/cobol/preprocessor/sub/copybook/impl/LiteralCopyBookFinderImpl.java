@@ -15,14 +15,14 @@ import java.nio.file.Paths;
 import org.apache.commons.io.FileUtils;
 
 import io.proleap.cobol.Cobol85PreprocessorParser.LiteralContext;
-import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
+import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.sub.copybook.LiteralCopyBookFinder;
 import io.proleap.cobol.preprocessor.sub.util.StringUtils;
 
 public class LiteralCopyBookFinderImpl implements LiteralCopyBookFinder {
 
 	@Override
-	public File findCopyBook(final CobolPreprocessorParams params, final LiteralContext ctx) {
+	public File findCopyBook(final CobolParserParams params, final LiteralContext ctx) {
 		if (params.getCopyBookFiles() != null) {
 			for (final File copyBookFile : params.getCopyBookFiles()) {
 				if (isMatchingCopyBook(copyBookFile, null, ctx)) {

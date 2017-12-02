@@ -10,10 +10,10 @@ import org.junit.Test;
 
 import com.google.common.collect.Lists;
 
+import io.proleap.cobol.asg.params.CobolParserParams;
+import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
-import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
-import io.proleap.cobol.preprocessor.impl.CobolPreprocessorParamsImpl;
 
 public class CopyNoExtensionTest {
 
@@ -24,7 +24,7 @@ public class CopyNoExtensionTest {
 		final File copyBookDirectory = new File(DIR + "/copybooks");
 		final ArrayList<File> copyBookDirectories = Lists.newArrayList(copyBookDirectory);
 
-		final CobolPreprocessorParams params = new CobolPreprocessorParamsImpl();
+		final CobolParserParams params = new CobolParserParamsImpl();
 		params.setCopyBookDirectories(copyBookDirectories);
 
 		final File inputFile = new File(DIR + "/CopyNoExtension.cbl");
@@ -41,7 +41,7 @@ public class CopyNoExtensionTest {
 		final File copyBookFile = new File(DIR + "/copybooks/SomeCopyBook");
 		final ArrayList<File> copyBookFiles = Lists.newArrayList(copyBookFile);
 
-		final CobolPreprocessorParams params = new CobolPreprocessorParamsImpl();
+		final CobolParserParams params = new CobolParserParamsImpl();
 		params.setCopyBookFiles(copyBookFiles);
 
 		final File inputFile = new File(DIR + "/CopyNoExtension.cbl");

@@ -11,9 +11,9 @@ package io.proleap.cobol.preprocessor.sub.copybook;
 import java.io.File;
 
 import io.proleap.cobol.Cobol85PreprocessorParser.CobolWordContext;
-import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
+import io.proleap.cobol.asg.params.CobolParserParams;
 
 public interface CobolWordCopyBookFinder {
 
-	File findCopyBook(CobolPreprocessorParams params, CobolWordContext ctx);
+	File findCopyBook(CobolParserParams params, CobolWordContext ctx);
 }

@@ -12,7 +12,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -25,9 +24,9 @@ import org.apache.logging.log4j.util.Strings;
 import io.proleap.cobol.Cobol85Lexer;
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
+import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.asg.runner.ThrowingErrorListener;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
-import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.runner.CobolParseTestRunner;
 
@@ -87,8 +86,8 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 	}
 
 	@Override
-	public void parseFile(final File inputFile, final List<File> copyFiles, final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params) throws IOException {
+	public void parseFile(final File inputFile, final CobolSourceFormatEnum format, final CobolParserParams params)
+			throws IOException {
 		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, format, params);
 
 		LOG.info("Parsing file {}.", inputFile.getName());

@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
+import io.proleap.cobol.asg.params.CobolParserParams;
+
 public interface CobolPreprocessor {
 
 	public enum CobolSourceFormatEnum {
@@ -103,9 +105,9 @@ public interface CobolPreprocessor {
 
 	String process(File cobolFile, CobolSourceFormatEnum format) throws IOException;
 
-	String process(File cobolFile, CobolSourceFormatEnum format, CobolPreprocessorParams params) throws IOException;
+	String process(File cobolFile, CobolSourceFormatEnum format, CobolParserParams params) throws IOException;
 
 	String process(String cobolCode, CobolSourceFormatEnum format);
 
-	String process(String cobolCode, CobolSourceFormatEnum format, CobolPreprocessorParams params);
+	String process(String cobolCode, CobolSourceFormatEnum format, CobolParserParams params);
 }

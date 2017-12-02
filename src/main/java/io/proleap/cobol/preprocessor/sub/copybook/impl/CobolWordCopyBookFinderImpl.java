@@ -14,13 +14,13 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.util.Strings;
 
 import io.proleap.cobol.Cobol85PreprocessorParser.CobolWordContext;
-import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
+import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.sub.copybook.CobolWordCopyBookFinder;
 
 public class CobolWordCopyBookFinderImpl implements CobolWordCopyBookFinder {
 
 	@Override
-	public File findCopyBook(final CobolPreprocessorParams params, final CobolWordContext ctx) {
+	public File findCopyBook(final CobolParserParams params, final CobolWordContext ctx) {
 		if (params.getCopyBookFiles() != null) {
 			for (final File copyBookFile : params.getCopyBookFiles()) {
 				if (isMatchingCopyBook(copyBookFile, params, ctx)) {
@@ -42,7 +42,7 @@ public class CobolWordCopyBookFinderImpl implements CobolWordCopyBookFinder {
 		return null;
 	}
 
-	protected File findCopyBookInDirectory(final File copyBooksDirectory, final CobolPreprocessorParams params,
+	protected File findCopyBookInDirectory(final File copyBooksDirectory, final CobolParserParams params,
 			final CobolWordContext ctx) {
 		for (final File copyBookCandidate : copyBooksDirectory.listFiles()) {
 			if (isMatchingCopyBook(copyBookCandidate, params, ctx)) {
@@ -53,7 +53,7 @@ public class CobolWordCopyBookFinderImpl implements CobolWordCopyBookFinder {
 		return null;
 	}
 
-	protected boolean isMatchingCopyBook(final File copyBookCandidate, final CobolPreprocessorParams params,
+	protected boolean isMatchingCopyBook(final File copyBookCandidate, final CobolParserParams params,
 			final CobolWordContext ctx) {
 		final String copyBookIdentifier = ctx.getText();
 

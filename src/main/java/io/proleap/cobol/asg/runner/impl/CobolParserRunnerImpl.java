@@ -29,6 +29,8 @@ import io.proleap.cobol.Cobol85Parser.StartRuleContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.impl.ProgramImpl;
+import io.proleap.cobol.asg.params.CobolParserParams;
+import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
 import io.proleap.cobol.asg.runner.CobolParserRunner;
 import io.proleap.cobol.asg.runner.ThrowingErrorListener;
 import io.proleap.cobol.asg.visitor.ParserVisitor;
@@ -41,9 +43,7 @@ import io.proleap.cobol.asg.visitor.impl.CobolProcedureDivisionVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProcedureStatementVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolProgramUnitVisitorImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
-import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
-import io.proleap.cobol.preprocessor.impl.CobolPreprocessorParamsImpl;
 
 public class CobolParserRunnerImpl implements CobolParserRunner {
 
@@ -82,13 +82,13 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 
 	@Override
 	public Program analyzeFile(final File cobolFile, final CobolSourceFormatEnum format) throws IOException {
-		final CobolPreprocessorParams params = createDefaultParams(cobolFile);
+		final CobolParserParams params = createDefaultParams(cobolFile);
 		return analyzeFile(cobolFile, format, params);
 	}
 
 	@Override
-	public Program analyzeFile(final File inputFile, final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params) throws IOException {
+	public Program analyzeFile(final File inputFile, final CobolSourceFormatEnum format, final CobolParserParams params)
+			throws IOException {
 		final Program program = new ProgramImpl();
 
 		parseFile(inputFile, program, format, params);
@@ -142,8 +142,8 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		}
 	}
 
-	protected CobolPreprocessorParams createDefaultParams(final File cobolFile) {
-		final CobolPreprocessorParams result = new CobolPreprocessorParamsImpl();
+	protected CobolParserParams createDefaultParams(final File cobolFile) {
+		final CobolParserParams result = new CobolParserParamsImpl();
 
 		final File copyBooksDirectory = cobolFile.getParentFile();
 		result.setCopyBookDirectories(Lists.newArrayList(copyBooksDirectory));
@@ -156,7 +156,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	protected void parseFile(final File cobolFile, final Program program, final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params) throws IOException {
+			final CobolParserParams params) throws IOException {
 		if (!cobolFile.isFile()) {
 			LOG.warn("Could not find file {}", cobolFile.getAbsolutePath());
 		} else {

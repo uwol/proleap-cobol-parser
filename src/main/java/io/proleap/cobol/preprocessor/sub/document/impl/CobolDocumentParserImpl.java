@@ -15,9 +15,9 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import io.proleap.cobol.Cobol85PreprocessorLexer;
 import io.proleap.cobol.Cobol85PreprocessorParser;
 import io.proleap.cobol.Cobol85PreprocessorParser.StartRuleContext;
+import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.asg.runner.ThrowingErrorListener;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
-import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParser;
 import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParserListener;
 
@@ -47,13 +47,13 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 	}
 
 	protected CobolDocumentParserListener createDocumentParserListener(final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params, final CommonTokenStream tokens) {
+			final CobolParserParams params, final CommonTokenStream tokens) {
 		return new CobolDocumentParserListenerImpl(format, params, tokens);
 	}
 
 	@Override
 	public String processLines(final String code, final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params) {
+			final CobolParserParams params) {
 		final boolean requiresProcessorExecution = containsTrigger(code, triggers);
 		final String result;
 
@@ -67,7 +67,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 	}
 
 	protected String processWithParser(final String code, final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params) {
+			final CobolParserParams params) {
 		// run the lexer
 		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(CharStreams.fromString(code));
 

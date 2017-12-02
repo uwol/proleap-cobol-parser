@@ -6,14 +6,18 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.preprocessor;
+package io.proleap.cobol.asg.params;
 
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.List;
 
-import io.proleap.cobol.preprocessor.params.CobolDialect;
+public interface CobolParserParams {
 
-public interface CobolPreprocessorParams {
+	/**
+	 * @see https://docs.oracle.com/javase/8/docs/technotes/guides/intl/encoding.doc.html
+	 */
+	Charset getCharset();
 
 	List<File> getCopyBookDirectories();
 
@@ -22,6 +26,8 @@ public interface CobolPreprocessorParams {
 	List<File> getCopyBookFiles();
 
 	CobolDialect getDialect();
+
+	void setCharset(Charset charset);
 
 	void setCopyBookDirectories(List<File> copyBookDirectories);
 

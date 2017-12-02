@@ -24,9 +24,9 @@ import io.proleap.cobol.Cobol85PreprocessorParser;
 import io.proleap.cobol.Cobol85PreprocessorParser.CopySourceContext;
 import io.proleap.cobol.Cobol85PreprocessorParser.ReplaceClauseContext;
 import io.proleap.cobol.Cobol85PreprocessorParser.ReplacingPhraseContext;
+import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
-import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.copybook.CobolWordCopyBookFinder;
@@ -49,11 +49,11 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 
 	private final CobolSourceFormatEnum format;
 
-	private final CobolPreprocessorParams params;
+	private final CobolParserParams params;
 
 	private final BufferedTokenStream tokens;
 
-	public CobolDocumentParserListenerImpl(final CobolSourceFormatEnum format, final CobolPreprocessorParams params,
+	public CobolDocumentParserListenerImpl(final CobolSourceFormatEnum format, final CobolParserParams params,
 			final BufferedTokenStream tokens) {
 		this.params = params;
 		this.tokens = tokens;
@@ -311,7 +311,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		pop();
 	}
 
-	protected File findCopyBook(final CopySourceContext copySource, final CobolPreprocessorParams params) {
+	protected File findCopyBook(final CopySourceContext copySource, final CobolParserParams params) {
 		final File result;
 
 		if (copySource.cobolWord() != null) {
@@ -327,7 +327,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	protected String getCopyBookContent(final CopySourceContext copySource, final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params) {
+			final CobolParserParams params) {
 		final File copyBook = findCopyBook(copySource, params);
 		String result;
 

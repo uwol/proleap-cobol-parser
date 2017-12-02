@@ -14,8 +14,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
-import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.CobolLineTypeEnum;
@@ -52,7 +52,7 @@ public class CobolLineReaderImpl implements CobolLineReader {
 
 	@Override
 	public CobolLine parseLine(final String line, final int lineNumber, final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params) {
+			final CobolParserParams params) {
 		final Pattern pattern = format.getPattern();
 		final Matcher matcher = pattern.matcher(line);
 
@@ -85,7 +85,7 @@ public class CobolLineReaderImpl implements CobolLineReader {
 
 	@Override
 	public List<CobolLine> processLines(final String lines, final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params) {
+			final CobolParserParams params) {
 		final Scanner scanner = new Scanner(lines);
 		final List<CobolLine> result = new ArrayList<CobolLine>();
 

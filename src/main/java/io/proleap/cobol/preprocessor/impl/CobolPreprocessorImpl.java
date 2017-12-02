@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -21,8 +22,9 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.common.collect.Lists;
 
+import io.proleap.cobol.asg.params.CobolParserParams;
+import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
-import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParser;
 import io.proleap.cobol.preprocessor.sub.document.impl.CobolDocumentParserImpl;
@@ -45,8 +47,8 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		return new CobolCommentEntriesMarkerImpl();
 	}
 
-	protected CobolPreprocessorParams createDefaultParams(final File cobolFile) {
-		final CobolPreprocessorParams result = new CobolPreprocessorParamsImpl();
+	protected CobolParserParams createDefaultParams(final File cobolFile) {
+		final CobolParserParams result = new CobolParserParamsImpl();
 
 		final File copyBooksDirectory = cobolFile.getParentFile();
 		result.setCopyBookDirectories(Lists.newArrayList(copyBooksDirectory));
@@ -75,7 +77,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 	}
 
 	protected String parseDocument(final List<CobolLine> lines, final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params) {
+			final CobolParserParams params) {
 		final String code = createLineWriter().serialize(lines);
 		final String result = createDocumentParser().processLines(code, format, params);
 		return result;
@@ -87,12 +89,14 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 	}
 
 	@Override
-	public String process(final File cobolFile, final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params) throws IOException {
-		LOG.info("Preprocessing file {}.", cobolFile.getName());
+	public String process(final File cobolFile, final CobolSourceFormatEnum format, final CobolParserParams params)
+			throws IOException {
+		final Charset charset = params.getCharset();
+
+		LOG.info("Preprocessing file {} with charset {}.", cobolFile.getName(), charset);
 
 		final InputStream inputStream = new FileInputStream(cobolFile);
-		final InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+		final InputStreamReader inputStreamReader = new InputStreamReader(inputStream, charset);
 		final BufferedReader bufferedInputStreamReader = new BufferedReader(inputStreamReader);
 		final StringBuffer outputBuffer = new StringBuffer();
 
@@ -110,12 +114,11 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 
 	@Override
 	public String process(final String cobolSourceCode, final CobolSourceFormatEnum format) {
-		return process(cobolSourceCode, format, new CobolPreprocessorParamsImpl());
+		return process(cobolSourceCode, format, new CobolParserParamsImpl());
 	}
 
 	@Override
-	public String process(final String cobolCode, final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params) {
+	public String process(final String cobolCode, final CobolSourceFormatEnum format, final CobolParserParams params) {
 		final List<CobolLine> lines = readLines(cobolCode, format, params);
 		final List<CobolLine> rewrittenLines = rewriteLines(lines);
 		final String result = parseDocument(rewrittenLines, format, params);
@@ -126,7 +129,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 	}
 
 	protected List<CobolLine> readLines(final String cobolCode, final CobolSourceFormatEnum format,
-			final CobolPreprocessorParams params) {
+			final CobolParserParams params) {
 		final List<CobolLine> lines = createLineReader().processLines(cobolCode, format, params);
 		return lines;
 	}

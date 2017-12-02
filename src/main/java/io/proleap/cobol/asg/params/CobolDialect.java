@@ -6,7 +6,7 @@
  * of the BSD 3-clause license. See the LICENSE file for details.
  */
 
-package io.proleap.cobol.preprocessor.params;
+package io.proleap.cobol.asg.params;
 
 public enum CobolDialect {
 	ANSI85, MF, OSVS

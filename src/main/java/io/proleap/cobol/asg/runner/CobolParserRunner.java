@@ -12,13 +12,13 @@ import java.io.File;
 import java.io.IOException;
 
 import io.proleap.cobol.asg.metamodel.Program;
+import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
-import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 
 public interface CobolParserRunner {
 
 	Program analyzeFile(File cobolFile, CobolSourceFormatEnum format) throws IOException;
 
-	Program analyzeFile(File cobolFile, CobolSourceFormatEnum format, CobolPreprocessorParams params)
+	Program analyzeFile(File cobolFile, CobolSourceFormatEnum format, CobolParserParams params)
 			throws IOException;
 }
