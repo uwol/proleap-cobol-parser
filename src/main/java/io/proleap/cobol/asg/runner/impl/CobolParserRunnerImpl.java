@@ -30,6 +30,7 @@ import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.impl.ProgramImpl;
 import io.proleap.cobol.asg.runner.CobolParserRunner;
+import io.proleap.cobol.asg.runner.ThrowingErrorListener;
 import io.proleap.cobol.asg.visitor.ParserVisitor;
 import io.proleap.cobol.asg.visitor.impl.CobolCompilationUnitVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolDataDivisionStep1VisitorImpl;
@@ -167,11 +168,19 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			// run the lexer
 			final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
 
+			// register an error listener, so that preprocessing stops on errors
+			lexer.removeErrorListeners();
+			lexer.addErrorListener(new ThrowingErrorListener());
+
 			// get a list of matched tokens
 			final CommonTokenStream tokens = new CommonTokenStream(lexer);
 
 			// pass the tokens to the parser
 			final Cobol85Parser parser = new Cobol85Parser(tokens);
+
+			// register an error listener, so that preprocessing stops on errors
+			parser.removeErrorListeners();
+			parser.addErrorListener(new ThrowingErrorListener());
 
 			// specify our entry point
 			final StartRuleContext ctx = parser.startRule();

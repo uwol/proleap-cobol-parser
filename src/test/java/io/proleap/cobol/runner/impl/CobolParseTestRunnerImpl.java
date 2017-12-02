@@ -25,7 +25,7 @@ import org.apache.logging.log4j.util.Strings;
 import io.proleap.cobol.Cobol85Lexer;
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
-import io.proleap.cobol.ThrowingErrorListener;
+import io.proleap.cobol.asg.runner.ThrowingErrorListener;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
@@ -61,13 +61,13 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 		final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
 
 		lexer.removeErrorListeners();
-		lexer.addErrorListener(ThrowingErrorListener.INSTANCE);
+		lexer.addErrorListener(new ThrowingErrorListener());
 
 		final CommonTokenStream tokens = new CommonTokenStream(lexer);
 		final Cobol85Parser parser = new Cobol85Parser(tokens);
 
 		parser.removeErrorListeners();
-		parser.addErrorListener(ThrowingErrorListener.INSTANCE);
+		parser.addErrorListener(new ThrowingErrorListener());
 
 		final StartRuleContext startRule = parser.startRule();
 		final File treeFile = new File(inputFile.getAbsolutePath() + TREE_SUFFIX);

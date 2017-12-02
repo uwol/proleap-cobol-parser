@@ -15,6 +15,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import io.proleap.cobol.Cobol85PreprocessorLexer;
 import io.proleap.cobol.Cobol85PreprocessorParser;
 import io.proleap.cobol.Cobol85PreprocessorParser.StartRuleContext;
+import io.proleap.cobol.asg.runner.ThrowingErrorListener;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.CobolPreprocessorParams;
 import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParser;
@@ -69,6 +70,10 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 			final CobolPreprocessorParams params) {
 		// run the lexer
 		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(CharStreams.fromString(code));
+
+		// register an error listener, so that preprocessing stops on errors
+		lexer.removeErrorListeners();
+		lexer.addErrorListener(new ThrowingErrorListener());
 
 		// get a list of matched tokens
 		final CommonTokenStream tokens = new CommonTokenStream(lexer);
