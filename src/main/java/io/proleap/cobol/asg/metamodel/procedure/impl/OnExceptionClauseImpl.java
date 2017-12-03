@@ -22,5 +22,4 @@ public class OnExceptionClauseImpl extends ScopeImpl implements OnExceptionClaus
 
 		this.ctx = ctx;
 	}
-
 }

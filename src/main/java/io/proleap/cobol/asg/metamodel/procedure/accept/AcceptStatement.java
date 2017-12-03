@@ -13,6 +13,8 @@ import io.proleap.cobol.Cobol85Parser.AcceptFromEscapeKeyStatementContext;
 import io.proleap.cobol.Cobol85Parser.AcceptFromMnemonicStatementContext;
 import io.proleap.cobol.Cobol85Parser.AcceptMessageCountStatementContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
+import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -45,7 +47,15 @@ public interface AcceptStatement extends Statement {
 
 	AcceptType getAcceptType();
 
+	NotOnExceptionClause getNotOnExceptionClause();
+
+	OnExceptionClause getOnExceptionClause();
+
 	void setAcceptCall(Call acceptCall);
 
 	void setAcceptType(AcceptType acceptType);
+
+	void setNotOnExceptionClause(NotOnExceptionClause notOnExceptionClause);
+
+	void setOnExceptionClause(OnExceptionClause onExceptionClause);
 }

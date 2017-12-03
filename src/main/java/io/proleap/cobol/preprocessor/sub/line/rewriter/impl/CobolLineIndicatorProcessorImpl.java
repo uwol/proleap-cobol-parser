@@ -11,6 +11,8 @@ package io.proleap.cobol.preprocessor.sub.line.rewriter.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.util.Strings;
+
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.line.rewriter.CobolLineIndicatorProcessor;
@@ -57,16 +59,21 @@ public class CobolLineIndicatorProcessorImpl implements CobolLineIndicatorProces
 			break;
 		case CONTINUATION:
 			final String trimmedContentArea = handledContentArea.trim();
-			final char firstCharOfContentArea = trimmedContentArea.charAt(0);
 
-			switch (firstCharOfContentArea) {
-			case '\"':
-			case '\'':
-				result = CobolLine.with(line, CobolPreprocessor.WS, trimmedContentArea.substring(1));
-				break;
-			default:
+			if (Strings.isBlank(trimmedContentArea)) {
 				result = CobolLine.with(line, CobolPreprocessor.WS, trimmedContentArea);
-				break;
+			} else {
+				final char firstCharOfContentArea = trimmedContentArea.charAt(0);
+
+				switch (firstCharOfContentArea) {
+				case '\"':
+				case '\'':
+					result = CobolLine.with(line, CobolPreprocessor.WS, trimmedContentArea.substring(1));
+					break;
+				default:
+					result = CobolLine.with(line, CobolPreprocessor.WS, trimmedContentArea);
+					break;
+				}
 			}
 			break;
 		case COMMENT:

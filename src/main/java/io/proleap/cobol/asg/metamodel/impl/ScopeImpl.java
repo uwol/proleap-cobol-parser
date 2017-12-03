@@ -272,6 +272,18 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			result.setAcceptType(type);
 
+			// on exception
+			if (ctx.onExceptionClause() != null) {
+				final OnExceptionClause onException = createOnException(ctx.onExceptionClause());
+				result.setOnExceptionClause(onException);
+			}
+
+			// not on exception
+			if (ctx.notOnExceptionClause() != null) {
+				final NotOnExceptionClause notOnException = createNotOnExceptionClause(ctx.notOnExceptionClause());
+				result.setNotOnExceptionClause(notOnException);
+			}
+
 			registerStatement(result);
 		}
 
@@ -363,19 +375,19 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			// on overflow
 			if (ctx.onOverflowPhrase() != null) {
 				final OnOverflowPhrase onOverflow = createOnOverflowPhrase(ctx.onOverflowPhrase());
-				result.setOnOverflow(onOverflow);
+				result.setOnOverflowPhrase(onOverflow);
 			}
 
 			// on exception
 			if (ctx.onExceptionClause() != null) {
 				final OnExceptionClause onException = createOnException(ctx.onExceptionClause());
-				result.setOnException(onException);
+				result.setOnExceptionClause(onException);
 			}
 
 			// not on exception
 			if (ctx.notOnExceptionClause() != null) {
 				final NotOnExceptionClause notOnException = createNotOnExceptionClause(ctx.notOnExceptionClause());
-				result.setNotOnException(notOnException);
+				result.setNotOnExceptionClause(notOnException);
 			}
 
 			registerStatement(result);

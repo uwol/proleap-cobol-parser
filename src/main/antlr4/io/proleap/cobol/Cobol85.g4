@@ -1163,7 +1163,7 @@ statement
 // accept statement
 
 acceptStatement
-   : ACCEPT identifier (acceptFromDateStatement | acceptFromEscapeKeyStatement | acceptFromMnemonicStatement | acceptMessageCountStatement)?
+   : ACCEPT identifier (acceptFromDateStatement | acceptFromEscapeKeyStatement | acceptFromMnemonicStatement | acceptMessageCountStatement)? onExceptionClause? notOnExceptionClause? END_ACCEPT?
    ;
 
 acceptFromDateStatement
@@ -2774,6 +2774,7 @@ EMI : E M I;
 EMPTY_CHECK : E M P T Y MINUSCHAR C H E C K;
 ENABLE : E N A B L E;
 END : E N D;
+END_ACCEPT : E N D MINUSCHAR A C C E P T;
 END_ADD : E N D MINUSCHAR A D D;
 END_CALL : E N D MINUSCHAR C A L L;
 END_COMPUTE : E N D MINUSCHAR C O M P U T E;

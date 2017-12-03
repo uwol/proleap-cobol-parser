@@ -187,5 +187,4 @@ public class ReceiveStatementImpl extends StatementImpl implements ReceiveStatem
 	public void setReceiveType(final ReceiveType receiveType) {
 		this.receiveType = receiveType;
 	}
-
 }

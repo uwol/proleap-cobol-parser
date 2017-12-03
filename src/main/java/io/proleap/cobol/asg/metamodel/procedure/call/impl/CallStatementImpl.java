@@ -123,17 +123,17 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 	}
 
 	@Override
-	public void setNotOnException(final NotOnExceptionClause notOnExceptionClause) {
+	public void setNotOnExceptionClause(final NotOnExceptionClause notOnExceptionClause) {
 		this.notOnExceptionClause = notOnExceptionClause;
 	}
 
 	@Override
-	public void setOnException(final OnExceptionClause onExceptionClause) {
+	public void setOnExceptionClause(final OnExceptionClause onExceptionClause) {
 		this.onExceptionClause = onExceptionClause;
 	}
 
 	@Override
-	public void setOnOverflow(final OnOverflowPhrase onOverflowPhrase) {
+	public void setOnOverflowPhrase(final OnOverflowPhrase onOverflowPhrase) {
 		this.onOverflowPhrase = onOverflowPhrase;
 	}
 

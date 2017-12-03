@@ -93,7 +93,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 			throws IOException {
 		final Charset charset = params.getCharset();
 
-		LOG.info("Preprocessing file {} with charset {}.", cobolFile.getName(), charset);
+		LOG.info("Preprocessing file {} with line format {} and charset {}.", cobolFile.getName(), format, charset);
 
 		final InputStream inputStream = new FileInputStream(cobolFile);
 		final InputStreamReader inputStreamReader = new InputStreamReader(inputStream, charset);
@@ -122,9 +122,6 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		final List<CobolLine> lines = readLines(cobolCode, format, params);
 		final List<CobolLine> rewrittenLines = rewriteLines(lines);
 		final String result = parseDocument(rewrittenLines, format, params);
-
-		LOG.debug("Processed input:\n\n{}\n\n", result);
-
 		return result;
 	}
 
