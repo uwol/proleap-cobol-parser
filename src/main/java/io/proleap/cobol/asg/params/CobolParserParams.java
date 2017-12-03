@@ -27,6 +27,8 @@ public interface CobolParserParams {
 
 	CobolDialect getDialect();
 
+	boolean getIgnoreSyntaxErrors();
+
 	void setCharset(Charset charset);
 
 	void setCopyBookDirectories(List<File> copyBookDirectories);
@@ -36,4 +38,6 @@ public interface CobolParserParams {
 	void setCopyBookFiles(List<File> copyBookFiles);
 
 	void setDialect(CobolDialect dialect);
+
+	void setIgnoreSyntaxErrors(boolean ignoreSyntaxErrors);
 }

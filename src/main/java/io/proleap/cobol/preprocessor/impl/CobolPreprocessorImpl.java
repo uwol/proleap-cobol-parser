@@ -47,8 +47,13 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		return new CobolCommentEntriesMarkerImpl();
 	}
 
-	protected CobolParserParams createDefaultParams(final File cobolFile) {
+	protected CobolParserParams createDefaultParams() {
 		final CobolParserParams result = new CobolParserParamsImpl();
+		return result;
+	}
+
+	protected CobolParserParams createDefaultParams(final File cobolFile) {
+		final CobolParserParams result = createDefaultParams();
 
 		final File copyBooksDirectory = cobolFile.getParentFile();
 		result.setCopyBookDirectories(Lists.newArrayList(copyBooksDirectory));
@@ -114,7 +119,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 
 	@Override
 	public String process(final String cobolSourceCode, final CobolSourceFormatEnum format) {
-		return process(cobolSourceCode, format, new CobolParserParamsImpl());
+		return process(cobolSourceCode, format, createDefaultParams());
 	}
 
 	@Override

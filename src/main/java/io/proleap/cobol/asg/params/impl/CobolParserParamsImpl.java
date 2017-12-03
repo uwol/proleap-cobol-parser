@@ -27,6 +27,8 @@ public class CobolParserParamsImpl implements CobolParserParams {
 
 	protected CobolDialect dialect;
 
+	protected boolean ignoreSyntaxErrors;
+
 	@Override
 	public Charset getCharset() {
 		return charset;
@@ -53,6 +55,11 @@ public class CobolParserParamsImpl implements CobolParserParams {
 	}
 
 	@Override
+	public boolean getIgnoreSyntaxErrors() {
+		return ignoreSyntaxErrors;
+	}
+
+	@Override
 	public void setCharset(final Charset charset) {
 		this.charset = charset;
 	}
@@ -75,5 +82,10 @@ public class CobolParserParamsImpl implements CobolParserParams {
 	@Override
 	public void setDialect(final CobolDialect dialect) {
 		this.dialect = dialect;
+	}
+
+	@Override
+	public void setIgnoreSyntaxErrors(final boolean ignoreSyntaxErrors) {
+		this.ignoreSyntaxErrors = ignoreSyntaxErrors;
 	}
 }

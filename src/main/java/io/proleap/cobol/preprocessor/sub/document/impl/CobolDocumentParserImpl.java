@@ -52,8 +52,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 	}
 
 	@Override
-	public String processLines(final String code, final CobolSourceFormatEnum format,
-			final CobolParserParams params) {
+	public String processLines(final String code, final CobolSourceFormatEnum format, final CobolParserParams params) {
 		final boolean requiresProcessorExecution = containsTrigger(code, triggers);
 		final String result;
 
@@ -71,9 +70,11 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		// run the lexer
 		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(CharStreams.fromString(code));
 
-		// register an error listener, so that preprocessing stops on errors
-		lexer.removeErrorListeners();
-		lexer.addErrorListener(new ThrowingErrorListener());
+		if (!params.getIgnoreSyntaxErrors()) {
+			// register an error listener, so that preprocessing stops on errors
+			lexer.removeErrorListeners();
+			lexer.addErrorListener(new ThrowingErrorListener());
+		}
 
 		// get a list of matched tokens
 		final CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -81,9 +82,11 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		// pass the tokens to the parser
 		final Cobol85PreprocessorParser parser = new Cobol85PreprocessorParser(tokens);
 
-		// register an error listener, so that preprocessing stops on errors
-		parser.removeErrorListeners();
-		parser.addErrorListener(new ThrowingErrorListener());
+		if (!params.getIgnoreSyntaxErrors()) {
+			// register an error listener, so that preprocessing stops on errors
+			parser.removeErrorListeners();
+			parser.addErrorListener(new ThrowingErrorListener());
+		}
 
 		// specify our entry point
 		final StartRuleContext startRule = parser.startRule();

@@ -168,9 +168,11 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			// run the lexer
 			final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
 
-			// register an error listener, so that preprocessing stops on errors
-			lexer.removeErrorListeners();
-			lexer.addErrorListener(new ThrowingErrorListener());
+			if (!params.getIgnoreSyntaxErrors()) {
+				// register an error listener, so that preprocessing stops on errors
+				lexer.removeErrorListeners();
+				lexer.addErrorListener(new ThrowingErrorListener());
+			}
 
 			// get a list of matched tokens
 			final CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -178,9 +180,11 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			// pass the tokens to the parser
 			final Cobol85Parser parser = new Cobol85Parser(tokens);
 
-			// register an error listener, so that preprocessing stops on errors
-			parser.removeErrorListeners();
-			parser.addErrorListener(new ThrowingErrorListener());
+			if (!params.getIgnoreSyntaxErrors()) {
+				// register an error listener, so that preprocessing stops on errors
+				parser.removeErrorListeners();
+				parser.addErrorListener(new ThrowingErrorListener());
+			}
 
 			// specify our entry point
 			final StartRuleContext ctx = parser.startRule();

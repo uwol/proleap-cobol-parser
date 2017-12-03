@@ -21,10 +21,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.util.Strings;
 
+import com.google.common.collect.Lists;
+
 import io.proleap.cobol.Cobol85Lexer;
 import io.proleap.cobol.Cobol85Parser;
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
+import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
 import io.proleap.cobol.asg.runner.ThrowingErrorListener;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
@@ -38,6 +41,15 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 	private final static Logger LOG = LogManager.getLogger(CobolParseTestRunnerImpl.class);
 
 	public final static String TREE_SUFFIX = ".tree";
+
+	protected CobolParserParams createDefaultParams(final File cobolFile) {
+		final CobolParserParams result = new CobolParserParamsImpl();
+
+		final File copyBooksDirectory = cobolFile.getParentFile();
+		result.setCopyBookDirectories(Lists.newArrayList(copyBooksDirectory));
+
+		return result;
+	}
 
 	protected void doCompareParseTree(final File treeFile, final StartRuleContext startRule, final Cobol85Parser parser)
 			throws IOException {
@@ -56,17 +68,22 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 		}
 	}
 
-	protected void doParse(final String preProcessedInput, final File inputFile) throws IOException {
+	protected void doParse(final String preProcessedInput, final File inputFile, final CobolParserParams params)
+			throws IOException {
 		final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
 
-		lexer.removeErrorListeners();
-		lexer.addErrorListener(new ThrowingErrorListener());
+		if (!params.getIgnoreSyntaxErrors()) {
+			lexer.removeErrorListeners();
+			lexer.addErrorListener(new ThrowingErrorListener());
+		}
 
 		final CommonTokenStream tokens = new CommonTokenStream(lexer);
 		final Cobol85Parser parser = new Cobol85Parser(tokens);
 
-		parser.removeErrorListeners();
-		parser.addErrorListener(new ThrowingErrorListener());
+		if (!params.getIgnoreSyntaxErrors()) {
+			parser.removeErrorListeners();
+			parser.addErrorListener(new ThrowingErrorListener());
+		}
 
 		final StartRuleContext startRule = parser.startRule();
 		final File treeFile = new File(inputFile.getAbsolutePath() + TREE_SUFFIX);
@@ -77,21 +94,11 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 	}
 
 	@Override
-	public void parseFile(final File inputFile, final CobolSourceFormatEnum format) throws IOException {
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, format);
+	public void parseFile(final File cobolFile, final CobolSourceFormatEnum format) throws IOException {
+		final String preProcessedInput = new CobolPreprocessorImpl().process(cobolFile, format);
 
-		LOG.info("Parsing file {}.", inputFile.getName());
+		LOG.info("Parsing file {}.", cobolFile.getName());
 
-		doParse(preProcessedInput, inputFile);
-	}
-
-	@Override
-	public void parseFile(final File inputFile, final CobolSourceFormatEnum format, final CobolParserParams params)
-			throws IOException {
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, format, params);
-
-		LOG.info("Parsing file {}.", inputFile.getName());
-
-		doParse(preProcessedInput, inputFile);
+		doParse(preProcessedInput, cobolFile, createDefaultParams(cobolFile));
 	}
 }
