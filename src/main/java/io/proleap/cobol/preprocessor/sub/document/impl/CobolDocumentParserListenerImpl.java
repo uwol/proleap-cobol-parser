@@ -332,7 +332,8 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		String result;
 
 		if (copyBook == null) {
-			LOG.warn("Could not find copy book {} in params or COBOL file directory.", copySource.getText());
+			LOG.warn("Could not find copy book {} in directory of COBOL input file or copy books param.",
+					copySource.getText());
 			result = null;
 		} else {
 			try {
