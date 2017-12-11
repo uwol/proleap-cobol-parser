@@ -14,7 +14,7 @@ The parser is developed test-driven, passes the **NIST test suite** and has succ
 
 [![Build](https://img.shields.io/travis/uwol/cobol85parser.svg)](https://travis-ci.org/uwol/cobol85parser)
 [![Coverage](https://coveralls.io/repos/github/uwol/cobol85parser/badge.svg?branch=master)](https://coveralls.io/github/uwol/cobol85parser?branch=master)
-[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![ProLeap on Twitter](https://img.shields.io/twitter/follow/proleap_io.svg?style=social&label=Follow)](https://twitter.com/proleap_io)
 
 
@@ -192,4 +192,4 @@ Release process
 License
 -------
 
-Licensed under the BSD 3-Clause License. See LICENSE for details.
+Licensed under the MIT License. See LICENSE for details.
