@@ -19,7 +19,7 @@ import io.proleap.cobol.asg.metamodel.procedure.compute.Store;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class ComputeStatementTest extends CobolTestBase {
+public class ComputeStatementInTableTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {
@@ -39,12 +39,6 @@ public class ComputeStatementTest extends CobolTestBase {
 
 			{
 				final Store store = computeStatement.getStores().get(0);
-				assertNotNull(store.getStoreCall());
-				assertEquals(CallType.UNDEFINED_CALL, store.getStoreCall().getCallType());
-			}
-
-			{
-				final Store store = computeStatement.getStores().get(1);
 				assertNotNull(store.getStoreCall());
 				assertEquals(CallType.UNDEFINED_CALL, store.getStoreCall().getCallType());
 			}
