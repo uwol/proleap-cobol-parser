@@ -2041,7 +2041,7 @@ stringSendingPhrase
    ;
 
 stringSending
-   : tableCall | literal
+   : identifier | literal
    ;
 
 stringDelimitedByPhrase

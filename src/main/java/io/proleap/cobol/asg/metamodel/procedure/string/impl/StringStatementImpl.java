@@ -81,7 +81,7 @@ public class StringStatementImpl extends StatementImpl implements StringStatemen
 
 			// sending
 			for (final StringSendingContext stringSendingContext : ctx.stringSending()) {
-				final ValueStmt sendingValueStmt = createValueStmt(stringSendingContext.tableCall(),
+				final ValueStmt sendingValueStmt = createValueStmt(stringSendingContext.identifier(),
 						stringSendingContext.literal());
 				result.addSendingValueStmt(sendingValueStmt);
 			}

@@ -1,0 +1,45 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision Identification Division .\n        
+				(programIdParagraph Program-ID .  
+					(programName 
+						(cobolWord STRNGSTMT)) .\n       )) 
+			(procedureDivision Procedure Division .\n            
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statement 
+								(stringStatement STRING 
+									(stringSendingPhrase 
+										(stringSending 
+											(literal '2016')) 
+										(stringSending 
+											(identifier 
+												(functionCall FUNCTION 
+													(functionName 
+														(cobolWord CURRENT-DATE)) 
+													(referenceModifier ( 
+														(characterPosition 
+															(arithmeticExpression 
+																(multDivs 
+																	(powers 
+																		(basis 
+																			(literal 
+																				(numericLiteral 
+																					(integerLiteral 1)))))))) : 
+														(length 
+															(arithmeticExpression 
+																(multDivs 
+																	(powers 
+																		(basis 
+																			(literal 
+																				(numericLiteral 
+																					(integerLiteral 16)))))))) ))))) 
+										(stringDelimitedByPhrase DELIMITED BY SIZE)) 
+									(stringIntoPhrase INTO 
+										(identifier 
+											(qualifiedDataName 
+												(qualifiedDataNameFormat1 
+													(dataName 
+														(cobolWord SOMEDATA1)))))) END-STRING)) .)))))) <EOF>)

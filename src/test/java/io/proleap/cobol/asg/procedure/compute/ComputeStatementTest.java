@@ -24,10 +24,10 @@ public class ComputeStatementTest extends CobolTestBase {
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/procedure/compute/ComputeStatementInTable.cbl");
+				"src/test/resources/io/proleap/cobol/asg/procedure/compute/ComputeStatement.cbl");
 		final Program program = new CobolParserRunnerImpl().analyzeFile(inputFile, CobolSourceFormatEnum.TANDEM);
 
-		final CompilationUnit compilationUnit = program.getCompilationUnit("ComputeStatementInTable");
+		final CompilationUnit compilationUnit = program.getCompilationUnit("ComputeStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(0, procedureDivision.getParagraphs().size());
