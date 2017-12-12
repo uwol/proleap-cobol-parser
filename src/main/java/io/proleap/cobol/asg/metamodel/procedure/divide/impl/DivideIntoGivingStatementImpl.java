@@ -8,22 +8,22 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.divide.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.proleap.cobol.Cobol85Parser.DivideGivingContext;
+import io.proleap.cobol.Cobol85Parser.DivideGivingPhraseContext;
 import io.proleap.cobol.Cobol85Parser.DivideIntoGivingStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.divide.DivideIntoGivingStatement;
-import io.proleap.cobol.asg.metamodel.procedure.divide.Giving;
+import io.proleap.cobol.asg.metamodel.procedure.divide.GivingPhrase;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class DivideIntoGivingStatementImpl extends CobolDivisionElementImpl implements DivideIntoGivingStatement {
 
 	protected DivideIntoGivingStatementContext ctx;
 
-	protected List<Giving> givings = new ArrayList<Giving>();
+	protected GivingPhrase givingPhrase;
+
+	protected ValueStmt intoValueStmt;
 
 	public DivideIntoGivingStatementImpl(final ProgramUnit programUnit, final DivideIntoGivingStatementContext ctx) {
 		super(programUnit, ctx);
@@ -32,24 +32,18 @@ public class DivideIntoGivingStatementImpl extends CobolDivisionElementImpl impl
 	}
 
 	@Override
-	public Giving addGiving(final DivideGivingContext ctx) {
-		Giving result = (Giving) getASGElement(ctx);
+	public GivingPhrase addGivingPhrase(final DivideGivingPhraseContext ctx) {
+		GivingPhrase result = (GivingPhrase) getASGElement(ctx);
 
 		if (result == null) {
-			result = new GivingImpl(programUnit, ctx);
+			result = new GivingPhraseImpl(programUnit, ctx);
 
-			// call
-			if (ctx.identifier() != null) {
-				final Call givingCall = createCall(ctx.identifier());
-				result.setGivingCall(givingCall);
+			// givings
+			for (final DivideGivingContext divideGivingContext : ctx.divideGiving()) {
+				result.addGiving(divideGivingContext);
 			}
 
-			// rounded
-			if (ctx.ROUNDED() != null) {
-				result.setRounded(true);
-			}
-
-			givings.add(result);
+			givingPhrase = result;
 			registerASGElement(result);
 		}
 
@@ -57,7 +51,17 @@ public class DivideIntoGivingStatementImpl extends CobolDivisionElementImpl impl
 	}
 
 	@Override
-	public List<Giving> getGivings() {
-		return givings;
+	public GivingPhrase getGivingPhrase() {
+		return givingPhrase;
+	}
+
+	@Override
+	public ValueStmt getIntoValueStmt() {
+		return intoValueStmt;
+	}
+
+	@Override
+	public void setIntoValueStmt(final ValueStmt intoValueStmt) {
+		this.intoValueStmt = intoValueStmt;
 	}
 }

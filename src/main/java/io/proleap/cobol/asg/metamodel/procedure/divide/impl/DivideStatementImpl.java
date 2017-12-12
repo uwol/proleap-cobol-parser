@@ -9,7 +9,7 @@
 package io.proleap.cobol.asg.metamodel.procedure.divide.impl;
 
 import io.proleap.cobol.Cobol85Parser.DivideByGivingStatementContext;
-import io.proleap.cobol.Cobol85Parser.DivideGivingContext;
+import io.proleap.cobol.Cobol85Parser.DivideIntoContext;
 import io.proleap.cobol.Cobol85Parser.DivideIntoGivingStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideIntoStatementContext;
 import io.proleap.cobol.Cobol85Parser.DivideRemainderContext;
@@ -87,8 +87,13 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 		if (result == null) {
 			result = new DivideIntoGivingStatementImpl(programUnit, ctx);
 
-			for (final DivideGivingContext divideGivingContext : ctx.divideGiving()) {
-				result.addGiving(divideGivingContext);
+			// into
+			final ValueStmt intoValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setIntoValueStmt(intoValueStmt);
+
+			// givings
+			if (ctx.divideGivingPhrase() != null) {
+				result.addGivingPhrase(ctx.divideGivingPhrase());
 			}
 
 			divideIntoGivingStatement = result;
@@ -105,13 +110,8 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 		if (result == null) {
 			result = new DivideIntoStatementImpl(programUnit, ctx);
 
-			// into
-			final ValueStmt intoValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
-			result.setIntoValueStmt(intoValueStmt);
-
-			// givings
-			if (ctx.divideGivingPhrase() != null) {
-				result.addGivingPhrase(ctx.divideGivingPhrase());
+			for (final DivideIntoContext divideIntoContext : ctx.divideInto()) {
+				result.addInto(divideIntoContext);
 			}
 
 			divideIntoStatement = result;

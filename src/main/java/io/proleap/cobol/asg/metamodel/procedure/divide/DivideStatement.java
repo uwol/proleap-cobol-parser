@@ -57,5 +57,4 @@ public interface DivideStatement extends Statement {
 	void setNotOnSizeErrorPhrase(NotOnSizeErrorPhrase notOnSizeErrorPhrase);
 
 	void setOnSizeErrorPhrase(OnSizeErrorPhrase onSizeErrorPhrase);
-
 }

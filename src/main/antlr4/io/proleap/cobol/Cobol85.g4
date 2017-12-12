@@ -1375,11 +1375,11 @@ divideStatement
    ;
 
 divideIntoStatement
-   : INTO (identifier | literal) divideGivingPhrase?
+   : INTO divideInto+
    ;
 
 divideIntoGivingStatement
-   : INTO divideGiving+
+   : INTO (identifier | literal) divideGivingPhrase?
    ;
 
 divideByGivingStatement
@@ -1388,6 +1388,10 @@ divideByGivingStatement
 
 divideGivingPhrase
    : GIVING divideGiving+
+   ;
+
+divideInto
+   : identifier ROUNDED?
    ;
 
 divideGiving

@@ -8,15 +8,18 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.divide;
 
-import java.util.List;
-
-import io.proleap.cobol.Cobol85Parser.DivideGivingContext;
+import io.proleap.cobol.Cobol85Parser.DivideGivingPhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface DivideIntoGivingStatement extends CobolDivisionElement {
 
-	Giving addGiving(DivideGivingContext ctx);
+	GivingPhrase addGivingPhrase(DivideGivingPhraseContext ctx);
 
-	List<Giving> getGivings();
+	GivingPhrase getGivingPhrase();
+
+	ValueStmt getIntoValueStmt();
+
+	void setIntoValueStmt(ValueStmt intoValueStmt);
 
 }
