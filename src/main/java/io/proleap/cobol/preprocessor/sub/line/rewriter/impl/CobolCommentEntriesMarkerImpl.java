@@ -34,7 +34,8 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 			"DATE-COMPILED.", "SECURITY.", "REMARKS." };
 
 	public CobolCommentEntriesMarkerImpl() {
-		final String commentEntryTriggerLineFormat = new String("(" + String.join("|", triggersStart) + ")(.+)");
+		final String commentEntryTriggerLineFormat = new String(
+				"([ \\t]*)(" + String.join("|", triggersStart) + ")(.+)");
 		commentEntryTriggerLinePattern = Pattern.compile(commentEntryTriggerLineFormat, Pattern.CASE_INSENSITIVE);
 	}
 
@@ -52,10 +53,11 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 		final Matcher matcher = commentEntryTriggerLinePattern.matcher(line.getContentArea());
 
 		if (matcher.matches()) {
-			final String trigger = matcher.group(1);
-			final String commentEntry = matcher.group(2);
-			final String newContentArea = trigger + CobolPreprocessor.WS + CobolPreprocessor.COMMENT_ENTRY_TAG
-					+ commentEntry;
+			final String whitespace = matcher.group(1);
+			final String trigger = matcher.group(2);
+			final String commentEntry = matcher.group(3);
+			final String newContentArea = whitespace + trigger + CobolPreprocessor.WS
+					+ CobolPreprocessor.COMMENT_ENTRY_TAG + commentEntry;
 
 			result = CobolLine.withContentArea(line, newContentArea);
 		} else {
@@ -163,7 +165,7 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 		boolean result = false;
 
 		for (final String trigger : triggers) {
-			final boolean containsTrigger = contentAreaUpperCase.startsWith(trigger);
+			final boolean containsTrigger = contentAreaUpperCase.trim().startsWith(trigger);
 
 			if (containsTrigger) {
 				result = true;
