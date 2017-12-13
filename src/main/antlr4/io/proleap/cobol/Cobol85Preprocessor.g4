@@ -138,7 +138,7 @@ copyStatement
    ;
 
 copySource
-   : literal | cobolWord
+   : literal | cobolWord | filename
    ;
 
 replacingPhrase
@@ -199,14 +199,6 @@ titleStatement
 
 // literal ----------------------------------
 
-cobolWord
-   : IDENTIFIER | charDataKeyword
-   ;
-
-literal
-   : NONNUMERICLITERAL | NUMERICLITERAL
-   ;
-
 pseudoText
    : DOUBLEEQUALCHAR charData? DOUBLEEQUALCHAR
    ;
@@ -220,7 +212,19 @@ charDataSql
    ;
 
 charDataLine
-   : (cobolWord | literal | TEXT | DOT)+
+   : (cobolWord | literal | filename | TEXT | DOT)+
+   ;
+
+cobolWord
+   : IDENTIFIER | charDataKeyword
+   ;
+
+literal
+   : NONNUMERICLITERAL | NUMERICLITERAL
+   ;
+
+filename
+   : FILENAME
    ;
 
 // keywords ----------------------------------
@@ -558,6 +562,7 @@ fragment STRINGLITERAL :
 ;
 
 IDENTIFIER : [a-zA-Z0-9]+ ([-_]+ [a-zA-Z0-9]+)*;
+FILENAME : [a-zA-Z0-9]+ '.' [a-zA-Z0-9]+;
 
 // whitespace, line breaks, comments, ...
 NEWLINE : '\r'? '\n';

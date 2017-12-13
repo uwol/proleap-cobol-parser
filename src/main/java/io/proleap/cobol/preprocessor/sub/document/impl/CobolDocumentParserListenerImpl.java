@@ -30,8 +30,10 @@ import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.copybook.CobolWordCopyBookFinder;
+import io.proleap.cobol.preprocessor.sub.copybook.FilenameCopyBookFinder;
 import io.proleap.cobol.preprocessor.sub.copybook.LiteralCopyBookFinder;
 import io.proleap.cobol.preprocessor.sub.copybook.impl.CobolWordCopyBookFinderImpl;
+import io.proleap.cobol.preprocessor.sub.copybook.impl.FilenameCopyBookFinderImpl;
 import io.proleap.cobol.preprocessor.sub.copybook.impl.LiteralCopyBookFinderImpl;
 import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParserListener;
 import io.proleap.cobol.preprocessor.sub.util.TokenUtils;
@@ -93,6 +95,10 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 
 	protected CobolWordCopyBookFinder createCobolWordCopyBookFinder() {
 		return new CobolWordCopyBookFinderImpl();
+	}
+
+	protected FilenameCopyBookFinder createFilenameCopyBookFinder() {
+		return new FilenameCopyBookFinderImpl();
 	}
 
 	protected LiteralCopyBookFinder createLiteralCopyBookFinder() {
@@ -318,6 +324,8 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 			result = createCobolWordCopyBookFinder().findCopyBook(params, copySource.cobolWord());
 		} else if (copySource.literal() != null) {
 			result = createLiteralCopyBookFinder().findCopyBook(params, copySource.literal());
+		} else if (copySource.filename() != null) {
+			result = createFilenameCopyBookFinder().findCopyBook(params, copySource.filename());
 		} else {
 			LOG.warn("unknown copy book reference type {}", copySource);
 			result = null;
