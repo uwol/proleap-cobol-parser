@@ -19,8 +19,8 @@ import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveToPhrase;
-import io.proleap.cobol.asg.metamodel.procedure.move.SendingArea;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToSendingArea;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -48,10 +48,10 @@ public class FunctionDateOfIntegerCallTest extends CobolTestBase {
 			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
-				final MoveToPhrase moveToPhrase = moveStatement.getMoveToPhrase();
+				final MoveToStatement moveToPhrase = moveStatement.getMoveToStatement();
 
 				{
-					final SendingArea sendingArea = moveToPhrase.getSendingArea();
+					final MoveToSendingArea sendingArea = moveToPhrase.getSendingArea();
 					assertNotNull(sendingArea);
 
 					{

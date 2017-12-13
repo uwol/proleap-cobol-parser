@@ -1669,7 +1669,11 @@ moveToSendingArea
    ;
 
 moveCorrespondingToStatement
-   : (CORRESPONDING | CORR) qualifiedDataName TO identifier+
+   : (CORRESPONDING | CORR) moveCorrespondingToSendingArea TO identifier+
+   ;
+
+moveCorrespondingToSendingArea
+   : identifier
    ;
 
 // multiply statement

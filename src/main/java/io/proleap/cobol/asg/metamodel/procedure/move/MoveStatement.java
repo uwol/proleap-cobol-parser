@@ -21,16 +21,15 @@ public interface MoveStatement extends Statement {
 		MOVE_CORRESPONDING, MOVE_TO
 	}
 
-	MoveCorrespondingPhrase addMoveCorrespondingPhrase(MoveCorrespondingToStatementContext ctx);
+	MoveCorrespondingToStatetement addMoveCorrespondingToStatement(MoveCorrespondingToStatementContext ctx);
 
-	MoveToPhrase addMoveToPhrase(MoveToStatementContext ctx);
+	MoveToStatement addMoveToStatement(MoveToStatementContext ctx);
 
-	MoveCorrespondingPhrase getMoveCorrespondingPhrase();
+	MoveCorrespondingToStatetement getMoveCorrespondingToStatement();
 
-	MoveToPhrase getMoveToPhrase();
+	MoveToStatement getMoveToStatement();
 
 	MoveType getMoveType();
 
 	void setMoveType(MoveType moveType);
-
 }

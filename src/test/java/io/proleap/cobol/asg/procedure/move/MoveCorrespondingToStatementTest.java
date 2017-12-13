@@ -20,12 +20,13 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveCorrespondingPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveCorrespondingToSendingArea;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveCorrespondingToStatetement;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class MoveCorrespondingStatementTest extends CobolTestBase {
+public class MoveCorrespondingToStatementTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {
@@ -58,7 +59,7 @@ public class MoveCorrespondingStatementTest extends CobolTestBase {
 
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
 		assertEquals(0, procedureDivision.getParagraphs().size());
-		assertEquals(1, procedureDivision.getStatements().size());
+		assertEquals(2, procedureDivision.getStatements().size());
 
 		{
 			final MoveStatement moveStatement = (MoveStatement) procedureDivision.getStatements().get(0);
@@ -67,22 +68,56 @@ public class MoveCorrespondingStatementTest extends CobolTestBase {
 			assertEquals(MoveStatement.MoveType.MOVE_CORRESPONDING, moveStatement.getMoveType());
 
 			{
-				final MoveCorrespondingPhrase moveCorrespondingPhrase = moveStatement.getMoveCorrespondingPhrase();
+				final MoveCorrespondingToStatetement moveCorrespondingToStatement = moveStatement
+						.getMoveCorrespondingToStatement();
 
 				{
-					final Call sendingCall = moveCorrespondingPhrase.getSendingCall();
+					final MoveCorrespondingToSendingArea sendingArea = moveCorrespondingToStatement
+							.getMoveToCorrespondingSendingArea();
+					final Call sendingCall = sendingArea.getSendingAreaCall();
 					assertNotNull(sendingCall);
 					assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, sendingCall.getCallType());
 				}
 
 				{
-					final List<Call> receivingAreaCalls = moveCorrespondingPhrase.getReceivingAreaCalls();
+					final List<Call> receivingAreaCalls = moveCorrespondingToStatement.getReceivingAreaCalls();
 					assertEquals(1, receivingAreaCalls.size());
 
 					{
 						final Call receivingAreaCall = receivingAreaCalls.get(0);
 						assertNotNull(receivingAreaCall);
 						assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, receivingAreaCall.getCallType());
+					}
+				}
+			}
+		}
+
+		{
+			final MoveStatement moveStatement = (MoveStatement) procedureDivision.getStatements().get(1);
+			assertNotNull(moveStatement);
+			assertEquals(StatementTypeEnum.MOVE, moveStatement.getStatementType());
+			assertEquals(MoveStatement.MoveType.MOVE_CORRESPONDING, moveStatement.getMoveType());
+
+			{
+				final MoveCorrespondingToStatetement moveCorrespondingToStatement = moveStatement
+						.getMoveCorrespondingToStatement();
+
+				{
+					final MoveCorrespondingToSendingArea sendingArea = moveCorrespondingToStatement
+							.getMoveToCorrespondingSendingArea();
+					final Call sendingCall = sendingArea.getSendingAreaCall();
+					assertNotNull(sendingCall);
+					assertEquals(CallType.UNDEFINED_CALL, sendingCall.getCallType());
+				}
+
+				{
+					final List<Call> receivingAreaCalls = moveCorrespondingToStatement.getReceivingAreaCalls();
+					assertEquals(1, receivingAreaCalls.size());
+
+					{
+						final Call receivingAreaCall = receivingAreaCalls.get(0);
+						assertNotNull(receivingAreaCall);
+						assertEquals(CallType.UNDEFINED_CALL, receivingAreaCall.getCallType());
 					}
 				}
 			}

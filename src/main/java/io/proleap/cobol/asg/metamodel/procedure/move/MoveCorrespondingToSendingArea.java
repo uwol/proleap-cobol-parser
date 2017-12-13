@@ -9,12 +9,12 @@
 package io.proleap.cobol.asg.metamodel.procedure.move;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.asg.metamodel.call.Call;
 
-public interface SendingArea extends CobolDivisionElement {
+public interface MoveCorrespondingToSendingArea extends CobolDivisionElement {
 
-	ValueStmt getSendingAreaValueStmt();
+	Call getSendingAreaCall();
 
-	void setSendingAreaValueStmt(ValueStmt sendingAreaValueStmt);
+	void setSendingAreaCall(Call sendingAreaCall);
 
 }

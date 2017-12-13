@@ -33,8 +33,8 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.asg.metamodel.procedure.display.Operand;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveToPhrase;
-import io.proleap.cobol.asg.metamodel.procedure.move.SendingArea;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToSendingArea;
 import io.proleap.cobol.asg.metamodel.procedure.perform.ByPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.perform.FromPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformProcedureStatement;
@@ -198,10 +198,10 @@ public class TableCallTest extends CobolTestBase {
 			assertEquals(MoveStatement.MoveType.MOVE_TO, moveStatement.getMoveType());
 
 			{
-				final MoveToPhrase moveTo = moveStatement.getMoveToPhrase();
+				final MoveToStatement moveTo = moveStatement.getMoveToStatement();
 
 				{
-					final SendingArea sendingArea = moveTo.getSendingArea();
+					final MoveToSendingArea sendingArea = moveTo.getSendingArea();
 					assertEquals("12ABCABC34ABCABC56ABCABC", sendingArea.getSendingAreaValueStmt().getValue());
 				}
 

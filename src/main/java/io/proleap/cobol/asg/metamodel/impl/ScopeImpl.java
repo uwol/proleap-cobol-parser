@@ -1043,10 +1043,10 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			if (ctx.moveToStatement() != null) {
 				type = MoveStatement.MoveType.MOVE_TO;
-				result.addMoveToPhrase(ctx.moveToStatement());
+				result.addMoveToStatement(ctx.moveToStatement());
 			} else if (ctx.moveCorrespondingToStatement() != null) {
 				type = MoveStatement.MoveType.MOVE_CORRESPONDING;
-				result.addMoveCorrespondingPhrase(ctx.moveCorrespondingToStatement());
+				result.addMoveCorrespondingToStatement(ctx.moveCorrespondingToStatement());
 			} else {
 				type = null;
 			}

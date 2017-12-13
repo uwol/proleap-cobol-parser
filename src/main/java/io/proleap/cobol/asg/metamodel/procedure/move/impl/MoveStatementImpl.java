@@ -18,17 +18,17 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveCorrespondingPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveCorrespondingToStatetement;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveToPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
 
 public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 
 	protected final MoveStatementContext ctx;
 
-	protected MoveCorrespondingPhrase moveCorrespondingPhrase;
+	protected MoveCorrespondingToStatetement moveCorrespondingToStatement;
 
-	protected MoveToPhrase moveToPhrase;
+	protected MoveToStatement moveToStatement;
 
 	protected MoveType moveType;
 
@@ -41,38 +41,15 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 	}
 
 	@Override
-	public MoveCorrespondingPhrase addMoveCorrespondingPhrase(final MoveCorrespondingToStatementContext ctx) {
-		MoveCorrespondingPhrase result = (MoveCorrespondingPhrase) getASGElement(ctx);
+	public MoveCorrespondingToStatetement addMoveCorrespondingToStatement(
+			final MoveCorrespondingToStatementContext ctx) {
+		MoveCorrespondingToStatetement result = (MoveCorrespondingToStatetement) getASGElement(ctx);
 
 		if (result == null) {
-			result = new MoveCorrespondingToImpl(programUnit, ctx);
-
-			// sending
-			final Call sendingCall = createCall(ctx.qualifiedDataName());
-			result.setSendingCall(sendingCall);
-
-			// receiving area calls
-			for (final IdentifierContext identifierCtx : ctx.identifier()) {
-				final Call receivingAreaCall = createCall(identifierCtx);
-				result.addReceivingAreaCall(receivingAreaCall);
-			}
-
-			moveCorrespondingPhrase = result;
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public MoveToPhrase addMoveToPhrase(final MoveToStatementContext ctx) {
-		MoveToPhrase result = (MoveToPhrase) getASGElement(ctx);
-
-		if (result == null) {
-			result = new MoveToPhraseImpl(programUnit, ctx);
+			result = new MoveCorrespondingToStatementImpl(programUnit, ctx);
 
 			// sending area
-			result.addSendingArea(ctx.moveToSendingArea());
+			result.addMoveCorrespondingToSendingArea(ctx.moveCorrespondingToSendingArea());
 
 			// receiving area calls
 			for (final IdentifierContext identifierCtx : ctx.identifier()) {
@@ -80,7 +57,7 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 				result.addReceivingAreaCall(receivingAreaCall);
 			}
 
-			moveToPhrase = result;
+			moveCorrespondingToStatement = result;
 			registerASGElement(result);
 		}
 
@@ -88,13 +65,36 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 	}
 
 	@Override
-	public MoveCorrespondingPhrase getMoveCorrespondingPhrase() {
-		return moveCorrespondingPhrase;
+	public MoveToStatement addMoveToStatement(final MoveToStatementContext ctx) {
+		MoveToStatement result = (MoveToStatement) getASGElement(ctx);
+
+		if (result == null) {
+			result = new MoveToStatementImpl(programUnit, ctx);
+
+			// sending area
+			result.addMoveToSendingArea(ctx.moveToSendingArea());
+
+			// receiving area calls
+			for (final IdentifierContext identifierCtx : ctx.identifier()) {
+				final Call receivingAreaCall = createCall(identifierCtx);
+				result.addReceivingAreaCall(receivingAreaCall);
+			}
+
+			moveToStatement = result;
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
-	public MoveToPhrase getMoveToPhrase() {
-		return moveToPhrase;
+	public MoveCorrespondingToStatetement getMoveCorrespondingToStatement() {
+		return moveCorrespondingToStatement;
+	}
+
+	@Override
+	public MoveToStatement getMoveToStatement() {
+		return moveToStatement;
 	}
 
 	@Override
@@ -111,5 +111,4 @@ public class MoveStatementImpl extends StatementImpl implements MoveStatement {
 	public void setMoveType(final MoveType moveType) {
 		this.moveType = moveType;
 	}
-
 }

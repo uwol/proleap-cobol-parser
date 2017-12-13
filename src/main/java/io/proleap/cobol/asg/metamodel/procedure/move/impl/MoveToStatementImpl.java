@@ -16,22 +16,39 @@ import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveToPhrase;
-import io.proleap.cobol.asg.metamodel.procedure.move.SendingArea;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToSendingArea;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
-public class MoveToPhraseImpl extends CobolDivisionElementImpl implements MoveToPhrase {
+public class MoveToStatementImpl extends CobolDivisionElementImpl implements MoveToStatement {
 
 	protected final MoveToStatementContext ctx;
 
 	protected List<Call> receivingAreaCalls = new ArrayList<Call>();
 
-	protected SendingArea sendingArea;
+	protected MoveToSendingArea moveToSendingArea;
 
-	public MoveToPhraseImpl(final ProgramUnit programUnit, final MoveToStatementContext ctx) {
+	public MoveToStatementImpl(final ProgramUnit programUnit, final MoveToStatementContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
+	}
+
+	@Override
+	public MoveToSendingArea addMoveToSendingArea(final MoveToSendingAreaContext ctx) {
+		MoveToSendingArea result = (MoveToSendingArea) getASGElement(ctx);
+
+		if (result == null) {
+			result = new MoveToSendingAreaImpl(programUnit, ctx);
+
+			final ValueStmt sendingAreaValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
+			result.setSendingAreaValueStmt(sendingAreaValueStmt);
+
+			moveToSendingArea = result;
+			registerASGElement(result);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -40,30 +57,12 @@ public class MoveToPhraseImpl extends CobolDivisionElementImpl implements MoveTo
 	}
 
 	@Override
-	public SendingArea addSendingArea(final MoveToSendingAreaContext ctx) {
-		SendingArea result = (SendingArea) getASGElement(ctx);
-
-		if (result == null) {
-			result = new SendingAreaImpl(programUnit, ctx);
-
-			final ValueStmt sendingAreaValueStmt = createValueStmt(ctx.identifier(), ctx.literal());
-			result.setSendingAreaValueStmt(sendingAreaValueStmt);
-
-			sendingArea = result;
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
 	public List<Call> getReceivingAreaCalls() {
 		return receivingAreaCalls;
 	}
 
 	@Override
-	public SendingArea getSendingArea() {
-		return sendingArea;
+	public MoveToSendingArea getSendingArea() {
+		return moveToSendingArea;
 	}
-
 }
