@@ -245,7 +245,7 @@ charData
    ;
 
 charDataSql
-   : (charDataLine | REPLACE | NEWLINE)+
+   : (charDataLine | COPY | REPLACE | NEWLINE)+
    ;
 
 charDataLine

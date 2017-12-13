@@ -1,0 +1,16 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision Identification Division .\n        
+				(programIdParagraph Program-ID .  
+					(programName 
+						(cobolWord ExecSqlCpy)) .\n       )) 
+			(procedureDivision Procedure Division .\n       
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statement 
+								(execSqlStatement *>EXECSQL EXEC SQL\n *>EXECSQL SELECT SMTBL.SM_COPY\n *>EXECSQL END-EXEC })) .\n        ) 
+						(sentence 
+							(statement 
+								(stopStatement STOP RUN)) .)))))) <EOF>)
