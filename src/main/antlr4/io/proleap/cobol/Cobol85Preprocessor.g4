@@ -175,7 +175,11 @@ copyStatement
    ;
 
 copySource
-   : literal | cobolWord | filename
+   : (literal | cobolWord | filename) ((OF | IN) copyLibrary)?
+   ;
+
+copyLibrary
+   : literal | cobolWord
    ;
 
 replacingPhrase
