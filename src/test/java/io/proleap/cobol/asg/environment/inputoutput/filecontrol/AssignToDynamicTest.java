@@ -2,7 +2,6 @@ package io.proleap.cobol.asg.environment.inputoutput.filecontrol;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 import java.io.File;
 
@@ -18,15 +17,15 @@ import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileCo
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-public class AssignToTest extends CobolTestBase {
+public class AssignToDynamicTest extends CobolTestBase {
 
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/asg/environment/inputoutput/filecontrol/AssignTo.cbl");
+				"src/test/resources/io/proleap/cobol/asg/environment/inputoutput/filecontrol/AssignToDynamic.cbl");
 		final Program program = new CobolParserRunnerImpl().analyzeFile(inputFile, CobolSourceFormatEnum.TANDEM);
 
-		final CompilationUnit compilationUnit = program.getCompilationUnit("AssignTo");
+		final CompilationUnit compilationUnit = program.getCompilationUnit("AssignToDynamic");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final EnvironmentDivision environmentDivision = programUnit.getEnvironmentDivision();
 
@@ -36,7 +35,7 @@ public class AssignToTest extends CobolTestBase {
 
 		final AssignClause assignClause = fileControlEntry.getAssignClause();
 		assertNotNull(assignClause);
-		assertEquals(AssignClause.AssignClauseType.DISK, assignClause.getAssignClauseType());
-		assertNull(assignClause.getToValueStmt());
+		assertEquals(AssignClause.AssignClauseType.CALL, assignClause.getAssignClauseType());
+		assertNotNull(assignClause.getToValueStmt());
 	}
 }

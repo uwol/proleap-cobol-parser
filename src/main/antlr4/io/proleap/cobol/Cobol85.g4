@@ -261,7 +261,7 @@ inputOutputSectionParagraph
 // - file control paragraph ----------------------------------
 
 fileControlParagraph
-   : FILE_CONTROL (DOT_FS? fileControlEntry)* DOT_FS
+   : FILE_CONTROL? (DOT_FS? fileControlEntry)* DOT_FS
    ;
 
 fileControlEntry
@@ -277,7 +277,7 @@ fileControlClause
    ;
 
 assignClause
-   : ASSIGN TO? (DISK | DISPLAY | KEYBOARD | PORT | PRINTER | READER | REMOTE | TAPE | VIRTUAL | assignmentName | literal)
+   : ASSIGN TO? (DISK | DISPLAY | KEYBOARD | PORT | PRINTER | READER | REMOTE | TAPE | VIRTUAL | (DYNAMIC | EXTERNAL)? assignmentName | literal)
    ;
 
 reserveClause
