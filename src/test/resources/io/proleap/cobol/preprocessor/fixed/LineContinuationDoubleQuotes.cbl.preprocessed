@@ -1,0 +1,4 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. LNECONTDBLQ.
+       PROCEDURE DIVISION.
+          DISPLAY '----''===='

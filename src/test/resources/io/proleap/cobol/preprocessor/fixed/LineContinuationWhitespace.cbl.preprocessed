@@ -1,0 +1,4 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. LINECONTWS.
+       PROCEDURE DIVISION
+          DISPLAY  "this is some literal with trailing whitespace        and it ends here".
