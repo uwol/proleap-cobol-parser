@@ -30,16 +30,18 @@ public class CobolLineWriterTest {
 		final List<CobolLine> lines = new ArrayList<CobolLine>();
 
 		lines.add(new CobolLine("123456", " ", "77  ", "WS-TEST-12-DATA", "NC2054.2", CobolSourceFormatEnum.FIXED, null,
-				0, CobolLineTypeEnum.NORMAL));
+				0, CobolLineTypeEnum.NORMAL, null, null));
+
 		lines.add(new CobolLine("123456", " ", "    ", "                   PIC S9(", "NC2054.2",
-				CobolSourceFormatEnum.FIXED, null, 1, CobolLineTypeEnum.NORMAL));
+				CobolSourceFormatEnum.FIXED, null, 1, CobolLineTypeEnum.NORMAL, null, null));
+
 		lines.add(new CobolLine("123456", "-", "6)V9", "(6).", "NC2054.2", CobolSourceFormatEnum.FIXED, null, 2,
-				CobolLineTypeEnum.CONTINUATION));
+				CobolLineTypeEnum.CONTINUATION, null, null));
+
 		lines.add(new CobolLine("123456", " ", "77  ", "WS-TEST-13-DATA", "NC2054.2", CobolSourceFormatEnum.FIXED, null,
-				3, CobolLineTypeEnum.NORMAL));
+				3, CobolLineTypeEnum.NORMAL, null, null));
 
 		final String serializedInput = writer.serialize(lines);
-
 		final File expectedFile = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/sub/line/writer/LineContinuation.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile);

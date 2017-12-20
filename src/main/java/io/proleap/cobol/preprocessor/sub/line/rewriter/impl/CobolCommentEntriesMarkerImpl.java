@@ -41,7 +41,8 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 
 	protected CobolLine buildMultiLineCommentEntryLine(final CobolLine line) {
 		return new CobolLine(line.sequenceArea, CobolPreprocessor.COMMENT_ENTRY_TAG + CobolPreprocessor.WS,
-				line.contentAreaA, line.contentAreaB, line.comment, line.format, line.dialect, line.number, line.type);
+				line.contentAreaA, line.contentAreaB, line.comment, line.format, line.dialect, line.number, line.type,
+				line.predecessor, line.successor);
 	}
 
 	/**

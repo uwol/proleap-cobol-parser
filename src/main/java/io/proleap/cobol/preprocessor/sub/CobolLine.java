@@ -33,12 +33,13 @@ public class CobolLine {
 
 	public static CobolLine with(final CobolLine line, final String indicatorArea, final String contentArea) {
 		return new CobolLine(line.sequenceArea, indicatorArea, contentAreaA(contentArea), contentAreaB(contentArea),
-				line.comment, line.format, line.dialect, line.number, line.type);
+				line.comment, line.format, line.dialect, line.number, line.type, line.predecessor, line.successor);
 	}
 
 	public static CobolLine withContentArea(final CobolLine line, final String contentArea) {
 		return new CobolLine(line.sequenceArea, line.indicatorArea, contentAreaA(contentArea),
-				contentAreaB(contentArea), line.comment, line.format, line.dialect, line.number, line.type);
+				contentAreaB(contentArea), line.comment, line.format, line.dialect, line.number, line.type,
+				line.predecessor, line.successor);
 	}
 
 	public String comment;
@@ -55,13 +56,18 @@ public class CobolLine {
 
 	public int number;
 
+	public CobolLine predecessor;
+
 	public String sequenceArea;
+
+	public CobolLine successor;
 
 	public CobolLineTypeEnum type;
 
 	public CobolLine(final String sequenceArea, final String indicatorArea, final String contentAreaA,
 			final String contentAreaB, final String comment, final CobolSourceFormatEnum format,
-			final CobolDialect dialect, final int number, final CobolLineTypeEnum type) {
+			final CobolDialect dialect, final int number, final CobolLineTypeEnum type, final CobolLine predecessor,
+			final CobolLine successor) {
 		this.sequenceArea = sequenceArea;
 		this.indicatorArea = indicatorArea;
 		this.contentAreaA = contentAreaA;
@@ -72,6 +78,9 @@ public class CobolLine {
 		this.dialect = dialect;
 		this.number = number;
 		this.type = type;
+
+		setPredecessor(predecessor);
+		setSuccessor(successor);
 	}
 
 	public String blankSequenceArea() {
@@ -84,6 +93,22 @@ public class CobolLine {
 
 	public String serialize() {
 		return sequenceArea + indicatorArea + contentAreaA + contentAreaB + comment;
+	}
+
+	public void setPredecessor(final CobolLine predecessor) {
+		this.predecessor = predecessor;
+
+		if (predecessor != null) {
+			predecessor.successor = this;
+		}
+	}
+
+	public void setSuccessor(final CobolLine successor) {
+		this.successor = successor;
+
+		if (successor != null) {
+			successor.predecessor = this;
+		}
 	}
 
 	@Override

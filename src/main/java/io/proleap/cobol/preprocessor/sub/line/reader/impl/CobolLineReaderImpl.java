@@ -77,7 +77,7 @@ public class CobolLineReaderImpl implements CobolLineReader {
 			final CobolLineTypeEnum type = determineType(indicatorArea);
 
 			result = new CobolLine(sequenceArea, indicatorArea, contentAreaA, contentAreaB, commentArea, format,
-					params.getDialect(), lineNumber, type);
+					params.getDialect(), lineNumber, type, null, null);
 		}
 
 		return result;
@@ -90,15 +90,18 @@ public class CobolLineReaderImpl implements CobolLineReader {
 		final List<CobolLine> result = new ArrayList<CobolLine>();
 
 		String currentLine = null;
+		CobolLine lastCobolLine = null;
 		int lineNumber = 0;
 
 		while (scanner.hasNextLine()) {
 			currentLine = scanner.nextLine();
 
-			final CobolLine parsedLine = parseLine(currentLine, lineNumber, format, params);
-			result.add(parsedLine);
+			final CobolLine currentCobolLine = parseLine(currentLine, lineNumber, format, params);
+			currentCobolLine.setPredecessor(lastCobolLine);
+			result.add(currentCobolLine);
 
 			lineNumber++;
+			lastCobolLine = currentCobolLine;
 		}
 
 		scanner.close();
