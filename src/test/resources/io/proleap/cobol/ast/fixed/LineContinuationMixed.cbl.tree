@@ -1,0 +1,217 @@
+(startRule 
+	(compilationUnit 
+		(programUnit 
+			(identificationDivision IDENTIFICATION DIVISION .\n        
+				(programIdParagraph PROGRAM-ID .  
+					(programName 
+						(cobolWord MIXEDCONTLINES)) .\n       )) 
+			(procedureDivision PROCEDURE DIVISION .\n                    
+				(procedureDivisionBody 
+					(paragraphs 
+						(sentence 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(conditionNameReference 
+													(conditionName 
+														(cobolWord SOME-DAT)))))) 
+									(ifThen 
+										(statement 
+											(displayStatement DISPLAY 
+												(displayOperand 
+													(literal '     ')) 
+												(displayOperand 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord SOME-DATA11)))))) 
+												(displayOperand 
+													(literal '          ')) 
+												(displayOperand 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord SOME-DATA-VALUE1))))))))) END-IF)) .\n                   ) 
+						(sentence 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(conditionNameReference 
+													(conditionName 
+														(cobolWord SOME-DAT)))))) 
+									(ifThen 
+										(statement 
+											(displayStatement DISPLAY 
+												(displayOperand 
+													(literal '     ')) 
+												(displayOperand 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord SOME-DATA11)))))) 
+												(displayOperand 
+													(literal '          ')) 
+												(displayOperand 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord SOME-DATA-VALUE1))))))))) END-IF)) .\n       \n               ) 
+						(sentence 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(conditionNameReference 
+													(conditionName 
+														(cobolWord SOME-DAT)))))) 
+									(ifThen 
+										(statement 
+											(displayStatement DISPLAY 
+												(displayOperand 
+													(literal '------------------------------------------''-------------------------------------')))) 
+										(statement 
+											(displayStatement DISPLAY 
+												(displayOperand 
+													(literal '     ')) 
+												(displayOperand 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord SOME-DATA11)))))) 
+												(displayOperand 
+													(literal '              ')))) 
+										(statement 
+											(displayStatement DISPLAY 
+												(displayOperand 
+													(literal '==========================================')) 
+												(displayOperand 
+													(literal '====================================='))))) END-IF)) .\n       \n               ) 
+						(sentence 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(conditionNameReference 
+													(conditionName 
+														(cobolWord SOME-DAT)))))) 
+									(ifThen 
+										(statement 
+											(displayStatement DISPLAY 
+												(displayOperand 
+													(literal '------------------------------------------''-------------------------------------')))) 
+										(statement 
+											(displayStatement DISPLAY 
+												(displayOperand 
+													(literal '     ')) 
+												(displayOperand 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord SOME-DATA11)))))) 
+												(displayOperand 
+													(literal '              ')) 
+												(displayOperand 
+													(literal '     ')) 
+												(displayOperand 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord SOME-DATA-1)))))))) 
+										(statement 
+											(displayStatement DISPLAY 
+												(displayOperand 
+													(literal '==========================================''====================================='))))) END-IF)) .\n       \n       \n           ) 
+						(sentence 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(conditionNameReference 
+													(conditionName 
+														(cobolWord SOME-DAT)))))) 
+									(ifThen 
+										(statement 
+											(displayStatement DISPLAY 
+												(displayOperand 
+													(literal 'some--string              ')) 
+												(displayOperand 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord SOME-DATA-1)))))) 
+												(displayOperand 
+													(literal '    ')) 
+												(displayOperand 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord SOME-DATA)))))))) 
+										(statement 
+											(displayStatement DISPLAY 
+												(displayOperand 
+													(literal '==========================================')) 
+												(displayOperand 
+													(literal '====================================='))))) END-IF)) .\n       \n           ) 
+						(sentence 
+							(statement 
+								(ifStatement IF 
+									(condition 
+										(combinableCondition 
+											(simpleCondition 
+												(conditionNameReference 
+													(conditionName 
+														(cobolWord SOME-DAT)))))) 
+									(ifThen 
+										(statement 
+											(displayStatement DISPLAY 
+												(displayOperand 
+													(literal 'some--string              ')) 
+												(displayOperand 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord SOME-DATA-1)))))) 
+												(displayOperand 
+													(literal '    ')) 
+												(displayOperand 
+													(identifier 
+														(qualifiedDataName 
+															(qualifiedDataNameFormat1 
+																(dataName 
+																	(cobolWord SOME-DATA)))))))) 
+										(statement 
+											(displayStatement DISPLAY 
+												(displayOperand 
+													(literal '==========================================''====================================='))))) END-IF)) .\n       \n           ) 
+						(sentence 
+							(statement 
+								(displayStatement DISPLAY 
+									(displayOperand 
+										(literal '  ')))) 
+							(statement 
+								(displayStatement DISPLAY 
+									(displayOperand 
+										(literal '+-----------------------------------------+')))) 
+							(statement 
+								(displayStatement DISPLAY 
+									(displayOperand 
+										(literal '+-----------------------------------------+')))) 
+							(statement 
+								(exitStatement EXIT)) .)))))) <EOF>)
