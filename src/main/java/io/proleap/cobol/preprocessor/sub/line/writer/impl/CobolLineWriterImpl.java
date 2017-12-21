@@ -22,15 +22,15 @@ public class CobolLineWriterImpl implements CobolLineWriter {
 		final StringBuffer sb = new StringBuffer();
 
 		for (final CobolLine line : lines) {
-			final boolean notContinuationLine = !CobolLineTypeEnum.CONTINUATION.equals(line.type);
+			final boolean notContinuationLine = !CobolLineTypeEnum.CONTINUATION.equals(line.getType());
 
 			if (notContinuationLine) {
-				if (line.number > 0) {
+				if (line.getNumber() > 0) {
 					sb.append(CobolPreprocessor.NEWLINE);
 				}
 
-				sb.append(line.blankSequenceArea());
-				sb.append(line.indicatorArea);
+				sb.append(line.getBlankSequenceArea());
+				sb.append(line.getIndicatorArea());
 			}
 
 			sb.append(line.getContentArea());

@@ -33,7 +33,7 @@ public class CobolInlineCommentEntriesNormalizerImpl implements CobolInlineComme
 		} else {
 			final String newContentArea = line.getContentArea().replace(CobolPreprocessor.COMMENT_TAG,
 					CobolPreprocessor.COMMENT_TAG + CobolPreprocessor.WS);
-			result = CobolLine.withContentArea(line, newContentArea);
+			result = CobolLine.copyCobolLineWithContentArea(newContentArea, line);
 		}
 
 		return result;

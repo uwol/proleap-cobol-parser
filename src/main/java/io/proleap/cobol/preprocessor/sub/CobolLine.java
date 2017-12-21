@@ -14,65 +14,98 @@ import io.proleap.cobol.asg.params.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
-/**
- * Representation of a Cobol line.
- */
 public class CobolLine {
 
-	public static String blankSequenceArea(final CobolSourceFormatEnum format) {
-		return CobolSourceFormatEnum.TANDEM.equals(format) ? "" : Strings.repeat(CobolPreprocessor.WS, 6);
+	public static CobolLine copyCobolLineWithContentArea(final String contentArea, final CobolLine line) {
+		return new CobolLine(line.sequenceArea, line.sequenceAreaOriginal, line.indicatorArea,
+				line.indicatorAreaOriginal, extractContentAreaA(contentArea), line.contentAreaAOriginal,
+				extractContentAreaB(contentArea), line.contentAreaBOriginal, line.commentArea, line.commentAreaOriginal,
+				line.format, line.dialect, line.number, line.type, line.predecessor, line.successor);
 	}
 
-	private static String contentAreaA(final String contentArea) {
-		return contentArea.length() > 4 ? contentArea.substring(0, 4) : contentArea;
+	public static CobolLine copyCobolLineWithIndicatorAndContentArea(final String indicatorArea,
+			final String contentArea, final CobolLine line) {
+		return new CobolLine(line.sequenceArea, line.sequenceAreaOriginal, indicatorArea, line.indicatorAreaOriginal,
+				extractContentAreaA(contentArea), line.contentAreaAOriginal, extractContentAreaB(contentArea),
+				line.contentAreaBOriginal, line.commentArea, line.commentAreaOriginal, line.format, line.dialect,
+				line.number, line.type, line.predecessor, line.successor);
 	}
 
-	private static String contentAreaB(final String contentArea) {
-		return contentArea.length() > 4 ? contentArea.substring(4) : "";
-	}
-
-	public static CobolLine with(final CobolLine line, final String indicatorArea, final String contentArea) {
-		return new CobolLine(line.sequenceArea, indicatorArea, contentAreaA(contentArea), contentAreaB(contentArea),
-				line.comment, line.format, line.dialect, line.number, line.type, line.predecessor, line.successor);
-	}
-
-	public static CobolLine withContentArea(final CobolLine line, final String contentArea) {
-		return new CobolLine(line.sequenceArea, line.indicatorArea, contentAreaA(contentArea),
-				contentAreaB(contentArea), line.comment, line.format, line.dialect, line.number, line.type,
+	public static CobolLine copyCobolLineWithIndicatorArea(final String indicatorArea, final CobolLine line) {
+		return new CobolLine(line.sequenceArea, line.sequenceAreaOriginal, indicatorArea, line.indicatorAreaOriginal,
+				line.contentAreaA, line.contentAreaAOriginal, line.contentAreaB, line.contentAreaBOriginal,
+				line.commentArea, line.commentAreaOriginal, line.format, line.dialect, line.number, line.type,
 				line.predecessor, line.successor);
 	}
 
-	public String comment;
+	public static String createBlankSequenceArea(final CobolSourceFormatEnum format) {
+		return CobolSourceFormatEnum.TANDEM.equals(format) ? "" : Strings.repeat(CobolPreprocessor.WS, 6);
+	}
 
-	public String contentAreaA;
+	protected static String extractContentAreaA(final String contentArea) {
+		return contentArea.length() > 4 ? contentArea.substring(0, 4) : contentArea;
+	}
 
-	public String contentAreaB;
+	protected static String extractContentAreaB(final String contentArea) {
+		return contentArea.length() > 4 ? contentArea.substring(4) : "";
+	}
 
-	public CobolDialect dialect;
+	public static CobolLine newCobolLine(final String sequenceArea, final String indicatorArea,
+			final String contentAreaA, final String contentAreaB, final String commentArea,
+			final CobolSourceFormatEnum format, final CobolDialect dialect, final int number,
+			final CobolLineTypeEnum type) {
+		return new CobolLine(sequenceArea, sequenceArea, indicatorArea, indicatorArea, contentAreaA, contentAreaA,
+				contentAreaB, contentAreaB, commentArea, commentArea, format, dialect, number, type, null, null);
+	}
 
-	public CobolSourceFormatEnum format;
+	protected String commentArea;
 
-	public String indicatorArea;
+	protected String commentAreaOriginal;
 
-	public int number;
+	protected String contentAreaA;
 
-	public CobolLine predecessor;
+	protected String contentAreaAOriginal;
 
-	public String sequenceArea;
+	protected String contentAreaB;
 
-	public CobolLine successor;
+	protected String contentAreaBOriginal;
 
-	public CobolLineTypeEnum type;
+	protected CobolDialect dialect;
 
-	public CobolLine(final String sequenceArea, final String indicatorArea, final String contentAreaA,
-			final String contentAreaB, final String comment, final CobolSourceFormatEnum format,
-			final CobolDialect dialect, final int number, final CobolLineTypeEnum type, final CobolLine predecessor,
-			final CobolLine successor) {
+	protected CobolSourceFormatEnum format;
+
+	protected String indicatorArea;
+
+	protected String indicatorAreaOriginal;
+
+	protected int number;
+
+	protected CobolLine predecessor;
+
+	protected String sequenceArea;
+
+	protected String sequenceAreaOriginal;
+
+	protected CobolLine successor;
+
+	protected CobolLineTypeEnum type;
+
+	protected CobolLine(final String sequenceArea, final String sequenceAreaOriginal, final String indicatorArea,
+			final String indicatorAreaOriginal, final String contentAreaA, final String contentAreaAOriginal,
+			final String contentAreaB, final String contentAreaBOriginal, final String commentArea,
+			final String commentAreaOriginal, final CobolSourceFormatEnum format, final CobolDialect dialect,
+			final int number, final CobolLineTypeEnum type, final CobolLine predecessor, final CobolLine successor) {
 		this.sequenceArea = sequenceArea;
 		this.indicatorArea = indicatorArea;
 		this.contentAreaA = contentAreaA;
 		this.contentAreaB = contentAreaB;
-		this.comment = comment;
+		this.commentArea = commentArea;
+
+		this.sequenceAreaOriginal = sequenceAreaOriginal;
+		this.indicatorAreaOriginal = indicatorAreaOriginal;
+		this.contentAreaAOriginal = contentAreaAOriginal;
+		this.contentAreaBOriginal = contentAreaBOriginal;
+		this.commentAreaOriginal = commentAreaOriginal;
 
 		this.format = format;
 		this.dialect = dialect;
@@ -83,16 +116,84 @@ public class CobolLine {
 		setSuccessor(successor);
 	}
 
-	public String blankSequenceArea() {
-		return blankSequenceArea(format);
+	public String getBlankSequenceArea() {
+		return createBlankSequenceArea(format);
+	}
+
+	public String getCommentArea() {
+		return commentArea;
+	}
+
+	public String getCommentAreaOriginal() {
+		return commentAreaOriginal;
 	}
 
 	public String getContentArea() {
 		return contentAreaA + contentAreaB;
 	}
 
+	public String getContentAreaA() {
+		return contentAreaA;
+	}
+
+	public String getContentAreaAOriginal() {
+		return contentAreaAOriginal;
+	}
+
+	public String getContentAreaB() {
+		return contentAreaB;
+	}
+
+	public String getContentAreaBOriginal() {
+		return contentAreaBOriginal;
+	}
+
+	public String getContentAreaOriginal() {
+		return contentAreaAOriginal + contentAreaBOriginal;
+	}
+
+	public CobolDialect getDialect() {
+		return dialect;
+	}
+
+	public CobolSourceFormatEnum getFormat() {
+		return format;
+	}
+
+	public String getIndicatorArea() {
+		return indicatorArea;
+	}
+
+	public String getIndicatorAreaOriginal() {
+		return indicatorAreaOriginal;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public CobolLine getPredecessor() {
+		return predecessor;
+	}
+
+	public String getSequenceArea() {
+		return sequenceArea;
+	}
+
+	public String getSequenceAreaOriginal() {
+		return sequenceAreaOriginal;
+	}
+
+	public CobolLine getSuccessor() {
+		return successor;
+	}
+
+	public CobolLineTypeEnum getType() {
+		return type;
+	}
+
 	public String serialize() {
-		return sequenceArea + indicatorArea + contentAreaA + contentAreaB + comment;
+		return sequenceArea + indicatorArea + contentAreaA + contentAreaB + commentArea;
 	}
 
 	public void setPredecessor(final CobolLine predecessor) {

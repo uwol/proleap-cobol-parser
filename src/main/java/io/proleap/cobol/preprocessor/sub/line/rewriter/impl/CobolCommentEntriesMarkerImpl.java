@@ -40,9 +40,8 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 	}
 
 	protected CobolLine buildMultiLineCommentEntryLine(final CobolLine line) {
-		return new CobolLine(line.sequenceArea, CobolPreprocessor.COMMENT_ENTRY_TAG + CobolPreprocessor.WS,
-				line.contentAreaA, line.contentAreaB, line.comment, line.format, line.dialect, line.number, line.type,
-				line.predecessor, line.successor);
+		return CobolLine.copyCobolLineWithIndicatorArea(CobolPreprocessor.COMMENT_ENTRY_TAG + CobolPreprocessor.WS,
+				line);
 	}
 
 	/**
@@ -60,7 +59,7 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 			final String newContentArea = whitespace + trigger + CobolPreprocessor.WS
 					+ CobolPreprocessor.COMMENT_ENTRY_TAG + commentEntry;
 
-			result = CobolLine.withContentArea(line, newContentArea);
+			result = CobolLine.copyCobolLineWithContentArea(newContentArea, line);
 		} else {
 			result = line;
 		}
@@ -70,7 +69,7 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 
 	protected boolean isInCommentEntry(final CobolLine line, final boolean isContentAreaAEmpty,
 			final boolean isInOsvsCommentEntry) {
-		final boolean result = CobolLineTypeEnum.COMMENT.equals(line.type) || isContentAreaAEmpty
+		final boolean result = CobolLineTypeEnum.COMMENT.equals(line.getType()) || isContentAreaAEmpty
 				|| isInOsvsCommentEntry;
 		return result;
 	}
@@ -82,7 +81,7 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 	 * next paragraph or division.
 	 */
 	protected boolean isInOsvsCommentEntry(final CobolLine line) {
-		final boolean result = CobolDialect.OSVS.equals(line.dialect) && !startsWithTrigger(line, triggersEnd);
+		final boolean result = CobolDialect.OSVS.equals(line.getDialect()) && !startsWithTrigger(line, triggersEnd);
 		return result;
 	}
 
@@ -90,7 +89,7 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 	public CobolLine processLine(final CobolLine line) {
 		final CobolLine result;
 
-		if (line.format.isCommentEntryMultiLine()) {
+		if (line.getFormat().isCommentEntryMultiLine()) {
 			result = processMultiLineCommentEntry(line);
 		} else {
 			result = processSingleLineCommentEntry(line);
@@ -124,7 +123,7 @@ public class CobolCommentEntriesMarkerImpl implements CobolCommentEntriesMarker 
 		if (foundCommentEntryTriggerInCurrentLine) {
 			result = escapeCommentEntry(line);
 		} else if (foundCommentEntryTriggerInPreviousLine || isInCommentEntry) {
-			final boolean isContentAreaAEmpty = line.contentAreaA.trim().isEmpty();
+			final boolean isContentAreaAEmpty = line.getContentAreaA().trim().isEmpty();
 			final boolean isInOsvsCommentEntry = isInOsvsCommentEntry(line);
 
 			isInCommentEntry = isInCommentEntry(line, isContentAreaAEmpty, isInOsvsCommentEntry);

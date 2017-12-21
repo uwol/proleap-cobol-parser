@@ -76,8 +76,8 @@ public class CobolLineReaderImpl implements CobolLineReader {
 
 			final CobolLineTypeEnum type = determineType(indicatorArea);
 
-			result = new CobolLine(sequenceArea, indicatorArea, contentAreaA, contentAreaB, commentArea, format,
-					params.getDialect(), lineNumber, type, null, null);
+			result = CobolLine.newCobolLine(sequenceArea, indicatorArea, contentAreaA, contentAreaB, commentArea,
+					format, params.getDialect(), lineNumber, type);
 		}
 
 		return result;

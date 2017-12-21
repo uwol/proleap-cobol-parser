@@ -1,0 +1,8 @@
+ IDENTIFICATION DIVISION.
+ PROGRAM-ID. LINECONTWS.
+ DATA DIVISION.
+ WORKNGSTORAGE SECTION.
+     SOME-DATA PICTURE A(36) JUSTIFIED RIGHT.
+ PROCEDURE DIVISION.
+     MOVE                                   "                     
+-        "              A" TO SOME-DATA.

@@ -26,13 +26,13 @@ public class CobolLineReaderTest {
 		final CobolLine parseCobol85Line = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.FIXED,
 				new CobolParserParamsImpl());
 
-		Assert.assertEquals(CobolSourceFormatEnum.FIXED, parseCobol85Line.format);
-		Assert.assertEquals("000100", parseCobol85Line.sequenceArea);
-		Assert.assertEquals(" ", parseCobol85Line.indicatorArea);
-		Assert.assertEquals("Iden", parseCobol85Line.contentAreaA);
+		Assert.assertEquals(CobolSourceFormatEnum.FIXED, parseCobol85Line.getFormat());
+		Assert.assertEquals("000100", parseCobol85Line.getSequenceArea());
+		Assert.assertEquals(" ", parseCobol85Line.getIndicatorArea());
+		Assert.assertEquals("Iden", parseCobol85Line.getContentAreaA());
 		Assert.assertEquals("tification Division.                                         ",
-				parseCobol85Line.contentAreaB);
-		Assert.assertEquals("1234.6-8", parseCobol85Line.comment);
+				parseCobol85Line.getContentAreaB());
+		Assert.assertEquals("1234.6-8", parseCobol85Line.getCommentArea());
 	}
 
 	@Test
@@ -54,13 +54,13 @@ public class CobolLineReaderTest {
 		final CobolLine parseCobol85Line = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.FIXED,
 				new CobolParserParamsImpl());
 
-		Assert.assertEquals(CobolSourceFormatEnum.FIXED, parseCobol85Line.format);
-		Assert.assertEquals("000200", parseCobol85Line.sequenceArea);
-		Assert.assertEquals(" ", parseCobol85Line.indicatorArea);
-		Assert.assertEquals("Prog", parseCobol85Line.contentAreaA);
+		Assert.assertEquals(CobolSourceFormatEnum.FIXED, parseCobol85Line.getFormat());
+		Assert.assertEquals("000200", parseCobol85Line.getSequenceArea());
+		Assert.assertEquals(" ", parseCobol85Line.getIndicatorArea());
+		Assert.assertEquals("Prog", parseCobol85Line.getContentAreaA());
 		Assert.assertEquals("ram-ID.                                                      ",
-				parseCobol85Line.contentAreaB);
-		Assert.assertEquals("12345678", parseCobol85Line.comment);
+				parseCobol85Line.getContentAreaB());
+		Assert.assertEquals("12345678", parseCobol85Line.getCommentArea());
 	}
 
 	@Test
@@ -71,13 +71,13 @@ public class CobolLineReaderTest {
 		final CobolLine parseCobol85Line = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.FIXED,
 				new CobolParserParamsImpl());
 
-		Assert.assertEquals(CobolSourceFormatEnum.FIXED, parseCobol85Line.format);
-		Assert.assertEquals("000100", parseCobol85Line.sequenceArea);
-		Assert.assertEquals(" ", parseCobol85Line.indicatorArea);
-		Assert.assertEquals("Iden", parseCobol85Line.contentAreaA);
+		Assert.assertEquals(CobolSourceFormatEnum.FIXED, parseCobol85Line.getFormat());
+		Assert.assertEquals("000100", parseCobol85Line.getSequenceArea());
+		Assert.assertEquals(" ", parseCobol85Line.getIndicatorArea());
+		Assert.assertEquals("Iden", parseCobol85Line.getContentAreaA());
 		Assert.assertEquals("tification Division.                                         ",
-				parseCobol85Line.contentAreaB);
-		Assert.assertEquals("12345678", parseCobol85Line.comment);
+				parseCobol85Line.getContentAreaB());
+		Assert.assertEquals("12345678", parseCobol85Line.getCommentArea());
 	}
 
 	@Test
@@ -88,7 +88,7 @@ public class CobolLineReaderTest {
 		final CobolLine parseCobol85Line = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.TANDEM,
 				new CobolParserParamsImpl());
 
-		Assert.assertEquals(CobolSourceFormatEnum.TANDEM, parseCobol85Line.format);
+		Assert.assertEquals(CobolSourceFormatEnum.TANDEM, parseCobol85Line.getFormat());
 	}
 
 	@Test(expected = RuntimeException.class)
@@ -110,12 +110,12 @@ public class CobolLineReaderTest {
 		final CobolLine parseCobol85Line = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.TANDEM,
 				new CobolParserParamsImpl());
 
-		Assert.assertEquals(CobolSourceFormatEnum.TANDEM, parseCobol85Line.format);
-		Assert.assertEquals("", parseCobol85Line.sequenceArea);
-		Assert.assertEquals(" ", parseCobol85Line.indicatorArea);
-		Assert.assertEquals("Proc", parseCobol85Line.contentAreaA);
-		Assert.assertEquals("edure Division. ", parseCobol85Line.contentAreaB);
-		Assert.assertEquals("", parseCobol85Line.comment);
+		Assert.assertEquals(CobolSourceFormatEnum.TANDEM, parseCobol85Line.getFormat());
+		Assert.assertEquals("", parseCobol85Line.getSequenceArea());
+		Assert.assertEquals(" ", parseCobol85Line.getIndicatorArea());
+		Assert.assertEquals("Proc", parseCobol85Line.getContentAreaA());
+		Assert.assertEquals("edure Division. ", parseCobol85Line.getContentAreaB());
+		Assert.assertEquals("", parseCobol85Line.getCommentArea());
 	}
 
 	@Test
@@ -126,12 +126,12 @@ public class CobolLineReaderTest {
 		final CobolLine parseCobol85Line = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.TANDEM,
 				new CobolParserParamsImpl());
 
-		Assert.assertEquals(CobolSourceFormatEnum.TANDEM, parseCobol85Line.format);
-		Assert.assertEquals("", parseCobol85Line.sequenceArea);
-		Assert.assertEquals(" ", parseCobol85Line.indicatorArea);
-		Assert.assertEquals("Iden", parseCobol85Line.contentAreaA);
-		Assert.assertEquals("tification Division.", parseCobol85Line.contentAreaB);
-		Assert.assertEquals("", parseCobol85Line.comment);
+		Assert.assertEquals(CobolSourceFormatEnum.TANDEM, parseCobol85Line.getFormat());
+		Assert.assertEquals("", parseCobol85Line.getSequenceArea());
+		Assert.assertEquals(" ", parseCobol85Line.getIndicatorArea());
+		Assert.assertEquals("Iden", parseCobol85Line.getContentAreaA());
+		Assert.assertEquals("tification Division.", parseCobol85Line.getContentAreaB());
+		Assert.assertEquals("", parseCobol85Line.getCommentArea());
 	}
 
 	@Test
@@ -142,11 +142,11 @@ public class CobolLineReaderTest {
 		final CobolLine parseCobol85Line = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.VARIABLE,
 				new CobolParserParamsImpl());
 
-		Assert.assertEquals(CobolSourceFormatEnum.VARIABLE, parseCobol85Line.format);
-		Assert.assertEquals("000100", parseCobol85Line.sequenceArea);
-		Assert.assertEquals(" ", parseCobol85Line.indicatorArea);
-		Assert.assertEquals("Iden", parseCobol85Line.contentAreaA);
-		Assert.assertEquals("tification Division.", parseCobol85Line.contentAreaB);
-		Assert.assertEquals("", parseCobol85Line.comment);
+		Assert.assertEquals(CobolSourceFormatEnum.VARIABLE, parseCobol85Line.getFormat());
+		Assert.assertEquals("000100", parseCobol85Line.getSequenceArea());
+		Assert.assertEquals(" ", parseCobol85Line.getIndicatorArea());
+		Assert.assertEquals("Iden", parseCobol85Line.getContentAreaA());
+		Assert.assertEquals("tification Division.", parseCobol85Line.getContentAreaB());
+		Assert.assertEquals("", parseCobol85Line.getCommentArea());
 	}
 }

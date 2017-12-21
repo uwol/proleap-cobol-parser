@@ -1,4 +1,4 @@
-package io.proleap.cobol.preprocessor.fixed;
+package io.proleap.cobol.preprocessor.variable;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,16 +10,16 @@ import org.junit.Test;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 
-public class LineContinuationDoubleQuotesTest {
+public class LineContinuationWhitespaceTest {
 
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/preprocessor/fixed/LineContinuationDoubleQuotes.cbl");
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.FIXED);
+				"src/test/resources/io/proleap/cobol/preprocessor/variable/LineContinuationWhitespace.cbl");
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.VARIABLE);
 
 		final File expectedFile = new File(
-				"src/test/resources/io/proleap/cobol/preprocessor/fixed/LineContinuationDoubleQuotes.cbl.preprocessed");
+				"src/test/resources/io/proleap/cobol/preprocessor/variable/LineContinuationWhitespace.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile);
 		assertEquals(expected, preProcessedInput);
 	}

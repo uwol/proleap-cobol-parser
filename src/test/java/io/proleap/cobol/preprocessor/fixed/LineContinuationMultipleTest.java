@@ -10,16 +10,16 @@ import org.junit.Test;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 
-public class LineContinuationDoubleQuotesTest {
+public class LineContinuationMultipleTest {
 
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
-				"src/test/resources/io/proleap/cobol/preprocessor/fixed/LineContinuationDoubleQuotes.cbl");
+				"src/test/resources/io/proleap/cobol/preprocessor/fixed/LineContinuationMultiple.cbl");
 		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.FIXED);
 
 		final File expectedFile = new File(
-				"src/test/resources/io/proleap/cobol/preprocessor/fixed/LineContinuationDoubleQuotes.cbl.preprocessed");
+				"src/test/resources/io/proleap/cobol/preprocessor/fixed/LineContinuationMultiple.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile);
 		assertEquals(expected, preProcessedInput);
 	}

@@ -221,7 +221,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		 * text
 		 */
 		final String text = TokenUtils.getTextIncludingHiddenTokens(ctx, tokens);
-		final String linePrefix = CobolLine.blankSequenceArea(format) + CobolPreprocessor.EXEC_CICS_TAG;
+		final String linePrefix = CobolLine.createBlankSequenceArea(format) + CobolPreprocessor.EXEC_CICS_TAG;
 		final String lines = buildLines(text, linePrefix);
 
 		context().write(lines);
@@ -244,7 +244,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		 * text
 		 */
 		final String text = TokenUtils.getTextIncludingHiddenTokens(ctx, tokens);
-		final String linePrefix = CobolLine.blankSequenceArea(format) + CobolPreprocessor.EXEC_SQLIMS_TAG;
+		final String linePrefix = CobolLine.createBlankSequenceArea(format) + CobolPreprocessor.EXEC_SQLIMS_TAG;
 		final String lines = buildLines(text, linePrefix);
 
 		context().write(lines);
@@ -267,7 +267,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 		 * text
 		 */
 		final String text = TokenUtils.getTextIncludingHiddenTokens(ctx, tokens);
-		final String linePrefix = CobolLine.blankSequenceArea(format) + CobolPreprocessor.EXEC_SQL_TAG;
+		final String linePrefix = CobolLine.createBlankSequenceArea(format) + CobolPreprocessor.EXEC_SQL_TAG;
 		final String lines = buildLines(text, linePrefix);
 
 		context().write(lines);

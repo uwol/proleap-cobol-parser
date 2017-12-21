@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -13,7 +12,6 @@ import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 
 public class LineContinuationWhitespaceTest {
 
-	@Ignore
 	@Test
 	public void test() throws Exception {
 		final File inputFile = new File(
