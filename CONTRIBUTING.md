@@ -6,16 +6,15 @@ This open source repository is maintained by [@uwol](https://github.com/uwol).
 
 ## Contributing code
 
-1. Please fork the repo. Make your changes on your fork. 
-  - In case of new features, please include a unit test.
-  - Please fill out the contributor agreement in [`.github/contributors/`](/.github/contributors)
+1. Please fork the repo. Make your changes on your fork. In case of new features, please include a unit test. Please fill out the contributor agreement in [`.github/contributors/`](/.github/contributors).
 2. Make sure, that the build and all tests pass: `$ mvn clean test`
 3. Finally, please issue a pull request.
 
 We will review the PR for:
-- Relevant functionality for a parser
-- Passing test suite
-- Clean code, code quality
+- Relevant functionality for a parser.
+- Passing test suite.
+- Clean code, code quality.
+- Contributor agreement in [`.github/contributors/`](/.github/contributors).
 
 In review, we support you with code and suggestions. Finally, PR is merged.
 
