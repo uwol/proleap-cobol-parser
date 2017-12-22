@@ -66,45 +66,78 @@ public class CobolLineIndicatorProcessorImpl implements CobolLineIndicatorProces
 				result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS, EMPTY_STRING, line);
 			}
 			/**
-			 * If a national or alphanumeric literal, which is continued on the next line
-			 * has as the last character in column 72 a quotation mark ...
+			 * If a line, which is continued on the next line, ends in column 72 with a
+			 * quotation mark as the last character ...
 			 */
 			else if (line.getPredecessor() != null && (line.getPredecessor().getContentAreaOriginal().endsWith("\"")
 					|| line.getPredecessor().getContentAreaOriginal().endsWith("'"))) {
+				final String trimmedContentArea = trimLeadingWhitespace(conditionalRightTrimmedContentArea);
+
 				/**
-				 * ... the continuation line has to start with two consecutive quotation marks.
-				 * This has to result in one single quotation mark in the value of the literal,
-				 * expressed as 2 quotation marks in the literal for escaping.
+				 * ... the continuation line by specification has to start with two consecutive
+				 * quotation marks.
 				 */
-				result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS,
-						trimLeadingWhitespace(conditionalRightTrimmedContentArea).substring(1), line);
+				if (trimmedContentArea.startsWith("\"") || trimmedContentArea.startsWith("'")) {
+					/**
+					 * We have to remove the first quotation mark of the continuation line, the 1
+					 * quotation mark from the continued line and the 2 quotations marks from the
+					 * continuation line become 2 successive quotation marks.
+					 */
+					result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS,
+							trimLeadingChar(trimmedContentArea), line);
+				}
+				/**
+				 * However there are non-compliant parsers out there without the two consecutive
+				 * quotation marks in the continuation line ...
+				 */
+				else {
+					/**
+					 * ... where we simply remove leading whitespace.
+					 */
+					result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS,
+							trimLeadingWhitespace(conditionalRightTrimmedContentArea), line);
+				}
 			}
 			/**
-			 * If the last character on the continued line of a national or alphanumeric
-			 * literal is a single quotation mark in Area B ...
+			 * If we are ending with an open literal ...
 			 */
 			else if (line.getPredecessor() != null && isEndingWithOpenLiteral(line.getPredecessor())) {
 				final String trimmedContentArea = trimLeadingWhitespace(conditionalRightTrimmedContentArea);
 
 				/**
-				 * ... the continuation line might start with a single quotation mark.
+				 * ... the continuation line might start with a single quotation mark. This
+				 * indicates, that the literal from the continued line stays open ...
 				 */
 				if (trimmedContentArea.startsWith("\"") || trimmedContentArea.startsWith("'")) {
 					/**
-					 * This has to result in 2 literals instead of one continued literal, 1 from
-					 * continued line and 1 from continuing line.
+					 * so we are removing the leading quotation mark to keep the literal open.
 					 */
 					result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS,
-							trimmedContentArea.substring(1), line);
+							trimLeadingChar(trimmedContentArea), line);
 				} else {
 					result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS,
 							conditionalRightTrimmedContentArea, line);
 				}
-			} else if (line.getPredecessor() != null && (line.getPredecessor().getContentArea().endsWith("\"")
+			}
+			/**
+			 * If we are ending with a closed literal and the continued line ends with a
+			 * quotation mark ...
+			 */
+			else if (line.getPredecessor() != null && (line.getPredecessor().getContentArea().endsWith("\"")
 					|| line.getPredecessor().getContentArea().endsWith("'"))) {
+				/**
+				 * ... prepend a whitespace to the continuation line
+				 */
 				result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS,
 						CobolPreprocessor.WS + trimLeadingWhitespace(conditionalRightTrimmedContentArea), line);
-			} else {
+			}
+			/**
+			 * As fallback ...
+			 */
+			else {
+				/**
+				 * ... trim leading whitespace.
+				 */
 				result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS,
 						trimLeadingWhitespace(conditionalRightTrimmedContentArea), line);
 			}
@@ -169,6 +202,10 @@ public class CobolLineIndicatorProcessorImpl implements CobolLineIndicatorProces
 	protected String rightTrimContentArea(final String contentarea) {
 		final String contentAreaWithTrimmedTrailingWhitespace = trimTrailingWhitespace(contentarea);
 		return repairTrailingComma(contentAreaWithTrimmedTrailingWhitespace);
+	}
+
+	protected String trimLeadingChar(final String contentArea) {
+		return contentArea.substring(1);
 	}
 
 	protected String trimLeadingWhitespace(final String contentarea) {

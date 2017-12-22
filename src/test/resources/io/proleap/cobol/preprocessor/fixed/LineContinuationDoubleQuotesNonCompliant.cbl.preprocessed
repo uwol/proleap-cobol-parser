@@ -1,0 +1,8 @@
+       IDENTIFICATION  DIVISION.
+       PROGRAM-ID.     LNECNTDBLQTNONCOMPLIANT.
+       DATA            DIVISION.
+       WORKING-STORAGE SECTION.
+              01 FILLER PIC X(99)          VALUE '123456789012345       -----------------------------------------------------'.
+      *> By specification, a line continuation following a quote in
+      *> column 72 has to start with two quotes. So this example is
+      *> non-compliant, but might happen in real-life.
