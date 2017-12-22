@@ -1,22 +1,23 @@
-# Contribute to ProLeap
+# Contribute to ProLeap COBOL parser
 
-Thanks for your interest in contributing to the open source parsers of
-ProLeap. This open source repository is maintained by
-[@uwol](https://github.com/uwol).
+First of all thank you for your interest in contributing to the ProLeap COBOL parser!
+This open source repository is maintained by [@uwol](https://github.com/uwol).
 
 
-## Contributing to the code base
+## Contributing code
 
-To make changes to ProLeap's code base, first you need to clone the GitHub
-repository and build ProLeap from source.
+1. Please fork the repo. Make your changes on your fork. 
+  - In case of new features, please include a unit test.
+  - Please fill out the contributor agreement in [`.github/contributors/`](/.github/contributors)
+2. Make sure, that the build and all tests pass: `$ mvn clean test`
+3. Finally, please issue a pull request.
 
-```
-$ mvn clean package
-```
+We will review the PR for:
+- Relevant functionality for a parser
+- Passing test suite
+- Clean code, code quality
 
-After making your changes, please issue a pull request. The test suite will be
-executed on Travis CI, automatically. In case of new features, please include
-a unit test.
+In review, we support you with code and suggestions. Finally, PR is merged.
 
 
 ## Contributor agreement
