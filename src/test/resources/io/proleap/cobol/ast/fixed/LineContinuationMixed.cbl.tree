@@ -77,7 +77,9 @@
 										(statement 
 											(displayStatement DISPLAY 
 												(displayOperand 
-													(literal '------------------------------------------''-------------------------------------')))) 
+													(literal '------------------------------------------')) 
+												(displayOperand 
+													(literal '-------------------------------------')))) 
 										(statement 
 											(displayStatement DISPLAY 
 												(displayOperand 
@@ -109,7 +111,9 @@
 										(statement 
 											(displayStatement DISPLAY 
 												(displayOperand 
-													(literal '------------------------------------------''-------------------------------------')))) 
+													(literal '------------------------------------------')) 
+												(displayOperand 
+													(literal '-------------------------------------')))) 
 										(statement 
 											(displayStatement DISPLAY 
 												(displayOperand 
@@ -133,7 +137,9 @@
 										(statement 
 											(displayStatement DISPLAY 
 												(displayOperand 
-													(literal '==========================================''====================================='))))) END-IF)) .\n       \n       \n           ) 
+													(literal '==========================================')) 
+												(displayOperand 
+													(literal '====================================='))))) END-IF)) .\n       \n       \n           ) 
 						(sentence 
 							(statement 
 								(ifStatement IF 
@@ -199,7 +205,9 @@
 										(statement 
 											(displayStatement DISPLAY 
 												(displayOperand 
-													(literal '==========================================''====================================='))))) END-IF)) .\n       \n           ) 
+													(literal '==========================================')) 
+												(displayOperand 
+													(literal '====================================='))))) END-IF)) .\n       \n           ) 
 						(sentence 
 							(statement 
 								(displayStatement DISPLAY 

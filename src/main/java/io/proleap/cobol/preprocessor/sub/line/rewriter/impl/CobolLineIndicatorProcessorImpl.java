@@ -73,7 +73,7 @@ public class CobolLineIndicatorProcessorImpl implements CobolLineIndicatorProces
 					|| line.getPredecessor().getContentAreaOriginal().endsWith("'"))) {
 				/**
 				 * ... the continuation line has to start with two consecutive quotation marks.
-				 * This has to result in one single quotation mark in the value of the litera,
+				 * This has to result in one single quotation mark in the value of the literal,
 				 * expressed as 2 quotation marks in the literal for escaping.
 				 */
 				result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS,
@@ -100,6 +100,10 @@ public class CobolLineIndicatorProcessorImpl implements CobolLineIndicatorProces
 					result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS,
 							conditionalRightTrimmedContentArea, line);
 				}
+			} else if (line.getPredecessor() != null && (line.getPredecessor().getContentArea().endsWith("\"")
+					|| line.getPredecessor().getContentArea().endsWith("'"))) {
+				result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS,
+						CobolPreprocessor.WS + trimLeadingWhitespace(conditionalRightTrimmedContentArea), line);
 			} else {
 				result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS,
 						trimLeadingWhitespace(conditionalRightTrimmedContentArea), line);
