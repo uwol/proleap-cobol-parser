@@ -42,4 +42,23 @@
 											(qualifiedDataName 
 												(qualifiedDataNameFormat1 
 													(dataName 
-														(cobolWord SOMEDATA1)))))) END-STRING)) .)))))) <EOF>)
+														(cobolWord SOMEDATA1)))))) END-STRING)) .\n           ) 
+						(sentence 
+							(statement 
+								(stringStatement STRING 
+									(stringSendingPhrase 
+										(stringSending 
+											(literal 'SOME-STRING')) , 
+										(stringSending 
+											(identifier 
+												(qualifiedDataName 
+													(qualifiedDataNameFormat1 
+														(dataName 
+															(cobolWord SOME-DATA1)))))) 
+										(stringDelimitedByPhrase DELIMITED BY SIZE)) 
+									(stringIntoPhrase INTO 
+										(identifier 
+											(qualifiedDataName 
+												(qualifiedDataNameFormat1 
+													(dataName 
+														(cobolWord SOME-DATA2)))))))) .)))))) <EOF>)

@@ -626,6 +626,8 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 				type = UsageClause.UsageClauseType.PROCEDURE_POINTER;
 			} else if (ctx.REAL() != null) {
 				type = UsageClause.UsageClauseType.REAL;
+			} else if (ctx.SQL() != null) {
+				type = UsageClause.UsageClauseType.SQL;
 			} else if (ctx.TASK() != null) {
 				type = UsageClause.UsageClauseType.TASK;
 			} else {
