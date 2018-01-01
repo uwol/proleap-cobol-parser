@@ -1,0 +1,8 @@
+       Identification Division.
+       Program-ID.
+        HELLOWORLD.
+       Environment Division.
+        SELECT MSG-IO-FILE  ASSIGN TO $RECEIVE
+                            FILE STATUS IS FILE-STATUS.
+       Procedure Division.
+        STOP RUN.
