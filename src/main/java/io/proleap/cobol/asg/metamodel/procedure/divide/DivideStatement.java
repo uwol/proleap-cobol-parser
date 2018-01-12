@@ -42,19 +42,19 @@ public interface DivideStatement extends Statement {
 
 	DivideType getDivideType();
 
-	ValueStmt getDivisorValueStmt();
-
 	NotOnSizeErrorPhrase getNotOnSizeErrorPhrase();
 
 	OnSizeErrorPhrase getOnSizeErrorPhrase();
+
+	ValueStmt getOperandValueStmt();
 
 	Remainder getRemainder();
 
 	void setDivideType(DivideType divideType);
 
-	void setDivisorValueStmt(ValueStmt divisorValueStmt);
-
 	void setNotOnSizeErrorPhrase(NotOnSizeErrorPhrase notOnSizeErrorPhrase);
 
 	void setOnSizeErrorPhrase(OnSizeErrorPhrase onSizeErrorPhrase);
+
+	void setOperandValueStmt(ValueStmt divisorValueStmt);
 }

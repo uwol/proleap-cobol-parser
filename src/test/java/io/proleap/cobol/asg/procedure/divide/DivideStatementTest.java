@@ -47,8 +47,8 @@ public class DivideStatementTest extends CobolTestBase {
 			assertEquals(DivideStatement.DivideType.INTO_GIVING, divideStatement.getDivideType());
 
 			{
-				assertNotNull(divideStatement.getDivisorValueStmt());
-				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getDivisorValueStmt();
+				assertNotNull(divideStatement.getOperandValueStmt());
+				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getOperandValueStmt();
 				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, divisorCallValueStmt.getCall().getCallType());
 			}
 
@@ -86,8 +86,8 @@ public class DivideStatementTest extends CobolTestBase {
 
 			assertEquals(DivideStatement.DivideType.INTO, divideStatement.getDivideType());
 			{
-				assertNotNull(divideStatement.getDivisorValueStmt());
-				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getDivisorValueStmt();
+				assertNotNull(divideStatement.getOperandValueStmt());
+				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getOperandValueStmt();
 				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, divisorCallValueStmt.getCall().getCallType());
 			}
 
@@ -124,8 +124,8 @@ public class DivideStatementTest extends CobolTestBase {
 			assertEquals(DivideStatement.DivideType.BY_GIVING, divideStatement.getDivideType());
 
 			{
-				assertNotNull(divideStatement.getDivisorValueStmt());
-				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getDivisorValueStmt();
+				assertNotNull(divideStatement.getOperandValueStmt());
+				final CallValueStmt divisorCallValueStmt = (CallValueStmt) divideStatement.getOperandValueStmt();
 				assertEquals(CallType.DATA_DESCRIPTION_ENTRY_CALL, divisorCallValueStmt.getCall().getCallType());
 			}
 

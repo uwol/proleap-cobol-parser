@@ -41,11 +41,11 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 
 	protected DivideType divideType;
 
-	protected ValueStmt divisorValueStmt;
-
 	protected NotOnSizeErrorPhrase notOnSizeErrorPhrase;
 
 	protected OnSizeErrorPhrase onSizeErrorPhrase;
+
+	protected ValueStmt operandValueStmt;
 
 	protected Remainder remainder;
 
@@ -162,11 +162,6 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	}
 
 	@Override
-	public ValueStmt getDivisorValueStmt() {
-		return divisorValueStmt;
-	}
-
-	@Override
 	public NotOnSizeErrorPhrase getNotOnSizeErrorPhrase() {
 		return notOnSizeErrorPhrase;
 	}
@@ -174,6 +169,11 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	@Override
 	public OnSizeErrorPhrase getOnSizeErrorPhrase() {
 		return onSizeErrorPhrase;
+	}
+
+	@Override
+	public ValueStmt getOperandValueStmt() {
+		return operandValueStmt;
 	}
 
 	@Override
@@ -192,11 +192,6 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	}
 
 	@Override
-	public void setDivisorValueStmt(final ValueStmt divisorValueStmt) {
-		this.divisorValueStmt = divisorValueStmt;
-	}
-
-	@Override
 	public void setNotOnSizeErrorPhrase(final NotOnSizeErrorPhrase notOnSizeErrorPhrase) {
 		this.notOnSizeErrorPhrase = notOnSizeErrorPhrase;
 	}
@@ -204,5 +199,10 @@ public class DivideStatementImpl extends StatementImpl implements DivideStatemen
 	@Override
 	public void setOnSizeErrorPhrase(final OnSizeErrorPhrase onSizeErrorPhrase) {
 		this.onSizeErrorPhrase = onSizeErrorPhrase;
+	}
+
+	@Override
+	public void setOperandValueStmt(final ValueStmt operandValueStmt) {
+		this.operandValueStmt = operandValueStmt;
 	}
 }
