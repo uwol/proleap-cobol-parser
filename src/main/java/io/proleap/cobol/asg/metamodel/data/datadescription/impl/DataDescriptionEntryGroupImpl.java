@@ -75,7 +75,7 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.WithLowerBoundsClause
 import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
-import io.proleap.cobol.asg.util.PictureUtils;
+import io.proleap.cobol.asg.util.PictureTypeUtils;
 
 public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryGroup {
 
@@ -846,7 +846,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 
 		if (pictureClause != null) {
 			final String pictureString = pictureClause.getPictureString();
-			result = PictureUtils.determineType(pictureString);
+			result = PictureTypeUtils.determineType(pictureString);
 		} else if (valueClause != null) {
 			final ValueInterval valueInterval = valueClause.getValueIntervals().get(0);
 			result = valueInterval.getFromValueStmt().getType();

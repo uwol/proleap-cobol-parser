@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
 import io.proleap.cobol.asg.metamodel.type.Type;
 
-public class PictureUtils {
+public class PictureTypeUtils {
 
 	public static Pattern PATTERN_9 = Pattern.compile("9");
 

@@ -11,46 +11,46 @@ public class PictureUtilsTest extends CobolTestBase {
 
 	@Test
 	public void testDetermineType9() throws Exception {
-		assertEquals(CobolBaseType.INTEGER, PictureUtils.determineType("9"));
+		assertEquals(CobolBaseType.INTEGER, PictureTypeUtils.determineType("9"));
 	}
 
 	@Test
 	public void testDetermineType99() throws Exception {
-		assertEquals(CobolBaseType.INTEGER, PictureUtils.determineType("99"));
+		assertEquals(CobolBaseType.INTEGER, PictureTypeUtils.determineType("99"));
 	}
 
 	@Test
 	public void testDetermineType9Length() throws Exception {
-		assertEquals(CobolBaseType.INTEGER, PictureUtils.determineType("9(2)"));
+		assertEquals(CobolBaseType.INTEGER, PictureTypeUtils.determineType("9(2)"));
 	}
 
 	@Test
 	public void testDetermineType9V9() throws Exception {
-		assertEquals(CobolBaseType.FLOAT, PictureUtils.determineType("9V9"));
+		assertEquals(CobolBaseType.FLOAT, PictureTypeUtils.determineType("9V9"));
 	}
 
 	@Test
 	public void testDetermineTypeS9() throws Exception {
-		assertEquals(CobolBaseType.INTEGER, PictureUtils.determineType("S9"));
+		assertEquals(CobolBaseType.INTEGER, PictureTypeUtils.determineType("S9"));
 	}
 
 	@Test
 	public void testDetermineTypeS9Length() throws Exception {
-		assertEquals(CobolBaseType.INTEGER, PictureUtils.determineType("S9(2)"));
+		assertEquals(CobolBaseType.INTEGER, PictureTypeUtils.determineType("S9(2)"));
 	}
 
 	@Test
 	public void testDetermineTypeX() throws Exception {
-		assertEquals(CobolBaseType.STRING, PictureUtils.determineType("X"));
+		assertEquals(CobolBaseType.STRING, PictureTypeUtils.determineType("X"));
 	}
 
 	@Test
 	public void testDetermineTypeXLength() throws Exception {
-		assertEquals(CobolBaseType.STRING, PictureUtils.determineType("X(2)"));
+		assertEquals(CobolBaseType.STRING, PictureTypeUtils.determineType("X(2)"));
 	}
 
 	@Test
 	public void testDetermineTypeXX() throws Exception {
-		assertEquals(CobolBaseType.STRING, PictureUtils.determineType("XX"));
+		assertEquals(CobolBaseType.STRING, PictureTypeUtils.determineType("XX"));
 	}
 }
