@@ -17,6 +17,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationSection;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
@@ -58,7 +59,7 @@ public class CobolDataDivisionStep1VisitorImpl extends AbstractCobolParserVisito
 				linkDataDescriptionEntries(predecessor, successor);
 			}
 
-			if (DataDescriptionEntry.DataDescriptionEntryType.GROUP.equals(successor.getDataDescriptionEntryType())) {
+			if (DataDescriptionEntryType.GROUP.equals(successor.getDataDescriptionEntryType())) {
 				final DataDescriptionEntryGroup successorGroup = (DataDescriptionEntryGroup) successor;
 				linkDataDescriptionEntries(successorGroup.getDataDescriptionEntries());
 			}
