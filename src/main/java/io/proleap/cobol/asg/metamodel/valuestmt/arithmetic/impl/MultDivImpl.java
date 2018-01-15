@@ -80,7 +80,7 @@ public class MultDivImpl extends ValueStmtImpl implements MultDiv {
 
 	@Override
 	public Object getValue() {
-		return null;
+		return powers.getValue();
 	}
 
 	@Override

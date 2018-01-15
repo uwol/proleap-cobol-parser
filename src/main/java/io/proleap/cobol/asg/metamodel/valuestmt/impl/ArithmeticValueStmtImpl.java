@@ -20,7 +20,6 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinus;
-import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinus.PlusMinusType;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl.MultDivsImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl.PlusMinusImpl;
 import io.proleap.cobol.asg.util.CastUtils;
@@ -121,10 +120,8 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 					if (plusMinusEntryValue == null) {
 						numberValue = null;
 						break;
-					} else if (PlusMinusType.MINUS.equals(plusMinusEntry.getPlusMinusType())) {
+					} else {
 						numberValue = numberValue.add(plusMinusEntryValue);
-					} else if (PlusMinusType.PLUS.equals(plusMinusEntry.getPlusMinusType())) {
-						numberValue = numberValue.subtract(plusMinusEntryValue);
 					}
 				}
 

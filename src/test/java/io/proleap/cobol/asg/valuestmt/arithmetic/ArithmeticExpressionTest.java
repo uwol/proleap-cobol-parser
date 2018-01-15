@@ -12,7 +12,7 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.compute.ComputeStatement;
@@ -46,12 +46,13 @@ public class ArithmeticExpressionTest extends CobolTestBase {
 			{
 				final Store store = computeStatement.getStores().get(0);
 				assertNotNull(store.getStoreCall());
-				assertEquals(Call.CallType.UNDEFINED_CALL, store.getStoreCall().getCallType());
+				assertEquals(CallType.UNDEFINED_CALL, store.getStoreCall().getCallType());
 			}
 
 			{
 				final ArithmeticValueStmt arithmeticExpression = computeStatement.getArithmeticExpression();
 				assertEquals(1, arithmeticExpression.getSubValueStmts().size());
+				assertEquals(BigDecimal.valueOf(4), arithmeticExpression.getValue());
 
 				{
 					final MultDivs multDivsValueStmt = (MultDivs) arithmeticExpression.getSubValueStmts().get(0);

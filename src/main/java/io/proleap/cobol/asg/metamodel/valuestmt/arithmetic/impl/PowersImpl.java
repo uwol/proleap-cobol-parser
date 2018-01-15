@@ -100,12 +100,7 @@ public class PowersImpl extends ValueStmtImpl implements Powers {
 			result = basis.getValue();
 		} else if (PowersType.MINUS.equals(powersType)) {
 			final BigDecimal basisValue = CastUtils.castBigDecimal(basis.getValue());
-
-			if (basisValue == null) {
-				result = null;
-			} else {
-				result = basisValue.multiply(new BigDecimal(-1));
-			}
+			result = basisValue == null ? null : basisValue.multiply(new BigDecimal(-1));
 		} else {
 			result = basis.getValue();
 		}

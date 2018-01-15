@@ -8,6 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl;
 
+import java.math.BigDecimal;
+
 import io.proleap.cobol.Cobol85Parser.MultDivContext;
 import io.proleap.cobol.Cobol85Parser.MultDivsContext;
 import io.proleap.cobol.Cobol85Parser.PlusMinusContext;
@@ -15,6 +17,7 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinus;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
+import io.proleap.cobol.asg.util.CastUtils;
 
 public class PlusMinusImpl extends ValueStmtImpl implements PlusMinus {
 
@@ -69,7 +72,8 @@ public class PlusMinusImpl extends ValueStmtImpl implements PlusMinus {
 
 		switch (plusMinusType) {
 		case MINUS:
-			result = null;
+			final BigDecimal decimal = CastUtils.castBigDecimal(multDivs.getValue());
+			result = decimal == null ? null : decimal.multiply(new BigDecimal(-1));
 			break;
 		default:
 			result = multDivs.getValue();
