@@ -105,27 +105,31 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 
 	@Override
 	public Object getValue() {
-		final BigDecimal result;
+		final Object result;
 
-		BigDecimal value = CastUtils.castBigDecimal(multDivs.getValue());
-
-		if (value == null) {
-			result = null;
+		if (plusMinus.isEmpty()) {
+			result = multDivs.getValue();
 		} else {
-			for (final PlusMinus plusMinusEntry : plusMinus) {
-				final BigDecimal plusMinusEntryValue = CastUtils.castBigDecimal(plusMinusEntry.getValue());
+			BigDecimal numberValue = CastUtils.castBigDecimal(multDivs.getValue());
 
-				if (plusMinusEntryValue == null) {
-					value = null;
-					break;
-				} else if (PlusMinusType.MINUS.equals(plusMinusEntry.getPlusMinusType())) {
-					value = value.add(plusMinusEntryValue);
-				} else if (PlusMinusType.PLUS.equals(plusMinusEntry.getPlusMinusType())) {
-					value = value.subtract(plusMinusEntryValue);
+			if (numberValue == null) {
+				result = null;
+			} else {
+				for (final PlusMinus plusMinusEntry : plusMinus) {
+					final BigDecimal plusMinusEntryValue = CastUtils.castBigDecimal(plusMinusEntry.getValue());
+
+					if (plusMinusEntryValue == null) {
+						numberValue = null;
+						break;
+					} else if (PlusMinusType.MINUS.equals(plusMinusEntry.getPlusMinusType())) {
+						numberValue = numberValue.add(plusMinusEntryValue);
+					} else if (PlusMinusType.PLUS.equals(plusMinusEntry.getPlusMinusType())) {
+						numberValue = numberValue.subtract(plusMinusEntryValue);
+					}
 				}
-			}
 
-			result = value;
+				result = numberValue;
+			}
 		}
 
 		return result;

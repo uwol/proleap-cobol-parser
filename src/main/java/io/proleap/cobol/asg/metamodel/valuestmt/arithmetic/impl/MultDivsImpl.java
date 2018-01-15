@@ -117,27 +117,31 @@ public class MultDivsImpl extends ValueStmtImpl implements MultDivs {
 
 	@Override
 	public Object getValue() {
-		final BigDecimal result;
+		final Object result;
 
-		BigDecimal value = CastUtils.castBigDecimal(powers.getValue());
-
-		if (value == null) {
-			result = null;
+		if (multDivs.isEmpty()) {
+			result = powers.getValue();
 		} else {
-			for (final MultDiv multDiv : multDivs) {
-				final BigDecimal multDivValue = CastUtils.castBigDecimal(multDiv.getValue());
+			BigDecimal value = CastUtils.castBigDecimal(powers.getValue());
 
-				if (multDivValue == null) {
-					value = null;
-					break;
-				} else if (MultDivType.MULT.equals(multDiv.getMultDivType())) {
-					value = value.multiply(multDivValue);
-				} else if (MultDivType.DIV.equals(multDiv.getMultDivType())) {
-					value = value.divide(multDivValue);
+			if (value == null) {
+				result = null;
+			} else {
+				for (final MultDiv multDiv : multDivs) {
+					final BigDecimal multDivValue = CastUtils.castBigDecimal(multDiv.getValue());
+
+					if (multDivValue == null) {
+						value = null;
+						break;
+					} else if (MultDivType.MULT.equals(multDiv.getMultDivType())) {
+						value = value.multiply(multDivValue);
+					} else if (MultDivType.DIV.equals(multDiv.getMultDivType())) {
+						value = value.divide(multDivValue);
+					}
 				}
-			}
 
-			result = value;
+				result = value;
+			}
 		}
 
 		return result;
