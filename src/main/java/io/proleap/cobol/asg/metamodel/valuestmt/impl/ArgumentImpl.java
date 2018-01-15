@@ -22,5 +22,4 @@ public class ArgumentImpl extends CobolDivisionElementImpl implements Argument {
 
 		this.ctx = ctx;
 	}
-
 }

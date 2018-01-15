@@ -158,5 +158,4 @@ public class ConditionNameReferenceImpl extends ValueStmtImpl implements Conditi
 	public void setConditionCall(final Call conditionCall) {
 		this.conditionCall = conditionCall;
 	}
-
 }

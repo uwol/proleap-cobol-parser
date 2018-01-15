@@ -120,5 +120,4 @@ public class AndOrConditionImpl extends ValueStmtImpl implements AndOrCondition 
 	public void setAndOrConditionType(final AndOrConditionType andOrConditionType) {
 		this.andOrConditionType = andOrConditionType;
 	}
-
 }

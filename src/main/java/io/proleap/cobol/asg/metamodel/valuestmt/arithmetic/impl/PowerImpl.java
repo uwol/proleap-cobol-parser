@@ -63,5 +63,4 @@ public class PowerImpl extends ValueStmtImpl implements Power {
 	public Object getValue() {
 		return basis.getValue();
 	}
-
 }

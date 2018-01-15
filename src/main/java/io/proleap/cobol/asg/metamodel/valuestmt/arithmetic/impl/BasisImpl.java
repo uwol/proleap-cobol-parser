@@ -46,5 +46,4 @@ public class BasisImpl extends ValueStmtImpl implements Basis {
 	public void setBasisValueStmt(final ValueStmt basisValueStmt) {
 		this.basisValueStmt = basisValueStmt;
 	}
-
 }

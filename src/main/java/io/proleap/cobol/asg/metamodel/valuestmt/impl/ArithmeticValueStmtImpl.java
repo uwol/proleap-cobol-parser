@@ -118,5 +118,4 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 
 		return result;
 	}
-
 }

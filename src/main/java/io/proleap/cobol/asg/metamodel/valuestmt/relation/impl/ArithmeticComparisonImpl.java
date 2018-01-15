@@ -56,5 +56,4 @@ public class ArithmeticComparisonImpl extends AbstractComparisonValueStmtImpl im
 	public void setArithmeticExpressionRight(final ArithmeticValueStmt arithmeticExpressionRight) {
 		this.arithmeticExpressionRight = arithmeticExpressionRight;
 	}
-
 }

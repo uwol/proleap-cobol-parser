@@ -130,5 +130,4 @@ public class MultDivsImpl extends ValueStmtImpl implements MultDivs {
 
 		return result;
 	}
-
 }

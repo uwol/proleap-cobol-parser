@@ -38,5 +38,4 @@ public abstract class ValueStmtImpl extends CobolDivisionElementImpl implements 
 	public List<ValueStmt> getSubValueStmts() {
 		return subValueStmts;
 	}
-
 }

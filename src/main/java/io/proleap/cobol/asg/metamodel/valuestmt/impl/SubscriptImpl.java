@@ -35,5 +35,4 @@ public class SubscriptImpl extends CobolDivisionElementImpl implements Subscript
 	public void setSubscriptValueStmt(final ValueStmt subscriptValueStmt) {
 		this.subscriptValueStmt = subscriptValueStmt;
 	}
-
 }

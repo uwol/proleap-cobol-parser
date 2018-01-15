@@ -89,5 +89,4 @@ public class PlusMinusImpl extends ValueStmtImpl implements PlusMinus {
 	public void setPlusMinusType(final PlusMinusType plusMinusType) {
 		this.plusMinusType = plusMinusType;
 	}
-
 }

@@ -65,5 +65,4 @@ public class ConditionNameSubscriptReferenceImpl extends ValueStmtImpl implement
 	public Object getValue() {
 		return null;
 	}
-
 }

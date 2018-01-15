@@ -31,5 +31,4 @@ public interface Powers extends ValueStmt {
 	PowersType getPowersType();
 
 	void setPowersType(PowersType powersType);
-
 }

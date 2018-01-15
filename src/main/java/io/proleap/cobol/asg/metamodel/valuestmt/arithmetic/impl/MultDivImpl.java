@@ -93,5 +93,4 @@ public class MultDivImpl extends ValueStmtImpl implements MultDiv {
 	public void setMultDivType(final MultDivType multDivType) {
 		this.multDivType = multDivType;
 	}
-
 }

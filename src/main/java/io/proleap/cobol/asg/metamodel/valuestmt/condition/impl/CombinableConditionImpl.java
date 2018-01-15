@@ -87,5 +87,4 @@ public class CombinableConditionImpl extends ValueStmtImpl implements Combinable
 	public void setNot(final boolean not) {
 		this.not = not;
 	}
-
 }

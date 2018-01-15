@@ -81,5 +81,4 @@ public class AbbreviationImpl extends AbstractComparisonValueStmtImpl implements
 	public void setArithmeticExpression(final ArithmeticValueStmt arithmeticExpression) {
 		this.arithmeticExpression = arithmeticExpression;
 	}
-
 }
