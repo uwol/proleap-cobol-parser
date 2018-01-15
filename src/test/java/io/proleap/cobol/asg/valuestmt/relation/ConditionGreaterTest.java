@@ -13,8 +13,6 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.ifstmt.IfStatement;
@@ -27,9 +25,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Basis;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Powers;
-import io.proleap.cobol.asg.metamodel.valuestmt.condition.AndOrCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.CombinableCondition;
-import io.proleap.cobol.asg.metamodel.valuestmt.condition.ConditionNameReference;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.SimpleCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.ArithmeticComparison;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.RelationalOperator;
@@ -112,7 +108,7 @@ public class ConditionGreaterTest extends CobolTestBase {
 
 													{
 														final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt;
-														assertEquals(1, literalValueStmt.getValue());
+														assertEquals(Long.valueOf(1), literalValueStmt.getValue());
 													}
 												}
 											}
@@ -143,7 +139,7 @@ public class ConditionGreaterTest extends CobolTestBase {
 
 													{
 														final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt;
-														assertEquals(2, literalValueStmt.getValue());
+														assertEquals(Long.valueOf(2), literalValueStmt.getValue());
 													}
 												}
 											}

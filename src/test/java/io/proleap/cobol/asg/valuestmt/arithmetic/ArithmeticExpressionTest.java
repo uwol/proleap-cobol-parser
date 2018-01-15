@@ -67,7 +67,7 @@ public class ArithmeticExpressionTest extends CobolTestBase {
 							{
 								final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt
 										.getBasisValueStmt();
-								assertEquals(2, literalValueStmt.getValue());
+								assertEquals(Long.valueOf(2), literalValueStmt.getValue());
 							}
 						}
 					}
@@ -87,7 +87,7 @@ public class ArithmeticExpressionTest extends CobolTestBase {
 								{
 									final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt
 											.getBasisValueStmt();
-									assertEquals(2, literalValueStmt.getValue());
+									assertEquals(Long.valueOf(2), literalValueStmt.getValue());
 								}
 							}
 						}

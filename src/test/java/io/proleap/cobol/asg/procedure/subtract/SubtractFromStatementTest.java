@@ -62,7 +62,7 @@ public class SubtractFromStatementTest extends CobolTestBase {
 				{
 					final Subtrahend subtrahend = subtractFromStatement.getSubtrahends().get(1);
 					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
-					assertEquals(1, subtrahendValueStmt.getValue());
+					assertEquals(Long.valueOf(1), subtrahendValueStmt.getValue());
 				}
 
 				assertEquals(2, subtractFromStatement.getMinuends().size());

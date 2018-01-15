@@ -83,7 +83,7 @@ public class ExecSqlStatementMultilineTest extends CobolTestBase {
 			assertNotNull(dataDescriptionEntry);
 			assertEquals("WS-TEACHER-REC", dataDescriptionEntry.getName());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
-			assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntry.getLevelNumber());
 			assertNull(dataDescriptionEntry.getParentDataDescriptionEntryGroup());
 		}
 

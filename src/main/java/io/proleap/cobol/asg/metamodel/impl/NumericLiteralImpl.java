@@ -18,9 +18,9 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 
 	protected final NumericLiteralContext ctx;
 
-	protected Double doubleValue;
+	protected Double floatValue;
 
-	protected Integer integerValue;
+	protected Long integerValue;
 
 	protected NumericLiteralType numericLiteralType;
 
@@ -36,12 +36,12 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 	}
 
 	@Override
-	public Double getDoubleValue() {
-		return doubleValue;
+	public Double getFloatValue() {
+		return floatValue;
 	}
 
 	@Override
-	public Integer getIntegerValue() {
+	public Long getIntegerValue() {
 		return integerValue;
 	}
 
@@ -58,7 +58,7 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 		case INTEGER:
 			result = CobolBaseType.INTEGER;
 			break;
-		case DOUBLE:
+		case FLOAT:
 		default:
 			result = CobolBaseType.FLOAT;
 			break;
@@ -75,9 +75,9 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 		case INTEGER:
 			result = integerValue;
 			break;
-		case DOUBLE:
+		case FLOAT:
 		default:
-			result = doubleValue;
+			result = floatValue;
 			break;
 		}
 
@@ -85,12 +85,12 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 	}
 
 	@Override
-	public void setDoubleValue(final Double doubleValue) {
-		this.doubleValue = doubleValue;
+	public void setFloatValue(final Double doubleValue) {
+		floatValue = doubleValue;
 	}
 
 	@Override
-	public void setIntegerValue(final Integer integerValue) {
+	public void setIntegerValue(final Long integerValue) {
 		this.integerValue = integerValue;
 	}
 

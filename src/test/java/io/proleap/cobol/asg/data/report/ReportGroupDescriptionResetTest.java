@@ -51,10 +51,11 @@ public class ReportGroupDescriptionResetTest extends CobolTestBase {
 			{
 				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = reportDescription
 						.getReportGroupDescriptionEntries().get(0);
-				assertEquals(ReportGroupDescriptionEntry.ReportGroupDescriptionEntryType.PRINTABLE, reportGroupDescriptionEntry.getReportGroupDescriptionEntryType());
+				assertEquals(ReportGroupDescriptionEntry.ReportGroupDescriptionEntryType.PRINTABLE,
+						reportGroupDescriptionEntry.getReportGroupDescriptionEntryType());
 
 				final ReportGroupDescriptionEntryPrintable reportGroupDescriptionEntryPrintable = (ReportGroupDescriptionEntryPrintable) reportGroupDescriptionEntry;
-				assertEquals(new Integer(1), reportGroupDescriptionEntryPrintable.getLevelNumber());
+				assertEquals(Integer.valueOf(1), reportGroupDescriptionEntryPrintable.getLevelNumber());
 
 				{
 					final PictureClause pictureClause = reportGroupDescriptionEntryPrintable.getPictureClause();
@@ -80,13 +81,13 @@ public class ReportGroupDescriptionResetTest extends CobolTestBase {
 				{
 					final LineNumberClause lineNumberClause = reportGroupDescriptionEntryPrintable
 							.getLineNumberClause();
-					assertEquals(new Integer(2), lineNumberClause.getIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(2), lineNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
 					final ColumnNumberClause columnNumberClause = reportGroupDescriptionEntryPrintable
 							.getColumnNumberClause();
-					assertEquals(new Integer(42), columnNumberClause.getIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(42), columnNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{

@@ -62,7 +62,7 @@ public class FileControlReadTest extends CobolTestBase {
 						.getDataDescriptionEntry("PERSON-FILE");
 				assertNotNull(dataDescriptionEntryPersonFile);
 				assertEquals("PERSON-FILE", dataDescriptionEntryPersonFile.getName());
-				assertEquals(new Integer(1), dataDescriptionEntryPersonFile.getLevelNumber());
+				assertEquals(Integer.valueOf(1), dataDescriptionEntryPersonFile.getLevelNumber());
 				assertNull(dataDescriptionEntryPersonFile.getParentDataDescriptionEntryGroup());
 				assertNull(dataDescriptionEntryPersonFile.getParentDataDescriptionEntryGroup());
 
@@ -71,7 +71,7 @@ public class FileControlReadTest extends CobolTestBase {
 							.getDataDescriptionEntry("PERSON-ID");
 					assertNotNull(dataDescriptionEntryPersonId);
 					assertEquals("PERSON-ID", dataDescriptionEntryPersonId.getName());
-					assertEquals(new Integer(5), dataDescriptionEntryPersonId.getLevelNumber());
+					assertEquals(Integer.valueOf(5), dataDescriptionEntryPersonId.getLevelNumber());
 					assertEquals(dataDescriptionEntryPersonFile,
 							dataDescriptionEntryPersonId.getParentDataDescriptionEntryGroup());
 				}
@@ -81,7 +81,7 @@ public class FileControlReadTest extends CobolTestBase {
 							.getDataDescriptionEntry("NAME");
 					assertNotNull(dataDescriptionEntryName);
 					assertEquals("NAME", dataDescriptionEntryName.getName());
-					assertEquals(new Integer(5), dataDescriptionEntryName.getLevelNumber());
+					assertEquals(Integer.valueOf(5), dataDescriptionEntryName.getLevelNumber());
 					assertNull(dataDescriptionEntryPersonFile.getParentDataDescriptionEntryGroup());
 					assertEquals(dataDescriptionEntryPersonFile,
 							dataDescriptionEntryName.getParentDataDescriptionEntryGroup());
@@ -97,7 +97,7 @@ public class FileControlReadTest extends CobolTestBase {
 					.getDataDescriptionEntry("WS-PERSON");
 			assertNotNull(dataDescriptionEntryWsPerson);
 			assertEquals("WS-PERSON", dataDescriptionEntryWsPerson.getName());
-			assertEquals(new Integer(1), dataDescriptionEntryWsPerson.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntryWsPerson.getLevelNumber());
 			assertNull(dataDescriptionEntryWsPerson.getParentDataDescriptionEntryGroup());
 
 			{
@@ -105,7 +105,7 @@ public class FileControlReadTest extends CobolTestBase {
 						.getDataDescriptionEntry("WS-PERSON-ID");
 				assertNotNull(dataDescriptionEntryWsPersonId);
 				assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
-				assertEquals(new Integer(5), dataDescriptionEntryWsPersonId.getLevelNumber());
+				assertEquals(Integer.valueOf(5), dataDescriptionEntryWsPersonId.getLevelNumber());
 				assertEquals(dataDescriptionEntryWsPerson,
 						dataDescriptionEntryWsPersonId.getParentDataDescriptionEntryGroup());
 			}
@@ -115,7 +115,7 @@ public class FileControlReadTest extends CobolTestBase {
 						.getDataDescriptionEntry("WS-NAME");
 				assertNotNull(dataDescriptionEntryWsPersonName);
 				assertEquals("WS-NAME", dataDescriptionEntryWsPersonName.getName());
-				assertEquals(new Integer(5), dataDescriptionEntryWsPersonName.getLevelNumber());
+				assertEquals(Integer.valueOf(5), dataDescriptionEntryWsPersonName.getLevelNumber());
 				assertEquals(dataDescriptionEntryWsPerson,
 						dataDescriptionEntryWsPersonName.getParentDataDescriptionEntryGroup());
 			}
@@ -125,7 +125,7 @@ public class FileControlReadTest extends CobolTestBase {
 						.getDataDescriptionEntry("WS-EOF");
 				assertNotNull(dataDescriptionEntryWsEof);
 				assertEquals("WS-EOF", dataDescriptionEntryWsEof.getName());
-				assertEquals(new Integer(1), dataDescriptionEntryWsEof.getLevelNumber());
+				assertEquals(Integer.valueOf(1), dataDescriptionEntryWsEof.getLevelNumber());
 				assertNull(dataDescriptionEntryWsEof.getParentDataDescriptionEntryGroup());
 			}
 		}

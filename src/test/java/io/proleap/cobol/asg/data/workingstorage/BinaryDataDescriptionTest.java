@@ -45,7 +45,7 @@ public class BinaryDataDescriptionTest extends CobolTestBase {
 		{
 			assertNotNull(dataDescriptionEntryBinary);
 			assertEquals("BINARY", dataDescriptionEntryBinary.getName());
-			assertEquals(new Integer(1), dataDescriptionEntryBinary.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntryBinary.getLevelNumber());
 			assertNull(dataDescriptionEntryBinary.getParentDataDescriptionEntryGroup());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntryBinary.getDataDescriptionEntryType());

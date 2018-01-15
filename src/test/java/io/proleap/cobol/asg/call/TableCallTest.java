@@ -33,8 +33,8 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.asg.metamodel.procedure.display.Operand;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveToSendingArea;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.asg.metamodel.procedure.perform.ByPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.perform.FromPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformProcedureStatement;
@@ -90,7 +90,7 @@ public class TableCallTest extends CobolTestBase {
 			{
 				dataDescriptionEntryTbl = workingStorageSection.getRootDataDescriptionEntries().get(0);
 				assertEquals("WS-TBL", dataDescriptionEntryTbl.getName());
-				assertEquals(new Integer(1), dataDescriptionEntryTbl.getLevelNumber());
+				assertEquals(Integer.valueOf(1), dataDescriptionEntryTbl.getLevelNumber());
 				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 						dataDescriptionEntryTbl.getDataDescriptionEntryType());
 
@@ -101,7 +101,7 @@ public class TableCallTest extends CobolTestBase {
 					final DataDescriptionEntry dataDescriptionEntryRecord = dataDescriptionEntryGroupTbl
 							.getDataDescriptionEntries().get(0);
 					assertEquals("WS-RECORD", dataDescriptionEntryRecord.getName());
-					assertEquals(new Integer(5), dataDescriptionEntryRecord.getLevelNumber());
+					assertEquals(Integer.valueOf(5), dataDescriptionEntryRecord.getLevelNumber());
 					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 							dataDescriptionEntryRecord.getDataDescriptionEntryType());
 
@@ -114,7 +114,7 @@ public class TableCallTest extends CobolTestBase {
 
 						{
 							final IntegerLiteral from = occursClause.getFrom();
-							assertEquals(new Integer(3), from.getValue());
+							assertEquals(Long.valueOf(3), from.getValue());
 						}
 
 						{
@@ -128,7 +128,7 @@ public class TableCallTest extends CobolTestBase {
 						final DataDescriptionEntry dataDescriptionEntryDelimiter = dataDescriptionEntryGroupRecord
 								.getDataDescriptionEntries().get(0);
 						assertEquals("WS-DELIMITER", dataDescriptionEntryDelimiter.getName());
-						assertEquals(new Integer(10), dataDescriptionEntryDelimiter.getLevelNumber());
+						assertEquals(Integer.valueOf(10), dataDescriptionEntryDelimiter.getLevelNumber());
 						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 								dataDescriptionEntryDelimiter.getDataDescriptionEntryType());
 
@@ -144,7 +144,7 @@ public class TableCallTest extends CobolTestBase {
 						final DataDescriptionEntry dataDescriptionEntryContent = dataDescriptionEntryGroupRecord
 								.getDataDescriptionEntries().get(1);
 						assertEquals("WS-CONTENT", dataDescriptionEntryContent.getName());
-						assertEquals(new Integer(10), dataDescriptionEntryContent.getLevelNumber());
+						assertEquals(Integer.valueOf(10), dataDescriptionEntryContent.getLevelNumber());
 						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 								dataDescriptionEntryContent.getDataDescriptionEntryType());
 
@@ -159,7 +159,7 @@ public class TableCallTest extends CobolTestBase {
 
 							{
 								final IntegerLiteral from = occursClause.getFrom();
-								assertEquals(new Integer(2), from.getValue());
+								assertEquals(Long.valueOf(2), from.getValue());
 							}
 
 							{
@@ -173,7 +173,7 @@ public class TableCallTest extends CobolTestBase {
 							final DataDescriptionEntry dataDescriptionEntryColumn = dataDescriptionEntryGroupContent
 									.getDataDescriptionEntries().get(0);
 							assertEquals("WS-COLUMN", dataDescriptionEntryColumn.getName());
-							assertEquals(new Integer(20), dataDescriptionEntryColumn.getLevelNumber());
+							assertEquals(Integer.valueOf(20), dataDescriptionEntryColumn.getLevelNumber());
 							assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 									dataDescriptionEntryColumn.getDataDescriptionEntryType());
 
@@ -264,13 +264,13 @@ public class TableCallTest extends CobolTestBase {
 						{
 							final FromPhrase from = varyingPhrase.getFrom();
 							final ValueStmt fromValueStmt = from.getFromValueStmt();
-							assertEquals(1, fromValueStmt.getValue());
+							assertEquals(Long.valueOf(1), fromValueStmt.getValue());
 						}
 
 						{
 							final ByPhrase by = varyingPhrase.getBy();
 							final ValueStmt byValueStmt = by.getByValueStmt();
-							assertEquals(1, byValueStmt.getValue());
+							assertEquals(Long.valueOf(1), byValueStmt.getValue());
 						}
 
 						{
@@ -303,7 +303,7 @@ public class TableCallTest extends CobolTestBase {
 											.getArithmeticExpressionRight();
 									final ValueStmt basisValueStmt = arithmeticExpressionRight.getMultDivs().getPowers()
 											.getBasis().getBasisValueStmt();
-									assertEquals(3, basisValueStmt.getValue());
+									assertEquals(Long.valueOf(3), basisValueStmt.getValue());
 								}
 							}
 						}
@@ -361,13 +361,13 @@ public class TableCallTest extends CobolTestBase {
 						{
 							final FromPhrase from = varyingPhrase.getFrom();
 							final ValueStmt fromValueStmt = from.getFromValueStmt();
-							assertEquals(1, fromValueStmt.getValue());
+							assertEquals(Long.valueOf(1), fromValueStmt.getValue());
 						}
 
 						{
 							final ByPhrase by = varyingPhrase.getBy();
 							final ValueStmt byValueStmt = by.getByValueStmt();
-							assertEquals(1, byValueStmt.getValue());
+							assertEquals(Long.valueOf(1), byValueStmt.getValue());
 						}
 
 						{
@@ -400,7 +400,7 @@ public class TableCallTest extends CobolTestBase {
 											.getArithmeticExpressionRight();
 									final ValueStmt basisValueStmt = arithmeticExpressionRight.getMultDivs().getPowers()
 											.getBasis().getBasisValueStmt();
-									assertEquals(2, basisValueStmt.getValue());
+									assertEquals(Long.valueOf(2), basisValueStmt.getValue());
 								}
 							}
 						}

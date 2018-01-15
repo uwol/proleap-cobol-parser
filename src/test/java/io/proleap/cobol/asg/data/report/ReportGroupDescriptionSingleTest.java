@@ -44,14 +44,15 @@ public class ReportGroupDescriptionSingleTest extends CobolTestBase {
 			{
 				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = reportDescription
 						.getReportGroupDescriptionEntries().get(0);
-				assertEquals(ReportGroupDescriptionEntry.ReportGroupDescriptionEntryType.SINGLE, reportGroupDescriptionEntry.getReportGroupDescriptionEntryType());
+				assertEquals(ReportGroupDescriptionEntry.ReportGroupDescriptionEntryType.SINGLE,
+						reportGroupDescriptionEntry.getReportGroupDescriptionEntryType());
 
 				final ReportGroupDescriptionEntrySingle reportGroupDescriptionEntrySingle = (ReportGroupDescriptionEntrySingle) reportGroupDescriptionEntry;
-				assertEquals(new Integer(1), reportGroupDescriptionEntrySingle.getLevelNumber());
+				assertEquals(Integer.valueOf(1), reportGroupDescriptionEntrySingle.getLevelNumber());
 
 				{
 					final LineNumberClause lineNumberClause = reportGroupDescriptionEntrySingle.getLineNumberClause();
-					assertEquals(new Integer(2), lineNumberClause.getIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(2), lineNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{

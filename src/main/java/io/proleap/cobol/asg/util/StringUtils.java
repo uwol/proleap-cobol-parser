@@ -21,6 +21,17 @@ public class StringUtils {
 		} catch (final NumberFormatException nfe) {
 			return false;
 		}
+
+		return true;
+	}
+
+	public static boolean isFloat(final String str) {
+		try {
+			Float.parseFloat(str);
+		} catch (final NumberFormatException nfe) {
+			return false;
+		}
+
 		return true;
 	}
 
@@ -30,18 +41,35 @@ public class StringUtils {
 		} catch (final NumberFormatException nfe) {
 			return false;
 		}
+
+		return true;
+	}
+
+	public static boolean isLong(final String str) {
+		try {
+			Long.parseLong(str);
+		} catch (final NumberFormatException nfe) {
+			return false;
+		}
+
 		return true;
 	}
 
 	public static Boolean parseBoolean(final String str) {
-		final Boolean b = Boolean.parseBoolean(str);
-		return b;
+		return Boolean.parseBoolean(str);
 	}
 
 	public static Double parseDouble(final String str) {
 		try {
-			final Double d = Double.parseDouble(str);
-			return d;
+			return Double.parseDouble(str);
+		} catch (final NumberFormatException nfe) {
+			return null;
+		}
+	}
+
+	public static Float parseFloat(final String str) {
+		try {
+			return Float.parseFloat(str);
 		} catch (final NumberFormatException nfe) {
 			return null;
 		}
@@ -49,8 +77,15 @@ public class StringUtils {
 
 	public static Integer parseInteger(final String str) {
 		try {
-			final Integer i = Integer.parseInt(str);
-			return i;
+			return Integer.parseInt(str);
+		} catch (final NumberFormatException nfe) {
+			return null;
+		}
+	}
+
+	public static Long parseLong(final String str) {
+		try {
+			return Long.parseLong(str);
 		} catch (final NumberFormatException nfe) {
 			return null;
 		}

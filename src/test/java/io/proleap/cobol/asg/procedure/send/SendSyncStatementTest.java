@@ -82,7 +82,7 @@ public class SendSyncStatementTest extends CobolTestBase {
 						final AdvancingLines advancingLines = advancing.getAdvancingLines();
 						assertNotNull(advancingLines);
 						assertNotNull(advancingLines.getLinesValueStmt());
-						assertEquals(3, advancingLines.getLinesValueStmt().getValue());
+						assertEquals(Long.valueOf(3), advancingLines.getLinesValueStmt().getValue());
 					}
 				}
 			}

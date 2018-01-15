@@ -58,7 +58,7 @@ public class GoToStatementTest extends CobolTestBase {
 			assertEquals("SOMEDATA1", dataDescriptionEntry.getName());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntry.getDataDescriptionEntryType());
-			assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntry.getLevelNumber());
 			assertNull(dataDescriptionEntry.getParentDataDescriptionEntryGroup());
 		}
 

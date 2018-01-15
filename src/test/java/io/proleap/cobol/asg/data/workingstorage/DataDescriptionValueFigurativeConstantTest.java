@@ -60,7 +60,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestBase {
 					final Literal allLiteral = figurativeConstant.getLiteral();
 					assertNotNull(allLiteral);
 					assertEquals(Literal.LiteralType.NUMERIC, allLiteral.getLiteralType());
-					assertEquals(2, allLiteral.getNumericLiteral().getValue());
+					assertEquals(Long.valueOf(2), allLiteral.getNumericLiteral().getValue());
 				}
 			}
 		}

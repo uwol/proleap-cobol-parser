@@ -58,7 +58,7 @@ public class MoveToStatementQualifiedDataNameTest extends CobolTestBase {
 		{
 			assertNotNull(dataDescriptionEntryItems1);
 			assertEquals("ITEMS1", dataDescriptionEntryItems1.getName());
-			assertEquals(new Integer(1), dataDescriptionEntryItems1.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntryItems1.getLevelNumber());
 			assertNull(dataDescriptionEntryItems1.getParentDataDescriptionEntryGroup());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntryItems1.getDataDescriptionEntryType());
@@ -69,7 +69,7 @@ public class MoveToStatementQualifiedDataNameTest extends CobolTestBase {
 			{
 				assertNotNull(dataDescriptionEntryItem1);
 				assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
-				assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
+				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem1.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems1,
 						dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
 				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
@@ -84,7 +84,7 @@ public class MoveToStatementQualifiedDataNameTest extends CobolTestBase {
 			{
 				assertNotNull(dataDescriptionEntryItem2);
 				assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
-				assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
+				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem2.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems1,
 						dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
 				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,

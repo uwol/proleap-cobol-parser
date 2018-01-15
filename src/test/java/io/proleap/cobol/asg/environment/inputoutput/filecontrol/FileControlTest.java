@@ -58,13 +58,14 @@ public class FileControlTest extends CobolTestBase {
 		{
 			final ReserveClause reserveClause = fileControlEntry.getReserveClause();
 			assertNotNull(reserveClause);
-			assertEquals(new Integer(10), reserveClause.getValueStmt().getValue());
+			assertEquals(Long.valueOf(10), reserveClause.getValueStmt().getValue());
 		}
 
 		{
 			final OrganizationClause organizationClause = fileControlEntry.getOrganizationClause();
 			assertNotNull(organizationClause);
-			assertEquals(OrganizationClause.OrganizationClauseType.RECORD, organizationClause.getOrganizationClauseType());
+			assertEquals(OrganizationClause.OrganizationClauseType.RECORD,
+					organizationClause.getOrganizationClauseType());
 			assertEquals(OrganizationClause.Mode.INDEXED, organizationClause.getMode());
 		}
 
@@ -77,7 +78,8 @@ public class FileControlTest extends CobolTestBase {
 		{
 			final RecordDelimiterClause recordDelimiterClause = fileControlEntry.getRecordDelimiterClause();
 			assertNotNull(recordDelimiterClause);
-			assertEquals(RecordDelimiterClause.RecordDelimiterClauseType.IMPLICIT, recordDelimiterClause.getRecordDelimiterClauseType());
+			assertEquals(RecordDelimiterClause.RecordDelimiterClauseType.IMPLICIT,
+					recordDelimiterClause.getRecordDelimiterClauseType());
 		}
 
 		{

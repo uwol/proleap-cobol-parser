@@ -48,8 +48,8 @@ public class FileDescriptionEntryTest extends CobolTestBase {
 			{
 				final BlockContainsClause blockContainsClause = fileDescriptionEntry.getBlockContainsClause();
 				assertNotNull(blockContainsClause);
-				assertEquals(new Integer(1), blockContainsClause.getFrom().getValue());
-				assertEquals(new Integer(5), blockContainsClause.getTo().getValue());
+				assertEquals(Long.valueOf(1), blockContainsClause.getFrom().getValue());
+				assertEquals(Long.valueOf(5), blockContainsClause.getTo().getValue());
 			}
 
 			{
@@ -62,15 +62,16 @@ public class FileDescriptionEntryTest extends CobolTestBase {
 				final RecordContainsClause recordContainsClause = fileDescriptionEntry.getRecordContainsClause();
 				assertNotNull(recordContainsClause);
 				assertTrue(recordContainsClause.isVarying());
-				assertEquals(new Integer(1), recordContainsClause.getFrom().getValue());
-				assertEquals(new Integer(5), recordContainsClause.getTo().getValue());
+				assertEquals(Long.valueOf(1), recordContainsClause.getFrom().getValue());
+				assertEquals(Long.valueOf(5), recordContainsClause.getTo().getValue());
 				assertNotNull(recordContainsClause.getDependingOnCall());
 			}
 
 			{
 				final LabelRecordsClause labelRecordsClause = fileDescriptionEntry.getLabelRecordsClause();
 				assertNotNull(labelRecordsClause);
-				assertEquals(LabelRecordsClause.LabelRecordsClauseType.DATA_NAMES, labelRecordsClause.getLabelRecordsClauseType());
+				assertEquals(LabelRecordsClause.LabelRecordsClauseType.DATA_NAMES,
+						labelRecordsClause.getLabelRecordsClauseType());
 				assertEquals(2, labelRecordsClause.getDataCalls().size());
 				assertNotNull(labelRecordsClause.getDataCalls().get(0));
 				assertNotNull(labelRecordsClause.getDataCalls().get(1));
@@ -96,13 +97,13 @@ public class FileDescriptionEntryTest extends CobolTestBase {
 				assertNotNull(linageClause);
 
 				assertNotNull(linageClause.getNumberOfLinesValueStmt());
-				assertEquals(new Integer(30), linageClause.getNumberOfLinesValueStmt().getValue());
+				assertEquals(Long.valueOf(30), linageClause.getNumberOfLinesValueStmt().getValue());
 
 				assertNotNull(linageClause.getFootingAtValueStmt());
-				assertEquals(new Integer(5), linageClause.getFootingAtValueStmt().getValue());
+				assertEquals(Long.valueOf(5), linageClause.getFootingAtValueStmt().getValue());
 
 				assertNotNull(linageClause.getLinesAtTopValueStmt());
-				assertEquals(new Integer(2), linageClause.getLinesAtTopValueStmt().getValue());
+				assertEquals(Long.valueOf(2), linageClause.getLinesAtTopValueStmt().getValue());
 
 				assertNotNull(linageClause.getLinesAtBottomValueStmt());
 			}

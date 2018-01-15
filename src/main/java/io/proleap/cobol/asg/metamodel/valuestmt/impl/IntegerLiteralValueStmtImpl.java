@@ -33,8 +33,15 @@ public class IntegerLiteralValueStmtImpl extends ValueStmtImpl implements Intege
 	}
 
 	@Override
-	public Integer getValue() {
-		final Integer result = integerLiteral != null ? integerLiteral.getValue() : null;
+	public Long getValue() {
+		final Long result;
+
+		if (integerLiteral == null) {
+			result = null;
+		} else {
+			result = integerLiteral.getValue();
+		}
+
 		return result;
 	}
 

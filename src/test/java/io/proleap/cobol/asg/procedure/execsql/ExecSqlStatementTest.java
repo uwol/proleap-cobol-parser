@@ -57,7 +57,7 @@ public class ExecSqlStatementTest extends CobolTestBase {
 			assertNotNull(dataDescriptionEntryUserId);
 			assertEquals("userid", dataDescriptionEntryUserId.getName());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryUserId.getDataDescriptionEntryType());
-			assertEquals(new Integer(1), dataDescriptionEntryUserId.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntryUserId.getLevelNumber());
 			assertNull(dataDescriptionEntryUserId.getParentDataDescriptionEntryGroup());
 		}
 

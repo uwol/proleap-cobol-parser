@@ -54,7 +54,7 @@ public class PerformInlineTimesTest extends CobolTestBase {
 					{
 						final Times times = performType.getTimes();
 						assertNotNull(times.getTimesValueStmt());
-						assertEquals(2, times.getTimesValueStmt().getValue());
+						assertEquals(Long.valueOf(2), times.getTimesValueStmt().getValue());
 					}
 				}
 

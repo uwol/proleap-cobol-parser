@@ -42,7 +42,8 @@ public class ProgramLibraryImportTest extends CobolTestBase {
 			final LibraryDescriptionEntry libraryDescriptionEntry = programLibrarySection
 					.getLibraryDescriptionEntry("SOMELIB");
 			assertNotNull(libraryDescriptionEntry);
-			assertEquals(LibraryDescriptionEntry.LibraryDescriptionEntryType.IMPORT, libraryDescriptionEntry.getLibraryDescriptionEntryType());
+			assertEquals(LibraryDescriptionEntry.LibraryDescriptionEntryType.IMPORT,
+					libraryDescriptionEntry.getLibraryDescriptionEntryType());
 
 			final LibraryDescriptionEntryImport libraryDescriptionEntryImport = (LibraryDescriptionEntryImport) libraryDescriptionEntry;
 
@@ -64,8 +65,8 @@ public class ProgramLibraryImportTest extends CobolTestBase {
 
 				final ImportAttribute importAttribute = importAttributes.get(0);
 				assertEquals(ImportAttributeType.BY_TITLE, importAttribute.getImportAttributeType());
-				assertEquals(123, importAttribute.getFunctionLiteral().getNumericLiteral().getValue());
-				assertEquals(234, importAttribute.getParameterLiteral().getNumericLiteral().getValue());
+				assertEquals(Long.valueOf(123), importAttribute.getFunctionLiteral().getNumericLiteral().getValue());
+				assertEquals(Long.valueOf(234), importAttribute.getParameterLiteral().getNumericLiteral().getValue());
 				assertEquals("SOMETITLE", importAttribute.getTitleLiteral().getNonNumericLiteral());
 			}
 
@@ -75,7 +76,8 @@ public class ProgramLibraryImportTest extends CobolTestBase {
 				assertEquals(1, importEntryProcedures.size());
 
 				final ImportEntryProcedure importEntryProcedure = importEntryProcedures.get(0);
-				assertEquals(123, importEntryProcedure.getForClause().getForLiteral().getNumericLiteral().getValue());
+				assertEquals(Long.valueOf(123),
+						importEntryProcedure.getForClause().getForLiteral().getNumericLiteral().getValue());
 
 				assertNotNull(importEntryProcedure.getUsingClause());
 				assertEquals(2, importEntryProcedure.getUsingClause().getUsingValueStmts().size());

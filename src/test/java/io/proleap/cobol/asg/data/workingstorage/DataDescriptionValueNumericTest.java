@@ -10,7 +10,7 @@ import org.junit.Test;
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Literal;
-import io.proleap.cobol.asg.metamodel.NumericLiteral;
+import io.proleap.cobol.asg.metamodel.NumericLiteral.NumericLiteralType;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
@@ -50,8 +50,8 @@ public class DataDescriptionValueNumericTest extends CobolTestBase {
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
 				assertEquals(Literal.LiteralType.NUMERIC, literal.getLiteralType());
-				assertEquals(NumericLiteral.NumericLiteralType.DOUBLE, literal.getNumericLiteral().getNumericLiteralType());
-				assertEquals(23.4, literal.getNumericLiteral().getDoubleValue(), EPSILON);
+				assertEquals(NumericLiteralType.FLOAT, literal.getNumericLiteral().getNumericLiteralType());
+				assertEquals(23.4, literal.getNumericLiteral().getFloatValue(), EPSILON);
 			}
 		}
 
@@ -70,8 +70,8 @@ public class DataDescriptionValueNumericTest extends CobolTestBase {
 				final LiteralValueStmt literalFromValueStmt = (LiteralValueStmt) fromValueStmt;
 				final Literal literal = literalFromValueStmt.getLiteral();
 				assertEquals(Literal.LiteralType.NUMERIC, literal.getLiteralType());
-				assertEquals(NumericLiteral.NumericLiteralType.INTEGER, literal.getNumericLiteral().getNumericLiteralType());
-				assertEquals(42, literal.getNumericLiteral().getValue());
+				assertEquals(NumericLiteralType.INTEGER, literal.getNumericLiteral().getNumericLiteralType());
+				assertEquals(42l, literal.getNumericLiteral().getValue());
 			}
 		}
 	}

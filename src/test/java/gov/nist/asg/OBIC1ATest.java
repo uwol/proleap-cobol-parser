@@ -59,7 +59,7 @@ public class OBIC1ATest extends CobolTestBase {
 
 				{
 					final DataDescriptionEntry sortLink = workingStorageSection.getDataDescriptionEntry("SORT-LINK");
-					assertEquals(new Integer(1), sortLink.getLevelNumber());
+					assertEquals(Integer.valueOf(1), sortLink.getLevelNumber());
 					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 							sortLink.getDataDescriptionEntryType());
 
@@ -73,7 +73,7 @@ public class OBIC1ATest extends CobolTestBase {
 				{
 					final DataDescriptionEntry printLineValues = workingStorageSection
 							.getDataDescriptionEntry("PRINT-LINE-VALUES");
-					assertEquals(new Integer(1), printLineValues.getLevelNumber());
+					assertEquals(Integer.valueOf(1), printLineValues.getLevelNumber());
 					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 							printLineValues.getDataDescriptionEntryType());
 
@@ -82,7 +82,7 @@ public class OBIC1ATest extends CobolTestBase {
 					{
 						final DataDescriptionEntry passOrFail = printLineValuesGroup
 								.getDataDescriptionEntry("PASS-OR-FAIL");
-						assertEquals(new Integer(2), passOrFail.getLevelNumber());
+						assertEquals(Integer.valueOf(2), passOrFail.getLevelNumber());
 						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 								passOrFail.getDataDescriptionEntryType());
 
@@ -95,7 +95,7 @@ public class OBIC1ATest extends CobolTestBase {
 
 					{
 						final DataDescriptionEntry rCount = printLineValuesGroup.getDataDescriptionEntry("R-COUNT");
-						assertEquals(new Integer(2), rCount.getLevelNumber());
+						assertEquals(Integer.valueOf(2), rCount.getLevelNumber());
 						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 								rCount.getDataDescriptionEntryType());
 
@@ -109,7 +109,7 @@ public class OBIC1ATest extends CobolTestBase {
 					{
 						final DataDescriptionEntry featureTested = printLineValuesGroup
 								.getDataDescriptionEntry("FEATURE-TESTED");
-						assertEquals(new Integer(2), featureTested.getLevelNumber());
+						assertEquals(Integer.valueOf(2), featureTested.getLevelNumber());
 						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 								featureTested.getDataDescriptionEntryType());
 
@@ -123,7 +123,7 @@ public class OBIC1ATest extends CobolTestBase {
 					{
 						final DataDescriptionEntry computedSortKey = printLineValuesGroup
 								.getDataDescriptionEntry("COMPUTED-SORT-KEY");
-						assertEquals(new Integer(2), computedSortKey.getLevelNumber());
+						assertEquals(Integer.valueOf(2), computedSortKey.getLevelNumber());
 						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 								computedSortKey.getDataDescriptionEntryType());
 
@@ -137,7 +137,7 @@ public class OBIC1ATest extends CobolTestBase {
 					{
 						final DataDescriptionEntry correctSortKey = printLineValuesGroup
 								.getDataDescriptionEntry("CORRECT-SORT-KEY");
-						assertEquals(new Integer(2), correctSortKey.getLevelNumber());
+						assertEquals(Integer.valueOf(2), correctSortKey.getLevelNumber());
 						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 								correctSortKey.getDataDescriptionEntryType());
 
@@ -151,7 +151,7 @@ public class OBIC1ATest extends CobolTestBase {
 					{
 						final DataDescriptionEntry paragraphName = printLineValuesGroup
 								.getDataDescriptionEntry("PARAGRAPH-NAME");
-						assertEquals(new Integer(2), paragraphName.getLevelNumber());
+						assertEquals(Integer.valueOf(2), paragraphName.getLevelNumber());
 						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 								paragraphName.getDataDescriptionEntryType());
 
@@ -165,7 +165,7 @@ public class OBIC1ATest extends CobolTestBase {
 
 				{
 					final DataDescriptionEntry printFlag = workingStorageSection.getDataDescriptionEntry("PRINT-FLAG");
-					assertEquals(new Integer(1), printFlag.getLevelNumber());
+					assertEquals(Integer.valueOf(1), printFlag.getLevelNumber());
 					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 							printFlag.getDataDescriptionEntryType());
 

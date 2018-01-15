@@ -257,7 +257,7 @@ public class CloseStatementTest extends CobolTestBase {
 						{
 							final AssociatedDataPhrase associatedDataPhrase = using.getAssociatedDataPhrase();
 							assertNotNull(associatedDataPhrase.getDataValueStmt());
-							assertEquals(4, associatedDataPhrase.getDataValueStmt().getValue());
+							assertEquals(Long.valueOf(4), associatedDataPhrase.getDataValueStmt().getValue());
 						}
 					}
 				}

@@ -47,7 +47,8 @@ public class CommunicationDescriptionOutputTest extends CobolTestBase {
 			final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
 					.getCommunicationDescriptionEntry("SOMECD");
 			assertNotNull(communicationDescriptionEntry);
-			assertEquals(CommunicationDescriptionEntry.CommunicationDescriptionEntryType.OUTPUT, communicationDescriptionEntry.getCommunicationDescriptionEntryType());
+			assertEquals(CommunicationDescriptionEntry.CommunicationDescriptionEntryType.OUTPUT,
+					communicationDescriptionEntry.getCommunicationDescriptionEntryType());
 
 			final CommunicationDescriptionEntryOutput communicationDescriptionEntryOutput = (CommunicationDescriptionEntryOutput) communicationDescriptionEntry;
 
@@ -74,7 +75,7 @@ public class CommunicationDescriptionOutputTest extends CobolTestBase {
 				final DestinationTableClause destinationTableClause = communicationDescriptionEntryOutput
 						.getDestinationTableClause();
 				assertNotNull(destinationTableClause);
-				assertEquals(new Integer(5), destinationTableClause.getOccursIntegerLiteral().getValue());
+				assertEquals(Long.valueOf(5), destinationTableClause.getOccursIntegerLiteral().getValue());
 				assertEquals(2, destinationTableClause.getIndexCalls().size());
 			}
 
@@ -98,7 +99,7 @@ public class CommunicationDescriptionOutputTest extends CobolTestBase {
 						.getDataDescriptionEntry("WS-PERSON");
 				assertNotNull(dataDescriptionEntryWsPerson);
 				assertEquals("WS-PERSON", dataDescriptionEntryWsPerson.getName());
-				assertEquals(new Integer(1), dataDescriptionEntryWsPerson.getLevelNumber());
+				assertEquals(Integer.valueOf(1), dataDescriptionEntryWsPerson.getLevelNumber());
 				assertNull(dataDescriptionEntryWsPerson.getParentDataDescriptionEntryGroup());
 
 				{
@@ -106,7 +107,7 @@ public class CommunicationDescriptionOutputTest extends CobolTestBase {
 							.getDataDescriptionEntry("WS-PERSON-ID");
 					assertNotNull(dataDescriptionEntryWsPersonId);
 					assertEquals("WS-PERSON-ID", dataDescriptionEntryWsPersonId.getName());
-					assertEquals(new Integer(5), dataDescriptionEntryWsPersonId.getLevelNumber());
+					assertEquals(Integer.valueOf(5), dataDescriptionEntryWsPersonId.getLevelNumber());
 					assertEquals(dataDescriptionEntryWsPerson,
 							dataDescriptionEntryWsPersonId.getParentDataDescriptionEntryGroup());
 				}

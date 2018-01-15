@@ -97,7 +97,7 @@ public class RecordCallTest extends CobolTestBase {
 
 				{
 					dataDescriptionEntryFileInZ = fileDescriptionEntryFileIn.getDataDescriptionEntry("FILEIN-Z");
-					assertEquals(new Integer(1), dataDescriptionEntryFileInZ.getLevelNumber());
+					assertEquals(Integer.valueOf(1), dataDescriptionEntryFileInZ.getLevelNumber());
 				}
 			}
 
@@ -107,7 +107,7 @@ public class RecordCallTest extends CobolTestBase {
 
 				{
 					dataDescriptionEntryFileOutZ = fileDescriptionEntryFileOut.getDataDescriptionEntry("FILEOUT-Z");
-					assertEquals(new Integer(1), dataDescriptionEntryFileOutZ.getLevelNumber());
+					assertEquals(Integer.valueOf(1), dataDescriptionEntryFileOutZ.getLevelNumber());
 				}
 			}
 		}

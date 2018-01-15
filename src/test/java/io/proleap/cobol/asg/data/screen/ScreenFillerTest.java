@@ -37,7 +37,7 @@ public class ScreenFillerTest extends CobolTestBase {
 
 		{
 			final ScreenDescriptionEntry screenDescriptionEntry = screenSection.getScreenDescriptionEntries().get(0);
-			assertEquals(new Integer(1), screenDescriptionEntry.getLevelNumber());
+			assertEquals(Integer.valueOf(1), screenDescriptionEntry.getLevelNumber());
 			assertNull(screenDescriptionEntry.getName());
 			assertTrue(screenDescriptionEntry.getFiller());
 		}

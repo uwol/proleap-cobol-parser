@@ -104,7 +104,7 @@ public class CallStatementTest extends CobolTestBase {
 						final ValueStmt valueStmt = byValue.getValueStmt();
 
 						final LiteralValueStmt literalValueStmt = (LiteralValueStmt) valueStmt;
-						assertEquals(1, literalValueStmt.getValue());
+						assertEquals(Long.valueOf(1), literalValueStmt.getValue());
 					}
 
 					{
@@ -112,7 +112,7 @@ public class CallStatementTest extends CobolTestBase {
 						final ValueStmt valueStmt = byValue.getValueStmt();
 
 						final LiteralValueStmt literalValueStmt = (LiteralValueStmt) valueStmt;
-						assertEquals(2, literalValueStmt.getValue());
+						assertEquals(Long.valueOf(2), literalValueStmt.getValue());
 					}
 
 					{
@@ -152,7 +152,7 @@ public class CallStatementTest extends CobolTestBase {
 							assertNull(byContent.getByContentType());
 							assertNotNull(byContent.getValueStmt());
 
-							assertEquals(4, byContent.getValueStmt().getValue());
+							assertEquals(Long.valueOf(4), byContent.getValueStmt().getValue());
 						}
 					}
 				}

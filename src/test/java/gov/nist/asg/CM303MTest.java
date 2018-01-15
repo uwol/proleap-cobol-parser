@@ -65,7 +65,8 @@ public class CM303MTest extends CobolTestBase {
 					final CommunicationDescriptionEntry communicationDescriptionEntry = communicationSection
 							.getCommunicationDescriptionEntry("COMMNAME");
 					assertNotNull(communicationDescriptionEntry);
-					assertEquals(CommunicationDescriptionEntry.CommunicationDescriptionEntryType.INPUT, communicationDescriptionEntry.getCommunicationDescriptionEntryType());
+					assertEquals(CommunicationDescriptionEntry.CommunicationDescriptionEntryType.INPUT,
+							communicationDescriptionEntry.getCommunicationDescriptionEntryType());
 				}
 
 				{
@@ -75,16 +76,18 @@ public class CM303MTest extends CobolTestBase {
 						final DataDescriptionEntry dataDescriptionEntry = communicationSection
 								.getDataDescriptionEntry("CREC");
 						assertNotNull(dataDescriptionEntry);
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
-						assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
+						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+								dataDescriptionEntry.getDataDescriptionEntryType());
+						assertEquals(Integer.valueOf(1), dataDescriptionEntry.getLevelNumber());
 					}
 
 					{
 						final DataDescriptionEntry dataDescriptionEntry = communicationSection
 								.getDataDescriptionEntry("CNAME1");
 						assertNotNull(dataDescriptionEntry);
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
-						assertEquals(new Integer(3), dataDescriptionEntry.getLevelNumber());
+						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+								dataDescriptionEntry.getDataDescriptionEntryType());
+						assertEquals(Integer.valueOf(3), dataDescriptionEntry.getLevelNumber());
 					}
 				}
 			}

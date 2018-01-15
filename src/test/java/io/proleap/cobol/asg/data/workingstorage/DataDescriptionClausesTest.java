@@ -39,7 +39,7 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 		assertNotNull(dataDescriptionEntryItem);
 		assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 				dataDescriptionEntryItem.getDataDescriptionEntryType());
-		assertEquals(new Integer(2), dataDescriptionEntryItem.getLevelNumber());
+		assertEquals(Integer.valueOf(2), dataDescriptionEntryItem.getLevelNumber());
 	}
 
 	protected DataDescriptionEntryGroup getDataDescriptionEntryGroup(final String name) throws Exception {
@@ -207,9 +207,9 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 
 		final OccursClause occursClause = occursClauses.get(0);
 		assertNotNull(occursClause.getFrom());
-		assertEquals(new Integer(1), occursClause.getFrom().getValue());
+		assertEquals(Long.valueOf(1), occursClause.getFrom().getValue());
 		assertNotNull(occursClause.getTo());
-		assertEquals(new Integer(5), occursClause.getTo().getValue());
+		assertEquals(Long.valueOf(5), occursClause.getTo().getValue());
 		assertNotNull(occursClause.getDependingOnCall());
 
 		final List<OccursSort> occursSorts = occursClause.getOccursSorts();

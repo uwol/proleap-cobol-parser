@@ -47,7 +47,7 @@ public class SpecialNamesTest extends CobolTestBase {
 		{
 			final ChannelClause channelClause = specialNamesParagraph.getChannelClause();
 			assertNotNull(channelClause);
-			assertEquals(new Integer(2), channelClause.getIntegerLiteral().getValue());
+			assertEquals(Long.valueOf(2), channelClause.getIntegerLiteral().getValue());
 			assertEquals("SOMEMNEMONIC", channelClause.getMnemonicName().getValue());
 		}
 
@@ -96,7 +96,8 @@ public class SpecialNamesTest extends CobolTestBase {
 			final DefaultDisplaySignClause defaultDisplaySignClause = specialNamesParagraph
 					.getDefaultDisplaySignClause();
 			assertNotNull(defaultDisplaySignClause);
-			assertEquals(DefaultDisplaySignClause.DefaultDisplaySignClauseType.TRAILING, defaultDisplaySignClause.getDefaultDisplaySignClauseType());
+			assertEquals(DefaultDisplaySignClause.DefaultDisplaySignClauseType.TRAILING,
+					defaultDisplaySignClause.getDefaultDisplaySignClauseType());
 		}
 
 		{
@@ -114,7 +115,8 @@ public class SpecialNamesTest extends CobolTestBase {
 			final SymbolicCharactersClause symbolicCharactersClause = specialNamesParagraph
 					.getSymbolicCharactersClause();
 			assertNotNull(symbolicCharactersClause);
-			assertEquals(SymbolicCharactersClause.SymbolicCharactersClauseType.NATIONAL, symbolicCharactersClause.getSymbolicCharactersClauseType());
+			assertEquals(SymbolicCharactersClause.SymbolicCharactersClauseType.NATIONAL,
+					symbolicCharactersClause.getSymbolicCharactersClauseType());
 		}
 
 		{
@@ -138,8 +140,9 @@ public class SpecialNamesTest extends CobolTestBase {
 
 				final AlphabetClauseNational alphabetClauseNational = (AlphabetClauseNational) alphabetClause;
 
-				assertEquals(AlphabetClauseNationalType.CCS_VERSION, alphabetClauseNational.getAlphabetClauseNationalType());
-				assertEquals(123, alphabetClauseNational.getCcsVersion().getNumericLiteral().getValue());
+				assertEquals(AlphabetClauseNationalType.CCS_VERSION,
+						alphabetClauseNational.getAlphabetClauseNationalType());
+				assertEquals(Long.valueOf(123), alphabetClauseNational.getCcsVersion().getNumericLiteral().getValue());
 			}
 
 			{
@@ -149,7 +152,8 @@ public class SpecialNamesTest extends CobolTestBase {
 
 				final AlphabetClauseAlphanumeric alphabetClauseAlphanumeric = (AlphabetClauseAlphanumeric) alphabetClause;
 
-				assertEquals(AlphabetClauseAlphanumericType.EBCDIC, alphabetClauseAlphanumeric.getAlphabetClauseAlphanumericType());
+				assertEquals(AlphabetClauseAlphanumericType.EBCDIC,
+						alphabetClauseAlphanumeric.getAlphabetClauseAlphanumericType());
 			}
 
 			{

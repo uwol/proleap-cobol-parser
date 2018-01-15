@@ -25,8 +25,8 @@ import io.proleap.cobol.asg.metamodel.identification.ProgramIdParagraph;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveToSendingArea;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -59,7 +59,7 @@ public class FunctionCallTest extends CobolTestBase {
 		{
 			assertNotNull(dataDescriptionEntrySSchalter);
 			assertEquals("S-SCHALTER", dataDescriptionEntrySSchalter.getName());
-			assertEquals(new Integer(1), dataDescriptionEntrySSchalter.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntrySSchalter.getLevelNumber());
 			assertNull(dataDescriptionEntrySSchalter.getParentDataDescriptionEntryGroup());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntrySSchalter.getDataDescriptionEntryType());
@@ -74,7 +74,7 @@ public class FunctionCallTest extends CobolTestBase {
 		{
 			assertNotNull(dataDescriptionEntryV0P190);
 			assertEquals("V0P190", dataDescriptionEntryV0P190.getName());
-			assertEquals(new Integer(1), dataDescriptionEntryV0P190.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntryV0P190.getLevelNumber());
 			assertNull(dataDescriptionEntryV0P190.getParentDataDescriptionEntryGroup());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntryV0P190.getDataDescriptionEntryType());
@@ -88,7 +88,7 @@ public class FunctionCallTest extends CobolTestBase {
 			{
 				dataDescriptionEntryV0P190Text = dataDescriptionEntryGroupV0P190.getDataDescriptionEntry("P190-TEXT");
 				assertEquals("P190-TEXT", dataDescriptionEntryV0P190Text.getName());
-				assertEquals(new Integer(5), dataDescriptionEntryV0P190Text.getLevelNumber());
+				assertEquals(Integer.valueOf(5), dataDescriptionEntryV0P190Text.getLevelNumber());
 				assertNotNull(dataDescriptionEntryV0P190Text.getParentDataDescriptionEntryGroup());
 				assertEquals(dataDescriptionEntryV0P190,
 						dataDescriptionEntryV0P190Text.getParentDataDescriptionEntryGroup());

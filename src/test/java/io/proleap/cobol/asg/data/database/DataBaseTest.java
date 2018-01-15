@@ -32,14 +32,14 @@ public class DataBaseTest extends CobolTestBase {
 
 		{
 			final DataBaseSectionEntry dataBaseSectionEntry1 = dataBaseSection.getDataBaseSectionEntries().get(0);
-			assertEquals(new Integer(1), dataBaseSectionEntry1.getIntegerLiteral().getValue());
+			assertEquals(Long.valueOf(1), dataBaseSectionEntry1.getIntegerLiteral().getValue());
 			assertEquals("SOMELITERAL", dataBaseSectionEntry1.getValueStmt1().getValue());
 			assertEquals("SOMELITERAL2", dataBaseSectionEntry1.getValueStmt2().getValue());
 		}
 
 		{
 			final DataBaseSectionEntry dataBaseSectionEntry2 = dataBaseSection.getDataBaseSectionEntries().get(1);
-			assertEquals(new Integer(2), dataBaseSectionEntry2.getIntegerLiteral().getValue());
+			assertEquals(Long.valueOf(2), dataBaseSectionEntry2.getIntegerLiteral().getValue());
 			assertEquals("SOMELITERAL3", dataBaseSectionEntry2.getValueStmt1().getValue());
 			assertEquals("SOMELITERAL4", dataBaseSectionEntry2.getValueStmt2().getValue());
 		}

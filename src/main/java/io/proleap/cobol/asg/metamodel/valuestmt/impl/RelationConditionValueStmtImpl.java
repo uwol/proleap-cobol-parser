@@ -115,6 +115,11 @@ public class RelationConditionValueStmtImpl extends ValueStmtImpl implements Rel
 
 			result.setSignConditionType(type);
 
+			// not
+			if (ctx.NOT() != null) {
+				result.setNot(true);
+			}
+
 			// arithmetic
 			final ArithmeticValueStmt arithmeticExpression = createArithmeticValueStmt(ctx.arithmeticExpression());
 			result.setArithmeticExpression(arithmeticExpression);
@@ -179,5 +184,4 @@ public class RelationConditionValueStmtImpl extends ValueStmtImpl implements Rel
 	public void setRelationConditionType(final RelationConditionType relationConditionType) {
 		this.relationConditionType = relationConditionType;
 	}
-
 }

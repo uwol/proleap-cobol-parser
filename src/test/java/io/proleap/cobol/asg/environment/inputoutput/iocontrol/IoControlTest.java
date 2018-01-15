@@ -62,7 +62,7 @@ public class IoControlTest extends CobolTestBase {
 			final MultipleFilePosition filePosition = multipleFileClause.getMultipleFilePositions().get(0);
 			final IntegerLiteralValueStmt integerLiteralValueStmt = filePosition.getIntegerLiteralValueStmt();
 
-			assertEquals(new Integer(1), integerLiteralValueStmt.getValue());
+			assertEquals(Long.valueOf(1), integerLiteralValueStmt.getValue());
 		}
 
 		{
@@ -76,7 +76,7 @@ public class IoControlTest extends CobolTestBase {
 			final RerunEveryRecords rerunEveryRecords = rerunClause.getRerunEveryRecords();
 			final IntegerLiteral records = rerunEveryRecords.getRecords();
 
-			assertEquals(new Integer(1), records.getValue());
+			assertEquals(Long.valueOf(1), records.getValue());
 		}
 	}
 }

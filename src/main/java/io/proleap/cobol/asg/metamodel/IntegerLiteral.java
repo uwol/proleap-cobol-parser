@@ -16,5 +16,5 @@ public interface IntegerLiteral extends CobolDivisionElement, TypedElement {
 	@Override
 	IntegerLiteralContext getCtx();
 
-	Integer getValue();
+	Long getValue();
 }

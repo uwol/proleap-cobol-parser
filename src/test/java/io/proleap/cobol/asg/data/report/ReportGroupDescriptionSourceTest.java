@@ -49,7 +49,7 @@ public class ReportGroupDescriptionSourceTest extends CobolTestBase {
 				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = reportDescription
 						.getReportGroupDescriptionEntry("SOME-GROUP");
 				assertNotNull(reportGroupDescriptionEntry);
-				assertEquals(new Integer(1), reportGroupDescriptionEntry.getLevelNumber());
+				assertEquals(Integer.valueOf(1), reportGroupDescriptionEntry.getLevelNumber());
 				assertEquals(ReportGroupDescriptionEntryType.PRINTABLE,
 						reportGroupDescriptionEntry.getReportGroupDescriptionEntryType());
 

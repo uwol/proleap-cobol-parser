@@ -42,12 +42,12 @@ public class DataDescriptionFillerNestedTest extends CobolTestBase {
 			assertNull(dataDescriptionEntry.getName());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntry.getDataDescriptionEntryType());
-			assertEquals(new Integer(1), dataDescriptionEntry.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntry.getLevelNumber());
 
 			{
 				final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
 				assertTrue(dataDescriptionEntryGroup.getFiller());
-				assertEquals(new Integer(0), dataDescriptionEntryGroup.getFillerNumber());
+				assertEquals(Integer.valueOf(0), dataDescriptionEntryGroup.getFillerNumber());
 
 				{
 					final DataDescriptionEntry dataDescriptionEntryFiller = dataDescriptionEntryGroup
@@ -56,12 +56,12 @@ public class DataDescriptionFillerNestedTest extends CobolTestBase {
 					assertNull(dataDescriptionEntryFiller.getName());
 					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 							dataDescriptionEntryFiller.getDataDescriptionEntryType());
-					assertEquals(new Integer(5), dataDescriptionEntryFiller.getLevelNumber());
+					assertEquals(Integer.valueOf(5), dataDescriptionEntryFiller.getLevelNumber());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryFillerGroup = (DataDescriptionEntryGroup) dataDescriptionEntryFiller;
 						assertTrue(dataDescriptionEntryFillerGroup.getFiller());
-						assertEquals(new Integer(1), dataDescriptionEntryFillerGroup.getFillerNumber());
+						assertEquals(Integer.valueOf(1), dataDescriptionEntryFillerGroup.getFillerNumber());
 					}
 				}
 
@@ -72,7 +72,7 @@ public class DataDescriptionFillerNestedTest extends CobolTestBase {
 					assertEquals("SOMEID", dataDescriptionEntrySomeId.getName());
 					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 							dataDescriptionEntrySomeId.getDataDescriptionEntryType());
-					assertEquals(new Integer(5), dataDescriptionEntrySomeId.getLevelNumber());
+					assertEquals(Integer.valueOf(5), dataDescriptionEntrySomeId.getLevelNumber());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryFillerGroup = (DataDescriptionEntryGroup) dataDescriptionEntrySomeId;

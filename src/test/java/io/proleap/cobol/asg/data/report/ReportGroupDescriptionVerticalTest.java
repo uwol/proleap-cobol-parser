@@ -47,19 +47,21 @@ public class ReportGroupDescriptionVerticalTest extends CobolTestBase {
 			{
 				final ReportGroupDescriptionEntry reportGroupDescriptionEntry = reportDescription
 						.getReportGroupDescriptionEntries().get(0);
-				assertEquals(ReportGroupDescriptionEntry.ReportGroupDescriptionEntryType.VERTICAL, reportGroupDescriptionEntry.getReportGroupDescriptionEntryType());
+				assertEquals(ReportGroupDescriptionEntry.ReportGroupDescriptionEntryType.VERTICAL,
+						reportGroupDescriptionEntry.getReportGroupDescriptionEntryType());
 
 				final ReportGroupDescriptionEntryVertical reportGroupDescriptionEntryVertical = (ReportGroupDescriptionEntryVertical) reportGroupDescriptionEntry;
-				assertEquals(new Integer(1), reportGroupDescriptionEntryVertical.getLevelNumber());
+				assertEquals(Integer.valueOf(1), reportGroupDescriptionEntryVertical.getLevelNumber());
 
 				{
 					final LineNumberClause lineNumberClause = reportGroupDescriptionEntryVertical.getLineNumberClause();
-					assertEquals(new Integer(2), lineNumberClause.getIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(2), lineNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
 					final NextGroupClause nextGroupClause = reportGroupDescriptionEntryVertical.getNextGroupClause();
-					assertEquals(NextGroupClause.NextGroupClauseType.NEXT_PAGE, nextGroupClause.getNextGroupClauseType());
+					assertEquals(NextGroupClause.NextGroupClauseType.NEXT_PAGE,
+							nextGroupClause.getNextGroupClauseType());
 					assertNull(nextGroupClause.getIntegerLiteral());
 				}
 

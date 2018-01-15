@@ -40,7 +40,7 @@ public class ReportDescriptionHierachyTest extends CobolTestBase {
 
 		{
 			final ReportGroupDescriptionEntry reportGroupDescriptionEntry = rootReportGroupDescriptionEntries.get(0);
-			assertEquals(new Integer(1), reportGroupDescriptionEntry.getLevelNumber());
+			assertEquals(Integer.valueOf(1), reportGroupDescriptionEntry.getLevelNumber());
 			assertEquals(2, reportGroupDescriptionEntry.getReportGroupDescriptionEntries().size());
 
 			{
@@ -52,7 +52,7 @@ public class ReportDescriptionHierachyTest extends CobolTestBase {
 			{
 				final ReportGroupDescriptionEntry subReportGroupDescriptionEntry = reportGroupDescriptionEntry
 						.getReportGroupDescriptionEntries().get(0);
-				assertEquals(new Integer(4), subReportGroupDescriptionEntry.getLevelNumber());
+				assertEquals(Integer.valueOf(4), subReportGroupDescriptionEntry.getLevelNumber());
 
 				{
 					final UsageClause usageClause = subReportGroupDescriptionEntry.getUsageClause();
@@ -64,7 +64,7 @@ public class ReportDescriptionHierachyTest extends CobolTestBase {
 			{
 				final ReportGroupDescriptionEntry subReportGroupDescriptionEntry = reportGroupDescriptionEntry
 						.getReportGroupDescriptionEntries().get(1);
-				assertEquals(new Integer(2), subReportGroupDescriptionEntry.getLevelNumber());
+				assertEquals(Integer.valueOf(2), subReportGroupDescriptionEntry.getLevelNumber());
 
 				{
 					final UsageClause usageClause = subReportGroupDescriptionEntry.getUsageClause();
@@ -76,7 +76,7 @@ public class ReportDescriptionHierachyTest extends CobolTestBase {
 
 		{
 			final ReportGroupDescriptionEntry reportGroupDescriptionEntry = rootReportGroupDescriptionEntries.get(1);
-			assertEquals(new Integer(1), reportGroupDescriptionEntry.getLevelNumber());
+			assertEquals(Integer.valueOf(1), reportGroupDescriptionEntry.getLevelNumber());
 
 			{
 				final UsageClause usageClause = reportGroupDescriptionEntry.getUsageClause();

@@ -121,7 +121,7 @@ public class WriteStatementTest extends CobolTestBase {
 					final AdvancingLines advancingLines = advancingPhrase.getAdvancingLines();
 					assertNotNull(advancingLines);
 					assertNotNull(advancingLines.getLinesValueStmt());
-					assertEquals(3, advancingLines.getLinesValueStmt().getValue());
+					assertEquals(Long.valueOf(3), advancingLines.getLinesValueStmt().getValue());
 				}
 			}
 		}

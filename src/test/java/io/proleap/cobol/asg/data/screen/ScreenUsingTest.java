@@ -41,7 +41,7 @@ public class ScreenUsingTest extends CobolTestBase {
 		final DataDescriptionEntry dataDescriptionEntry = workingStorageSection.getDataDescriptionEntry("SOME-DATA");
 
 		{
-			assertEquals(new Integer(1), screenDescriptionEntry.getLevelNumber());
+			assertEquals(Integer.valueOf(1), screenDescriptionEntry.getLevelNumber());
 			assertEquals("SOME-SCREEN", screenDescriptionEntry.getName());
 
 			{

@@ -21,8 +21,8 @@ import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveToSendingArea;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -120,7 +120,7 @@ public class MoveToStatementTest extends CobolTestBase {
 					{
 						final ValueStmt sendingAreaValueStmt = sendingArea.getSendingAreaValueStmt();
 						assertNotNull(sendingAreaValueStmt);
-						assertEquals(1, sendingAreaValueStmt.getValue());
+						assertEquals(Long.valueOf(1), sendingAreaValueStmt.getValue());
 					}
 				}
 

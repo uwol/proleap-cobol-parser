@@ -59,7 +59,7 @@ public class DisplayUponStatementTest extends CobolTestBase {
 			{
 				final Operand operand = displayStatement.getOperands().get(2);
 				assertNotNull(operand.getOperandValueStmt());
-				assertEquals(3, operand.getOperandValueStmt().getValue());
+				assertEquals(Long.valueOf(3), operand.getOperandValueStmt().getValue());
 			}
 
 			{

@@ -18,9 +18,9 @@ public class IntegerLiteralImpl extends CobolDivisionElementImpl implements Inte
 
 	protected final IntegerLiteralContext ctx;
 
-	protected final Integer value;
+	protected final Long value;
 
-	public IntegerLiteralImpl(final Integer value, final ProgramUnit programUnit, final IntegerLiteralContext ctx) {
+	public IntegerLiteralImpl(final Long value, final ProgramUnit programUnit, final IntegerLiteralContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
@@ -38,7 +38,7 @@ public class IntegerLiteralImpl extends CobolDivisionElementImpl implements Inte
 	}
 
 	@Override
-	public Integer getValue() {
+	public Long getValue() {
 		return value;
 	}
 

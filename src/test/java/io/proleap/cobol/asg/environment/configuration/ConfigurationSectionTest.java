@@ -45,12 +45,12 @@ public class ConfigurationSectionTest extends CobolTestBase {
 
 		final MemorySizeClause memorySizeClause = objectComputerParagraph.getMemorySizeClause();
 		final IntegerLiteralValueStmt memorySizeValueStmt = (IntegerLiteralValueStmt) memorySizeClause.getValueStmt();
-		assertEquals(new Integer(8192), memorySizeValueStmt.getValue());
+		assertEquals(Long.valueOf(8192), memorySizeValueStmt.getValue());
 		assertEquals(MemorySizeClause.Unit.CHARACTERS, memorySizeClause.getUnit());
 
 		final DiskSizeClause diskSizeClause = objectComputerParagraph.getDiskSizeClause();
 		final IntegerLiteralValueStmt diskSizeValueStmt = (IntegerLiteralValueStmt) diskSizeClause.getValueStmt();
-		assertEquals(new Integer(4096), diskSizeValueStmt.getValue());
+		assertEquals(Long.valueOf(4096), diskSizeValueStmt.getValue());
 		assertEquals(DiskSizeClause.Unit.WORDS, diskSizeClause.getUnit());
 
 		final CollatingSequenceClause collatingSequenceClause = objectComputerParagraph.getCollatingSequenceClause();
@@ -63,6 +63,6 @@ public class ConfigurationSectionTest extends CobolTestBase {
 
 		final SegmentLimitClause segmentLimitClause = objectComputerParagraph.getSegmentLimitClause();
 		final IntegerLiteral segmentLimitIntegerLiteral = segmentLimitClause.getIntegerLiteral();
-		assertEquals(new Integer(128), segmentLimitIntegerLiteral.getValue());
+		assertEquals(Long.valueOf(128), segmentLimitIntegerLiteral.getValue());
 	}
 }

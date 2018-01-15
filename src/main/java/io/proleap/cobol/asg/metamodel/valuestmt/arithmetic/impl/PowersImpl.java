@@ -15,6 +15,7 @@ import io.proleap.cobol.Cobol85Parser.BasisContext;
 import io.proleap.cobol.Cobol85Parser.PowerContext;
 import io.proleap.cobol.Cobol85Parser.PowersContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
 import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Basis;
@@ -98,10 +99,31 @@ public class PowersImpl extends ValueStmtImpl implements Powers {
 
 	@Override
 	public Object getValue() {
+		final Object basisValue;
+
+		if (powersType == null) {
+			basisValue = basis.getValue();
+		} else if (PowersType.MINUS.equals(powersType)) {
+			if (CobolBaseType.INTEGER.equals(basis.getType())) {
+				basisValue = -1 * (Integer) basis.getValue();
+			} else if (CobolBaseType.FLOAT.equals(basis.getType())) {
+				basisValue = -1.0 * (Double) basis.getValue();
+			} else {
+				basisValue = null;
+			}
+		} else {
+			basisValue = basis.getValue();
+		}
+
 		final Object result;
 
 		if (powers.isEmpty()) {
-			result = basis.getValue();
+			result = basisValue;
+		} else if (powers.size() == 1) {
+			final Power power = powers.get(0);
+			final Object powerValue = power.getValue();
+
+			result = powers.get(0);
 		} else {
 			result = null;
 		}
@@ -113,5 +135,4 @@ public class PowersImpl extends ValueStmtImpl implements Powers {
 	public void setPowersType(final PowersType powersType) {
 		this.powersType = powersType;
 	}
-
 }

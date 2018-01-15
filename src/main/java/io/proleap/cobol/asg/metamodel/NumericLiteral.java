@@ -14,23 +14,23 @@ import io.proleap.cobol.asg.metamodel.type.TypedElement;
 public interface NumericLiteral extends CobolDivisionElement, TypedElement {
 
 	enum NumericLiteralType {
-		DOUBLE, INTEGER
+		FLOAT, INTEGER
 	}
 
 	@Override
 	NumericLiteralContext getCtx();
 
-	Double getDoubleValue();
+	Double getFloatValue();
 
-	Integer getIntegerValue();
+	Long getIntegerValue();
 
 	NumericLiteralType getNumericLiteralType();
 
 	Object getValue();
 
-	void setDoubleValue(Double doubleValue);
+	void setFloatValue(Double floatValue);
 
-	void setIntegerValue(Integer integerValue);
+	void setIntegerValue(Long integerValue);
 
 	void setNumericLiteralType(NumericLiteralType numericLiteralType);
 }

@@ -44,7 +44,7 @@ public class DataDescription66GroupTest extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntryItems);
 			assertEquals("ITEMS", dataDescriptionEntryItems.getName());
-			assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntryItems.getLevelNumber());
 			assertNull(dataDescriptionEntryItems.getParentDataDescriptionEntryGroup());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntryItems.getDataDescriptionEntryType());
@@ -54,7 +54,7 @@ public class DataDescription66GroupTest extends CobolTestBase {
 						.getDataDescriptionEntry("ITEM1");
 				assertNotNull(dataDescriptionEntryItem1);
 				assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
-				assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
+				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem1.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
 				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 						dataDescriptionEntryItem1.getDataDescriptionEntryType());
@@ -65,7 +65,7 @@ public class DataDescription66GroupTest extends CobolTestBase {
 						.getDataDescriptionEntry("ITEM2");
 				assertNotNull(dataDescriptionEntryItem2);
 				assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
-				assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
+				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem2.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
 				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 						dataDescriptionEntryItem2.getDataDescriptionEntryType());
@@ -78,7 +78,7 @@ public class DataDescription66GroupTest extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntryItemz);
 			assertEquals("ITEMZ", dataDescriptionEntryItemz.getName());
-			assertEquals(new Integer(66), dataDescriptionEntryItemz.getLevelNumber());
+			assertEquals(Integer.valueOf(66), dataDescriptionEntryItemz.getLevelNumber());
 			assertNull(dataDescriptionEntryItemz.getParentDataDescriptionEntryGroup());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.RENAME,
 					dataDescriptionEntryItemz.getDataDescriptionEntryType());

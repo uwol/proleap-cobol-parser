@@ -57,7 +57,7 @@ public class ExhibitStatementTest extends CobolTestBase {
 			{
 				final Operand operand = exhibitStatement.getOperands().get(2);
 				assertNotNull(operand.getOperandValueStmt());
-				assertEquals(3, operand.getOperandValueStmt().getValue());
+				assertEquals(Long.valueOf(3), operand.getOperandValueStmt().getValue());
 			}
 		}
 	}

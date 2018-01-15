@@ -66,6 +66,7 @@ import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.MnemonicName;
 import io.proleap.cobol.asg.metamodel.NumericLiteral;
+import io.proleap.cobol.asg.metamodel.NumericLiteral.NumericLiteralType;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.ProgramUnitElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -988,7 +989,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		IntegerLiteral result = (IntegerLiteral) getASGElement(ctx);
 
 		if (result == null) {
-			final Integer value = StringUtils.parseInteger(ctx.getText());
+			final Long value = StringUtils.parseLong(ctx.getText());
 			result = new IntegerLiteralImpl(value, programUnit, ctx);
 
 			registerASGElement(result);
@@ -1079,19 +1080,19 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final NumericLiteral.NumericLiteralType type;
 
 			if (ctx.integerLiteral() != null) {
-				final Integer integerValue = StringUtils.parseInteger(ctx.getText());
+				final Long integerValue = StringUtils.parseLong(ctx.getText());
 				result.setIntegerValue(integerValue);
 
 				type = NumericLiteral.NumericLiteralType.INTEGER;
 			} else if (ctx.ZERO() != null) {
-				result.setIntegerValue(0);
+				result.setIntegerValue(0l);
 
 				type = NumericLiteral.NumericLiteralType.INTEGER;
 			} else if (ctx.NUMERICLITERAL() != null) {
 				final Double doubleValue = StringUtils.parseDouble(ctx.NUMERICLITERAL().getText());
-				result.setDoubleValue(doubleValue);
+				result.setFloatValue(doubleValue);
 
-				type = NumericLiteral.NumericLiteralType.DOUBLE;
+				type = NumericLiteralType.FLOAT;
 			} else {
 				type = null;
 			}

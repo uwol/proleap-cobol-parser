@@ -43,7 +43,7 @@ public class ScreenTest extends CobolTestBase {
 		final ScreenDescriptionEntry screenDescriptionEntry2 = screenSection.getRootScreenDescriptionEntries().get(1);
 
 		{
-			assertEquals(new Integer(1), screenDescriptionEntry1.getLevelNumber());
+			assertEquals(Integer.valueOf(1), screenDescriptionEntry1.getLevelNumber());
 			assertEquals("SOMESCREEN1", screenDescriptionEntry1.getName());
 			assertNull(screenDescriptionEntry1.getPredecessor());
 			assertNotNull(screenDescriptionEntry1.getSuccessor());
@@ -60,7 +60,7 @@ public class ScreenTest extends CobolTestBase {
 
 			{
 				assertNull(subScreenDescriptionEntry1.getName());
-				assertEquals(new Integer(5), subScreenDescriptionEntry1.getLevelNumber());
+				assertEquals(Integer.valueOf(5), subScreenDescriptionEntry1.getLevelNumber());
 				assertEquals(screenDescriptionEntry1, subScreenDescriptionEntry1.getParentScreenDescriptionEntry());
 				assertNull(subScreenDescriptionEntry1.getPredecessor());
 				assertNotNull(subScreenDescriptionEntry1.getSuccessor());
@@ -75,7 +75,7 @@ public class ScreenTest extends CobolTestBase {
 
 			{
 				assertEquals("SOMELINE1", subScreenDescriptionEntry2.getName());
-				assertEquals(new Integer(5), subScreenDescriptionEntry2.getLevelNumber());
+				assertEquals(Integer.valueOf(5), subScreenDescriptionEntry2.getLevelNumber());
 				assertEquals(screenDescriptionEntry1, subScreenDescriptionEntry2.getParentScreenDescriptionEntry());
 				assertNotNull(subScreenDescriptionEntry2.getPredecessor());
 				assertEquals(subScreenDescriptionEntry1, subScreenDescriptionEntry2.getPredecessor());
@@ -85,13 +85,13 @@ public class ScreenTest extends CobolTestBase {
 				{
 					final LineNumberClause lineNumberClause = subScreenDescriptionEntry2.getLineNumberClause();
 					assertNotNull(lineNumberClause);
-					assertEquals(new Integer(1), lineNumberClause.getIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(1), lineNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
 					final ColumnNumberClause columnNumberClause = subScreenDescriptionEntry2.getColumnNumberClause();
 					assertNotNull(columnNumberClause);
-					assertEquals(new Integer(16), columnNumberClause.getIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(16), columnNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
@@ -109,7 +109,7 @@ public class ScreenTest extends CobolTestBase {
 
 			{
 				assertNull(subScreenDescriptionEntry3.getName());
-				assertEquals(new Integer(5), subScreenDescriptionEntry3.getLevelNumber());
+				assertEquals(Integer.valueOf(5), subScreenDescriptionEntry3.getLevelNumber());
 				assertEquals(screenDescriptionEntry1, subScreenDescriptionEntry3.getParentScreenDescriptionEntry());
 				assertNotNull(subScreenDescriptionEntry3.getPredecessor());
 				assertEquals(subScreenDescriptionEntry2, subScreenDescriptionEntry3.getPredecessor());
@@ -118,13 +118,13 @@ public class ScreenTest extends CobolTestBase {
 				{
 					final LineNumberClause lineNumberClause = subScreenDescriptionEntry3.getLineNumberClause();
 					assertNotNull(lineNumberClause);
-					assertEquals(new Integer(2), lineNumberClause.getIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(2), lineNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
 					final ColumnNumberClause columnNumberClause = subScreenDescriptionEntry3.getColumnNumberClause();
 					assertNotNull(columnNumberClause);
-					assertEquals(new Integer(35), columnNumberClause.getIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(35), columnNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
@@ -142,7 +142,7 @@ public class ScreenTest extends CobolTestBase {
 		}
 
 		{
-			assertEquals(new Integer(1), screenDescriptionEntry2.getLevelNumber());
+			assertEquals(Integer.valueOf(1), screenDescriptionEntry2.getLevelNumber());
 			assertEquals("SOMESCREEN2", screenDescriptionEntry2.getName());
 			assertNotNull(screenDescriptionEntry2.getPredecessor());
 			assertEquals(screenDescriptionEntry1, screenDescriptionEntry2.getPredecessor());

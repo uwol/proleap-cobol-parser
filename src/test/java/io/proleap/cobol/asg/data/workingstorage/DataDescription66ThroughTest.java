@@ -48,7 +48,7 @@ public class DataDescription66ThroughTest extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntryItems);
 			assertEquals("ITEMS", dataDescriptionEntryItems.getName());
-			assertEquals(new Integer(1), dataDescriptionEntryItems.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntryItems.getLevelNumber());
 			assertNull(dataDescriptionEntryItems.getParentDataDescriptionEntryGroup());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntryItems.getDataDescriptionEntryType());
@@ -60,7 +60,7 @@ public class DataDescription66ThroughTest extends CobolTestBase {
 				dataDescriptionEntryItem1 = workingStorageSection.getDataDescriptionEntry("ITEM1");
 				assertNotNull(dataDescriptionEntryItem1);
 				assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
-				assertEquals(new Integer(2), dataDescriptionEntryItem1.getLevelNumber());
+				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem1.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
 				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 						dataDescriptionEntryItem1.getDataDescriptionEntryType());
@@ -73,7 +73,7 @@ public class DataDescription66ThroughTest extends CobolTestBase {
 				dataDescriptionEntryItem2 = workingStorageSection.getDataDescriptionEntry("ITEM2");
 				assertNotNull(dataDescriptionEntryItem2);
 				assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
-				assertEquals(new Integer(2), dataDescriptionEntryItem2.getLevelNumber());
+				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem2.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
 				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 						dataDescriptionEntryItem2.getDataDescriptionEntryType());
@@ -88,7 +88,7 @@ public class DataDescription66ThroughTest extends CobolTestBase {
 				assertEquals("ITEM3", dataDescriptionEntryItem3.getName());
 				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 						dataDescriptionEntryItem3.getDataDescriptionEntryType());
-				assertEquals(new Integer(2), dataDescriptionEntryItem3.getLevelNumber());
+				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem3.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem3.getParentDataDescriptionEntryGroup());
 
 				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem3 = (DataDescriptionEntryGroup) dataDescriptionEntryItem3;
@@ -100,7 +100,7 @@ public class DataDescription66ThroughTest extends CobolTestBase {
 						.getDataDescriptionEntry("ITEM4");
 				assertNotNull(dataDescriptionEntryItem4);
 				assertEquals("ITEM4", dataDescriptionEntryItem4.getName());
-				assertEquals(new Integer(2), dataDescriptionEntryItem4.getLevelNumber());
+				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem4.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem4.getParentDataDescriptionEntryGroup());
 				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 						dataDescriptionEntryItem4.getDataDescriptionEntryType());
@@ -116,7 +116,7 @@ public class DataDescription66ThroughTest extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntryItemz);
 			assertEquals("ITEMZ", dataDescriptionEntryItemz.getName());
-			assertEquals(new Integer(66), dataDescriptionEntryItemz.getLevelNumber());
+			assertEquals(Integer.valueOf(66), dataDescriptionEntryItemz.getLevelNumber());
 			assertNull(dataDescriptionEntryItemz.getParentDataDescriptionEntryGroup());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.RENAME,
 					dataDescriptionEntryItemz.getDataDescriptionEntryType());

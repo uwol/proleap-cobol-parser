@@ -56,38 +56,38 @@ public class ReportDescriptionTest extends CobolTestBase {
 				{
 					final PageLimitClause pageLimitClause = reportDescriptionEntry.getPageLimitClause();
 					assertNotNull(pageLimitClause);
-					assertEquals(new Integer(5), pageLimitClause.getPageLimitIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(5), pageLimitClause.getPageLimitIntegerLiteral().getValue());
 				}
 
 				{
 					final HeadingClause headingClause = reportDescriptionEntry.getHeadingClause();
 					assertNotNull(headingClause);
-					assertEquals(new Integer(1), headingClause.getHeadingIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(1), headingClause.getHeadingIntegerLiteral().getValue());
 				}
 
 				{
 					final FirstDetailClause firstDetailClause = reportDescriptionEntry.getFirstDetailClause();
 					assertNotNull(firstDetailClause);
-					assertEquals(new Integer(2), firstDetailClause.getFirstDetailIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(2), firstDetailClause.getFirstDetailIntegerLiteral().getValue());
 				}
 
 				{
 					final LastDetailClause lastDetailClause = reportDescriptionEntry.getLastDetailClause();
 					assertNotNull(lastDetailClause);
-					assertEquals(new Integer(3), lastDetailClause.getLastDetailIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(3), lastDetailClause.getLastDetailIntegerLiteral().getValue());
 				}
 
 				{
 					final FootingClause footingClause = reportDescriptionEntry.getFootingClause();
 					assertNotNull(footingClause);
-					assertEquals(new Integer(4), footingClause.getFootingIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(4), footingClause.getFootingIntegerLiteral().getValue());
 				}
 
 				{
 					final ReportGroupDescriptionEntry reportGroupDescriptionEntry = reportDescription
 							.getReportGroupDescriptionEntry("SOMEDATANAME");
 					assertNotNull(reportGroupDescriptionEntry);
-					assertEquals(new Integer(1), reportGroupDescriptionEntry.getLevelNumber());
+					assertEquals(Integer.valueOf(1), reportGroupDescriptionEntry.getLevelNumber());
 				}
 			}
 		}
@@ -108,38 +108,38 @@ public class ReportDescriptionTest extends CobolTestBase {
 				{
 					final PageLimitClause pageLimitClause = reportDescriptionEntry.getPageLimitClause();
 					assertNotNull(pageLimitClause);
-					assertEquals(new Integer(10), pageLimitClause.getPageLimitIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(10), pageLimitClause.getPageLimitIntegerLiteral().getValue());
 				}
 
 				{
 					final HeadingClause headingClause = reportDescriptionEntry.getHeadingClause();
 					assertNotNull(headingClause);
-					assertEquals(new Integer(11), headingClause.getHeadingIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(11), headingClause.getHeadingIntegerLiteral().getValue());
 				}
 
 				{
 					final FirstDetailClause firstDetailClause = reportDescriptionEntry.getFirstDetailClause();
 					assertNotNull(firstDetailClause);
-					assertEquals(new Integer(12), firstDetailClause.getFirstDetailIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(12), firstDetailClause.getFirstDetailIntegerLiteral().getValue());
 				}
 
 				{
 					final LastDetailClause lastDetailClause = reportDescriptionEntry.getLastDetailClause();
 					assertNotNull(lastDetailClause);
-					assertEquals(new Integer(13), lastDetailClause.getLastDetailIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(13), lastDetailClause.getLastDetailIntegerLiteral().getValue());
 				}
 
 				{
 					final FootingClause footingClause = reportDescriptionEntry.getFootingClause();
 					assertNotNull(footingClause);
-					assertEquals(new Integer(14), footingClause.getFootingIntegerLiteral().getValue());
+					assertEquals(Long.valueOf(14), footingClause.getFootingIntegerLiteral().getValue());
 				}
 
 				{
 					final ReportGroupDescriptionEntry reportGroupDescriptionEntry = report
 							.getReportGroupDescriptionEntry("SOMEDATANAME");
 					assertNotNull(reportGroupDescriptionEntry);
-					assertEquals(new Integer(1), reportGroupDescriptionEntry.getLevelNumber());
+					assertEquals(Integer.valueOf(1), reportGroupDescriptionEntry.getLevelNumber());
 				}
 			}
 		}

@@ -19,9 +19,13 @@ public interface SignCondition extends ValueStmt {
 
 	ArithmeticValueStmt getArithmeticExpression();
 
+	boolean getNot();
+
 	SignConditionType getSignConditionType();
 
 	void setArithmeticExpression(ArithmeticValueStmt arithmeticExpression);
+
+	void setNot(boolean not);
 
 	void setSignConditionType(SignConditionType signConditionType);
 

@@ -44,7 +44,7 @@ public class InDataCallTest extends CobolTestBase {
 		{
 			assertNotNull(dataDescriptionEntryItems1);
 			assertEquals("ITEMS1", dataDescriptionEntryItems1.getName());
-			assertEquals(new Integer(1), dataDescriptionEntryItems1.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntryItems1.getLevelNumber());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntryItems1.getDataDescriptionEntryType());
 			assertNull(dataDescriptionEntryItems1.getParentDataDescriptionEntryGroup());
@@ -60,7 +60,7 @@ public class InDataCallTest extends CobolTestBase {
 
 				assertNotNull(dataDescriptionEntryItem);
 				assertEquals("ITEM", dataDescriptionEntryItem.getName());
-				assertEquals(new Integer(2), dataDescriptionEntryItem.getLevelNumber());
+				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem.getLevelNumber());
 				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 						dataDescriptionEntryItem.getDataDescriptionEntryType());
 				assertEquals(0, dataDescriptionEntryItem.getCalls().size());
@@ -70,7 +70,7 @@ public class InDataCallTest extends CobolTestBase {
 		{
 			assertNotNull(dataDescriptionEntryItems2);
 			assertEquals("ITEMS2", dataDescriptionEntryItems2.getName());
-			assertEquals(new Integer(1), dataDescriptionEntryItems2.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntryItems2.getLevelNumber());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntryItems2.getDataDescriptionEntryType());
 			assertNull(dataDescriptionEntryItems2.getParentDataDescriptionEntryGroup());
@@ -86,7 +86,7 @@ public class InDataCallTest extends CobolTestBase {
 
 				assertNotNull(dataDescriptionEntryItem);
 				assertEquals("ITEM", dataDescriptionEntryItem.getName());
-				assertEquals(new Integer(2), dataDescriptionEntryItem.getLevelNumber());
+				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem.getLevelNumber());
 				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 						dataDescriptionEntryItem.getDataDescriptionEntryType());
 				assertEquals(1, dataDescriptionEntryItem.getCalls().size());

@@ -42,7 +42,7 @@ public class InDataInvalidCallTest extends CobolTestBase {
 		{
 			assertNotNull(dataDescriptionEntryItem);
 			assertEquals("ITEM", dataDescriptionEntryItem.getName());
-			assertEquals(new Integer(1), dataDescriptionEntryItem.getLevelNumber());
+			assertEquals(Integer.valueOf(1), dataDescriptionEntryItem.getLevelNumber());
 			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
 					dataDescriptionEntryItem.getDataDescriptionEntryType());
 			assertNull(dataDescriptionEntryItem.getParentDataDescriptionEntryGroup());

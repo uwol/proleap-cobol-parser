@@ -31,12 +31,11 @@ public class ValueStmtDelegateImpl extends ValueStmtImpl implements ValueStmt {
 
 	@Override
 	public Object getValue() {
-		return null;
+		return delegate.getValue();
 	}
 
 	@Override
 	public String toString() {
 		return delegate.toString();
 	}
-
 }

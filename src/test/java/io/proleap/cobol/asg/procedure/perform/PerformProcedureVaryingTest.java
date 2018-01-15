@@ -74,12 +74,12 @@ public class PerformProcedureVaryingTest extends CobolTestBase {
 
 								{
 									final FromPhrase from = varyingPhrase.getFrom();
-									assertEquals(1, from.getFromValueStmt().getValue());
+									assertEquals(Long.valueOf(1), from.getFromValueStmt().getValue());
 								}
 
 								{
 									final ByPhrase by = varyingPhrase.getBy();
-									assertEquals(2, by.getByValueStmt().getValue());
+									assertEquals(Long.valueOf(2), by.getByValueStmt().getValue());
 								}
 
 								{
