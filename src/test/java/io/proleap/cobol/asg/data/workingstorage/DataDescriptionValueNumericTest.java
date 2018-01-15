@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -51,7 +52,7 @@ public class DataDescriptionValueNumericTest extends CobolTestBase {
 				final Literal literal = literalFromValueStmt.getLiteral();
 				assertEquals(Literal.LiteralType.NUMERIC, literal.getLiteralType());
 				assertEquals(NumericLiteralType.FLOAT, literal.getNumericLiteral().getNumericLiteralType());
-				assertEquals(23.4, literal.getNumericLiteral().getFloatValue(), EPSILON);
+				assertEquals(BigDecimal.valueOf(23.4), literal.getNumericLiteral().getValue());
 			}
 		}
 
@@ -71,7 +72,7 @@ public class DataDescriptionValueNumericTest extends CobolTestBase {
 				final Literal literal = literalFromValueStmt.getLiteral();
 				assertEquals(Literal.LiteralType.NUMERIC, literal.getLiteralType());
 				assertEquals(NumericLiteralType.INTEGER, literal.getNumericLiteral().getNumericLiteralType());
-				assertEquals(42l, literal.getNumericLiteral().getValue());
+				assertEquals(new BigDecimal(42), literal.getNumericLiteral().getValue());
 			}
 		}
 	}

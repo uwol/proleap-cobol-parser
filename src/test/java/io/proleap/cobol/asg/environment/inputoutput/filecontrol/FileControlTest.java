@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -58,7 +59,7 @@ public class FileControlTest extends CobolTestBase {
 		{
 			final ReserveClause reserveClause = fileControlEntry.getReserveClause();
 			assertNotNull(reserveClause);
-			assertEquals(Long.valueOf(10), reserveClause.getValueStmt().getValue());
+			assertEquals(new BigDecimal(10), reserveClause.getValueStmt().getValue());
 		}
 
 		{

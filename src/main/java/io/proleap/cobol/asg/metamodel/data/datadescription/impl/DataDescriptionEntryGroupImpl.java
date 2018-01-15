@@ -70,12 +70,9 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.TypeDefClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.UsageClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.UsingClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.ValueClause;
-import io.proleap.cobol.asg.metamodel.data.datadescription.ValueInterval;
 import io.proleap.cobol.asg.metamodel.data.datadescription.WithLowerBoundsClause;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
-import io.proleap.cobol.asg.util.PictureTypeUtils;
 
 public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryGroup {
 
@@ -838,25 +835,6 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 	@Override
 	public ThreadLocalClause getThreadLocalClause() {
 		return threadLocalClause;
-	}
-
-	@Override
-	public Type getType() {
-		final Type result;
-
-		if (pictureClause != null) {
-			final String pictureString = pictureClause.getPictureString();
-			result = PictureTypeUtils.determineType(pictureString);
-		} else if (valueClause != null) {
-			final ValueInterval valueInterval = valueClause.getValueIntervals().get(0);
-			result = valueInterval.getFromValueStmt().getType();
-		} else if (!dataDescriptionEntries.isEmpty()) {
-			result = this;
-		} else {
-			result = null;
-		}
-
-		return result;
 	}
 
 	@Override

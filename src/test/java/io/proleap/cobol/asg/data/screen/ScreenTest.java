@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -85,13 +86,13 @@ public class ScreenTest extends CobolTestBase {
 				{
 					final LineNumberClause lineNumberClause = subScreenDescriptionEntry2.getLineNumberClause();
 					assertNotNull(lineNumberClause);
-					assertEquals(Long.valueOf(1), lineNumberClause.getIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(1), lineNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
 					final ColumnNumberClause columnNumberClause = subScreenDescriptionEntry2.getColumnNumberClause();
 					assertNotNull(columnNumberClause);
-					assertEquals(Long.valueOf(16), columnNumberClause.getIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(16), columnNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
@@ -118,13 +119,13 @@ public class ScreenTest extends CobolTestBase {
 				{
 					final LineNumberClause lineNumberClause = subScreenDescriptionEntry3.getLineNumberClause();
 					assertNotNull(lineNumberClause);
-					assertEquals(Long.valueOf(2), lineNumberClause.getIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(2), lineNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
 					final ColumnNumberClause columnNumberClause = subScreenDescriptionEntry3.getColumnNumberClause();
 					assertNotNull(columnNumberClause);
-					assertEquals(Long.valueOf(35), columnNumberClause.getIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(35), columnNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{

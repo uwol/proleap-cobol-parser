@@ -131,7 +131,6 @@ public class FunctionCallTest extends CobolTestBase {
 							assertEquals(CallType.FUNCTION_CALL, sendingAreaFunctionCall.getCallType());
 
 							assertEquals("WHEN-COMPILED", sendingAreaFunctionCall.getName());
-							assertNull(sendingAreaFunctionCall.getType());
 						}
 					}
 				}

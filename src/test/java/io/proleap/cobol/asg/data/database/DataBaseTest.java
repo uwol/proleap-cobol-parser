@@ -3,6 +3,7 @@ package io.proleap.cobol.asg.data.database;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -32,14 +33,14 @@ public class DataBaseTest extends CobolTestBase {
 
 		{
 			final DataBaseSectionEntry dataBaseSectionEntry1 = dataBaseSection.getDataBaseSectionEntries().get(0);
-			assertEquals(Long.valueOf(1), dataBaseSectionEntry1.getIntegerLiteral().getValue());
+			assertEquals(new BigDecimal(1), dataBaseSectionEntry1.getIntegerLiteral().getValue());
 			assertEquals("SOMELITERAL", dataBaseSectionEntry1.getValueStmt1().getValue());
 			assertEquals("SOMELITERAL2", dataBaseSectionEntry1.getValueStmt2().getValue());
 		}
 
 		{
 			final DataBaseSectionEntry dataBaseSectionEntry2 = dataBaseSection.getDataBaseSectionEntries().get(1);
-			assertEquals(Long.valueOf(2), dataBaseSectionEntry2.getIntegerLiteral().getValue());
+			assertEquals(new BigDecimal(2), dataBaseSectionEntry2.getIntegerLiteral().getValue());
 			assertEquals("SOMELITERAL3", dataBaseSectionEntry2.getValueStmt1().getValue());
 			assertEquals("SOMELITERAL4", dataBaseSectionEntry2.getValueStmt2().getValue());
 		}

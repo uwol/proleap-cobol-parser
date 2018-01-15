@@ -12,7 +12,6 @@ import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryExecSqlContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryExecSql;
-import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class DataDescriptionEntryExecSqlImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryExecSql {
 
@@ -35,11 +34,6 @@ public class DataDescriptionEntryExecSqlImpl extends DataDescriptionEntryImpl im
 	@Override
 	public String getExecSqlText() {
 		return execSqlText;
-	}
-
-	@Override
-	public Type getType() {
-		return null;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -59,7 +60,7 @@ public class DisplayUponStatementTest extends CobolTestBase {
 			{
 				final Operand operand = displayStatement.getOperands().get(2);
 				assertNotNull(operand.getOperandValueStmt());
-				assertEquals(Long.valueOf(3), operand.getOperandValueStmt().getValue());
+				assertEquals(new BigDecimal(3), operand.getOperandValueStmt().getValue());
 			}
 
 			{

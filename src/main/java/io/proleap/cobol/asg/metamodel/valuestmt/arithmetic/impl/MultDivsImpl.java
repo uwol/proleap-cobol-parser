@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +17,12 @@ import io.proleap.cobol.Cobol85Parser.MultDivsContext;
 import io.proleap.cobol.Cobol85Parser.PowerContext;
 import io.proleap.cobol.Cobol85Parser.PowersContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDiv;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDiv.MultDivType;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Powers;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
+import io.proleap.cobol.asg.util.CastUtils;
 
 public class MultDivsImpl extends ValueStmtImpl implements MultDivs {
 
@@ -114,18 +116,28 @@ public class MultDivsImpl extends ValueStmtImpl implements MultDivs {
 	}
 
 	@Override
-	public Type getType() {
-		return powers.getType();
-	}
-
-	@Override
 	public Object getValue() {
-		final Object result;
+		final BigDecimal result;
 
-		if (multDivs.isEmpty()) {
-			result = powers.getValue();
-		} else {
+		BigDecimal value = CastUtils.castBigDecimal(powers.getValue());
+
+		if (value == null) {
 			result = null;
+		} else {
+			for (final MultDiv multDiv : multDivs) {
+				final BigDecimal multDivValue = CastUtils.castBigDecimal(multDiv.getValue());
+
+				if (multDivValue == null) {
+					value = null;
+					break;
+				} else if (MultDivType.MULT.equals(multDiv.getMultDivType())) {
+					value = value.multiply(multDivValue);
+				} else if (MultDivType.DIV.equals(multDiv.getMultDivType())) {
+					value = value.divide(multDivValue);
+				}
+			}
+
+			result = value;
 		}
 
 		return result;

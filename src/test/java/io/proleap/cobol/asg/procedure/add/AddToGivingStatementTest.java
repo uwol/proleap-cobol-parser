@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -150,7 +151,7 @@ public class AddToGivingStatementTest extends CobolTestBase {
 
 					final ValueStmt fromValueStmt = from1.getFromValueStmt();
 					final LiteralValueStmt fromLiteralValueStmt = (LiteralValueStmt) fromValueStmt;
-					assertEquals(Long.valueOf(0), fromLiteralValueStmt.getValue());
+					assertEquals(new BigDecimal(0), fromLiteralValueStmt.getValue());
 				}
 
 				assertEquals(1, addToGivingStatement.getTos().size());

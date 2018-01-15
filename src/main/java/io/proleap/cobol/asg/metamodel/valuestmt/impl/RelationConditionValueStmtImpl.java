@@ -13,7 +13,6 @@ import io.proleap.cobol.Cobol85Parser.RelationCombinedComparisonContext;
 import io.proleap.cobol.Cobol85Parser.RelationConditionContext;
 import io.proleap.cobol.Cobol85Parser.RelationSignConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.RelationConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.ArithmeticComparison;
@@ -150,29 +149,6 @@ public class RelationConditionValueStmtImpl extends ValueStmtImpl implements Rel
 	@Override
 	public SignCondition getSignCondition() {
 		return signCondition;
-	}
-
-	@Override
-	public Type getType() {
-		final Type result;
-
-		switch (relationConditionType) {
-		case ARITHMETIC:
-			result = arithmeticComparison.getType();
-			break;
-		case COMBINED:
-			result = combinedComparison.getType();
-			break;
-		case SIGN:
-			result = signCondition.getType();
-			break;
-		default:
-			result = null;
-			break;
-
-		}
-
-		return result;
 	}
 
 	@Override

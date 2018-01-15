@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Test;
@@ -45,12 +46,12 @@ public class ConfigurationSectionTest extends CobolTestBase {
 
 		final MemorySizeClause memorySizeClause = objectComputerParagraph.getMemorySizeClause();
 		final IntegerLiteralValueStmt memorySizeValueStmt = (IntegerLiteralValueStmt) memorySizeClause.getValueStmt();
-		assertEquals(Long.valueOf(8192), memorySizeValueStmt.getValue());
+		assertEquals(new BigDecimal(8192), memorySizeValueStmt.getValue());
 		assertEquals(MemorySizeClause.Unit.CHARACTERS, memorySizeClause.getUnit());
 
 		final DiskSizeClause diskSizeClause = objectComputerParagraph.getDiskSizeClause();
 		final IntegerLiteralValueStmt diskSizeValueStmt = (IntegerLiteralValueStmt) diskSizeClause.getValueStmt();
-		assertEquals(Long.valueOf(4096), diskSizeValueStmt.getValue());
+		assertEquals(new BigDecimal(4096), diskSizeValueStmt.getValue());
 		assertEquals(DiskSizeClause.Unit.WORDS, diskSizeClause.getUnit());
 
 		final CollatingSequenceClause collatingSequenceClause = objectComputerParagraph.getCollatingSequenceClause();
@@ -63,6 +64,6 @@ public class ConfigurationSectionTest extends CobolTestBase {
 
 		final SegmentLimitClause segmentLimitClause = objectComputerParagraph.getSegmentLimitClause();
 		final IntegerLiteral segmentLimitIntegerLiteral = segmentLimitClause.getIntegerLiteral();
-		assertEquals(Long.valueOf(128), segmentLimitIntegerLiteral.getValue());
+		assertEquals(new BigDecimal(128), segmentLimitIntegerLiteral.getValue());
 	}
 }

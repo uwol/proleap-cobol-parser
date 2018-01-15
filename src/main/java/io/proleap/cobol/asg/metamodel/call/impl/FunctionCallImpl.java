@@ -12,7 +12,6 @@ import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.FunctionCall;
-import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class FunctionCallImpl extends CallImpl implements FunctionCall {
 
@@ -25,10 +24,5 @@ public class FunctionCallImpl extends CallImpl implements FunctionCall {
 	@Override
 	public CallType getCallType() {
 		return callType;
-	}
-
-	@Override
-	public Type getType() {
-		return null;
 	}
 }

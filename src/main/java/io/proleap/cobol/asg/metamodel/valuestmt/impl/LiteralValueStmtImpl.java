@@ -11,7 +11,6 @@ package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 import io.proleap.cobol.Cobol85Parser.LiteralContext;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 
 public class LiteralValueStmtImpl extends ValueStmtImpl implements LiteralValueStmt {
@@ -25,11 +24,6 @@ public class LiteralValueStmtImpl extends ValueStmtImpl implements LiteralValueS
 	@Override
 	public Literal getLiteral() {
 		return literal;
-	}
-
-	@Override
-	public Type getType() {
-		return literal.getType();
 	}
 
 	@Override

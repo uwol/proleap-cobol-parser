@@ -8,10 +8,11 @@
 
 package io.proleap.cobol.asg.metamodel;
 
-import io.proleap.cobol.Cobol85Parser.NumericLiteralContext;
-import io.proleap.cobol.asg.metamodel.type.TypedElement;
+import java.math.BigDecimal;
 
-public interface NumericLiteral extends CobolDivisionElement, TypedElement {
+import io.proleap.cobol.Cobol85Parser.NumericLiteralContext;
+
+public interface NumericLiteral extends CobolDivisionElement {
 
 	enum NumericLiteralType {
 		FLOAT, INTEGER
@@ -20,17 +21,11 @@ public interface NumericLiteral extends CobolDivisionElement, TypedElement {
 	@Override
 	NumericLiteralContext getCtx();
 
-	Double getFloatValue();
-
-	Long getIntegerValue();
-
 	NumericLiteralType getNumericLiteralType();
 
-	Object getValue();
-
-	void setFloatValue(Double floatValue);
-
-	void setIntegerValue(Long integerValue);
+	BigDecimal getValue();
 
 	void setNumericLiteralType(NumericLiteralType numericLiteralType);
+
+	void setValue(BigDecimal value);
 }

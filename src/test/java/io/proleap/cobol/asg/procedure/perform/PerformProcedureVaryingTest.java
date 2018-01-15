@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -74,12 +75,12 @@ public class PerformProcedureVaryingTest extends CobolTestBase {
 
 								{
 									final FromPhrase from = varyingPhrase.getFrom();
-									assertEquals(Long.valueOf(1), from.getFromValueStmt().getValue());
+									assertEquals(new BigDecimal(1), from.getFromValueStmt().getValue());
 								}
 
 								{
 									final ByPhrase by = varyingPhrase.getBy();
-									assertEquals(Long.valueOf(2), by.getByValueStmt().getValue());
+									assertEquals(new BigDecimal(2), by.getByValueStmt().getValue());
 								}
 
 								{

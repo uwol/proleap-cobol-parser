@@ -18,7 +18,6 @@ import io.proleap.cobol.Cobol85Parser.RelationConditionContext;
 import io.proleap.cobol.Cobol85Parser.SimpleConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.RelationConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.ClassCondition;
@@ -189,31 +188,6 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 	@Override
 	public SimpleConditionType getSimpleConditionType() {
 		return simpleConditionType;
-	}
-
-	@Override
-	public Type getType() {
-		final Type result;
-
-		switch (simpleConditionType) {
-		case CLASS_CONDITION:
-			result = classCondition.getType();
-			break;
-		case CONDITION:
-			result = condition.getType();
-			break;
-		case CONDITION_NAME_REFERENCE:
-			result = conditionNameReference.getType();
-			break;
-		case RELATION_CONDITION:
-			result = relationCondition.getType();
-			break;
-		default:
-			result = null;
-			break;
-		}
-
-		return result;
 	}
 
 	@Override

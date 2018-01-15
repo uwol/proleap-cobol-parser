@@ -10,8 +10,6 @@ package io.proleap.cobol.asg.metamodel.valuestmt.relation.impl;
 
 import io.proleap.cobol.Cobol85Parser.RelationalOperatorContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.RelationalOperator;
 
@@ -28,11 +26,6 @@ public class RelationalOperatorImpl extends ValueStmtImpl implements RelationalO
 	@Override
 	public RelationalOperatorType getRelationalOperatorType() {
 		return relationalOperatorType;
-	}
-
-	@Override
-	public Type getType() {
-		return CobolBaseType.BOOLEAN;
 	}
 
 	@Override

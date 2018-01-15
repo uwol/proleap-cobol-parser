@@ -19,8 +19,6 @@ import io.proleap.cobol.Cobol85Parser.InMnemonicContext;
 import io.proleap.cobol.Cobol85Parser.SubscriptContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.ConditionNameReference;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.ConditionNameSubscriptReference;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
@@ -142,11 +140,6 @@ public class ConditionNameReferenceImpl extends ValueStmtImpl implements Conditi
 	@Override
 	public List<InMnemonic> getInMnemonics() {
 		return inMnemonics;
-	}
-
-	@Override
-	public Type getType() {
-		return CobolBaseType.BOOLEAN;
 	}
 
 	@Override

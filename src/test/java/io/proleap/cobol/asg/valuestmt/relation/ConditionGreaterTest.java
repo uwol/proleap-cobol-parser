@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -108,7 +109,7 @@ public class ConditionGreaterTest extends CobolTestBase {
 
 													{
 														final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt;
-														assertEquals(Long.valueOf(1), literalValueStmt.getValue());
+														assertEquals(new BigDecimal(1), literalValueStmt.getValue());
 													}
 												}
 											}
@@ -139,7 +140,7 @@ public class ConditionGreaterTest extends CobolTestBase {
 
 													{
 														final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt;
-														assertEquals(Long.valueOf(2), literalValueStmt.getValue());
+														assertEquals(new BigDecimal(2), literalValueStmt.getValue());
 													}
 												}
 											}

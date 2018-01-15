@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -989,7 +990,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		IntegerLiteral result = (IntegerLiteral) getASGElement(ctx);
 
 		if (result == null) {
-			final Long value = StringUtils.parseLong(ctx.getText());
+			final BigDecimal value = StringUtils.parseBigDecimal(ctx.getText());
 			result = new IntegerLiteralImpl(value, programUnit, ctx);
 
 			registerASGElement(result);
@@ -1080,18 +1081,13 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final NumericLiteral.NumericLiteralType type;
 
 			if (ctx.integerLiteral() != null) {
-				final Long integerValue = StringUtils.parseLong(ctx.getText());
-				result.setIntegerValue(integerValue);
-
+				result.setValue(StringUtils.parseBigDecimal(ctx.getText()));
 				type = NumericLiteral.NumericLiteralType.INTEGER;
 			} else if (ctx.ZERO() != null) {
-				result.setIntegerValue(0l);
-
+				result.setValue(BigDecimal.ZERO);
 				type = NumericLiteral.NumericLiteralType.INTEGER;
 			} else if (ctx.NUMERICLITERAL() != null) {
-				final Double doubleValue = StringUtils.parseDouble(ctx.NUMERICLITERAL().getText());
-				result.setFloatValue(doubleValue);
-
+				result.setValue(StringUtils.parseBigDecimal(ctx.NUMERICLITERAL().getText()));
 				type = NumericLiteralType.FLOAT;
 			} else {
 				type = null;

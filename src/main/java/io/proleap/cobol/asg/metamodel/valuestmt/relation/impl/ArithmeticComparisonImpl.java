@@ -10,8 +10,6 @@ package io.proleap.cobol.asg.metamodel.valuestmt.relation.impl;
 
 import io.proleap.cobol.Cobol85Parser.RelationArithmeticComparisonContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.ArithmeticComparison;
 
@@ -35,11 +33,6 @@ public class ArithmeticComparisonImpl extends AbstractComparisonValueStmtImpl im
 	@Override
 	public ArithmeticValueStmt getArithmeticExpressionRight() {
 		return arithmeticExpressionRight;
-	}
-
-	@Override
-	public Type getType() {
-		return CobolBaseType.BOOLEAN;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -48,8 +49,8 @@ public class FileDescriptionEntryTest extends CobolTestBase {
 			{
 				final BlockContainsClause blockContainsClause = fileDescriptionEntry.getBlockContainsClause();
 				assertNotNull(blockContainsClause);
-				assertEquals(Long.valueOf(1), blockContainsClause.getFrom().getValue());
-				assertEquals(Long.valueOf(5), blockContainsClause.getTo().getValue());
+				assertEquals(new BigDecimal(1), blockContainsClause.getFrom().getValue());
+				assertEquals(new BigDecimal(5), blockContainsClause.getTo().getValue());
 			}
 
 			{
@@ -62,8 +63,8 @@ public class FileDescriptionEntryTest extends CobolTestBase {
 				final RecordContainsClause recordContainsClause = fileDescriptionEntry.getRecordContainsClause();
 				assertNotNull(recordContainsClause);
 				assertTrue(recordContainsClause.isVarying());
-				assertEquals(Long.valueOf(1), recordContainsClause.getFrom().getValue());
-				assertEquals(Long.valueOf(5), recordContainsClause.getTo().getValue());
+				assertEquals(new BigDecimal(1), recordContainsClause.getFrom().getValue());
+				assertEquals(new BigDecimal(5), recordContainsClause.getTo().getValue());
 				assertNotNull(recordContainsClause.getDependingOnCall());
 			}
 
@@ -97,13 +98,13 @@ public class FileDescriptionEntryTest extends CobolTestBase {
 				assertNotNull(linageClause);
 
 				assertNotNull(linageClause.getNumberOfLinesValueStmt());
-				assertEquals(Long.valueOf(30), linageClause.getNumberOfLinesValueStmt().getValue());
+				assertEquals(new BigDecimal(30), linageClause.getNumberOfLinesValueStmt().getValue());
 
 				assertNotNull(linageClause.getFootingAtValueStmt());
-				assertEquals(Long.valueOf(5), linageClause.getFootingAtValueStmt().getValue());
+				assertEquals(new BigDecimal(5), linageClause.getFootingAtValueStmt().getValue());
 
 				assertNotNull(linageClause.getLinesAtTopValueStmt());
-				assertEquals(Long.valueOf(2), linageClause.getLinesAtTopValueStmt().getValue());
+				assertEquals(new BigDecimal(2), linageClause.getLinesAtTopValueStmt().getValue());
 
 				assertNotNull(linageClause.getLinesAtBottomValueStmt());
 			}

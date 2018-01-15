@@ -12,7 +12,6 @@ import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.MnemonicCall;
-import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class MnemonicCallImpl extends CallImpl implements MnemonicCall {
 
@@ -25,10 +24,5 @@ public class MnemonicCallImpl extends CallImpl implements MnemonicCall {
 	@Override
 	public CallType getCallType() {
 		return callType;
-	}
-
-	@Override
-	public Type getType() {
-		return null;
 	}
 }

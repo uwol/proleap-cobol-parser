@@ -12,7 +12,6 @@ import io.proleap.cobol.Cobol85Parser.MultDivContext;
 import io.proleap.cobol.Cobol85Parser.PowerContext;
 import io.proleap.cobol.Cobol85Parser.PowersContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDiv;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Powers;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
@@ -77,11 +76,6 @@ public class MultDivImpl extends ValueStmtImpl implements MultDiv {
 	@Override
 	public Powers getPowers() {
 		return powers;
-	}
-
-	@Override
-	public Type getType() {
-		return powers.getType();
 	}
 
 	@Override

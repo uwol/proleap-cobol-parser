@@ -8,7 +8,19 @@
 
 package io.proleap.cobol.asg.util;
 
+import java.math.BigDecimal;
+
 public class StringUtils {
+
+	public static boolean isBigDecimal(final String str) {
+		try {
+			new BigDecimal(str);
+		} catch (final NumberFormatException nfe) {
+			return false;
+		}
+
+		return true;
+	}
 
 	public static boolean isBoolean(final String str) {
 		final Boolean b = Boolean.parseBoolean(str);
@@ -53,6 +65,14 @@ public class StringUtils {
 		}
 
 		return true;
+	}
+
+	public static BigDecimal parseBigDecimal(final String str) {
+		try {
+			return new BigDecimal(str);
+		} catch (final NumberFormatException nfe) {
+			return null;
+		}
 	}
 
 	public static Boolean parseBoolean(final String str) {

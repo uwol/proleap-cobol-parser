@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -52,7 +53,7 @@ public class ReportGroupDescriptionSingleTest extends CobolTestBase {
 
 				{
 					final LineNumberClause lineNumberClause = reportGroupDescriptionEntrySingle.getLineNumberClause();
-					assertEquals(Long.valueOf(2), lineNumberClause.getIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(2), lineNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{

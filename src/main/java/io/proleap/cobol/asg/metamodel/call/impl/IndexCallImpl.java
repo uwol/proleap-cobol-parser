@@ -13,7 +13,6 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.IndexCall;
 import io.proleap.cobol.asg.metamodel.data.datadescription.Index;
-import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class IndexCallImpl extends CallImpl implements IndexCall {
 
@@ -36,10 +35,5 @@ public class IndexCallImpl extends CallImpl implements IndexCall {
 	@Override
 	public Index getIndex() {
 		return index;
-	}
-
-	@Override
-	public Type getType() {
-		return null;
 	}
 }

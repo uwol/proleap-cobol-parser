@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -60,7 +61,7 @@ public class DataDescriptionValueFigurativeConstantTest extends CobolTestBase {
 					final Literal allLiteral = figurativeConstant.getLiteral();
 					assertNotNull(allLiteral);
 					assertEquals(Literal.LiteralType.NUMERIC, allLiteral.getLiteralType());
-					assertEquals(Long.valueOf(2), allLiteral.getNumericLiteral().getValue());
+					assertEquals(new BigDecimal(2), allLiteral.getNumericLiteral().getValue());
 				}
 			}
 		}

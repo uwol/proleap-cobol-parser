@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -62,7 +63,7 @@ public class IoControlTest extends CobolTestBase {
 			final MultipleFilePosition filePosition = multipleFileClause.getMultipleFilePositions().get(0);
 			final IntegerLiteralValueStmt integerLiteralValueStmt = filePosition.getIntegerLiteralValueStmt();
 
-			assertEquals(Long.valueOf(1), integerLiteralValueStmt.getValue());
+			assertEquals(new BigDecimal(1), integerLiteralValueStmt.getValue());
 		}
 
 		{
@@ -76,7 +77,7 @@ public class IoControlTest extends CobolTestBase {
 			final RerunEveryRecords rerunEveryRecords = rerunClause.getRerunEveryRecords();
 			final IntegerLiteral records = rerunEveryRecords.getRecords();
 
-			assertEquals(Long.valueOf(1), records.getValue());
+			assertEquals(new BigDecimal(1), records.getValue());
 		}
 	}
 }

@@ -14,8 +14,6 @@ import io.proleap.cobol.asg.metamodel.FigurativeConstant;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.NumericLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 
@@ -65,37 +63,6 @@ public class LiteralImpl extends CobolDivisionElementImpl implements Literal {
 	@Override
 	public NumericLiteral getNumericLiteral() {
 		return numericLiteral;
-	}
-
-	@Override
-	public Type getType() {
-		final Type result;
-
-		switch (literalType) {
-		case BOOLEAN:
-			result = booleanLiteral.getType();
-			break;
-		case CICS_DFH_RESP:
-			result = null;
-			break;
-		case CICS_DFH_VALUE:
-			result = null;
-			break;
-		case FIGURATIVE_CONSTANT:
-			result = figurativeConstant.getType();
-			break;
-		case NON_NUMERIC:
-			result = CobolBaseType.STRING;
-			break;
-		case NUMERIC:
-			result = numericLiteral.getType();
-			break;
-		default:
-			result = null;
-			break;
-		}
-
-		return result;
 	}
 
 	@Override

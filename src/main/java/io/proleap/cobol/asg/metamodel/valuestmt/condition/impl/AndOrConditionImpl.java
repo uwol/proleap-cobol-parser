@@ -15,8 +15,6 @@ import io.proleap.cobol.Cobol85Parser.AbbreviationContext;
 import io.proleap.cobol.Cobol85Parser.AndOrConditionContext;
 import io.proleap.cobol.Cobol85Parser.CombinableConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.AndOrCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.CombinableCondition;
@@ -104,11 +102,6 @@ public class AndOrConditionImpl extends ValueStmtImpl implements AndOrCondition 
 	@Override
 	public CombinableCondition getCombinableCondition() {
 		return combinableCondition;
-	}
-
-	@Override
-	public Type getType() {
-		return CobolBaseType.BOOLEAN;
 	}
 
 	@Override

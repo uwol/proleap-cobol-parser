@@ -14,8 +14,6 @@ import java.util.List;
 import io.proleap.cobol.Cobol85Parser.ConditionNameSubscriptReferenceContext;
 import io.proleap.cobol.Cobol85Parser.SubscriptContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.ConditionNameSubscriptReference;
@@ -54,11 +52,6 @@ public class ConditionNameSubscriptReferenceImpl extends ValueStmtImpl implement
 	@Override
 	public List<Subscript> getSubscripts() {
 		return subscripts;
-	}
-
-	@Override
-	public Type getType() {
-		return CobolBaseType.BOOLEAN;
 	}
 
 	@Override

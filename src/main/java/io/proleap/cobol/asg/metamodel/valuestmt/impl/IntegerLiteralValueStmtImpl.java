@@ -8,10 +8,11 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 
+import java.math.BigDecimal;
+
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.IntegerLiteralValueStmt;
 
 public class IntegerLiteralValueStmtImpl extends ValueStmtImpl implements IntegerLiteralValueStmt {
@@ -28,13 +29,8 @@ public class IntegerLiteralValueStmtImpl extends ValueStmtImpl implements Intege
 	}
 
 	@Override
-	public Type getType() {
-		return integerLiteral.getType();
-	}
-
-	@Override
-	public Long getValue() {
-		final Long result;
+	public BigDecimal getValue() {
+		final BigDecimal result;
 
 		if (integerLiteral == null) {
 			result = null;

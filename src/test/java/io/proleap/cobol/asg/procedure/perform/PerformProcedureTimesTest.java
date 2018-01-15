@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -54,7 +55,7 @@ public class PerformProcedureTimesTest extends CobolTestBase {
 					{
 						final Times times = performType.getTimes();
 						assertNotNull(times.getTimesValueStmt());
-						assertEquals(Long.valueOf(2), times.getTimesValueStmt().getValue());
+						assertEquals(new BigDecimal(2), times.getTimesValueStmt().getValue());
 					}
 				}
 			}

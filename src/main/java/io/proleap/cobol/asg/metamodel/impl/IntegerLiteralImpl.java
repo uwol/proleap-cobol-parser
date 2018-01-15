@@ -8,19 +8,19 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
+import java.math.BigDecimal;
+
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class IntegerLiteralImpl extends CobolDivisionElementImpl implements IntegerLiteral {
 
 	protected final IntegerLiteralContext ctx;
 
-	protected final Long value;
+	protected final BigDecimal value;
 
-	public IntegerLiteralImpl(final Long value, final ProgramUnit programUnit, final IntegerLiteralContext ctx) {
+	public IntegerLiteralImpl(final BigDecimal value, final ProgramUnit programUnit, final IntegerLiteralContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
@@ -33,12 +33,7 @@ public class IntegerLiteralImpl extends CobolDivisionElementImpl implements Inte
 	}
 
 	@Override
-	public Type getType() {
-		return CobolBaseType.INTEGER;
-	}
-
-	@Override
-	public Long getValue() {
+	public BigDecimal getValue() {
 		return value;
 	}
 

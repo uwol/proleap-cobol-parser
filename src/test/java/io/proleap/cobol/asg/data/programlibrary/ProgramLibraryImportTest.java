@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Test;
@@ -65,8 +66,8 @@ public class ProgramLibraryImportTest extends CobolTestBase {
 
 				final ImportAttribute importAttribute = importAttributes.get(0);
 				assertEquals(ImportAttributeType.BY_TITLE, importAttribute.getImportAttributeType());
-				assertEquals(Long.valueOf(123), importAttribute.getFunctionLiteral().getNumericLiteral().getValue());
-				assertEquals(Long.valueOf(234), importAttribute.getParameterLiteral().getNumericLiteral().getValue());
+				assertEquals(new BigDecimal(123), importAttribute.getFunctionLiteral().getNumericLiteral().getValue());
+				assertEquals(new BigDecimal(234), importAttribute.getParameterLiteral().getNumericLiteral().getValue());
 				assertEquals("SOMETITLE", importAttribute.getTitleLiteral().getNonNumericLiteral());
 			}
 
@@ -76,7 +77,7 @@ public class ProgramLibraryImportTest extends CobolTestBase {
 				assertEquals(1, importEntryProcedures.size());
 
 				final ImportEntryProcedure importEntryProcedure = importEntryProcedures.get(0);
-				assertEquals(Long.valueOf(123),
+				assertEquals(new BigDecimal(123),
 						importEntryProcedure.getForClause().getForLiteral().getNumericLiteral().getValue());
 
 				assertNotNull(importEntryProcedure.getUsingClause());

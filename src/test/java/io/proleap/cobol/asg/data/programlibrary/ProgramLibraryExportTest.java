@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -54,7 +55,7 @@ public class ProgramLibraryExportTest extends CobolTestBase {
 				assertNotNull(exportEntryProcedure);
 				assertNotNull(exportEntryProcedure.getProgramCall());
 				assertNotNull(exportEntryProcedure.getForClause());
-				assertEquals(Long.valueOf(123),
+				assertEquals(new BigDecimal(123),
 						exportEntryProcedure.getForClause().getForLiteral().getNumericLiteral().getValue());
 			}
 		}

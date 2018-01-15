@@ -13,7 +13,6 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.ScreenDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.screen.ScreenDescriptionEntry;
-import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class ScreenDescriptionEntryCallImpl extends CallImpl implements ScreenDescriptionEntryCall {
 
@@ -36,11 +35,6 @@ public class ScreenDescriptionEntryCallImpl extends CallImpl implements ScreenDe
 	@Override
 	public ScreenDescriptionEntry getScreenDescriptionEntry() {
 		return screenDescriptionEntry;
-	}
-
-	@Override
-	public Type getType() {
-		return null;
 	}
 
 	@Override

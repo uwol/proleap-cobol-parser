@@ -12,7 +12,6 @@ import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.EnvironmentCall;
-import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class EnvironmentCallImpl extends CallImpl implements EnvironmentCall {
 
@@ -25,10 +24,5 @@ public class EnvironmentCallImpl extends CallImpl implements EnvironmentCall {
 	@Override
 	public CallType getCallType() {
 		return callType;
-	}
-
-	@Override
-	public Type getType() {
-		return null;
 	}
 }

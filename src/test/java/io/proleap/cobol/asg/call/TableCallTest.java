@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -114,7 +115,7 @@ public class TableCallTest extends CobolTestBase {
 
 						{
 							final IntegerLiteral from = occursClause.getFrom();
-							assertEquals(Long.valueOf(3), from.getValue());
+							assertEquals(new BigDecimal(3), from.getValue());
 						}
 
 						{
@@ -159,7 +160,7 @@ public class TableCallTest extends CobolTestBase {
 
 							{
 								final IntegerLiteral from = occursClause.getFrom();
-								assertEquals(Long.valueOf(2), from.getValue());
+								assertEquals(new BigDecimal(2), from.getValue());
 							}
 
 							{
@@ -264,13 +265,13 @@ public class TableCallTest extends CobolTestBase {
 						{
 							final FromPhrase from = varyingPhrase.getFrom();
 							final ValueStmt fromValueStmt = from.getFromValueStmt();
-							assertEquals(Long.valueOf(1), fromValueStmt.getValue());
+							assertEquals(new BigDecimal(1), fromValueStmt.getValue());
 						}
 
 						{
 							final ByPhrase by = varyingPhrase.getBy();
 							final ValueStmt byValueStmt = by.getByValueStmt();
-							assertEquals(Long.valueOf(1), byValueStmt.getValue());
+							assertEquals(new BigDecimal(1), byValueStmt.getValue());
 						}
 
 						{
@@ -303,7 +304,7 @@ public class TableCallTest extends CobolTestBase {
 											.getArithmeticExpressionRight();
 									final ValueStmt basisValueStmt = arithmeticExpressionRight.getMultDivs().getPowers()
 											.getBasis().getBasisValueStmt();
-									assertEquals(Long.valueOf(3), basisValueStmt.getValue());
+									assertEquals(new BigDecimal(3), basisValueStmt.getValue());
 								}
 							}
 						}
@@ -361,13 +362,13 @@ public class TableCallTest extends CobolTestBase {
 						{
 							final FromPhrase from = varyingPhrase.getFrom();
 							final ValueStmt fromValueStmt = from.getFromValueStmt();
-							assertEquals(Long.valueOf(1), fromValueStmt.getValue());
+							assertEquals(new BigDecimal(1), fromValueStmt.getValue());
 						}
 
 						{
 							final ByPhrase by = varyingPhrase.getBy();
 							final ValueStmt byValueStmt = by.getByValueStmt();
-							assertEquals(Long.valueOf(1), byValueStmt.getValue());
+							assertEquals(new BigDecimal(1), byValueStmt.getValue());
 						}
 
 						{
@@ -400,7 +401,7 @@ public class TableCallTest extends CobolTestBase {
 											.getArithmeticExpressionRight();
 									final ValueStmt basisValueStmt = arithmeticExpressionRight.getMultDivs().getPowers()
 											.getBasis().getBasisValueStmt();
-									assertEquals(Long.valueOf(2), basisValueStmt.getValue());
+									assertEquals(new BigDecimal(2), basisValueStmt.getValue());
 								}
 							}
 						}

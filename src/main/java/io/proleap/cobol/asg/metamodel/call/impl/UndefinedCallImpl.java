@@ -12,7 +12,6 @@ import org.antlr.v4.runtime.ParserRuleContext;
 
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class UndefinedCallImpl extends CallImpl implements Call {
 
@@ -25,10 +24,5 @@ public class UndefinedCallImpl extends CallImpl implements Call {
 	@Override
 	public CallType getCallType() {
 		return callType;
-	}
-
-	@Override
-	public Type getType() {
-		return null;
 	}
 }

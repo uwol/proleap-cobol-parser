@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Test;
@@ -207,9 +208,9 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 
 		final OccursClause occursClause = occursClauses.get(0);
 		assertNotNull(occursClause.getFrom());
-		assertEquals(Long.valueOf(1), occursClause.getFrom().getValue());
+		assertEquals(new BigDecimal(1), occursClause.getFrom().getValue());
 		assertNotNull(occursClause.getTo());
-		assertEquals(Long.valueOf(5), occursClause.getTo().getValue());
+		assertEquals(new BigDecimal(5), occursClause.getTo().getValue());
 		assertNotNull(occursClause.getDependingOnCall());
 
 		final List<OccursSort> occursSorts = occursClause.getOccursSorts();

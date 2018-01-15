@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.relation.impl;
 
+import java.math.BigDecimal;
+
 import io.proleap.cobol.Cobol85Parser.RelationSignConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.SignCondition;
@@ -47,50 +47,22 @@ public class SignConditionImpl extends ValueStmtImpl implements SignCondition {
 	}
 
 	@Override
-	public Type getType() {
-		return CobolBaseType.BOOLEAN;
-	}
-
-	@Override
 	public Object getValue() {
+		final BigDecimal value = CastUtils.castBigDecimal(arithmeticExpression.getValue());
 		final Boolean result;
 
-		if (CobolBaseType.FLOAT.equals(arithmeticExpression.getType())) {
-			final Double value = CastUtils.castDouble(arithmeticExpression.getValue());
-
-			if (SignConditionType.POSITIVE.equals(signConditionType) && not) {
-				result = value <= 0;
-			} else if (SignConditionType.NEGATIVE.equals(signConditionType) && not) {
-				result = value >= 0;
-			} else if (SignConditionType.ZERO.equals(signConditionType) && not) {
-				result = value != 0;
-			} else if (SignConditionType.POSITIVE.equals(signConditionType)) {
-				result = value > 0;
-			} else if (SignConditionType.NEGATIVE.equals(signConditionType)) {
-				result = value < 0;
-			} else if (SignConditionType.ZERO.equals(signConditionType)) {
-				result = value == 0.0;
-			} else {
-				result = null;
-			}
-		} else if (CobolBaseType.INTEGER.equals(arithmeticExpression.getType())) {
-			final Long value = CastUtils.castLong(arithmeticExpression.getValue());
-
-			if (SignConditionType.POSITIVE.equals(signConditionType) && not) {
-				result = value <= 0;
-			} else if (SignConditionType.NEGATIVE.equals(signConditionType) && not) {
-				result = value >= 0;
-			} else if (SignConditionType.ZERO.equals(signConditionType) && not) {
-				result = value != 0;
-			} else if (SignConditionType.POSITIVE.equals(signConditionType)) {
-				result = value > 0;
-			} else if (SignConditionType.NEGATIVE.equals(signConditionType)) {
-				result = value < 0;
-			} else if (SignConditionType.ZERO.equals(signConditionType)) {
-				result = value == 0.0;
-			} else {
-				result = null;
-			}
+		if (SignConditionType.POSITIVE.equals(signConditionType) && not) {
+			result = value.signum() <= 0;
+		} else if (SignConditionType.NEGATIVE.equals(signConditionType) && not) {
+			result = value.signum() >= 0;
+		} else if (SignConditionType.ZERO.equals(signConditionType) && not) {
+			result = value.signum() != 0;
+		} else if (SignConditionType.POSITIVE.equals(signConditionType)) {
+			result = value.signum() > 0;
+		} else if (SignConditionType.NEGATIVE.equals(signConditionType)) {
+			result = value.signum() < 0;
+		} else if (SignConditionType.ZERO.equals(signConditionType)) {
+			result = value.signum() == 0.0;
 		} else {
 			result = null;
 		}

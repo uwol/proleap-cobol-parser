@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -81,13 +82,13 @@ public class ReportGroupDescriptionResetTest extends CobolTestBase {
 				{
 					final LineNumberClause lineNumberClause = reportGroupDescriptionEntryPrintable
 							.getLineNumberClause();
-					assertEquals(Long.valueOf(2), lineNumberClause.getIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(2), lineNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{
 					final ColumnNumberClause columnNumberClause = reportGroupDescriptionEntryPrintable
 							.getColumnNumberClause();
-					assertEquals(Long.valueOf(42), columnNumberClause.getIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(42), columnNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{

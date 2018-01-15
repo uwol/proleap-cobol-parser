@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +16,12 @@ import io.proleap.cobol.Cobol85Parser.BasisContext;
 import io.proleap.cobol.Cobol85Parser.PowerContext;
 import io.proleap.cobol.Cobol85Parser.PowersContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Basis;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Power;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Powers;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
+import io.proleap.cobol.asg.util.CastUtils;
 
 public class PowersImpl extends ValueStmtImpl implements Powers {
 
@@ -93,39 +93,21 @@ public class PowersImpl extends ValueStmtImpl implements Powers {
 	}
 
 	@Override
-	public Type getType() {
-		return basis.getType();
-	}
-
-	@Override
 	public Object getValue() {
-		final Object basisValue;
-
-		if (powersType == null) {
-			basisValue = basis.getValue();
-		} else if (PowersType.MINUS.equals(powersType)) {
-			if (CobolBaseType.INTEGER.equals(basis.getType())) {
-				basisValue = -1 * (Integer) basis.getValue();
-			} else if (CobolBaseType.FLOAT.equals(basis.getType())) {
-				basisValue = -1.0 * (Double) basis.getValue();
-			} else {
-				basisValue = null;
-			}
-		} else {
-			basisValue = basis.getValue();
-		}
-
 		final Object result;
 
-		if (powers.isEmpty()) {
-			result = basisValue;
-		} else if (powers.size() == 1) {
-			final Power power = powers.get(0);
-			final Object powerValue = power.getValue();
+		if (powersType == null) {
+			result = basis.getValue();
+		} else if (PowersType.MINUS.equals(powersType)) {
+			final BigDecimal basisValue = CastUtils.castBigDecimal(basis.getValue());
 
-			result = powers.get(0);
+			if (basisValue == null) {
+				result = null;
+			} else {
+				result = basisValue.multiply(new BigDecimal(-1));
+			}
 		} else {
-			result = null;
+			result = basis.getValue();
 		}
 
 		return result;

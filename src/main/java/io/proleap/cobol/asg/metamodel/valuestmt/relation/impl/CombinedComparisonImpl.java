@@ -12,8 +12,6 @@ import io.proleap.cobol.Cobol85Parser.ArithmeticExpressionContext;
 import io.proleap.cobol.Cobol85Parser.RelationCombinedComparisonContext;
 import io.proleap.cobol.Cobol85Parser.RelationCombinedConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.CombinedComparison;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.CombinedCondition;
@@ -72,11 +70,6 @@ public class CombinedComparisonImpl extends AbstractComparisonValueStmtImpl impl
 	@Override
 	public CombinedCondition getCombinedCondition() {
 		return combinedCondition;
-	}
-
-	@Override
-	public Type getType() {
-		return CobolBaseType.BOOLEAN;
 	}
 
 	@Override

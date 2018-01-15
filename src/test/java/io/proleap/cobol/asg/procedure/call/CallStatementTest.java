@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -104,7 +105,7 @@ public class CallStatementTest extends CobolTestBase {
 						final ValueStmt valueStmt = byValue.getValueStmt();
 
 						final LiteralValueStmt literalValueStmt = (LiteralValueStmt) valueStmt;
-						assertEquals(Long.valueOf(1), literalValueStmt.getValue());
+						assertEquals(new BigDecimal(1), literalValueStmt.getValue());
 					}
 
 					{
@@ -112,7 +113,7 @@ public class CallStatementTest extends CobolTestBase {
 						final ValueStmt valueStmt = byValue.getValueStmt();
 
 						final LiteralValueStmt literalValueStmt = (LiteralValueStmt) valueStmt;
-						assertEquals(Long.valueOf(2), literalValueStmt.getValue());
+						assertEquals(new BigDecimal(2), literalValueStmt.getValue());
 					}
 
 					{
@@ -152,7 +153,7 @@ public class CallStatementTest extends CobolTestBase {
 							assertNull(byContent.getByContentType());
 							assertNotNull(byContent.getValueStmt());
 
-							assertEquals(Long.valueOf(4), byContent.getValueStmt().getValue());
+							assertEquals(new BigDecimal(4), byContent.getValueStmt().getValue());
 						}
 					}
 				}

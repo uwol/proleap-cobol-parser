@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +17,13 @@ import io.proleap.cobol.Cobol85Parser.MultDivContext;
 import io.proleap.cobol.Cobol85Parser.MultDivsContext;
 import io.proleap.cobol.Cobol85Parser.PlusMinusContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinus;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinus.PlusMinusType;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl.MultDivsImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl.PlusMinusImpl;
+import io.proleap.cobol.asg.util.CastUtils;
 
 public class ArithmeticValueStmtImpl extends ValueStmtImpl implements ArithmeticValueStmt {
 
@@ -102,18 +104,28 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 	}
 
 	@Override
-	public Type getType() {
-		return multDivs.getType();
-	}
-
-	@Override
 	public Object getValue() {
-		final Object result;
+		final BigDecimal result;
 
-		if (plusMinus.isEmpty()) {
-			result = multDivs.getValue();
-		} else {
+		BigDecimal value = CastUtils.castBigDecimal(multDivs.getValue());
+
+		if (value == null) {
 			result = null;
+		} else {
+			for (final PlusMinus plusMinusEntry : plusMinus) {
+				final BigDecimal plusMinusEntryValue = CastUtils.castBigDecimal(plusMinusEntry.getValue());
+
+				if (plusMinusEntryValue == null) {
+					value = null;
+					break;
+				} else if (PlusMinusType.MINUS.equals(plusMinusEntry.getPlusMinusType())) {
+					value = value.add(plusMinusEntryValue);
+				} else if (PlusMinusType.PLUS.equals(plusMinusEntry.getPlusMinusType())) {
+					value = value.subtract(plusMinusEntryValue);
+				}
+			}
+
+			result = value;
 		}
 
 		return result;

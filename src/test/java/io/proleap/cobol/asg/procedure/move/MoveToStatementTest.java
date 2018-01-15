@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Test;
@@ -120,7 +121,7 @@ public class MoveToStatementTest extends CobolTestBase {
 					{
 						final ValueStmt sendingAreaValueStmt = sendingArea.getSendingAreaValueStmt();
 						assertNotNull(sendingAreaValueStmt);
-						assertEquals(Long.valueOf(1), sendingAreaValueStmt.getValue());
+						assertEquals(new BigDecimal(1), sendingAreaValueStmt.getValue());
 					}
 				}
 

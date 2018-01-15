@@ -11,8 +11,6 @@ package io.proleap.cobol.asg.metamodel.valuestmt.condition.impl;
 import io.proleap.cobol.Cobol85Parser.ClassConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.ClassCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 
@@ -50,11 +48,6 @@ public class ClassConditionImpl extends ValueStmtImpl implements ClassCondition 
 	@Override
 	public boolean getNot() {
 		return not;
-	}
-
-	@Override
-	public Type getType() {
-		return CobolBaseType.BOOLEAN;
 	}
 
 	@Override

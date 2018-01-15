@@ -8,21 +8,19 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
+import java.math.BigDecimal;
+
 import io.proleap.cobol.Cobol85Parser.NumericLiteralContext;
 import io.proleap.cobol.asg.metamodel.NumericLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class NumericLiteralImpl extends CobolDivisionElementImpl implements NumericLiteral {
 
 	protected final NumericLiteralContext ctx;
 
-	protected Double floatValue;
-
-	protected Long integerValue;
-
 	protected NumericLiteralType numericLiteralType;
+
+	protected BigDecimal value;
 
 	public NumericLiteralImpl(final ProgramUnit programUnit, final NumericLiteralContext ctx) {
 		super(programUnit, ctx);
@@ -36,67 +34,23 @@ public class NumericLiteralImpl extends CobolDivisionElementImpl implements Nume
 	}
 
 	@Override
-	public Double getFloatValue() {
-		return floatValue;
-	}
-
-	@Override
-	public Long getIntegerValue() {
-		return integerValue;
-	}
-
-	@Override
 	public NumericLiteralType getNumericLiteralType() {
 		return numericLiteralType;
 	}
 
 	@Override
-	public Type getType() {
-		final Type result;
-
-		switch (numericLiteralType) {
-		case INTEGER:
-			result = CobolBaseType.INTEGER;
-			break;
-		case FLOAT:
-		default:
-			result = CobolBaseType.FLOAT;
-			break;
-		}
-
-		return result;
-	}
-
-	@Override
-	public Object getValue() {
-		final Object result;
-
-		switch (numericLiteralType) {
-		case INTEGER:
-			result = integerValue;
-			break;
-		case FLOAT:
-		default:
-			result = floatValue;
-			break;
-		}
-
-		return result;
-	}
-
-	@Override
-	public void setFloatValue(final Double doubleValue) {
-		floatValue = doubleValue;
-	}
-
-	@Override
-	public void setIntegerValue(final Long integerValue) {
-		this.integerValue = integerValue;
+	public BigDecimal getValue() {
+		return value;
 	}
 
 	@Override
 	public void setNumericLiteralType(final NumericLiteralType numericLiteralType) {
 		this.numericLiteralType = numericLiteralType;
+	}
+
+	@Override
+	public void setValue(final BigDecimal value) {
+		this.value = value;
 	}
 
 	@Override

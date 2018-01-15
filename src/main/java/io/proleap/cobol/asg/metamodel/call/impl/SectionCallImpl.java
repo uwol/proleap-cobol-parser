@@ -13,7 +13,6 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.SectionCall;
 import io.proleap.cobol.asg.metamodel.procedure.Section;
-import io.proleap.cobol.asg.metamodel.type.Type;
 
 public class SectionCallImpl extends CallImpl implements SectionCall {
 
@@ -36,11 +35,6 @@ public class SectionCallImpl extends CallImpl implements SectionCall {
 	@Override
 	public Section getSection() {
 		return section;
-	}
-
-	@Override
-	public Type getType() {
-		return null;
 	}
 
 	@Override

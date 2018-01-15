@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -56,31 +57,31 @@ public class ReportDescriptionTest extends CobolTestBase {
 				{
 					final PageLimitClause pageLimitClause = reportDescriptionEntry.getPageLimitClause();
 					assertNotNull(pageLimitClause);
-					assertEquals(Long.valueOf(5), pageLimitClause.getPageLimitIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(5), pageLimitClause.getPageLimitIntegerLiteral().getValue());
 				}
 
 				{
 					final HeadingClause headingClause = reportDescriptionEntry.getHeadingClause();
 					assertNotNull(headingClause);
-					assertEquals(Long.valueOf(1), headingClause.getHeadingIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(1), headingClause.getHeadingIntegerLiteral().getValue());
 				}
 
 				{
 					final FirstDetailClause firstDetailClause = reportDescriptionEntry.getFirstDetailClause();
 					assertNotNull(firstDetailClause);
-					assertEquals(Long.valueOf(2), firstDetailClause.getFirstDetailIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(2), firstDetailClause.getFirstDetailIntegerLiteral().getValue());
 				}
 
 				{
 					final LastDetailClause lastDetailClause = reportDescriptionEntry.getLastDetailClause();
 					assertNotNull(lastDetailClause);
-					assertEquals(Long.valueOf(3), lastDetailClause.getLastDetailIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(3), lastDetailClause.getLastDetailIntegerLiteral().getValue());
 				}
 
 				{
 					final FootingClause footingClause = reportDescriptionEntry.getFootingClause();
 					assertNotNull(footingClause);
-					assertEquals(Long.valueOf(4), footingClause.getFootingIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(4), footingClause.getFootingIntegerLiteral().getValue());
 				}
 
 				{
@@ -108,31 +109,31 @@ public class ReportDescriptionTest extends CobolTestBase {
 				{
 					final PageLimitClause pageLimitClause = reportDescriptionEntry.getPageLimitClause();
 					assertNotNull(pageLimitClause);
-					assertEquals(Long.valueOf(10), pageLimitClause.getPageLimitIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(10), pageLimitClause.getPageLimitIntegerLiteral().getValue());
 				}
 
 				{
 					final HeadingClause headingClause = reportDescriptionEntry.getHeadingClause();
 					assertNotNull(headingClause);
-					assertEquals(Long.valueOf(11), headingClause.getHeadingIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(11), headingClause.getHeadingIntegerLiteral().getValue());
 				}
 
 				{
 					final FirstDetailClause firstDetailClause = reportDescriptionEntry.getFirstDetailClause();
 					assertNotNull(firstDetailClause);
-					assertEquals(Long.valueOf(12), firstDetailClause.getFirstDetailIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(12), firstDetailClause.getFirstDetailIntegerLiteral().getValue());
 				}
 
 				{
 					final LastDetailClause lastDetailClause = reportDescriptionEntry.getLastDetailClause();
 					assertNotNull(lastDetailClause);
-					assertEquals(Long.valueOf(13), lastDetailClause.getLastDetailIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(13), lastDetailClause.getLastDetailIntegerLiteral().getValue());
 				}
 
 				{
 					final FootingClause footingClause = reportDescriptionEntry.getFootingClause();
 					assertNotNull(footingClause);
-					assertEquals(Long.valueOf(14), footingClause.getFootingIntegerLiteral().getValue());
+					assertEquals(new BigDecimal(14), footingClause.getFootingIntegerLiteral().getValue());
 				}
 
 				{

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -47,7 +48,7 @@ public class SpecialNamesTest extends CobolTestBase {
 		{
 			final ChannelClause channelClause = specialNamesParagraph.getChannelClause();
 			assertNotNull(channelClause);
-			assertEquals(Long.valueOf(2), channelClause.getIntegerLiteral().getValue());
+			assertEquals(new BigDecimal(2), channelClause.getIntegerLiteral().getValue());
 			assertEquals("SOMEMNEMONIC", channelClause.getMnemonicName().getValue());
 		}
 
@@ -142,7 +143,8 @@ public class SpecialNamesTest extends CobolTestBase {
 
 				assertEquals(AlphabetClauseNationalType.CCS_VERSION,
 						alphabetClauseNational.getAlphabetClauseNationalType());
-				assertEquals(Long.valueOf(123), alphabetClauseNational.getCcsVersion().getNumericLiteral().getValue());
+				assertEquals(new BigDecimal(123),
+						alphabetClauseNational.getCcsVersion().getNumericLiteral().getValue());
 			}
 
 			{

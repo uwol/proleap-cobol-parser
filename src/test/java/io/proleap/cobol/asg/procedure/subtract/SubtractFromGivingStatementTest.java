@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -67,7 +68,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 				{
 					final Subtrahend subtrahend = subtractFromGivingStatement.getSubtrahends().get(1);
 					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
-					assertEquals(Long.valueOf(1), subtrahendValueStmt.getValue());
+					assertEquals(new BigDecimal(1), subtrahendValueStmt.getValue());
 				}
 
 				{
@@ -115,7 +116,7 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
 
 					final LiteralValueStmt subtrahendLiteralValueStmt = (LiteralValueStmt) subtrahendValueStmt;
-					assertEquals(Long.valueOf(0), subtrahendLiteralValueStmt.getValue());
+					assertEquals(new BigDecimal(0), subtrahendLiteralValueStmt.getValue());
 				}
 
 				{

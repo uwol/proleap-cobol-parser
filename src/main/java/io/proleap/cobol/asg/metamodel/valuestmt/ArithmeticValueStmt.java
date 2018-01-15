@@ -24,5 +24,4 @@ public interface ArithmeticValueStmt extends ValueStmt {
 	MultDivs getMultDivs();
 
 	List<PlusMinus> getPlusMinus();
-
 }

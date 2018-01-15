@@ -13,8 +13,6 @@ import java.util.List;
 
 import io.proleap.cobol.Cobol85Parser.RelationCombinedConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.type.CobolBaseType;
-import io.proleap.cobol.asg.metamodel.type.Type;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.CombinedCondition;
@@ -44,11 +42,6 @@ public class CombinedConditionImpl extends ValueStmtImpl implements CombinedCond
 	@Override
 	public CombinedConditionType getCombinedConditionType() {
 		return combinedConditionType;
-	}
-
-	@Override
-	public Type getType() {
-		return CobolBaseType.BOOLEAN;
 	}
 
 	@Override

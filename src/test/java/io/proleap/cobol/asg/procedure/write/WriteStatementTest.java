@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -121,7 +122,7 @@ public class WriteStatementTest extends CobolTestBase {
 					final AdvancingLines advancingLines = advancingPhrase.getAdvancingLines();
 					assertNotNull(advancingLines);
 					assertNotNull(advancingLines.getLinesValueStmt());
-					assertEquals(Long.valueOf(3), advancingLines.getLinesValueStmt().getValue());
+					assertEquals(new BigDecimal(3), advancingLines.getLinesValueStmt().getValue());
 				}
 			}
 		}

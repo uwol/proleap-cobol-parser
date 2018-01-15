@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -75,7 +76,7 @@ public class CommunicationDescriptionOutputTest extends CobolTestBase {
 				final DestinationTableClause destinationTableClause = communicationDescriptionEntryOutput
 						.getDestinationTableClause();
 				assertNotNull(destinationTableClause);
-				assertEquals(Long.valueOf(5), destinationTableClause.getOccursIntegerLiteral().getValue());
+				assertEquals(new BigDecimal(5), destinationTableClause.getOccursIntegerLiteral().getValue());
 				assertEquals(2, destinationTableClause.getIndexCalls().size());
 			}
 

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 
@@ -67,7 +68,7 @@ public class ArithmeticExpressionTest extends CobolTestBase {
 							{
 								final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt
 										.getBasisValueStmt();
-								assertEquals(Long.valueOf(2), literalValueStmt.getValue());
+								assertEquals(new BigDecimal(2), literalValueStmt.getValue());
 							}
 						}
 					}
@@ -87,7 +88,7 @@ public class ArithmeticExpressionTest extends CobolTestBase {
 								{
 									final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt
 											.getBasisValueStmt();
-									assertEquals(Long.valueOf(2), literalValueStmt.getValue());
+									assertEquals(new BigDecimal(2), literalValueStmt.getValue());
 								}
 							}
 						}
