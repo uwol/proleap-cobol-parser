@@ -191,11 +191,6 @@ public class SimpleConditionImpl extends ValueStmtImpl implements SimpleConditio
 	}
 
 	@Override
-	public Object getValue() {
-		return null;
-	}
-
-	@Override
 	public void setSimpleConditionType(final SimpleConditionType simpleConditionType) {
 		this.simpleConditionType = simpleConditionType;
 	}

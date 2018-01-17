@@ -24,5 +24,4 @@ public interface PlusMinus extends ValueStmt {
 	PlusMinusType getPlusMinusType();
 
 	void setPlusMinusType(PlusMinusType plusMinusType);
-
 }

@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -24,6 +25,7 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.By;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.InitializeStatement;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.ReplacingPhrase;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -105,7 +107,10 @@ public class InitializeStatementTest extends CobolTestBase {
 					final By by = replacingPhrase.getBys().get(0);
 					assertEquals(By.ByType.ALPHANUMERIC, by.getByType());
 					assertNotNull(by.getValueStmt());
-					assertEquals("ABC", by.getValueStmt().getValue());
+
+					final LiteralValueStmt valueStmt = (LiteralValueStmt) by.getValueStmt();
+					final Literal literal = valueStmt.getLiteral();
+					assertEquals("ABC", literal.getValue());
 				}
 			}
 		}

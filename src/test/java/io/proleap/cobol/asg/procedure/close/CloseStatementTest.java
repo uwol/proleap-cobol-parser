@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -34,6 +35,7 @@ import io.proleap.cobol.asg.metamodel.procedure.close.CloseRelativeStatement;
 import io.proleap.cobol.asg.metamodel.procedure.close.CloseStatement;
 import io.proleap.cobol.asg.metamodel.procedure.close.Using;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -258,7 +260,11 @@ public class CloseStatementTest extends CobolTestBase {
 						{
 							final AssociatedDataPhrase associatedDataPhrase = using.getAssociatedDataPhrase();
 							assertNotNull(associatedDataPhrase.getDataValueStmt());
-							assertEquals(new BigDecimal(4), associatedDataPhrase.getDataValueStmt().getValue());
+
+							final IntegerLiteralValueStmt dataLiteralValueStmt = (IntegerLiteralValueStmt) associatedDataPhrase
+									.getDataValueStmt();
+							final IntegerLiteral literal = dataLiteralValueStmt.getLiteral();
+							assertEquals(new BigDecimal(4), literal.getValue());
 						}
 					}
 				}

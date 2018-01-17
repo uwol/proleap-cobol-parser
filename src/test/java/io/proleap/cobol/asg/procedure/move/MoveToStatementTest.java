@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -25,6 +26,7 @@ import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveToSendingArea;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -86,9 +88,10 @@ public class MoveToStatementTest extends CobolTestBase {
 					assertNotNull(sendingArea);
 
 					{
-						final ValueStmt sendingAreaValueStmt = sendingArea.getSendingAreaValueStmt();
-						assertNotNull(sendingAreaValueStmt);
-						assertEquals("Test", sendingAreaValueStmt.getValue());
+						final LiteralValueStmt sendingAreaValueStmt = (LiteralValueStmt) sendingArea
+								.getSendingAreaValueStmt();
+						final Literal literal = sendingAreaValueStmt.getLiteral();
+						assertEquals("Test", literal.getValue());
 					}
 				}
 
@@ -119,9 +122,10 @@ public class MoveToStatementTest extends CobolTestBase {
 					assertNotNull(sendingArea);
 
 					{
-						final ValueStmt sendingAreaValueStmt = sendingArea.getSendingAreaValueStmt();
-						assertNotNull(sendingAreaValueStmt);
-						assertEquals(new BigDecimal(1), sendingAreaValueStmt.getValue());
+						final LiteralValueStmt sendingAreaValueStmt = (LiteralValueStmt) sendingArea
+								.getSendingAreaValueStmt();
+						final Literal literal = sendingAreaValueStmt.getLiteral();
+						assertEquals(BigDecimal.ONE, literal.getValue());
 					}
 				}
 

@@ -9,11 +9,14 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.IntegerLiteral;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.database.DataBaseSection;
 import io.proleap.cobol.asg.metamodel.data.database.DataBaseSectionEntry;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -33,16 +36,37 @@ public class DataBaseTest extends CobolTestBase {
 
 		{
 			final DataBaseSectionEntry dataBaseSectionEntry1 = dataBaseSection.getDataBaseSectionEntries().get(0);
-			assertEquals(new BigDecimal(1), dataBaseSectionEntry1.getIntegerLiteral().getValue());
-			assertEquals("SOMELITERAL", dataBaseSectionEntry1.getValueStmt1().getValue());
-			assertEquals("SOMELITERAL2", dataBaseSectionEntry1.getValueStmt2().getValue());
+			final IntegerLiteral integerLiteral = dataBaseSectionEntry1.getIntegerLiteral();
+			assertEquals(BigDecimal.ONE, integerLiteral.getValue());
+
+			{
+				final LiteralValueStmt valueStmt1 = (LiteralValueStmt) dataBaseSectionEntry1.getValueStmt1();
+				final Literal literal = valueStmt1.getLiteral();
+				assertEquals("SOMELITERAL", literal.getValue());
+			}
+
+			{
+				final LiteralValueStmt valueStmt2 = (LiteralValueStmt) dataBaseSectionEntry1.getValueStmt2();
+				final Literal literal = valueStmt2.getLiteral();
+				assertEquals("SOMELITERAL2", literal.getValue());
+			}
 		}
 
 		{
 			final DataBaseSectionEntry dataBaseSectionEntry2 = dataBaseSection.getDataBaseSectionEntries().get(1);
 			assertEquals(new BigDecimal(2), dataBaseSectionEntry2.getIntegerLiteral().getValue());
-			assertEquals("SOMELITERAL3", dataBaseSectionEntry2.getValueStmt1().getValue());
-			assertEquals("SOMELITERAL4", dataBaseSectionEntry2.getValueStmt2().getValue());
+
+			{
+				final LiteralValueStmt valueStmt1 = (LiteralValueStmt) dataBaseSectionEntry2.getValueStmt1();
+				final Literal literal = valueStmt1.getLiteral();
+				assertEquals("SOMELITERAL3", literal.getValue());
+			}
+
+			{
+				final LiteralValueStmt valueStmt2 = (LiteralValueStmt) dataBaseSectionEntry2.getValueStmt2();
+				final Literal literal = valueStmt2.getLiteral();
+				assertEquals("SOMELITERAL4", literal.getValue());
+			}
 		}
 	}
 }

@@ -105,11 +105,6 @@ public class AndOrConditionImpl extends ValueStmtImpl implements AndOrCondition 
 	}
 
 	@Override
-	public Object getValue() {
-		return null;
-	}
-
-	@Override
 	public void setAndOrConditionType(final AndOrConditionType andOrConditionType) {
 		this.andOrConditionType = andOrConditionType;
 	}

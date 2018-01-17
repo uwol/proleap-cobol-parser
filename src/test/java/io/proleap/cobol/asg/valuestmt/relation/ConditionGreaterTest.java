@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
@@ -109,7 +110,8 @@ public class ConditionGreaterTest extends CobolTestBase {
 
 													{
 														final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt;
-														assertEquals(new BigDecimal(1), literalValueStmt.getValue());
+														final Literal literal = literalValueStmt.getLiteral();
+														assertEquals(BigDecimal.ONE, literal.getValue());
 													}
 												}
 											}
@@ -140,7 +142,8 @@ public class ConditionGreaterTest extends CobolTestBase {
 
 													{
 														final LiteralValueStmt literalValueStmt = (LiteralValueStmt) basisValueStmt;
-														assertEquals(new BigDecimal(2), literalValueStmt.getValue());
+														final Literal literal = literalValueStmt.getLiteral();
+														assertEquals(new BigDecimal(2), literal.getValue());
 													}
 												}
 											}

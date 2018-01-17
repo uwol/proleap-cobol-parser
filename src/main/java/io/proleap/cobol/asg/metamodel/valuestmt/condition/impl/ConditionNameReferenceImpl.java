@@ -143,11 +143,6 @@ public class ConditionNameReferenceImpl extends ValueStmtImpl implements Conditi
 	}
 
 	@Override
-	public Object getValue() {
-		return null;
-	}
-
-	@Override
 	public void setConditionCall(final Call conditionCall) {
 		this.conditionCall = conditionCall;
 	}

@@ -8,7 +8,6 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,6 @@ import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinus;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl.MultDivsImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl.PlusMinusImpl;
-import io.proleap.cobol.asg.util.CastUtils;
 
 public class ArithmeticValueStmtImpl extends ValueStmtImpl implements ArithmeticValueStmt {
 
@@ -100,35 +98,5 @@ public class ArithmeticValueStmtImpl extends ValueStmtImpl implements Arithmetic
 	@Override
 	public List<PlusMinus> getPlusMinus() {
 		return plusMinus;
-	}
-
-	@Override
-	public Object getValue() {
-		final Object result;
-
-		if (plusMinus.isEmpty()) {
-			result = multDivs.getValue();
-		} else {
-			BigDecimal numberValue = CastUtils.castBigDecimal(multDivs.getValue());
-
-			if (numberValue == null) {
-				result = null;
-			} else {
-				for (final PlusMinus plusMinusEntry : plusMinus) {
-					final BigDecimal plusMinusEntryValue = CastUtils.castBigDecimal(plusMinusEntry.getValue());
-
-					if (plusMinusEntryValue == null) {
-						numberValue = null;
-						break;
-					} else {
-						numberValue = numberValue.add(plusMinusEntryValue);
-					}
-				}
-
-				result = numberValue;
-			}
-		}
-
-		return result;
 	}
 }

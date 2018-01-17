@@ -36,11 +36,6 @@ public class ArithmeticComparisonImpl extends AbstractComparisonValueStmtImpl im
 	}
 
 	@Override
-	public Object getValue() {
-		return null;
-	}
-
-	@Override
 	public void setArithmeticExpressionLeft(final ArithmeticValueStmt arithmeticExpressionLeft) {
 		this.arithmeticExpressionLeft = arithmeticExpressionLeft;
 	}

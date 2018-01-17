@@ -79,11 +79,6 @@ public class MultDivImpl extends ValueStmtImpl implements MultDiv {
 	}
 
 	@Override
-	public Object getValue() {
-		return powers.getValue();
-	}
-
-	@Override
 	public void setMultDivType(final MultDivType multDivType) {
 		this.multDivType = multDivType;
 	}

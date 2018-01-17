@@ -17,6 +17,4 @@ public interface ValueStmt extends CobolDivisionElement {
 	void addSubValueStmt(ValueStmt subValueStmt);
 
 	List<ValueStmt> getSubValueStmts();
-
-	Object getValue();
 }

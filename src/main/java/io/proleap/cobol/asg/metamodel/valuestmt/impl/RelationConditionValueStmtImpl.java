@@ -152,11 +152,6 @@ public class RelationConditionValueStmtImpl extends ValueStmtImpl implements Rel
 	}
 
 	@Override
-	public Object getValue() {
-		return null;
-	}
-
-	@Override
 	public void setRelationConditionType(final RelationConditionType relationConditionType) {
 		this.relationConditionType = relationConditionType;
 	}

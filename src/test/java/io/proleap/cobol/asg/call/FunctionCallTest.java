@@ -120,7 +120,6 @@ public class FunctionCallTest extends CobolTestBase {
 					{
 						final ValueStmt sendingAreaValueStmt = sendingArea.getSendingAreaValueStmt();
 						assertNotNull(sendingAreaValueStmt);
-						assertNull(sendingAreaValueStmt.getValue());
 
 						final CallValueStmt sendingAreaCallValueStmt = (CallValueStmt) sendingAreaValueStmt;
 

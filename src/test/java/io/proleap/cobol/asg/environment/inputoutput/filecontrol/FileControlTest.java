@@ -10,6 +10,8 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.IntegerLiteral;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.EnvironmentDivision;
@@ -26,6 +28,8 @@ import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.Record
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.RelativeKeyClause;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.ReserveClause;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.SelectClause;
+import io.proleap.cobol.asg.metamodel.valuestmt.IntegerLiteralValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -53,13 +57,19 @@ public class FileControlTest extends CobolTestBase {
 			final AssignClause assignClause = fileControlEntry.getAssignClause();
 			assertNotNull(assignClause);
 			assertEquals(AssignClause.AssignClauseType.CALL, assignClause.getAssignClauseType());
-			assertEquals("teacher.txt", assignClause.getToValueStmt().getValue());
+
+			final LiteralValueStmt literalValueStmt = (LiteralValueStmt) assignClause.getToValueStmt();
+			final Literal literal = literalValueStmt.getLiteral();
+			assertEquals("teacher.txt", literal.getValue());
 		}
 
 		{
 			final ReserveClause reserveClause = fileControlEntry.getReserveClause();
 			assertNotNull(reserveClause);
-			assertEquals(new BigDecimal(10), reserveClause.getValueStmt().getValue());
+
+			final IntegerLiteralValueStmt valueStmt = reserveClause.getValueStmt();
+			final IntegerLiteral literal = valueStmt.getLiteral();
+			assertEquals(new BigDecimal(10), literal.getValue());
 		}
 
 		{
@@ -73,7 +83,10 @@ public class FileControlTest extends CobolTestBase {
 		{
 			final PaddingCharacterClause paddingCharacterClause = fileControlEntry.getPaddingCharacterClause();
 			assertNotNull(paddingCharacterClause);
-			assertEquals("-", paddingCharacterClause.getValueStmt().getValue());
+
+			final LiteralValueStmt literalValueStmt = (LiteralValueStmt) paddingCharacterClause.getValueStmt();
+			final Literal literal = literalValueStmt.getLiteral();
+			assertEquals("-", literal.getValue());
 		}
 
 		{

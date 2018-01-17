@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call.CallType;
@@ -16,6 +17,7 @@ import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.cancel.CancelCall;
 import io.proleap.cobol.asg.metamodel.procedure.cancel.CancelStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -45,7 +47,9 @@ public class CancelStatementTest extends CobolTestBase {
 
 			{
 				final CancelCall cancelCall = cancelStatement.getCancelCalls().get(1);
-				assertEquals("123", cancelCall.getValueStmt().getValue());
+				final LiteralValueStmt literalValueStmt = (LiteralValueStmt) cancelCall.getValueStmt();
+				final Literal literal = literalValueStmt.getLiteral();
+				assertEquals("123", literal.getValue());
 			}
 		}
 

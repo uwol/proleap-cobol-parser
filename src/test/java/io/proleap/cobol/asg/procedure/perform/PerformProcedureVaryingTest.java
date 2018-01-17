@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
@@ -26,6 +27,7 @@ import io.proleap.cobol.asg.metamodel.procedure.perform.Varying;
 import io.proleap.cobol.asg.metamodel.procedure.perform.VaryingClause;
 import io.proleap.cobol.asg.metamodel.procedure.perform.VaryingPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -75,12 +77,16 @@ public class PerformProcedureVaryingTest extends CobolTestBase {
 
 								{
 									final FromPhrase from = varyingPhrase.getFrom();
-									assertEquals(new BigDecimal(1), from.getFromValueStmt().getValue());
+									final LiteralValueStmt fromValueStmt = (LiteralValueStmt) from.getFromValueStmt();
+									final Literal literal = fromValueStmt.getLiteral();
+									assertEquals(BigDecimal.ONE, literal.getValue());
 								}
 
 								{
 									final ByPhrase by = varyingPhrase.getBy();
-									assertEquals(new BigDecimal(2), by.getByValueStmt().getValue());
+									final LiteralValueStmt byValueStmt = (LiteralValueStmt) by.getByValueStmt();
+									final Literal literal = byValueStmt.getLiteral();
+									assertEquals(new BigDecimal(2), literal.getValue());
 								}
 
 								{

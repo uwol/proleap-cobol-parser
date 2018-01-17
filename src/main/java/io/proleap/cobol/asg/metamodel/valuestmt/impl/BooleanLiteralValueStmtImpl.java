@@ -27,19 +27,6 @@ public class BooleanLiteralValueStmtImpl extends ValueStmtImpl implements Boolea
 	}
 
 	@Override
-	public Boolean getValue() {
-		final Boolean result;
-
-		if (booleanLiteral == null) {
-			result = null;
-		} else {
-			result = booleanLiteral.getValue();
-		}
-
-		return result;
-	}
-
-	@Override
 	public void setBooleanLiteral(final BooleanLiteral booleanLiteral) {
 		this.booleanLiteral = booleanLiteral;
 	}

@@ -105,19 +105,4 @@ public class ConditionValueStmtImpl extends ValueStmtImpl implements ConditionVa
 	public CombinableCondition getCombinableCondition() {
 		return combinableCondition;
 	}
-
-	@Override
-	public Object getValue() {
-		final Object result;
-
-		if (combinableCondition == null) {
-			result = null;
-		} else if (andOrConditions.isEmpty()) {
-			result = combinableCondition.getValue();
-		} else {
-			result = null;
-		}
-
-		return result;
-	}
 }

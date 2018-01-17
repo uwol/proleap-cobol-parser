@@ -53,9 +53,4 @@ public class ConditionNameSubscriptReferenceImpl extends ValueStmtImpl implement
 	public List<Subscript> getSubscripts() {
 		return subscripts;
 	}
-
-	@Override
-	public Object getValue() {
-		return null;
-	}
 }

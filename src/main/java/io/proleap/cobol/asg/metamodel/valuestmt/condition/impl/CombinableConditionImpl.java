@@ -68,11 +68,6 @@ public class CombinableConditionImpl extends ValueStmtImpl implements Combinable
 	}
 
 	@Override
-	public Object getValue() {
-		return null;
-	}
-
-	@Override
 	public boolean isNot() {
 		return not;
 	}

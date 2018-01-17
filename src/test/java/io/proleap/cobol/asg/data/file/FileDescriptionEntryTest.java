@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
@@ -25,6 +26,7 @@ import io.proleap.cobol.asg.metamodel.data.file.LinageClause;
 import io.proleap.cobol.asg.metamodel.data.file.RecordContainsClause;
 import io.proleap.cobol.asg.metamodel.data.file.ReportClause;
 import io.proleap.cobol.asg.metamodel.data.file.ValueOfClause;
+import io.proleap.cobol.asg.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -49,7 +51,7 @@ public class FileDescriptionEntryTest extends CobolTestBase {
 			{
 				final BlockContainsClause blockContainsClause = fileDescriptionEntry.getBlockContainsClause();
 				assertNotNull(blockContainsClause);
-				assertEquals(new BigDecimal(1), blockContainsClause.getFrom().getValue());
+				assertEquals(BigDecimal.ONE, blockContainsClause.getFrom().getValue());
 				assertEquals(new BigDecimal(5), blockContainsClause.getTo().getValue());
 			}
 
@@ -63,7 +65,7 @@ public class FileDescriptionEntryTest extends CobolTestBase {
 				final RecordContainsClause recordContainsClause = fileDescriptionEntry.getRecordContainsClause();
 				assertNotNull(recordContainsClause);
 				assertTrue(recordContainsClause.isVarying());
-				assertEquals(new BigDecimal(1), recordContainsClause.getFrom().getValue());
+				assertEquals(BigDecimal.ONE, recordContainsClause.getFrom().getValue());
 				assertEquals(new BigDecimal(5), recordContainsClause.getTo().getValue());
 				assertNotNull(recordContainsClause.getDependingOnCall());
 			}
@@ -96,17 +98,34 @@ public class FileDescriptionEntryTest extends CobolTestBase {
 			{
 				final LinageClause linageClause = fileDescriptionEntry.getLinageClause();
 				assertNotNull(linageClause);
-
 				assertNotNull(linageClause.getNumberOfLinesValueStmt());
-				assertEquals(new BigDecimal(30), linageClause.getNumberOfLinesValueStmt().getValue());
-
 				assertNotNull(linageClause.getFootingAtValueStmt());
-				assertEquals(new BigDecimal(5), linageClause.getFootingAtValueStmt().getValue());
-
 				assertNotNull(linageClause.getLinesAtTopValueStmt());
-				assertEquals(new BigDecimal(2), linageClause.getLinesAtTopValueStmt().getValue());
 
-				assertNotNull(linageClause.getLinesAtBottomValueStmt());
+				{
+					final IntegerLiteralValueStmt numberOfLinesValueStmt = (IntegerLiteralValueStmt) linageClause
+							.getNumberOfLinesValueStmt();
+					final IntegerLiteral literal = numberOfLinesValueStmt.getLiteral();
+					assertEquals(new BigDecimal(30), literal.getValue());
+				}
+
+				{
+					final IntegerLiteralValueStmt footingAtValueStmt = (IntegerLiteralValueStmt) linageClause
+							.getFootingAtValueStmt();
+					final IntegerLiteral literal = footingAtValueStmt.getLiteral();
+					assertEquals(new BigDecimal(5), literal.getValue());
+				}
+
+				{
+					final IntegerLiteralValueStmt linesAtTopValueStmt = (IntegerLiteralValueStmt) linageClause
+							.getLinesAtTopValueStmt();
+					final IntegerLiteral literal = linesAtTopValueStmt.getLiteral();
+					assertEquals(new BigDecimal(2), literal.getValue());
+				}
+
+				{
+					assertNotNull(linageClause.getLinesAtBottomValueStmt());
+				}
 			}
 
 			{

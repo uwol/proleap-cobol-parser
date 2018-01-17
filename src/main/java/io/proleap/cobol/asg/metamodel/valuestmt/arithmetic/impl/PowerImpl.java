@@ -52,9 +52,4 @@ public class PowerImpl extends ValueStmtImpl implements Power {
 	public Basis getBasis() {
 		return basis;
 	}
-
-	@Override
-	public Object getValue() {
-		return basis.getValue();
-	}
 }

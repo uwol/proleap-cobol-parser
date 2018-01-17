@@ -14,8 +14,5 @@ public interface BooleanLiteralValueStmt extends ValueStmt {
 
 	BooleanLiteral getLiteral();
 
-	@Override
-	Boolean getValue();
-
 	void setBooleanLiteral(BooleanLiteral booleanLiteral);
 }

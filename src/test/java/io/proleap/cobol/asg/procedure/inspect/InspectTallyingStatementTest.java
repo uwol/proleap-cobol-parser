@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call.CallType;
@@ -21,6 +22,7 @@ import io.proleap.cobol.asg.metamodel.procedure.inspect.Characters;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.For;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.InspectStatement;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.Tallying;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -72,9 +74,12 @@ public class InspectTallyingStatementTest extends CobolTestBase {
 
 					{
 						final AllLeading allLeading = allLeadingPhrase.getAllLeadings().get(0);
-
 						assertNotNull(allLeading.getPatternDataItemValueStmt());
-						assertEquals("B", allLeading.getPatternDataItemValueStmt().getValue());
+
+						final LiteralValueStmt patternDataItemValueStmt = (LiteralValueStmt) allLeading
+								.getPatternDataItemValueStmt();
+						final Literal literal = patternDataItemValueStmt.getLiteral();
+						assertEquals("B", literal.getValue());
 						assertEquals(1, allLeading.getBeforeAfterPhrases().size());
 
 						{

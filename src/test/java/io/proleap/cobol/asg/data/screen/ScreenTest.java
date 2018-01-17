@@ -86,7 +86,7 @@ public class ScreenTest extends CobolTestBase {
 				{
 					final LineNumberClause lineNumberClause = subScreenDescriptionEntry2.getLineNumberClause();
 					assertNotNull(lineNumberClause);
-					assertEquals(new BigDecimal(1), lineNumberClause.getIntegerLiteral().getValue());
+					assertEquals(BigDecimal.ONE, lineNumberClause.getIntegerLiteral().getValue());
 				}
 
 				{

@@ -51,11 +51,6 @@ public class ClassConditionImpl extends ValueStmtImpl implements ClassCondition 
 	}
 
 	@Override
-	public Object getValue() {
-		return null;
-	}
-
-	@Override
 	public void setClassCall(final Call classCall) {
 		this.classCall = classCall;
 	}

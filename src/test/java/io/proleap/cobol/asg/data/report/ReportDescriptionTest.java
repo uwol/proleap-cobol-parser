@@ -63,7 +63,7 @@ public class ReportDescriptionTest extends CobolTestBase {
 				{
 					final HeadingClause headingClause = reportDescriptionEntry.getHeadingClause();
 					assertNotNull(headingClause);
-					assertEquals(new BigDecimal(1), headingClause.getHeadingIntegerLiteral().getValue());
+					assertEquals(BigDecimal.ONE, headingClause.getHeadingIntegerLiteral().getValue());
 				}
 
 				{

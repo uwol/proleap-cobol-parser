@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -16,6 +17,7 @@ import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.entry.EntryStatement;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -37,7 +39,10 @@ public class EntryStatementTest extends CobolTestBase {
 			assertNotNull(entryStatement);
 			assertEquals(StatementTypeEnum.ENTRY, entryStatement.getStatementType());
 			assertNotNull(entryStatement.getEntryValueStmt());
-			assertEquals("SOMEPROG", entryStatement.getEntryValueStmt().getValue());
+
+			final LiteralValueStmt entryValueStmt = (LiteralValueStmt) entryStatement.getEntryValueStmt();
+			final Literal literal = entryValueStmt.getLiteral();
+			assertEquals("SOMEPROG", literal.getValue());
 			assertEquals(2, entryStatement.getUsingCalls().size());
 
 			{

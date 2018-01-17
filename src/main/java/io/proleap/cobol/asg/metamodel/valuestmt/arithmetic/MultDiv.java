@@ -19,10 +19,9 @@ public interface MultDiv extends ValueStmt {
 
 	Powers addPowers(PowersContext ctx);
 
-	Powers getPowers();
-
 	MultDivType getMultDivType();
 
-	void setMultDivType(MultDivType multDivType);
+	Powers getPowers();
 
+	void setMultDivType(MultDivType multDivType);
 }

@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call.CallType;
@@ -105,7 +106,8 @@ public class CallStatementTest extends CobolTestBase {
 						final ValueStmt valueStmt = byValue.getValueStmt();
 
 						final LiteralValueStmt literalValueStmt = (LiteralValueStmt) valueStmt;
-						assertEquals(new BigDecimal(1), literalValueStmt.getValue());
+						final Literal literal = literalValueStmt.getLiteral();
+						assertEquals(BigDecimal.ONE, literal.getValue());
 					}
 
 					{
@@ -113,7 +115,8 @@ public class CallStatementTest extends CobolTestBase {
 						final ValueStmt valueStmt = byValue.getValueStmt();
 
 						final LiteralValueStmt literalValueStmt = (LiteralValueStmt) valueStmt;
-						assertEquals(new BigDecimal(2), literalValueStmt.getValue());
+						final Literal literal = literalValueStmt.getLiteral();
+						assertEquals(new BigDecimal(2), literal.getValue());
 					}
 
 					{
@@ -153,7 +156,9 @@ public class CallStatementTest extends CobolTestBase {
 							assertNull(byContent.getByContentType());
 							assertNotNull(byContent.getValueStmt());
 
-							assertEquals(new BigDecimal(4), byContent.getValueStmt().getValue());
+							final LiteralValueStmt literalValueStmt = (LiteralValueStmt) byContent.getValueStmt();
+							final Literal literal = literalValueStmt.getLiteral();
+							assertEquals(new BigDecimal(4), literal.getValue());
 						}
 					}
 				}

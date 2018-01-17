@@ -73,11 +73,6 @@ public class CombinedComparisonImpl extends AbstractComparisonValueStmtImpl impl
 	}
 
 	@Override
-	public Object getValue() {
-		return null;
-	}
-
-	@Override
 	public void setArithmeticExpression(final ArithmeticValueStmt arithmeticExpression) {
 		this.arithmeticExpression = arithmeticExpression;
 	}

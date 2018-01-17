@@ -11,6 +11,7 @@ import org.junit.Test;
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -49,9 +50,13 @@ import io.proleap.cobol.asg.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.RelationConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Basis;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
+import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Powers;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.CombinableCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.SimpleCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.ArithmeticComparison;
@@ -203,7 +208,10 @@ public class TableCallTest extends CobolTestBase {
 
 				{
 					final MoveToSendingArea sendingArea = moveTo.getSendingArea();
-					assertEquals("12ABCABC34ABCABC56ABCABC", sendingArea.getSendingAreaValueStmt().getValue());
+					final LiteralValueStmt sendingAreaValueStmt = (LiteralValueStmt) sendingArea
+							.getSendingAreaValueStmt();
+					final Literal sendingAreaLiteral = sendingAreaValueStmt.getLiteral();
+					assertEquals("12ABCABC34ABCABC56ABCABC", sendingAreaLiteral.getValue());
 				}
 
 				{
@@ -264,14 +272,16 @@ public class TableCallTest extends CobolTestBase {
 
 						{
 							final FromPhrase from = varyingPhrase.getFrom();
-							final ValueStmt fromValueStmt = from.getFromValueStmt();
-							assertEquals(new BigDecimal(1), fromValueStmt.getValue());
+							final LiteralValueStmt fromValueStmt = (LiteralValueStmt) from.getFromValueStmt();
+							final Literal fromLiteral = fromValueStmt.getLiteral();
+							assertEquals(BigDecimal.ONE, fromLiteral.getValue());
 						}
 
 						{
 							final ByPhrase by = varyingPhrase.getBy();
-							final ValueStmt byValueStmt = by.getByValueStmt();
-							assertEquals(new BigDecimal(1), byValueStmt.getValue());
+							final LiteralValueStmt byValueStmt = (LiteralValueStmt) by.getByValueStmt();
+							final Literal byLiteral = byValueStmt.getLiteral();
+							assertEquals(BigDecimal.ONE, byLiteral.getValue());
 						}
 
 						{
@@ -302,9 +312,13 @@ public class TableCallTest extends CobolTestBase {
 								{
 									final ArithmeticValueStmt arithmeticExpressionRight = arithmeticComparison
 											.getArithmeticExpressionRight();
-									final ValueStmt basisValueStmt = arithmeticExpressionRight.getMultDivs().getPowers()
-											.getBasis().getBasisValueStmt();
-									assertEquals(new BigDecimal(3), basisValueStmt.getValue());
+									final MultDivs multDivs = arithmeticExpressionRight.getMultDivs();
+									final Powers powers = multDivs.getPowers();
+									final Basis basis = powers.getBasis();
+									final LiteralValueStmt basisValueStmt = (LiteralValueStmt) basis
+											.getBasisValueStmt();
+									final Literal basisLiteral = basisValueStmt.getLiteral();
+									assertEquals(new BigDecimal(3), basisLiteral.getValue());
 								}
 							}
 						}
@@ -361,14 +375,16 @@ public class TableCallTest extends CobolTestBase {
 
 						{
 							final FromPhrase from = varyingPhrase.getFrom();
-							final ValueStmt fromValueStmt = from.getFromValueStmt();
-							assertEquals(new BigDecimal(1), fromValueStmt.getValue());
+							final LiteralValueStmt fromValueStmt = (LiteralValueStmt) from.getFromValueStmt();
+							final Literal fromLiteral = fromValueStmt.getLiteral();
+							assertEquals(BigDecimal.ONE, fromLiteral.getValue());
 						}
 
 						{
 							final ByPhrase by = varyingPhrase.getBy();
-							final ValueStmt byValueStmt = by.getByValueStmt();
-							assertEquals(new BigDecimal(1), byValueStmt.getValue());
+							final LiteralValueStmt byValueStmt = (LiteralValueStmt) by.getByValueStmt();
+							final Literal byLiteral = byValueStmt.getLiteral();
+							assertEquals(BigDecimal.ONE, byLiteral.getValue());
 						}
 
 						{
@@ -399,9 +415,13 @@ public class TableCallTest extends CobolTestBase {
 								{
 									final ArithmeticValueStmt arithmeticExpressionRight = arithmeticComparison
 											.getArithmeticExpressionRight();
-									final ValueStmt basisValueStmt = arithmeticExpressionRight.getMultDivs().getPowers()
-											.getBasis().getBasisValueStmt();
-									assertEquals(new BigDecimal(2), basisValueStmt.getValue());
+									final MultDivs multDivs = arithmeticExpressionRight.getMultDivs();
+									final Powers powers = multDivs.getPowers();
+									final Basis basis = powers.getBasis();
+									final LiteralValueStmt basisValueStmt = (LiteralValueStmt) basis
+											.getBasisValueStmt();
+									final Literal literal = basisValueStmt.getLiteral();
+									assertEquals(new BigDecimal(2), literal.getValue());
 								}
 							}
 						}

@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -30,6 +31,7 @@ import io.proleap.cobol.asg.metamodel.procedure.write.AdvancingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.write.From;
 import io.proleap.cobol.asg.metamodel.procedure.write.WriteStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -122,7 +124,10 @@ public class WriteStatementTest extends CobolTestBase {
 					final AdvancingLines advancingLines = advancingPhrase.getAdvancingLines();
 					assertNotNull(advancingLines);
 					assertNotNull(advancingLines.getLinesValueStmt());
-					assertEquals(new BigDecimal(3), advancingLines.getLinesValueStmt().getValue());
+
+					final LiteralValueStmt linesValueStmt = (LiteralValueStmt) advancingLines.getLinesValueStmt();
+					final Literal literal = linesValueStmt.getLiteral();
+					assertEquals(new BigDecimal(3), literal.getValue());
 				}
 			}
 		}

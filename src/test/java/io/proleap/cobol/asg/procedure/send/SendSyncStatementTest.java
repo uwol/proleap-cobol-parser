@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call.CallType;
@@ -23,6 +24,7 @@ import io.proleap.cobol.asg.metamodel.procedure.send.SendStatement;
 import io.proleap.cobol.asg.metamodel.procedure.send.Sync;
 import io.proleap.cobol.asg.metamodel.procedure.send.With;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -83,7 +85,10 @@ public class SendSyncStatementTest extends CobolTestBase {
 						final AdvancingLines advancingLines = advancing.getAdvancingLines();
 						assertNotNull(advancingLines);
 						assertNotNull(advancingLines.getLinesValueStmt());
-						assertEquals(new BigDecimal(3), advancingLines.getLinesValueStmt().getValue());
+
+						final LiteralValueStmt linesValueStmt = (LiteralValueStmt) advancingLines.getLinesValueStmt();
+						final Literal literal = linesValueStmt.getLiteral();
+						assertEquals(new BigDecimal(3), literal.getValue());
 					}
 				}
 			}

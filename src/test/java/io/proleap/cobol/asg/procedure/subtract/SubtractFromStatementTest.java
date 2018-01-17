@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -23,6 +24,7 @@ import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractFromStatement;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.SubtractStatement;
 import io.proleap.cobol.asg.metamodel.procedure.subtract.Subtrahend;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -62,8 +64,9 @@ public class SubtractFromStatementTest extends CobolTestBase {
 
 				{
 					final Subtrahend subtrahend = subtractFromStatement.getSubtrahends().get(1);
-					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
-					assertEquals(new BigDecimal(1), subtrahendValueStmt.getValue());
+					final LiteralValueStmt subtrahendValueStmt = (LiteralValueStmt) subtrahend.getSubtrahendValueStmt();
+					final Literal literal = subtrahendValueStmt.getLiteral();
+					assertEquals(BigDecimal.ONE, literal.getValue());
 				}
 
 				assertEquals(2, subtractFromStatement.getMinuends().size());

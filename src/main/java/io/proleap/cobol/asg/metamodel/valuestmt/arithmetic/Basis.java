@@ -15,5 +15,4 @@ public interface Basis extends ValueStmt {
 	ValueStmt getBasisValueStmt();
 
 	void setBasisValueStmt(ValueStmt basisValueStmt);
-
 }

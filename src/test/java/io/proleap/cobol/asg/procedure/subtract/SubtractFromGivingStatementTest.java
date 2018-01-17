@@ -67,8 +67,9 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 
 				{
 					final Subtrahend subtrahend = subtractFromGivingStatement.getSubtrahends().get(1);
-					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
-					assertEquals(new BigDecimal(1), subtrahendValueStmt.getValue());
+					final LiteralValueStmt subtrahendValueStmt = (LiteralValueStmt) subtrahend.getSubtrahendValueStmt();
+					final Literal literal = subtrahendValueStmt.getLiteral();
+					assertEquals(BigDecimal.ONE, literal.getValue());
 				}
 
 				{
@@ -116,7 +117,8 @@ public class SubtractFromGivingStatementTest extends CobolTestBase {
 					final ValueStmt subtrahendValueStmt = subtrahend.getSubtrahendValueStmt();
 
 					final LiteralValueStmt subtrahendLiteralValueStmt = (LiteralValueStmt) subtrahendValueStmt;
-					assertEquals(new BigDecimal(0), subtrahendLiteralValueStmt.getValue());
+					final Literal literal = subtrahendLiteralValueStmt.getLiteral();
+					assertEquals(BigDecimal.ZERO, literal.getValue());
 				}
 
 				{

@@ -32,11 +32,6 @@ public class BasisImpl extends ValueStmtImpl implements Basis {
 	}
 
 	@Override
-	public Object getValue() {
-		return basisValueStmt.getValue();
-	}
-
-	@Override
 	public void setBasisValueStmt(final ValueStmt basisValueStmt) {
 		this.basisValueStmt = basisValueStmt;
 	}

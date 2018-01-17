@@ -45,11 +45,6 @@ public class CombinedConditionImpl extends ValueStmtImpl implements CombinedCond
 	}
 
 	@Override
-	public Object getValue() {
-		return null;
-	}
-
-	@Override
 	public void setCombinedConditionType(final CombinedConditionType combinedConditionType) {
 		this.combinedConditionType = combinedConditionType;
 	}

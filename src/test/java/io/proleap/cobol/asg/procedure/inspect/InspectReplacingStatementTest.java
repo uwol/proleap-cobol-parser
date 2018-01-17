@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
@@ -19,6 +20,7 @@ import io.proleap.cobol.asg.metamodel.procedure.inspect.Replacing;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.ReplacingAllLeading;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.ReplacingAllLeadings;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.ReplacingCharacters;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -65,9 +67,12 @@ public class InspectReplacingStatementTest extends CobolTestBase {
 
 					{
 						final ReplacingAllLeading replacingAllLeading = replacingAllLeadings.getAllLeadings().get(0);
-
 						assertNotNull(replacingAllLeading.getPatternDataItemValueStmt());
-						assertEquals("B", replacingAllLeading.getPatternDataItemValueStmt().getValue());
+
+						final LiteralValueStmt patternDataItemValueStmt = (LiteralValueStmt) replacingAllLeading
+								.getPatternDataItemValueStmt();
+						final Literal literal = patternDataItemValueStmt.getLiteral();
+						assertEquals("B", literal.getValue());
 						assertEquals(1, replacingAllLeading.getBeforeAfterPhrases().size());
 
 						{

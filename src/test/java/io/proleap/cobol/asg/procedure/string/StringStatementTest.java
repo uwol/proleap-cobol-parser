@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -25,6 +26,7 @@ import io.proleap.cobol.asg.metamodel.procedure.string.Sendings;
 import io.proleap.cobol.asg.metamodel.procedure.string.StringStatement;
 import io.proleap.cobol.asg.metamodel.procedure.string.WithPointerPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -53,7 +55,11 @@ public class StringStatementTest extends CobolTestBase {
 
 				final DelimitedByPhrase delimitedByPhrase = sendings.getDelimitedByPhrase();
 				assertEquals(DelimitedByPhrase.DelimitedByType.CHARACTERS, delimitedByPhrase.getDelimitedByType());
-				assertEquals("1", delimitedByPhrase.getCharactersValueStmt().getValue());
+
+				final LiteralValueStmt charactersValueStmt = (LiteralValueStmt) delimitedByPhrase
+						.getCharactersValueStmt();
+				final Literal literal = charactersValueStmt.getLiteral();
+				assertEquals("1", literal.getValue());
 			}
 
 			{

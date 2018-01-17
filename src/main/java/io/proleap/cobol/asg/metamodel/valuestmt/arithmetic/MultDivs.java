@@ -23,5 +23,4 @@ public interface MultDivs extends ValueStmt {
 	List<MultDiv> getMultDivs();
 
 	Powers getPowers();
-
 }

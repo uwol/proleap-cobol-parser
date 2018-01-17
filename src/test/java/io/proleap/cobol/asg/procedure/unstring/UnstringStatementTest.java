@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
@@ -27,6 +28,7 @@ import io.proleap.cobol.asg.metamodel.procedure.unstring.Sending;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.UnstringStatement;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.WithPointerPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -60,8 +62,10 @@ public class UnstringStatementTest extends CobolTestBase {
 
 					{
 						final DelimitedByPhrase delimitedByPhrase = sending.getDelimitedByPhrase();
-						final ValueStmt delimitedByValueStmt = delimitedByPhrase.getDelimitedByValueStmt();
-						assertEquals("1", delimitedByValueStmt.getValue());
+						final LiteralValueStmt delimitedByValueStmt = (LiteralValueStmt) delimitedByPhrase
+								.getDelimitedByValueStmt();
+						final Literal literal = delimitedByValueStmt.getLiteral();
+						assertEquals("1", literal.getValue());
 					}
 
 					{

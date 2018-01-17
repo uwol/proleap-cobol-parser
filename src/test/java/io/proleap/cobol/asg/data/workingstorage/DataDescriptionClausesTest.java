@@ -208,7 +208,7 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 
 		final OccursClause occursClause = occursClauses.get(0);
 		assertNotNull(occursClause.getFrom());
-		assertEquals(new BigDecimal(1), occursClause.getFrom().getValue());
+		assertEquals(BigDecimal.ONE, occursClause.getFrom().getValue());
 		assertNotNull(occursClause.getTo());
 		assertEquals(new BigDecimal(5), occursClause.getTo().getValue());
 		assertNotNull(occursClause.getDependingOnCall());

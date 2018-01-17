@@ -8,7 +8,6 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,6 @@ import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Basis;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Power;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Powers;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
-import io.proleap.cobol.asg.util.CastUtils;
 
 public class PowersImpl extends ValueStmtImpl implements Powers {
 
@@ -90,22 +88,6 @@ public class PowersImpl extends ValueStmtImpl implements Powers {
 	@Override
 	public PowersType getPowersType() {
 		return powersType;
-	}
-
-	@Override
-	public Object getValue() {
-		final Object result;
-
-		if (powersType == null) {
-			result = basis.getValue();
-		} else if (PowersType.MINUS.equals(powersType)) {
-			final BigDecimal basisValue = CastUtils.castBigDecimal(basis.getValue());
-			result = basisValue == null ? null : basisValue.multiply(new BigDecimal(-1));
-		} else {
-			result = basis.getValue();
-		}
-
-		return result;
 	}
 
 	@Override

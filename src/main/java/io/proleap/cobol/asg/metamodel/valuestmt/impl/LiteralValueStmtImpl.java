@@ -27,19 +27,6 @@ public class LiteralValueStmtImpl extends ValueStmtImpl implements LiteralValueS
 	}
 
 	@Override
-	public Object getValue() {
-		final Object result;
-
-		if (literal == null) {
-			result = null;
-		} else {
-			result = literal.getValue();
-		}
-
-		return result;
-	}
-
-	@Override
 	public void setLiteral(final Literal literal) {
 		this.literal = literal;
 	}

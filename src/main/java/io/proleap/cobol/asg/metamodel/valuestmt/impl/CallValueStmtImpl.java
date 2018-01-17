@@ -28,9 +28,4 @@ public class CallValueStmtImpl extends ValueStmtImpl implements CallValueStmt {
 	public Call getCall() {
 		return call;
 	}
-
-	@Override
-	public Object getValue() {
-		return null;
-	}
 }

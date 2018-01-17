@@ -8,8 +8,6 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 
-import java.math.BigDecimal;
-
 import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -26,19 +24,6 @@ public class IntegerLiteralValueStmtImpl extends ValueStmtImpl implements Intege
 	@Override
 	public IntegerLiteral getLiteral() {
 		return integerLiteral;
-	}
-
-	@Override
-	public BigDecimal getValue() {
-		final BigDecimal result;
-
-		if (integerLiteral == null) {
-			result = null;
-		} else {
-			result = integerLiteral.getValue();
-		}
-
-		return result;
 	}
 
 	@Override

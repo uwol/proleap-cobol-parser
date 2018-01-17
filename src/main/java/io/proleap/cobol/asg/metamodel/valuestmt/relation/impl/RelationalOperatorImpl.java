@@ -29,11 +29,6 @@ public class RelationalOperatorImpl extends ValueStmtImpl implements RelationalO
 	}
 
 	@Override
-	public Object getValue() {
-		return null;
-	}
-
-	@Override
 	public void setRelationalOperatorType(final RelationalOperatorType relationalOperatorType) {
 		this.relationalOperatorType = relationalOperatorType;
 	}

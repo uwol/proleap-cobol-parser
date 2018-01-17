@@ -49,7 +49,6 @@ public class IoControlTest extends CobolTestBase {
 			assertFalse(ioControlParagraph.getSameClauses().isEmpty());
 
 			final SameClause sameClause = ioControlParagraph.getSameClauses().get(0);
-
 			assertEquals(2, sameClause.getFileCalls().size());
 		}
 
@@ -57,13 +56,12 @@ public class IoControlTest extends CobolTestBase {
 			assertNotNull(ioControlParagraph.getMultipleFileClause());
 
 			final MultipleFileClause multipleFileClause = ioControlParagraph.getMultipleFileClause();
-
 			assertEquals(1, multipleFileClause.getMultipleFilePositions().size());
 
 			final MultipleFilePosition filePosition = multipleFileClause.getMultipleFilePositions().get(0);
 			final IntegerLiteralValueStmt integerLiteralValueStmt = filePosition.getIntegerLiteralValueStmt();
-
-			assertEquals(new BigDecimal(1), integerLiteralValueStmt.getValue());
+			final IntegerLiteral literal = integerLiteralValueStmt.getLiteral();
+			assertEquals(BigDecimal.ONE, literal.getValue());
 		}
 
 		{
@@ -76,8 +74,7 @@ public class IoControlTest extends CobolTestBase {
 			final RerunClause rerunClause = ioControlParagraph.getRerunClause();
 			final RerunEveryRecords rerunEveryRecords = rerunClause.getRerunEveryRecords();
 			final IntegerLiteral records = rerunEveryRecords.getRecords();
-
-			assertEquals(new BigDecimal(1), records.getValue());
+			assertEquals(BigDecimal.ONE, records.getValue());
 		}
 	}
 }

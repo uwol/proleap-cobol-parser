@@ -67,11 +67,6 @@ public class AbbreviationImpl extends AbstractComparisonValueStmtImpl implements
 	}
 
 	@Override
-	public Object getValue() {
-		return null;
-	}
-
-	@Override
 	public void setArithmeticExpression(final ArithmeticValueStmt arithmeticExpression) {
 		this.arithmeticExpression = arithmeticExpression;
 	}

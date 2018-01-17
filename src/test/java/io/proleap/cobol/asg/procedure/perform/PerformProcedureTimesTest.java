@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
+import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
@@ -19,6 +20,7 @@ import io.proleap.cobol.asg.metamodel.procedure.perform.PerformProcedureStatemen
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformStatement;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformType;
 import io.proleap.cobol.asg.metamodel.procedure.perform.Times;
+import io.proleap.cobol.asg.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -55,7 +57,11 @@ public class PerformProcedureTimesTest extends CobolTestBase {
 					{
 						final Times times = performType.getTimes();
 						assertNotNull(times.getTimesValueStmt());
-						assertEquals(new BigDecimal(2), times.getTimesValueStmt().getValue());
+
+						final IntegerLiteralValueStmt timesValueStmt = (IntegerLiteralValueStmt) times
+								.getTimesValueStmt();
+						final IntegerLiteral literal = timesValueStmt.getLiteral();
+						assertEquals(new BigDecimal(2), literal.getValue());
 					}
 				}
 			}

@@ -44,26 +44,38 @@ public class ConfigurationSectionTest extends CobolTestBase {
 		assertTrue(sourceComputerParagraph.isDebuggingMode());
 		assertEquals("XYZ", sourceComputerParagraph.getName());
 
-		final MemorySizeClause memorySizeClause = objectComputerParagraph.getMemorySizeClause();
-		final IntegerLiteralValueStmt memorySizeValueStmt = (IntegerLiteralValueStmt) memorySizeClause.getValueStmt();
-		assertEquals(new BigDecimal(8192), memorySizeValueStmt.getValue());
-		assertEquals(MemorySizeClause.Unit.CHARACTERS, memorySizeClause.getUnit());
+		{
+			final MemorySizeClause memorySizeClause = objectComputerParagraph.getMemorySizeClause();
+			final IntegerLiteralValueStmt memorySizeValueStmt = (IntegerLiteralValueStmt) memorySizeClause
+					.getValueStmt();
+			final IntegerLiteral literal = memorySizeValueStmt.getLiteral();
+			assertEquals(new BigDecimal(8192), literal.getValue());
+			assertEquals(MemorySizeClause.Unit.CHARACTERS, memorySizeClause.getUnit());
+		}
 
-		final DiskSizeClause diskSizeClause = objectComputerParagraph.getDiskSizeClause();
-		final IntegerLiteralValueStmt diskSizeValueStmt = (IntegerLiteralValueStmt) diskSizeClause.getValueStmt();
-		assertEquals(new BigDecimal(4096), diskSizeValueStmt.getValue());
-		assertEquals(DiskSizeClause.Unit.WORDS, diskSizeClause.getUnit());
+		{
+			final DiskSizeClause diskSizeClause = objectComputerParagraph.getDiskSizeClause();
+			final IntegerLiteralValueStmt diskSizeValueStmt = (IntegerLiteralValueStmt) diskSizeClause.getValueStmt();
+			final IntegerLiteral literal = diskSizeValueStmt.getLiteral();
+			assertEquals(new BigDecimal(4096), literal.getValue());
+			assertEquals(DiskSizeClause.Unit.WORDS, diskSizeClause.getUnit());
+		}
 
-		final CollatingSequenceClause collatingSequenceClause = objectComputerParagraph.getCollatingSequenceClause();
-		final List<String> alphabetNames = collatingSequenceClause.getAlphabetNames();
-		assertEquals(2, alphabetNames.size());
-		assertEquals("Special-Sequence1", alphabetNames.get(0));
-		assertEquals("Special-Sequence2", alphabetNames.get(1));
-		assertEquals("Special-Sequence-Alpha", collatingSequenceClause.getAlphaNumeric());
-		assertEquals("Special-Sequence-National", collatingSequenceClause.getNational());
+		{
+			final CollatingSequenceClause collatingSequenceClause = objectComputerParagraph
+					.getCollatingSequenceClause();
+			final List<String> alphabetNames = collatingSequenceClause.getAlphabetNames();
+			assertEquals(2, alphabetNames.size());
+			assertEquals("Special-Sequence1", alphabetNames.get(0));
+			assertEquals("Special-Sequence2", alphabetNames.get(1));
+			assertEquals("Special-Sequence-Alpha", collatingSequenceClause.getAlphaNumeric());
+			assertEquals("Special-Sequence-National", collatingSequenceClause.getNational());
+		}
 
-		final SegmentLimitClause segmentLimitClause = objectComputerParagraph.getSegmentLimitClause();
-		final IntegerLiteral segmentLimitIntegerLiteral = segmentLimitClause.getIntegerLiteral();
-		assertEquals(new BigDecimal(128), segmentLimitIntegerLiteral.getValue());
+		{
+			final SegmentLimitClause segmentLimitClause = objectComputerParagraph.getSegmentLimitClause();
+			final IntegerLiteral segmentLimitIntegerLiteral = segmentLimitClause.getIntegerLiteral();
+			assertEquals(new BigDecimal(128), segmentLimitIntegerLiteral.getValue());
+		}
 	}
 }
