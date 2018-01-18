@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer.DataDescriptionEntryContainerType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.datadescription.UsageClause;
@@ -47,8 +48,7 @@ public class BinaryDataDescriptionTest extends CobolTestBase {
 			assertEquals("BINARY", dataDescriptionEntryBinary.getName());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntryBinary.getLevelNumber());
 			assertNull(dataDescriptionEntryBinary.getParentDataDescriptionEntryGroup());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-					dataDescriptionEntryBinary.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryBinary.getDataDescriptionEntryType());
 		}
 
 		final DataDescriptionEntry dataDescriptionEntryBinaryAmbiguous = workingStorageSection
@@ -59,7 +59,7 @@ public class BinaryDataDescriptionTest extends CobolTestBase {
 		{
 			assertNotNull(dataDescriptionEntryBinaryAmbiguous);
 			assertEquals("SOME-DATA-BINARY", dataDescriptionEntryBinaryAmbiguous.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+			assertEquals(DataDescriptionEntryType.GROUP,
 					dataDescriptionEntryBinaryAmbiguous.getDataDescriptionEntryType());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroupBinaryAmbiguous = (DataDescriptionEntryGroup) dataDescriptionEntryBinaryAmbiguous;
@@ -76,8 +76,7 @@ public class BinaryDataDescriptionTest extends CobolTestBase {
 		{
 			assertNotNull(dataDescriptionEntryBinaryUsage);
 			assertEquals("SOME-DATA-BINARY-USAGE", dataDescriptionEntryBinaryUsage.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-					dataDescriptionEntryBinaryUsage.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryBinaryUsage.getDataDescriptionEntryType());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroupBinaryUsage = (DataDescriptionEntryGroup) dataDescriptionEntryBinaryUsage;
 

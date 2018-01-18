@@ -18,6 +18,7 @@ import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
@@ -50,7 +51,7 @@ public class InitializeStatementTest extends CobolTestBase {
 
 		assertNotNull(someGroup);
 		assertEquals("SOMEGRP", someGroup.getName());
-		assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, someGroup.getDataDescriptionEntryType());
+		assertEquals(DataDescriptionEntryType.GROUP, someGroup.getDataDescriptionEntryType());
 
 		final DataDescriptionEntry someName = someGroup.getDataDescriptionEntry("SOMENAME");
 		assertNotNull(someName);

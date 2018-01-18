@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer.DataDescriptionEntryContainerType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
@@ -46,8 +47,7 @@ public class DataDescriptionRedefinedTest extends CobolTestBase {
 			assertNotNull(dataDescriptionEntryItems1);
 			assertEquals("ITEMS1", dataDescriptionEntryItems1.getName());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntryItems1.getLevelNumber());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-					dataDescriptionEntryItems1.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryItems1.getDataDescriptionEntryType());
 			assertNull(dataDescriptionEntryItems1.getParentDataDescriptionEntryGroup());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroupItems1 = (DataDescriptionEntryGroup) dataDescriptionEntryItems1;
@@ -61,8 +61,7 @@ public class DataDescriptionRedefinedTest extends CobolTestBase {
 				assertNotNull(dataDescriptionEntryItem);
 				assertEquals("ITEM", dataDescriptionEntryItem.getName());
 				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem.getLevelNumber());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-						dataDescriptionEntryItem.getDataDescriptionEntryType());
+				assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryItem.getDataDescriptionEntryType());
 			}
 		}
 
@@ -70,8 +69,7 @@ public class DataDescriptionRedefinedTest extends CobolTestBase {
 			assertNotNull(dataDescriptionEntryItems2);
 			assertEquals("ITEMS2", dataDescriptionEntryItems2.getName());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntryItems2.getLevelNumber());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-					dataDescriptionEntryItems2.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryItems2.getDataDescriptionEntryType());
 			assertNull(dataDescriptionEntryItems2.getParentDataDescriptionEntryGroup());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroupItems2 = (DataDescriptionEntryGroup) dataDescriptionEntryItems2;
@@ -85,8 +83,7 @@ public class DataDescriptionRedefinedTest extends CobolTestBase {
 				assertNotNull(dataDescriptionEntryItem);
 				assertEquals("ITEM", dataDescriptionEntryItem.getName());
 				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem.getLevelNumber());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-						dataDescriptionEntryItem.getDataDescriptionEntryType());
+				assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryItem.getDataDescriptionEntryType());
 			}
 		}
 	}

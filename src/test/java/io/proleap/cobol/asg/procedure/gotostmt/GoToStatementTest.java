@@ -19,6 +19,7 @@ import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer.DataDescriptionEntryContainerType;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
@@ -56,8 +57,7 @@ public class GoToStatementTest extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntry);
 			assertEquals("SOMEDATA1", dataDescriptionEntry.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-					dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntry.getLevelNumber());
 			assertNull(dataDescriptionEntry.getParentDataDescriptionEntryGroup());
 		}

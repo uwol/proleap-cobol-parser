@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -40,8 +41,7 @@ public class DataDescription88Test extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntryGender);
 			assertEquals("GENDER", dataDescriptionEntryGender.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-					dataDescriptionEntryGender.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryGender.getDataDescriptionEntryType());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntryGender.getLevelNumber());
 			assertNull(dataDescriptionEntryGender.getParentDataDescriptionEntryGroup());
 
@@ -51,7 +51,7 @@ public class DataDescription88Test extends CobolTestBase {
 
 				assertNotNull(dataDescriptionEntryMale);
 				assertEquals("MALE", dataDescriptionEntryMale.getName());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.CONDITION,
+				assertEquals(DataDescriptionEntryType.CONDITION,
 						dataDescriptionEntryMale.getDataDescriptionEntryType());
 				assertEquals(Integer.valueOf(88), dataDescriptionEntryMale.getLevelNumber());
 				assertEquals(dataDescriptionEntryGender, dataDescriptionEntryMale.getParentDataDescriptionEntryGroup());
@@ -63,7 +63,7 @@ public class DataDescription88Test extends CobolTestBase {
 
 				assertNotNull(dataDescriptionEntryFemale);
 				assertEquals("FEMALE", dataDescriptionEntryFemale.getName());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.CONDITION,
+				assertEquals(DataDescriptionEntryType.CONDITION,
 						dataDescriptionEntryFemale.getDataDescriptionEntryType());
 				assertEquals(Integer.valueOf(88), dataDescriptionEntryFemale.getLevelNumber());
 				assertEquals(dataDescriptionEntryGender,

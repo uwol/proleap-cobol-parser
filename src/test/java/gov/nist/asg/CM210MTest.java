@@ -16,6 +16,7 @@ import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationSection;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.environment.EnvironmentDivision;
@@ -65,15 +66,13 @@ public class CM210MTest extends CobolTestBase {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.getDataDescriptionEntry("MSG-72");
-					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.SCALAR,
-							dataDescriptionEntry.getDataDescriptionEntryType());
+					assertEquals(DataDescriptionEntryType.SCALAR, dataDescriptionEntry.getDataDescriptionEntryType());
 				}
 
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.getDataDescriptionEntry("RECOGNITION-MSG-1");
-					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-							dataDescriptionEntry.getDataDescriptionEntryType());
+					assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -84,8 +83,7 @@ public class CM210MTest extends CobolTestBase {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.getDataDescriptionEntry("RECOGNITION-MSG-2");
-					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-							dataDescriptionEntry.getDataDescriptionEntryType());
+					assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -96,8 +94,7 @@ public class CM210MTest extends CobolTestBase {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = workingStorageSection
 							.getDataDescriptionEntry("RECOGNITION-MSG-3");
-					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-							dataDescriptionEntry.getDataDescriptionEntryType());
+					assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -133,8 +130,7 @@ public class CM210MTest extends CobolTestBase {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = communicationSection
 							.getDataDescriptionEntry("INQUE-1-RECORD");
-					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-							dataDescriptionEntry.getDataDescriptionEntryType());
+					assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
@@ -145,8 +141,7 @@ public class CM210MTest extends CobolTestBase {
 				{
 					final DataDescriptionEntry dataDescriptionEntry = communicationSection
 							.getDataDescriptionEntry("OUTQUE-1-RECORD");
-					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-							dataDescriptionEntry.getDataDescriptionEntryType());
+					assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 
 					{
 						final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;

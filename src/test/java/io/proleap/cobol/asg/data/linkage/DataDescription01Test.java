@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer.DataDescriptionEntryContainerType;
 import io.proleap.cobol.asg.metamodel.data.linkage.LinkageSection;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -40,7 +41,7 @@ public class DataDescription01Test extends CobolTestBase {
 			final DataDescriptionEntry dataDescriptionEntryItems = linkageSection.getDataDescriptionEntry("ITEMS");
 			assertNotNull(dataDescriptionEntryItems);
 			assertEquals("ITEMS", dataDescriptionEntryItems.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItems.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryItems.getDataDescriptionEntryType());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntryItems.getLevelNumber());
 			assertNull(dataDescriptionEntryItems.getParentDataDescriptionEntryGroup());
 
@@ -48,7 +49,7 @@ public class DataDescription01Test extends CobolTestBase {
 				final DataDescriptionEntry dataDescriptionEntryItem1 = linkageSection.getDataDescriptionEntry("ITEM1");
 				assertNotNull(dataDescriptionEntryItem1);
 				assertEquals("ITEM1", dataDescriptionEntryItem1.getName());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItem1.getDataDescriptionEntryType());
+				assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryItem1.getDataDescriptionEntryType());
 				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem1.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
 			}
@@ -57,7 +58,7 @@ public class DataDescription01Test extends CobolTestBase {
 				final DataDescriptionEntry dataDescriptionEntryItem2 = linkageSection.getDataDescriptionEntry("ITEM2");
 				assertNotNull(dataDescriptionEntryItem2);
 				assertEquals("ITEM2", dataDescriptionEntryItem2.getName());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryItem2.getDataDescriptionEntryType());
+				assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryItem2.getDataDescriptionEntryType());
 				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem2.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems, dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
 			}

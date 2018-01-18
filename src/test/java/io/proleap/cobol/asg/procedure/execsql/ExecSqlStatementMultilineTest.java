@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryExecSql;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.identification.IdentificationDivision;
@@ -54,7 +55,7 @@ public class ExecSqlStatementMultilineTest extends CobolTestBase {
 					.getRootDataDescriptionEntries().get(0);
 
 			assertNotNull(dataDescriptionEntry);
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals("EXEC SQL INCLUDE SQLSCRIPT END-EXEC", dataDescriptionEntry.getExecSqlText());
 		}
 
@@ -63,7 +64,7 @@ public class ExecSqlStatementMultilineTest extends CobolTestBase {
 					.getRootDataDescriptionEntries().get(1);
 
 			assertNotNull(dataDescriptionEntry);
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals("EXEC SQL INCLUDE TEACHER END-EXEC", dataDescriptionEntry.getExecSqlText());
 		}
 
@@ -72,7 +73,7 @@ public class ExecSqlStatementMultilineTest extends CobolTestBase {
 					.getRootDataDescriptionEntries().get(2);
 
 			assertNotNull(dataDescriptionEntry);
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals("EXEC SQL BEGIN DECLARE SECTION END-EXEC", dataDescriptionEntry.getExecSqlText());
 		}
 
@@ -82,7 +83,7 @@ public class ExecSqlStatementMultilineTest extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntry);
 			assertEquals("WS-TEACHER-REC", dataDescriptionEntry.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntry.getLevelNumber());
 			assertNull(dataDescriptionEntry.getParentDataDescriptionEntryGroup());
 		}
@@ -92,7 +93,7 @@ public class ExecSqlStatementMultilineTest extends CobolTestBase {
 					.getRootDataDescriptionEntries().get(4);
 
 			assertNotNull(dataDescriptionEntry);
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals("EXEC SQL END DECLARE SECTION END-EXEC", dataDescriptionEntry.getExecSqlText());
 		}
 

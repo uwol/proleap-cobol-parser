@@ -18,6 +18,7 @@ import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.FunctionCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.identification.IdentificationDivision;
@@ -61,8 +62,7 @@ public class FunctionCallTest extends CobolTestBase {
 			assertEquals("S-SCHALTER", dataDescriptionEntrySSchalter.getName());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntrySSchalter.getLevelNumber());
 			assertNull(dataDescriptionEntrySSchalter.getParentDataDescriptionEntryGroup());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-					dataDescriptionEntrySSchalter.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntrySSchalter.getDataDescriptionEntryType());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroupSSchalter = (DataDescriptionEntryGroup) dataDescriptionEntrySSchalter;
 			assertNull(dataDescriptionEntryGroupSSchalter.getDataDescriptionEntryPredecessor());
@@ -76,8 +76,7 @@ public class FunctionCallTest extends CobolTestBase {
 			assertEquals("V0P190", dataDescriptionEntryV0P190.getName());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntryV0P190.getLevelNumber());
 			assertNull(dataDescriptionEntryV0P190.getParentDataDescriptionEntryGroup());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-					dataDescriptionEntryV0P190.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryV0P190.getDataDescriptionEntryType());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroupV0P190 = (DataDescriptionEntryGroup) dataDescriptionEntryV0P190;
 			assertNotNull(dataDescriptionEntryGroupV0P190.getDataDescriptionEntryPredecessor());
@@ -92,7 +91,7 @@ public class FunctionCallTest extends CobolTestBase {
 				assertNotNull(dataDescriptionEntryV0P190Text.getParentDataDescriptionEntryGroup());
 				assertEquals(dataDescriptionEntryV0P190,
 						dataDescriptionEntryV0P190Text.getParentDataDescriptionEntryGroup());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+				assertEquals(DataDescriptionEntryType.GROUP,
 						dataDescriptionEntryV0P190Text.getDataDescriptionEntryType());
 
 				{

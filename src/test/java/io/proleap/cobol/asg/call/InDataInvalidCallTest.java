@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer.DataDescriptionEntryContainerType;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -43,8 +44,7 @@ public class InDataInvalidCallTest extends CobolTestBase {
 			assertNotNull(dataDescriptionEntryItem);
 			assertEquals("ITEM", dataDescriptionEntryItem.getName());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntryItem.getLevelNumber());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-					dataDescriptionEntryItem.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryItem.getDataDescriptionEntryType());
 			assertNull(dataDescriptionEntryItem.getParentDataDescriptionEntryGroup());
 			assertEquals(0, dataDescriptionEntryItem.getCalls().size());
 		}

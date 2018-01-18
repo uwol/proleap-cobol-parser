@@ -22,6 +22,7 @@ import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
 import io.proleap.cobol.asg.metamodel.call.TableCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.datadescription.Index;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursClause;
@@ -97,8 +98,7 @@ public class TableCallTest extends CobolTestBase {
 				dataDescriptionEntryTbl = workingStorageSection.getRootDataDescriptionEntries().get(0);
 				assertEquals("WS-TBL", dataDescriptionEntryTbl.getName());
 				assertEquals(Integer.valueOf(1), dataDescriptionEntryTbl.getLevelNumber());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-						dataDescriptionEntryTbl.getDataDescriptionEntryType());
+				assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryTbl.getDataDescriptionEntryType());
 
 				final DataDescriptionEntryGroup dataDescriptionEntryGroupTbl = (DataDescriptionEntryGroup) dataDescriptionEntryTbl;
 				assertEquals(1, dataDescriptionEntryGroupTbl.getDataDescriptionEntries().size());
@@ -108,7 +108,7 @@ public class TableCallTest extends CobolTestBase {
 							.getDataDescriptionEntries().get(0);
 					assertEquals("WS-RECORD", dataDescriptionEntryRecord.getName());
 					assertEquals(Integer.valueOf(5), dataDescriptionEntryRecord.getLevelNumber());
-					assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+					assertEquals(DataDescriptionEntryType.GROUP,
 							dataDescriptionEntryRecord.getDataDescriptionEntryType());
 
 					final DataDescriptionEntryGroup dataDescriptionEntryGroupRecord = (DataDescriptionEntryGroup) dataDescriptionEntryRecord;
@@ -135,7 +135,7 @@ public class TableCallTest extends CobolTestBase {
 								.getDataDescriptionEntries().get(0);
 						assertEquals("WS-DELIMITER", dataDescriptionEntryDelimiter.getName());
 						assertEquals(Integer.valueOf(10), dataDescriptionEntryDelimiter.getLevelNumber());
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+						assertEquals(DataDescriptionEntryType.GROUP,
 								dataDescriptionEntryDelimiter.getDataDescriptionEntryType());
 
 						final DataDescriptionEntryGroup dataDescriptionEntryGroupDelimiter = (DataDescriptionEntryGroup) dataDescriptionEntryDelimiter;
@@ -151,7 +151,7 @@ public class TableCallTest extends CobolTestBase {
 								.getDataDescriptionEntries().get(1);
 						assertEquals("WS-CONTENT", dataDescriptionEntryContent.getName());
 						assertEquals(Integer.valueOf(10), dataDescriptionEntryContent.getLevelNumber());
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+						assertEquals(DataDescriptionEntryType.GROUP,
 								dataDescriptionEntryContent.getDataDescriptionEntryType());
 
 						final DataDescriptionEntryGroup dataDescriptionEntryGroupContent = (DataDescriptionEntryGroup) dataDescriptionEntryContent;
@@ -180,7 +180,7 @@ public class TableCallTest extends CobolTestBase {
 									.getDataDescriptionEntries().get(0);
 							assertEquals("WS-COLUMN", dataDescriptionEntryColumn.getName());
 							assertEquals(Integer.valueOf(20), dataDescriptionEntryColumn.getLevelNumber());
-							assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+							assertEquals(DataDescriptionEntryType.GROUP,
 									dataDescriptionEntryColumn.getDataDescriptionEntryType());
 
 							final DataDescriptionEntryGroup dataDescriptionEntryGroupColumn = (DataDescriptionEntryGroup) dataDescriptionEntryColumn;

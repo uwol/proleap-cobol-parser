@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -40,8 +41,7 @@ public class DataDescription77Test extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntrySomeText);
 			assertEquals("SOME-TEXT", dataDescriptionEntrySomeText.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.SCALAR,
-					dataDescriptionEntrySomeText.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.SCALAR, dataDescriptionEntrySomeText.getDataDescriptionEntryType());
 			assertEquals(Integer.valueOf(77), dataDescriptionEntrySomeText.getLevelNumber());
 			assertNull(dataDescriptionEntrySomeText.getParentDataDescriptionEntryGroup());
 		}
@@ -52,8 +52,7 @@ public class DataDescription77Test extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntrySomeNumber);
 			assertEquals("SOME-NUMBER", dataDescriptionEntrySomeNumber.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.SCALAR,
-					dataDescriptionEntrySomeNumber.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.SCALAR, dataDescriptionEntrySomeNumber.getDataDescriptionEntryType());
 			assertEquals(Integer.valueOf(77), dataDescriptionEntrySomeNumber.getLevelNumber());
 			assertNull(dataDescriptionEntrySomeNumber.getParentDataDescriptionEntryGroup());
 		}

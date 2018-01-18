@@ -16,6 +16,7 @@ import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationSection;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.asg.metamodel.environment.configuration.ConfigurationSection;
 import io.proleap.cobol.asg.metamodel.environment.configuration.object.ObjectComputerParagraph;
@@ -76,7 +77,7 @@ public class CM303MTest extends CobolTestBase {
 						final DataDescriptionEntry dataDescriptionEntry = communicationSection
 								.getDataDescriptionEntry("CREC");
 						assertNotNull(dataDescriptionEntry);
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+						assertEquals(DataDescriptionEntryType.GROUP,
 								dataDescriptionEntry.getDataDescriptionEntryType());
 						assertEquals(Integer.valueOf(1), dataDescriptionEntry.getLevelNumber());
 					}
@@ -85,7 +86,7 @@ public class CM303MTest extends CobolTestBase {
 						final DataDescriptionEntry dataDescriptionEntry = communicationSection
 								.getDataDescriptionEntry("CNAME1");
 						assertNotNull(dataDescriptionEntry);
-						assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
+						assertEquals(DataDescriptionEntryType.GROUP,
 								dataDescriptionEntry.getDataDescriptionEntryType());
 						assertEquals(Integer.valueOf(3), dataDescriptionEntry.getLevelNumber());
 					}

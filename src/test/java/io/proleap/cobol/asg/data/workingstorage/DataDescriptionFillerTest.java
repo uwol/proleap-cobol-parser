@@ -15,6 +15,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -40,8 +41,7 @@ public class DataDescriptionFillerTest extends CobolTestBase {
 			final DataDescriptionEntry dataDescriptionEntry = workingStorageSection.getDataDescriptionEntries().get(0);
 			assertNotNull(dataDescriptionEntry);
 			assertNull(dataDescriptionEntry.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-					dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntry.getLevelNumber());
 
 			{
@@ -55,8 +55,7 @@ public class DataDescriptionFillerTest extends CobolTestBase {
 			final DataDescriptionEntry dataDescriptionEntry = workingStorageSection.getDataDescriptionEntries().get(1);
 			assertNotNull(dataDescriptionEntry);
 			assertNull(dataDescriptionEntry.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-					dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntry.getLevelNumber());
 
 			{

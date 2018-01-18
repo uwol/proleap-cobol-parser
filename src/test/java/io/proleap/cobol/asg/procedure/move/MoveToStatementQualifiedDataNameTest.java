@@ -18,14 +18,15 @@ import io.proleap.cobol.asg.metamodel.call.Call.CallType;
 import io.proleap.cobol.asg.metamodel.call.DataDescriptionEntryCall;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer.DataDescriptionEntryContainerType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveStatement;
-import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.asg.metamodel.procedure.move.MoveToSendingArea;
+import io.proleap.cobol.asg.metamodel.procedure.move.MoveToStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
@@ -51,7 +52,6 @@ public class MoveToStatementQualifiedDataNameTest extends CobolTestBase {
 				workingStorageSection.getContainerType());
 
 		final DataDescriptionEntry dataDescriptionEntryItems1 = workingStorageSection.getDataDescriptionEntry("ITEMS1");
-
 		final DataDescriptionEntry dataDescriptionEntryItem1 = workingStorageSection.getDataDescriptionEntry("ITEM1");
 		final DataDescriptionEntry dataDescriptionEntryItem2 = workingStorageSection.getDataDescriptionEntry("ITEM2");
 
@@ -60,8 +60,7 @@ public class MoveToStatementQualifiedDataNameTest extends CobolTestBase {
 			assertEquals("ITEMS1", dataDescriptionEntryItems1.getName());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntryItems1.getLevelNumber());
 			assertNull(dataDescriptionEntryItems1.getParentDataDescriptionEntryGroup());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-					dataDescriptionEntryItems1.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryItems1.getDataDescriptionEntryType());
 
 			final DataDescriptionEntryGroup dataDescriptionEntryGroupItems = (DataDescriptionEntryGroup) dataDescriptionEntryItems1;
 			assertNull(dataDescriptionEntryGroupItems.getDataDescriptionEntryPredecessor());
@@ -72,8 +71,7 @@ public class MoveToStatementQualifiedDataNameTest extends CobolTestBase {
 				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem1.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems1,
 						dataDescriptionEntryItem1.getParentDataDescriptionEntryGroup());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-						dataDescriptionEntryItem1.getDataDescriptionEntryType());
+				assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryItem1.getDataDescriptionEntryType());
 
 				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem1 = (DataDescriptionEntryGroup) dataDescriptionEntryItem1;
 				assertNull(dataDescriptionEntryGroupItem1.getDataDescriptionEntryPredecessor());
@@ -87,8 +85,7 @@ public class MoveToStatementQualifiedDataNameTest extends CobolTestBase {
 				assertEquals(Integer.valueOf(2), dataDescriptionEntryItem2.getLevelNumber());
 				assertEquals(dataDescriptionEntryItems1,
 						dataDescriptionEntryItem2.getParentDataDescriptionEntryGroup());
-				assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-						dataDescriptionEntryItem2.getDataDescriptionEntryType());
+				assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryItem2.getDataDescriptionEntryType());
 
 				final DataDescriptionEntryGroup dataDescriptionEntryGroupItem2 = (DataDescriptionEntryGroup) dataDescriptionEntryItem2;
 				assertNotNull(dataDescriptionEntryGroupItem2.getDataDescriptionEntryPredecessor());

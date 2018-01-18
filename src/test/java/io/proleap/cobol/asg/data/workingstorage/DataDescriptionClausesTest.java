@@ -17,6 +17,7 @@ import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.CommonOwnLocalClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.datadescription.Index;
 import io.proleap.cobol.asg.metamodel.data.datadescription.IntegerStringClause;
@@ -38,8 +39,7 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 
 	protected void assertProperties(final DataDescriptionEntry dataDescriptionEntryItem) {
 		assertNotNull(dataDescriptionEntryItem);
-		assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP,
-				dataDescriptionEntryItem.getDataDescriptionEntryType());
+		assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryItem.getDataDescriptionEntryType());
 		assertEquals(Integer.valueOf(2), dataDescriptionEntryItem.getLevelNumber());
 	}
 

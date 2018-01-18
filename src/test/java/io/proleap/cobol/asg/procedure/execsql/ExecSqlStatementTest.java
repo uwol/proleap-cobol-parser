@@ -14,6 +14,7 @@ import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;
+import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.DataDescriptionEntryType;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryExecSql;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
@@ -46,7 +47,7 @@ public class ExecSqlStatementTest extends CobolTestBase {
 					.getRootDataDescriptionEntries().get(0);
 
 			assertNotNull(dataDescriptionEntry);
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals("EXEC SQL BEGIN DECLARE SECTION END-EXEC", dataDescriptionEntry.getExecSqlText());
 		}
 
@@ -56,7 +57,7 @@ public class ExecSqlStatementTest extends CobolTestBase {
 
 			assertNotNull(dataDescriptionEntryUserId);
 			assertEquals("userid", dataDescriptionEntryUserId.getName());
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.GROUP, dataDescriptionEntryUserId.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.GROUP, dataDescriptionEntryUserId.getDataDescriptionEntryType());
 			assertEquals(Integer.valueOf(1), dataDescriptionEntryUserId.getLevelNumber());
 			assertNull(dataDescriptionEntryUserId.getParentDataDescriptionEntryGroup());
 		}
@@ -66,7 +67,7 @@ public class ExecSqlStatementTest extends CobolTestBase {
 					.getRootDataDescriptionEntries().get(2);
 
 			assertNotNull(dataDescriptionEntry);
-			assertEquals(DataDescriptionEntry.DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
+			assertEquals(DataDescriptionEntryType.EXEC_SQL, dataDescriptionEntry.getDataDescriptionEntryType());
 			assertEquals("EXEC SQL END DECLARE SECTION END-EXEC", dataDescriptionEntry.getExecSqlText());
 		}
 
