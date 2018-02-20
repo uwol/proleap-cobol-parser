@@ -12,14 +12,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import io.proleap.cobol.preprocessor.sub.util.StringUtils;
+import io.proleap.cobol.preprocessor.sub.util.PreprocessorStringUtils;
 
-public class StringUtilsTest {
+public class PreprocessorStringUtilsTest {
 
 	@Test
 	public void testTrimQuotesDoubleQuote() throws Exception {
 		final String input = "\"test\"";
-		final String trimQuotes = StringUtils.trimQuotes(input);
+		final String trimQuotes = PreprocessorStringUtils.trimQuotes(input);
 
 		assertEquals("test", trimQuotes);
 	}
@@ -27,7 +27,7 @@ public class StringUtilsTest {
 	@Test
 	public void testTrimQuotesSingleQuote() throws Exception {
 		final String input = "'test'";
-		final String trimQuotes = StringUtils.trimQuotes(input);
+		final String trimQuotes = PreprocessorStringUtils.trimQuotes(input);
 
 		assertEquals("test", trimQuotes);
 	}

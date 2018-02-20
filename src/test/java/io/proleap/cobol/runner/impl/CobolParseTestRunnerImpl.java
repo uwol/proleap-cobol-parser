@@ -17,9 +17,9 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.Trees;
 import org.apache.commons.io.FileUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.util.Strings;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
@@ -38,7 +38,7 @@ import io.proleap.cobol.runner.CobolParseTestRunner;
  */
 public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 
-	private final static Logger LOG = LogManager.getLogger(CobolParseTestRunnerImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(CobolParseTestRunnerImpl.class);
 
 	public final static String TREE_SUFFIX = ".tree";
 
@@ -55,12 +55,12 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 			throws IOException {
 		final String treeFileData = FileUtils.readFileToString(treeFile);
 
-		if (!Strings.isBlank(treeFileData)) {
+		if (!StringUtils.isBlank(treeFileData)) {
 			LOG.info("Comparing parse tree with file {}.", treeFile.getName());
 
 			final String inputFileTree = Trees.toStringTree(startRule, parser);
-			final String cleanedInputFileTree = io.proleap.cobol.util.StringUtils.cleanFileTree(inputFileTree);
-			final String cleanedTreeFileData = io.proleap.cobol.util.StringUtils.cleanFileTree(treeFileData);
+			final String cleanedInputFileTree = io.proleap.cobol.util.CobolTestStringUtils.cleanFileTree(inputFileTree);
+			final String cleanedTreeFileData = io.proleap.cobol.util.CobolTestStringUtils.cleanFileTree(treeFileData);
 
 			assertEquals(cleanedTreeFileData, cleanedInputFileTree);
 		} else {

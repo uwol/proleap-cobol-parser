@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.data.programlibrary.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.LibraryAttributeClauseFormat1Context;
 import io.proleap.cobol.Cobol85Parser.LibraryDescriptionEntryFormat1Context;
@@ -23,7 +23,7 @@ import io.proleap.cobol.asg.metamodel.data.programlibrary.LibraryDescriptionEntr
 public class LibraryDescriptionEntryExportImpl extends LibraryDescriptionEntryImpl
 		implements LibraryDescriptionEntryExport {
 
-	private final static Logger LOG = LogManager.getLogger(LibraryDescriptionEntryExportImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(LibraryDescriptionEntryExportImpl.class);
 
 	protected final LibraryDescriptionEntryFormat1Context ctx;
 

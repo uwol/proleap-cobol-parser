@@ -17,9 +17,9 @@ import java.util.Arrays;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.util.Strings;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.StartRuleContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -36,7 +36,7 @@ public class TestGenerator {
 
 	private static final String JAVA_EXTENSION = ".java";
 
-	private final static Logger LOG = LogManager.getLogger(TestGenerator.class);
+	private final static Logger LOG = LoggerFactory.getLogger(TestGenerator.class);
 
 	private final static File OUTPUT_DIRECTORY = new File("src/test/java");
 
@@ -114,7 +114,7 @@ public class TestGenerator {
 						subOutputDirectory.mkdirs();
 
 						// determine the package name of test classes
-						final String subPackageName = Strings.isBlank(packageName) ? subInputDirectoryName
+						final String subPackageName = StringUtils.isBlank(packageName) ? subInputDirectoryName
 								: packageName + "." + subInputDirectoryName;
 
 						generateTestClasses(subInputDirectory, subOutputDirectory, subPackageName);

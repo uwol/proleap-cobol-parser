@@ -16,8 +16,8 @@ import java.util.Stack;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85PreprocessorBaseListener;
 import io.proleap.cobol.Cobol85PreprocessorParser;
@@ -45,7 +45,7 @@ import io.proleap.cobol.preprocessor.sub.util.TokenUtils;
 public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseListener
 		implements CobolDocumentParserListener {
 
-	private final static Logger LOG = LogManager.getLogger(CobolDocumentParserListenerImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(CobolDocumentParserListenerImpl.class);
 
 	private final Stack<CobolDocumentContext> contexts = new Stack<CobolDocumentContext>();
 

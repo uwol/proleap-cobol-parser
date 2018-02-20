@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.data.communication.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryFormat1Context;
 import io.proleap.cobol.Cobol85Parser.EndKeyClauseContext;
@@ -37,7 +37,7 @@ import io.proleap.cobol.asg.metamodel.data.communication.TextLengthClause;
 public class CommunicationDescriptionEntryInputImpl extends CommunicationDescriptionEntryImpl
 		implements CommunicationDescriptionEntryInput {
 
-	private final static Logger LOG = LogManager.getLogger(CommunicationDescriptionEntryInputImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(CommunicationDescriptionEntryInputImpl.class);
 
 	protected final CommunicationDescriptionEntryFormat1Context ctx;
 

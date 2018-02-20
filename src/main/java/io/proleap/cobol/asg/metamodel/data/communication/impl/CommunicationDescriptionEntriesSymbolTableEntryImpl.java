@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.data.communication.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntriesSymbolTableEntry;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptionEntry;
@@ -20,7 +20,8 @@ import io.proleap.cobol.asg.metamodel.data.communication.CommunicationDescriptio
 public class CommunicationDescriptionEntriesSymbolTableEntryImpl
 		implements CommunicationDescriptionEntriesSymbolTableEntry {
 
-	protected final static Logger LOG = LogManager.getLogger(CommunicationDescriptionEntriesSymbolTableEntryImpl.class);
+	private final static Logger LOG = LoggerFactory
+			.getLogger(CommunicationDescriptionEntriesSymbolTableEntryImpl.class);
 
 	protected List<CommunicationDescriptionEntry> communicationDescriptionEntries = new ArrayList<CommunicationDescriptionEntry>();
 

@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.ReportGroupLineNumberClauseContext;
 import io.proleap.cobol.Cobol85Parser.ReportGroupLineNumberNextPageContext;
@@ -31,7 +31,7 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 public abstract class ReportGroupDescriptionEntryImpl extends CobolDivisionElementImpl
 		implements ReportGroupDescriptionEntry {
 
-	private final static Logger LOG = LogManager.getLogger(ReportGroupDescriptionEntryImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(ReportGroupDescriptionEntryImpl.class);
 
 	protected final ParserRuleContext ctx;
 

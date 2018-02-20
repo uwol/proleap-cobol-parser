@@ -17,8 +17,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
@@ -41,7 +41,7 @@ import io.proleap.cobol.preprocessor.sub.line.writer.impl.CobolLineWriterImpl;
 
 public class CobolPreprocessorImpl implements CobolPreprocessor {
 
-	private final static Logger LOG = LogManager.getLogger(CobolPreprocessorImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(CobolPreprocessorImpl.class);
 
 	protected CobolCommentEntriesMarker createCommentEntriesMarker() {
 		return new CobolCommentEntriesMarkerImpl();

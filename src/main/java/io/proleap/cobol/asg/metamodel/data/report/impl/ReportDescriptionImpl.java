@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionContext;
 import io.proleap.cobol.Cobol85Parser.ReportDescriptionEntryContext;
@@ -46,11 +46,11 @@ import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntryPri
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntrySingle;
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntryVertical;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.util.StringUtils;
+import io.proleap.cobol.asg.util.AsgStringUtils;
 
 public class ReportDescriptionImpl extends CobolDivisionElementImpl implements ReportDescription {
 
-	private final static Logger LOG = LogManager.getLogger(ReportDescriptionImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(ReportDescriptionImpl.class);
 
 	protected List<ReportCall> calls = new ArrayList<ReportCall>();
 
@@ -146,7 +146,7 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 			/*
 			 * level number
 			 */
-			final Integer levelNumber = StringUtils.parseInteger(ctx.integerLiteral().getText());
+			final Integer levelNumber = AsgStringUtils.parseInteger(ctx.integerLiteral().getText());
 			result.setLevelNumber(levelNumber);
 
 			/*
@@ -294,7 +294,7 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 			/*
 			 * level number
 			 */
-			final Integer levelNumber = StringUtils.parseInteger(ctx.integerLiteral().getText());
+			final Integer levelNumber = AsgStringUtils.parseInteger(ctx.integerLiteral().getText());
 			result.setLevelNumber(levelNumber);
 
 			/*
@@ -334,7 +334,7 @@ public class ReportDescriptionImpl extends CobolDivisionElementImpl implements R
 			/*
 			 * level number
 			 */
-			final Integer levelNumber = StringUtils.parseInteger(ctx.integerLiteral().getText());
+			final Integer levelNumber = AsgStringUtils.parseInteger(ctx.integerLiteral().getText());
 			result.setLevelNumber(levelNumber);
 
 			/*

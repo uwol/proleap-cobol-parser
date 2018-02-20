@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionUsingClauseContext;
 import io.proleap.cobol.Cobol85Parser.ProcedureDivisionUsingParameterContext;
@@ -24,7 +24,7 @@ import io.proleap.cobol.asg.metamodel.procedure.UsingParameter.UsingParameterTyp
 
 public class UsingClauseImpl extends CobolDivisionElementImpl implements UsingClause {
 
-	private final static Logger LOG = LogManager.getLogger(UsingClauseImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(UsingClauseImpl.class);
 
 	protected final ProcedureDivisionUsingClauseContext ctx;
 

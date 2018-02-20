@@ -11,15 +11,15 @@ package io.proleap.cobol.asg.metamodel.procedure.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.asg.metamodel.procedure.Section;
 import io.proleap.cobol.asg.metamodel.procedure.SectionsSymbolTableEntry;
 
 public class SectionsSymbolTableEntryImpl implements SectionsSymbolTableEntry {
 
-	protected final static Logger LOG = LogManager.getLogger(SectionsSymbolTableEntryImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(SectionsSymbolTableEntryImpl.class);
 
 	protected List<Section> sections = new ArrayList<Section>();
 

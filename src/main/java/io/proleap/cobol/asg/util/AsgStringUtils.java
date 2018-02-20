@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.util;
 
 import java.math.BigDecimal;
 
-public class StringUtils {
+public class AsgStringUtils {
 
 	public static boolean isBigDecimal(final String str) {
 		try {

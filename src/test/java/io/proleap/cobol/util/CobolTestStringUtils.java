@@ -1,6 +1,6 @@
 package io.proleap.cobol.util;
 
-public class StringUtils {
+public class CobolTestStringUtils {
 
 	/**
 	 * To be removed, as soon as the grammar does not require NEWLINEs and WS

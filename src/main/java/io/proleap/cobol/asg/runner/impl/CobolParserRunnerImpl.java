@@ -18,8 +18,8 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
@@ -47,7 +47,7 @@ import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 
 public class CobolParserRunnerImpl implements CobolParserRunner {
 
-	protected final static Logger LOG = LogManager.getLogger(CobolParserRunnerImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(CobolParserRunnerImpl.class);
 
 	protected void analyze(final Program program) {
 		analyzeProgramUnits(program);

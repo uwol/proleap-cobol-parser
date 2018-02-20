@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.data.file.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
 import io.proleap.cobol.Cobol85Parser.BlockContainsToContext;
@@ -55,7 +55,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl implements FileDescriptionEntry {
 
-	private final static Logger LOG = LogManager.getLogger(FileDescriptionEntryImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(FileDescriptionEntryImpl.class);
 
 	protected BlockContainsClause blockContainsClause;
 

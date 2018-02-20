@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
@@ -54,14 +54,14 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryE
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryRename;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.util.StringUtils;
+import io.proleap.cobol.asg.util.AsgStringUtils;
 import io.proleap.cobol.asg.util.TagUtils;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 
 public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionElementImpl
 		implements DataDescriptionEntryContainer {
 
-	private final static Logger LOG = LogManager.getLogger(DataDescriptionEntryContainerImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(DataDescriptionEntryContainerImpl.class);
 
 	protected List<DataDescriptionEntry> dataDescriptionEntries = new ArrayList<DataDescriptionEntry>();
 
@@ -127,7 +127,7 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 			if (ctx.LEVEL_NUMBER_77() != null) {
 				levelNumber = DataDescriptionEntry.LEVEL_NUMBER_SCALAR;
 			} else if (ctx.INTEGERLITERAL() != null) {
-				levelNumber = StringUtils.parseInteger(ctx.INTEGERLITERAL().getText());
+				levelNumber = AsgStringUtils.parseInteger(ctx.INTEGERLITERAL().getText());
 			} else {
 				levelNumber = null;
 			}

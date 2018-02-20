@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryContext;
 import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryFormat1Context;
@@ -46,7 +46,7 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.impl.DataDescriptionE
 
 public class CommunicationSectionImpl extends DataDescriptionEntryContainerImpl implements CommunicationSection {
 
-	private final static Logger LOG = LogManager.getLogger(CommunicationSectionImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(CommunicationSectionImpl.class);
 
 	protected List<CommunicationDescriptionEntry> communicationDescriptionEntries = new ArrayList<CommunicationDescriptionEntry>();
 

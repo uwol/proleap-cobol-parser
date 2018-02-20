@@ -17,7 +17,7 @@ import org.apache.commons.io.FileUtils;
 import io.proleap.cobol.Cobol85PreprocessorParser.LiteralContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.sub.copybook.LiteralCopyBookFinder;
-import io.proleap.cobol.preprocessor.sub.util.StringUtils;
+import io.proleap.cobol.preprocessor.sub.util.PreprocessorStringUtils;
 
 public class LiteralCopyBookFinderImpl implements LiteralCopyBookFinder {
 
@@ -56,7 +56,7 @@ public class LiteralCopyBookFinderImpl implements LiteralCopyBookFinder {
 
 	protected boolean isMatchingCopyBook(final File copyBookCandidate, final File cobolCopyDir,
 			final LiteralContext ctx) {
-		final String copyBookIdentifier = StringUtils.trimQuotes(ctx.getText()).replace("\\", "/");
+		final String copyBookIdentifier = PreprocessorStringUtils.trimQuotes(ctx.getText()).replace("\\", "/");
 		final boolean result;
 
 		if (cobolCopyDir == null) {

@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.environment.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
 import io.proleap.cobol.Cobol85Parser.ConfigurationSectionParagraphContext;
@@ -30,7 +30,7 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionImpl;
 
 public class EnvironmentDivisionImpl extends CobolDivisionImpl implements EnvironmentDivision {
 
-	private final static Logger LOG = LogManager.getLogger(EnvironmentDivisionImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(EnvironmentDivisionImpl.class);
 
 	protected ConfigurationSection configurationSection;
 

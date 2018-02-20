@@ -48,7 +48,7 @@ import io.proleap.cobol.asg.metamodel.data.screen.ScreenDescriptionEntriesSymbol
 import io.proleap.cobol.asg.metamodel.data.screen.ScreenDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.screen.ScreenSection;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.util.StringUtils;
+import io.proleap.cobol.asg.util.AsgStringUtils;
 
 public class ScreenSectionImpl extends CobolDivisionElementImpl implements ScreenSection {
 
@@ -78,7 +78,7 @@ public class ScreenSectionImpl extends CobolDivisionElementImpl implements Scree
 			final Integer levelNumber;
 
 			if (ctx.INTEGERLITERAL() != null) {
-				levelNumber = StringUtils.parseInteger(ctx.INTEGERLITERAL().getText());
+				levelNumber = AsgStringUtils.parseInteger(ctx.INTEGERLITERAL().getText());
 			} else {
 				levelNumber = null;
 			}

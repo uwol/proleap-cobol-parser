@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.perform.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.PerformInlineStatementContext;
 import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
@@ -34,7 +34,7 @@ import io.proleap.cobol.asg.metamodel.procedure.perform.PerformStatement;
 
 public class PerformStatementImpl extends StatementImpl implements PerformStatement {
 
-	private final static Logger LOG = LogManager.getLogger(PerformStatementImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(PerformStatementImpl.class);
 
 	protected final PerformStatementContext ctx;
 

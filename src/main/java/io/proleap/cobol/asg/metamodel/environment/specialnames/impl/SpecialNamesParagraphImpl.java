@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.environment.specialnames.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.AlphabetClauseContext;
 import io.proleap.cobol.Cobol85Parser.AlphabetClauseFormat1Context;
@@ -50,7 +50,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class SpecialNamesParagraphImpl extends CobolDivisionElementImpl implements SpecialNamesParagraph {
 
-	private final static Logger LOG = LogManager.getLogger(SpecialNamesParagraphImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(SpecialNamesParagraphImpl.class);
 
 	protected List<AlphabetClause> alphabetClauses = new ArrayList<AlphabetClause>();
 

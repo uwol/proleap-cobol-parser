@@ -14,9 +14,9 @@ import java.util.Collections;
 import java.util.List;
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.util.Strings;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
@@ -135,13 +135,13 @@ import io.proleap.cobol.asg.metamodel.valuestmt.impl.ConditionValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.IntegerLiteralValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.LiteralValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.RelationConditionValueStmtImpl;
-import io.proleap.cobol.asg.util.StringUtils;
+import io.proleap.cobol.asg.util.AsgStringUtils;
 
 public class ProgramUnitElementImpl extends CompilationUnitElementImpl implements ProgramUnitElement {
 
 	private static final String HEX_PREFIX = "X\"";
 
-	private final static Logger LOG = LogManager.getLogger(ProgramUnitElementImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(ProgramUnitElementImpl.class);
 
 	protected ProgramUnit programUnit;
 
@@ -175,7 +175,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		BooleanLiteral result = (BooleanLiteral) getASGElement(ctx);
 
 		if (result == null) {
-			final Boolean value = StringUtils.parseBoolean(ctx.getText());
+			final Boolean value = AsgStringUtils.parseBoolean(ctx.getText());
 			result = new BooleanLiteralImpl(value, programUnit, ctx);
 
 			registerASGElement(result);
@@ -990,7 +990,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		IntegerLiteral result = (IntegerLiteral) getASGElement(ctx);
 
 		if (result == null) {
-			final BigDecimal value = StringUtils.parseBigDecimal(ctx.getText());
+			final BigDecimal value = AsgStringUtils.parseBigDecimal(ctx.getText());
 			result = new IntegerLiteralImpl(value, programUnit, ctx);
 
 			registerASGElement(result);
@@ -1081,13 +1081,13 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 			final NumericLiteral.NumericLiteralType type;
 
 			if (ctx.integerLiteral() != null) {
-				result.setValue(StringUtils.parseBigDecimal(ctx.getText()));
+				result.setValue(AsgStringUtils.parseBigDecimal(ctx.getText()));
 				type = NumericLiteral.NumericLiteralType.INTEGER;
 			} else if (ctx.ZERO() != null) {
 				result.setValue(BigDecimal.ZERO);
 				type = NumericLiteral.NumericLiteralType.INTEGER;
 			} else if (ctx.NUMERICLITERAL() != null) {
-				result.setValue(StringUtils.parseBigDecimal(ctx.NUMERICLITERAL().getText()));
+				result.setValue(AsgStringUtils.parseBigDecimal(ctx.NUMERICLITERAL().getText()));
 				type = NumericLiteralType.FLOAT;
 			} else {
 				type = null;
@@ -1522,7 +1522,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected String getSymbol(final String name) {
-		return Strings.isBlank(name) ? name : name.toUpperCase();
+		return StringUtils.isBlank(name) ? name : name.toUpperCase();
 	}
 
 	private boolean isSameInData(final DataDescriptionEntry candidateDataDescriptionEntry,
@@ -1538,7 +1538,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				final String currentParentSymbol = getSymbol(currentParent.getName());
 				final String parentInDataCtxSymbol = getSymbol(determineName(parentCtx));
 
-				if (Strings.isBlank(currentParentSymbol) || !currentParentSymbol.equals(parentInDataCtxSymbol)) {
+				if (StringUtils.isBlank(currentParentSymbol) || !currentParentSymbol.equals(parentInDataCtxSymbol)) {
 					result = false;
 					break;
 				}

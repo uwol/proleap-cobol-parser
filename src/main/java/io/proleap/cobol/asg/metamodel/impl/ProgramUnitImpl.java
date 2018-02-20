@@ -9,8 +9,8 @@
 package io.proleap.cobol.asg.metamodel.impl;
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
 import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionBodyContext;
@@ -33,7 +33,7 @@ import io.proleap.cobol.asg.metamodel.procedure.impl.ProcedureDivisionImpl;
 
 public class ProgramUnitImpl extends CompilationUnitElementImpl implements ProgramUnit {
 
-	private final static Logger LOG = LogManager.getLogger(ProgramUnitImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(ProgramUnitImpl.class);
 
 	protected final ProgramUnitContext ctx;
 

@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.AcceptStatementContext;
 import io.proleap.cobol.Cobol85Parser.AddStatementContext;
@@ -230,7 +230,7 @@ import io.proleap.cobol.preprocessor.CobolPreprocessor;
 
 public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
-	private final static Logger LOG = LogManager.getLogger(ScopeImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(ScopeImpl.class);
 
 	protected List<Statement> statements = new ArrayList<Statement>();
 

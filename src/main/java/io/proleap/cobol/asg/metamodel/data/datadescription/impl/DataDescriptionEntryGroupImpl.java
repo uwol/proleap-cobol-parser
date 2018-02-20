@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.DataAlignedClauseContext;
 import io.proleap.cobol.Cobol85Parser.DataBlankWhenZeroClauseContext;
@@ -76,7 +76,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl implements DataDescriptionEntryGroup {
 
-	private final static Logger LOG = LogManager.getLogger(DataDescriptionEntryGroupImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(DataDescriptionEntryGroupImpl.class);
 
 	protected AlignedClause alignedClause;
 

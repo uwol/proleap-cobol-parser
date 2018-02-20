@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.RerunClauseContext;
 import io.proleap.cobol.Cobol85Parser.RerunEveryClockContext;
@@ -27,7 +27,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class RerunClauseImpl extends CobolDivisionElementImpl implements RerunClause {
 
-	private final static Logger LOG = LogManager.getLogger(RerunClauseImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(RerunClauseImpl.class);
 
 	protected final RerunClauseContext ctx;
 

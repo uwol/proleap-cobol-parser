@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.AccessModeClauseContext;
 import io.proleap.cobol.Cobol85Parser.AlternateRecordKeyClauseContext;
@@ -50,7 +50,7 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class FileControlEntryImpl extends CobolDivisionElementImpl implements FileControlEntry {
 
-	private final static Logger LOG = LogManager.getLogger(FileControlEntryImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(FileControlEntryImpl.class);
 
 	protected AccessModeClause accessModeClause;
 

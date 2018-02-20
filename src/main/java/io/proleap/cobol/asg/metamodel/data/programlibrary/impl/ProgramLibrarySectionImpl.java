@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.Cobol85Parser.LibraryAttributeClauseFormat2Context;
 import io.proleap.cobol.Cobol85Parser.LibraryDescriptionEntryContext;
@@ -33,7 +33,7 @@ import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 
 public class ProgramLibrarySectionImpl extends CobolDivisionElementImpl implements ProgramLibrarySection {
 
-	private final static Logger LOG = LogManager.getLogger(ProgramLibrarySectionImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(ProgramLibrarySectionImpl.class);
 
 	protected final ProgramLibrarySectionContext ctx;
 
