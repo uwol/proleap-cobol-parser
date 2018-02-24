@@ -105,19 +105,19 @@ configurationSection
 
 configurationSectionParagraph
    : sourceComputerParagraph | objectComputerParagraph | specialNamesParagraph
-   // strictly, specialNamesParagraph does not belong into configurationSectionParagraph, but ibm-cobol allows this
+   // strictly, specialNamesParagraph does not belong into configurationSectionParagraph, but IBM-COBOL allows this
    ;
 
 // - source computer paragraph ----------------------------------
 
 sourceComputerParagraph
-   : SOURCE_COMPUTER DOT_FS computerName (WITH? DEBUGGING MODE)? DOT_FS
+   : SOURCE_COMPUTER DOT_FS (computerName (WITH? DEBUGGING MODE)? DOT_FS)?
    ;
 
 // - object computer paragraph ----------------------------------
 
 objectComputerParagraph
-   : OBJECT_COMPUTER DOT_FS computerName objectComputerClause* DOT_FS
+   : OBJECT_COMPUTER DOT_FS (computerName objectComputerClause* DOT_FS)?
    ;
 
 objectComputerClause
