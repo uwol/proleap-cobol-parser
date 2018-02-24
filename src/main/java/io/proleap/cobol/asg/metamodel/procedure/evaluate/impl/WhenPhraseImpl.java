@@ -39,7 +39,9 @@ public class WhenPhraseImpl extends ScopeImpl implements WhenPhrase {
 			result = new WhenImpl(programUnit, ctx);
 
 			// condition
-			result.addCondition(ctx.evaluateCondition());
+			if (ctx.evaluateCondition() != null) {
+				result.addCondition(ctx.evaluateCondition());
+			}
 
 			// also conditions
 			for (final EvaluateAlsoConditionContext evaluateAlsoConditionContext : ctx.evaluateAlsoCondition()) {
@@ -57,5 +59,4 @@ public class WhenPhraseImpl extends ScopeImpl implements WhenPhrase {
 	public List<When> getWhens() {
 		return whens;
 	}
-
 }

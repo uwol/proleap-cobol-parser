@@ -47,5 +47,4 @@ public class WhenImpl extends ScopeImpl implements WhenPhrase {
 	public void setWhenType(final WhenType whenType) {
 		this.whenType = whenType;
 	}
-
 }
