@@ -82,7 +82,7 @@ securityParagraph
 // - remarks paragraph ----------------------------------
 
 remarksParagraph
-   : REMARKS DOT_FS commentEntry?
+   : REMARKS DOT_FS commentEntry? END_REMARKS? DOT_FS?
    ;
 
 // --- environment division --------------------------------------------------------------------
@@ -2797,6 +2797,7 @@ END_OF_PAGE : E N D MINUSCHAR O F MINUSCHAR P A G E;
 END_PERFORM : E N D MINUSCHAR P E R F O R M;
 END_READ : E N D MINUSCHAR R E A D;
 END_RECEIVE : E N D MINUSCHAR R E C E I V E;
+END_REMARKS : E N D MINUSCHAR R E M A R K S;
 END_RETURN : E N D MINUSCHAR R E T U R N;
 END_REWRITE : E N D MINUSCHAR R E W R I T E;
 END_SEARCH : E N D MINUSCHAR S E A R C H;
