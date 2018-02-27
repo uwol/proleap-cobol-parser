@@ -35,5 +35,4 @@ public class AlphanumericImpl extends CobolDivisionElementImpl implements Alphan
 	public void setAlphabetCall(final Call alphabetCall) {
 		this.alphabetCall = alphabetCall;
 	}
-
 }

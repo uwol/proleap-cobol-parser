@@ -8,6 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.stop;
 
+import io.proleap.cobol.Cobol85Parser.StopStatementGivingContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
@@ -18,15 +19,18 @@ import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 public interface StopStatement extends Statement {
 
 	enum StopType {
-		STOP_RUN, STOP_RUN_AND_DISPLAY
+		STOP_RUN, STOP_RUN_AND_DISPLAY, STOP_RUN_GIVING
 	}
 
+	StopStatementGiving addStopStatementGiving(StopStatementGivingContext ctx);
+
 	ValueStmt getDisplayValueStmt();
+
+	StopStatementGiving getStopStatementGiving();
 
 	StopType getStopType();
 
 	void setDisplayValueStmt(ValueStmt displayValueStmt);
 
 	void setStopType(StopType stopType);
-
 }

@@ -2025,13 +2025,17 @@ startStatement
    ;
 
 startKey
-   :  KEY IS? (EQUAL TO? | EQUALCHAR | GREATER THAN? | MORETHANCHAR | NOT LESS THAN? | NOT LESSTHANCHAR | GREATER THAN? OR EQUAL TO? | MORETHANOREQUAL) qualifiedDataName
+   : KEY IS? (EQUAL TO? | EQUALCHAR | GREATER THAN? | MORETHANCHAR | NOT LESS THAN? | NOT LESSTHANCHAR | GREATER THAN? OR EQUAL TO? | MORETHANOREQUAL) qualifiedDataName
    ;
 
 // stop statement
 
 stopStatement
-   : STOP (RUN | literal)
+   : STOP (RUN | literal | stopStatementGiving)
+   ;
+
+stopStatementGiving
+   : RUN (GIVING | RETURNING) (identifier | integerLiteral)
    ;
 
 // string statement

@@ -47,5 +47,4 @@ public class GivingImpl extends CobolDivisionElementImpl implements Giving {
 	public void setRounded(final boolean rounded) {
 		this.rounded = rounded;
 	}
-
 }

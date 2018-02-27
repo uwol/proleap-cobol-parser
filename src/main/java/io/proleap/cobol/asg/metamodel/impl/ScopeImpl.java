@@ -211,6 +211,7 @@ import io.proleap.cobol.asg.metamodel.procedure.sort.impl.SortStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.start.StartStatement;
 import io.proleap.cobol.asg.metamodel.procedure.start.impl.StartStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.stop.StopStatement;
+import io.proleap.cobol.asg.metamodel.procedure.stop.StopStatement.StopType;
 import io.proleap.cobol.asg.metamodel.procedure.stop.impl.StopStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.string.StringStatement;
 import io.proleap.cobol.asg.metamodel.procedure.string.impl.StringStatementImpl;
@@ -1579,24 +1580,32 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 		if (result == null) {
 			result = new StopStatementImpl(programUnit, this, ctx);
 
-			if (ctx.literal() != null) {
-				final ValueStmt displayValueStmt = createValueStmt(ctx.literal());
-				result.setDisplayValueStmt(displayValueStmt);
-			}
-
 			// type
-			final StopStatement.StopType type;
+			final StopType type;
 
 			if (ctx.RUN() != null) {
-				type = StopStatement.StopType.STOP_RUN;
+				type = StopType.STOP_RUN;
 			} else if (ctx.literal() != null) {
-				type = StopStatement.StopType.STOP_RUN_AND_DISPLAY;
+				type = StopType.STOP_RUN_AND_DISPLAY;
+			} else if (ctx.stopStatementGiving() != null) {
+				type = StopType.STOP_RUN_GIVING;
 			} else {
 				LOG.warn("unknown stop statement at {}", ctx);
 				type = null;
 			}
 
 			result.setStopType(type);
+
+			// display value stmt
+			if (ctx.literal() != null) {
+				final ValueStmt displayValueStmt = createValueStmt(ctx.literal());
+				result.setDisplayValueStmt(displayValueStmt);
+			}
+
+			// giving
+			if (ctx.stopStatementGiving() != null) {
+				result.addStopStatementGiving(ctx.stopStatementGiving());
+			}
 
 			registerStatement(result);
 		}
