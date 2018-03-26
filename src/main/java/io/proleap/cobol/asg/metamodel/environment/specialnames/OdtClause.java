@@ -9,7 +9,6 @@
 package io.proleap.cobol.asg.metamodel.environment.specialnames;
 
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.MnemonicName;
 
 public interface OdtClause extends CobolDivisionElement {

@@ -8,7 +8,6 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.unstring.impl;
 
-import io.proleap.cobol.Cobol85Parser.IdentifierContext;
 import io.proleap.cobol.Cobol85Parser.UnstringCountInContext;
 import io.proleap.cobol.Cobol85Parser.UnstringDelimiterInContext;
 import io.proleap.cobol.Cobol85Parser.UnstringIntoContext;
