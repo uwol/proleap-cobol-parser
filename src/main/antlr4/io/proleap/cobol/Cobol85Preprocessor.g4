@@ -10,7 +10,7 @@
 * COBOL 85 Preprocessor Grammar for ANTLR4
 *
 * This is a preprocessor grammar for COBOL 85, which is part of the COBOL 
-* parser at https://github.com/uwol/cobol85parser.
+* parser at https://github.com/uwol/proleap-cobol-parser.
 */
 
 grammar Cobol85Preprocessor;

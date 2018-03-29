@@ -10,7 +10,7 @@
 * COBOL 85 Grammar for ANTLR4
 *
 * This is a COBOL 85 grammar, which is part of the COBOL parser at
-* https://github.com/uwol/cobol85parser.
+* https://github.com/uwol/proleap-cobol-parser.
 *
 * The grammar passes the NIST test suite and has successfully been applied to
 * numerous COBOL files from banking and insurance. To be used in conjunction
