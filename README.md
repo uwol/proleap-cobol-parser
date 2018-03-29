@@ -74,7 +74,7 @@ To include the parser in your Maven project edit your `pom.xml` file as follows
 ```
 <dependency>
 	<groupId>io.github.uwol</groupId>
-	<artifactId>cobol85parser</artifactId>
+	<artifactId>proleap-cobol-parser</artifactId>
 	<version>2.5.0</version>
 </dependency>
 ```
