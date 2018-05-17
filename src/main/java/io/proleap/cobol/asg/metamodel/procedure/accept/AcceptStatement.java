@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.accept;
 
-import io.proleap.cobol.Cobol85Parser.AcceptFromDateStatementContext;
-import io.proleap.cobol.Cobol85Parser.AcceptFromEscapeKeyStatementContext;
-import io.proleap.cobol.Cobol85Parser.AcceptFromMnemonicStatementContext;
-import io.proleap.cobol.Cobol85Parser.AcceptMessageCountStatementContext;
+import io.proleap.cobol.CobolParser.AcceptFromDateStatementContext;
+import io.proleap.cobol.CobolParser.AcceptFromEscapeKeyStatementContext;
+import io.proleap.cobol.CobolParser.AcceptFromMnemonicStatementContext;
+import io.proleap.cobol.CobolParser.AcceptMessageCountStatementContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;

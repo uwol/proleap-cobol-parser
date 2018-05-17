@@ -23,9 +23,9 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
-import io.proleap.cobol.Cobol85Lexer;
-import io.proleap.cobol.Cobol85Parser;
-import io.proleap.cobol.Cobol85Parser.StartRuleContext;
+import io.proleap.cobol.CobolLexer;
+import io.proleap.cobol.CobolParser;
+import io.proleap.cobol.CobolParser.StartRuleContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
 import io.proleap.cobol.asg.runner.ThrowingErrorListener;
@@ -34,7 +34,7 @@ import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.runner.CobolParseTestRunner;
 
 /**
- * Cobol 85 parse runner for JUnit tests.
+ * Cobol  parse runner for JUnit tests.
  */
 public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 
@@ -51,7 +51,7 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 		return result;
 	}
 
-	protected void doCompareParseTree(final File treeFile, final StartRuleContext startRule, final Cobol85Parser parser)
+	protected void doCompareParseTree(final File treeFile, final StartRuleContext startRule, final CobolParser parser)
 			throws IOException {
 		final String treeFileData = FileUtils.readFileToString(treeFile);
 
@@ -70,7 +70,7 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 
 	protected void doParse(final String preProcessedInput, final File inputFile, final CobolParserParams params)
 			throws IOException {
-		final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
+		final CobolLexer lexer = new CobolLexer(CharStreams.fromString(preProcessedInput));
 
 		if (!params.getIgnoreSyntaxErrors()) {
 			lexer.removeErrorListeners();
@@ -78,7 +78,7 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 		}
 
 		final CommonTokenStream tokens = new CommonTokenStream(lexer);
-		final Cobol85Parser parser = new Cobol85Parser(tokens);
+		final CobolParser parser = new CobolParser(tokens);
 
 		if (!params.getIgnoreSyntaxErrors()) {
 			parser.removeErrorListeners();

@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.data.datadescription.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.IndexNameContext;
+import io.proleap.cobol.CobolParser.IndexNameContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.IndexCall;
 import io.proleap.cobol.asg.metamodel.data.datadescription.Index;

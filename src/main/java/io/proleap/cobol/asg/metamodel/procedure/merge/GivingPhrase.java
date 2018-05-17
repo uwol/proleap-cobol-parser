@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.merge;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.MergeGivingContext;
+import io.proleap.cobol.CobolParser.MergeGivingContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface GivingPhrase extends CobolDivisionElement {

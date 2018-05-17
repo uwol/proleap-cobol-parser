@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.evaluate;
 
-import io.proleap.cobol.Cobol85Parser.EvaluateThroughContext;
-import io.proleap.cobol.Cobol85Parser.EvaluateValueContext;
+import io.proleap.cobol.CobolParser.EvaluateThroughContext;
+import io.proleap.cobol.CobolParser.EvaluateValueContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 

@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.environment;
 
-import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
-import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
-import io.proleap.cobol.Cobol85Parser.SpecialNamesParagraphContext;
+import io.proleap.cobol.CobolParser.ConfigurationSectionContext;
+import io.proleap.cobol.CobolParser.InputOutputSectionContext;
+import io.proleap.cobol.CobolParser.SpecialNamesParagraphContext;
 import io.proleap.cobol.asg.metamodel.CobolDivision;
 import io.proleap.cobol.asg.metamodel.environment.configuration.ConfigurationSection;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.InputOutputSection;

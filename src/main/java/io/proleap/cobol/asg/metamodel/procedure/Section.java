@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ParagraphContext;
-import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
+import io.proleap.cobol.CobolParser.ParagraphContext;
+import io.proleap.cobol.CobolParser.ParagraphNameContext;
 import io.proleap.cobol.asg.metamodel.Declaration;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.SectionCall;

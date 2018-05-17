@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.multiply;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.MultiplyGivingOperandContext;
-import io.proleap.cobol.Cobol85Parser.MultiplyGivingResultContext;
+import io.proleap.cobol.CobolParser.MultiplyGivingOperandContext;
+import io.proleap.cobol.CobolParser.MultiplyGivingResultContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface GivingPhrase extends CobolDivisionElement {

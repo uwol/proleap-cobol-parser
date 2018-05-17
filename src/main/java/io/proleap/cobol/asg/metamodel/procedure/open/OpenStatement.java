@@ -10,10 +10,10 @@ package io.proleap.cobol.asg.metamodel.procedure.open;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.OpenExtendStatementContext;
-import io.proleap.cobol.Cobol85Parser.OpenIOStatementContext;
-import io.proleap.cobol.Cobol85Parser.OpenInputStatementContext;
-import io.proleap.cobol.Cobol85Parser.OpenOutputStatementContext;
+import io.proleap.cobol.CobolParser.OpenExtendStatementContext;
+import io.proleap.cobol.CobolParser.OpenIOStatementContext;
+import io.proleap.cobol.CobolParser.OpenInputStatementContext;
+import io.proleap.cobol.CobolParser.OpenOutputStatementContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**

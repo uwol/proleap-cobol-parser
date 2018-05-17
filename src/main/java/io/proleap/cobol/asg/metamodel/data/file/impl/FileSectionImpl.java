@@ -13,9 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryContext;
-import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
-import io.proleap.cobol.Cobol85Parser.FileSectionContext;
+import io.proleap.cobol.CobolParser.DataDescriptionEntryContext;
+import io.proleap.cobol.CobolParser.FileDescriptionEntryContext;
+import io.proleap.cobol.CobolParser.FileSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;

@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.valuestmt.relation.impl;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 
-import io.proleap.cobol.Cobol85Parser.RelationalOperatorContext;
+import io.proleap.cobol.CobolParser.RelationalOperatorContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.ComparisonStmt;

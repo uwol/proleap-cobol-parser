@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.open;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.OpenOutputContext;
+import io.proleap.cobol.CobolParser.OpenOutputContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface OutputPhrase extends CobolDivisionElement {

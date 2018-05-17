@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 
-import io.proleap.cobol.Cobol85Parser.ArgumentContext;
+import io.proleap.cobol.CobolParser.ArgumentContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.Argument;

@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.receive;
 
-import io.proleap.cobol.Cobol85Parser.ReceiveFromStatementContext;
-import io.proleap.cobol.Cobol85Parser.ReceiveIntoStatementContext;
+import io.proleap.cobol.CobolParser.ReceiveFromStatementContext;
+import io.proleap.cobol.CobolParser.ReceiveIntoStatementContext;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;

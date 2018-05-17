@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.call;
 
-import io.proleap.cobol.Cobol85Parser.CallGivingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.CallUsingPhraseContext;
+import io.proleap.cobol.CobolParser.CallGivingPhraseContext;
+import io.proleap.cobol.CobolParser.CallUsingPhraseContext;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;

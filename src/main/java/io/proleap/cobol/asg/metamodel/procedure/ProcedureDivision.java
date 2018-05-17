@@ -10,12 +10,12 @@ package io.proleap.cobol.asg.metamodel.procedure;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ParagraphContext;
-import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativesContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionGivingClauseContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionUsingClauseContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureSectionContext;
+import io.proleap.cobol.CobolParser.ParagraphContext;
+import io.proleap.cobol.CobolParser.ParagraphNameContext;
+import io.proleap.cobol.CobolParser.ProcedureDeclarativesContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionGivingClauseContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionUsingClauseContext;
+import io.proleap.cobol.CobolParser.ProcedureSectionContext;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.declaratives.Declaratives;
 

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel;
 
-import io.proleap.cobol.Cobol85Parser.FigurativeConstantContext;
+import io.proleap.cobol.CobolParser.FigurativeConstantContext;
 
 public interface FigurativeConstant extends CobolDivisionElement {
 

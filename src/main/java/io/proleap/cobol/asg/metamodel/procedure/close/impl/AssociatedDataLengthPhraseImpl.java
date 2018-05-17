@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.close.impl;
 
-import io.proleap.cobol.Cobol85Parser.ClosePortFileIOUsingAssociatedDataLengthContext;
+import io.proleap.cobol.CobolParser.ClosePortFileIOUsingAssociatedDataLengthContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.close.AssociatedDataLengthPhrase;

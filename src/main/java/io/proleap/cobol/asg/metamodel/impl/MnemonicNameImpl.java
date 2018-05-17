@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
-import io.proleap.cobol.Cobol85Parser.MnemonicNameContext;
+import io.proleap.cobol.CobolParser.MnemonicNameContext;
 import io.proleap.cobol.asg.metamodel.MnemonicName;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 

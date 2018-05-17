@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.initialize;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.InitializeReplacingPhraseContext;
+import io.proleap.cobol.CobolParser.InitializeReplacingPhraseContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 

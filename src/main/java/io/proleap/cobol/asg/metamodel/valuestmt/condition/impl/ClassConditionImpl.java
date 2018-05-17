@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.condition.impl;
 
-import io.proleap.cobol.Cobol85Parser.ClassConditionContext;
+import io.proleap.cobol.CobolParser.ClassConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.ClassCondition;

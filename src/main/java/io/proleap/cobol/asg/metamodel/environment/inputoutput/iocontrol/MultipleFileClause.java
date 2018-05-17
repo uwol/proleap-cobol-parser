@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.MultipleFilePositionContext;
+import io.proleap.cobol.CobolParser.MultipleFilePositionContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface MultipleFileClause extends CobolDivisionElement {

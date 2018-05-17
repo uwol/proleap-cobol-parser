@@ -8,13 +8,13 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.subtract.impl;
 
-import io.proleap.cobol.Cobol85Parser.SubtractCorrespondingStatementContext;
-import io.proleap.cobol.Cobol85Parser.SubtractFromGivingStatementContext;
-import io.proleap.cobol.Cobol85Parser.SubtractFromStatementContext;
-import io.proleap.cobol.Cobol85Parser.SubtractGivingContext;
-import io.proleap.cobol.Cobol85Parser.SubtractMinuendContext;
-import io.proleap.cobol.Cobol85Parser.SubtractStatementContext;
-import io.proleap.cobol.Cobol85Parser.SubtractSubtrahendContext;
+import io.proleap.cobol.CobolParser.SubtractCorrespondingStatementContext;
+import io.proleap.cobol.CobolParser.SubtractFromGivingStatementContext;
+import io.proleap.cobol.CobolParser.SubtractFromStatementContext;
+import io.proleap.cobol.CobolParser.SubtractGivingContext;
+import io.proleap.cobol.CobolParser.SubtractMinuendContext;
+import io.proleap.cobol.CobolParser.SubtractStatementContext;
+import io.proleap.cobol.CobolParser.SubtractSubtrahendContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

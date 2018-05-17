@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform;
 
-import io.proleap.cobol.Cobol85Parser.PerformVaryingPhraseContext;
+import io.proleap.cobol.CobolParser.PerformVaryingPhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface After extends CobolDivisionElement {

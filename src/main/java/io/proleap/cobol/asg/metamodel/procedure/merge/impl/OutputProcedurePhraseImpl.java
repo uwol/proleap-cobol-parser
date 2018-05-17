@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.merge.impl;
 
-import io.proleap.cobol.Cobol85Parser.MergeOutputProcedurePhraseContext;
-import io.proleap.cobol.Cobol85Parser.MergeOutputThroughContext;
+import io.proleap.cobol.CobolParser.MergeOutputProcedurePhraseContext;
+import io.proleap.cobol.CobolParser.MergeOutputThroughContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

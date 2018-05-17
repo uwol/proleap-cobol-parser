@@ -11,9 +11,9 @@ package io.proleap.cobol.asg.metamodel.procedure.initialize.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.InitializeReplacingByContext;
-import io.proleap.cobol.Cobol85Parser.InitializeReplacingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.InitializeStatementContext;
+import io.proleap.cobol.CobolParser.InitializeReplacingByContext;
+import io.proleap.cobol.CobolParser.InitializeReplacingPhraseContext;
+import io.proleap.cobol.CobolParser.InitializeStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

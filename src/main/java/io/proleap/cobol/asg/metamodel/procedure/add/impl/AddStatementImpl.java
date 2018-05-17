@@ -8,14 +8,14 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.add.impl;
 
-import io.proleap.cobol.Cobol85Parser.AddCorrespondingStatementContext;
-import io.proleap.cobol.Cobol85Parser.AddFromContext;
-import io.proleap.cobol.Cobol85Parser.AddGivingContext;
-import io.proleap.cobol.Cobol85Parser.AddStatementContext;
-import io.proleap.cobol.Cobol85Parser.AddToContext;
-import io.proleap.cobol.Cobol85Parser.AddToGivingContext;
-import io.proleap.cobol.Cobol85Parser.AddToGivingStatementContext;
-import io.proleap.cobol.Cobol85Parser.AddToStatementContext;
+import io.proleap.cobol.CobolParser.AddCorrespondingStatementContext;
+import io.proleap.cobol.CobolParser.AddFromContext;
+import io.proleap.cobol.CobolParser.AddGivingContext;
+import io.proleap.cobol.CobolParser.AddStatementContext;
+import io.proleap.cobol.CobolParser.AddToContext;
+import io.proleap.cobol.CobolParser.AddToGivingContext;
+import io.proleap.cobol.CobolParser.AddToGivingStatementContext;
+import io.proleap.cobol.CobolParser.AddToStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

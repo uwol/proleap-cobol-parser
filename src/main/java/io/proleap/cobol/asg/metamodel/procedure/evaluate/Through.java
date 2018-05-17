@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.evaluate;
 
-import io.proleap.cobol.Cobol85Parser.EvaluateValueContext;
+import io.proleap.cobol.CobolParser.EvaluateValueContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface Through extends CobolDivisionElement {

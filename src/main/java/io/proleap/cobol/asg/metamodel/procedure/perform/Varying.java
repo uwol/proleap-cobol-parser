@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform;
 
-import io.proleap.cobol.Cobol85Parser.PerformTestClauseContext;
-import io.proleap.cobol.Cobol85Parser.PerformVaryingClauseContext;
+import io.proleap.cobol.CobolParser.PerformTestClauseContext;
+import io.proleap.cobol.CobolParser.PerformVaryingClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface Varying extends CobolDivisionElement {

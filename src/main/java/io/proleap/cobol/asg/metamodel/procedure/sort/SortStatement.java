@@ -10,13 +10,13 @@ package io.proleap.cobol.asg.metamodel.procedure.sort;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SortCollatingSequencePhraseContext;
-import io.proleap.cobol.Cobol85Parser.SortDuplicatesPhraseContext;
-import io.proleap.cobol.Cobol85Parser.SortGivingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.SortInputProcedurePhraseContext;
-import io.proleap.cobol.Cobol85Parser.SortOnKeyClauseContext;
-import io.proleap.cobol.Cobol85Parser.SortOutputProcedurePhraseContext;
-import io.proleap.cobol.Cobol85Parser.SortUsingContext;
+import io.proleap.cobol.CobolParser.SortCollatingSequencePhraseContext;
+import io.proleap.cobol.CobolParser.SortDuplicatesPhraseContext;
+import io.proleap.cobol.CobolParser.SortGivingPhraseContext;
+import io.proleap.cobol.CobolParser.SortInputProcedurePhraseContext;
+import io.proleap.cobol.CobolParser.SortOnKeyClauseContext;
+import io.proleap.cobol.CobolParser.SortOutputProcedurePhraseContext;
+import io.proleap.cobol.CobolParser.SortUsingContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 

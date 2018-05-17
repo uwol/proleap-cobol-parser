@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.report.impl;
 
-import io.proleap.cobol.Cobol85Parser.ReportGroupTypeClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupTypeClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.report.TypeClause;

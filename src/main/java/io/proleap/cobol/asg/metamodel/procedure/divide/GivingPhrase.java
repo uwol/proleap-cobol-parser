@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.divide;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.DivideGivingContext;
+import io.proleap.cobol.CobolParser.DivideGivingContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface GivingPhrase extends CobolDivisionElement {

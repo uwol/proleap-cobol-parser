@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.impl;
 
-import io.proleap.cobol.Cobol85Parser.ReserveClauseContext;
+import io.proleap.cobol.CobolParser.ReserveClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.ReserveClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

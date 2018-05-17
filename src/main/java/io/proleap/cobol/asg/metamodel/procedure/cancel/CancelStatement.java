@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.cancel;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.CancelCallContext;
+import io.proleap.cobol.CobolParser.CancelCallContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**

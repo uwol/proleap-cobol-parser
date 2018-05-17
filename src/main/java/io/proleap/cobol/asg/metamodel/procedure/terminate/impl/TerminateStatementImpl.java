@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.terminate.impl;
 
-import io.proleap.cobol.Cobol85Parser.TerminateStatementContext;
+import io.proleap.cobol.CobolParser.TerminateStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

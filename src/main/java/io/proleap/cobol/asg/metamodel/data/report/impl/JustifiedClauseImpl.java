@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.report.impl;
 
-import io.proleap.cobol.Cobol85Parser.ReportGroupJustifiedClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupJustifiedClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.report.JustifiedClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.data.datadescription;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.DataValueIntervalContext;
+import io.proleap.cobol.CobolParser.DataValueIntervalContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface ValueClause extends CobolDivisionElement {

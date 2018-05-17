@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
-import io.proleap.cobol.Cobol85Parser.FigurativeConstantContext;
+import io.proleap.cobol.CobolParser.FigurativeConstantContext;
 import io.proleap.cobol.asg.metamodel.FigurativeConstant;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;

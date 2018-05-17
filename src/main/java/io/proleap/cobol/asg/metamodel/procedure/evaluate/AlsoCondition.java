@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.evaluate;
 
-import io.proleap.cobol.Cobol85Parser.EvaluateConditionContext;
+import io.proleap.cobol.CobolParser.EvaluateConditionContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface AlsoCondition extends CobolDivisionElement {

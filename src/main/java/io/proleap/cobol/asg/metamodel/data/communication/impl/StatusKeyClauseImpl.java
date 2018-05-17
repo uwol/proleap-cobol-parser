@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.communication.impl;
 
-import io.proleap.cobol.Cobol85Parser.StatusKeyClauseContext;
+import io.proleap.cobol.CobolParser.StatusKeyClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.communication.StatusKeyClause;

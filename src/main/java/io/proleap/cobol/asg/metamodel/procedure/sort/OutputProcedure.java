@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.sort;
 
-import io.proleap.cobol.Cobol85Parser.SortOutputThroughContext;
+import io.proleap.cobol.CobolParser.SortOutputThroughContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 

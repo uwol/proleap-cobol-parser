@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.antlr.v4.runtime.CommonTokenStream;
 
-import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
+import io.proleap.cobol.CobolParser.ProgramUnitContext;
 
 public interface CompilationUnit extends ASGElement, NamedElement {
 

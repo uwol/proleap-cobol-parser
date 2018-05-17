@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic;
 
-import io.proleap.cobol.Cobol85Parser.BasisContext;
+import io.proleap.cobol.CobolParser.BasisContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface Power extends ValueStmt {

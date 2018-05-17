@@ -10,11 +10,11 @@ package io.proleap.cobol.asg.metamodel.procedure.merge;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.MergeCollatingSequencePhraseContext;
-import io.proleap.cobol.Cobol85Parser.MergeGivingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.MergeOnKeyClauseContext;
-import io.proleap.cobol.Cobol85Parser.MergeOutputProcedurePhraseContext;
-import io.proleap.cobol.Cobol85Parser.MergeUsingContext;
+import io.proleap.cobol.CobolParser.MergeCollatingSequencePhraseContext;
+import io.proleap.cobol.CobolParser.MergeGivingPhraseContext;
+import io.proleap.cobol.CobolParser.MergeOnKeyClauseContext;
+import io.proleap.cobol.CobolParser.MergeOutputProcedurePhraseContext;
+import io.proleap.cobol.CobolParser.MergeUsingContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 

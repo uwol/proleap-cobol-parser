@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.valuestmt.condition;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SubscriptContext;
+import io.proleap.cobol.CobolParser.SubscriptContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 

@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.environment.configuration.object.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
+import io.proleap.cobol.CobolParser.CollatingSequenceClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.configuration.object.CollatingSequenceClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

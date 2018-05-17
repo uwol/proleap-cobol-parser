@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.gotostmt;
 
-import io.proleap.cobol.Cobol85Parser.GoToDependingOnStatementContext;
-import io.proleap.cobol.Cobol85Parser.GoToStatementSimpleContext;
+import io.proleap.cobol.CobolParser.GoToDependingOnStatementContext;
+import io.proleap.cobol.CobolParser.GoToStatementSimpleContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**

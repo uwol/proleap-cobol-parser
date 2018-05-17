@@ -10,11 +10,11 @@ package io.proleap.cobol.asg.metamodel.data.datadescription;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryContext;
-import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryExecSqlContext;
-import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat1Context;
-import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
-import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
+import io.proleap.cobol.CobolParser.DataDescriptionEntryContext;
+import io.proleap.cobol.CobolParser.DataDescriptionEntryExecSqlContext;
+import io.proleap.cobol.CobolParser.DataDescriptionEntryFormat1Context;
+import io.proleap.cobol.CobolParser.DataDescriptionEntryFormat2Context;
+import io.proleap.cobol.CobolParser.DataDescriptionEntryFormat3Context;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface DataDescriptionEntryContainer extends CobolDivisionElement {

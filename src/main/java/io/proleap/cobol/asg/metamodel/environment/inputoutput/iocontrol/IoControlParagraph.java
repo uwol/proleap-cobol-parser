@@ -10,10 +10,10 @@ package io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.CommitmentControlClauseContext;
-import io.proleap.cobol.Cobol85Parser.MultipleFileClauseContext;
-import io.proleap.cobol.Cobol85Parser.RerunClauseContext;
-import io.proleap.cobol.Cobol85Parser.SameClauseContext;
+import io.proleap.cobol.CobolParser.CommitmentControlClauseContext;
+import io.proleap.cobol.CobolParser.MultipleFileClauseContext;
+import io.proleap.cobol.CobolParser.RerunClauseContext;
+import io.proleap.cobol.CobolParser.SameClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 

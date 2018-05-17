@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.use;
 
-import io.proleap.cobol.Cobol85Parser.UseAfterClauseContext;
-import io.proleap.cobol.Cobol85Parser.UseDebugClauseContext;
+import io.proleap.cobol.CobolParser.UseAfterClauseContext;
+import io.proleap.cobol.CobolParser.UseDebugClauseContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**

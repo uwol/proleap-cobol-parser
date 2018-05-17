@@ -8,12 +8,12 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.divide.impl;
 
-import io.proleap.cobol.Cobol85Parser.DivideByGivingStatementContext;
-import io.proleap.cobol.Cobol85Parser.DivideIntoContext;
-import io.proleap.cobol.Cobol85Parser.DivideIntoGivingStatementContext;
-import io.proleap.cobol.Cobol85Parser.DivideIntoStatementContext;
-import io.proleap.cobol.Cobol85Parser.DivideRemainderContext;
-import io.proleap.cobol.Cobol85Parser.DivideStatementContext;
+import io.proleap.cobol.CobolParser.DivideByGivingStatementContext;
+import io.proleap.cobol.CobolParser.DivideIntoContext;
+import io.proleap.cobol.CobolParser.DivideIntoGivingStatementContext;
+import io.proleap.cobol.CobolParser.DivideIntoStatementContext;
+import io.proleap.cobol.CobolParser.DivideRemainderContext;
+import io.proleap.cobol.CobolParser.DivideStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

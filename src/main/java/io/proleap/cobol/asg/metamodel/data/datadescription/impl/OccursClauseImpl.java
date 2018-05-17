@@ -13,10 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.proleap.cobol.Cobol85Parser.DataOccursClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataOccursSortContext;
-import io.proleap.cobol.Cobol85Parser.IndexNameContext;
-import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
+import io.proleap.cobol.CobolParser.DataOccursClauseContext;
+import io.proleap.cobol.CobolParser.DataOccursSortContext;
+import io.proleap.cobol.CobolParser.IndexNameContext;
+import io.proleap.cobol.CobolParser.QualifiedDataNameContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;

@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.move.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.MoveToSendingAreaContext;
-import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
+import io.proleap.cobol.CobolParser.MoveToSendingAreaContext;
+import io.proleap.cobol.CobolParser.MoveToStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

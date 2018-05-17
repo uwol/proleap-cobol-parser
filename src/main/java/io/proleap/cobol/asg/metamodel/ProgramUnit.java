@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel;
 
-import io.proleap.cobol.Cobol85Parser.DataDivisionContext;
-import io.proleap.cobol.Cobol85Parser.EnvironmentDivisionContext;
-import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionContext;
+import io.proleap.cobol.CobolParser.DataDivisionContext;
+import io.proleap.cobol.CobolParser.EnvironmentDivisionContext;
+import io.proleap.cobol.CobolParser.IdentificationDivisionContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionContext;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.asg.metamodel.identification.IdentificationDivision;

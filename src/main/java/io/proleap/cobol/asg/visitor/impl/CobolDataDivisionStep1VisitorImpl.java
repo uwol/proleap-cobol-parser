@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.Cobol85Parser;
+import io.proleap.cobol.CobolParser;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationSection;
@@ -69,7 +69,7 @@ public class CobolDataDivisionStep1VisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitCommunicationSection(final Cobol85Parser.CommunicationSectionContext ctx) {
+	public Boolean visitCommunicationSection(final CobolParser.CommunicationSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 		final CommunicationSection communicationSection = dataDivision.addCommunicationSection(ctx);
 		final Boolean result = visitChildren(ctx);
@@ -80,7 +80,7 @@ public class CobolDataDivisionStep1VisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitFileSection(final Cobol85Parser.FileSectionContext ctx) {
+	public Boolean visitFileSection(final CobolParser.FileSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 		final FileSection fileSection = dataDivision.addFileSection(ctx);
 		final Boolean result = visitChildren(ctx);
@@ -93,7 +93,7 @@ public class CobolDataDivisionStep1VisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitLinkageSection(final Cobol85Parser.LinkageSectionContext ctx) {
+	public Boolean visitLinkageSection(final CobolParser.LinkageSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 		final LinkageSection linkageSection = dataDivision.addLinkageSection(ctx);
 		final Boolean result = visitChildren(ctx);
@@ -104,7 +104,7 @@ public class CobolDataDivisionStep1VisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitLocalStorageSection(final Cobol85Parser.LocalStorageSectionContext ctx) {
+	public Boolean visitLocalStorageSection(final CobolParser.LocalStorageSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 		final LocalStorageSection localStorageSection = dataDivision.addLocalStorageSection(ctx);
 		final Boolean result = visitChildren(ctx);
@@ -115,7 +115,7 @@ public class CobolDataDivisionStep1VisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitProgramLibrarySection(final Cobol85Parser.ProgramLibrarySectionContext ctx) {
+	public Boolean visitProgramLibrarySection(final CobolParser.ProgramLibrarySectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
 		dataDivision.addProgramLibrarySection(ctx);
@@ -124,7 +124,7 @@ public class CobolDataDivisionStep1VisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitWorkingStorageSection(final Cobol85Parser.WorkingStorageSectionContext ctx) {
+	public Boolean visitWorkingStorageSection(final CobolParser.WorkingStorageSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 		final WorkingStorageSection workingStorageSection = dataDivision.addWorkingStorageSection(ctx);
 		final Boolean result = visitChildren(ctx);

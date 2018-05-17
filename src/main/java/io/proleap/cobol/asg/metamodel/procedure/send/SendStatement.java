@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.send;
 
-import io.proleap.cobol.Cobol85Parser.SendStatementAsyncContext;
-import io.proleap.cobol.Cobol85Parser.SendStatementSyncContext;
+import io.proleap.cobol.CobolParser.SendStatementAsyncContext;
+import io.proleap.cobol.CobolParser.SendStatementSyncContext;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;

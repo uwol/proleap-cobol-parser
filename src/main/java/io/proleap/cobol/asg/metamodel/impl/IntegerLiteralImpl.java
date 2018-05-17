@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.impl;
 
 import java.math.BigDecimal;
 
-import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
+import io.proleap.cobol.CobolParser.IntegerLiteralContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 

@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure;
 
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionByReferencePhraseContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionByValuePhraseContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionByReferencePhraseContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionByValuePhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface UsingParameter extends CobolDivisionElement {

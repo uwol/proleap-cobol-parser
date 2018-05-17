@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.goback.impl;
 
-import io.proleap.cobol.Cobol85Parser.GobackStatementContext;
+import io.proleap.cobol.CobolParser.GobackStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;

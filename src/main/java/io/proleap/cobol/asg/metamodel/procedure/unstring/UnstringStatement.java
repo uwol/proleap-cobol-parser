@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.unstring;
 
-import io.proleap.cobol.Cobol85Parser.UnstringIntoPhraseContext;
-import io.proleap.cobol.Cobol85Parser.UnstringSendingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.UnstringTallyingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.UnstringWithPointerPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringIntoPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringSendingPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringTallyingPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringWithPointerPhraseContext;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.OnOverflowPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;

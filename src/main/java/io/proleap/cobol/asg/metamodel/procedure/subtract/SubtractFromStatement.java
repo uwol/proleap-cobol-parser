@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.subtract;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SubtractMinuendContext;
-import io.proleap.cobol.Cobol85Parser.SubtractSubtrahendContext;
+import io.proleap.cobol.CobolParser.SubtractMinuendContext;
+import io.proleap.cobol.CobolParser.SubtractSubtrahendContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface SubtractFromStatement extends CobolDivisionElement {

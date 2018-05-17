@@ -12,9 +12,9 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-import io.proleap.cobol.Cobol85PreprocessorLexer;
-import io.proleap.cobol.Cobol85PreprocessorParser;
-import io.proleap.cobol.Cobol85PreprocessorParser.StartRuleContext;
+import io.proleap.cobol.CobolPreprocessorLexer;
+import io.proleap.cobol.CobolPreprocessorParser;
+import io.proleap.cobol.CobolPreprocessorParser.StartRuleContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.asg.runner.ThrowingErrorListener;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -68,7 +68,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 	protected String processWithParser(final String code, final CobolSourceFormatEnum format,
 			final CobolParserParams params) {
 		// run the lexer
-		final Cobol85PreprocessorLexer lexer = new Cobol85PreprocessorLexer(CharStreams.fromString(code));
+		final CobolPreprocessorLexer lexer = new CobolPreprocessorLexer(CharStreams.fromString(code));
 
 		if (!params.getIgnoreSyntaxErrors()) {
 			// register an error listener, so that preprocessing stops on errors
@@ -80,7 +80,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		final CommonTokenStream tokens = new CommonTokenStream(lexer);
 
 		// pass the tokens to the parser
-		final Cobol85PreprocessorParser parser = new Cobol85PreprocessorParser(tokens);
+		final CobolPreprocessorParser parser = new CobolPreprocessorParser(tokens);
 
 		if (!params.getIgnoreSyntaxErrors()) {
 			// register an error listener, so that preprocessing stops on errors

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.continuestmt.impl;
 
-import io.proleap.cobol.Cobol85Parser.ContinueStatementContext;
+import io.proleap.cobol.CobolParser.ContinueStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;

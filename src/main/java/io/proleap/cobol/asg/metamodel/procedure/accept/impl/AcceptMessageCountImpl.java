@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.accept.impl;
 
-import io.proleap.cobol.Cobol85Parser.AcceptMessageCountStatementContext;
+import io.proleap.cobol.CobolParser.AcceptMessageCountStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptMessageCountStatement;

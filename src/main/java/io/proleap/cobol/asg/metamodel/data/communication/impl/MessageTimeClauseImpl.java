@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.communication.impl;
 
-import io.proleap.cobol.Cobol85Parser.MessageTimeClauseContext;
+import io.proleap.cobol.CobolParser.MessageTimeClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.communication.MessageTimeClause;

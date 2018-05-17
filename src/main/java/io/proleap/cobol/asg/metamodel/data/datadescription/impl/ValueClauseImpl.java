@@ -11,10 +11,10 @@ package io.proleap.cobol.asg.metamodel.data.datadescription.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataValueIntervalContext;
-import io.proleap.cobol.Cobol85Parser.DataValueIntervalFromContext;
-import io.proleap.cobol.Cobol85Parser.DataValueIntervalToContext;
+import io.proleap.cobol.CobolParser.DataValueClauseContext;
+import io.proleap.cobol.CobolParser.DataValueIntervalContext;
+import io.proleap.cobol.CobolParser.DataValueIntervalFromContext;
+import io.proleap.cobol.CobolParser.DataValueIntervalToContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.datadescription.ValueClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.ValueInterval;

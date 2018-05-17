@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.screen.impl;
 
-import io.proleap.cobol.Cobol85Parser.ScreenDescriptionBackgroundColorClauseContext;
+import io.proleap.cobol.CobolParser.ScreenDescriptionBackgroundColorClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.screen.BackgroundColorClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

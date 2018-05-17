@@ -14,9 +14,9 @@ import java.util.regex.Pattern;
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.codehaus.plexus.util.StringUtils;
 
-import io.proleap.cobol.Cobol85PreprocessorParser.PseudoTextContext;
-import io.proleap.cobol.Cobol85PreprocessorParser.ReplaceableContext;
-import io.proleap.cobol.Cobol85PreprocessorParser.ReplacementContext;
+import io.proleap.cobol.CobolPreprocessorParser.PseudoTextContext;
+import io.proleap.cobol.CobolPreprocessorParser.ReplaceableContext;
+import io.proleap.cobol.CobolPreprocessorParser.ReplacementContext;
 import io.proleap.cobol.preprocessor.sub.util.TokenUtils;
 
 /**

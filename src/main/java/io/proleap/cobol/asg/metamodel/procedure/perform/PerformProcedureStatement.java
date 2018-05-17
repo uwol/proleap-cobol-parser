@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.perform;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.PerformTypeContext;
+import io.proleap.cobol.CobolParser.PerformTypeContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 

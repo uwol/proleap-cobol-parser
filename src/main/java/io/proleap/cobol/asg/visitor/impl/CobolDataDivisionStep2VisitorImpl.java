@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.Cobol85Parser;
+import io.proleap.cobol.CobolParser;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.data.DataDivision;
 import io.proleap.cobol.asg.metamodel.data.screen.ScreenDescriptionEntry;
@@ -58,7 +58,7 @@ public class CobolDataDivisionStep2VisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitDataBaseSection(final Cobol85Parser.DataBaseSectionContext ctx) {
+	public Boolean visitDataBaseSection(final CobolParser.DataBaseSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
 		dataDivision.addDataBaseSection(ctx);
@@ -67,7 +67,7 @@ public class CobolDataDivisionStep2VisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitReportSection(final Cobol85Parser.ReportSectionContext ctx) {
+	public Boolean visitReportSection(final CobolParser.ReportSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 
 		dataDivision.addReportSection(ctx);
@@ -76,7 +76,7 @@ public class CobolDataDivisionStep2VisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitScreenSection(final Cobol85Parser.ScreenSectionContext ctx) {
+	public Boolean visitScreenSection(final CobolParser.ScreenSectionContext ctx) {
 		final DataDivision dataDivision = findDataDivision(ctx);
 		final ScreenSection screenSection = dataDivision.addScreenSection(ctx);
 		final Boolean result = visitChildren(ctx);

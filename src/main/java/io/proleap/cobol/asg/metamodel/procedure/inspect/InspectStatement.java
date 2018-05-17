@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.inspect;
 
-import io.proleap.cobol.Cobol85Parser.InspectConvertingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.InspectReplacingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.InspectTallyingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.InspectTallyingReplacingPhraseContext;
+import io.proleap.cobol.CobolParser.InspectConvertingPhraseContext;
+import io.proleap.cobol.CobolParser.InspectReplacingPhraseContext;
+import io.proleap.cobol.CobolParser.InspectTallyingPhraseContext;
+import io.proleap.cobol.CobolParser.InspectTallyingReplacingPhraseContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 

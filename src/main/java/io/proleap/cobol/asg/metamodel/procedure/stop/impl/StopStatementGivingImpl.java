@@ -1,6 +1,6 @@
 package io.proleap.cobol.asg.metamodel.procedure.stop.impl;
 
-import io.proleap.cobol.Cobol85Parser.StopStatementGivingContext;
+import io.proleap.cobol.CobolParser.StopStatementGivingContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.stop.StopStatementGiving;

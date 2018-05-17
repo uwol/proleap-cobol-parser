@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.data.programlibrary.impl;
 
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureClauseFormat1Context;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureForClauseContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureClauseFormat1Context;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureForClauseContext;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;

@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
 
-import io.proleap.cobol.Cobol85PreprocessorParser.FilenameContext;
+import io.proleap.cobol.CobolPreprocessorParser.FilenameContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.sub.copybook.FilenameCopyBookFinder;
 

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel;
 
-import io.proleap.cobol.Cobol85Parser.BooleanLiteralContext;
+import io.proleap.cobol.CobolParser.BooleanLiteralContext;
 
 public interface BooleanLiteral extends CobolDivisionElement {
 

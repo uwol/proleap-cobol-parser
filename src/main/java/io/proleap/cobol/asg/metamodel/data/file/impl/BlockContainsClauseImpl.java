@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.file.impl;
 
-import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
+import io.proleap.cobol.CobolParser.BlockContainsClauseContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.file.BlockContainsClause;

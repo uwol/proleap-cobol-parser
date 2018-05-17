@@ -8,15 +8,15 @@
 
 package io.proleap.cobol.asg.metamodel.data.communication;
 
-import io.proleap.cobol.Cobol85Parser.EndKeyClauseContext;
-import io.proleap.cobol.Cobol85Parser.MessageCountClauseContext;
-import io.proleap.cobol.Cobol85Parser.MessageDateClauseContext;
-import io.proleap.cobol.Cobol85Parser.MessageTimeClauseContext;
-import io.proleap.cobol.Cobol85Parser.StatusKeyClauseContext;
-import io.proleap.cobol.Cobol85Parser.SymbolicQueueClauseContext;
-import io.proleap.cobol.Cobol85Parser.SymbolicSourceClauseContext;
-import io.proleap.cobol.Cobol85Parser.SymbolicSubQueueClauseContext;
-import io.proleap.cobol.Cobol85Parser.TextLengthClauseContext;
+import io.proleap.cobol.CobolParser.EndKeyClauseContext;
+import io.proleap.cobol.CobolParser.MessageCountClauseContext;
+import io.proleap.cobol.CobolParser.MessageDateClauseContext;
+import io.proleap.cobol.CobolParser.MessageTimeClauseContext;
+import io.proleap.cobol.CobolParser.StatusKeyClauseContext;
+import io.proleap.cobol.CobolParser.SymbolicQueueClauseContext;
+import io.proleap.cobol.CobolParser.SymbolicSourceClauseContext;
+import io.proleap.cobol.CobolParser.SymbolicSubQueueClauseContext;
+import io.proleap.cobol.CobolParser.TextLengthClauseContext;
 
 public interface CommunicationDescriptionEntryInput extends CommunicationDescriptionEntry {
 

@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.data.report;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ReportDescriptionContext;
+import io.proleap.cobol.CobolParser.ReportDescriptionContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface ReportSection extends CobolDivisionElement {

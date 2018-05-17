@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.unstring.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.UnstringIntoContext;
-import io.proleap.cobol.Cobol85Parser.UnstringIntoPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringIntoContext;
+import io.proleap.cobol.CobolParser.UnstringIntoPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

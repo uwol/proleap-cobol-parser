@@ -11,10 +11,10 @@ package io.proleap.cobol.asg.metamodel.environment.specialnames.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.AlphabetAlsoContext;
-import io.proleap.cobol.Cobol85Parser.AlphabetClauseFormat1Context;
-import io.proleap.cobol.Cobol85Parser.AlphabetLiteralsContext;
-import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.CobolParser.AlphabetAlsoContext;
+import io.proleap.cobol.CobolParser.AlphabetClauseFormat1Context;
+import io.proleap.cobol.CobolParser.AlphabetLiteralsContext;
+import io.proleap.cobol.CobolParser.LiteralContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.AlphabetClauseAlphanumeric;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;

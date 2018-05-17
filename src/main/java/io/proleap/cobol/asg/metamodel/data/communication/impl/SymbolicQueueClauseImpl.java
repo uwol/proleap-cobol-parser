@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.communication.impl;
 
-import io.proleap.cobol.Cobol85Parser.SymbolicQueueClauseContext;
+import io.proleap.cobol.CobolParser.SymbolicQueueClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.communication.SymbolicQueueClause;

@@ -14,11 +14,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.proleap.cobol.Cobol85Parser.PerformInlineStatementContext;
-import io.proleap.cobol.Cobol85Parser.PerformProcedureStatementContext;
-import io.proleap.cobol.Cobol85Parser.PerformStatementContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureNameContext;
-import io.proleap.cobol.Cobol85Parser.StatementContext;
+import io.proleap.cobol.CobolParser.PerformInlineStatementContext;
+import io.proleap.cobol.CobolParser.PerformProcedureStatementContext;
+import io.proleap.cobol.CobolParser.PerformStatementContext;
+import io.proleap.cobol.CobolParser.ProcedureNameContext;
+import io.proleap.cobol.CobolParser.StatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

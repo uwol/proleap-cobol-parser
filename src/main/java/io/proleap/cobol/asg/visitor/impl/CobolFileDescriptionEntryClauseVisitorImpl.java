@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.visitor.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.Cobol85Parser;
+import io.proleap.cobol.CobolParser;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.asg.util.ANTLRUtils;
@@ -29,7 +29,7 @@ public class CobolFileDescriptionEntryClauseVisitorImpl extends AbstractCobolPar
 	}
 
 	@Override
-	public Boolean visitBlockContainsClause(final Cobol85Parser.BlockContainsClauseContext ctx) {
+	public Boolean visitBlockContainsClause(final CobolParser.BlockContainsClauseContext ctx) {
 		final FileDescriptionEntry fileDescriptionEntry = findFileDescriptionEntry(ctx);
 
 		fileDescriptionEntry.addBlockContainsClause(ctx);
@@ -38,7 +38,7 @@ public class CobolFileDescriptionEntryClauseVisitorImpl extends AbstractCobolPar
 	}
 
 	@Override
-	public Boolean visitCodeSetClause(final Cobol85Parser.CodeSetClauseContext ctx) {
+	public Boolean visitCodeSetClause(final CobolParser.CodeSetClauseContext ctx) {
 		final FileDescriptionEntry fileDescriptionEntry = findFileDescriptionEntry(ctx);
 
 		fileDescriptionEntry.addCodeSetClause(ctx);
@@ -47,7 +47,7 @@ public class CobolFileDescriptionEntryClauseVisitorImpl extends AbstractCobolPar
 	}
 
 	@Override
-	public Boolean visitDataRecordsClause(final Cobol85Parser.DataRecordsClauseContext ctx) {
+	public Boolean visitDataRecordsClause(final CobolParser.DataRecordsClauseContext ctx) {
 		final FileDescriptionEntry fileDescriptionEntry = findFileDescriptionEntry(ctx);
 
 		fileDescriptionEntry.addDataRecordsClause(ctx);
@@ -56,7 +56,7 @@ public class CobolFileDescriptionEntryClauseVisitorImpl extends AbstractCobolPar
 	}
 
 	@Override
-	public Boolean visitExternalClause(final Cobol85Parser.ExternalClauseContext ctx) {
+	public Boolean visitExternalClause(final CobolParser.ExternalClauseContext ctx) {
 		final FileDescriptionEntry fileDescriptionEntry = findFileDescriptionEntry(ctx);
 
 		fileDescriptionEntry.addExternalClause(ctx);
@@ -65,7 +65,7 @@ public class CobolFileDescriptionEntryClauseVisitorImpl extends AbstractCobolPar
 	}
 
 	@Override
-	public Boolean visitGlobalClause(final Cobol85Parser.GlobalClauseContext ctx) {
+	public Boolean visitGlobalClause(final CobolParser.GlobalClauseContext ctx) {
 		final FileDescriptionEntry fileDescriptionEntry = findFileDescriptionEntry(ctx);
 
 		fileDescriptionEntry.addGlobalClause(ctx);
@@ -74,7 +74,7 @@ public class CobolFileDescriptionEntryClauseVisitorImpl extends AbstractCobolPar
 	}
 
 	@Override
-	public Boolean visitLabelRecordsClause(final Cobol85Parser.LabelRecordsClauseContext ctx) {
+	public Boolean visitLabelRecordsClause(final CobolParser.LabelRecordsClauseContext ctx) {
 		final FileDescriptionEntry fileDescriptionEntry = findFileDescriptionEntry(ctx);
 
 		fileDescriptionEntry.addLabelRecordsClause(ctx);
@@ -83,7 +83,7 @@ public class CobolFileDescriptionEntryClauseVisitorImpl extends AbstractCobolPar
 	}
 
 	@Override
-	public Boolean visitLinageClause(final Cobol85Parser.LinageClauseContext ctx) {
+	public Boolean visitLinageClause(final CobolParser.LinageClauseContext ctx) {
 		final FileDescriptionEntry fileDescriptionEntry = findFileDescriptionEntry(ctx);
 
 		fileDescriptionEntry.addLinageClause(ctx);
@@ -92,7 +92,7 @@ public class CobolFileDescriptionEntryClauseVisitorImpl extends AbstractCobolPar
 	}
 
 	@Override
-	public Boolean visitRecordContainsClause(final Cobol85Parser.RecordContainsClauseContext ctx) {
+	public Boolean visitRecordContainsClause(final CobolParser.RecordContainsClauseContext ctx) {
 		final FileDescriptionEntry fileDescriptionEntry = findFileDescriptionEntry(ctx);
 
 		fileDescriptionEntry.addRecordContainsClause(ctx);
@@ -101,7 +101,7 @@ public class CobolFileDescriptionEntryClauseVisitorImpl extends AbstractCobolPar
 	}
 
 	@Override
-	public Boolean visitReportClause(final Cobol85Parser.ReportClauseContext ctx) {
+	public Boolean visitReportClause(final CobolParser.ReportClauseContext ctx) {
 		final FileDescriptionEntry fileDescriptionEntry = findFileDescriptionEntry(ctx);
 
 		fileDescriptionEntry.addReportClause(ctx);
@@ -110,7 +110,7 @@ public class CobolFileDescriptionEntryClauseVisitorImpl extends AbstractCobolPar
 	}
 
 	@Override
-	public Boolean visitValueOfClause(final Cobol85Parser.ValueOfClauseContext ctx) {
+	public Boolean visitValueOfClause(final CobolParser.ValueOfClauseContext ctx) {
 		final FileDescriptionEntry fileDescriptionEntry = findFileDescriptionEntry(ctx);
 
 		fileDescriptionEntry.addValueOfClause(ctx);

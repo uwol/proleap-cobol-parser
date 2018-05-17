@@ -21,7 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.proleap.cobol.Cobol85Parser.StartRuleContext;
+import io.proleap.cobol.CobolParser.StartRuleContext;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.util.TreeUtils;
@@ -137,9 +137,9 @@ public class TestGenerator {
 
 			final String preProcessedInput = new CobolPreprocessorImpl().process(cobolInputFile, format);
 
-			final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
+			final CobolLexer lexer = new CobolLexer(CharStreams.fromString(preProcessedInput));
 			final CommonTokenStream tokens = new CommonTokenStream(lexer);
-			final Cobol85Parser parser = new Cobol85Parser(tokens);
+			final CobolParser parser = new CobolParser(tokens);
 			final StartRuleContext startRule = parser.startRule();
 			final String inputFileTree = TreeUtils.toStringTree(startRule, parser);
 

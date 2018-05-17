@@ -11,11 +11,11 @@ package io.proleap.cobol.asg.metamodel.procedure.inspect.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
-import io.proleap.cobol.Cobol85Parser.InspectReplacingAllLeadingContext;
-import io.proleap.cobol.Cobol85Parser.InspectReplacingAllLeadingsContext;
-import io.proleap.cobol.Cobol85Parser.InspectReplacingCharactersContext;
-import io.proleap.cobol.Cobol85Parser.InspectReplacingPhraseContext;
+import io.proleap.cobol.CobolParser.InspectBeforeAfterContext;
+import io.proleap.cobol.CobolParser.InspectReplacingAllLeadingContext;
+import io.proleap.cobol.CobolParser.InspectReplacingAllLeadingsContext;
+import io.proleap.cobol.CobolParser.InspectReplacingCharactersContext;
+import io.proleap.cobol.CobolParser.InspectReplacingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.Replacing;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.ReplacingAllLeadings;

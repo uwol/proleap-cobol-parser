@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.delete.impl;
 
-import io.proleap.cobol.Cobol85Parser.DeleteStatementContext;
+import io.proleap.cobol.CobolParser.DeleteStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

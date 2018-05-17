@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.data.datadescription;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.DataOccursSortContext;
-import io.proleap.cobol.Cobol85Parser.IndexNameContext;
+import io.proleap.cobol.CobolParser.DataOccursSortContext;
+import io.proleap.cobol.CobolParser.IndexNameContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.call.Call;

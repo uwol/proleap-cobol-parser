@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.visitor.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.Cobol85Parser;
+import io.proleap.cobol.CobolParser;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
@@ -31,7 +31,7 @@ public class CobolProcedureDivisionVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitParagraph(final Cobol85Parser.ParagraphContext ctx) {
+	public Boolean visitParagraph(final CobolParser.ParagraphContext ctx) {
 		final Scope scope = findScope(ctx);
 
 		if (scope instanceof ProcedureDivision) {
@@ -46,7 +46,7 @@ public class CobolProcedureDivisionVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitParagraphName(final Cobol85Parser.ParagraphNameContext ctx) {
+	public Boolean visitParagraphName(final CobolParser.ParagraphNameContext ctx) {
 		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
 
 		procedureDivision.addParagraphName(ctx);
@@ -55,7 +55,7 @@ public class CobolProcedureDivisionVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitProcedureDeclaratives(final Cobol85Parser.ProcedureDeclarativesContext ctx) {
+	public Boolean visitProcedureDeclaratives(final CobolParser.ProcedureDeclarativesContext ctx) {
 		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
 
 		procedureDivision.addDeclaratives(ctx);
@@ -64,7 +64,7 @@ public class CobolProcedureDivisionVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitProcedureDivisionGivingClause(final Cobol85Parser.ProcedureDivisionGivingClauseContext ctx) {
+	public Boolean visitProcedureDivisionGivingClause(final CobolParser.ProcedureDivisionGivingClauseContext ctx) {
 		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
 
 		procedureDivision.addGivingClause(ctx);
@@ -73,7 +73,7 @@ public class CobolProcedureDivisionVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitProcedureDivisionUsingClause(final Cobol85Parser.ProcedureDivisionUsingClauseContext ctx) {
+	public Boolean visitProcedureDivisionUsingClause(final CobolParser.ProcedureDivisionUsingClauseContext ctx) {
 		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
 
 		procedureDivision.addUsingClause(ctx);
@@ -82,7 +82,7 @@ public class CobolProcedureDivisionVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitProcedureSection(final Cobol85Parser.ProcedureSectionContext ctx) {
+	public Boolean visitProcedureSection(final CobolParser.ProcedureSectionContext ctx) {
 		final ProcedureDivision procedureDivision = findProcedureDivision(ctx);
 
 		procedureDivision.addSection(ctx);

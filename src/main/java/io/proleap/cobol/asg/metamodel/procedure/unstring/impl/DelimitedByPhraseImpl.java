@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.unstring.impl;
 
-import io.proleap.cobol.Cobol85Parser.UnstringDelimitedByPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringDelimitedByPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.DelimitedByPhrase;

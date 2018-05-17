@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.environment.configuration.impl;
 
-import io.proleap.cobol.Cobol85Parser.ConfigurationSectionContext;
-import io.proleap.cobol.Cobol85Parser.ObjectComputerClauseContext;
-import io.proleap.cobol.Cobol85Parser.ObjectComputerParagraphContext;
-import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
+import io.proleap.cobol.CobolParser.ConfigurationSectionContext;
+import io.proleap.cobol.CobolParser.ObjectComputerClauseContext;
+import io.proleap.cobol.CobolParser.ObjectComputerParagraphContext;
+import io.proleap.cobol.CobolParser.SourceComputerParagraphContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.configuration.ConfigurationSection;
 import io.proleap.cobol.asg.metamodel.environment.configuration.object.ObjectComputerParagraph;

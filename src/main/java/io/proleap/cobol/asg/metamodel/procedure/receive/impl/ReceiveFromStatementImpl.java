@@ -8,13 +8,13 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.receive.impl;
 
-import io.proleap.cobol.Cobol85Parser.ReceiveBeforeContext;
-import io.proleap.cobol.Cobol85Parser.ReceiveFromContext;
-import io.proleap.cobol.Cobol85Parser.ReceiveFromStatementContext;
-import io.proleap.cobol.Cobol85Parser.ReceiveSizeContext;
-import io.proleap.cobol.Cobol85Parser.ReceiveStatusContext;
-import io.proleap.cobol.Cobol85Parser.ReceiveThreadContext;
-import io.proleap.cobol.Cobol85Parser.ReceiveWithContext;
+import io.proleap.cobol.CobolParser.ReceiveBeforeContext;
+import io.proleap.cobol.CobolParser.ReceiveFromContext;
+import io.proleap.cobol.CobolParser.ReceiveFromStatementContext;
+import io.proleap.cobol.CobolParser.ReceiveSizeContext;
+import io.proleap.cobol.CobolParser.ReceiveStatusContext;
+import io.proleap.cobol.CobolParser.ReceiveThreadContext;
+import io.proleap.cobol.CobolParser.ReceiveWithContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

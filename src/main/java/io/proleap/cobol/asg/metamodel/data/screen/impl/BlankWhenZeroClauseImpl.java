@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.screen.impl;
 
-import io.proleap.cobol.Cobol85Parser.ScreenDescriptionBlankWhenZeroClauseContext;
+import io.proleap.cobol.CobolParser.ScreenDescriptionBlankWhenZeroClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.screen.BlankWhenZeroClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

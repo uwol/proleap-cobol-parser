@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.subtract;
 
-import io.proleap.cobol.Cobol85Parser.SubtractCorrespondingStatementContext;
-import io.proleap.cobol.Cobol85Parser.SubtractFromGivingStatementContext;
-import io.proleap.cobol.Cobol85Parser.SubtractFromStatementContext;
+import io.proleap.cobol.CobolParser.SubtractCorrespondingStatementContext;
+import io.proleap.cobol.CobolParser.SubtractFromGivingStatementContext;
+import io.proleap.cobol.CobolParser.SubtractFromStatementContext;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;

@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel;
 
 import java.math.BigDecimal;
 
-import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
+import io.proleap.cobol.CobolParser.IntegerLiteralContext;
 
 public interface IntegerLiteral extends CobolDivisionElement {
 

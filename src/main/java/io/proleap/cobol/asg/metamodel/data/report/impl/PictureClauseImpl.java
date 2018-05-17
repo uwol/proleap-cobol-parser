@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.report.impl;
 
-import io.proleap.cobol.Cobol85Parser.ReportGroupPictureClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupPictureClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.report.PictureClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

@@ -7,9 +7,9 @@
 */
 
 /*
-* COBOL 85 Grammar for ANTLR4
+* COBOL Grammar for ANTLR4
 *
-* This is a COBOL 85 grammar, which is part of the COBOL parser at
+* This is a COBOL grammar, which is part of the COBOL parser at
 * https://github.com/uwol/proleap-cobol-parser.
 *
 * The grammar passes the NIST test suite and has successfully been applied to
@@ -17,7 +17,7 @@
 * with the provided preprocessor, which executes COPY and REPLACE statements.
 */
 
-grammar Cobol85;
+grammar Cobol;
 
 startRule : compilationUnit EOF;
 

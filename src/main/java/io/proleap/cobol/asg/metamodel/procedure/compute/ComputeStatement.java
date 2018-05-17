@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.compute;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ComputeStoreContext;
+import io.proleap.cobol.CobolParser.ComputeStoreContext;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;

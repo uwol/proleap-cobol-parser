@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.search.impl;
 
-import io.proleap.cobol.Cobol85Parser.SearchVaryingContext;
+import io.proleap.cobol.CobolParser.SearchVaryingContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

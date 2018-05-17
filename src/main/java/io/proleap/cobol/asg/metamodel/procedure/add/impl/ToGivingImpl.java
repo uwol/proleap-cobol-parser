@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.add.impl;
 
-import io.proleap.cobol.Cobol85Parser.AddToGivingContext;
+import io.proleap.cobol.CobolParser.AddToGivingContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.add.ToGiving;

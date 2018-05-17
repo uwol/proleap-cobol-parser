@@ -11,9 +11,9 @@ package io.proleap.cobol.asg.metamodel.data.programlibrary.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.proleap.cobol.Cobol85Parser.LibraryAttributeClauseFormat1Context;
-import io.proleap.cobol.Cobol85Parser.LibraryDescriptionEntryFormat1Context;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureClauseFormat1Context;
+import io.proleap.cobol.CobolParser.LibraryAttributeClauseFormat1Context;
+import io.proleap.cobol.CobolParser.LibraryDescriptionEntryFormat1Context;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureClauseFormat1Context;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.ExportAttribute;

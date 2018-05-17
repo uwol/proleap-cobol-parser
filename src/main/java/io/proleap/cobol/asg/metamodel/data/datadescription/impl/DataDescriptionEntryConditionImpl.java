@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.data.datadescription.impl;
 
-import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat3Context;
-import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataValueIntervalContext;
+import io.proleap.cobol.CobolParser.DataDescriptionEntryFormat3Context;
+import io.proleap.cobol.CobolParser.DataValueClauseContext;
+import io.proleap.cobol.CobolParser.DataValueIntervalContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryCondition;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;

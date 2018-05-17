@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.alter;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.AlterProceedToContext;
+import io.proleap.cobol.CobolParser.AlterProceedToContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**

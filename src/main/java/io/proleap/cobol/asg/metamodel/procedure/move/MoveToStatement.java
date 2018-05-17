@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.move;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.MoveToSendingAreaContext;
+import io.proleap.cobol.CobolParser.MoveToSendingAreaContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 

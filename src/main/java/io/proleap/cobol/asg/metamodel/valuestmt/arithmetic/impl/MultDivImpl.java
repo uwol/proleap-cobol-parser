@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl;
 
-import io.proleap.cobol.Cobol85Parser.MultDivContext;
-import io.proleap.cobol.Cobol85Parser.PowerContext;
-import io.proleap.cobol.Cobol85Parser.PowersContext;
+import io.proleap.cobol.CobolParser.MultDivContext;
+import io.proleap.cobol.CobolParser.PowerContext;
+import io.proleap.cobol.CobolParser.PowersContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDiv;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Powers;

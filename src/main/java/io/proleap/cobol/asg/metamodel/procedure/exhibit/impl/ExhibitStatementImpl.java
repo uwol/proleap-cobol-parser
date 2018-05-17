@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.exhibit.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ExhibitOperandContext;
-import io.proleap.cobol.Cobol85Parser.ExhibitStatementContext;
+import io.proleap.cobol.CobolParser.ExhibitOperandContext;
+import io.proleap.cobol.CobolParser.ExhibitStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;

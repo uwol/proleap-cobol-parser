@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.preprocessor.sub.document;
 
-import io.proleap.cobol.Cobol85PreprocessorListener;
+import io.proleap.cobol.CobolPreprocessorListener;
 import io.proleap.cobol.preprocessor.sub.document.impl.CobolDocumentContext;
 
-public interface CobolDocumentParserListener extends Cobol85PreprocessorListener {
+public interface CobolDocumentParserListener extends CobolPreprocessorListener {
 
 	CobolDocumentContext context();
 }

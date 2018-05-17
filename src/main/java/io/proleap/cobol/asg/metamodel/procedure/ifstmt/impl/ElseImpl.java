@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.ifstmt.impl;
 
-import io.proleap.cobol.Cobol85Parser.IfElseContext;
+import io.proleap.cobol.CobolParser.IfElseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.ifstmt.Else;

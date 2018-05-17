@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform;
 
-import io.proleap.cobol.Cobol85Parser.PerformTimesContext;
-import io.proleap.cobol.Cobol85Parser.PerformUntilContext;
-import io.proleap.cobol.Cobol85Parser.PerformVaryingContext;
+import io.proleap.cobol.CobolParser.PerformTimesContext;
+import io.proleap.cobol.CobolParser.PerformUntilContext;
+import io.proleap.cobol.CobolParser.PerformVaryingContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface PerformType extends CobolDivisionElement {

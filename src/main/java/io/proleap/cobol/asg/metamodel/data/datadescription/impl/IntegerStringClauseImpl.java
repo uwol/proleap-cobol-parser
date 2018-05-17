@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.datadescription.impl;
 
-import io.proleap.cobol.Cobol85Parser.DataIntegerStringClauseContext;
+import io.proleap.cobol.CobolParser.DataIntegerStringClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.datadescription.IntegerStringClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

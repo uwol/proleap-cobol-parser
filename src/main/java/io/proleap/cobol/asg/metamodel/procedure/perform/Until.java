@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform;
 
-import io.proleap.cobol.Cobol85Parser.PerformTestClauseContext;
+import io.proleap.cobol.CobolParser.PerformTestClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
 

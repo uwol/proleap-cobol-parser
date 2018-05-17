@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.evaluate;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.EvaluateAlsoConditionContext;
-import io.proleap.cobol.Cobol85Parser.EvaluateConditionContext;
+import io.proleap.cobol.CobolParser.EvaluateAlsoConditionContext;
+import io.proleap.cobol.CobolParser.EvaluateConditionContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface When extends CobolDivisionElement {

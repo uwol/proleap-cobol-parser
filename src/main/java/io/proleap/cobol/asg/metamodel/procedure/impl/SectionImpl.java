@@ -13,9 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.proleap.cobol.Cobol85Parser.ParagraphContext;
-import io.proleap.cobol.Cobol85Parser.ParagraphNameContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureSectionContext;
+import io.proleap.cobol.CobolParser.ParagraphContext;
+import io.proleap.cobol.CobolParser.ParagraphNameContext;
+import io.proleap.cobol.CobolParser.ProcedureSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.SectionCall;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;

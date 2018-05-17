@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.MultipleFileClauseContext;
-import io.proleap.cobol.Cobol85Parser.MultipleFilePositionContext;
+import io.proleap.cobol.CobolParser.MultipleFileClauseContext;
+import io.proleap.cobol.CobolParser.MultipleFilePositionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.MultipleFileClause;

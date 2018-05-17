@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.divide;
 
-import io.proleap.cobol.Cobol85Parser.DivideGivingPhraseContext;
+import io.proleap.cobol.CobolParser.DivideGivingPhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 

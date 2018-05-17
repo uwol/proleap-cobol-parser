@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.close;
 
-import io.proleap.cobol.Cobol85Parser.ClosePortFileIOStatementContext;
-import io.proleap.cobol.Cobol85Parser.CloseReelUnitStatementContext;
-import io.proleap.cobol.Cobol85Parser.CloseRelativeStatementContext;
+import io.proleap.cobol.CobolParser.ClosePortFileIOStatementContext;
+import io.proleap.cobol.CobolParser.CloseReelUnitStatementContext;
+import io.proleap.cobol.CobolParser.CloseRelativeStatementContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 

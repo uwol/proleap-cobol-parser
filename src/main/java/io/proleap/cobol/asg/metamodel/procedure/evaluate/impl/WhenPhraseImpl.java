@@ -11,9 +11,9 @@ package io.proleap.cobol.asg.metamodel.procedure.evaluate.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.EvaluateAlsoConditionContext;
-import io.proleap.cobol.Cobol85Parser.EvaluateWhenContext;
-import io.proleap.cobol.Cobol85Parser.EvaluateWhenPhraseContext;
+import io.proleap.cobol.CobolParser.EvaluateAlsoConditionContext;
+import io.proleap.cobol.CobolParser.EvaluateWhenContext;
+import io.proleap.cobol.CobolParser.EvaluateWhenPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.evaluate.When;

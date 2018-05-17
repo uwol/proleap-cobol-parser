@@ -8,12 +8,12 @@
 
 package io.proleap.cobol.asg.metamodel.data.communication;
 
-import io.proleap.cobol.Cobol85Parser.DestinationCountClauseContext;
-import io.proleap.cobol.Cobol85Parser.DestinationTableClauseContext;
-import io.proleap.cobol.Cobol85Parser.ErrorKeyClauseContext;
-import io.proleap.cobol.Cobol85Parser.StatusKeyClauseContext;
-import io.proleap.cobol.Cobol85Parser.SymbolicDestinationClauseContext;
-import io.proleap.cobol.Cobol85Parser.TextLengthClauseContext;
+import io.proleap.cobol.CobolParser.DestinationCountClauseContext;
+import io.proleap.cobol.CobolParser.DestinationTableClauseContext;
+import io.proleap.cobol.CobolParser.ErrorKeyClauseContext;
+import io.proleap.cobol.CobolParser.StatusKeyClauseContext;
+import io.proleap.cobol.CobolParser.SymbolicDestinationClauseContext;
+import io.proleap.cobol.CobolParser.TextLengthClauseContext;
 
 public interface CommunicationDescriptionEntryOutput extends CommunicationDescriptionEntry {
 

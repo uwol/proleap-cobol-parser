@@ -11,10 +11,10 @@ package io.proleap.cobol.asg.metamodel.procedure.subtract.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SubtractFromGivingStatementContext;
-import io.proleap.cobol.Cobol85Parser.SubtractGivingContext;
-import io.proleap.cobol.Cobol85Parser.SubtractMinuendGivingContext;
-import io.proleap.cobol.Cobol85Parser.SubtractSubtrahendContext;
+import io.proleap.cobol.CobolParser.SubtractFromGivingStatementContext;
+import io.proleap.cobol.CobolParser.SubtractGivingContext;
+import io.proleap.cobol.CobolParser.SubtractMinuendGivingContext;
+import io.proleap.cobol.CobolParser.SubtractSubtrahendContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

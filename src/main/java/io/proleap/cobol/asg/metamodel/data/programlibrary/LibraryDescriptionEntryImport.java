@@ -10,10 +10,10 @@ package io.proleap.cobol.asg.metamodel.data.programlibrary;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.LibraryAttributeClauseFormat2Context;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureClauseFormat2Context;
-import io.proleap.cobol.Cobol85Parser.LibraryIsCommonClauseContext;
-import io.proleap.cobol.Cobol85Parser.LibraryIsGlobalClauseContext;
+import io.proleap.cobol.CobolParser.LibraryAttributeClauseFormat2Context;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureClauseFormat2Context;
+import io.proleap.cobol.CobolParser.LibraryIsCommonClauseContext;
+import io.proleap.cobol.CobolParser.LibraryIsGlobalClauseContext;
 
 public interface LibraryDescriptionEntryImport extends LibraryDescriptionEntry {
 

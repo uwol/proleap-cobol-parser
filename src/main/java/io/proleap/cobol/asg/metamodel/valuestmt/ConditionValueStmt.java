@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.valuestmt;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.AndOrConditionContext;
-import io.proleap.cobol.Cobol85Parser.CombinableConditionContext;
+import io.proleap.cobol.CobolParser.AndOrConditionContext;
+import io.proleap.cobol.CobolParser.CombinableConditionContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.AndOrCondition;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.CombinableCondition;
 

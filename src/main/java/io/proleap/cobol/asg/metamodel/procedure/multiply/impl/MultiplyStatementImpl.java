@@ -8,11 +8,11 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.multiply.impl;
 
-import io.proleap.cobol.Cobol85Parser.MultiplyGivingContext;
-import io.proleap.cobol.Cobol85Parser.MultiplyGivingResultContext;
-import io.proleap.cobol.Cobol85Parser.MultiplyRegularContext;
-import io.proleap.cobol.Cobol85Parser.MultiplyRegularOperandContext;
-import io.proleap.cobol.Cobol85Parser.MultiplyStatementContext;
+import io.proleap.cobol.CobolParser.MultiplyGivingContext;
+import io.proleap.cobol.CobolParser.MultiplyGivingResultContext;
+import io.proleap.cobol.CobolParser.MultiplyRegularContext;
+import io.proleap.cobol.CobolParser.MultiplyRegularOperandContext;
+import io.proleap.cobol.CobolParser.MultiplyStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;

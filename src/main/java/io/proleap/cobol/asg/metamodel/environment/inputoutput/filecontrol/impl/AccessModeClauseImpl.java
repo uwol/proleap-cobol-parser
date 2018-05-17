@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.impl;
 
-import io.proleap.cobol.Cobol85Parser.AccessModeClauseContext;
+import io.proleap.cobol.CobolParser.AccessModeClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.AccessModeClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

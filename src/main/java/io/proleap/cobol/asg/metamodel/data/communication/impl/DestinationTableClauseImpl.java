@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.data.communication.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.DestinationTableClauseContext;
+import io.proleap.cobol.CobolParser.DestinationTableClauseContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;

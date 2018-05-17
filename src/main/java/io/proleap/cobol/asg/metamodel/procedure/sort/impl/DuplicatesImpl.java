@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.sort.impl;
 
-import io.proleap.cobol.Cobol85Parser.SortDuplicatesPhraseContext;
+import io.proleap.cobol.CobolParser.SortDuplicatesPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.sort.Duplicates;

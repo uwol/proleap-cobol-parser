@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.evaluate.impl;
 
-import io.proleap.cobol.Cobol85Parser.EvaluateWhenOtherContext;
+import io.proleap.cobol.CobolParser.EvaluateWhenOtherContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.evaluate.WhenOther;

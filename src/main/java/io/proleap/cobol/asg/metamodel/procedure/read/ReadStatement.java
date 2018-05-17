@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.read;
 
-import io.proleap.cobol.Cobol85Parser.ReadIntoContext;
-import io.proleap.cobol.Cobol85Parser.ReadKeyContext;
-import io.proleap.cobol.Cobol85Parser.ReadWithContext;
+import io.proleap.cobol.CobolParser.ReadIntoContext;
+import io.proleap.cobol.CobolParser.ReadKeyContext;
+import io.proleap.cobol.CobolParser.ReadWithContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.AtEndPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;

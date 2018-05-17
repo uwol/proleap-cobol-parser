@@ -8,11 +8,11 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.impl;
 
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionByReferenceContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionByReferencePhraseContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionByValueContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionByValuePhraseContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionUsingParameterContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionByReferenceContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionByReferencePhraseContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionByValueContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionByValuePhraseContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionUsingParameterContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.ByReferencePhrase;

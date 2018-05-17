@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.file.impl;
 
-import io.proleap.cobol.Cobol85Parser.GlobalClauseContext;
+import io.proleap.cobol.CobolParser.GlobalClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.file.GlobalClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

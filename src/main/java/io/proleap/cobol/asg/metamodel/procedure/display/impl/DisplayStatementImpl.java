@@ -11,11 +11,11 @@ package io.proleap.cobol.asg.metamodel.procedure.display.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.DisplayAtContext;
-import io.proleap.cobol.Cobol85Parser.DisplayOperandContext;
-import io.proleap.cobol.Cobol85Parser.DisplayStatementContext;
-import io.proleap.cobol.Cobol85Parser.DisplayUponContext;
-import io.proleap.cobol.Cobol85Parser.DisplayWithContext;
+import io.proleap.cobol.CobolParser.DisplayAtContext;
+import io.proleap.cobol.CobolParser.DisplayOperandContext;
+import io.proleap.cobol.CobolParser.DisplayStatementContext;
+import io.proleap.cobol.CobolParser.DisplayUponContext;
+import io.proleap.cobol.CobolParser.DisplayWithContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

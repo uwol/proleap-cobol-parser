@@ -8,13 +8,13 @@
 
 package io.proleap.cobol.asg.metamodel.data.programlibrary.impl;
 
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureClauseFormat2Context;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureForClauseContext;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureGivingClauseContext;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureUsingClauseContext;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureUsingNameContext;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureWithClauseContext;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureWithNameContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureClauseFormat2Context;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureForClauseContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureGivingClauseContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureUsingClauseContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureUsingNameContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureWithClauseContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureWithNameContext;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;

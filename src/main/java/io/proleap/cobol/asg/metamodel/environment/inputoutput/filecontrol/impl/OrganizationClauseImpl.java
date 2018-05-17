@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.impl;
 
-import io.proleap.cobol.Cobol85Parser.OrganizationClauseContext;
+import io.proleap.cobol.CobolParser.OrganizationClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.OrganizationClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

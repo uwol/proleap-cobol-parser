@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.file.impl;
 
-import io.proleap.cobol.Cobol85Parser.CodeSetClauseContext;
+import io.proleap.cobol.CobolParser.CodeSetClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.file.CodeSetClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

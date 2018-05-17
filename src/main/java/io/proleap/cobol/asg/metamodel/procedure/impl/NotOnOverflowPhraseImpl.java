@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.impl;
 
-import io.proleap.cobol.Cobol85Parser.NotOnOverflowPhraseContext;
+import io.proleap.cobol.CobolParser.NotOnOverflowPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnOverflowPhrase;

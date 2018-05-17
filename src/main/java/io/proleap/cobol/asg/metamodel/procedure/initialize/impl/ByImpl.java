@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.initialize.impl;
 
-import io.proleap.cobol.Cobol85Parser.InitializeReplacingByContext;
+import io.proleap.cobol.CobolParser.InitializeReplacingByContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.By;

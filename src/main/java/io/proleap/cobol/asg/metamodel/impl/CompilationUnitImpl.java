@@ -14,8 +14,8 @@ import java.util.List;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 
-import io.proleap.cobol.Cobol85Parser.CompilationUnitContext;
-import io.proleap.cobol.Cobol85Parser.ProgramUnitContext;
+import io.proleap.cobol.CobolParser.CompilationUnitContext;
+import io.proleap.cobol.CobolParser.ProgramUnitContext;
 import io.proleap.cobol.asg.metamodel.ASGElement;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;

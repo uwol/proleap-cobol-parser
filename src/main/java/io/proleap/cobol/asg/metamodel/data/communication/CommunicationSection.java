@@ -10,10 +10,10 @@ package io.proleap.cobol.asg.metamodel.data.communication;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryContext;
-import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryFormat1Context;
-import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryFormat2Context;
-import io.proleap.cobol.Cobol85Parser.CommunicationDescriptionEntryFormat3Context;
+import io.proleap.cobol.CobolParser.CommunicationDescriptionEntryContext;
+import io.proleap.cobol.CobolParser.CommunicationDescriptionEntryFormat1Context;
+import io.proleap.cobol.CobolParser.CommunicationDescriptionEntryFormat2Context;
+import io.proleap.cobol.CobolParser.CommunicationDescriptionEntryFormat3Context;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;
 
 public interface CommunicationSection extends DataDescriptionEntryContainer {

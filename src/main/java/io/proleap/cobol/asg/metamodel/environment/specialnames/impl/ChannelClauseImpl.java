@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.specialnames.impl;
 
-import io.proleap.cobol.Cobol85Parser.ChannelClauseContext;
+import io.proleap.cobol.CobolParser.ChannelClauseContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.MnemonicName;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;

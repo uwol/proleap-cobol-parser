@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionByValueContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionByValueContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface ByValuePhrase extends CobolDivisionElement {

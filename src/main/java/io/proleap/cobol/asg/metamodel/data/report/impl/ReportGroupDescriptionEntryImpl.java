@@ -17,10 +17,10 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.proleap.cobol.Cobol85Parser.ReportGroupLineNumberClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupLineNumberNextPageContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupLineNumberPlusContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupUsageClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupLineNumberClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupLineNumberNextPageContext;
+import io.proleap.cobol.CobolParser.ReportGroupLineNumberPlusContext;
+import io.proleap.cobol.CobolParser.ReportGroupUsageClauseContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.report.LineNumberClause;

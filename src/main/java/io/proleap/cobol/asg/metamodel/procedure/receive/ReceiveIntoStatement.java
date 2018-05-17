@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.receive;
 
-import io.proleap.cobol.Cobol85Parser.ReceiveNoDataContext;
-import io.proleap.cobol.Cobol85Parser.ReceiveWithDataContext;
+import io.proleap.cobol.CobolParser.ReceiveNoDataContext;
+import io.proleap.cobol.CobolParser.ReceiveWithDataContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 

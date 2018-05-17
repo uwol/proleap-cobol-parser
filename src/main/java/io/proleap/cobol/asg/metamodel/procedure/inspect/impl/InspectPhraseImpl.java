@@ -10,11 +10,11 @@ package io.proleap.cobol.asg.metamodel.procedure.inspect.impl;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 
-import io.proleap.cobol.Cobol85Parser.InspectAllLeadingsContext;
-import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
-import io.proleap.cobol.Cobol85Parser.InspectByContext;
-import io.proleap.cobol.Cobol85Parser.InspectCharactersContext;
-import io.proleap.cobol.Cobol85Parser.InspectForContext;
+import io.proleap.cobol.CobolParser.InspectAllLeadingsContext;
+import io.proleap.cobol.CobolParser.InspectBeforeAfterContext;
+import io.proleap.cobol.CobolParser.InspectByContext;
+import io.proleap.cobol.CobolParser.InspectCharactersContext;
+import io.proleap.cobol.CobolParser.InspectForContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

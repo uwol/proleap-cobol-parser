@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.stop;
 
-import io.proleap.cobol.Cobol85Parser.StopStatementGivingContext;
+import io.proleap.cobol.CobolParser.StopStatementGivingContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 

@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.use;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.UseDebugOnContext;
+import io.proleap.cobol.CobolParser.UseDebugOnContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface UseDebugStatement extends CobolDivisionElement {

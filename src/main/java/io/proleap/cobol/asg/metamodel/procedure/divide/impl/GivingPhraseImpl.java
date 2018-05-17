@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.divide.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.DivideGivingContext;
-import io.proleap.cobol.Cobol85Parser.DivideGivingPhraseContext;
+import io.proleap.cobol.CobolParser.DivideGivingContext;
+import io.proleap.cobol.CobolParser.DivideGivingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

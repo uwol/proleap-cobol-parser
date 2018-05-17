@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.screen.impl;
 
-import io.proleap.cobol.Cobol85Parser.ScreenDescriptionSizeClauseContext;
+import io.proleap.cobol.CobolParser.ScreenDescriptionSizeClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.screen.SizeClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

@@ -10,9 +10,9 @@ package io.proleap.cobol.asg.metamodel.data.programlibrary;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.LibraryDescriptionEntryContext;
-import io.proleap.cobol.Cobol85Parser.LibraryDescriptionEntryFormat1Context;
-import io.proleap.cobol.Cobol85Parser.LibraryDescriptionEntryFormat2Context;
+import io.proleap.cobol.CobolParser.LibraryDescriptionEntryContext;
+import io.proleap.cobol.CobolParser.LibraryDescriptionEntryFormat1Context;
+import io.proleap.cobol.CobolParser.LibraryDescriptionEntryFormat2Context;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface ProgramLibrarySection extends CobolDivisionElement {

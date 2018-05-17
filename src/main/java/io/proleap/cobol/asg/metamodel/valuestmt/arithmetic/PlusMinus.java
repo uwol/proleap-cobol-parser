@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic;
 
-import io.proleap.cobol.Cobol85Parser.MultDivsContext;
+import io.proleap.cobol.CobolParser.MultDivsContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface PlusMinus extends ValueStmt {

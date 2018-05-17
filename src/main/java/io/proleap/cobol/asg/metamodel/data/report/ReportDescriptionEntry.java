@@ -10,12 +10,12 @@ package io.proleap.cobol.asg.metamodel.data.report;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ReportDescriptionFirstDetailClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportDescriptionFootingClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportDescriptionGlobalClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportDescriptionHeadingClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportDescriptionLastDetailClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportDescriptionPageLimitClauseContext;
+import io.proleap.cobol.CobolParser.ReportDescriptionFirstDetailClauseContext;
+import io.proleap.cobol.CobolParser.ReportDescriptionFootingClauseContext;
+import io.proleap.cobol.CobolParser.ReportDescriptionGlobalClauseContext;
+import io.proleap.cobol.CobolParser.ReportDescriptionHeadingClauseContext;
+import io.proleap.cobol.CobolParser.ReportDescriptionLastDetailClauseContext;
+import io.proleap.cobol.CobolParser.ReportDescriptionPageLimitClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.Declaration;
 import io.proleap.cobol.asg.metamodel.call.ReportDescriptionEntryCall;

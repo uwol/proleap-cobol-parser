@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform.impl;
 
-import io.proleap.cobol.Cobol85Parser.PerformTimesContext;
-import io.proleap.cobol.Cobol85Parser.PerformTypeContext;
-import io.proleap.cobol.Cobol85Parser.PerformUntilContext;
-import io.proleap.cobol.Cobol85Parser.PerformVaryingContext;
+import io.proleap.cobol.CobolParser.PerformTimesContext;
+import io.proleap.cobol.CobolParser.PerformTypeContext;
+import io.proleap.cobol.CobolParser.PerformUntilContext;
+import io.proleap.cobol.CobolParser.PerformVaryingContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformType;

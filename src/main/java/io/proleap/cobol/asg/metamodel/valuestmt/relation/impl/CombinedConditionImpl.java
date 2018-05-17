@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.valuestmt.relation.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.RelationCombinedConditionContext;
+import io.proleap.cobol.CobolParser.RelationCombinedConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.impl.ValueStmtImpl;

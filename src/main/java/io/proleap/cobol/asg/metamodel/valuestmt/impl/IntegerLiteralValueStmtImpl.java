@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 
-import io.proleap.cobol.Cobol85Parser.IntegerLiteralContext;
+import io.proleap.cobol.CobolParser.IntegerLiteralContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.IntegerLiteralValueStmt;

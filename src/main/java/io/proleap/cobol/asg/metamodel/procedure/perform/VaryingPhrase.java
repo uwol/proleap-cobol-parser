@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform;
 
-import io.proleap.cobol.Cobol85Parser.PerformByContext;
-import io.proleap.cobol.Cobol85Parser.PerformFromContext;
-import io.proleap.cobol.Cobol85Parser.PerformUntilContext;
+import io.proleap.cobol.CobolParser.PerformByContext;
+import io.proleap.cobol.CobolParser.PerformFromContext;
+import io.proleap.cobol.CobolParser.PerformUntilContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 

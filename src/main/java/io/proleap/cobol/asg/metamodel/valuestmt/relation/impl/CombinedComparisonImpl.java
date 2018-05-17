@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.relation.impl;
 
-import io.proleap.cobol.Cobol85Parser.ArithmeticExpressionContext;
-import io.proleap.cobol.Cobol85Parser.RelationCombinedComparisonContext;
-import io.proleap.cobol.Cobol85Parser.RelationCombinedConditionContext;
+import io.proleap.cobol.CobolParser.ArithmeticExpressionContext;
+import io.proleap.cobol.CobolParser.RelationCombinedComparisonContext;
+import io.proleap.cobol.CobolParser.RelationCombinedConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.CombinedComparison;

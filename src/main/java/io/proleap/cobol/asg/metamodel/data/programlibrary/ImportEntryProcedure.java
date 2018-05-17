@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.data.programlibrary;
 
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureForClauseContext;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureGivingClauseContext;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureUsingClauseContext;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureWithClauseContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureForClauseContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureGivingClauseContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureUsingClauseContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureWithClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 

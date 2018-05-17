@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.receive.impl;
 
-import io.proleap.cobol.Cobol85Parser.ReceiveWithDataContext;
+import io.proleap.cobol.CobolParser.ReceiveWithDataContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.receive.WithData;

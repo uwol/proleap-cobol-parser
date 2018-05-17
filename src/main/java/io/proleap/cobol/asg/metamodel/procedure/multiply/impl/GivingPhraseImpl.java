@@ -11,9 +11,9 @@ package io.proleap.cobol.asg.metamodel.procedure.multiply.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.MultiplyGivingContext;
-import io.proleap.cobol.Cobol85Parser.MultiplyGivingOperandContext;
-import io.proleap.cobol.Cobol85Parser.MultiplyGivingResultContext;
+import io.proleap.cobol.CobolParser.MultiplyGivingContext;
+import io.proleap.cobol.CobolParser.MultiplyGivingOperandContext;
+import io.proleap.cobol.CobolParser.MultiplyGivingResultContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

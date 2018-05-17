@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.call;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SubscriptContext;
+import io.proleap.cobol.CobolParser.SubscriptContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
 
 public interface TableCall extends DataDescriptionEntryCall {

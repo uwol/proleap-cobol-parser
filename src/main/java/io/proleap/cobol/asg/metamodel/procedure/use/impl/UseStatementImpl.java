@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.use.impl;
 
-import io.proleap.cobol.Cobol85Parser.UseAfterClauseContext;
-import io.proleap.cobol.Cobol85Parser.UseDebugClauseContext;
-import io.proleap.cobol.Cobol85Parser.UseDebugOnContext;
-import io.proleap.cobol.Cobol85Parser.UseStatementContext;
+import io.proleap.cobol.CobolParser.UseAfterClauseContext;
+import io.proleap.cobol.CobolParser.UseDebugClauseContext;
+import io.proleap.cobol.CobolParser.UseDebugOnContext;
+import io.proleap.cobol.CobolParser.UseStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;

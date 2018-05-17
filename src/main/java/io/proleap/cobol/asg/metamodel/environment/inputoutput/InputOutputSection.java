@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput;
 
-import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
-import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
+import io.proleap.cobol.CobolParser.FileControlParagraphContext;
+import io.proleap.cobol.CobolParser.IoControlParagraphContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.IoControlParagraph;

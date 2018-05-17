@@ -8,14 +8,14 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.condition.impl;
 
-import io.proleap.cobol.Cobol85Parser.ClassConditionContext;
-import io.proleap.cobol.Cobol85Parser.ConditionContext;
-import io.proleap.cobol.Cobol85Parser.ConditionNameReferenceContext;
-import io.proleap.cobol.Cobol85Parser.ConditionNameSubscriptReferenceContext;
-import io.proleap.cobol.Cobol85Parser.InDataContext;
-import io.proleap.cobol.Cobol85Parser.InMnemonicContext;
-import io.proleap.cobol.Cobol85Parser.RelationConditionContext;
-import io.proleap.cobol.Cobol85Parser.SimpleConditionContext;
+import io.proleap.cobol.CobolParser.ClassConditionContext;
+import io.proleap.cobol.CobolParser.ConditionContext;
+import io.proleap.cobol.CobolParser.ConditionNameReferenceContext;
+import io.proleap.cobol.CobolParser.ConditionNameSubscriptReferenceContext;
+import io.proleap.cobol.CobolParser.InDataContext;
+import io.proleap.cobol.CobolParser.InMnemonicContext;
+import io.proleap.cobol.CobolParser.RelationConditionContext;
+import io.proleap.cobol.CobolParser.SimpleConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;

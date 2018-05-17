@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.data.programlibrary.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureWithClauseContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureWithClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.WithClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

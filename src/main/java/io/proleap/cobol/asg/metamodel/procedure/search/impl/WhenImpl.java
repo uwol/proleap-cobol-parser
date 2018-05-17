@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.search.impl;
 
-import io.proleap.cobol.Cobol85Parser.SearchWhenContext;
+import io.proleap.cobol.CobolParser.SearchWhenContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.search.WhenPhrase;

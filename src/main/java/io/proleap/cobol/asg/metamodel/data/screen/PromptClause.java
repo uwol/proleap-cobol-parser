@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.screen;
 
-import io.proleap.cobol.Cobol85Parser.ScreenDescriptionPromptOccursClauseContext;
+import io.proleap.cobol.CobolParser.ScreenDescriptionPromptOccursClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 

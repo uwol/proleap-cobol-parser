@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.disable.impl;
 
-import io.proleap.cobol.Cobol85Parser.DisableStatementContext;
+import io.proleap.cobol.CobolParser.DisableStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

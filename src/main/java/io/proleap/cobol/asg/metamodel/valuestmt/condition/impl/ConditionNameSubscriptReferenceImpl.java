@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.valuestmt.condition.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ConditionNameSubscriptReferenceContext;
-import io.proleap.cobol.Cobol85Parser.SubscriptContext;
+import io.proleap.cobol.CobolParser.ConditionNameSubscriptReferenceContext;
+import io.proleap.cobol.CobolParser.SubscriptContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;

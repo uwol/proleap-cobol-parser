@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
-import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
+import io.proleap.cobol.CobolParser.FileControlEntryContext;
+import io.proleap.cobol.CobolParser.FileControlParagraphContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;

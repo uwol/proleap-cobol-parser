@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.data.report;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ReportGroupLineNumberClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupUsageClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupLineNumberClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupUsageClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.Declaration;
 

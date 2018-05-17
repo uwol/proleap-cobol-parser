@@ -11,10 +11,10 @@ package io.proleap.cobol.asg.metamodel.environment.specialnames.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ClassClauseContext;
-import io.proleap.cobol.Cobol85Parser.ClassClauseFromContext;
-import io.proleap.cobol.Cobol85Parser.ClassClauseThroughContext;
-import io.proleap.cobol.Cobol85Parser.ClassClauseToContext;
+import io.proleap.cobol.CobolParser.ClassClauseContext;
+import io.proleap.cobol.CobolParser.ClassClauseFromContext;
+import io.proleap.cobol.CobolParser.ClassClauseThroughContext;
+import io.proleap.cobol.CobolParser.ClassClauseToContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.ClassClause;

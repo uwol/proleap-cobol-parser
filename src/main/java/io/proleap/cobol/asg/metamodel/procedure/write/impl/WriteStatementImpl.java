@@ -8,11 +8,11 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.write.impl;
 
-import io.proleap.cobol.Cobol85Parser.WriteAdvancingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.WriteAtEndOfPagePhraseContext;
-import io.proleap.cobol.Cobol85Parser.WriteFromPhraseContext;
-import io.proleap.cobol.Cobol85Parser.WriteNotAtEndOfPagePhraseContext;
-import io.proleap.cobol.Cobol85Parser.WriteStatementContext;
+import io.proleap.cobol.CobolParser.WriteAdvancingPhraseContext;
+import io.proleap.cobol.CobolParser.WriteAtEndOfPagePhraseContext;
+import io.proleap.cobol.CobolParser.WriteFromPhraseContext;
+import io.proleap.cobol.CobolParser.WriteNotAtEndOfPagePhraseContext;
+import io.proleap.cobol.CobolParser.WriteStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

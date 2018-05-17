@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.impl;
 
-import io.proleap.cobol.Cobol85Parser.NotAtEndPhraseContext;
+import io.proleap.cobol.CobolParser.NotAtEndPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.NotAtEndPhrase;

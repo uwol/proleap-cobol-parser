@@ -8,11 +8,11 @@
 
 package io.proleap.cobol.asg.metamodel.environment.configuration.object;
 
-import io.proleap.cobol.Cobol85Parser.CharacterSetClauseContext;
-import io.proleap.cobol.Cobol85Parser.CollatingSequenceClauseContext;
-import io.proleap.cobol.Cobol85Parser.DiskSizeClauseContext;
-import io.proleap.cobol.Cobol85Parser.MemorySizeClauseContext;
-import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
+import io.proleap.cobol.CobolParser.CharacterSetClauseContext;
+import io.proleap.cobol.CobolParser.CollatingSequenceClauseContext;
+import io.proleap.cobol.CobolParser.DiskSizeClauseContext;
+import io.proleap.cobol.CobolParser.MemorySizeClauseContext;
+import io.proleap.cobol.CobolParser.SegmentLimitClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.NamedElement;
 

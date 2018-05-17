@@ -11,10 +11,10 @@ package io.proleap.cobol.asg.metamodel.procedure.search.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SearchStatementContext;
-import io.proleap.cobol.Cobol85Parser.SearchVaryingContext;
-import io.proleap.cobol.Cobol85Parser.SearchWhenContext;
-import io.proleap.cobol.Cobol85Parser.StatementContext;
+import io.proleap.cobol.CobolParser.SearchStatementContext;
+import io.proleap.cobol.CobolParser.SearchVaryingContext;
+import io.proleap.cobol.CobolParser.SearchWhenContext;
+import io.proleap.cobol.CobolParser.StatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

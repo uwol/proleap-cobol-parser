@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.programlibrary.impl;
 
-import io.proleap.cobol.Cobol85Parser.LibraryIsCommonClauseContext;
+import io.proleap.cobol.CobolParser.LibraryIsCommonClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.CommonClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

@@ -10,10 +10,10 @@ package io.proleap.cobol.asg.metamodel.procedure.evaluate;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.EvaluateAlsoSelectContext;
-import io.proleap.cobol.Cobol85Parser.EvaluateSelectContext;
-import io.proleap.cobol.Cobol85Parser.EvaluateWhenOtherContext;
-import io.proleap.cobol.Cobol85Parser.EvaluateWhenPhraseContext;
+import io.proleap.cobol.CobolParser.EvaluateAlsoSelectContext;
+import io.proleap.cobol.CobolParser.EvaluateSelectContext;
+import io.proleap.cobol.CobolParser.EvaluateWhenOtherContext;
+import io.proleap.cobol.CobolParser.EvaluateWhenPhraseContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**

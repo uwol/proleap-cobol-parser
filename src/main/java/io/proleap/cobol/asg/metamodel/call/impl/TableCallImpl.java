@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.call.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SubscriptContext;
-import io.proleap.cobol.Cobol85Parser.TableCallContext;
+import io.proleap.cobol.CobolParser.SubscriptContext;
+import io.proleap.cobol.CobolParser.TableCallContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.TableCall;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry;

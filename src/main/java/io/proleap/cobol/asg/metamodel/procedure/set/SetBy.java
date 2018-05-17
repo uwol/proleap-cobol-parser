@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.set;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SetByValueContext;
-import io.proleap.cobol.Cobol85Parser.SetToContext;
+import io.proleap.cobol.CobolParser.SetByValueContext;
+import io.proleap.cobol.CobolParser.SetToContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface SetBy extends CobolDivisionElement {

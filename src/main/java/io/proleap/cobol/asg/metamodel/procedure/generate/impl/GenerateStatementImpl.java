@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.generate.impl;
 
-import io.proleap.cobol.Cobol85Parser.GenerateStatementContext;
+import io.proleap.cobol.CobolParser.GenerateStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

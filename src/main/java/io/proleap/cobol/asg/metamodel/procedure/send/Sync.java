@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.send;
 
-import io.proleap.cobol.Cobol85Parser.SendAdvancingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.SendFromPhraseContext;
-import io.proleap.cobol.Cobol85Parser.SendWithPhraseContext;
+import io.proleap.cobol.CobolParser.SendAdvancingPhraseContext;
+import io.proleap.cobol.CobolParser.SendFromPhraseContext;
+import io.proleap.cobol.CobolParser.SendWithPhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 

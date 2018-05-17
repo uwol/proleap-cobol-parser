@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.inspect;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.InspectAllLeadingsContext;
-import io.proleap.cobol.Cobol85Parser.InspectCharactersContext;
+import io.proleap.cobol.CobolParser.InspectAllLeadingsContext;
+import io.proleap.cobol.CobolParser.InspectCharactersContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 

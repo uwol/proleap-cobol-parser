@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic;
 
-import io.proleap.cobol.Cobol85Parser.PowersContext;
+import io.proleap.cobol.CobolParser.PowersContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface MultDiv extends ValueStmt {

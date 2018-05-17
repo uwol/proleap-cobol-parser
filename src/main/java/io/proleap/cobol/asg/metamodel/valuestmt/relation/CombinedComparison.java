@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.relation;
 
-import io.proleap.cobol.Cobol85Parser.RelationCombinedConditionContext;
+import io.proleap.cobol.CobolParser.RelationCombinedConditionContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 
 public interface CombinedComparison extends ComparisonStmt {

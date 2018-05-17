@@ -11,9 +11,9 @@ package io.proleap.cobol.asg.metamodel.procedure.merge.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.MergeCollatingAlphanumericContext;
-import io.proleap.cobol.Cobol85Parser.MergeCollatingNationalContext;
-import io.proleap.cobol.Cobol85Parser.MergeCollatingSequencePhraseContext;
+import io.proleap.cobol.CobolParser.MergeCollatingAlphanumericContext;
+import io.proleap.cobol.CobolParser.MergeCollatingNationalContext;
+import io.proleap.cobol.CobolParser.MergeCollatingSequencePhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

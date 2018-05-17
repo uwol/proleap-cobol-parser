@@ -11,10 +11,10 @@ package io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.proleap.cobol.Cobol85Parser.RerunClauseContext;
-import io.proleap.cobol.Cobol85Parser.RerunEveryClockContext;
-import io.proleap.cobol.Cobol85Parser.RerunEveryOfContext;
-import io.proleap.cobol.Cobol85Parser.RerunEveryRecordsContext;
+import io.proleap.cobol.CobolParser.RerunClauseContext;
+import io.proleap.cobol.CobolParser.RerunEveryClockContext;
+import io.proleap.cobol.CobolParser.RerunEveryOfContext;
+import io.proleap.cobol.CobolParser.RerunEveryRecordsContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;

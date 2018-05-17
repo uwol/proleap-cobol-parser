@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.set;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SetToStatementContext;
-import io.proleap.cobol.Cobol85Parser.SetUpDownByStatementContext;
+import io.proleap.cobol.CobolParser.SetToStatementContext;
+import io.proleap.cobol.CobolParser.SetUpDownByStatementContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**

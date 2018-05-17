@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.subtract.impl;
 
-import io.proleap.cobol.Cobol85Parser.SubtractMinuendContext;
+import io.proleap.cobol.CobolParser.SubtractMinuendContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.merge;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.MergeCollatingAlphanumericContext;
-import io.proleap.cobol.Cobol85Parser.MergeCollatingNationalContext;
+import io.proleap.cobol.CobolParser.MergeCollatingAlphanumericContext;
+import io.proleap.cobol.CobolParser.MergeCollatingNationalContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 

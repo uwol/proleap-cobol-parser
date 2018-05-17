@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.condition;
 
-import io.proleap.cobol.Cobol85Parser.ClassConditionContext;
-import io.proleap.cobol.Cobol85Parser.ConditionContext;
-import io.proleap.cobol.Cobol85Parser.ConditionNameReferenceContext;
-import io.proleap.cobol.Cobol85Parser.RelationConditionContext;
+import io.proleap.cobol.CobolParser.ClassConditionContext;
+import io.proleap.cobol.CobolParser.ConditionContext;
+import io.proleap.cobol.CobolParser.ConditionNameReferenceContext;
+import io.proleap.cobol.CobolParser.RelationConditionContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.RelationConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.datadescription.impl;
 
-import io.proleap.cobol.Cobol85Parser.DataThreadLocalClauseContext;
+import io.proleap.cobol.CobolParser.DataThreadLocalClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.datadescription.ThreadLocalClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

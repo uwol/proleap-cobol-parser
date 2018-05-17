@@ -8,11 +8,11 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.impl;
 
-import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
-import io.proleap.cobol.Cobol85Parser.FileControlParagraphContext;
-import io.proleap.cobol.Cobol85Parser.InputOutputSectionContext;
-import io.proleap.cobol.Cobol85Parser.IoControlClauseContext;
-import io.proleap.cobol.Cobol85Parser.IoControlParagraphContext;
+import io.proleap.cobol.CobolParser.FileControlEntryContext;
+import io.proleap.cobol.CobolParser.FileControlParagraphContext;
+import io.proleap.cobol.CobolParser.InputOutputSectionContext;
+import io.proleap.cobol.CobolParser.IoControlClauseContext;
+import io.proleap.cobol.CobolParser.IoControlParagraphContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.InputOutputSection;

@@ -10,7 +10,7 @@ package io.proleap.cobol.preprocessor.sub.copybook;
 
 import java.io.File;
 
-import io.proleap.cobol.Cobol85PreprocessorParser.FilenameContext;
+import io.proleap.cobol.CobolPreprocessorParser.FilenameContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 
 public interface FilenameCopyBookFinder {

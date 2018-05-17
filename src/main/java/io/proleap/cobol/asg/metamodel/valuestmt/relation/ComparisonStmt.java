@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.relation;
 
-import io.proleap.cobol.Cobol85Parser.RelationalOperatorContext;
+import io.proleap.cobol.CobolParser.RelationalOperatorContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface ComparisonStmt extends ValueStmt {

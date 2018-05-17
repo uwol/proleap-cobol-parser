@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.exit.impl;
 
-import io.proleap.cobol.Cobol85Parser.ExitStatementContext;
+import io.proleap.cobol.CobolParser.ExitStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;

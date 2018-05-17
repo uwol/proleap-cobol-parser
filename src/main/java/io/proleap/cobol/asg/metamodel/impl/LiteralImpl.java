@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
-import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.CobolParser.LiteralContext;
 import io.proleap.cobol.asg.metamodel.BooleanLiteral;
 import io.proleap.cobol.asg.metamodel.FigurativeConstant;
 import io.proleap.cobol.asg.metamodel.Literal;

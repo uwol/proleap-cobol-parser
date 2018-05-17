@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.divide;
 
-import io.proleap.cobol.Cobol85Parser.DivideByGivingStatementContext;
-import io.proleap.cobol.Cobol85Parser.DivideIntoGivingStatementContext;
-import io.proleap.cobol.Cobol85Parser.DivideIntoStatementContext;
-import io.proleap.cobol.Cobol85Parser.DivideRemainderContext;
+import io.proleap.cobol.CobolParser.DivideByGivingStatementContext;
+import io.proleap.cobol.CobolParser.DivideIntoGivingStatementContext;
+import io.proleap.cobol.CobolParser.DivideIntoStatementContext;
+import io.proleap.cobol.CobolParser.DivideRemainderContext;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;

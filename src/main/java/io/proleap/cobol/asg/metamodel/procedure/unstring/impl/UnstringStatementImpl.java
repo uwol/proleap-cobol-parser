@@ -8,13 +8,13 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.unstring.impl;
 
-import io.proleap.cobol.Cobol85Parser.UnstringIntoContext;
-import io.proleap.cobol.Cobol85Parser.UnstringIntoPhraseContext;
-import io.proleap.cobol.Cobol85Parser.UnstringOrAllPhraseContext;
-import io.proleap.cobol.Cobol85Parser.UnstringSendingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.UnstringStatementContext;
-import io.proleap.cobol.Cobol85Parser.UnstringTallyingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.UnstringWithPointerPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringIntoContext;
+import io.proleap.cobol.CobolParser.UnstringIntoPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringOrAllPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringSendingPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringStatementContext;
+import io.proleap.cobol.CobolParser.UnstringTallyingPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringWithPointerPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

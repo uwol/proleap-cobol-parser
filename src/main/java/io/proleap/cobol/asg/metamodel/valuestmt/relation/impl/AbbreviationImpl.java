@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.relation.impl;
 
-import io.proleap.cobol.Cobol85Parser.AbbreviationContext;
+import io.proleap.cobol.CobolParser.AbbreviationContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.Abbreviation;

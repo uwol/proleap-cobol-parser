@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.localstorage.impl;
 
-import io.proleap.cobol.Cobol85Parser.LocalStorageSectionContext;
+import io.proleap.cobol.CobolParser.LocalStorageSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.datadescription.impl.DataDescriptionEntryContainerImpl;
 import io.proleap.cobol.asg.metamodel.data.localstorage.LocalStorageSection;

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.identification.impl;
 
-import io.proleap.cobol.Cobol85Parser.DateWrittenParagraphContext;
+import io.proleap.cobol.CobolParser.DateWrittenParagraphContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.identification.DateWrittenParagraph;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

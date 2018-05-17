@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.close;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.CloseFileContext;
+import io.proleap.cobol.CobolParser.CloseFileContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**

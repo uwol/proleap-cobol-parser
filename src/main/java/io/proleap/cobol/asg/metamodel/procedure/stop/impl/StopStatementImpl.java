@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.stop.impl;
 
-import io.proleap.cobol.Cobol85Parser.StopStatementContext;
-import io.proleap.cobol.Cobol85Parser.StopStatementGivingContext;
+import io.proleap.cobol.CobolParser.StopStatementContext;
+import io.proleap.cobol.CobolParser.StopStatementGivingContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;

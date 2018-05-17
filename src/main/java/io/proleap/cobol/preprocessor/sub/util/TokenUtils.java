@@ -16,13 +16,13 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import io.proleap.cobol.Cobol85PreprocessorLexer;
+import io.proleap.cobol.CobolPreprocessorLexer;
 import io.proleap.cobol.preprocessor.sub.document.impl.CobolHiddenTokenCollectorListenerImpl;
 
 public class TokenUtils {
 
 	public static String getHiddenTokensToLeft(final int tokPos, final BufferedTokenStream tokens) {
-		final List<Token> refChannel = tokens.getHiddenTokensToLeft(tokPos, Cobol85PreprocessorLexer.HIDDEN);
+		final List<Token> refChannel = tokens.getHiddenTokensToLeft(tokPos, CobolPreprocessorLexer.HIDDEN);
 		final StringBuffer sb = new StringBuffer();
 
 		if (refChannel != null) {

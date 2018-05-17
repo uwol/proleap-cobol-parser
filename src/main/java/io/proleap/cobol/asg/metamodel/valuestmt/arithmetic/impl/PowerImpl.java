@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.impl;
 
-import io.proleap.cobol.Cobol85Parser.BasisContext;
-import io.proleap.cobol.Cobol85Parser.PowerContext;
+import io.proleap.cobol.CobolParser.BasisContext;
+import io.proleap.cobol.CobolParser.PowerContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.Basis;

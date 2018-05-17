@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.sort;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SortCollatingAlphanumericContext;
-import io.proleap.cobol.Cobol85Parser.SortCollatingNationalContext;
+import io.proleap.cobol.CobolParser.SortCollatingAlphanumericContext;
+import io.proleap.cobol.CobolParser.SortCollatingNationalContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 

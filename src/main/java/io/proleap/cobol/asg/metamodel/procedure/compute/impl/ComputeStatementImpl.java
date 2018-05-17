@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.compute.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ComputeStatementContext;
-import io.proleap.cobol.Cobol85Parser.ComputeStoreContext;
+import io.proleap.cobol.CobolParser.ComputeStatementContext;
+import io.proleap.cobol.CobolParser.ComputeStoreContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

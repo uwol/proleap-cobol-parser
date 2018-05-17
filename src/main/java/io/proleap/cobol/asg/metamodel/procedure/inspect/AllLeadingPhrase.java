@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.inspect;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.InspectAllLeadingContext;
+import io.proleap.cobol.CobolParser.InspectAllLeadingContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface AllLeadingPhrase extends CobolDivisionElement {

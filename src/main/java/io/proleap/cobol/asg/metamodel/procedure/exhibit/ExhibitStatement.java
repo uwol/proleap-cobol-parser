@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.exhibit;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ExhibitOperandContext;
+import io.proleap.cobol.CobolParser.ExhibitOperandContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**

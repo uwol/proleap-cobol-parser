@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.compute.impl;
 
-import io.proleap.cobol.Cobol85Parser.ComputeStoreContext;
+import io.proleap.cobol.CobolParser.ComputeStoreContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

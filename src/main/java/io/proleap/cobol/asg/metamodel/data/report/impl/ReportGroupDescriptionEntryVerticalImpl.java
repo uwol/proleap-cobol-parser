@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.data.report.impl;
 
-import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryFormat1Context;
-import io.proleap.cobol.Cobol85Parser.ReportGroupNextGroupClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupNextGroupPlusContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupTypeClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupDescriptionEntryFormat1Context;
+import io.proleap.cobol.CobolParser.ReportGroupNextGroupClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupNextGroupPlusContext;
+import io.proleap.cobol.CobolParser.ReportGroupTypeClauseContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;

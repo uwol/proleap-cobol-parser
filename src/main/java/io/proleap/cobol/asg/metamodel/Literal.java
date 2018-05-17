@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel;
 
-import io.proleap.cobol.Cobol85Parser.LiteralContext;
+import io.proleap.cobol.CobolParser.LiteralContext;
 
 public interface Literal extends CobolDivisionElement {
 

@@ -13,7 +13,7 @@ import java.io.File;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import io.proleap.cobol.Cobol85PreprocessorParser.CobolWordContext;
+import io.proleap.cobol.CobolPreprocessorParser.CobolWordContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.sub.copybook.CobolWordCopyBookFinder;
 

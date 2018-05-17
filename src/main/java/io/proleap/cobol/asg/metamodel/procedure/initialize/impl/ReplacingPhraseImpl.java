@@ -14,8 +14,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.proleap.cobol.Cobol85Parser.InitializeReplacingByContext;
-import io.proleap.cobol.Cobol85Parser.InitializeReplacingPhraseContext;
+import io.proleap.cobol.CobolParser.InitializeReplacingByContext;
+import io.proleap.cobol.CobolParser.InitializeReplacingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.initialize.By;

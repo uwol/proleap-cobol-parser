@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.close;
 
-import io.proleap.cobol.Cobol85Parser.ClosePortFileIOUsingAssociatedDataContext;
-import io.proleap.cobol.Cobol85Parser.ClosePortFileIOUsingAssociatedDataLengthContext;
-import io.proleap.cobol.Cobol85Parser.ClosePortFileIOUsingCloseDispositionContext;
+import io.proleap.cobol.CobolParser.ClosePortFileIOUsingAssociatedDataContext;
+import io.proleap.cobol.CobolParser.ClosePortFileIOUsingAssociatedDataLengthContext;
+import io.proleap.cobol.CobolParser.ClosePortFileIOUsingCloseDispositionContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface Using extends CobolDivisionElement {

@@ -8,16 +8,16 @@
 
 package io.proleap.cobol.asg.metamodel.data.file;
 
-import io.proleap.cobol.Cobol85Parser.BlockContainsClauseContext;
-import io.proleap.cobol.Cobol85Parser.CodeSetClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataRecordsClauseContext;
-import io.proleap.cobol.Cobol85Parser.ExternalClauseContext;
-import io.proleap.cobol.Cobol85Parser.GlobalClauseContext;
-import io.proleap.cobol.Cobol85Parser.LabelRecordsClauseContext;
-import io.proleap.cobol.Cobol85Parser.LinageClauseContext;
-import io.proleap.cobol.Cobol85Parser.RecordContainsClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportClauseContext;
-import io.proleap.cobol.Cobol85Parser.ValueOfClauseContext;
+import io.proleap.cobol.CobolParser.BlockContainsClauseContext;
+import io.proleap.cobol.CobolParser.CodeSetClauseContext;
+import io.proleap.cobol.CobolParser.DataRecordsClauseContext;
+import io.proleap.cobol.CobolParser.ExternalClauseContext;
+import io.proleap.cobol.CobolParser.GlobalClauseContext;
+import io.proleap.cobol.CobolParser.LabelRecordsClauseContext;
+import io.proleap.cobol.CobolParser.LinageClauseContext;
+import io.proleap.cobol.CobolParser.RecordContainsClauseContext;
+import io.proleap.cobol.CobolParser.ReportClauseContext;
+import io.proleap.cobol.CobolParser.ValueOfClauseContext;
 import io.proleap.cobol.asg.metamodel.Declaration;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryContainer;

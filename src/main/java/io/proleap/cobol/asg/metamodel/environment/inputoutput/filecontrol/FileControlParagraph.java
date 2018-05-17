@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.FileControlEntryContext;
+import io.proleap.cobol.CobolParser.FileControlEntryContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface FileControlParagraph extends CobolDivisionElement {

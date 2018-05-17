@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.unstring.impl;
 
-import io.proleap.cobol.Cobol85Parser.UnstringTallyingPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringTallyingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

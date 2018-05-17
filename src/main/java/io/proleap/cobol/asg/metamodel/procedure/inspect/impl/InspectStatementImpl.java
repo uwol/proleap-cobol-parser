@@ -8,15 +8,15 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.inspect.impl;
 
-import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
-import io.proleap.cobol.Cobol85Parser.InspectConvertingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.InspectForContext;
-import io.proleap.cobol.Cobol85Parser.InspectReplacingAllLeadingsContext;
-import io.proleap.cobol.Cobol85Parser.InspectReplacingCharactersContext;
-import io.proleap.cobol.Cobol85Parser.InspectReplacingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.InspectStatementContext;
-import io.proleap.cobol.Cobol85Parser.InspectTallyingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.InspectTallyingReplacingPhraseContext;
+import io.proleap.cobol.CobolParser.InspectBeforeAfterContext;
+import io.proleap.cobol.CobolParser.InspectConvertingPhraseContext;
+import io.proleap.cobol.CobolParser.InspectForContext;
+import io.proleap.cobol.CobolParser.InspectReplacingAllLeadingsContext;
+import io.proleap.cobol.CobolParser.InspectReplacingCharactersContext;
+import io.proleap.cobol.CobolParser.InspectReplacingPhraseContext;
+import io.proleap.cobol.CobolParser.InspectStatementContext;
+import io.proleap.cobol.CobolParser.InspectTallyingPhraseContext;
+import io.proleap.cobol.CobolParser.InspectTallyingReplacingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

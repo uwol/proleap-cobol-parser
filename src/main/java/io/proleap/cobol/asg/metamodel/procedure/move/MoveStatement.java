@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.move;
 
-import io.proleap.cobol.Cobol85Parser.MoveCorrespondingToStatementContext;
-import io.proleap.cobol.Cobol85Parser.MoveToStatementContext;
+import io.proleap.cobol.CobolParser.MoveCorrespondingToStatementContext;
+import io.proleap.cobol.CobolParser.MoveToStatementContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**

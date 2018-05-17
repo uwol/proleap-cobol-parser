@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.impl;
 
-import io.proleap.cobol.Cobol85Parser.RerunEveryClockContext;
+import io.proleap.cobol.CobolParser.RerunEveryClockContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.RerunEveryClock;

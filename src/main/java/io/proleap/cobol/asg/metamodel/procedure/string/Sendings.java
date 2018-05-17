@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.string;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.StringDelimitedByPhraseContext;
-import io.proleap.cobol.Cobol85Parser.StringForPhraseContext;
+import io.proleap.cobol.CobolParser.StringDelimitedByPhraseContext;
+import io.proleap.cobol.CobolParser.StringForPhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 

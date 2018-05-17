@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.alter.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.AlterProceedToContext;
-import io.proleap.cobol.Cobol85Parser.AlterStatementContext;
+import io.proleap.cobol.CobolParser.AlterProceedToContext;
+import io.proleap.cobol.CobolParser.AlterStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

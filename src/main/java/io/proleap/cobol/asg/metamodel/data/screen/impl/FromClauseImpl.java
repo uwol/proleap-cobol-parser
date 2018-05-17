@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.data.screen.impl;
 
-import io.proleap.cobol.Cobol85Parser.ScreenDescriptionFromClauseContext;
-import io.proleap.cobol.Cobol85Parser.ScreenDescriptionToClauseContext;
+import io.proleap.cobol.CobolParser.ScreenDescriptionFromClauseContext;
+import io.proleap.cobol.CobolParser.ScreenDescriptionToClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.screen.FromClause;

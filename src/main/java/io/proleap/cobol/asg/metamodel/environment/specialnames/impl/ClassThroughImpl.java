@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.specialnames.impl;
 
-import io.proleap.cobol.Cobol85Parser.ClassClauseThroughContext;
+import io.proleap.cobol.CobolParser.ClassClauseThroughContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.ClassThrough;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

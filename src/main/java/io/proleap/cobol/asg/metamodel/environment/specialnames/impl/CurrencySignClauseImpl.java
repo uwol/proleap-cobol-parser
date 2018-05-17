@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.specialnames.impl;
 
-import io.proleap.cobol.Cobol85Parser.CurrencySignClauseContext;
+import io.proleap.cobol.CobolParser.CurrencySignClauseContext;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.CurrencySignClause;

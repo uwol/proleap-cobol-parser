@@ -8,14 +8,14 @@
 
 package io.proleap.cobol.asg.metamodel.identification.impl;
 
-import io.proleap.cobol.Cobol85Parser.AuthorParagraphContext;
-import io.proleap.cobol.Cobol85Parser.DateCompiledParagraphContext;
-import io.proleap.cobol.Cobol85Parser.DateWrittenParagraphContext;
-import io.proleap.cobol.Cobol85Parser.IdentificationDivisionContext;
-import io.proleap.cobol.Cobol85Parser.InstallationParagraphContext;
-import io.proleap.cobol.Cobol85Parser.ProgramIdParagraphContext;
-import io.proleap.cobol.Cobol85Parser.RemarksParagraphContext;
-import io.proleap.cobol.Cobol85Parser.SecurityParagraphContext;
+import io.proleap.cobol.CobolParser.AuthorParagraphContext;
+import io.proleap.cobol.CobolParser.DateCompiledParagraphContext;
+import io.proleap.cobol.CobolParser.DateWrittenParagraphContext;
+import io.proleap.cobol.CobolParser.IdentificationDivisionContext;
+import io.proleap.cobol.CobolParser.InstallationParagraphContext;
+import io.proleap.cobol.CobolParser.ProgramIdParagraphContext;
+import io.proleap.cobol.CobolParser.RemarksParagraphContext;
+import io.proleap.cobol.CobolParser.SecurityParagraphContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.identification.AuthorParagraph;
 import io.proleap.cobol.asg.metamodel.identification.DateCompiledParagraph;

@@ -11,10 +11,10 @@ package io.proleap.cobol.asg.metamodel.valuestmt.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ArithmeticExpressionContext;
-import io.proleap.cobol.Cobol85Parser.MultDivContext;
-import io.proleap.cobol.Cobol85Parser.MultDivsContext;
-import io.proleap.cobol.Cobol85Parser.PlusMinusContext;
+import io.proleap.cobol.CobolParser.ArithmeticExpressionContext;
+import io.proleap.cobol.CobolParser.MultDivContext;
+import io.proleap.cobol.CobolParser.MultDivsContext;
+import io.proleap.cobol.CobolParser.PlusMinusContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;

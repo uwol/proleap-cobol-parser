@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.inspect.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.InspectForContext;
-import io.proleap.cobol.Cobol85Parser.InspectTallyingPhraseContext;
+import io.proleap.cobol.CobolParser.InspectForContext;
+import io.proleap.cobol.CobolParser.InspectTallyingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.For;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.Tallying;

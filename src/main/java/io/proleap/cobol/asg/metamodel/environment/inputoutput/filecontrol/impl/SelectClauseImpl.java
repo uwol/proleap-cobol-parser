@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.impl;
 
-import io.proleap.cobol.Cobol85Parser.SelectClauseContext;
+import io.proleap.cobol.CobolParser.SelectClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.SelectClause;

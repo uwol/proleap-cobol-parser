@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.inspect.impl;
 
-import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
+import io.proleap.cobol.CobolParser.InspectBeforeAfterContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfterPhrase;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;

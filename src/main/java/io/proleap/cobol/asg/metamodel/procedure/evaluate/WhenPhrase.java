@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.evaluate;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.EvaluateWhenContext;
+import io.proleap.cobol.CobolParser.EvaluateWhenContext;
 import io.proleap.cobol.asg.metamodel.Scope;
 
 public interface WhenPhrase extends Scope {

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.configuration.object.impl;
 
-import io.proleap.cobol.Cobol85Parser.DiskSizeClauseContext;
+import io.proleap.cobol.CobolParser.DiskSizeClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.configuration.object.DiskSizeClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

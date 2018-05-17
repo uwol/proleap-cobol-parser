@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.close.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.CloseFileContext;
-import io.proleap.cobol.Cobol85Parser.CloseStatementContext;
+import io.proleap.cobol.CobolParser.CloseFileContext;
+import io.proleap.cobol.CobolParser.CloseStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

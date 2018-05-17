@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.use;
 
-import io.proleap.cobol.Cobol85Parser.UseAfterOnContext;
+import io.proleap.cobol.CobolParser.UseAfterOnContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface UseAfterStatement extends CobolDivisionElement {

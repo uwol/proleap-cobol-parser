@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.initialize;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.InitializeReplacingByContext;
+import io.proleap.cobol.CobolParser.InitializeReplacingByContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface ReplacingPhrase extends CobolDivisionElement {

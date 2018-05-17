@@ -14,8 +14,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionUsingClauseContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureDivisionUsingParameterContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionUsingClauseContext;
+import io.proleap.cobol.CobolParser.ProcedureDivisionUsingParameterContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.UsingClause;

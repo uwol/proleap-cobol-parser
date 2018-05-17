@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.call.impl;
 
-import io.proleap.cobol.Cobol85Parser.CallByValueContext;
+import io.proleap.cobol.CobolParser.CallByValueContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByValue;

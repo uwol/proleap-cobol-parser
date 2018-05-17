@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.data.programlibrary;
 
-import io.proleap.cobol.Cobol85Parser.LibraryAttributeClauseFormat1Context;
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureClauseFormat1Context;
+import io.proleap.cobol.CobolParser.LibraryAttributeClauseFormat1Context;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureClauseFormat1Context;
 
 public interface LibraryDescriptionEntryExport extends LibraryDescriptionEntry {
 

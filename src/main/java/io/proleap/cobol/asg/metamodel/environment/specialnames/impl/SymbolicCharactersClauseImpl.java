@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.specialnames.impl;
 
-import io.proleap.cobol.Cobol85Parser.SymbolicCharactersClauseContext;
+import io.proleap.cobol.CobolParser.SymbolicCharactersClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.SymbolicCharactersClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

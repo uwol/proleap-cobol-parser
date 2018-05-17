@@ -8,13 +8,13 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.call.impl;
 
-import io.proleap.cobol.Cobol85Parser.CallByContentContext;
-import io.proleap.cobol.Cobol85Parser.CallByContentPhraseContext;
-import io.proleap.cobol.Cobol85Parser.CallByReferenceContext;
-import io.proleap.cobol.Cobol85Parser.CallByReferencePhraseContext;
-import io.proleap.cobol.Cobol85Parser.CallByValueContext;
-import io.proleap.cobol.Cobol85Parser.CallByValuePhraseContext;
-import io.proleap.cobol.Cobol85Parser.CallUsingParameterContext;
+import io.proleap.cobol.CobolParser.CallByContentContext;
+import io.proleap.cobol.CobolParser.CallByContentPhraseContext;
+import io.proleap.cobol.CobolParser.CallByReferenceContext;
+import io.proleap.cobol.CobolParser.CallByReferencePhraseContext;
+import io.proleap.cobol.CobolParser.CallByValueContext;
+import io.proleap.cobol.CobolParser.CallByValuePhraseContext;
+import io.proleap.cobol.CobolParser.CallUsingParameterContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByContentPhrase;

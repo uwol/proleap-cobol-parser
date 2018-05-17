@@ -11,9 +11,9 @@ package io.proleap.cobol.asg.metamodel.data.datadescription.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.DataDescriptionEntryFormat2Context;
-import io.proleap.cobol.Cobol85Parser.DataRenamesClauseContext;
-import io.proleap.cobol.Cobol85Parser.QualifiedDataNameContext;
+import io.proleap.cobol.CobolParser.DataDescriptionEntryFormat2Context;
+import io.proleap.cobol.CobolParser.DataRenamesClauseContext;
+import io.proleap.cobol.CobolParser.QualifiedDataNameContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.call.Call.CallType;

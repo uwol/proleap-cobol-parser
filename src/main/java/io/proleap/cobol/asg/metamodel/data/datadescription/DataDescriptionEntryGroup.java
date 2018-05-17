@@ -10,27 +10,27 @@ package io.proleap.cobol.asg.metamodel.data.datadescription;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.DataAlignedClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataBlankWhenZeroClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataCommonOwnLocalClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataExternalClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataGlobalClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataIntegerStringClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataJustifiedClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataOccursClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataPictureClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataReceivedByClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataRecordAreaClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataRedefinesClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataSignClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataSynchronizedClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataThreadLocalClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataTypeClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataTypeDefClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataUsageClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataUsingClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataValueClauseContext;
-import io.proleap.cobol.Cobol85Parser.DataWithLowerBoundsClauseContext;
+import io.proleap.cobol.CobolParser.DataAlignedClauseContext;
+import io.proleap.cobol.CobolParser.DataBlankWhenZeroClauseContext;
+import io.proleap.cobol.CobolParser.DataCommonOwnLocalClauseContext;
+import io.proleap.cobol.CobolParser.DataExternalClauseContext;
+import io.proleap.cobol.CobolParser.DataGlobalClauseContext;
+import io.proleap.cobol.CobolParser.DataIntegerStringClauseContext;
+import io.proleap.cobol.CobolParser.DataJustifiedClauseContext;
+import io.proleap.cobol.CobolParser.DataOccursClauseContext;
+import io.proleap.cobol.CobolParser.DataPictureClauseContext;
+import io.proleap.cobol.CobolParser.DataReceivedByClauseContext;
+import io.proleap.cobol.CobolParser.DataRecordAreaClauseContext;
+import io.proleap.cobol.CobolParser.DataRedefinesClauseContext;
+import io.proleap.cobol.CobolParser.DataSignClauseContext;
+import io.proleap.cobol.CobolParser.DataSynchronizedClauseContext;
+import io.proleap.cobol.CobolParser.DataThreadLocalClauseContext;
+import io.proleap.cobol.CobolParser.DataTypeClauseContext;
+import io.proleap.cobol.CobolParser.DataTypeDefClauseContext;
+import io.proleap.cobol.CobolParser.DataUsageClauseContext;
+import io.proleap.cobol.CobolParser.DataUsingClauseContext;
+import io.proleap.cobol.CobolParser.DataValueClauseContext;
+import io.proleap.cobol.CobolParser.DataWithLowerBoundsClauseContext;
 
 public interface DataDescriptionEntryGroup extends DataDescriptionEntry {
 

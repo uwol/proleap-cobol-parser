@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.read.impl;
 
-import io.proleap.cobol.Cobol85Parser.ReadIntoContext;
-import io.proleap.cobol.Cobol85Parser.ReadKeyContext;
-import io.proleap.cobol.Cobol85Parser.ReadStatementContext;
-import io.proleap.cobol.Cobol85Parser.ReadWithContext;
+import io.proleap.cobol.CobolParser.ReadIntoContext;
+import io.proleap.cobol.CobolParser.ReadKeyContext;
+import io.proleap.cobol.CobolParser.ReadStatementContext;
+import io.proleap.cobol.CobolParser.ReadWithContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

@@ -8,15 +8,15 @@
 
 package io.proleap.cobol.asg.metamodel.data;
 
-import io.proleap.cobol.Cobol85Parser.CommunicationSectionContext;
-import io.proleap.cobol.Cobol85Parser.DataBaseSectionContext;
-import io.proleap.cobol.Cobol85Parser.FileSectionContext;
-import io.proleap.cobol.Cobol85Parser.LinkageSectionContext;
-import io.proleap.cobol.Cobol85Parser.LocalStorageSectionContext;
-import io.proleap.cobol.Cobol85Parser.ProgramLibrarySectionContext;
-import io.proleap.cobol.Cobol85Parser.ReportSectionContext;
-import io.proleap.cobol.Cobol85Parser.ScreenSectionContext;
-import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
+import io.proleap.cobol.CobolParser.CommunicationSectionContext;
+import io.proleap.cobol.CobolParser.DataBaseSectionContext;
+import io.proleap.cobol.CobolParser.FileSectionContext;
+import io.proleap.cobol.CobolParser.LinkageSectionContext;
+import io.proleap.cobol.CobolParser.LocalStorageSectionContext;
+import io.proleap.cobol.CobolParser.ProgramLibrarySectionContext;
+import io.proleap.cobol.CobolParser.ReportSectionContext;
+import io.proleap.cobol.CobolParser.ScreenSectionContext;
+import io.proleap.cobol.CobolParser.WorkingStorageSectionContext;
 import io.proleap.cobol.asg.metamodel.CobolDivision;
 import io.proleap.cobol.asg.metamodel.data.communication.CommunicationSection;
 import io.proleap.cobol.asg.metamodel.data.database.DataBaseSection;

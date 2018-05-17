@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.declaratives.impl;
 
-import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativeContext;
-import io.proleap.cobol.Cobol85Parser.ProcedureSectionHeaderContext;
-import io.proleap.cobol.Cobol85Parser.UseStatementContext;
+import io.proleap.cobol.CobolParser.ProcedureDeclarativeContext;
+import io.proleap.cobol.CobolParser.ProcedureSectionHeaderContext;
+import io.proleap.cobol.CobolParser.UseStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;

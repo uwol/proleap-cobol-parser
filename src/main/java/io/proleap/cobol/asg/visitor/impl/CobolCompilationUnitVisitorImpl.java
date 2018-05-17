@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.antlr.v4.runtime.CommonTokenStream;
 
-import io.proleap.cobol.Cobol85Parser;
+import io.proleap.cobol.CobolParser;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.impl.CompilationUnitImpl;
@@ -38,7 +38,7 @@ public class CobolCompilationUnitVisitorImpl extends AbstractCobolParserVisitorI
 	}
 
 	@Override
-	public Boolean visitCompilationUnit(final Cobol85Parser.CompilationUnitContext ctx) {
+	public Boolean visitCompilationUnit(final CobolParser.CompilationUnitContext ctx) {
 		final CompilationUnit compilationUnit = new CompilationUnitImpl(compilationUnitName, program, tokens, ctx);
 		compilationUnit.setLines(lines);
 

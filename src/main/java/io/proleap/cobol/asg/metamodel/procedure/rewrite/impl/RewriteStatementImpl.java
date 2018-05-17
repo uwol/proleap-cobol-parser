@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.rewrite.impl;
 
-import io.proleap.cobol.Cobol85Parser.RewriteFromContext;
-import io.proleap.cobol.Cobol85Parser.RewriteStatementContext;
+import io.proleap.cobol.CobolParser.RewriteFromContext;
+import io.proleap.cobol.CobolParser.RewriteStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

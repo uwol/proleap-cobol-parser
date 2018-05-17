@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
-import io.proleap.cobol.Cobol85Parser.BooleanLiteralContext;
+import io.proleap.cobol.CobolParser.BooleanLiteralContext;
 import io.proleap.cobol.asg.metamodel.BooleanLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 

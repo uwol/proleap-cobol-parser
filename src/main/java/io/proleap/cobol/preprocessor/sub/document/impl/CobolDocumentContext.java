@@ -13,7 +13,7 @@ import java.util.List;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
 
-import io.proleap.cobol.Cobol85PreprocessorParser.ReplaceClauseContext;
+import io.proleap.cobol.CobolPreprocessorParser.ReplaceClauseContext;
 
 /**
  * A replacement context that defines, which replaceables should be replaced by

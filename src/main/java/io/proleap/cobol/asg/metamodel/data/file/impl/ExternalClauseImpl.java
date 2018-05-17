@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.file.impl;
 
-import io.proleap.cobol.Cobol85Parser.ExternalClauseContext;
+import io.proleap.cobol.CobolParser.ExternalClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.file.ExternalClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

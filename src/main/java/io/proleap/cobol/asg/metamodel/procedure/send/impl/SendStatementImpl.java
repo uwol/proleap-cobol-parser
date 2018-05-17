@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.send.impl;
 
-import io.proleap.cobol.Cobol85Parser.SendStatementAsyncContext;
-import io.proleap.cobol.Cobol85Parser.SendStatementContext;
-import io.proleap.cobol.Cobol85Parser.SendStatementSyncContext;
+import io.proleap.cobol.CobolParser.SendStatementAsyncContext;
+import io.proleap.cobol.CobolParser.SendStatementContext;
+import io.proleap.cobol.CobolParser.SendStatementSyncContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

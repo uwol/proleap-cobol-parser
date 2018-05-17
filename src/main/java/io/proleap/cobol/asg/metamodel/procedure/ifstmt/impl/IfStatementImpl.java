@@ -8,10 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.ifstmt.impl;
 
-import io.proleap.cobol.Cobol85Parser.IfElseContext;
-import io.proleap.cobol.Cobol85Parser.IfStatementContext;
-import io.proleap.cobol.Cobol85Parser.IfThenContext;
-import io.proleap.cobol.Cobol85Parser.StatementContext;
+import io.proleap.cobol.CobolParser.IfElseContext;
+import io.proleap.cobol.CobolParser.IfStatementContext;
+import io.proleap.cobol.CobolParser.IfThenContext;
+import io.proleap.cobol.CobolParser.StatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;

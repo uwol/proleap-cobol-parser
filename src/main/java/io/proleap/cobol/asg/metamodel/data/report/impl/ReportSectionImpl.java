@@ -13,10 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.proleap.cobol.Cobol85Parser.ReportDescriptionContext;
-import io.proleap.cobol.Cobol85Parser.ReportDescriptionEntryContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupDescriptionEntryContext;
-import io.proleap.cobol.Cobol85Parser.ReportSectionContext;
+import io.proleap.cobol.CobolParser.ReportDescriptionContext;
+import io.proleap.cobol.CobolParser.ReportDescriptionEntryContext;
+import io.proleap.cobol.CobolParser.ReportGroupDescriptionEntryContext;
+import io.proleap.cobol.CobolParser.ReportSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.report.ReportDescription;
 import io.proleap.cobol.asg.metamodel.data.report.ReportGroupDescriptionEntry;

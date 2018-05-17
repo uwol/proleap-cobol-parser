@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.send.impl;
 
-import io.proleap.cobol.Cobol85Parser.SendAdvancingLinesContext;
+import io.proleap.cobol.CobolParser.SendAdvancingLinesContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.send.AdvancingLines;

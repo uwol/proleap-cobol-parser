@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.write;
 
-import io.proleap.cobol.Cobol85Parser.WriteAdvancingLinesContext;
-import io.proleap.cobol.Cobol85Parser.WriteAdvancingMnemonicContext;
+import io.proleap.cobol.CobolParser.WriteAdvancingLinesContext;
+import io.proleap.cobol.CobolParser.WriteAdvancingMnemonicContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface AdvancingPhrase extends CobolDivisionElement {

@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.call;
 
-import io.proleap.cobol.Cobol85Parser.CallByContentPhraseContext;
-import io.proleap.cobol.Cobol85Parser.CallByReferencePhraseContext;
-import io.proleap.cobol.Cobol85Parser.CallByValuePhraseContext;
+import io.proleap.cobol.CobolParser.CallByContentPhraseContext;
+import io.proleap.cobol.CobolParser.CallByReferencePhraseContext;
+import io.proleap.cobol.CobolParser.CallByValuePhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface UsingParameter extends CobolDivisionElement {

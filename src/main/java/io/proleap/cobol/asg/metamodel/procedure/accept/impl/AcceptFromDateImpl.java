@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.accept.impl;
 
-import io.proleap.cobol.Cobol85Parser.AcceptFromDateStatementContext;
+import io.proleap.cobol.CobolParser.AcceptFromDateStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromDateStatement;

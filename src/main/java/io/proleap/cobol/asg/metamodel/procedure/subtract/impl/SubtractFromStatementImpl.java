@@ -11,9 +11,9 @@ package io.proleap.cobol.asg.metamodel.procedure.subtract.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SubtractFromStatementContext;
-import io.proleap.cobol.Cobol85Parser.SubtractMinuendContext;
-import io.proleap.cobol.Cobol85Parser.SubtractSubtrahendContext;
+import io.proleap.cobol.CobolParser.SubtractFromStatementContext;
+import io.proleap.cobol.CobolParser.SubtractMinuendContext;
+import io.proleap.cobol.CobolParser.SubtractSubtrahendContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

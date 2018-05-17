@@ -11,14 +11,14 @@ package io.proleap.cobol.preprocessor.sub.document.impl;
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import io.proleap.cobol.Cobol85PreprocessorBaseListener;
+import io.proleap.cobol.CobolPreprocessorBaseListener;
 import io.proleap.cobol.preprocessor.sub.util.TokenUtils;
 
 /**
  * ANTLR listener, which collects visible as well as hidden tokens for a given
  * parse tree in a string buffer.
  */
-public class CobolHiddenTokenCollectorListenerImpl extends Cobol85PreprocessorBaseListener {
+public class CobolHiddenTokenCollectorListenerImpl extends CobolPreprocessorBaseListener {
 
 	boolean firstTerminal = true;
 

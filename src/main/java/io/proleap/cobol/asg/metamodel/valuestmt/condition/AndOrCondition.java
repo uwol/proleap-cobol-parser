@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.valuestmt.condition;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.AbbreviationContext;
-import io.proleap.cobol.Cobol85Parser.CombinableConditionContext;
+import io.proleap.cobol.CobolParser.AbbreviationContext;
+import io.proleap.cobol.CobolParser.CombinableConditionContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.relation.Abbreviation;
 

@@ -19,11 +19,11 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.proleap.cobol.Cobol85PreprocessorBaseListener;
-import io.proleap.cobol.Cobol85PreprocessorParser;
-import io.proleap.cobol.Cobol85PreprocessorParser.CopySourceContext;
-import io.proleap.cobol.Cobol85PreprocessorParser.ReplaceClauseContext;
-import io.proleap.cobol.Cobol85PreprocessorParser.ReplacingPhraseContext;
+import io.proleap.cobol.CobolPreprocessorBaseListener;
+import io.proleap.cobol.CobolPreprocessorParser;
+import io.proleap.cobol.CobolPreprocessorParser.CopySourceContext;
+import io.proleap.cobol.CobolPreprocessorParser.ReplaceClauseContext;
+import io.proleap.cobol.CobolPreprocessorParser.ReplacingPhraseContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
@@ -42,7 +42,7 @@ import io.proleap.cobol.preprocessor.sub.util.TokenUtils;
  * ANTLR visitor, which preprocesses a given COBOL program by executing COPY and
  * REPLACE statements.
  */
-public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseListener
+public class CobolDocumentParserListenerImpl extends CobolPreprocessorBaseListener
 		implements CobolDocumentParserListener {
 
 	private final static Logger LOG = LoggerFactory.getLogger(CobolDocumentParserListenerImpl.class);
@@ -106,73 +106,73 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	@Override
-	public void enterCompilerOptions(final Cobol85PreprocessorParser.CompilerOptionsContext ctx) {
+	public void enterCompilerOptions(final CobolPreprocessorParser.CompilerOptionsContext ctx) {
 		// push a new context for COMPILER OPTIONS terminals
 		push();
 	}
 
 	@Override
-	public void enterCopyStatement(final Cobol85PreprocessorParser.CopyStatementContext ctx) {
+	public void enterCopyStatement(final CobolPreprocessorParser.CopyStatementContext ctx) {
 		// push a new context for COPY terminals
 		push();
 	}
 
 	@Override
-	public void enterEjectStatement(final Cobol85PreprocessorParser.EjectStatementContext ctx) {
+	public void enterEjectStatement(final CobolPreprocessorParser.EjectStatementContext ctx) {
 		push();
 	}
 
 	@Override
-	public void enterExecCicsStatement(final Cobol85PreprocessorParser.ExecCicsStatementContext ctx) {
+	public void enterExecCicsStatement(final CobolPreprocessorParser.ExecCicsStatementContext ctx) {
 		// push a new context for SQL terminals
 		push();
 	}
 
 	@Override
-	public void enterExecSqlImsStatement(final Cobol85PreprocessorParser.ExecSqlImsStatementContext ctx) {
+	public void enterExecSqlImsStatement(final CobolPreprocessorParser.ExecSqlImsStatementContext ctx) {
 		// push a new context for SQL IMS terminals
 		push();
 	}
 
 	@Override
-	public void enterExecSqlStatement(final Cobol85PreprocessorParser.ExecSqlStatementContext ctx) {
+	public void enterExecSqlStatement(final CobolPreprocessorParser.ExecSqlStatementContext ctx) {
 		// push a new context for SQL terminals
 		push();
 	}
 
 	@Override
-	public void enterReplaceArea(final Cobol85PreprocessorParser.ReplaceAreaContext ctx) {
+	public void enterReplaceArea(final CobolPreprocessorParser.ReplaceAreaContext ctx) {
 		push();
 	}
 
 	@Override
-	public void enterReplaceByStatement(final Cobol85PreprocessorParser.ReplaceByStatementContext ctx) {
+	public void enterReplaceByStatement(final CobolPreprocessorParser.ReplaceByStatementContext ctx) {
 		push();
 	}
 
 	@Override
-	public void enterReplaceOffStatement(final Cobol85PreprocessorParser.ReplaceOffStatementContext ctx) {
+	public void enterReplaceOffStatement(final CobolPreprocessorParser.ReplaceOffStatementContext ctx) {
 		push();
 	}
 
 	@Override
-	public void enterSkipStatement(final Cobol85PreprocessorParser.SkipStatementContext ctx) {
+	public void enterSkipStatement(final CobolPreprocessorParser.SkipStatementContext ctx) {
 		push();
 	}
 
 	@Override
-	public void enterTitleStatement(final Cobol85PreprocessorParser.TitleStatementContext ctx) {
+	public void enterTitleStatement(final CobolPreprocessorParser.TitleStatementContext ctx) {
 		push();
 	}
 
 	@Override
-	public void exitCompilerOptions(final Cobol85PreprocessorParser.CompilerOptionsContext ctx) {
+	public void exitCompilerOptions(final CobolPreprocessorParser.CompilerOptionsContext ctx) {
 		// throw away COMPILER OPTIONS terminals
 		pop();
 	}
 
 	@Override
-	public void exitCopyStatement(final Cobol85PreprocessorParser.CopyStatementContext ctx) {
+	public void exitCopyStatement(final CobolPreprocessorParser.CopyStatementContext ctx) {
 		// throw away COPY terminals
 		pop();
 
@@ -204,13 +204,13 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	@Override
-	public void exitEjectStatement(final Cobol85PreprocessorParser.EjectStatementContext ctx) {
+	public void exitEjectStatement(final CobolPreprocessorParser.EjectStatementContext ctx) {
 		// throw away eject statement
 		pop();
 	}
 
 	@Override
-	public void exitExecCicsStatement(final Cobol85PreprocessorParser.ExecCicsStatementContext ctx) {
+	public void exitExecCicsStatement(final CobolPreprocessorParser.ExecCicsStatementContext ctx) {
 		// throw away EXEC CICS terminals
 		pop();
 
@@ -233,7 +233,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	@Override
-	public void exitExecSqlImsStatement(final Cobol85PreprocessorParser.ExecSqlImsStatementContext ctx) {
+	public void exitExecSqlImsStatement(final CobolPreprocessorParser.ExecSqlImsStatementContext ctx) {
 		// throw away EXEC SQLIMS terminals
 		pop();
 
@@ -256,7 +256,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	@Override
-	public void exitExecSqlStatement(final Cobol85PreprocessorParser.ExecSqlStatementContext ctx) {
+	public void exitExecSqlStatement(final CobolPreprocessorParser.ExecSqlStatementContext ctx) {
 		// throw away EXEC SQL terminals
 		pop();
 
@@ -279,7 +279,7 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	@Override
-	public void exitReplaceArea(final Cobol85PreprocessorParser.ReplaceAreaContext ctx) {
+	public void exitReplaceArea(final CobolPreprocessorParser.ReplaceAreaContext ctx) {
 		/*
 		 * replacement phrase
 		 */
@@ -294,25 +294,25 @@ public class CobolDocumentParserListenerImpl extends Cobol85PreprocessorBaseList
 	}
 
 	@Override
-	public void exitReplaceByStatement(final Cobol85PreprocessorParser.ReplaceByStatementContext ctx) {
+	public void exitReplaceByStatement(final CobolPreprocessorParser.ReplaceByStatementContext ctx) {
 		// throw away terminals
 		pop();
 	}
 
 	@Override
-	public void exitReplaceOffStatement(final Cobol85PreprocessorParser.ReplaceOffStatementContext ctx) {
+	public void exitReplaceOffStatement(final CobolPreprocessorParser.ReplaceOffStatementContext ctx) {
 		// throw away REPLACE OFF terminals
 		pop();
 	}
 
 	@Override
-	public void exitSkipStatement(final Cobol85PreprocessorParser.SkipStatementContext ctx) {
+	public void exitSkipStatement(final CobolPreprocessorParser.SkipStatementContext ctx) {
 		// throw away skip statement
 		pop();
 	}
 
 	@Override
-	public void exitTitleStatement(final Cobol85PreprocessorParser.TitleStatementContext ctx) {
+	public void exitTitleStatement(final CobolPreprocessorParser.TitleStatementContext ctx) {
 		// throw away title statement
 		pop();
 	}

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.execcics.impl;
 
-import io.proleap.cobol.Cobol85Parser.ExecCicsStatementContext;
+import io.proleap.cobol.CobolParser.ExecCicsStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;

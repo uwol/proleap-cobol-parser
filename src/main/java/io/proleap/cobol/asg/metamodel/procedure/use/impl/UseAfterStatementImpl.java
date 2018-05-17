@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.use.impl;
 
-import io.proleap.cobol.Cobol85Parser.FileNameContext;
-import io.proleap.cobol.Cobol85Parser.UseAfterClauseContext;
-import io.proleap.cobol.Cobol85Parser.UseAfterOnContext;
+import io.proleap.cobol.CobolParser.FileNameContext;
+import io.proleap.cobol.CobolParser.UseAfterClauseContext;
+import io.proleap.cobol.CobolParser.UseAfterOnContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

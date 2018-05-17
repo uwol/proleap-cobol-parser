@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.visitor.impl;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import io.proleap.cobol.Cobol85Parser;
+import io.proleap.cobol.CobolParser;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
 import io.proleap.cobol.asg.util.ANTLRUtils;
@@ -29,7 +29,7 @@ public class CobolFileControlClauseVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitAccessModeClause(final Cobol85Parser.AccessModeClauseContext ctx) {
+	public Boolean visitAccessModeClause(final CobolParser.AccessModeClauseContext ctx) {
 		final FileControlEntry fileControlEntry = findFileControlEntry(ctx);
 
 		fileControlEntry.addAccessModeClause(ctx);
@@ -38,7 +38,7 @@ public class CobolFileControlClauseVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitAlternateRecordKeyClause(final Cobol85Parser.AlternateRecordKeyClauseContext ctx) {
+	public Boolean visitAlternateRecordKeyClause(final CobolParser.AlternateRecordKeyClauseContext ctx) {
 		final FileControlEntry fileControlEntry = findFileControlEntry(ctx);
 
 		fileControlEntry.addAlternateRecordKeyClause(ctx);
@@ -47,7 +47,7 @@ public class CobolFileControlClauseVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitAssignClause(final Cobol85Parser.AssignClauseContext ctx) {
+	public Boolean visitAssignClause(final CobolParser.AssignClauseContext ctx) {
 		final FileControlEntry fileControlEntry = findFileControlEntry(ctx);
 
 		fileControlEntry.addAssignClause(ctx);
@@ -56,7 +56,7 @@ public class CobolFileControlClauseVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitFileStatusClause(final Cobol85Parser.FileStatusClauseContext ctx) {
+	public Boolean visitFileStatusClause(final CobolParser.FileStatusClauseContext ctx) {
 		final FileControlEntry fileControlEntry = findFileControlEntry(ctx);
 
 		fileControlEntry.addFileStatusClause(ctx);
@@ -65,7 +65,7 @@ public class CobolFileControlClauseVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitOrganizationClause(final Cobol85Parser.OrganizationClauseContext ctx) {
+	public Boolean visitOrganizationClause(final CobolParser.OrganizationClauseContext ctx) {
 		final FileControlEntry fileControlEntry = findFileControlEntry(ctx);
 
 		fileControlEntry.addOrganizationClause(ctx);
@@ -74,7 +74,7 @@ public class CobolFileControlClauseVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitPaddingCharacterClause(final Cobol85Parser.PaddingCharacterClauseContext ctx) {
+	public Boolean visitPaddingCharacterClause(final CobolParser.PaddingCharacterClauseContext ctx) {
 		final FileControlEntry fileControlEntry = findFileControlEntry(ctx);
 
 		fileControlEntry.addPaddingCharacterClause(ctx);
@@ -83,7 +83,7 @@ public class CobolFileControlClauseVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitPasswordClause(final Cobol85Parser.PasswordClauseContext ctx) {
+	public Boolean visitPasswordClause(final CobolParser.PasswordClauseContext ctx) {
 		final FileControlEntry fileControlEntry = findFileControlEntry(ctx);
 
 		fileControlEntry.addPasswordClause(ctx);
@@ -92,7 +92,7 @@ public class CobolFileControlClauseVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitRecordDelimiterClause(final Cobol85Parser.RecordDelimiterClauseContext ctx) {
+	public Boolean visitRecordDelimiterClause(final CobolParser.RecordDelimiterClauseContext ctx) {
 		final FileControlEntry fileControlEntry = findFileControlEntry(ctx);
 
 		fileControlEntry.addRecordDelimiterClause(ctx);
@@ -101,7 +101,7 @@ public class CobolFileControlClauseVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitRecordKeyClause(final Cobol85Parser.RecordKeyClauseContext ctx) {
+	public Boolean visitRecordKeyClause(final CobolParser.RecordKeyClauseContext ctx) {
 		final FileControlEntry fileControlEntry = findFileControlEntry(ctx);
 
 		fileControlEntry.addRecordKeyClause(ctx);
@@ -110,7 +110,7 @@ public class CobolFileControlClauseVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitRelativeKeyClause(final Cobol85Parser.RelativeKeyClauseContext ctx) {
+	public Boolean visitRelativeKeyClause(final CobolParser.RelativeKeyClauseContext ctx) {
 		final FileControlEntry fileControlEntry = findFileControlEntry(ctx);
 
 		fileControlEntry.addRelativeKeyClause(ctx);
@@ -119,7 +119,7 @@ public class CobolFileControlClauseVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitReserveClause(final Cobol85Parser.ReserveClauseContext ctx) {
+	public Boolean visitReserveClause(final CobolParser.ReserveClauseContext ctx) {
 		final FileControlEntry fileControlEntry = findFileControlEntry(ctx);
 
 		fileControlEntry.addReserveClause(ctx);
@@ -128,7 +128,7 @@ public class CobolFileControlClauseVisitorImpl extends AbstractCobolParserVisito
 	}
 
 	@Override
-	public Boolean visitSelectClause(final Cobol85Parser.SelectClauseContext ctx) {
+	public Boolean visitSelectClause(final CobolParser.SelectClauseContext ctx) {
 		final FileControlEntry fileControlEntry = findFileControlEntry(ctx);
 
 		fileControlEntry.addSelectClause(ctx);

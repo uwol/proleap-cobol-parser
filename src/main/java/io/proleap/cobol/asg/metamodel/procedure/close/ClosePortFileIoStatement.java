@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.close;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ClosePortFileIOUsingContext;
+import io.proleap.cobol.CobolParser.ClosePortFileIOUsingContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface ClosePortFileIoStatement extends CobolDivisionElement {

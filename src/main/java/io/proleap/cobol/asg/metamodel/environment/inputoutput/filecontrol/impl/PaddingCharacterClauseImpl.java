@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.impl;
 
-import io.proleap.cobol.Cobol85Parser.PaddingCharacterClauseContext;
+import io.proleap.cobol.CobolParser.PaddingCharacterClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.PaddingCharacterClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

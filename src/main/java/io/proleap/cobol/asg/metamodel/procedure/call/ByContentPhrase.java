@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.call;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.CallByContentContext;
+import io.proleap.cobol.CobolParser.CallByContentContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface ByContentPhrase extends CobolDivisionElement {

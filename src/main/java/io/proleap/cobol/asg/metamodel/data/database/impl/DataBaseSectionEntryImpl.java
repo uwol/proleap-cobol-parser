@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.database.impl;
 
-import io.proleap.cobol.Cobol85Parser.DataBaseSectionEntryContext;
+import io.proleap.cobol.CobolParser.DataBaseSectionEntryContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.database.DataBaseSectionEntry;

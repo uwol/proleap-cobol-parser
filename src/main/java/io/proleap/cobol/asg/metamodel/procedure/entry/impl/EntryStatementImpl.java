@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.procedure.entry.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.EntryStatementContext;
+import io.proleap.cobol.CobolParser.EntryStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

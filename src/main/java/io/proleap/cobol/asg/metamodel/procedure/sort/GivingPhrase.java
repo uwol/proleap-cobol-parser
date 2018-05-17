@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.sort;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SortGivingContext;
+import io.proleap.cobol.CobolParser.SortGivingContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface GivingPhrase extends CobolDivisionElement {

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.configuration.object.impl;
 
-import io.proleap.cobol.Cobol85Parser.SegmentLimitClauseContext;
+import io.proleap.cobol.CobolParser.SegmentLimitClauseContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.configuration.object.SegmentLimitClause;

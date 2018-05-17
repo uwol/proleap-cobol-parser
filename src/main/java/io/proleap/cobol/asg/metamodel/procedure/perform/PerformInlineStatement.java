@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform;
 
-import io.proleap.cobol.Cobol85Parser.PerformTypeContext;
+import io.proleap.cobol.CobolParser.PerformTypeContext;
 import io.proleap.cobol.asg.metamodel.Scope;
 
 public interface PerformInlineStatement extends Scope {

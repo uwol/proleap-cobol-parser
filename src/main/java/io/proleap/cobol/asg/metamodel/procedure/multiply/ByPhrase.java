@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.multiply;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.MultiplyRegularOperandContext;
+import io.proleap.cobol.CobolParser.MultiplyRegularOperandContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface ByPhrase extends CobolDivisionElement {

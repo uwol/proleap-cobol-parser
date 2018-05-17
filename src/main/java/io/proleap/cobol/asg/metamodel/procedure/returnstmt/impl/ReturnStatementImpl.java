@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.returnstmt.impl;
 
-import io.proleap.cobol.Cobol85Parser.ReturnIntoContext;
-import io.proleap.cobol.Cobol85Parser.ReturnStatementContext;
+import io.proleap.cobol.CobolParser.ReturnIntoContext;
+import io.proleap.cobol.CobolParser.ReturnStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;

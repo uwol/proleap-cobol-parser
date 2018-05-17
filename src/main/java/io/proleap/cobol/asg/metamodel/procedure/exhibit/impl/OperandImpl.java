@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.exhibit.impl;
 
-import io.proleap.cobol.Cobol85Parser.ExhibitOperandContext;
+import io.proleap.cobol.CobolParser.ExhibitOperandContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.exhibit.Operand;

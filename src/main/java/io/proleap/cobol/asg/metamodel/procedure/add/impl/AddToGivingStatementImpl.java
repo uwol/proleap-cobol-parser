@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.procedure.add.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.AddToGivingStatementContext;
+import io.proleap.cobol.CobolParser.AddToGivingStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.add.AddToGivingStatement;

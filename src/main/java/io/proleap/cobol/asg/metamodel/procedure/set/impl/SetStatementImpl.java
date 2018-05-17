@@ -11,11 +11,11 @@ package io.proleap.cobol.asg.metamodel.procedure.set.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SetStatementContext;
-import io.proleap.cobol.Cobol85Parser.SetToContext;
-import io.proleap.cobol.Cobol85Parser.SetToStatementContext;
-import io.proleap.cobol.Cobol85Parser.SetToValueContext;
-import io.proleap.cobol.Cobol85Parser.SetUpDownByStatementContext;
+import io.proleap.cobol.CobolParser.SetStatementContext;
+import io.proleap.cobol.CobolParser.SetToContext;
+import io.proleap.cobol.CobolParser.SetToStatementContext;
+import io.proleap.cobol.CobolParser.SetToValueContext;
+import io.proleap.cobol.CobolParser.SetUpDownByStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;

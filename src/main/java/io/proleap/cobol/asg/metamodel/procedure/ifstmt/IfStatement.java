@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.ifstmt;
 
-import io.proleap.cobol.Cobol85Parser.IfElseContext;
-import io.proleap.cobol.Cobol85Parser.IfThenContext;
+import io.proleap.cobol.CobolParser.IfElseContext;
+import io.proleap.cobol.CobolParser.IfThenContext;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
 

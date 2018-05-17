@@ -11,9 +11,9 @@ package io.proleap.cobol.asg.metamodel.valuestmt.condition.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.AbbreviationContext;
-import io.proleap.cobol.Cobol85Parser.AndOrConditionContext;
-import io.proleap.cobol.Cobol85Parser.CombinableConditionContext;
+import io.proleap.cobol.CobolParser.AbbreviationContext;
+import io.proleap.cobol.CobolParser.AndOrConditionContext;
+import io.proleap.cobol.CobolParser.CombinableConditionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.AndOrCondition;

@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.programlibrary.impl;
 
-import io.proleap.cobol.Cobol85Parser.LibraryAttributeClauseFormat1Context;
+import io.proleap.cobol.CobolParser.LibraryAttributeClauseFormat1Context;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.ExportAttribute;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

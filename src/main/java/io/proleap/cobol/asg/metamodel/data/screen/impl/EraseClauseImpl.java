@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.screen.impl;
 
-import io.proleap.cobol.Cobol85Parser.ScreenDescriptionEraseClauseContext;
+import io.proleap.cobol.CobolParser.ScreenDescriptionEraseClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.screen.EraseClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

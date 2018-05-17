@@ -11,12 +11,12 @@ package io.proleap.cobol.asg.metamodel.valuestmt.condition.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ConditionNameReferenceContext;
-import io.proleap.cobol.Cobol85Parser.ConditionNameSubscriptReferenceContext;
-import io.proleap.cobol.Cobol85Parser.InDataContext;
-import io.proleap.cobol.Cobol85Parser.InFileContext;
-import io.proleap.cobol.Cobol85Parser.InMnemonicContext;
-import io.proleap.cobol.Cobol85Parser.SubscriptContext;
+import io.proleap.cobol.CobolParser.ConditionNameReferenceContext;
+import io.proleap.cobol.CobolParser.ConditionNameSubscriptReferenceContext;
+import io.proleap.cobol.CobolParser.InDataContext;
+import io.proleap.cobol.CobolParser.InFileContext;
+import io.proleap.cobol.CobolParser.InMnemonicContext;
+import io.proleap.cobol.CobolParser.SubscriptContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.valuestmt.condition.ConditionNameReference;

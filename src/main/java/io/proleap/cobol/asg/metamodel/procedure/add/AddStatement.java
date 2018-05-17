@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.add;
 
-import io.proleap.cobol.Cobol85Parser.AddCorrespondingStatementContext;
-import io.proleap.cobol.Cobol85Parser.AddToGivingStatementContext;
-import io.proleap.cobol.Cobol85Parser.AddToStatementContext;
+import io.proleap.cobol.CobolParser.AddCorrespondingStatementContext;
+import io.proleap.cobol.CobolParser.AddToGivingStatementContext;
+import io.proleap.cobol.CobolParser.AddToStatementContext;
 import io.proleap.cobol.asg.metamodel.procedure.NotOnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.OnSizeErrorPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;

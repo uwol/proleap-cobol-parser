@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel;
 
-import io.proleap.cobol.Cobol85Parser.MnemonicNameContext;
+import io.proleap.cobol.CobolParser.MnemonicNameContext;
 
 public interface MnemonicName extends CobolDivisionElement {
 

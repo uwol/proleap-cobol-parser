@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.linkage.impl;
 
-import io.proleap.cobol.Cobol85Parser.LinkageSectionContext;
+import io.proleap.cobol.CobolParser.LinkageSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.datadescription.impl.DataDescriptionEntryContainerImpl;
 import io.proleap.cobol.asg.metamodel.data.linkage.LinkageSection;

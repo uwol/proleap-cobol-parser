@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.specialnames.impl;
 
-import io.proleap.cobol.Cobol85Parser.DecimalPointClauseContext;
+import io.proleap.cobol.CobolParser.DecimalPointClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.specialnames.DecimalPointClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

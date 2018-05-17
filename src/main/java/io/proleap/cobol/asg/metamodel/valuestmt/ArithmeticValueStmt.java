@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.valuestmt;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.MultDivsContext;
-import io.proleap.cobol.Cobol85Parser.PlusMinusContext;
+import io.proleap.cobol.CobolParser.MultDivsContext;
+import io.proleap.cobol.CobolParser.PlusMinusContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.MultDivs;
 import io.proleap.cobol.asg.metamodel.valuestmt.arithmetic.PlusMinus;
 

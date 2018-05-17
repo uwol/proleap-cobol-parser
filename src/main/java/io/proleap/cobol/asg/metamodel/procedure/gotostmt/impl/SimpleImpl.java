@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.gotostmt.impl;
 
-import io.proleap.cobol.Cobol85Parser.GoToStatementSimpleContext;
+import io.proleap.cobol.CobolParser.GoToStatementSimpleContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

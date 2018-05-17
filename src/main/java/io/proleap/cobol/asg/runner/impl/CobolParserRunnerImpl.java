@@ -23,9 +23,9 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
-import io.proleap.cobol.Cobol85Lexer;
-import io.proleap.cobol.Cobol85Parser;
-import io.proleap.cobol.Cobol85Parser.StartRuleContext;
+import io.proleap.cobol.CobolLexer;
+import io.proleap.cobol.CobolParser;
+import io.proleap.cobol.CobolParser.StartRuleContext;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.impl.ProgramImpl;
@@ -166,7 +166,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			LOG.info("Parsing file {}.", cobolFile.getName());
 
 			// run the lexer
-			final Cobol85Lexer lexer = new Cobol85Lexer(CharStreams.fromString(preProcessedInput));
+			final CobolLexer lexer = new CobolLexer(CharStreams.fromString(preProcessedInput));
 
 			if (!params.getIgnoreSyntaxErrors()) {
 				// register an error listener, so that preprocessing stops on errors
@@ -178,7 +178,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			final CommonTokenStream tokens = new CommonTokenStream(lexer);
 
 			// pass the tokens to the parser
-			final Cobol85Parser parser = new Cobol85Parser(tokens);
+			final CobolParser parser = new CobolParser(tokens);
 
 			if (!params.getIgnoreSyntaxErrors()) {
 				// register an error listener, so that preprocessing stops on errors

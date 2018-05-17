@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.environment.specialnames;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ClassClauseThroughContext;
+import io.proleap.cobol.CobolParser.ClassClauseThroughContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 

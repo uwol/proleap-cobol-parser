@@ -8,16 +8,16 @@
 
 package io.proleap.cobol.asg.metamodel.data.report;
 
-import io.proleap.cobol.Cobol85Parser.ReportGroupBlankWhenZeroClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupColumnNumberClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupIndicateClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupJustifiedClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupPictureClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupResetClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupSignClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupSourceClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupSumClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReportGroupValueClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupBlankWhenZeroClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupColumnNumberClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupIndicateClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupJustifiedClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupPictureClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupResetClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupSignClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupSourceClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupSumClauseContext;
+import io.proleap.cobol.CobolParser.ReportGroupValueClauseContext;
 
 public interface ReportGroupDescriptionEntryPrintable extends ReportGroupDescriptionEntry {
 

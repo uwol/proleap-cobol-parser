@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.call.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.CallByReferenceContext;
-import io.proleap.cobol.Cobol85Parser.CallByReferencePhraseContext;
+import io.proleap.cobol.CobolParser.CallByReferenceContext;
+import io.proleap.cobol.CobolParser.CallByReferencePhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.call.ByReference;

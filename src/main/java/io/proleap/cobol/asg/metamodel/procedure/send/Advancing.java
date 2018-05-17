@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.send;
 
-import io.proleap.cobol.Cobol85Parser.SendAdvancingLinesContext;
-import io.proleap.cobol.Cobol85Parser.SendAdvancingMnemonicContext;
+import io.proleap.cobol.CobolParser.SendAdvancingLinesContext;
+import io.proleap.cobol.CobolParser.SendAdvancingMnemonicContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface Advancing extends CobolDivisionElement {

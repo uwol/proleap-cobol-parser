@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.impl;
 
-import io.proleap.cobol.Cobol85Parser.CommitmentControlClauseContext;
+import io.proleap.cobol.CobolParser.CommitmentControlClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.CommitmentControlClause;

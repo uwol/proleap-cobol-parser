@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.use.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.UseDebugClauseContext;
-import io.proleap.cobol.Cobol85Parser.UseDebugOnContext;
+import io.proleap.cobol.CobolParser.UseDebugClauseContext;
+import io.proleap.cobol.CobolParser.UseDebugOnContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

@@ -11,9 +11,9 @@ package io.proleap.cobol.asg.metamodel.procedure.inspect.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.InspectBeforeAfterContext;
-import io.proleap.cobol.Cobol85Parser.InspectConvertingPhraseContext;
-import io.proleap.cobol.Cobol85Parser.InspectToContext;
+import io.proleap.cobol.CobolParser.InspectBeforeAfterContext;
+import io.proleap.cobol.CobolParser.InspectConvertingPhraseContext;
+import io.proleap.cobol.CobolParser.InspectToContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.BeforeAfterPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.inspect.Converting;

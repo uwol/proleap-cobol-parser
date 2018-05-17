@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.data.file;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.FileDescriptionEntryContext;
+import io.proleap.cobol.CobolParser.FileDescriptionEntryContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface FileSection extends CobolDivisionElement {

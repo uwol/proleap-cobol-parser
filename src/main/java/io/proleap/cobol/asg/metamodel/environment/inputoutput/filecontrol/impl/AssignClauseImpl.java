@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.impl;
 
-import io.proleap.cobol.Cobol85Parser.AssignClauseContext;
+import io.proleap.cobol.CobolParser.AssignClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.AssignClause;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

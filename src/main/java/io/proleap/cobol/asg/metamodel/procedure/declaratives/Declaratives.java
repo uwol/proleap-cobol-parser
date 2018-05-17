@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.declaratives;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ProcedureDeclarativeContext;
+import io.proleap.cobol.CobolParser.ProcedureDeclarativeContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface Declaratives extends CobolDivisionElement {

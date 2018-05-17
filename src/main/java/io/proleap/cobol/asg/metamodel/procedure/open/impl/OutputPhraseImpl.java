@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.open.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.OpenOutputContext;
-import io.proleap.cobol.Cobol85Parser.OpenOutputStatementContext;
+import io.proleap.cobol.CobolParser.OpenOutputContext;
+import io.proleap.cobol.CobolParser.OpenOutputStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

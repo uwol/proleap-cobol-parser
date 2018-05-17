@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.valuestmt.condition;
 
-import io.proleap.cobol.Cobol85Parser.SimpleConditionContext;
+import io.proleap.cobol.CobolParser.SimpleConditionContext;
 import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface CombinableCondition extends ValueStmt {

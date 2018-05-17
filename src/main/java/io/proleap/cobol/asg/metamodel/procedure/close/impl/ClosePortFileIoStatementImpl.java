@@ -11,8 +11,8 @@ package io.proleap.cobol.asg.metamodel.procedure.close.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.ClosePortFileIOStatementContext;
-import io.proleap.cobol.Cobol85Parser.ClosePortFileIOUsingContext;
+import io.proleap.cobol.CobolParser.ClosePortFileIOStatementContext;
+import io.proleap.cobol.CobolParser.ClosePortFileIOUsingContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.close.ClosePortFileIoStatement;

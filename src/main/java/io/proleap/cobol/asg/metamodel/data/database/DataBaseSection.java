@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.data.database;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.DataBaseSectionEntryContext;
+import io.proleap.cobol.CobolParser.DataBaseSectionEntryContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface DataBaseSection extends CobolDivisionElement {

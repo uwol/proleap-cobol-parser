@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.workingstorage.impl;
 
-import io.proleap.cobol.Cobol85Parser.WorkingStorageSectionContext;
+import io.proleap.cobol.CobolParser.WorkingStorageSectionContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.data.datadescription.impl.DataDescriptionEntryContainerImpl;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;

@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.SameClauseContext;
+import io.proleap.cobol.CobolParser.SameClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.iocontrol.SameClause;

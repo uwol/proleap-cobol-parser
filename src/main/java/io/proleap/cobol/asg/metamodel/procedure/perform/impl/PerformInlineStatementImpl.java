@@ -8,8 +8,8 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform.impl;
 
-import io.proleap.cobol.Cobol85Parser.PerformInlineStatementContext;
-import io.proleap.cobol.Cobol85Parser.PerformTypeContext;
+import io.proleap.cobol.CobolParser.PerformInlineStatementContext;
+import io.proleap.cobol.CobolParser.PerformTypeContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.perform.PerformInlineStatement;

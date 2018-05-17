@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.execsql.impl;
 
-import io.proleap.cobol.Cobol85Parser.ExecSqlStatementContext;
+import io.proleap.cobol.CobolParser.ExecSqlStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;

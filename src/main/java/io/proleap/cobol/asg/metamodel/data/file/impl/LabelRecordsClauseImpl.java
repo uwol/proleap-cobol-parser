@@ -11,7 +11,7 @@ package io.proleap.cobol.asg.metamodel.data.file.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.LabelRecordsClauseContext;
+import io.proleap.cobol.CobolParser.LabelRecordsClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.file.LabelRecordsClause;

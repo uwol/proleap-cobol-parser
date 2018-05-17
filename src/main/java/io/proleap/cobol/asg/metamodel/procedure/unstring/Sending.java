@@ -10,8 +10,8 @@ package io.proleap.cobol.asg.metamodel.procedure.unstring;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.UnstringDelimitedByPhraseContext;
-import io.proleap.cobol.Cobol85Parser.UnstringOrAllPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringDelimitedByPhraseContext;
+import io.proleap.cobol.CobolParser.UnstringOrAllPhraseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 

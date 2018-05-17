@@ -10,17 +10,17 @@ package io.proleap.cobol.asg.metamodel.environment.specialnames;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.AlphabetClauseContext;
-import io.proleap.cobol.Cobol85Parser.AlphabetClauseFormat1Context;
-import io.proleap.cobol.Cobol85Parser.AlphabetClauseFormat2Context;
-import io.proleap.cobol.Cobol85Parser.ChannelClauseContext;
-import io.proleap.cobol.Cobol85Parser.ClassClauseContext;
-import io.proleap.cobol.Cobol85Parser.CurrencySignClauseContext;
-import io.proleap.cobol.Cobol85Parser.DecimalPointClauseContext;
-import io.proleap.cobol.Cobol85Parser.DefaultDisplaySignClauseContext;
-import io.proleap.cobol.Cobol85Parser.OdtClauseContext;
-import io.proleap.cobol.Cobol85Parser.ReserveNetworkClauseContext;
-import io.proleap.cobol.Cobol85Parser.SymbolicCharactersClauseContext;
+import io.proleap.cobol.CobolParser.AlphabetClauseContext;
+import io.proleap.cobol.CobolParser.AlphabetClauseFormat1Context;
+import io.proleap.cobol.CobolParser.AlphabetClauseFormat2Context;
+import io.proleap.cobol.CobolParser.ChannelClauseContext;
+import io.proleap.cobol.CobolParser.ClassClauseContext;
+import io.proleap.cobol.CobolParser.CurrencySignClauseContext;
+import io.proleap.cobol.CobolParser.DecimalPointClauseContext;
+import io.proleap.cobol.CobolParser.DefaultDisplaySignClauseContext;
+import io.proleap.cobol.CobolParser.OdtClauseContext;
+import io.proleap.cobol.CobolParser.ReserveNetworkClauseContext;
+import io.proleap.cobol.CobolParser.SymbolicCharactersClauseContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface SpecialNamesParagraph extends CobolDivisionElement {

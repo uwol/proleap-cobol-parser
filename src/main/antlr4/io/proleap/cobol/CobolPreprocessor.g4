@@ -7,13 +7,13 @@
 */
 
 /*
-* COBOL 85 Preprocessor Grammar for ANTLR4
+* COBOL Preprocessor Grammar for ANTLR4
 *
-* This is a preprocessor grammar for COBOL 85, which is part of the COBOL 
+* This is a preprocessor grammar for COBOL, which is part of the COBOL 
 * parser at https://github.com/uwol/proleap-cobol-parser.
 */
 
-grammar Cobol85Preprocessor;
+grammar CobolPreprocessor;
 
 startRule
    : (compilerOptions | copyStatement | execCicsStatement | execSqlStatement | execSqlImsStatement | replaceOffStatement | replaceArea | ejectStatement | skipStatement | titleStatement | charDataLine | NEWLINE)* EOF

@@ -8,9 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.write.impl;
 
-import io.proleap.cobol.Cobol85Parser.WriteAdvancingLinesContext;
-import io.proleap.cobol.Cobol85Parser.WriteAdvancingMnemonicContext;
-import io.proleap.cobol.Cobol85Parser.WriteAdvancingPhraseContext;
+import io.proleap.cobol.CobolParser.WriteAdvancingLinesContext;
+import io.proleap.cobol.CobolParser.WriteAdvancingMnemonicContext;
+import io.proleap.cobol.CobolParser.WriteAdvancingPhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

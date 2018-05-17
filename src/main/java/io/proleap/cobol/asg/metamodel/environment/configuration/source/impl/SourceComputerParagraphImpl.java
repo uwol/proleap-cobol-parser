@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.environment.configuration.source.impl;
 
-import io.proleap.cobol.Cobol85Parser.SourceComputerParagraphContext;
+import io.proleap.cobol.CobolParser.SourceComputerParagraphContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.environment.configuration.source.SourceComputerParagraph;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;

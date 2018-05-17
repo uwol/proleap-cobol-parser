@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.data.programlibrary.impl;
 
-import io.proleap.cobol.Cobol85Parser.LibraryEntryProcedureGivingClauseContext;
+import io.proleap.cobol.CobolParser.LibraryEntryProcedureGivingClauseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.data.programlibrary.GivingClause;

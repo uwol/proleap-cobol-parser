@@ -10,7 +10,7 @@ package io.proleap.cobol.asg.metamodel.procedure.unstring;
 
 import java.util.List;
 
-import io.proleap.cobol.Cobol85Parser.UnstringIntoContext;
+import io.proleap.cobol.CobolParser.UnstringIntoContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface IntoPhrase extends CobolDivisionElement {

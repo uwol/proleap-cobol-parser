@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.identification.impl;
 
-import io.proleap.cobol.Cobol85Parser.AuthorParagraphContext;
+import io.proleap.cobol.CobolParser.AuthorParagraphContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.identification.AuthorParagraph;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
