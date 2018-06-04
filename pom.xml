@@ -31,7 +31,7 @@
 	<distributionManagement>
 		<repository>
 			<id>maven.proleap.io</id>
-			<url>ftps://wp12684198.server-he.de</url>
+			<url>ftp://wp12684198.server-he.de</url>
 		</repository>
 	</distributionManagement>
 	<build>
