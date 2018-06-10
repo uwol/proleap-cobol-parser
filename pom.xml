@@ -17,6 +17,7 @@
 	</licenses>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<exclude.tests>nothing.to.exclude</exclude.tests>
 		<antlr.version>4.7</antlr.version>
 	</properties>
