@@ -60,16 +60,7 @@ Example
 Getting started
 ---------------
 
-To include the parser in your Maven project edit your `pom.xml` file as follows
-
-```
-<repositories>
-	<repository>
-		<id>maven.proleap.io</id>
-		<url>http://maven.proleap.io</url>
-	</repository>
-</repositories>
-```
+To include the parser in your Maven project build it and add the dependency:
 
 ```
 <dependency>
