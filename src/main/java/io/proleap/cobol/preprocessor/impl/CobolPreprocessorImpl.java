@@ -48,8 +48,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 	}
 
 	protected CobolParserParams createDefaultParams() {
-		final CobolParserParams result = new CobolParserParamsImpl();
-		return result;
+		return new CobolParserParamsImpl();
 	}
 
 	protected CobolParserParams createDefaultParams(final File cobolFile) {
