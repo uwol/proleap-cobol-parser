@@ -14,5 +14,4 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  * Defines an end point for a series of procedures
  */
 public interface ExitStatement extends Statement {
-
 }

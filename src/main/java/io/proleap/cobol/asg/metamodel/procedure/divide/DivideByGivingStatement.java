@@ -21,5 +21,4 @@ public interface DivideByGivingStatement extends CobolDivisionElement {
 	GivingPhrase getGivingPhrase();
 
 	void setByValueStmt(ValueStmt intoValueStmt);
-
 }

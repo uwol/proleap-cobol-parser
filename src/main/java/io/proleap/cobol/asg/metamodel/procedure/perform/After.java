@@ -16,5 +16,4 @@ public interface After extends CobolDivisionElement {
 	VaryingPhrase addVaryingPhrase(PerformVaryingPhraseContext ctx);
 
 	VaryingPhrase getVaryingPhrase();
-
 }

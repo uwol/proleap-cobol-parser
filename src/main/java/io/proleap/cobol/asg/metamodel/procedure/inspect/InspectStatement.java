@@ -51,5 +51,4 @@ public interface InspectStatement extends Statement {
 	void setDataItemCall(Call dataItemCall);
 
 	void setInspectType(InspectType inspectType);
-
 }
