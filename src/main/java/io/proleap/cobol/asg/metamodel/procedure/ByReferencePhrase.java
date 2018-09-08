@@ -18,5 +18,4 @@ public interface ByReferencePhrase extends CobolDivisionElement {
 	ByReference addByReference(ProcedureDivisionByReferenceContext ctx);
 
 	List<ByReference> getByReferences();
-
 }

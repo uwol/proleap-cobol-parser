@@ -16,5 +16,4 @@ public interface ForPhrase extends CobolDivisionElement {
 	ValueStmt getForValueStmt();
 
 	void setForValueStmt(ValueStmt forValueStmt);
-
 }

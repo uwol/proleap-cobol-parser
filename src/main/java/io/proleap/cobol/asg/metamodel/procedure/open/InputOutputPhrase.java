@@ -18,5 +18,4 @@ public interface InputOutputPhrase extends CobolDivisionElement {
 	void addFileCall(Call fileCall);
 
 	List<Call> getFileCalls();
-
 }

@@ -11,5 +11,4 @@ package io.proleap.cobol.asg.metamodel.procedure.receive;
 import io.proleap.cobol.asg.metamodel.Scope;
 
 public interface NoData extends Scope {
-
 }

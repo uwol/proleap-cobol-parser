@@ -23,5 +23,4 @@ public interface MoveCorrespondingToStatetement extends CobolDivisionElement {
 	MoveCorrespondingToSendingArea getMoveToCorrespondingSendingArea();
 
 	List<Call> getReceivingAreaCalls();
-
 }

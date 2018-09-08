@@ -11,5 +11,4 @@ package io.proleap.cobol.asg.metamodel.procedure.declaratives;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 
 public interface SectionHeader extends CobolDivisionElement {
-
 }

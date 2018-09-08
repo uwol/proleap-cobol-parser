@@ -16,5 +16,4 @@ public interface Key extends CobolDivisionElement {
 	Call getKeyCall();
 
 	void setKeyCall(Call keyCall);
-
 }

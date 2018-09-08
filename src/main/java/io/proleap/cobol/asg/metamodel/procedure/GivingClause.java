@@ -16,5 +16,4 @@ public interface GivingClause extends CobolDivisionElement {
 	Call getGivingCall();
 
 	void setGivingCall(Call givingCall);
-
 }

@@ -16,5 +16,4 @@ public interface AdvancingMnemonic extends CobolDivisionElement {
 	Call getMnemonicCall();
 
 	void setMnemonicCall(Call mnemonicCall);
-
 }

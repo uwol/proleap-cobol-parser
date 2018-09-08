@@ -16,5 +16,4 @@ public interface Subtrahend extends CobolDivisionElement {
 	ValueStmt getSubtrahendValueStmt();
 
 	void setSubtrahendValueStmt(ValueStmt subtrahendValueStmt);
-
 }

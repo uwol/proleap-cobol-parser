@@ -16,5 +16,4 @@ public interface OrAll extends CobolDivisionElement {
 	ValueStmt getOrAllValueStmt();
 
 	void setOrAllValueStmt(ValueStmt orAllValueStmt);
-
 }

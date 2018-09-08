@@ -23,5 +23,4 @@ public interface AllLeading extends CobolDivisionElement {
 	ValueStmt getPatternDataItemValueStmt();
 
 	void setPatternDataItemValueStmt(ValueStmt patternDataItemValueStmt);
-
 }

@@ -36,5 +36,4 @@ public interface EvaluateStatement extends Statement {
 	WhenOther getWhenOther();
 
 	List<WhenPhrase> getWhenPhrases();
-
 }

@@ -16,5 +16,4 @@ public interface DelimitedByPhrase extends CobolDivisionElement {
 	ValueStmt getDelimitedByValueStmt();
 
 	void setDelimitedByValueStmt(ValueStmt delimitedByValueStmt);
-
 }

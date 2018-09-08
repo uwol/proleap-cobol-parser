@@ -16,5 +16,4 @@ public interface By extends CobolDivisionElement {
 	ValueStmt getByValueStmt();
 
 	void setByValueStmt(ValueStmt byValueStmtl);
-
 }

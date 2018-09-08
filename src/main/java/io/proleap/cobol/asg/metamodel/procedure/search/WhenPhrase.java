@@ -24,5 +24,4 @@ public interface WhenPhrase extends Scope {
 	void setCondition(ConditionValueStmt condition);
 
 	void setWhenType(WhenType whenType);
-
 }

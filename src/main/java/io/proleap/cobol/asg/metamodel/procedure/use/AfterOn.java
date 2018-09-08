@@ -26,5 +26,4 @@ public interface AfterOn extends CobolDivisionElement {
 	List<Call> getFileCalls();
 
 	void setType(AfterOnType afterOnType);
-
 }

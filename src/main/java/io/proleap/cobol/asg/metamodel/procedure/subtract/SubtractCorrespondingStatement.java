@@ -21,5 +21,4 @@ public interface SubtractCorrespondingStatement extends CobolDivisionElement {
 	Call getSubtrahendCall();
 
 	void setSubtrahendCall(Call subtrahendCall);
-
 }

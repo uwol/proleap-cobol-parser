@@ -23,5 +23,4 @@ public interface AddCorrespondingStatement extends CobolDivisionElement {
 	void setFromCall(Call fromCall);
 
 	void setTo(To to);
-
 }

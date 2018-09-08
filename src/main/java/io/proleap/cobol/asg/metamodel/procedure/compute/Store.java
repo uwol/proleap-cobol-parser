@@ -20,5 +20,4 @@ public interface Store extends CobolDivisionElement {
 	void setRounded(boolean rounded);
 
 	void setStoreCall(Call storeCall);
-
 }

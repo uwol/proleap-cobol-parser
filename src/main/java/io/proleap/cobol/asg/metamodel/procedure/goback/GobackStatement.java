@@ -14,5 +14,4 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  * Marks the logical end of a called program.
  */
 public interface GobackStatement extends Statement {
-
 }

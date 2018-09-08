@@ -16,5 +16,4 @@ public interface Times extends CobolDivisionElement {
 	ValueStmt getTimesValueStmt();
 
 	void setTimesValueStmt(ValueStmt timesValueStmt);
-
 }

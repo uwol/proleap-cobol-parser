@@ -38,5 +38,4 @@ public interface ReceiveIntoStatement extends CobolDivisionElement {
 	void setIntoCall(Call intoCall);
 
 	void setReceiveIntoType(ReceiveIntoType receiveIntoType);
-
 }

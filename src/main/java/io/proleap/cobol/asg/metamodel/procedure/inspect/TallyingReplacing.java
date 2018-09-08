@@ -23,5 +23,4 @@ public interface TallyingReplacing extends CobolDivisionElement {
 	List<For> getFors();
 
 	List<Replacing> getReplacings();
-
 }

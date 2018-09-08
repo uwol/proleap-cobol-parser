@@ -16,12 +16,11 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface MoveToStatement extends CobolDivisionElement {
 
-	void addReceivingAreaCall(Call receivingAreaCall);
-
 	MoveToSendingArea addMoveToSendingArea(MoveToSendingAreaContext ctx);
+
+	void addReceivingAreaCall(Call receivingAreaCall);
 
 	List<Call> getReceivingAreaCalls();
 
 	MoveToSendingArea getSendingArea();
-
 }

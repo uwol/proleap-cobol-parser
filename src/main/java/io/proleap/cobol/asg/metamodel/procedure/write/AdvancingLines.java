@@ -16,5 +16,4 @@ public interface AdvancingLines extends CobolDivisionElement {
 	ValueStmt getLinesValueStmt();
 
 	void setLinesValueStmt(ValueStmt linesValueStmt);
-
 }

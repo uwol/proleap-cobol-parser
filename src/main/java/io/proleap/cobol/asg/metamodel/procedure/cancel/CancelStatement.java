@@ -22,5 +22,4 @@ public interface CancelStatement extends Statement {
 	CancelCall addCancelCall(CancelCallContext ctx);
 
 	List<CancelCall> getCancelCalls();
-
 }

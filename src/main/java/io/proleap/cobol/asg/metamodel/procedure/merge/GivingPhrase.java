@@ -18,5 +18,4 @@ public interface GivingPhrase extends CobolDivisionElement {
 	Giving addGiving(MergeGivingContext ctx);
 
 	List<Giving> getGivings();
-
 }

@@ -26,5 +26,4 @@ public interface EntryStatement extends Statement {
 	List<Call> getUsingCalls();
 
 	void setEntryValueStmt(ValueStmt entryValueStmt);
-
 }

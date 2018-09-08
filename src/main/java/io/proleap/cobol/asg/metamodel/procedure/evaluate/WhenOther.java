@@ -11,5 +11,4 @@ package io.proleap.cobol.asg.metamodel.procedure.evaluate;
 import io.proleap.cobol.asg.metamodel.Scope;
 
 public interface WhenOther extends Scope {
-
 }

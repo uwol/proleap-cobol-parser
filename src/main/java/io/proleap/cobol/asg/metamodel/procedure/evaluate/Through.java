@@ -16,5 +16,4 @@ public interface Through extends CobolDivisionElement {
 	Value addValue(EvaluateValueContext ctx);
 
 	Value getValue();
-
 }

@@ -18,5 +18,4 @@ public interface UsingClause extends CobolDivisionElement {
 	UsingParameter addUsingParameter(ProcedureDivisionUsingParameterContext ctx);
 
 	List<UsingParameter> getUsingParameters();
-
 }

@@ -15,5 +15,4 @@ public interface With extends CobolDivisionElement {
 	boolean isNoWait();
 
 	void setNoWait(boolean noWait);
-
 }

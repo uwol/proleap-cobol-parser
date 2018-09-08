@@ -23,5 +23,4 @@ public interface GivingPhrase extends CobolDivisionElement {
 	GivingOperand getGivingOperand();
 
 	List<GivingResult> getGivingResults();
-
 }

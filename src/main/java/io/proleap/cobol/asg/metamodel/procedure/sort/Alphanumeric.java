@@ -16,5 +16,4 @@ public interface Alphanumeric extends CobolDivisionElement {
 	Call getAlphabetCall();
 
 	void setAlphabetCall(Call alphabetCall);
-
 }

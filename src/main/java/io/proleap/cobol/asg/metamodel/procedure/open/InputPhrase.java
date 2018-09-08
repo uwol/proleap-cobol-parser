@@ -18,5 +18,4 @@ public interface InputPhrase extends CobolDivisionElement {
 	Input addOpenInput(OpenInputContext ctx);
 
 	List<Input> getInputs();
-
 }

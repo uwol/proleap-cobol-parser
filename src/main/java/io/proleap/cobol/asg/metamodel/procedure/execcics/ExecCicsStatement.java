@@ -15,5 +15,4 @@ public interface ExecCicsStatement extends Statement {
 	String getExecCicsText();
 
 	void setExecCicsText(String execCicsText);
-
 }

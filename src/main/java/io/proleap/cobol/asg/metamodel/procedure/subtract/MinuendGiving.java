@@ -16,5 +16,4 @@ public interface MinuendGiving extends CobolDivisionElement {
 	ValueStmt getMinuendValueStmt();
 
 	void setMinuendValueStmt(ValueStmt minuend);
-
 }

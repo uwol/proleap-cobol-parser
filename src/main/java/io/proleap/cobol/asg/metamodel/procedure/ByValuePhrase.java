@@ -18,5 +18,4 @@ public interface ByValuePhrase extends CobolDivisionElement {
 	ByValue addByValue(ProcedureDivisionByValueContext ctx);
 
 	List<ByValue> getByValues();
-
 }

@@ -16,5 +16,4 @@ public interface VaryingPhrase extends CobolDivisionElement {
 	Call getDataCall();
 
 	void setDataCall(Call dataCall);
-
 }

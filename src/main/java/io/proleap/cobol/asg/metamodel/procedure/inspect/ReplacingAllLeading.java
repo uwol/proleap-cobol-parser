@@ -28,5 +28,4 @@ public interface ReplacingAllLeading extends CobolDivisionElement {
 	ValueStmt getPatternDataItemValueStmt();
 
 	void setPatternDataItemValueStmt(ValueStmt patternDataItemValueStmt);
-
 }

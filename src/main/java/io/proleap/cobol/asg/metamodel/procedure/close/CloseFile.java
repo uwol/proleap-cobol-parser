@@ -39,5 +39,4 @@ public interface CloseFile extends CobolDivisionElement {
 	void setCloseFileType(CloseFileType closeFileType);
 
 	void setFileCall(Call fileCall);
-
 }

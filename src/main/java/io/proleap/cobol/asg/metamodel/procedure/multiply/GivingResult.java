@@ -20,5 +20,4 @@ public interface GivingResult extends CobolDivisionElement {
 	void setResultCall(Call operandCall);
 
 	void setRounded(boolean rounded);
-
 }

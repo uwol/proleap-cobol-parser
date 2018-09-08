@@ -16,5 +16,4 @@ public interface From extends CobolDivisionElement {
 	ValueStmt getFromValueStmt();
 
 	void setFromValueStmt(ValueStmt fromValueStmt);
-
 }

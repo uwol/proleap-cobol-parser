@@ -23,5 +23,4 @@ public interface SubtractFromStatement extends CobolDivisionElement {
 	List<Minuend> getMinuends();
 
 	List<Subtrahend> getSubtrahends();
-
 }

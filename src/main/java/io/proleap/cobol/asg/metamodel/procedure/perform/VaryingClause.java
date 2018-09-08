@@ -23,5 +23,4 @@ public interface VaryingClause extends CobolDivisionElement {
 	List<After> getAfters();
 
 	VaryingPhrase getVaryingPhrase();
-
 }

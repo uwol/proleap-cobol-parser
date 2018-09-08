@@ -12,5 +12,4 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.Declaration;
 
 public interface ParagraphName extends CobolDivisionElement, Declaration {
-
 }

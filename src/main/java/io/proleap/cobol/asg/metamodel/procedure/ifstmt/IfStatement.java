@@ -29,5 +29,4 @@ public interface IfStatement extends Statement {
 	Then getThen();
 
 	void setCondition(ConditionValueStmt condition);
-
 }

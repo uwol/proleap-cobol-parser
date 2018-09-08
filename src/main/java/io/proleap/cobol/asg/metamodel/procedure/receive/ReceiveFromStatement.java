@@ -46,5 +46,4 @@ public interface ReceiveFromStatement extends CobolDivisionElement {
 	With getWith();
 
 	void setDataCall(Call dataCall);
-
 }

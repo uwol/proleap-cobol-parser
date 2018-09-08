@@ -26,5 +26,4 @@ public interface AllLeadingPhrase extends CobolDivisionElement {
 	AllLeadingsType getAllLeadingsType();
 
 	void setAllLeadingsType(AllLeadingsType allLeadingsType);
-
 }

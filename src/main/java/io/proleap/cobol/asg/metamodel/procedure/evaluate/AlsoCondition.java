@@ -16,5 +16,4 @@ public interface AlsoCondition extends CobolDivisionElement {
 	Condition addCondition(EvaluateConditionContext ctx);
 
 	Condition getCondition();
-
 }

@@ -18,5 +18,4 @@ public interface Characters extends CobolDivisionElement {
 	BeforeAfterPhrase addBeforeAfterPhrase(InspectBeforeAfterContext ctx);
 
 	List<BeforeAfterPhrase> getBeforeAfterPhrases();
-
 }

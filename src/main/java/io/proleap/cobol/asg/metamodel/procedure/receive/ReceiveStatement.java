@@ -42,5 +42,4 @@ public interface ReceiveStatement extends Statement {
 	void setOnExceptionClause(OnExceptionClause onExceptionClause);
 
 	void setReceiveType(ReceiveType receiveType);
-
 }

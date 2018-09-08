@@ -37,5 +37,4 @@ public interface SearchStatement extends Statement {
 	void setAtEndPhrase(AtEndPhrase atEndPhrase);
 
 	void setDataCall(Call dataCall);
-
 }

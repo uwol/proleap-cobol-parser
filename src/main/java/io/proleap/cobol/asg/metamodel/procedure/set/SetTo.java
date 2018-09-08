@@ -23,5 +23,4 @@ public interface SetTo extends CobolDivisionElement {
 	List<To> getTos();
 
 	List<Value> getValues();
-
 }

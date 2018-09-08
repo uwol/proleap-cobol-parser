@@ -19,5 +19,4 @@ public interface With extends CobolDivisionElement {
 	WithType getWithType();
 
 	void setWithType(WithType withType);
-
 }

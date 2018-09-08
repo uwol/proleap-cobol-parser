@@ -21,5 +21,4 @@ public interface Until extends CobolDivisionElement {
 	TestClause getTestClause();
 
 	void setCondition(ConditionValueStmt condition);
-
 }

@@ -16,5 +16,4 @@ public interface IntoPhrase extends CobolDivisionElement {
 	Call getIntoCall();
 
 	void setIntoCall(Call intoCall);
-
 }

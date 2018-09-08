@@ -16,5 +16,4 @@ public interface PerformInlineStatement extends Scope {
 	PerformType addPerformType(PerformTypeContext ctx);
 
 	PerformType getPerformType();
-
 }

@@ -34,5 +34,4 @@ public interface PerformStatement extends Statement {
 	PerformStatementType getPerformStatementType();
 
 	void setPerformStatementType(PerformStatementType performStatementType);
-
 }

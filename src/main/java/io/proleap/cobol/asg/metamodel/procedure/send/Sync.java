@@ -35,5 +35,4 @@ public interface Sync extends CobolDivisionElement {
 	void setReceivingProgramValueStmt(ValueStmt receivingProgramValueStmt);
 
 	void setReplacing(boolean replacing);
-
 }

@@ -16,5 +16,4 @@ public interface At extends CobolDivisionElement {
 	ValueStmt getAtValueStmt();
 
 	void setAtValueStmt(ValueStmt atValueStmt);
-
 }

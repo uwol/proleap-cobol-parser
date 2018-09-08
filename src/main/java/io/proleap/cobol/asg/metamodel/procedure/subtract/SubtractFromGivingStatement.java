@@ -28,5 +28,4 @@ public interface SubtractFromGivingStatement extends CobolDivisionElement {
 	MinuendGiving getMinuend();
 
 	List<Subtrahend> getSubtrahends();
-
 }

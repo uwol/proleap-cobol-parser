@@ -24,5 +24,4 @@ public interface Value extends CobolDivisionElement {
 	void setValueStmt(ValueStmt valueStmt);
 
 	void setValueType(ValueType valueType);
-
 }

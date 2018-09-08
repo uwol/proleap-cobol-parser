@@ -23,5 +23,4 @@ public interface ReplacingCharacters extends CobolDivisionElement {
 	List<BeforeAfterPhrase> getBeforeAfterPhrases();
 
 	By getBy();
-
 }

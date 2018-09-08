@@ -18,5 +18,4 @@ public interface ByPhrase extends CobolDivisionElement {
 	ByOperand addOperand(MultiplyRegularOperandContext ctx);
 
 	List<ByOperand> getByOperands();
-
 }

@@ -18,5 +18,4 @@ public interface DivideIntoStatement extends CobolDivisionElement {
 	Into addInto(DivideIntoContext ctx);
 
 	List<Into> getIntos();
-
 }

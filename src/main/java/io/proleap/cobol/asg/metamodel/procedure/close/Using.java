@@ -34,5 +34,4 @@ public interface Using extends CobolDivisionElement {
 	UsingType getUsingType();
 
 	void setUsingType(UsingType usingType);
-
 }

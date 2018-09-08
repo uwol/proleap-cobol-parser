@@ -16,5 +16,4 @@ public interface Status extends CobolDivisionElement {
 	Call getStatusCall();
 
 	void setStatusCall(Call statusCall);
-
 }

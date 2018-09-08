@@ -16,5 +16,4 @@ public interface From extends CobolDivisionElement {
 	Call getFromCall();
 
 	void setFromCall(Call fromCall);
-
 }

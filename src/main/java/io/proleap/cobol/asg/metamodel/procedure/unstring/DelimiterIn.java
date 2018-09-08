@@ -16,5 +16,4 @@ public interface DelimiterIn extends CobolDivisionElement {
 	Call getDelimiterInCall();
 
 	void setDelimiterInCall(Call delimiterInCall);
-
 }

@@ -18,5 +18,4 @@ public interface IntoPhrase extends CobolDivisionElement {
 	Into addInto(UnstringIntoContext ctx);
 
 	List<Into> getIntos();
-
 }

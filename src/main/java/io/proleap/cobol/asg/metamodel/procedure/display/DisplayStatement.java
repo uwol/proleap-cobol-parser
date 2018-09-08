@@ -36,5 +36,4 @@ public interface DisplayStatement extends Statement {
 	Upon getUpon();
 
 	With getWith();
-
 }

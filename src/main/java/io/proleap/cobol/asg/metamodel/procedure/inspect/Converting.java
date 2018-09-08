@@ -28,5 +28,4 @@ public interface Converting extends CobolDivisionElement {
 	To getTo();
 
 	void setFromValueStmt(ValueStmt fromValueStmt);
-
 }

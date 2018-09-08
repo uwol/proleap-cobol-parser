@@ -21,5 +21,4 @@ public interface Varying extends CobolDivisionElement {
 	TestClause getTestClause();
 
 	VaryingClause getVaryingClause();
-
 }

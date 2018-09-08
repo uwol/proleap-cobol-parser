@@ -16,5 +16,4 @@ public interface Before extends CobolDivisionElement {
 	ValueStmt getTimeValueStmt();
 
 	void setTimeValueStmt(ValueStmt timeValueStmt);
-
 }

@@ -16,5 +16,4 @@ public interface WithPointerPhrase extends CobolDivisionElement {
 	Call getPointerCall();
 
 	void setPointerCall(Call pointerCall);
-
 }

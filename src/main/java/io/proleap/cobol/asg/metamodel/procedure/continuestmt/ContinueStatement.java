@@ -14,5 +14,4 @@ import io.proleap.cobol.asg.metamodel.procedure.Statement;
  * No operation.
  */
 public interface ContinueStatement extends Statement {
-
 }

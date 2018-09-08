@@ -34,5 +34,4 @@ public interface ReturnStatement extends Statement {
 	void setAtEndPhrase(AtEndPhrase atEndPhrase);
 
 	void setNotAtEndPhrase(NotAtEndPhrase notAtEndPhrase);
-
 }

@@ -14,5 +14,4 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
  * Transfers data from key press.
  */
 public interface AcceptFromEscapeKeyStatement extends CobolDivisionElement {
-
 }

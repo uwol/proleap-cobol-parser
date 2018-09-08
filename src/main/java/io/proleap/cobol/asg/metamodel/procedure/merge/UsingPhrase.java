@@ -18,5 +18,4 @@ public interface UsingPhrase extends CobolDivisionElement {
 	void addFileCall(Call fileCall);
 
 	List<Call> getFileCalls();
-
 }

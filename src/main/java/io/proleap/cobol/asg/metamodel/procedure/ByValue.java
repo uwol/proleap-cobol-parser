@@ -20,5 +20,4 @@ public interface ByValue extends CobolDivisionElement {
 	void setAny(boolean any);
 
 	void setValueValueStmt(ValueStmt valueValueStmt);
-
 }

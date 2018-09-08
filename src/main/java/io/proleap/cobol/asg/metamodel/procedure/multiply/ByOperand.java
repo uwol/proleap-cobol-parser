@@ -20,5 +20,4 @@ public interface ByOperand extends CobolDivisionElement {
 	void setOperandCall(Call operandCall);
 
 	void setRounded(boolean rounded);
-
 }

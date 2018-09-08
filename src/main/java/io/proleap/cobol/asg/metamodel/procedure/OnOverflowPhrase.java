@@ -11,5 +11,4 @@ package io.proleap.cobol.asg.metamodel.procedure;
 import io.proleap.cobol.asg.metamodel.Scope;
 
 public interface OnOverflowPhrase extends Scope {
-
 }

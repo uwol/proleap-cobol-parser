@@ -18,5 +18,4 @@ public interface UsingPhrase extends CobolDivisionElement {
 	UsingParameter addUsingParameter(CallUsingParameterContext ctx);
 
 	List<UsingParameter> getUsingParameters();
-
 }

@@ -24,5 +24,4 @@ public interface With extends CobolDivisionElement {
 	void setWithCall(Call withCall);
 
 	void setWithType(WithType withType);
-
 }

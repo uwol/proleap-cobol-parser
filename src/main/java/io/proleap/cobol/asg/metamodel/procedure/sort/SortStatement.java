@@ -58,5 +58,4 @@ public interface SortStatement extends Statement {
 	List<UsingPhrase> getUsingPhrases();
 
 	void setFileCall(Call fileCall);
-
 }

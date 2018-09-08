@@ -37,5 +37,4 @@ public interface OpenStatement extends Statement {
 	List<InputPhrase> getInputPhrases();
 
 	List<OutputPhrase> getOutputPhrases();
-
 }

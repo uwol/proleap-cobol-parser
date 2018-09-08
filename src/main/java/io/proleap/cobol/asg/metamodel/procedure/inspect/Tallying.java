@@ -18,5 +18,4 @@ public interface Tallying extends CobolDivisionElement {
 	For addFor(InspectForContext ctx);
 
 	List<For> getFors();
-
 }

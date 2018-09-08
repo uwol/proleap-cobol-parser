@@ -9,5 +9,4 @@
 package io.proleap.cobol.asg.metamodel.procedure;
 
 public interface StatementType {
-
 }

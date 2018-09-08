@@ -16,5 +16,4 @@ public interface Upon extends CobolDivisionElement {
 	Call getUponCall();
 
 	void setUponCall(Call uponCall);
-
 }

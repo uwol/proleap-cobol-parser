@@ -18,5 +18,4 @@ public interface ReplacingPhrase extends CobolDivisionElement {
 	By addBy(InitializeReplacingByContext ctx);
 
 	List<By> getBys();
-
 }

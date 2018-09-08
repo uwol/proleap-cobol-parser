@@ -18,5 +18,4 @@ public interface WhenPhrase extends Scope {
 	When addWhen(EvaluateWhenContext ctx);
 
 	List<When> getWhens();
-
 }

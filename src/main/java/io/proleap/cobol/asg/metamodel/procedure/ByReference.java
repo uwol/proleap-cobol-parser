@@ -21,8 +21,7 @@ public interface ByReference extends CobolDivisionElement {
 
 	void setAny(boolean any);
 
-	void setReferenceCall(Call fileCall);
-
 	void setOptional(boolean optional);
 
+	void setReferenceCall(Call fileCall);
 }

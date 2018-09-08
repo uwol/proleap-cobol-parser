@@ -15,5 +15,4 @@ public interface ExecSqlImsStatement extends Statement {
 	String getExecSqlImsText();
 
 	void setExecSqlImsText(String execSqlImsText);
-
 }

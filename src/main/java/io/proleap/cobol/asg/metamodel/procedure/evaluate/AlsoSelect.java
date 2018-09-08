@@ -15,5 +15,4 @@ public interface AlsoSelect extends CobolDivisionElement {
 	Select getSelect();
 
 	void setSelect(Select select);
-
 }

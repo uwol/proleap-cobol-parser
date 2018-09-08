@@ -16,5 +16,4 @@ public interface Operand extends CobolDivisionElement {
 	ValueStmt getOperandValueStmt();
 
 	void setOperandValueStmt(ValueStmt operandValueStmt);
-
 }

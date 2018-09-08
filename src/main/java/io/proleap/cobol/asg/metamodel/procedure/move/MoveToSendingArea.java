@@ -16,5 +16,4 @@ public interface MoveToSendingArea extends CobolDivisionElement {
 	ValueStmt getSendingAreaValueStmt();
 
 	void setSendingAreaValueStmt(ValueStmt sendingAreaValueStmt);
-
 }

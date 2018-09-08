@@ -16,5 +16,4 @@ public interface MoveCorrespondingToSendingArea extends CobolDivisionElement {
 	Call getSendingAreaCall();
 
 	void setSendingAreaCall(Call sendingAreaCall);
-
 }

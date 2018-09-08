@@ -33,5 +33,4 @@ public interface DeleteStatement extends Statement {
 	void setNotInvalidKeyPhrase(NotInvalidKeyPhrase notInvalidKeyPhrase);
 
 	void setRecord(boolean record);
-
 }

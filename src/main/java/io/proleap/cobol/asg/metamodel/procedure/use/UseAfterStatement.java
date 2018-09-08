@@ -20,5 +20,4 @@ public interface UseAfterStatement extends CobolDivisionElement {
 	boolean isGlobal();
 
 	void setGlobal(boolean global);
-
 }

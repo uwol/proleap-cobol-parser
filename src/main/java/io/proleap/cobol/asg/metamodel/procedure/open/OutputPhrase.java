@@ -18,5 +18,4 @@ public interface OutputPhrase extends CobolDivisionElement {
 	Output addOpenOutput(OpenOutputContext ctx);
 
 	List<Output> getOutputs();
-
 }

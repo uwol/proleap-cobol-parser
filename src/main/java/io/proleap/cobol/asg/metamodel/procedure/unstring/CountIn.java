@@ -16,5 +16,4 @@ public interface CountIn extends CobolDivisionElement {
 	Call getCountInCall();
 
 	void setCountInCall(Call countInCall);
-
 }

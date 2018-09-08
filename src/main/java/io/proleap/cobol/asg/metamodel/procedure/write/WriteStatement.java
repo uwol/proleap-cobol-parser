@@ -49,5 +49,4 @@ public interface WriteStatement extends Statement {
 	void setNotInvalidKeyPhrase(NotInvalidKeyPhrase notInvalidKeyPhrase);
 
 	void setRecordCall(Call recordCall);
-
 }

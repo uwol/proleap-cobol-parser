@@ -14,5 +14,4 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
  * Transfers number of entries in storage queue.
  */
 public interface AcceptMessageCountStatement extends CobolDivisionElement {
-
 }

@@ -34,5 +34,4 @@ public interface SetStatement extends Statement {
 	SetType getSetType();
 
 	void setSetType(SetType setType);
-
 }

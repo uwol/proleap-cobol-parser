@@ -41,5 +41,4 @@ public interface DisableStatement extends Statement {
 	void setKeyValueStmt(ValueStmt keyValueStmt);
 
 	void setTerminal(boolean terminal);
-
 }

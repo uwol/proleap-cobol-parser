@@ -18,5 +18,4 @@ public interface UseDebugStatement extends CobolDivisionElement {
 	DebugOn addDebugOn(UseDebugOnContext ctx);
 
 	List<DebugOn> getDebugOns();
-
 }

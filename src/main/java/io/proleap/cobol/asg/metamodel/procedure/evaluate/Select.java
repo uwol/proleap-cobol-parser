@@ -16,5 +16,4 @@ public interface Select extends CobolDivisionElement {
 	ValueStmt getSelectValueStmt();
 
 	void setSelectValueStmt(ValueStmt selectValueStmt);
-
 }

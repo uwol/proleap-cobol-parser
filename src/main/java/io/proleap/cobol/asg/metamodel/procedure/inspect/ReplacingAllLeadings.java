@@ -26,5 +26,4 @@ public interface ReplacingAllLeadings extends CobolDivisionElement {
 	ReplacingAllLeadingsType getReplacingAllLeadingsType();
 
 	void setReplacingAllLeadingsType(ReplacingAllLeadingsType replacingAllLeadingsType);
-
 }

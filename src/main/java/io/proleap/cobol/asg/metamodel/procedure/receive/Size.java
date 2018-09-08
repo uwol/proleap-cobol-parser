@@ -16,5 +16,4 @@ public interface Size extends CobolDivisionElement {
 	ValueStmt getSizeValueStmt();
 
 	void setSizeValueStmt(ValueStmt sizeValueStmt);
-
 }

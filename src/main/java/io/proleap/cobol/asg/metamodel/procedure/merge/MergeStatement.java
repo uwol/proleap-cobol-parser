@@ -46,5 +46,4 @@ public interface MergeStatement extends Statement {
 	List<UsingPhrase> getUsingPhrases();
 
 	void setFileCall(Call fileCall);
-
 }

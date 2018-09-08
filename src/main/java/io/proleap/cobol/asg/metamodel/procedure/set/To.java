@@ -16,5 +16,4 @@ public interface To extends CobolDivisionElement {
 	Call getToCall();
 
 	void setToCall(Call toCall);
-
 }

@@ -20,5 +20,4 @@ public interface Into extends CobolDivisionElement {
 	void setGivingCall(Call givingCall);
 
 	void setRounded(boolean rounded);
-
 }

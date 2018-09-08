@@ -18,5 +18,4 @@ public interface Declaratives extends CobolDivisionElement {
 	Declarative addDeclarative(ProcedureDeclarativeContext ctx);
 
 	List<Declarative> getDeclaratives();
-
 }

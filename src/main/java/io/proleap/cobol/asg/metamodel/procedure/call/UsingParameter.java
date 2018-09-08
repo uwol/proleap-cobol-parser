@@ -34,5 +34,4 @@ public interface UsingParameter extends CobolDivisionElement {
 	ParameterType getParameterType();
 
 	void setParameterType(ParameterType parameterType);
-
 }

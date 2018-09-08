@@ -23,5 +23,4 @@ public interface When extends CobolDivisionElement {
 	List<AlsoCondition> getAlsoConditions();
 
 	Condition getCondition();
-
 }

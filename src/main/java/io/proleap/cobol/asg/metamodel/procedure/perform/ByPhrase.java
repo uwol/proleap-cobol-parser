@@ -16,5 +16,4 @@ public interface ByPhrase extends CobolDivisionElement {
 	ValueStmt getByValueStmt();
 
 	void setByValueStmt(ValueStmt byValueStmt);
-
 }

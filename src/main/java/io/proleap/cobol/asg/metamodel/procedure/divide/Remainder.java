@@ -16,5 +16,4 @@ public interface Remainder extends CobolDivisionElement {
 	Call getRemainderCall();
 
 	void setRemainderCall(Call remainderCall);
-
 }

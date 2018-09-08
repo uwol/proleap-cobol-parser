@@ -34,5 +34,4 @@ public interface RewriteStatement extends Statement {
 	void setNotInvalidKeyPhrase(NotInvalidKeyPhrase notInvalidKeyPhrase);
 
 	void setRecordCall(Call recordCall);
-
 }

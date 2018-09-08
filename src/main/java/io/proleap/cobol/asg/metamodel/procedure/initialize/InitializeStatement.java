@@ -27,5 +27,4 @@ public interface InitializeStatement extends Statement {
 	List<Call> getDataItemCalls();
 
 	ReplacingPhrase getReplacingPhrase();
-
 }
