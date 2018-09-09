@@ -29,5 +29,4 @@ public interface CompilationUnit extends ASGElement, NamedElement {
 	int incrementFillerCounter();
 
 	void setLines(List<String> lines);
-
 }

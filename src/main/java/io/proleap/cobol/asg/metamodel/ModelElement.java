@@ -9,5 +9,4 @@
 package io.proleap.cobol.asg.metamodel;
 
 public interface ModelElement {
-
 }

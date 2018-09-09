@@ -24,5 +24,4 @@ public interface ASGElement extends ModelElement {
 	ASGElement getParent();
 
 	Program getProgram();
-
 }
