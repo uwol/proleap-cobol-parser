@@ -16,10 +16,11 @@ public interface Program extends ASGElement {
 
 	ASGElementRegistry getASGElementRegistry();
 
+	CompilationUnit getCompilationUnit();
+
 	CompilationUnit getCompilationUnit(String name);
 
 	List<CompilationUnit> getCompilationUnits();
 
 	void registerCompilationUnit(CompilationUnit compilationUnit);
-
 }

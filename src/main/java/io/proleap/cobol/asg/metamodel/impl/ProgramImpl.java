@@ -35,6 +35,19 @@ public class ProgramImpl extends ASGElementImpl implements Program {
 	}
 
 	@Override
+	public CompilationUnit getCompilationUnit() {
+		final CompilationUnit result;
+
+		if (getCompilationUnits().isEmpty()) {
+			result = null;
+		} else {
+			result = getCompilationUnits().get(0);
+		}
+
+		return result;
+	}
+
+	@Override
 	public CompilationUnit getCompilationUnit(final String name) {
 		final String compilationUnitKey = getCompilationUnitKey(name);
 		return compilationUnits.get(compilationUnitKey);
