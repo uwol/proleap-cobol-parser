@@ -199,7 +199,6 @@ $ mvn clean test
 Release process
 ---------------
 
-* Releases and snapshots are published in the MAVEN repository `maven.proleap.io`.
 * Milestones of the grammar are published in the [ANTLR grammars repo](https://github.com/antlr/grammars-v4).
 
 
