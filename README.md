@@ -121,6 +121,21 @@ Where to look next
 - [Unit test code examples](src/test/java/io/proleap/cobol/asg/data/workingstorage)
 
 
+How to cite
+-----------
+
+Please cite ProLeap COBOL parser in your publications, if it helps your research. Here is an example BibTeX entry:
+
+```
+@misc{wolffgang2018cobol,
+  title={ProLeap COBOL parser},
+  author={Wolffgang, Ulrich and others},
+  year={2018},
+  howpublished={\url{https://github.com/uwol/proleap-cobol-parser}},
+}
+```
+
+
 Features
 --------
 

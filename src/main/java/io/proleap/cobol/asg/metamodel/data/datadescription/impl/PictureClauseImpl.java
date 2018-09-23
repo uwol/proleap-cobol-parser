@@ -34,5 +34,4 @@ public class PictureClauseImpl extends CobolDivisionElementImpl implements Pictu
 	public void setPictureString(final String pictureString) {
 		this.pictureString = pictureString;
 	}
-
 }
