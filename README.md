@@ -37,23 +37,23 @@ Example
 
 ```
 (startRule
-	(compilationUnit
-		(programUnit
-			(identificationDivision Identification Division .
-				(programIdParagraph Program-ID .
-					(programName
-						(cobolWord HELLOWORLD)) .))
-			(procedureDivision Procedure Division .
-				(procedureDivisionBody
-					(paragraphs
-						(sentence
-							(statement
-								(displayStatement Display
-									(displayOperand
-										(literal "Hello world")))) .)
-						(sentence
-							(statement
-								(stopStatement STOP RUN))) .)))))) <EOF>)
+  (compilationUnit
+    (programUnit
+      (identificationDivision Identification Division .
+        (programIdParagraph Program-ID .
+          (programName
+            (cobolWord HELLOWORLD)) .))
+      (procedureDivision Procedure Division .
+        (procedureDivisionBody
+          (paragraphs
+            (sentence
+              (statement
+                (displayStatement Display
+                  (displayOperand
+                    (literal "Hello world")))) .)
+            (sentence
+              (statement
+                (stopStatement STOP RUN))) .)))))) <EOF>)
 ```
 
 
@@ -64,9 +64,9 @@ To include the parser in your Maven project build it and add the dependency:
 
 ```
 <dependency>
-	<groupId>io.github.uwol</groupId>
-	<artifactId>proleap-cobol-parser</artifactId>
-	<version>3.0.0</version>
+  <groupId>io.github.uwol</groupId>
+  <artifactId>proleap-cobol-parser</artifactId>
+  <version>3.0.0</version>
 </dependency>
 ```
 
