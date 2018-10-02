@@ -551,4 +551,8 @@ public class FileDescriptionEntryImpl extends DataDescriptionEntryContainerImpl 
 		this.fileControlEntry = fileControlEntry;
 	}
 
+	@Override
+	public String toString() {
+		return "name=[" + name + "]";
+	}
 }

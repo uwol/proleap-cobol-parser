@@ -496,4 +496,8 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		this.fileDescriptionEntry = fileDescriptionEntry;
 	}
 
+	@Override
+	public String toString() {
+		return "name=[" + name + "]";
+	}
 }
