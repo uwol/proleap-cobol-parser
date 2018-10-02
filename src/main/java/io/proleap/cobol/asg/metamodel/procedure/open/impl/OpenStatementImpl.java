@@ -149,5 +149,4 @@ public class OpenStatementImpl extends StatementImpl implements OpenStatement {
 	public StatementType getStatementType() {
 		return statementType;
 	}
-
 }
