@@ -53,17 +53,17 @@ public class CloseStatementImpl extends StatementImpl implements CloseStatement 
 			// close reel unit
 			if (ctx.closeReelUnitStatement() != null) {
 				result.addCloseReelUnitStatement(ctx.closeReelUnitStatement());
-				type = CloseFile.CloseFileType.ReelUnit;
+				type = CloseFile.CloseFileType.REEL_UNIT;
 			}
 			// close relative
 			else if (ctx.closeRelativeStatement() != null) {
 				result.addCloseRelativeStatement(ctx.closeRelativeStatement());
-				type = CloseFile.CloseFileType.Relative;
+				type = CloseFile.CloseFileType.RELATIVE;
 			}
 			// close port io
 			else if (ctx.closePortFileIOStatement() != null) {
 				result.addClosePortFileIOStatement(ctx.closePortFileIOStatement());
-				type = CloseFile.CloseFileType.PortFileIO;
+				type = CloseFile.CloseFileType.PORT_FILE_IO;
 			} else {
 				type = null;
 			}

@@ -17,7 +17,7 @@ import io.proleap.cobol.asg.metamodel.call.Call;
 public interface CloseFile extends CobolDivisionElement {
 
 	enum CloseFileType {
-		PortFileIO, ReelUnit, Relative
+		PORT_FILE_IO, REEL_UNIT, RELATIVE
 	}
 
 	ClosePortFileIoStatement addClosePortFileIOStatement(ClosePortFileIOStatementContext ctx);

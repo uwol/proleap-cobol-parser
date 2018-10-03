@@ -126,7 +126,7 @@ public class CloseStatementTest extends CobolTestBase {
 					}
 				}
 
-				assertEquals(CloseFile.CloseFileType.ReelUnit, closeFile.getCloseFileType());
+				assertEquals(CloseFile.CloseFileType.REEL_UNIT, closeFile.getCloseFileType());
 
 				{
 					final CloseReelUnitStatement closeReelUnitStatement = closeFile.getCloseReelUnitStatement();
@@ -151,7 +151,7 @@ public class CloseStatementTest extends CobolTestBase {
 					}
 				}
 
-				assertEquals(CloseFile.CloseFileType.ReelUnit, closeFile.getCloseFileType());
+				assertEquals(CloseFile.CloseFileType.REEL_UNIT, closeFile.getCloseFileType());
 
 				{
 					final CloseReelUnitStatement closeReelUnitStatement = closeFile.getCloseReelUnitStatement();
@@ -180,7 +180,7 @@ public class CloseStatementTest extends CobolTestBase {
 					}
 				}
 
-				assertEquals(CloseFile.CloseFileType.Relative, closeFile.getCloseFileType());
+				assertEquals(CloseFile.CloseFileType.RELATIVE, closeFile.getCloseFileType());
 
 				{
 					final CloseRelativeStatement closeRelativeStatement = closeFile.getCloseRelativeStatement();
@@ -207,7 +207,7 @@ public class CloseStatementTest extends CobolTestBase {
 					}
 				}
 
-				assertEquals(CloseFile.CloseFileType.PortFileIO, closeFile.getCloseFileType());
+				assertEquals(CloseFile.CloseFileType.PORT_FILE_IO, closeFile.getCloseFileType());
 
 				{
 					final ClosePortFileIoStatement closePortFileIOStatement = closeFile.getClosePortFileIOStatement();
@@ -246,7 +246,7 @@ public class CloseStatementTest extends CobolTestBase {
 					}
 				}
 
-				assertEquals(CloseFile.CloseFileType.PortFileIO, closeFile.getCloseFileType());
+				assertEquals(CloseFile.CloseFileType.PORT_FILE_IO, closeFile.getCloseFileType());
 
 				{
 					final ClosePortFileIoStatement closePortFileIOStatement = closeFile.getClosePortFileIOStatement();
@@ -289,7 +289,7 @@ public class CloseStatementTest extends CobolTestBase {
 					}
 				}
 
-				assertEquals(CloseFile.CloseFileType.PortFileIO, closeFile.getCloseFileType());
+				assertEquals(CloseFile.CloseFileType.PORT_FILE_IO, closeFile.getCloseFileType());
 
 				{
 					final ClosePortFileIoStatement closePortFileIOStatement = closeFile.getClosePortFileIOStatement();
