@@ -17,7 +17,6 @@ import java.util.Scanner;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -142,6 +141,10 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		}
 	}
 
+	protected String capitalize(final String line) {
+		return Character.toUpperCase(line.charAt(0)) + line.substring(1);
+	}
+
 	protected CobolParserParams createDefaultParams(final File cobolFile) {
 		final CobolParserParams result = new CobolParserParamsImpl();
 
@@ -152,7 +155,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	protected String getCompilationUnitName(final File cobolFile) {
-		return StringUtils.capitalize(FilenameUtils.removeExtension(cobolFile.getName()));
+		return capitalize(FilenameUtils.removeExtension(cobolFile.getName()));
 	}
 
 	protected void parseFile(final File cobolFile, final Program program, final CobolSourceFormatEnum format,

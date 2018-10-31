@@ -14,10 +14,10 @@ import java.util.Collections;
 import java.util.List;
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
 import io.proleap.cobol.CobolParser.AlphabetNameContext;
@@ -1522,7 +1522,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected String getSymbol(final String name) {
-		return StringUtils.isBlank(name) ? name : name.toUpperCase();
+		return Strings.isNullOrEmpty(name) ? name : name.toUpperCase();
 	}
 
 	private boolean isSameInData(final DataDescriptionEntry candidateDataDescriptionEntry,
@@ -1538,7 +1538,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				final String currentParentSymbol = getSymbol(currentParent.getName());
 				final String parentInDataCtxSymbol = getSymbol(determineName(parentCtx));
 
-				if (StringUtils.isBlank(currentParentSymbol) || !currentParentSymbol.equals(parentInDataCtxSymbol)) {
+				if (Strings.isNullOrEmpty(currentParentSymbol) || !currentParentSymbol.equals(parentInDataCtxSymbol)) {
 					result = false;
 					break;
 				}

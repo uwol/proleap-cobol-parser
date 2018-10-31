@@ -8,6 +8,8 @@ import org.antlr.v4.runtime.misc.Utils;
 import org.antlr.v4.runtime.tree.Tree;
 import org.antlr.v4.runtime.tree.Trees;
 
+import com.google.common.base.Strings;
+
 public class TreeUtils {
 
 	public static final String NEWLINE = "\n";
@@ -15,7 +17,7 @@ public class TreeUtils {
 	public static final String TAB = "\t";
 
 	public static String indent(final int indent) {
-		return org.apache.commons.lang3.StringUtils.repeat(TAB, indent);
+		return Strings.repeat(TAB, indent);
 	}
 
 	/**

@@ -17,10 +17,10 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.Trees;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
 import io.proleap.cobol.CobolLexer;
@@ -34,7 +34,7 @@ import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.runner.CobolParseTestRunner;
 
 /**
- * Cobol  parse runner for JUnit tests.
+ * Cobol parse runner for JUnit tests.
  */
 public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 
@@ -55,7 +55,7 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 			throws IOException {
 		final String treeFileData = FileUtils.readFileToString(treeFile);
 
-		if (!StringUtils.isBlank(treeFileData)) {
+		if (!Strings.isNullOrEmpty(treeFileData)) {
 			LOG.info("Comparing parse tree with file {}.", treeFile.getName());
 
 			final String inputFileTree = Trees.toStringTree(startRule, parser);
