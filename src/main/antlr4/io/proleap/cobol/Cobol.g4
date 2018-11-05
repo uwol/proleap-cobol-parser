@@ -993,15 +993,23 @@ dataJustifiedClause
    ;
 
 dataOccursClause
-   : OCCURS integerLiteral dataOccursTo? TIMES? (DEPENDING ON? qualifiedDataName)? dataOccursSort* (INDEXED BY? LOCAL? indexName+)?
+   : OCCURS (identifier | integerLiteral) dataOccursTo? TIMES? dataOccursDepending? (dataOccursSort | dataOccursIndexed)*
    ;
 
 dataOccursTo
    : TO integerLiteral
    ;
 
+dataOccursDepending
+   : DEPENDING ON? qualifiedDataName
+   ;
+
 dataOccursSort
    : (ASCENDING | DESCENDING) KEY? IS? qualifiedDataName+
+   ;
+
+dataOccursIndexed
+   : INDEXED BY? LOCAL? indexName+
    ;
 
 dataPictureClause

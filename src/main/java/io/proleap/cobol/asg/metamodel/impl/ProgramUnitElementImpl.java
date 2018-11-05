@@ -105,6 +105,7 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.datadescription.Index;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursClause;
+import io.proleap.cobol.asg.metamodel.data.datadescription.OccursIndexed;
 import io.proleap.cobol.asg.metamodel.data.file.FileDescriptionEntry;
 import io.proleap.cobol.asg.metamodel.data.file.FileSection;
 import io.proleap.cobol.asg.metamodel.data.linkage.LinkageSection;
@@ -1381,10 +1382,14 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 					final DataDescriptionEntryGroup dataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
 
 					for (final OccursClause occursClause : dataDescriptionEntryGroup.getOccursClauses()) {
-						final Index index = occursClause.getIndex(name);
+						final OccursIndexed occursIndexed = occursClause.getOccursIndexed();
 
-						if (index != null) {
-							return index;
+						if (occursIndexed != null) {
+							final Index index = occursIndexed.getIndex(name);
+
+							if (index != null) {
+								return index;
+							}
 						}
 					}
 				}

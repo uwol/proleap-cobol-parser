@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
-import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.Literal;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -26,6 +25,7 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntry.
 import io.proleap.cobol.asg.metamodel.data.datadescription.DataDescriptionEntryGroup;
 import io.proleap.cobol.asg.metamodel.data.datadescription.Index;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursClause;
+import io.proleap.cobol.asg.metamodel.data.datadescription.OccursIndexed;
 import io.proleap.cobol.asg.metamodel.data.datadescription.PictureClause;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
 import io.proleap.cobol.asg.metamodel.identification.IdentificationDivision;
@@ -51,6 +51,7 @@ import io.proleap.cobol.asg.metamodel.procedure.stop.StopStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
+import io.proleap.cobol.asg.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.RelationConditionValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.Subscript;
@@ -116,15 +117,16 @@ public class TableCallTest extends CobolTestBase {
 
 					{
 						final OccursClause occursClause = dataDescriptionEntryGroupRecord.getOccursClauses().get(0);
-						assertEquals(1, occursClause.getIndices().size());
+						final OccursIndexed occursIndexed = occursClause.getOccursIndexed();
+						assertEquals(1, occursIndexed.getIndices().size());
 
 						{
-							final IntegerLiteral from = occursClause.getFrom();
-							assertEquals(new BigDecimal(3), from.getValue());
+							final IntegerLiteralValueStmt from = (IntegerLiteralValueStmt) occursClause.getFrom();
+							assertEquals(new BigDecimal(3), from.getLiteral().getValue());
 						}
 
 						{
-							indexI = occursClause.getIndices().get(0);
+							indexI = occursIndexed.getIndices().get(0);
 							assertEquals("I", indexI.getName());
 							assertEquals(3, indexI.getCalls().size());
 						}
@@ -161,15 +163,16 @@ public class TableCallTest extends CobolTestBase {
 						{
 							final OccursClause occursClause = dataDescriptionEntryGroupContent.getOccursClauses()
 									.get(0);
-							assertEquals(1, occursClause.getIndices().size());
+							final OccursIndexed occursIndexed = occursClause.getOccursIndexed();
+							assertEquals(1, occursIndexed.getIndices().size());
 
 							{
-								final IntegerLiteral from = occursClause.getFrom();
-								assertEquals(new BigDecimal(2), from.getValue());
+								final IntegerLiteralValueStmt from = (IntegerLiteralValueStmt) occursClause.getFrom();
+								assertEquals(new BigDecimal(2), from.getLiteral().getValue());
 							}
 
 							{
-								indexJ = occursClause.getIndices().get(0);
+								indexJ = occursIndexed.getIndices().get(0);
 								assertEquals("J", indexJ.getName());
 								assertEquals(3, indexJ.getCalls().size());
 							}

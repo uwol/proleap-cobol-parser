@@ -10,33 +10,32 @@ package io.proleap.cobol.asg.metamodel.data.datadescription;
 
 import java.util.List;
 
+import io.proleap.cobol.CobolParser.DataOccursDependingContext;
+import io.proleap.cobol.CobolParser.DataOccursIndexedContext;
 import io.proleap.cobol.CobolParser.DataOccursSortContext;
-import io.proleap.cobol.CobolParser.IndexNameContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
-import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public interface OccursClause extends CobolDivisionElement {
 
-	Index addIndex(IndexNameContext ctx);
+	OccursDepending addOccursDepending(DataOccursDependingContext ctx);
+
+	OccursIndexed addOccursIndexed(DataOccursIndexedContext ctx);
 
 	OccursSort addOccursSort(DataOccursSortContext ctx);
 
-	Call getDependingOnCall();
+	ValueStmt getFrom();
 
-	IntegerLiteral getFrom();
+	OccursDepending getOccursDepending();
 
-	Index getIndex(String name);
-
-	List<Index> getIndices();
+	OccursIndexed getOccursIndexed();
 
 	List<OccursSort> getOccursSorts();
 
 	IntegerLiteral getTo();
 
-	void setDependingOnCall(Call dependingOnCall);
-
-	void setFrom(IntegerLiteral from);
+	void setFrom(ValueStmt from);
 
 	void setTo(IntegerLiteral to);
 }

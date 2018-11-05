@@ -23,6 +23,7 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.Index;
 import io.proleap.cobol.asg.metamodel.data.datadescription.IntegerStringClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.JustifiedClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursClause;
+import io.proleap.cobol.asg.metamodel.data.datadescription.OccursIndexed;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursSort;
 import io.proleap.cobol.asg.metamodel.data.datadescription.ReceivedByClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.SignClause;
@@ -32,6 +33,7 @@ import io.proleap.cobol.asg.metamodel.data.datadescription.UsageClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.UsingClause;
 import io.proleap.cobol.asg.metamodel.data.datadescription.ValueInterval;
 import io.proleap.cobol.asg.metamodel.data.workingstorage.WorkingStorageSection;
+import io.proleap.cobol.asg.metamodel.valuestmt.IntegerLiteralValueStmt;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -208,10 +210,12 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 
 		final OccursClause occursClause = occursClauses.get(0);
 		assertNotNull(occursClause.getFrom());
-		assertEquals(BigDecimal.ONE, occursClause.getFrom().getValue());
+
+		final IntegerLiteralValueStmt from = (IntegerLiteralValueStmt) occursClause.getFrom();
+		assertEquals(BigDecimal.ONE, from.getLiteral().getValue());
 		assertNotNull(occursClause.getTo());
 		assertEquals(new BigDecimal(5), occursClause.getTo().getValue());
-		assertNotNull(occursClause.getDependingOnCall());
+		assertNotNull(occursClause.getOccursDepending());
 
 		final List<OccursSort> occursSorts = occursClause.getOccursSorts();
 		assertEquals(2, occursSorts.size());
@@ -224,7 +228,8 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 		assertEquals(OccursSort.Order.ASCENDING, occursSort2.getOrder());
 		assertEquals(1, occursSort2.getKeyCalls().size());
 
-		final List<Index> indices = occursClause.getIndices();
+		final OccursIndexed occursIndexed = occursClause.getOccursIndexed();
+		final List<Index> indices = occursIndexed.getIndices();
 		assertEquals(2, indices.size());
 	}
 

@@ -9,33 +9,33 @@
 package io.proleap.cobol.asg.metamodel.data.datadescription.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.proleap.cobol.CobolParser.DataOccursClauseContext;
+import io.proleap.cobol.CobolParser.DataOccursDependingContext;
+import io.proleap.cobol.CobolParser.DataOccursIndexedContext;
 import io.proleap.cobol.CobolParser.DataOccursSortContext;
 import io.proleap.cobol.CobolParser.IndexNameContext;
 import io.proleap.cobol.CobolParser.QualifiedDataNameContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.data.datadescription.Index;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursClause;
+import io.proleap.cobol.asg.metamodel.data.datadescription.OccursDepending;
+import io.proleap.cobol.asg.metamodel.data.datadescription.OccursIndexed;
 import io.proleap.cobol.asg.metamodel.data.datadescription.OccursSort;
 import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
+import io.proleap.cobol.asg.metamodel.valuestmt.ValueStmt;
 
 public class OccursClauseImpl extends CobolDivisionElementImpl implements OccursClause {
 
 	protected DataOccursClauseContext ctx;
 
-	protected Call dependingOnCall;
+	protected ValueStmt from;
 
-	protected IntegerLiteral from;
+	protected OccursDepending occursDepending;
 
-	protected List<Index> indices = new ArrayList<Index>();
-
-	protected Map<String, Index> indicesSymbolTable = new HashMap<String, Index>();
+	protected OccursIndexed occursIndexed;
 
 	protected List<OccursSort> occursSorts = new ArrayList<OccursSort>();
 
@@ -48,17 +48,39 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 	}
 
 	@Override
-	public Index addIndex(final IndexNameContext ctx) {
-		final Index result = (Index) getASGElement(ctx);
+	public OccursDepending addOccursDepending(final DataOccursDependingContext ctx) {
+		OccursDepending result = (OccursDepending) getASGElement(ctx);
 
 		if (result == null) {
-			final String name = determineName(ctx);
-			final Index index = new IndexImpl(name, programUnit, ctx);
+			result = new OccursDependingImpl(programUnit, ctx);
 
-			indices.add(index);
-			indicesSymbolTable.put(getSymbol(name), index);
+			if (ctx.qualifiedDataName() != null) {
+				result.setDependingOnCall(createCall(ctx.qualifiedDataName()));
+			}
 
-			registerASGElement(index);
+			occursDepending = result;
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	@Override
+	public OccursIndexed addOccursIndexed(final DataOccursIndexedContext ctx) {
+		OccursIndexed result = (OccursIndexed) getASGElement(ctx);
+
+		if (result == null) {
+			result = new OccursIndexedImpl(programUnit, ctx);
+
+			/*
+			 * index names
+			 */
+			for (final IndexNameContext indexNameContext : ctx.indexName()) {
+				result.addIndex(indexNameContext);
+			}
+
+			occursIndexed = result;
+			registerASGElement(result);
 		}
 
 		return result;
@@ -102,23 +124,18 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 	}
 
 	@Override
-	public Call getDependingOnCall() {
-		return dependingOnCall;
-	}
-
-	@Override
-	public IntegerLiteral getFrom() {
+	public ValueStmt getFrom() {
 		return from;
 	}
 
 	@Override
-	public Index getIndex(final String name) {
-		return indicesSymbolTable.get(getSymbol(name));
+	public OccursDepending getOccursDepending() {
+		return occursDepending;
 	}
 
 	@Override
-	public List<Index> getIndices() {
-		return indices;
+	public OccursIndexed getOccursIndexed() {
+		return occursIndexed;
 	}
 
 	@Override
@@ -132,12 +149,7 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 	}
 
 	@Override
-	public void setDependingOnCall(final Call dependingOnCall) {
-		this.dependingOnCall = dependingOnCall;
-	}
-
-	@Override
-	public void setFrom(final IntegerLiteral from) {
+	public void setFrom(final ValueStmt from) {
 		this.from = from;
 	}
 
@@ -145,5 +157,4 @@ public class OccursClauseImpl extends CobolDivisionElementImpl implements Occurs
 	public void setTo(final IntegerLiteral to) {
 		this.to = to;
 	}
-
 }

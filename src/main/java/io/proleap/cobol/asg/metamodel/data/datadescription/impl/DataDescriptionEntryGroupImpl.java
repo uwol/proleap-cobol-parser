@@ -25,6 +25,7 @@ import io.proleap.cobol.CobolParser.DataGlobalClauseContext;
 import io.proleap.cobol.CobolParser.DataIntegerStringClauseContext;
 import io.proleap.cobol.CobolParser.DataJustifiedClauseContext;
 import io.proleap.cobol.CobolParser.DataOccursClauseContext;
+import io.proleap.cobol.CobolParser.DataOccursIndexedContext;
 import io.proleap.cobol.CobolParser.DataOccursSortContext;
 import io.proleap.cobol.CobolParser.DataOccursToContext;
 import io.proleap.cobol.CobolParser.DataPictureClauseContext;
@@ -41,7 +42,6 @@ import io.proleap.cobol.CobolParser.DataUsingClauseContext;
 import io.proleap.cobol.CobolParser.DataValueClauseContext;
 import io.proleap.cobol.CobolParser.DataValueIntervalContext;
 import io.proleap.cobol.CobolParser.DataWithLowerBoundsClauseContext;
-import io.proleap.cobol.CobolParser.IndexNameContext;
 import io.proleap.cobol.CobolParser.PictureStringContext;
 import io.proleap.cobol.asg.metamodel.IntegerLiteral;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -313,8 +313,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			 * from
 			 */
 			if (ctx.integerLiteral() != null) {
-				final IntegerLiteral from = createIntegerLiteral(ctx.integerLiteral());
-				result.setFrom(from);
+				result.setFrom(createValueStmt(ctx.identifier(), ctx.integerLiteral()));
 			}
 
 			/*
@@ -332,9 +331,15 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			/*
 			 * depending on
 			 */
-			if (ctx.qualifiedDataName() != null) {
-				final Call dependingOnCall = createCall(ctx.qualifiedDataName());
-				result.setDependingOnCall(dependingOnCall);
+			if (ctx.dataOccursDepending() != null) {
+				result.addOccursDepending(ctx.dataOccursDepending());
+			}
+
+			/*
+			 * indexed
+			 */
+			for (final DataOccursIndexedContext dataOccursIndexedContext : ctx.dataOccursIndexed()) {
+				result.addOccursIndexed(dataOccursIndexedContext);
 			}
 
 			/*
@@ -342,13 +347,6 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			 */
 			for (final DataOccursSortContext dataOccursSortContext : ctx.dataOccursSort()) {
 				result.addOccursSort(dataOccursSortContext);
-			}
-
-			/*
-			 * index names
-			 */
-			for (final IndexNameContext indexNameContext : ctx.indexName()) {
-				result.addIndex(indexNameContext);
 			}
 
 			occursClauses.add(result);
