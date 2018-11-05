@@ -2,6 +2,7 @@ package io.proleap.cobol.asg.data.workingstorage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -231,6 +232,33 @@ public class DataDescriptionClausesTest extends CobolTestBase {
 		final OccursIndexed occursIndexed = occursClause.getOccursIndexed();
 		final List<Index> indices = occursIndexed.getIndices();
 		assertEquals(2, indices.size());
+	}
+
+	@Test
+	public void testItemOcc2() throws Exception {
+		final DataDescriptionEntryGroup dataDescriptionEntryGroup = getDataDescriptionEntryGroup("ITEMOCC2");
+		assertProperties(dataDescriptionEntryGroup);
+		assertEquals("ITEMOCC2", dataDescriptionEntryGroup.getName());
+		assertEquals("X(10)", dataDescriptionEntryGroup.getPictureClause().getPictureString());
+
+		final List<OccursClause> occursClauses = dataDescriptionEntryGroup.getOccursClauses();
+		assertEquals(1, occursClauses.size());
+
+		final OccursClause occursClause = occursClauses.get(0);
+		assertNotNull(occursClause.getFrom());
+		assertNull(occursClause.getTo());
+		assertNull(occursClause.getOccursDepending());
+
+		final OccursIndexed occursIndexed = occursClause.getOccursIndexed();
+		final List<Index> indices = occursIndexed.getIndices();
+		assertEquals(1, indices.size());
+
+		final List<OccursSort> occursSorts = occursClause.getOccursSorts();
+		assertEquals(1, occursSorts.size());
+
+		final OccursSort occursSort = occursSorts.get(0);
+		assertEquals(OccursSort.Order.ASCENDING, occursSort.getOrder());
+		assertEquals(1, occursSort.getKeyCalls().size());
 	}
 
 	@Test

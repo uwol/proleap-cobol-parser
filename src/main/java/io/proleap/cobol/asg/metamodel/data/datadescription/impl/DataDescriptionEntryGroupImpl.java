@@ -312,9 +312,7 @@ public class DataDescriptionEntryGroupImpl extends DataDescriptionEntryImpl impl
 			/*
 			 * from
 			 */
-			if (ctx.integerLiteral() != null) {
-				result.setFrom(createValueStmt(ctx.identifier(), ctx.integerLiteral()));
-			}
+			result.setFrom(createValueStmt(ctx.identifier(), ctx.integerLiteral()));
 
 			/*
 			 * to
