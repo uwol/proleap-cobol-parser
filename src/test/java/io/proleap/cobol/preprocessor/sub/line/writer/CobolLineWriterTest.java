@@ -11,6 +11,7 @@ package io.proleap.cobol.preprocessor.sub.line.writer;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class CobolLineWriterTest {
 		final String serializedInput = writer.serialize(lines);
 		final File expectedFile = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/sub/line/writer/LineContinuation.cbl.preprocessed");
-		final String expected = FileUtils.readFileToString(expectedFile);
+		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
 		assertEquals(expected, serializedInput);
 	}
 }

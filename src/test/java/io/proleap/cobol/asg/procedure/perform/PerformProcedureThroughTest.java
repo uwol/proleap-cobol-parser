@@ -50,7 +50,8 @@ public class PerformProcedureThroughTest extends CobolTestBase {
 				assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
 
 				final PerformStatement performStatement = (PerformStatement) statement;
-				assertEquals(PerformStatement.PerformStatementType.PROCEDURE, performStatement.getPerformStatementType());
+				assertEquals(PerformStatement.PerformStatementType.PROCEDURE,
+						performStatement.getPerformStatementType());
 
 				{
 					final PerformProcedureStatement performProcedureStatement = performStatement
@@ -91,7 +92,8 @@ public class PerformProcedureThroughTest extends CobolTestBase {
 				assertEquals(StatementTypeEnum.PERFORM, statement.getStatementType());
 
 				final PerformStatement performStatement = (PerformStatement) statement;
-				assertEquals(PerformStatement.PerformStatementType.PROCEDURE, performStatement.getPerformStatementType());
+				assertEquals(PerformStatement.PerformStatementType.PROCEDURE,
+						performStatement.getPerformStatementType());
 
 				{
 					final PerformProcedureStatement performProcedureStatement = performStatement

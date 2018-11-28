@@ -3,6 +3,7 @@ package io.proleap.cobol.preprocessor.variable;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
@@ -20,7 +21,7 @@ public class IdentificationDivisionTest {
 
 		final File expectedFile = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/variable/IdentificationDivision.cbl.preprocessed");
-		final String expected = FileUtils.readFileToString(expectedFile);
+		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
 		assertEquals(expected, preProcessedInput);
 	}
 }

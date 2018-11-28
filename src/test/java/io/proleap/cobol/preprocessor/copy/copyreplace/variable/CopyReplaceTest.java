@@ -3,6 +3,7 @@ package io.proleap.cobol.preprocessor.copy.copyreplace.variable;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import org.apache.commons.io.FileUtils;
@@ -32,7 +33,7 @@ public class CopyReplaceTest {
 				params);
 
 		final File expectedFile = new File(DIR + "/CopyReplace.cbl.preprocessed");
-		final String expected = FileUtils.readFileToString(expectedFile);
+		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
 		assertEquals(expected, preProcessedInput);
 	}
 
@@ -50,7 +51,7 @@ public class CopyReplaceTest {
 				params);
 
 		final File expectedFile = new File(DIR + "/CopyReplace.cbl.preprocessed");
-		final String expected = FileUtils.readFileToString(expectedFile);
+		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
 		assertEquals(expected, preProcessedInput);
 	}
 }

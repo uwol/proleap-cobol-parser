@@ -6,7 +6,6 @@ public class CobolTestStringUtils {
 	 * To be removed, as soon as the grammar does not require NEWLINEs and WS
 	 * anymore
 	 */
-	@Deprecated
 	public static String cleanFileTree(final String input) {
 		final String inputNoEscapedNewline = input.replace("\\r", "").replace("\\n", "");
 

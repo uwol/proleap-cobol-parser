@@ -3,6 +3,7 @@ package io.proleap.cobol.preprocessor.copy.suppress.fixed;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import org.apache.commons.io.FileUtils;
@@ -20,23 +21,6 @@ public class CopySuppressTest {
 	private static final String DIR = "src/test/resources/io/proleap/cobol/preprocessor/copy/suppress/fixed";
 
 	@Test
-	public void testCopyBookFiles() throws Exception {
-		final File copyBookFile = new File(DIR + "/copybooks/CopySuppress.cpy");
-		final ArrayList<File> copyBookFiles = Lists.newArrayList(copyBookFile);
-
-		final CobolParserParams params = new CobolParserParamsImpl();
-		params.setCopyBookFiles(copyBookFiles);
-
-		final File inputFile = new File(DIR + "/CopySuppress.cbl");
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.FIXED,
-				params);
-
-		final File expectedFile = new File(DIR + "/CopySuppress.cbl.preprocessed");
-		final String expected = FileUtils.readFileToString(expectedFile);
-		assertEquals(expected, preProcessedInput);
-	}
-
-	@Test
 	public void testCopyBookDirectories() throws Exception {
 		final File copyBookDirectory = new File(DIR + "/copybooks");
 		final ArrayList<File> copyBookDirectories = Lists.newArrayList(copyBookDirectory);
@@ -49,7 +33,24 @@ public class CopySuppressTest {
 				params);
 
 		final File expectedFile = new File(DIR + "/CopySuppress.cbl.preprocessed");
-		final String expected = FileUtils.readFileToString(expectedFile);
+		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
+		assertEquals(expected, preProcessedInput);
+	}
+
+	@Test
+	public void testCopyBookFiles() throws Exception {
+		final File copyBookFile = new File(DIR + "/copybooks/CopySuppress.cpy");
+		final ArrayList<File> copyBookFiles = Lists.newArrayList(copyBookFile);
+
+		final CobolParserParams params = new CobolParserParamsImpl();
+		params.setCopyBookFiles(copyBookFiles);
+
+		final File inputFile = new File(DIR + "/CopySuppress.cbl");
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.FIXED,
+				params);
+
+		final File expectedFile = new File(DIR + "/CopySuppress.cbl.preprocessed");
+		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
 		assertEquals(expected, preProcessedInput);
 	}
 }

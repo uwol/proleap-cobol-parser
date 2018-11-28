@@ -64,7 +64,7 @@ public class FileControlReadTest extends CobolTestBase {
 				assertEquals("PERSON-FILE", dataDescriptionEntryPersonFile.getName());
 				assertEquals(Integer.valueOf(1), dataDescriptionEntryPersonFile.getLevelNumber());
 				assertNull(dataDescriptionEntryPersonFile.getParentDataDescriptionEntryGroup());
-				
+
 				{
 					final DataDescriptionEntry dataDescriptionEntryPersonId = fileDescriptionEntry
 							.getDataDescriptionEntry("PERSON-ID");
