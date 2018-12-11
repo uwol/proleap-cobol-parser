@@ -1357,7 +1357,7 @@ disableStatement
 // display statement
 
 displayStatement
-   : DISPLAY displayOperand+ displayAt? displayUpon? displayWith?
+   : DISPLAY displayOperand+ displayAt? displayUpon? displayWith? onExceptionClause? notOnExceptionClause? END_DISPLAY?
    ;
 
 displayOperand
@@ -1425,7 +1425,7 @@ entryStatement
 // evaluate statement
 
 evaluateStatement
-   : EVALUATE evaluateSelect evaluateAlsoSelect* evaluateWhenPhrase+ evaluateWhenOther? END_EVALUATE?
+   : EVALUATE evaluateSelect evaluateAlsoSelect* evaluateWhenPhrase* evaluateWhenOther? END_EVALUATE?
    ;
 
 evaluateSelect
@@ -2803,6 +2803,7 @@ END_ADD : E N D MINUSCHAR A D D;
 END_CALL : E N D MINUSCHAR C A L L;
 END_COMPUTE : E N D MINUSCHAR C O M P U T E;
 END_DELETE : E N D MINUSCHAR D E L E T E;
+END_DISPLAY : E N D MINUSCHAR D I S P L A Y;
 END_DIVIDE : E N D MINUSCHAR D I V I D E;
 END_EVALUATE : E N D MINUSCHAR E V A L U A T E;
 END_IF : E N D MINUSCHAR I F;

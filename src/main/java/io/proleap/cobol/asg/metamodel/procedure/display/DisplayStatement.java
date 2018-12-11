@@ -14,6 +14,8 @@ import io.proleap.cobol.CobolParser.DisplayAtContext;
 import io.proleap.cobol.CobolParser.DisplayOperandContext;
 import io.proleap.cobol.CobolParser.DisplayUponContext;
 import io.proleap.cobol.CobolParser.DisplayWithContext;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
+import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.Statement;
 
 /**
@@ -31,9 +33,17 @@ public interface DisplayStatement extends Statement {
 
 	At getAt();
 
+	NotOnExceptionClause getNotOnExceptionClause();
+
+	OnExceptionClause getOnExceptionClause();
+
 	List<Operand> getOperands();
 
 	Upon getUpon();
 
 	With getWith();
+
+	void setNotOnExceptionClause(NotOnExceptionClause notOnExceptionClause);
+
+	void setOnExceptionClause(OnExceptionClause onExceptionClause);
 }

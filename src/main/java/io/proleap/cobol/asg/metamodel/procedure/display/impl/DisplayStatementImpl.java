@@ -19,6 +19,8 @@ import io.proleap.cobol.CobolParser.DisplayWithContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
+import io.proleap.cobol.asg.metamodel.procedure.NotOnExceptionClause;
+import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.display.At;
@@ -34,6 +36,10 @@ public class DisplayStatementImpl extends StatementImpl implements DisplayStatem
 	protected At at;
 
 	protected final DisplayStatementContext ctx;
+
+	protected NotOnExceptionClause notOnExceptionClause;
+
+	protected OnExceptionClause onExceptionClause;
 
 	protected List<Operand> operands = new ArrayList<Operand>();
 
@@ -123,6 +129,16 @@ public class DisplayStatementImpl extends StatementImpl implements DisplayStatem
 	}
 
 	@Override
+	public NotOnExceptionClause getNotOnExceptionClause() {
+		return notOnExceptionClause;
+	}
+
+	@Override
+	public OnExceptionClause getOnExceptionClause() {
+		return onExceptionClause;
+	}
+
+	@Override
 	public List<Operand> getOperands() {
 		return operands;
 	}
@@ -142,4 +158,13 @@ public class DisplayStatementImpl extends StatementImpl implements DisplayStatem
 		return with;
 	}
 
+	@Override
+	public void setNotOnExceptionClause(final NotOnExceptionClause notOnExceptionClause) {
+		this.notOnExceptionClause = notOnExceptionClause;
+	}
+
+	@Override
+	public void setOnExceptionClause(final OnExceptionClause onExceptionClause) {
+		this.onExceptionClause = onExceptionClause;
+	}
 }
