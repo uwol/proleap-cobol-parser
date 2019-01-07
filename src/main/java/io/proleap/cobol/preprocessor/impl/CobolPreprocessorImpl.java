@@ -15,12 +15,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.common.collect.Lists;
 
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
@@ -55,7 +54,7 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		final CobolParserParams result = createDefaultParams();
 
 		final File copyBooksDirectory = cobolFile.getParentFile();
-		result.setCopyBookDirectories(Lists.newArrayList(copyBooksDirectory));
+		result.setCopyBookDirectories(Arrays.asList(copyBooksDirectory));
 
 		return result;
 	}

@@ -13,16 +13,15 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.Trees;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
 
 import io.proleap.cobol.CobolLexer;
 import io.proleap.cobol.CobolParser;
@@ -47,7 +46,7 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 		final CobolParserParams result = new CobolParserParamsImpl();
 
 		final File copyBooksDirectory = cobolFile.getParentFile();
-		result.setCopyBookDirectories(Lists.newArrayList(copyBooksDirectory));
+		result.setCopyBookDirectories(Arrays.asList(copyBooksDirectory));
 
 		return result;
 	}
@@ -56,7 +55,7 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 			throws IOException {
 		final String treeFileData = FileUtils.readFileToString(treeFile, StandardCharsets.UTF_8);
 
-		if (!Strings.isNullOrEmpty(treeFileData)) {
+		if (!StringUtils.isEmpty(treeFileData)) {
 			LOG.info("Comparing parse tree with file {}.", treeFile.getName());
 
 			final String inputFileTree = Trees.toStringTree(startRule, parser);

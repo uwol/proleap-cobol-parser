@@ -17,8 +17,6 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.collect.Lists;
-
 import io.proleap.cobol.CobolParser.DataAlignedClauseContext;
 import io.proleap.cobol.CobolParser.DataBlankWhenZeroClauseContext;
 import io.proleap.cobol.CobolParser.DataCommonOwnLocalClauseContext;
@@ -431,7 +429,7 @@ public abstract class DataDescriptionEntryContainerImpl extends CobolDivisionEle
 
 	@Override
 	public List<DataDescriptionEntry> getDataDescriptionEntries(final String name) {
-		return dataDescriptionEntriesSymbolTable.get(getSymbol(name)) == null ? Lists.newArrayList()
+		return dataDescriptionEntriesSymbolTable.get(getSymbol(name)) == null ? new ArrayList<>()
 				: dataDescriptionEntriesSymbolTable.get(getSymbol(name)).getDataDescriptionEntries();
 	}
 

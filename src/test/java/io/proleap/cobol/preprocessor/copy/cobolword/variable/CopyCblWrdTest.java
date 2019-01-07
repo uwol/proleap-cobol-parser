@@ -4,12 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
-
-import com.google.common.collect.Lists;
 
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
@@ -23,7 +22,7 @@ public class CopyCblWrdTest {
 	@Test
 	public void testCopyBookDirectories() throws Exception {
 		final File copyBookDirectory = new File(DIR + "/copybooks");
-		final ArrayList<File> copyBookDirectories = Lists.newArrayList(copyBookDirectory);
+		final List<File> copyBookDirectories = Arrays.asList(copyBookDirectory);
 
 		final CobolParserParams params = new CobolParserParamsImpl();
 		params.setCopyBookDirectories(copyBookDirectories);
@@ -40,7 +39,7 @@ public class CopyCblWrdTest {
 	@Test
 	public void testCopyBookFiles() throws Exception {
 		final File copyBookFile = new File(DIR + "/copybooks/abc.cpy");
-		final ArrayList<File> copyBookFiles = Lists.newArrayList(copyBookFile);
+		final List<File> copyBookFiles = Arrays.asList(copyBookFile);
 
 		final CobolParserParams params = new CobolParserParamsImpl();
 		params.setCopyBookFiles(copyBookFiles);

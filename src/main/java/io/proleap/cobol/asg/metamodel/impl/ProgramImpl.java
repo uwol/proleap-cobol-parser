@@ -8,11 +8,10 @@
 
 package io.proleap.cobol.asg.metamodel.impl;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.google.common.collect.Lists;
 
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
@@ -59,7 +58,7 @@ public class ProgramImpl extends ASGElementImpl implements Program {
 
 	@Override
 	public List<CompilationUnit> getCompilationUnits() {
-		return Lists.newArrayList(compilationUnits.values());
+		return new ArrayList<>(compilationUnits.values());
 	}
 
 	@Override

@@ -14,11 +14,9 @@ import java.util.Collections;
 import java.util.List;
 
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
 
 import io.proleap.cobol.CobolParser.AlphabetNameContext;
 import io.proleap.cobol.CobolParser.AndOrConditionContext;
@@ -531,7 +529,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		if (isQualifiedData) {
 			final String name = determineName(ctx);
 			final List<DataDescriptionEntry> candidateDataDescriptionEntries = findDataDescriptionEntries(name);
-			final List<QualifiedInDataContext> parentInDataCtxs = Lists.newArrayList(ctx.qualifiedInData());
+			final List<QualifiedInDataContext> parentInDataCtxs = new ArrayList<>(ctx.qualifiedInData());
 			Collections.reverse(parentInDataCtxs);
 
 			DataDescriptionEntry validDataDescriptionEntry = null;
@@ -1527,7 +1525,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected String getSymbol(final String name) {
-		return Strings.isNullOrEmpty(name) ? name : name.toUpperCase();
+		return StringUtils.isEmpty(name) ? name : name.toUpperCase();
 	}
 
 	private boolean isSameInData(final DataDescriptionEntry candidateDataDescriptionEntry,
@@ -1543,7 +1541,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				final String currentParentSymbol = getSymbol(currentParent.getName());
 				final String parentInDataCtxSymbol = getSymbol(determineName(parentCtx));
 
-				if (Strings.isNullOrEmpty(currentParentSymbol) || !currentParentSymbol.equals(parentInDataCtxSymbol)) {
+				if (StringUtils.isEmpty(currentParentSymbol) || !currentParentSymbol.equals(parentInDataCtxSymbol)) {
 					result = false;
 					break;
 				}

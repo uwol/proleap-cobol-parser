@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.antlr.v4.runtime.BufferedTokenStream;
-import org.codehaus.plexus.util.StringUtils;
+import org.apache.commons.lang.StringUtils;
 
 import io.proleap.cobol.CobolPreprocessorParser.PseudoTextContext;
 import io.proleap.cobol.CobolPreprocessorParser.ReplaceableContext;
@@ -40,9 +40,9 @@ public class CobolReplacementMapping implements Comparable<CobolReplacementMappi
 	}
 
 	/**
-	 * Whitespace in Cobol replaceables matches line breaks. Hence, the
-	 * replaceable search string has to be enhanced to a regex, which is
-	 * returned by this function.
+	 * Whitespace in Cobol replaceables matches line breaks. Hence, the replaceable
+	 * search string has to be enhanced to a regex, which is returned by this
+	 * function.
 	 */
 	private String getRegexFromReplaceable(final String replaceable) {
 		final String result;

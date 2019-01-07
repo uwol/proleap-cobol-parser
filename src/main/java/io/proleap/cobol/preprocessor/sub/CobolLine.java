@@ -8,7 +8,7 @@
 
 package io.proleap.cobol.preprocessor.sub;
 
-import com.google.common.base.Strings;
+import org.apache.commons.lang.StringUtils;
 
 import io.proleap.cobol.asg.params.CobolDialect;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
@@ -39,7 +39,7 @@ public class CobolLine {
 	}
 
 	public static String createBlankSequenceArea(final CobolSourceFormatEnum format) {
-		return CobolSourceFormatEnum.TANDEM.equals(format) ? "" : Strings.repeat(CobolPreprocessor.WS, 6);
+		return CobolSourceFormatEnum.TANDEM.equals(format) ? "" : StringUtils.repeat(CobolPreprocessor.WS, 6);
 	}
 
 	protected static String extractContentAreaA(final String contentArea) {

@@ -11,6 +11,7 @@ package io.proleap.cobol.asg.runner.impl;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,8 +20,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.common.collect.Lists;
 
 import io.proleap.cobol.CobolLexer;
 import io.proleap.cobol.CobolParser;
@@ -149,7 +148,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		final CobolParserParams result = new CobolParserParamsImpl();
 
 		final File copyBooksDirectory = cobolFile.getParentFile();
-		result.setCopyBookDirectories(Lists.newArrayList(copyBooksDirectory));
+		result.setCopyBookDirectories(Arrays.asList(copyBooksDirectory));
 
 		return result;
 	}

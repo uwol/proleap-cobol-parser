@@ -7,8 +7,7 @@ import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.misc.Utils;
 import org.antlr.v4.runtime.tree.Tree;
 import org.antlr.v4.runtime.tree.Trees;
-
-import com.google.common.base.Strings;
+import org.apache.commons.lang.StringUtils;
 
 public class TreeUtils {
 
@@ -17,7 +16,7 @@ public class TreeUtils {
 	public static final String TAB = "\t";
 
 	public static String indent(final int indent) {
-		return Strings.repeat(TAB, indent);
+		return StringUtils.repeat(TAB, indent);
 	}
 
 	/**
