@@ -22,7 +22,7 @@ grammar Cobol;
 startRule : compilationUnit EOF;
 
 compilationUnit
-   : programUnit+
+   : programUnit*
    ;
 
 programUnit
