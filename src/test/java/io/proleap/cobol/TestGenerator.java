@@ -22,6 +22,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.CobolParser.StartRuleContext;
+import io.proleap.cobol.asg.params.CobolParserParams;
+import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.util.TreeUtils;
@@ -133,9 +135,12 @@ public class TestGenerator {
 			LOG.info("Creating tree file {}.", outputFile);
 
 			final File parentDirectory = cobolInputFile.getParentFile();
-			final CobolSourceFormatEnum format = getCobolSourceFormat(parentDirectory);
 
-			final String preProcessedInput = new CobolPreprocessorImpl().process(cobolInputFile, format);
+			final CobolParserParams params = new CobolParserParamsImpl();
+			params.setCopyBookDirectories(Arrays.asList(parentDirectory));
+			params.setFormat(getCobolSourceFormat(parentDirectory));
+
+			final String preProcessedInput = new CobolPreprocessorImpl().process(cobolInputFile, params);
 
 			final CobolLexer lexer = new CobolLexer(CharStreams.fromString(preProcessedInput));
 			final CommonTokenStream tokens = new CommonTokenStream(lexer);

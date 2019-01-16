@@ -17,7 +17,6 @@ import io.proleap.cobol.CobolPreprocessorParser;
 import io.proleap.cobol.CobolPreprocessorParser.StartRuleContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.asg.runner.ThrowingErrorListener;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParser;
 import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParserListener;
 
@@ -46,18 +45,18 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		return result;
 	}
 
-	protected CobolDocumentParserListener createDocumentParserListener(final CobolSourceFormatEnum format,
-			final CobolParserParams params, final CommonTokenStream tokens) {
-		return new CobolDocumentParserListenerImpl(format, params, tokens);
+	protected CobolDocumentParserListener createDocumentParserListener(final CobolParserParams params,
+			final CommonTokenStream tokens) {
+		return new CobolDocumentParserListenerImpl(params, tokens);
 	}
 
 	@Override
-	public String processLines(final String code, final CobolSourceFormatEnum format, final CobolParserParams params) {
+	public String processLines(final String code, final CobolParserParams params) {
 		final boolean requiresProcessorExecution = containsTrigger(code, triggers);
 		final String result;
 
 		if (requiresProcessorExecution) {
-			result = processWithParser(code, format, params);
+			result = processWithParser(code, params);
 		} else {
 			result = code;
 		}
@@ -65,8 +64,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		return result;
 	}
 
-	protected String processWithParser(final String code, final CobolSourceFormatEnum format,
-			final CobolParserParams params) {
+	protected String processWithParser(final String code, final CobolParserParams params) {
 		// run the lexer
 		final CobolPreprocessorLexer lexer = new CobolPreprocessorLexer(CharStreams.fromString(code));
 
@@ -92,7 +90,7 @@ public class CobolDocumentParserImpl implements CobolDocumentParser {
 		final StartRuleContext startRule = parser.startRule();
 
 		// analyze contained copy books
-		final CobolDocumentParserListener listener = createDocumentParserListener(format, params, tokens);
+		final CobolDocumentParserListener listener = createDocumentParserListener(params, tokens);
 		final ParseTreeWalker walker = new ParseTreeWalker();
 
 		walker.walk(listener, startRule);

@@ -27,10 +27,10 @@ public class CopyTxtExtensionTest {
 		final CobolParserParams params = new CobolParserParamsImpl();
 		params.setCopyBookDirectories(copyBookDirectories);
 		params.setCopyBookExtensions(Arrays.asList("txt"));
+		params.setFormat(CobolSourceFormatEnum.FIXED);
 
 		final File inputFile = new File(DIR + "/CopyTxtExtension.cbl");
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.FIXED,
-				params);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, params);
 
 		final File expectedFile = new File(DIR + "/CopyTxtExtension.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
@@ -45,10 +45,10 @@ public class CopyTxtExtensionTest {
 		final CobolParserParams params = new CobolParserParamsImpl();
 		params.setCopyBookFiles(copyBookFiles);
 		params.setCopyBookExtensions(Arrays.asList("txt"));
+		params.setFormat(CobolSourceFormatEnum.FIXED);
 
 		final File inputFile = new File(DIR + "/CopyTxtExtension.cbl");
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.FIXED,
-				params);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, params);
 
 		final File expectedFile = new File(DIR + "/CopyTxtExtension.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);

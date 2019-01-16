@@ -42,8 +42,13 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 
 	public final static String TREE_SUFFIX = ".tree";
 
-	protected CobolParserParams createDefaultParams(final File cobolFile) {
-		final CobolParserParams result = new CobolParserParamsImpl();
+	protected CobolParserParams createDefaultParams() {
+		return new CobolParserParamsImpl();
+	}
+
+	protected CobolParserParams createDefaultParams(final CobolSourceFormatEnum format, final File cobolFile) {
+		final CobolParserParams result = createDefaultParams();
+		result.setFormat(format);
 
 		final File copyBooksDirectory = cobolFile.getParentFile();
 		result.setCopyBookDirectories(Arrays.asList(copyBooksDirectory));
@@ -95,10 +100,10 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 
 	@Override
 	public void parseFile(final File cobolFile, final CobolSourceFormatEnum format) throws IOException {
-		final String preProcessedInput = new CobolPreprocessorImpl().process(cobolFile, format);
+		final CobolParserParams params = createDefaultParams(format, cobolFile);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(cobolFile, params);
 
 		LOG.info("Parsing file {}.", cobolFile.getName());
-
-		doParse(preProcessedInput, cobolFile, createDefaultParams(cobolFile));
+		doParse(preProcessedInput, cobolFile, params);
 	}
 }

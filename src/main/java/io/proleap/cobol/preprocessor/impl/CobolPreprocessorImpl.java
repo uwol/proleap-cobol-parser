@@ -15,14 +15,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.asg.params.CobolParserParams;
-import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.document.CobolDocumentParser;
@@ -46,19 +44,6 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		return new CobolCommentEntriesMarkerImpl();
 	}
 
-	protected CobolParserParams createDefaultParams() {
-		return new CobolParserParamsImpl();
-	}
-
-	protected CobolParserParams createDefaultParams(final File cobolFile) {
-		final CobolParserParams result = createDefaultParams();
-
-		final File copyBooksDirectory = cobolFile.getParentFile();
-		result.setCopyBookDirectories(Arrays.asList(copyBooksDirectory));
-
-		return result;
-	}
-
 	protected CobolDocumentParser createDocumentParser() {
 		return new CobolDocumentParserImpl();
 	}
@@ -79,24 +64,18 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		return new CobolLineWriterImpl();
 	}
 
-	protected String parseDocument(final List<CobolLine> lines, final CobolSourceFormatEnum format,
-			final CobolParserParams params) {
+	protected String parseDocument(final List<CobolLine> lines, final CobolParserParams params) {
 		final String code = createLineWriter().serialize(lines);
-		final String result = createDocumentParser().processLines(code, format, params);
+		final String result = createDocumentParser().processLines(code, params);
 		return result;
 	}
 
 	@Override
-	public String process(final File cobolFile, final CobolSourceFormatEnum format) throws IOException {
-		return process(cobolFile, format, createDefaultParams(cobolFile));
-	}
-
-	@Override
-	public String process(final File cobolFile, final CobolSourceFormatEnum format, final CobolParserParams params)
-			throws IOException {
+	public String process(final File cobolFile, final CobolParserParams params) throws IOException {
 		final Charset charset = params.getCharset();
 
-		LOG.info("Preprocessing file {} with line format {} and charset {}.", cobolFile.getName(), format, charset);
+		LOG.info("Preprocessing file {} with line format {} and charset {}.", cobolFile.getName(), params.getFormat(),
+				charset);
 
 		final InputStream inputStream = new FileInputStream(cobolFile);
 		final InputStreamReader inputStreamReader = new InputStreamReader(inputStream, charset);
@@ -111,26 +90,20 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 
 		bufferedInputStreamReader.close();
 
-		final String result = process(outputBuffer.toString(), format, params);
+		final String result = process(outputBuffer.toString(), params);
 		return result;
 	}
 
 	@Override
-	public String process(final String cobolSourceCode, final CobolSourceFormatEnum format) {
-		return process(cobolSourceCode, format, createDefaultParams());
-	}
-
-	@Override
-	public String process(final String cobolCode, final CobolSourceFormatEnum format, final CobolParserParams params) {
-		final List<CobolLine> lines = readLines(cobolCode, format, params);
+	public String process(final String cobolCode, final CobolParserParams params) {
+		final List<CobolLine> lines = readLines(cobolCode, params);
 		final List<CobolLine> rewrittenLines = rewriteLines(lines);
-		final String result = parseDocument(rewrittenLines, format, params);
+		final String result = parseDocument(rewrittenLines, params);
 		return result;
 	}
 
-	protected List<CobolLine> readLines(final String cobolCode, final CobolSourceFormatEnum format,
-			final CobolParserParams params) {
-		final List<CobolLine> lines = createLineReader().processLines(cobolCode, format, params);
+	protected List<CobolLine> readLines(final String cobolCode, final CobolParserParams params) {
+		final List<CobolLine> lines = createLineReader().processLines(cobolCode, params);
 		return lines;
 	}
 

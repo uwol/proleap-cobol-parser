@@ -11,6 +11,7 @@ package io.proleap.cobol.preprocessor.sub.line.reader;
 import org.junit.Assert;
 import org.junit.Test;
 
+import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
@@ -23,8 +24,11 @@ public class CobolLineReaderTest {
 		final CobolLineReader preprocessor = new CobolLineReaderImpl();
 
 		final String line = "000100 Identification Division.                                         1234.6-8";
-		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.FIXED,
-				new CobolParserParamsImpl());
+
+		final CobolParserParams params = new CobolParserParamsImpl();
+		params.setFormat(CobolSourceFormatEnum.FIXED);
+
+		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, params);
 
 		Assert.assertEquals(CobolSourceFormatEnum.FIXED, parseCobolLine.getFormat());
 		Assert.assertEquals("000100", parseCobolLine.getSequenceArea());
@@ -40,9 +44,11 @@ public class CobolLineReaderTest {
 		final CobolLineReader preprocessor = new CobolLineReaderImpl();
 
 		final String line = "000100 Identification Division.                                        ";
-		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.FIXED,
-				new CobolParserParamsImpl());
 
+		final CobolParserParams params = new CobolParserParamsImpl();
+		params.setFormat(CobolSourceFormatEnum.FIXED);
+
+		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, params);
 		Assert.assertNotNull(parseCobolLine);
 	}
 
@@ -51,8 +57,11 @@ public class CobolLineReaderTest {
 		final CobolLineReader preprocessor = new CobolLineReaderImpl();
 
 		final String line = "000200 Program-ID.                                                      12345678";
-		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.FIXED,
-				new CobolParserParamsImpl());
+
+		final CobolParserParams params = new CobolParserParamsImpl();
+		params.setFormat(CobolSourceFormatEnum.FIXED);
+
+		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, params);
 
 		Assert.assertEquals(CobolSourceFormatEnum.FIXED, parseCobolLine.getFormat());
 		Assert.assertEquals("000200", parseCobolLine.getSequenceArea());
@@ -68,8 +77,11 @@ public class CobolLineReaderTest {
 		final CobolLineReader preprocessor = new CobolLineReaderImpl();
 
 		final String line = "000100 Identification Division.                                         12345678";
-		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.FIXED,
-				new CobolParserParamsImpl());
+
+		final CobolParserParams params = new CobolParserParamsImpl();
+		params.setFormat(CobolSourceFormatEnum.FIXED);
+
+		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, params);
 
 		Assert.assertEquals(CobolSourceFormatEnum.FIXED, parseCobolLine.getFormat());
 		Assert.assertEquals("000100", parseCobolLine.getSequenceArea());
@@ -85,9 +97,11 @@ public class CobolLineReaderTest {
 		final CobolLineReader preprocessor = new CobolLineReaderImpl();
 
 		final String line = "      *HEADER,COBOL,NC114M                                                            ";
-		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.TANDEM,
-				new CobolParserParamsImpl());
 
+		final CobolParserParams params = new CobolParserParamsImpl();
+		params.setFormat(CobolSourceFormatEnum.TANDEM);
+
+		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, params);
 		Assert.assertEquals(CobolSourceFormatEnum.TANDEM, parseCobolLine.getFormat());
 	}
 
@@ -96,9 +110,11 @@ public class CobolLineReaderTest {
 		final CobolLineReader preprocessor = new CobolLineReaderImpl();
 
 		final String line = "123456 Identification Division.";
-		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.TANDEM,
-				new CobolParserParamsImpl());
 
+		final CobolParserParams params = new CobolParserParamsImpl();
+		params.setFormat(CobolSourceFormatEnum.TANDEM);
+
+		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, params);
 		Assert.assertNull(parseCobolLine);
 	}
 
@@ -107,8 +123,10 @@ public class CobolLineReaderTest {
 		final CobolLineReader preprocessor = new CobolLineReaderImpl();
 
 		final String line = " Procedure Division. ";
-		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.TANDEM,
-				new CobolParserParamsImpl());
+
+		final CobolParserParams params = new CobolParserParamsImpl();
+		params.setFormat(CobolSourceFormatEnum.TANDEM);
+		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, params);
 
 		Assert.assertEquals(CobolSourceFormatEnum.TANDEM, parseCobolLine.getFormat());
 		Assert.assertEquals("", parseCobolLine.getSequenceArea());
@@ -123,8 +141,10 @@ public class CobolLineReaderTest {
 		final CobolLineReader preprocessor = new CobolLineReaderImpl();
 
 		final String line = " Identification Division.";
-		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.TANDEM,
-				new CobolParserParamsImpl());
+
+		final CobolParserParams params = new CobolParserParamsImpl();
+		params.setFormat(CobolSourceFormatEnum.TANDEM);
+		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, params);
 
 		Assert.assertEquals(CobolSourceFormatEnum.TANDEM, parseCobolLine.getFormat());
 		Assert.assertEquals("", parseCobolLine.getSequenceArea());
@@ -139,8 +159,10 @@ public class CobolLineReaderTest {
 		final CobolLineReader preprocessor = new CobolLineReaderImpl();
 
 		final String line = "000100 Identification Division.";
-		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, CobolSourceFormatEnum.VARIABLE,
-				new CobolParserParamsImpl());
+
+		final CobolParserParams params = new CobolParserParamsImpl();
+		params.setFormat(CobolSourceFormatEnum.VARIABLE);
+		final CobolLine parseCobolLine = preprocessor.parseLine(line, 0, params);
 
 		Assert.assertEquals(CobolSourceFormatEnum.VARIABLE, parseCobolLine.getFormat());
 		Assert.assertEquals("000100", parseCobolLine.getSequenceArea());

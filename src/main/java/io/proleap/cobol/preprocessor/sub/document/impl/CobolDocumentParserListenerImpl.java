@@ -26,7 +26,6 @@ import io.proleap.cobol.CobolPreprocessorParser.ReplaceClauseContext;
 import io.proleap.cobol.CobolPreprocessorParser.ReplacingPhraseContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.copybook.CobolWordCopyBookFinder;
@@ -49,17 +48,13 @@ public class CobolDocumentParserListenerImpl extends CobolPreprocessorBaseListen
 
 	private final Stack<CobolDocumentContext> contexts = new Stack<CobolDocumentContext>();
 
-	private final CobolSourceFormatEnum format;
-
 	private final CobolParserParams params;
 
 	private final BufferedTokenStream tokens;
 
-	public CobolDocumentParserListenerImpl(final CobolSourceFormatEnum format, final CobolParserParams params,
-			final BufferedTokenStream tokens) {
+	public CobolDocumentParserListenerImpl(final CobolParserParams params, final BufferedTokenStream tokens) {
 		this.params = params;
 		this.tokens = tokens;
-		this.format = format;
 
 		contexts.push(new CobolDocumentContext());
 	}
@@ -190,7 +185,7 @@ public class CobolDocumentParserListenerImpl extends CobolPreprocessorBaseListen
 		 * copy the copy book
 		 */
 		final CopySourceContext copySource = ctx.copySource();
-		final String copyBookContent = getCopyBookContent(copySource, format, params);
+		final String copyBookContent = getCopyBookContent(copySource, params);
 
 		if (copyBookContent != null) {
 			context().write(copyBookContent + CobolPreprocessor.NEWLINE);
@@ -221,7 +216,8 @@ public class CobolDocumentParserListenerImpl extends CobolPreprocessorBaseListen
 		 * text
 		 */
 		final String text = TokenUtils.getTextIncludingHiddenTokens(ctx, tokens);
-		final String linePrefix = CobolLine.createBlankSequenceArea(format) + CobolPreprocessor.EXEC_CICS_TAG;
+		final String linePrefix = CobolLine.createBlankSequenceArea(params.getFormat())
+				+ CobolPreprocessor.EXEC_CICS_TAG;
 		final String lines = buildLines(text, linePrefix);
 
 		context().write(lines);
@@ -244,7 +240,8 @@ public class CobolDocumentParserListenerImpl extends CobolPreprocessorBaseListen
 		 * text
 		 */
 		final String text = TokenUtils.getTextIncludingHiddenTokens(ctx, tokens);
-		final String linePrefix = CobolLine.createBlankSequenceArea(format) + CobolPreprocessor.EXEC_SQLIMS_TAG;
+		final String linePrefix = CobolLine.createBlankSequenceArea(params.getFormat())
+				+ CobolPreprocessor.EXEC_SQLIMS_TAG;
 		final String lines = buildLines(text, linePrefix);
 
 		context().write(lines);
@@ -267,7 +264,8 @@ public class CobolDocumentParserListenerImpl extends CobolPreprocessorBaseListen
 		 * text
 		 */
 		final String text = TokenUtils.getTextIncludingHiddenTokens(ctx, tokens);
-		final String linePrefix = CobolLine.createBlankSequenceArea(format) + CobolPreprocessor.EXEC_SQL_TAG;
+		final String linePrefix = CobolLine.createBlankSequenceArea(params.getFormat())
+				+ CobolPreprocessor.EXEC_SQL_TAG;
 		final String lines = buildLines(text, linePrefix);
 
 		context().write(lines);
@@ -334,8 +332,7 @@ public class CobolDocumentParserListenerImpl extends CobolPreprocessorBaseListen
 		return result;
 	}
 
-	protected String getCopyBookContent(final CopySourceContext copySource, final CobolSourceFormatEnum format,
-			final CobolParserParams params) {
+	protected String getCopyBookContent(final CopySourceContext copySource, final CobolParserParams params) {
 		final File copyBook = findCopyBook(copySource, params);
 		String result;
 
@@ -345,7 +342,7 @@ public class CobolDocumentParserListenerImpl extends CobolPreprocessorBaseListen
 			result = null;
 		} else {
 			try {
-				result = new CobolPreprocessorImpl().process(copyBook, format, params);
+				result = new CobolPreprocessorImpl().process(copyBook, params);
 			} catch (final IOException e) {
 				result = null;
 				LOG.warn(e.getMessage());

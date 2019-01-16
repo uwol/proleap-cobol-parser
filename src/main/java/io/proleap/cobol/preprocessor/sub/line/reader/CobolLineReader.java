@@ -11,7 +11,6 @@ package io.proleap.cobol.preprocessor.sub.line.reader;
 import java.util.List;
 
 import io.proleap.cobol.asg.params.CobolParserParams;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 
 /**
@@ -19,8 +18,7 @@ import io.proleap.cobol.preprocessor.sub.CobolLine;
  */
 public interface CobolLineReader {
 
-	CobolLine parseLine(String line, int lineNumber, CobolSourceFormatEnum format, CobolParserParams params);
+	CobolLine parseLine(String line, int lineNumber, CobolParserParams params);
 
-	List<CobolLine> processLines(String lines, CobolSourceFormatEnum format, CobolParserParams params);
-
+	List<CobolLine> processLines(String lines, CobolParserParams params);
 }

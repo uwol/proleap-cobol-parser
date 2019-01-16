@@ -51,15 +51,15 @@ public class CobolLineReaderImpl implements CobolLineReader {
 	}
 
 	@Override
-	public CobolLine parseLine(final String line, final int lineNumber, final CobolSourceFormatEnum format,
-			final CobolParserParams params) {
+	public CobolLine parseLine(final String line, final int lineNumber, final CobolParserParams params) {
+		final CobolSourceFormatEnum format = params.getFormat();
 		final Pattern pattern = format.getPattern();
 		final Matcher matcher = pattern.matcher(line);
 
 		final CobolLine result;
 
 		if (!matcher.matches()) {
-			throw new RuntimeException("Is " + format + " the correct line format? Could not parse line "
+			throw new RuntimeException("Is " + params.getFormat() + " the correct line format? Could not parse line "
 					+ (lineNumber + 1) + ": " + line);
 		} else {
 			final String sequenceAreaGroup = matcher.group(1);
@@ -77,15 +77,14 @@ public class CobolLineReaderImpl implements CobolLineReader {
 			final CobolLineTypeEnum type = determineType(indicatorArea);
 
 			result = CobolLine.newCobolLine(sequenceArea, indicatorArea, contentAreaA, contentAreaB, commentArea,
-					format, params.getDialect(), lineNumber, type);
+					params.getFormat(), params.getDialect(), lineNumber, type);
 		}
 
 		return result;
 	}
 
 	@Override
-	public List<CobolLine> processLines(final String lines, final CobolSourceFormatEnum format,
-			final CobolParserParams params) {
+	public List<CobolLine> processLines(final String lines, final CobolParserParams params) {
 		final Scanner scanner = new Scanner(lines);
 		final List<CobolLine> result = new ArrayList<CobolLine>();
 
@@ -96,7 +95,7 @@ public class CobolLineReaderImpl implements CobolLineReader {
 		while (scanner.hasNextLine()) {
 			currentLine = scanner.nextLine();
 
-			final CobolLine currentCobolLine = parseLine(currentLine, lineNumber, format, params);
+			final CobolLine currentCobolLine = parseLine(currentLine, lineNumber, params);
 			currentCobolLine.setPredecessor(lastCobolLine);
 			result.add(currentCobolLine);
 

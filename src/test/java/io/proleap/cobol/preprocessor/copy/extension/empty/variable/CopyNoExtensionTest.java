@@ -26,10 +26,10 @@ public class CopyNoExtensionTest {
 
 		final CobolParserParams params = new CobolParserParamsImpl();
 		params.setCopyBookDirectories(copyBookDirectories);
+		params.setFormat(CobolSourceFormatEnum.FIXED);
 
 		final File inputFile = new File(DIR + "/CopyNoExtension.cbl");
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.FIXED,
-				params);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, params);
 
 		final File expectedFile = new File(DIR + "/CopyNoExtension.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
@@ -43,10 +43,10 @@ public class CopyNoExtensionTest {
 
 		final CobolParserParams params = new CobolParserParamsImpl();
 		params.setCopyBookFiles(copyBookFiles);
+		params.setFormat(CobolSourceFormatEnum.FIXED);
 
 		final File inputFile = new File(DIR + "/CopyNoExtension.cbl");
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.FIXED,
-				params);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, params);
 
 		final File expectedFile = new File(DIR + "/CopyNoExtension.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);

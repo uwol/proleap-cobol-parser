@@ -17,10 +17,9 @@ import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public interface CobolParserRunner {
 
-	Program analyzeCode(String cobolCode, String compilationUnitName, CobolSourceFormatEnum format,
-			CobolParserParams params) throws IOException;
+	Program analyzeCode(String cobolCode, String compilationUnitName, CobolParserParams params) throws IOException;
+
+	Program analyzeFile(File cobolFile, CobolParserParams params) throws IOException;
 
 	Program analyzeFile(File cobolFile, CobolSourceFormatEnum format) throws IOException;
-
-	Program analyzeFile(File cobolFile, CobolSourceFormatEnum format, CobolParserParams params) throws IOException;
 }

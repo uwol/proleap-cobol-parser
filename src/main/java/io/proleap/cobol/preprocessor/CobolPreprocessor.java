@@ -103,11 +103,7 @@ public interface CobolPreprocessor {
 
 	final static String WS = " ";
 
-	String process(File cobolFile, CobolSourceFormatEnum format) throws IOException;
+	String process(File cobolFile, CobolParserParams params) throws IOException;
 
-	String process(File cobolFile, CobolSourceFormatEnum format, CobolParserParams params) throws IOException;
-
-	String process(String cobolCode, CobolSourceFormatEnum format);
-
-	String process(String cobolCode, CobolSourceFormatEnum format, CobolParserParams params);
+	String process(String cobolCode, CobolParserParams params);
 }

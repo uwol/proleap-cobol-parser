@@ -61,11 +61,11 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	@Override
-	public Program analyzeCode(final String cobolCode, final String compilationUnitName,
-			final CobolSourceFormatEnum format, final CobolParserParams params) throws IOException {
+	public Program analyzeCode(final String cobolCode, final String compilationUnitName, final CobolParserParams params)
+			throws IOException {
 		final Program program = new ProgramImpl();
 
-		parseCode(cobolCode, compilationUnitName, program, format, params);
+		parseCode(cobolCode, compilationUnitName, program, params);
 		analyze(program);
 
 		return program;
@@ -90,20 +90,19 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	@Override
-	public Program analyzeFile(final File cobolFile, final CobolSourceFormatEnum format) throws IOException {
-		final CobolParserParams params = createDefaultParams(cobolFile);
-		return analyzeFile(cobolFile, format, params);
-	}
-
-	@Override
-	public Program analyzeFile(final File inputFile, final CobolSourceFormatEnum format, final CobolParserParams params)
-			throws IOException {
+	public Program analyzeFile(final File inputFile, final CobolParserParams params) throws IOException {
 		final Program program = new ProgramImpl();
 
-		parseFile(inputFile, program, format, params);
+		parseFile(inputFile, program, params);
 		analyze(program);
 
 		return program;
+	}
+
+	@Override
+	public Program analyzeFile(final File cobolFile, final CobolSourceFormatEnum format) throws IOException {
+		final CobolParserParams params = createDefaultParams(format, cobolFile);
+		return analyzeFile(cobolFile, params);
 	}
 
 	protected void analyzeFileControlClauses(final Program program) {
@@ -159,8 +158,9 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		return new CobolParserParamsImpl();
 	}
 
-	protected CobolParserParams createDefaultParams(final File cobolFile) {
+	protected CobolParserParams createDefaultParams(final CobolSourceFormatEnum format, final File cobolFile) {
 		final CobolParserParams result = createDefaultParams();
+		result.setFormat(format);
 
 		final File copyBooksDirectory = cobolFile.getParentFile();
 		result.setCopyBookDirectories(Arrays.asList(copyBooksDirectory));
@@ -173,17 +173,17 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	protected void parseCode(final String cobolCode, final String compilationUnitName, final Program program,
-			final CobolSourceFormatEnum format, final CobolParserParams params) throws IOException {
+			final CobolParserParams params) throws IOException {
 		LOG.info("Parsing compilation unit {}.", compilationUnitName);
 
 		// preprocess input stream
-		final String preProcessedInput = new CobolPreprocessorImpl().process(cobolCode, format, params);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(cobolCode, params);
 
-		parsePreprocessInput(preProcessedInput, compilationUnitName, program, format, params);
+		parsePreprocessInput(preProcessedInput, compilationUnitName, program, params);
 	}
 
-	protected void parseFile(final File cobolFile, final Program program, final CobolSourceFormatEnum format,
-			final CobolParserParams params) throws IOException {
+	protected void parseFile(final File cobolFile, final Program program, final CobolParserParams params)
+			throws IOException {
 		if (!cobolFile.isFile()) {
 			LOG.warn("Could not find file {}", cobolFile.getAbsolutePath());
 		} else {
@@ -193,15 +193,14 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 			LOG.info("Parsing compilation unit {}.", compilationUnitName);
 
 			// preprocess input stream
-			final String preProcessedInput = new CobolPreprocessorImpl().process(cobolFile, format, params);
+			final String preProcessedInput = new CobolPreprocessorImpl().process(cobolFile, params);
 
-			parsePreprocessInput(preProcessedInput, compilationUnitName, program, format, params);
+			parsePreprocessInput(preProcessedInput, compilationUnitName, program, params);
 		}
 	}
 
 	protected void parsePreprocessInput(final String preProcessedInput, final String compilationUnitName,
-			final Program program, final CobolSourceFormatEnum format, final CobolParserParams params)
-			throws IOException {
+			final Program program, final CobolParserParams params) throws IOException {
 		// run the lexer
 		final CobolLexer lexer = new CobolLexer(CharStreams.fromString(preProcessedInput));
 

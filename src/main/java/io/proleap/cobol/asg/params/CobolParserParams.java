@@ -12,6 +12,8 @@ import java.io.File;
 import java.nio.charset.Charset;
 import java.util.List;
 
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+
 public interface CobolParserParams {
 
 	/**
@@ -27,6 +29,8 @@ public interface CobolParserParams {
 
 	CobolDialect getDialect();
 
+	CobolSourceFormatEnum getFormat();
+
 	boolean getIgnoreSyntaxErrors();
 
 	void setCharset(Charset charset);
@@ -38,6 +42,8 @@ public interface CobolParserParams {
 	void setCopyBookFiles(List<File> copyBookFiles);
 
 	void setDialect(CobolDialect dialect);
+
+	void setFormat(CobolSourceFormatEnum format);
 
 	void setIgnoreSyntaxErrors(boolean ignoreSyntaxErrors);
 }

@@ -9,9 +9,8 @@
 package io.proleap.cobol.preprocessor.sub.document;
 
 import io.proleap.cobol.asg.params.CobolParserParams;
-import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public interface CobolDocumentParser {
 
-	String processLines(String code, CobolSourceFormatEnum format, CobolParserParams params);
+	String processLines(String code, CobolParserParams params);
 }

@@ -8,6 +8,8 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
+import io.proleap.cobol.asg.params.CobolParserParams;
+import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 
@@ -15,8 +17,11 @@ public class Skip3StatementTest {
 
 	@Test
 	public void test() throws Exception {
+		final CobolParserParams params = new CobolParserParamsImpl();
+		params.setFormat(CobolSourceFormatEnum.TANDEM);
+
 		final File inputFile = new File("src/test/resources/io/proleap/cobol/preprocessor/tandem/Skip3Statement.cbl");
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.TANDEM);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, params);
 
 		final File expectedFile = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/tandem/Skip3Statement.cbl.preprocessed");

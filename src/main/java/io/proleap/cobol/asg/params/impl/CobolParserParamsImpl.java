@@ -14,6 +14,7 @@ import java.util.List;
 
 import io.proleap.cobol.asg.params.CobolDialect;
 import io.proleap.cobol.asg.params.CobolParserParams;
+import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class CobolParserParamsImpl implements CobolParserParams {
 
@@ -26,6 +27,8 @@ public class CobolParserParamsImpl implements CobolParserParams {
 	protected List<File> copyBookFiles;
 
 	protected CobolDialect dialect;
+
+	protected CobolSourceFormatEnum format;
 
 	protected boolean ignoreSyntaxErrors;
 
@@ -52,6 +55,11 @@ public class CobolParserParamsImpl implements CobolParserParams {
 	@Override
 	public CobolDialect getDialect() {
 		return dialect;
+	}
+
+	@Override
+	public CobolSourceFormatEnum getFormat() {
+		return format;
 	}
 
 	@Override
@@ -82,6 +90,11 @@ public class CobolParserParamsImpl implements CobolParserParams {
 	@Override
 	public void setDialect(final CobolDialect dialect) {
 		this.dialect = dialect;
+	}
+
+	@Override
+	public void setFormat(final CobolSourceFormatEnum format) {
+		this.format = format;
 	}
 
 	@Override

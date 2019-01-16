@@ -26,10 +26,10 @@ public class CopySubDirTest {
 
 		final CobolParserParams params = new CobolParserParamsImpl();
 		params.setCopyBookDirectories(copyBookDirectories);
+		params.setFormat(CobolSourceFormatEnum.VARIABLE);
 
 		final File inputFile = new File(DIR + "/CopySubDir.cbl");
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.VARIABLE,
-				params);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, params);
 
 		final File expectedFile = new File(DIR + "/CopySubDir.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
@@ -48,10 +48,10 @@ public class CopySubDirTest {
 
 		final CobolParserParams params = new CobolParserParamsImpl();
 		params.setCopyBookFiles(copyBookFiles);
+		params.setFormat(CobolSourceFormatEnum.VARIABLE);
 
 		final File inputFile = new File(DIR + "/CopySubDir.cbl");
-		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, CobolSourceFormatEnum.VARIABLE,
-				params);
+		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, params);
 
 		final File expectedFile = new File(DIR + "/CopySubDir.cbl.preprocessed");
 		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
