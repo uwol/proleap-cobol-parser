@@ -35,7 +35,7 @@ public interface CallStatement extends Statement {
 
 	ValueStmt getProgramValueStmt();
 
-	UsingPhrase getUsingPhrasePhrase();
+	UsingPhrase getUsingPhrase();
 
 	void setNotOnExceptionClause(NotOnExceptionClause notOnExceptionClause);
 

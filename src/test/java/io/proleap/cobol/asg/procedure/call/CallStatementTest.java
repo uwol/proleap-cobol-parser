@@ -65,7 +65,7 @@ public class CallStatementTest extends CobolTestBase {
 			}
 
 			{
-				final UsingPhrase usingPhrase = callStatement.getUsingPhrasePhrase();
+				final UsingPhrase usingPhrase = callStatement.getUsingPhrase();
 				assertEquals(3, usingPhrase.getUsingParameters().size());
 
 				{

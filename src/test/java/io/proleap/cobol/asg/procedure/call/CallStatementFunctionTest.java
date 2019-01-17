@@ -41,7 +41,7 @@ public class CallStatementFunctionTest extends CobolTestBase {
 			assertEquals(StatementTypeEnum.CALL, callStatement.getStatementType());
 
 			{
-				final UsingPhrase usingPhrase = callStatement.getUsingPhrasePhrase();
+				final UsingPhrase usingPhrase = callStatement.getUsingPhrase();
 				assertEquals(2, usingPhrase.getUsingParameters().size());
 
 				{
@@ -78,7 +78,7 @@ public class CallStatementFunctionTest extends CobolTestBase {
 			assertEquals(StatementTypeEnum.CALL, callStatement.getStatementType());
 
 			{
-				final UsingPhrase usingPhrase = callStatement.getUsingPhrasePhrase();
+				final UsingPhrase usingPhrase = callStatement.getUsingPhrase();
 				assertEquals(1, usingPhrase.getUsingParameters().size());
 
 				{
@@ -99,7 +99,7 @@ public class CallStatementFunctionTest extends CobolTestBase {
 			assertEquals(StatementTypeEnum.CALL, callStatement.getStatementType());
 
 			{
-				final UsingPhrase usingPhrase = callStatement.getUsingPhrasePhrase();
+				final UsingPhrase usingPhrase = callStatement.getUsingPhrase();
 				assertEquals(2, usingPhrase.getUsingParameters().size());
 
 				{

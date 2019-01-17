@@ -118,7 +118,7 @@ public class CallStatementImpl extends StatementImpl implements CallStatement {
 	}
 
 	@Override
-	public UsingPhrase getUsingPhrasePhrase() {
+	public UsingPhrase getUsingPhrase() {
 		return usingPhrase;
 	}
 
