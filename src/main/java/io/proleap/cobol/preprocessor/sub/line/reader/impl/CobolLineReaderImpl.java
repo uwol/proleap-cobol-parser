@@ -59,8 +59,27 @@ public class CobolLineReaderImpl implements CobolLineReader {
 		final CobolLine result;
 
 		if (!matcher.matches()) {
-			throw new RuntimeException("Is " + params.getFormat() + " the correct line format? Could not parse line "
-					+ (lineNumber + 1) + ": " + line);
+			final String formatDescription;
+
+			switch (format) {
+			case FIXED:
+				formatDescription = "Columns 1-6 sequence number, column 7 indicator area, columns 8-72 for areas A and B.";
+				break;
+			case TANDEM:
+				formatDescription = "Column 1 indicator area, columns 2 and all following for areas A and B.";
+				break;
+			case VARIABLE:
+				formatDescription = "Columns 1-6 sequence number, column 7 indicator area, columns 8 and all following for areas A and B.";
+				break;
+			default:
+				formatDescription = "";
+				break;
+			}
+
+			final String message = "Is " + params.getFormat() + " the correct line format? Could not parse line "
+					+ (lineNumber + 1) + ": " + line + ". " + formatDescription;
+
+			throw new RuntimeException(message);
 		} else {
 			final String sequenceAreaGroup = matcher.group(1);
 			final String indicatorAreaGroup = matcher.group(2);
