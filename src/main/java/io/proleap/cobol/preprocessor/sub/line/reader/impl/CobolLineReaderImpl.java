@@ -63,21 +63,21 @@ public class CobolLineReaderImpl implements CobolLineReader {
 
 			switch (format) {
 			case FIXED:
-				formatDescription = "Columns 1-6 sequence number, column 7 indicator area, columns 8-72 for areas A and B.";
+				formatDescription = "Columns 1-6 sequence number, column 7 indicator area, columns 8-72 for areas A and B";
 				break;
 			case TANDEM:
-				formatDescription = "Column 1 indicator area, columns 2 and all following for areas A and B.";
+				formatDescription = "Column 1 indicator area, columns 2 and all following for areas A and B";
 				break;
 			case VARIABLE:
-				formatDescription = "Columns 1-6 sequence number, column 7 indicator area, columns 8 and all following for areas A and B.";
+				formatDescription = "Columns 1-6 sequence number, column 7 indicator area, columns 8 and all following for areas A and B";
 				break;
 			default:
 				formatDescription = "";
 				break;
 			}
 
-			final String message = "Is " + params.getFormat() + " the correct line format? Could not parse line "
-					+ (lineNumber + 1) + ": " + line + ". " + formatDescription;
+			final String message = "Is " + params.getFormat() + " the correct line format (" + formatDescription
+					+ ")? Could not parse line " + (lineNumber + 1) + ": " + line;
 
 			throw new RuntimeException(message);
 		} else {
