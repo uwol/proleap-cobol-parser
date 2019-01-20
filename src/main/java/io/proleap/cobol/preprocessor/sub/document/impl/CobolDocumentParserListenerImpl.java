@@ -26,6 +26,7 @@ import io.proleap.cobol.CobolPreprocessorParser.ReplaceClauseContext;
 import io.proleap.cobol.CobolPreprocessorParser.ReplacingPhraseContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
+import io.proleap.cobol.preprocessor.exception.CobolPreprocessorException;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.copybook.CobolWordCopyBookFinder;
@@ -337,9 +338,8 @@ public class CobolDocumentParserListenerImpl extends CobolPreprocessorBaseListen
 		String result;
 
 		if (copyBook == null) {
-			LOG.warn("Could not find copy book {} in directory of COBOL input file or copy books param object.",
-					copySource.getText());
-			result = null;
+			throw new CobolPreprocessorException("Could not find copy book " + copySource.getText()
+					+ " in directory of COBOL input file or copy books param object.");
 		} else {
 			try {
 				result = new CobolPreprocessorImpl().process(copyBook, params);

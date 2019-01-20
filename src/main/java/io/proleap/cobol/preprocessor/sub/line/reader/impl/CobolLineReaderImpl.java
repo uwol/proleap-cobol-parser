@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
+import io.proleap.cobol.preprocessor.exception.CobolPreprocessorException;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.CobolLineTypeEnum;
 import io.proleap.cobol.preprocessor.sub.line.reader.CobolLineReader;
@@ -79,7 +80,7 @@ public class CobolLineReaderImpl implements CobolLineReader {
 			final String message = "Is " + params.getFormat() + " the correct line format (" + formatDescription
 					+ ")? Could not parse line " + (lineNumber + 1) + ": " + line;
 
-			throw new RuntimeException(message);
+			throw new CobolPreprocessorException(message);
 		} else {
 			final String sequenceAreaGroup = matcher.group(1);
 			final String indicatorAreaGroup = matcher.group(2);
