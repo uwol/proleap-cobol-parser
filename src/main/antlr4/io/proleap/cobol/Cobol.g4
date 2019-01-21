@@ -1585,11 +1585,11 @@ inspectFor
    ;
 
 inspectCharacters
-   : CHARACTERS inspectBeforeAfter*
+   : (CHARACTER | CHARACTERS) inspectBeforeAfter*
    ;
 
 inspectReplacingCharacters
-   : CHARACTERS inspectBy inspectBeforeAfter*
+   : (CHARACTER | CHARACTERS) inspectBy inspectBeforeAfter*
    ;
 
 inspectAllLeadings
