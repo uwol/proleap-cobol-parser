@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import io.proleap.cobol.CobolLexer;
 import io.proleap.cobol.CobolParser;
 import io.proleap.cobol.CobolParser.StartRuleContext;
+import io.proleap.cobol.asg.exception.CobolParserException;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.impl.ProgramImpl;
@@ -185,7 +186,7 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	protected void parseFile(final File cobolFile, final Program program, final CobolParserParams params)
 			throws IOException {
 		if (!cobolFile.isFile()) {
-			LOG.warn("Could not find file {}", cobolFile.getAbsolutePath());
+			throw new CobolParserException("Could not find file " + cobolFile.getAbsolutePath());
 		} else {
 			// determine the copy book name
 			final String compilationUnitName = getCompilationUnitName(cobolFile);
