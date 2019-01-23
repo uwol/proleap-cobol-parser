@@ -16,7 +16,8 @@ import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 public interface AcceptFromDateStatement extends CobolDivisionElement {
 
 	enum DateType {
-		DATE, DATE_YYYYMMDD, DAY, DAY_YYYYMMDD, TIME, TIMER, TODAYS_DATE, TODAYS_DATE_MMDDYYYY, TODAYS_NAME, YEAR, YYYYDDD, YYYYMMDD
+		DATE, DATE_YYYYMMDD, DAY, DAY_YYYYMMDD, MMDDYYYY, TIME, TIMER, TODAYS_DATE, TODAYS_DATE_MMDDYYYY, TODAYS_NAME,
+		YEAR, YYYYDDD, YYYYMMDD
 	}
 
 	DateType getDateType();

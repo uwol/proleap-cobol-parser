@@ -21,6 +21,7 @@ import io.proleap.cobol.asg.metamodel.procedure.OnExceptionClause;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromDateStatement;
+import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromDateStatement.DateType;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromEscapeKeyStatement;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptFromMnemonicStatement;
 import io.proleap.cobol.asg.metamodel.procedure.accept.AcceptMessageCountStatement;
@@ -68,29 +69,33 @@ public class AcceptStatementImpl extends StatementImpl implements AcceptStatemen
 			final AcceptFromDateStatement.DateType dateType;
 
 			if (ctx.DATE() != null && ctx.YYYYMMDD() == null) {
-				dateType = AcceptFromDateStatement.DateType.DATE;
+				dateType = DateType.DATE;
 			} else if (ctx.DATE() != null && ctx.YYYYMMDD() != null) {
-				dateType = AcceptFromDateStatement.DateType.DATE_YYYYMMDD;
-			} else if (ctx.DAY() != null && ctx.YYYYMMDD() == null) {
-				dateType = AcceptFromDateStatement.DateType.DAY;
+				dateType = DateType.DATE_YYYYMMDD;
 			} else if (ctx.DAY() != null && ctx.YYYYMMDD() != null) {
-				dateType = AcceptFromDateStatement.DateType.DAY_YYYYMMDD;
+				dateType = DateType.DAY_YYYYMMDD;
+			} else if (ctx.DAY() != null && ctx.YYYYDDD() != null) {
+				dateType = DateType.YYYYDDD;
+			} else if (ctx.DAY() != null && ctx.YYYYMMDD() == null) {
+				dateType = DateType.DAY;
 			} else if (ctx.TIME() != null) {
-				dateType = AcceptFromDateStatement.DateType.TIME;
+				dateType = DateType.TIME;
 			} else if (ctx.TIMER() != null) {
-				dateType = AcceptFromDateStatement.DateType.TIMER;
+				dateType = DateType.TIMER;
 			} else if (ctx.TODAYS_DATE() != null && ctx.YYYYMMDD() == null) {
-				dateType = AcceptFromDateStatement.DateType.TODAYS_DATE;
+				dateType = DateType.TODAYS_DATE;
 			} else if (ctx.TODAYS_DATE() != null && ctx.YYYYMMDD() != null) {
-				dateType = AcceptFromDateStatement.DateType.TODAYS_DATE_MMDDYYYY;
+				dateType = DateType.TODAYS_DATE_MMDDYYYY;
 			} else if (ctx.TODAYS_NAME() != null) {
-				dateType = AcceptFromDateStatement.DateType.TODAYS_NAME;
+				dateType = DateType.TODAYS_NAME;
 			} else if (ctx.YEAR() != null) {
-				dateType = AcceptFromDateStatement.DateType.YEAR;
-			} else if (ctx.YYYYDDD() != null) {
-				dateType = AcceptFromDateStatement.DateType.YYYYDDD;
+				dateType = DateType.YEAR;
 			} else if (ctx.MMDDYYYY() != null) {
-				dateType = AcceptFromDateStatement.DateType.YYYYMMDD;
+				dateType = DateType.MMDDYYYY;
+			} else if (ctx.YYYYMMDD() != null) {
+				dateType = DateType.YYYYMMDD;
+			} else if (ctx.YYYYDDD() != null) {
+				dateType = DateType.YYYYDDD;
 			} else {
 				dateType = null;
 			}
