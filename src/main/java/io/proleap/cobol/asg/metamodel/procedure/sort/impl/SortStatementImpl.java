@@ -33,8 +33,10 @@ import io.proleap.cobol.asg.metamodel.procedure.sort.CollatingSequence;
 import io.proleap.cobol.asg.metamodel.procedure.sort.Duplicates;
 import io.proleap.cobol.asg.metamodel.procedure.sort.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.sort.InputProcedure;
+import io.proleap.cobol.asg.metamodel.procedure.sort.InputThrough;
 import io.proleap.cobol.asg.metamodel.procedure.sort.OnKey;
 import io.proleap.cobol.asg.metamodel.procedure.sort.OutputProcedure;
+import io.proleap.cobol.asg.metamodel.procedure.sort.OutputThrough;
 import io.proleap.cobol.asg.metamodel.procedure.sort.SortStatement;
 import io.proleap.cobol.asg.metamodel.procedure.sort.UsingPhrase;
 
@@ -139,12 +141,20 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 			result = new InputProcedureImpl(programUnit, ctx);
 
 			// procedure
-			final Call procedureCall = createCall(ctx.procedureName());
-			result.setProcedureCall(procedureCall);
+			final Call firstCall = createCall(ctx.procedureName());
+			result.setProcedureCall(firstCall);
+			result.addCall(firstCall);
 
 			// through
 			if (ctx.sortInputThrough() != null) {
 				result.addInputThrough(ctx.sortInputThrough());
+
+				final InputThrough inputThrough = result.getInputThrough();
+				final Call lastCall = inputThrough.getProcedureCall();
+				final List<Call> callsThrough = addCallsThrough(firstCall, lastCall, ctx);
+
+				result.addCalls(callsThrough);
+				result.addCall(lastCall);
 			}
 
 			inputProcedure = result;
@@ -195,12 +205,20 @@ public class SortStatementImpl extends StatementImpl implements SortStatement {
 			result = new OutputProcedureImpl(programUnit, ctx);
 
 			// procedure
-			final Call procedureCall = createCall(ctx.procedureName());
-			result.setProcedureCall(procedureCall);
+			final Call firstCall = createCall(ctx.procedureName());
+			result.setProcedureCall(firstCall);
+			result.addCall(firstCall);
 
 			// through
 			if (ctx.sortOutputThrough() != null) {
 				result.addOutputThrough(ctx.sortOutputThrough());
+
+				final OutputThrough outputThrough = result.getOutputThrough();
+				final Call lastCall = outputThrough.getProcedureCall();
+				final List<Call> callsThrough = addCallsThrough(firstCall, lastCall, ctx);
+
+				result.addCalls(callsThrough);
+				result.addCall(lastCall);
 			}
 
 			outputProcedure = result;

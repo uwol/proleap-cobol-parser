@@ -8,7 +8,6 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.perform.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -22,9 +21,6 @@ import io.proleap.cobol.CobolParser.StatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
 import io.proleap.cobol.asg.metamodel.call.Call;
-import io.proleap.cobol.asg.metamodel.call.ProcedureCall;
-import io.proleap.cobol.asg.metamodel.call.impl.ProcedureCallImpl;
-import io.proleap.cobol.asg.metamodel.procedure.Paragraph;
 import io.proleap.cobol.asg.metamodel.procedure.StatementType;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.impl.StatementImpl;
@@ -50,35 +46,6 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 		super(programUnit, scope, ctx);
 
 		this.ctx = ctx;
-	}
-
-	protected List<Call> addCallsThrough(final Call firstCall, final Call lastCall,
-			final PerformProcedureStatementContext ctx) {
-		final List<Call> result = new ArrayList<Call>();
-
-		final String firstCallName = firstCall.getName();
-		final String lastCallName = lastCall.getName();
-
-		boolean inThrough = false;
-
-		final List<Paragraph> paragraphs = programUnit.getProcedureDivision().getParagraphs();
-
-		for (final Paragraph paragraph : paragraphs) {
-			final String paragraphName = paragraph.getName();
-
-			if (paragraphName.equals(lastCallName)) {
-				break;
-			} else if (paragraphName.equals(firstCallName)) {
-				inThrough = true;
-			} else if (inThrough) {
-				final ProcedureCall call = new ProcedureCallImpl(paragraphName, paragraph, programUnit, ctx);
-				result.add(call);
-
-				linkProcedureCallWithParagraph(call, paragraph);
-			}
-		}
-
-		return result;
 	}
 
 	@Override
@@ -170,5 +137,4 @@ public class PerformStatementImpl extends StatementImpl implements PerformStatem
 	public void setPerformStatementType(final PerformStatementType performStatementType) {
 		this.performStatementType = performStatementType;
 	}
-
 }

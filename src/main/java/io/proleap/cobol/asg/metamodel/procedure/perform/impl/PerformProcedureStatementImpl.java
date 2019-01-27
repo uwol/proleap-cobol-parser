@@ -21,7 +21,7 @@ import io.proleap.cobol.asg.metamodel.procedure.perform.PerformType;
 
 public class PerformProcedureStatementImpl extends CobolDivisionElementImpl implements PerformProcedureStatement {
 
-	protected final List<Call> calls = new ArrayList<Call>();
+	protected final List<Call> calls = new ArrayList<>();
 
 	protected final PerformProcedureStatementContext ctx;
 

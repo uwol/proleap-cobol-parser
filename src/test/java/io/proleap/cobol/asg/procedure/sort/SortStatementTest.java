@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -21,6 +22,8 @@ import io.proleap.cobol.asg.metamodel.procedure.sort.CollatingSequence;
 import io.proleap.cobol.asg.metamodel.procedure.sort.Duplicates;
 import io.proleap.cobol.asg.metamodel.procedure.sort.Giving;
 import io.proleap.cobol.asg.metamodel.procedure.sort.GivingPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.sort.InputProcedure;
+import io.proleap.cobol.asg.metamodel.procedure.sort.InputThrough;
 import io.proleap.cobol.asg.metamodel.procedure.sort.National;
 import io.proleap.cobol.asg.metamodel.procedure.sort.OnKey;
 import io.proleap.cobol.asg.metamodel.procedure.sort.OutputProcedure;
@@ -40,7 +43,7 @@ public class SortStatementTest extends CobolTestBase {
 		final CompilationUnit compilationUnit = program.getCompilationUnit("SortStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
-		assertEquals(0, procedureDivision.getParagraphs().size());
+		assertEquals(3, procedureDivision.getParagraphs().size());
 		assertEquals(1, procedureDivision.getStatements().size());
 
 		{
@@ -81,6 +84,43 @@ public class SortStatementTest extends CobolTestBase {
 					{
 						final Call keyCall = onKey.getKeyCalls().get(1);
 						assertEquals(CallType.UNDEFINED_CALL, keyCall.getCallType());
+					}
+				}
+			}
+
+			{
+				final InputProcedure inputProcedure = sortStatement.getInputProcedure();
+				assertNotNull(inputProcedure);
+
+				{
+					final Call procedureCall = inputProcedure.getProcedureCall();
+					assertNotNull(procedureCall);
+					assertEquals(CallType.PROCEDURE_CALL, procedureCall.getCallType());
+				}
+
+				{
+					final InputThrough inputThrough = inputProcedure.getInputThrough();
+					assertNotNull(inputThrough);
+
+					final Call procedureCall = inputThrough.getProcedureCall();
+					assertNotNull(procedureCall);
+					assertEquals(CallType.PROCEDURE_CALL, procedureCall.getCallType());
+				}
+
+				{
+					final List<Call> calls = inputProcedure.getCalls();
+					assertEquals(3, calls.size());
+
+					{
+						assertEquals(CallType.PROCEDURE_CALL, calls.get(0).getCallType());
+					}
+
+					{
+						assertEquals(CallType.PROCEDURE_CALL, calls.get(1).getCallType());
+					}
+
+					{
+						assertEquals(CallType.PROCEDURE_CALL, calls.get(2).getCallType());
 					}
 				}
 			}
@@ -129,7 +169,7 @@ public class SortStatementTest extends CobolTestBase {
 				{
 					final Call procedureCall = outputProcedure.getProcedureCall();
 					assertNotNull(procedureCall);
-					assertEquals(CallType.UNDEFINED_CALL, procedureCall.getCallType());
+					assertEquals(CallType.PROCEDURE_CALL, procedureCall.getCallType());
 				}
 
 				{
@@ -138,7 +178,24 @@ public class SortStatementTest extends CobolTestBase {
 
 					final Call procedureCall = outputThrough.getProcedureCall();
 					assertNotNull(procedureCall);
-					assertEquals(CallType.UNDEFINED_CALL, procedureCall.getCallType());
+					assertEquals(CallType.PROCEDURE_CALL, procedureCall.getCallType());
+				}
+
+				{
+					final List<Call> calls = outputProcedure.getCalls();
+					assertEquals(3, calls.size());
+
+					{
+						assertEquals(CallType.PROCEDURE_CALL, calls.get(0).getCallType());
+					}
+
+					{
+						assertEquals(CallType.PROCEDURE_CALL, calls.get(1).getCallType());
+					}
+
+					{
+						assertEquals(CallType.PROCEDURE_CALL, calls.get(2).getCallType());
+					}
 				}
 			}
 

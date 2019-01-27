@@ -8,13 +8,21 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.merge;
 
+import java.util.List;
+
 import io.proleap.cobol.CobolParser.MergeOutputThroughContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface OutputProcedurePhrase extends CobolDivisionElement {
 
+	void addCall(Call call);
+
+	void addCalls(List<Call> calls);
+
 	OutputThrough addOutputThrough(MergeOutputThroughContext ctx);
+
+	List<Call> getCalls();
 
 	OutputThrough getOutputThrough();
 

@@ -8,13 +8,21 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.sort;
 
+import java.util.List;
+
 import io.proleap.cobol.CobolParser.SortOutputThroughContext;
 import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
 import io.proleap.cobol.asg.metamodel.call.Call;
 
 public interface OutputProcedure extends CobolDivisionElement {
 
+	void addCall(Call call);
+
+	void addCalls(List<Call> calls);
+
 	OutputThrough addOutputThrough(SortOutputThroughContext ctx);
+
+	List<Call> getCalls();
 
 	OutputThrough getOutputThrough();
 

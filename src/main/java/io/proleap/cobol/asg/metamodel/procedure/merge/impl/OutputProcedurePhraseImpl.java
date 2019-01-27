@@ -8,6 +8,9 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.merge.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.proleap.cobol.CobolParser.MergeOutputProcedurePhraseContext;
 import io.proleap.cobol.CobolParser.MergeOutputThroughContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
@@ -17,6 +20,8 @@ import io.proleap.cobol.asg.metamodel.procedure.merge.OutputProcedurePhrase;
 import io.proleap.cobol.asg.metamodel.procedure.merge.OutputThrough;
 
 public class OutputProcedurePhraseImpl extends CobolDivisionElementImpl implements OutputProcedurePhrase {
+
+	protected final List<Call> calls = new ArrayList<>();
 
 	protected final MergeOutputProcedurePhraseContext ctx;
 
@@ -31,6 +36,16 @@ public class OutputProcedurePhraseImpl extends CobolDivisionElementImpl implemen
 	}
 
 	@Override
+	public void addCall(final Call call) {
+		calls.add(call);
+	}
+
+	@Override
+	public void addCalls(final List<Call> calls) {
+		this.calls.addAll(calls);
+	}
+
+	@Override
 	public OutputThrough addOutputThrough(final MergeOutputThroughContext ctx) {
 		OutputThrough result = (OutputThrough) getASGElement(ctx);
 
@@ -38,14 +53,19 @@ public class OutputProcedurePhraseImpl extends CobolDivisionElementImpl implemen
 			result = new OutputThroughImpl(programUnit, ctx);
 
 			// procedure call
-			final Call procedureCall = createCall(ctx.procedureName());
-			result.setProcedureCall(procedureCall);
+			final Call lastCall = createCall(ctx.procedureName());
+			result.setProcedureCall(lastCall);
 
 			outputThrough = result;
 			registerASGElement(result);
 		}
 
 		return result;
+	}
+
+	@Override
+	public List<Call> getCalls() {
+		return calls;
 	}
 
 	@Override

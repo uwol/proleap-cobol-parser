@@ -150,6 +150,34 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 		this.programUnit = programUnit;
 	}
 
+	protected List<Call> addCallsThrough(final Call firstCall, final Call lastCall, final ParserRuleContext ctx) {
+		final List<Call> result = new ArrayList<Call>();
+
+		final String firstCallName = firstCall.getName();
+		final String lastCallName = lastCall.getName();
+
+		boolean inThrough = false;
+
+		final List<Paragraph> paragraphs = programUnit.getProcedureDivision().getParagraphs();
+
+		for (final Paragraph paragraph : paragraphs) {
+			final String paragraphName = paragraph.getName();
+
+			if (paragraphName.equals(lastCallName)) {
+				break;
+			} else if (paragraphName.equals(firstCallName)) {
+				inThrough = true;
+			} else if (inThrough) {
+				final ProcedureCall call = new ProcedureCallImpl(paragraphName, paragraph, programUnit, ctx);
+				result.add(call);
+
+				linkProcedureCallWithParagraph(call, paragraph);
+			}
+		}
+
+		return result;
+	}
+
 	protected ArithmeticValueStmt createArithmeticValueStmt(final ArithmeticExpressionContext ctx) {
 		ArithmeticValueStmt result = (ArithmeticValueStmt) getASGElement(ctx);
 

@@ -32,6 +32,7 @@ import io.proleap.cobol.asg.metamodel.procedure.merge.GivingPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.merge.MergeStatement;
 import io.proleap.cobol.asg.metamodel.procedure.merge.OnKey;
 import io.proleap.cobol.asg.metamodel.procedure.merge.OutputProcedurePhrase;
+import io.proleap.cobol.asg.metamodel.procedure.merge.OutputThrough;
 import io.proleap.cobol.asg.metamodel.procedure.merge.UsingPhrase;
 
 public class MergeStatementImpl extends StatementImpl implements MergeStatement {
@@ -148,12 +149,20 @@ public class MergeStatementImpl extends StatementImpl implements MergeStatement 
 			result = new OutputProcedurePhraseImpl(programUnit, ctx);
 
 			// procedure
-			final Call procedureCall = createCall(ctx.procedureName());
-			result.setProcedureCall(procedureCall);
+			final Call firstCall = createCall(ctx.procedureName());
+			result.setProcedureCall(firstCall);
+			result.addCall(firstCall);
 
 			// through
 			if (ctx.mergeOutputThrough() != null) {
 				result.addOutputThrough(ctx.mergeOutputThrough());
+
+				final OutputThrough outputThrough = result.getOutputThrough();
+				final Call lastCall = outputThrough.getProcedureCall();
+				final List<Call> callsThrough = addCallsThrough(firstCall, lastCall, ctx);
+
+				result.addCalls(callsThrough);
+				result.addCall(lastCall);
 			}
 
 			outputProcedurePhrase = result;

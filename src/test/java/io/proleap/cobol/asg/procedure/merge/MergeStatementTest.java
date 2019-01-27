@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -38,7 +39,7 @@ public class MergeStatementTest extends CobolTestBase {
 		final CompilationUnit compilationUnit = program.getCompilationUnit("MergeStatement");
 		final ProgramUnit programUnit = compilationUnit.getProgramUnit();
 		final ProcedureDivision procedureDivision = programUnit.getProcedureDivision();
-		assertEquals(0, procedureDivision.getParagraphs().size());
+		assertEquals(3, procedureDivision.getParagraphs().size());
 		assertEquals(1, procedureDivision.getStatements().size());
 
 		{
@@ -121,7 +122,7 @@ public class MergeStatementTest extends CobolTestBase {
 				{
 					final Call procedureCall = outputProcedure.getProcedureCall();
 					assertNotNull(procedureCall);
-					assertEquals(CallType.UNDEFINED_CALL, procedureCall.getCallType());
+					assertEquals(CallType.PROCEDURE_CALL, procedureCall.getCallType());
 				}
 
 				{
@@ -130,7 +131,24 @@ public class MergeStatementTest extends CobolTestBase {
 
 					final Call procedureCall = outputThrough.getProcedureCall();
 					assertNotNull(procedureCall);
-					assertEquals(CallType.UNDEFINED_CALL, procedureCall.getCallType());
+					assertEquals(CallType.PROCEDURE_CALL, procedureCall.getCallType());
+				}
+
+				{
+					final List<Call> calls = outputProcedure.getCalls();
+					assertEquals(3, calls.size());
+
+					{
+						assertEquals(CallType.PROCEDURE_CALL, calls.get(0).getCallType());
+					}
+
+					{
+						assertEquals(CallType.PROCEDURE_CALL, calls.get(1).getCallType());
+					}
+
+					{
+						assertEquals(CallType.PROCEDURE_CALL, calls.get(2).getCallType());
+					}
 				}
 			}
 
