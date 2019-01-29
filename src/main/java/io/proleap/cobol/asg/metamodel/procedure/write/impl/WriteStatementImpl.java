@@ -9,9 +9,7 @@
 package io.proleap.cobol.asg.metamodel.procedure.write.impl;
 
 import io.proleap.cobol.CobolParser.WriteAdvancingPhraseContext;
-import io.proleap.cobol.CobolParser.WriteAtEndOfPagePhraseContext;
 import io.proleap.cobol.CobolParser.WriteFromPhraseContext;
-import io.proleap.cobol.CobolParser.WriteNotAtEndOfPagePhraseContext;
 import io.proleap.cobol.CobolParser.WriteStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
@@ -99,22 +97,6 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 	}
 
 	@Override
-	public AtEndOfPagePhrase addAtEndOfPagePhrase(final WriteAtEndOfPagePhraseContext ctx) {
-		AtEndOfPagePhrase result = (AtEndOfPagePhrase) getASGElement(ctx);
-
-		if (result == null) {
-			result = new AtEndOfPagePhraseImpl(programUnit, ctx);
-
-			// FXIME statements
-
-			atEndOfPagePhrase = result;
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
 	public From addFrom(final WriteFromPhraseContext ctx) {
 		From result = (From) getASGElement(ctx);
 
@@ -126,22 +108,6 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 			result.setFromValueStmt(fromValueStmt);
 
 			from = result;
-			registerASGElement(result);
-		}
-
-		return result;
-	}
-
-	@Override
-	public NotAtEndOfPagePhrase addNotAtEndOfPagePhrase(final WriteNotAtEndOfPagePhraseContext ctx) {
-		NotAtEndOfPagePhrase result = (NotAtEndOfPagePhrase) getASGElement(ctx);
-
-		if (result == null) {
-			result = new NotAtEndOfPagePhraseImpl(programUnit, ctx);
-
-			// FXIME statements
-
-			notAtEndOfPagePhrase = result;
 			registerASGElement(result);
 		}
 
@@ -189,8 +155,18 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 	}
 
 	@Override
+	public void setAtEndOfPagePhrase(final AtEndOfPagePhrase atEndOfPagePhrase) {
+		this.atEndOfPagePhrase = atEndOfPagePhrase;
+	}
+
+	@Override
 	public void setInvalidKeyPhrase(final InvalidKeyPhrase invalidKeyPhrase) {
 		this.invalidKeyPhrase = invalidKeyPhrase;
+	}
+
+	@Override
+	public void setNotAtEndOfPagePhrase(final NotAtEndOfPagePhrase notAtEndOfPagePhrase) {
+		this.notAtEndOfPagePhrase = notAtEndOfPagePhrase;
 	}
 
 	@Override
@@ -202,5 +178,4 @@ public class WriteStatementImpl extends StatementImpl implements WriteStatement 
 	public void setRecordCall(final Call recordCall) {
 		this.recordCall = recordCall;
 	}
-
 }

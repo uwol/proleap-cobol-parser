@@ -9,9 +9,7 @@
 package io.proleap.cobol.asg.metamodel.procedure.write;
 
 import io.proleap.cobol.CobolParser.WriteAdvancingPhraseContext;
-import io.proleap.cobol.CobolParser.WriteAtEndOfPagePhraseContext;
 import io.proleap.cobol.CobolParser.WriteFromPhraseContext;
-import io.proleap.cobol.CobolParser.WriteNotAtEndOfPagePhraseContext;
 import io.proleap.cobol.asg.metamodel.call.Call;
 import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
@@ -24,11 +22,7 @@ public interface WriteStatement extends Statement {
 
 	AdvancingPhrase addAdvancingPhrase(WriteAdvancingPhraseContext ctx);
 
-	AtEndOfPagePhrase addAtEndOfPagePhrase(WriteAtEndOfPagePhraseContext ctx);
-
 	From addFrom(WriteFromPhraseContext ctx);
-
-	NotAtEndOfPagePhrase addNotAtEndOfPagePhrase(WriteNotAtEndOfPagePhraseContext ctx);
 
 	AdvancingPhrase getAdvancingPhrase();
 
@@ -44,7 +38,11 @@ public interface WriteStatement extends Statement {
 
 	Call getRecordCall();
 
+	void setAtEndOfPagePhrase(AtEndOfPagePhrase atEndOfPagePhrase);
+
 	void setInvalidKeyPhrase(InvalidKeyPhrase invalidKeyPhrase);
+
+	void setNotAtEndOfPagePhrase(NotAtEndOfPagePhrase notAtEndOfPagePhrase);
 
 	void setNotInvalidKeyPhrase(NotInvalidKeyPhrase notInvalidKeyPhrase);
 

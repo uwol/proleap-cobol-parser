@@ -24,11 +24,16 @@ import io.proleap.cobol.asg.metamodel.environment.EnvironmentDivision;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.InputOutputSection;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlEntry;
 import io.proleap.cobol.asg.metamodel.environment.inputoutput.filecontrol.FileControlParagraph;
+import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
+import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.asg.metamodel.procedure.write.AdvancingLines;
 import io.proleap.cobol.asg.metamodel.procedure.write.AdvancingPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.write.AtEndOfPagePhrase;
 import io.proleap.cobol.asg.metamodel.procedure.write.From;
+import io.proleap.cobol.asg.metamodel.procedure.write.NotAtEndOfPagePhrase;
 import io.proleap.cobol.asg.metamodel.procedure.write.WriteStatement;
 import io.proleap.cobol.asg.metamodel.valuestmt.CallValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.LiteralValueStmt;
@@ -112,6 +117,55 @@ public class WriteStatementTest extends CobolTestBase {
 
 				final CallValueStmt fromCallValueStmt = (CallValueStmt) from.getFromValueStmt();
 				assertEquals(CallType.UNDEFINED_CALL, fromCallValueStmt.getCall().getCallType());
+			}
+
+			{
+				final AtEndOfPagePhrase atEnd = writeStatement.getAtEndOfPagePhrase();
+				assertNotNull(atEnd);
+				assertEquals(1, atEnd.getStatements().size());
+
+				{
+					final DisplayStatement displayStatement = (DisplayStatement) atEnd.getStatements().get(0);
+					assertNotNull(displayStatement);
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
+				}
+			}
+
+			{
+				final NotAtEndOfPagePhrase notAtEndPhrase = writeStatement.getNotAtEndOfPagePhrase();
+				assertNotNull(notAtEndPhrase);
+				assertEquals(1, notAtEndPhrase.getStatements().size());
+
+				{
+					final DisplayStatement displayStatement = (DisplayStatement) notAtEndPhrase.getStatements().get(0);
+					assertNotNull(displayStatement);
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
+				}
+			}
+
+			{
+				final InvalidKeyPhrase invalidKey = writeStatement.getInvalidKeyPhrase();
+				assertNotNull(invalidKey);
+				assertEquals(1, invalidKey.getStatements().size());
+
+				{
+					final DisplayStatement displayStatement = (DisplayStatement) invalidKey.getStatements().get(0);
+					assertNotNull(displayStatement);
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
+				}
+			}
+
+			{
+				final NotInvalidKeyPhrase notInvalidKeyPhrase = writeStatement.getNotInvalidKeyPhrase();
+				assertNotNull(notInvalidKeyPhrase);
+				assertEquals(1, notInvalidKeyPhrase.getStatements().size());
+
+				{
+					final DisplayStatement displayStatement = (DisplayStatement) notInvalidKeyPhrase.getStatements()
+							.get(0);
+					assertNotNull(displayStatement);
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
+				}
 			}
 
 			{

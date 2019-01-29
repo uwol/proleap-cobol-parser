@@ -8,34 +8,18 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.write.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.proleap.cobol.CobolParser.WriteNotAtEndOfPagePhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.Statement;
+import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.write.NotAtEndOfPagePhrase;
 
-public class NotAtEndOfPagePhraseImpl extends CobolDivisionElementImpl implements NotAtEndOfPagePhrase {
+public class NotAtEndOfPagePhraseImpl extends ScopeImpl implements NotAtEndOfPagePhrase {
 
 	protected WriteNotAtEndOfPagePhraseContext ctx;
-
-	protected List<Statement> statements = new ArrayList<Statement>();
 
 	public NotAtEndOfPagePhraseImpl(final ProgramUnit programUnit, final WriteNotAtEndOfPagePhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
-	}
-
-	@Override
-	public void addStatement(final Statement statement) {
-		statements.add(statement);
-	}
-
-	@Override
-	public List<Statement> getStatements() {
-		return statements;
 	}
 }

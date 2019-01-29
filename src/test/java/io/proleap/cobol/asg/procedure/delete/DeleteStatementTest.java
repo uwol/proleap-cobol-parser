@@ -12,9 +12,12 @@ import io.proleap.cobol.CobolTestBase;
 import io.proleap.cobol.asg.metamodel.CompilationUnit;
 import io.proleap.cobol.asg.metamodel.Program;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
+import io.proleap.cobol.asg.metamodel.procedure.InvalidKeyPhrase;
+import io.proleap.cobol.asg.metamodel.procedure.NotInvalidKeyPhrase;
 import io.proleap.cobol.asg.metamodel.procedure.ProcedureDivision;
 import io.proleap.cobol.asg.metamodel.procedure.StatementTypeEnum;
 import io.proleap.cobol.asg.metamodel.procedure.delete.DeleteStatement;
+import io.proleap.cobol.asg.metamodel.procedure.display.DisplayStatement;
 import io.proleap.cobol.asg.runner.impl.CobolParserRunnerImpl;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
@@ -37,6 +40,31 @@ public class DeleteStatementTest extends CobolTestBase {
 			assertEquals(StatementTypeEnum.DELETE, deleteStatement.getStatementType());
 			assertNotNull(deleteStatement.getFileCall());
 			assertTrue(deleteStatement.isRecord());
+
+			{
+				final InvalidKeyPhrase invalidKey = deleteStatement.getInvalidKeyPhrase();
+				assertNotNull(invalidKey);
+				assertEquals(1, invalidKey.getStatements().size());
+
+				{
+					final DisplayStatement displayStatement = (DisplayStatement) invalidKey.getStatements().get(0);
+					assertNotNull(displayStatement);
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
+				}
+			}
+
+			{
+				final NotInvalidKeyPhrase notInvalidKeyPhrase = deleteStatement.getNotInvalidKeyPhrase();
+				assertNotNull(notInvalidKeyPhrase);
+				assertEquals(1, notInvalidKeyPhrase.getStatements().size());
+
+				{
+					final DisplayStatement displayStatement = (DisplayStatement) notInvalidKeyPhrase.getStatements()
+							.get(0);
+					assertNotNull(displayStatement);
+					assertEquals(StatementTypeEnum.DISPLAY, displayStatement.getStatementType());
+				}
+			}
 		}
 	}
 }

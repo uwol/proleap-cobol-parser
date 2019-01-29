@@ -201,5 +201,4 @@ public class ReadStatementImpl extends StatementImpl implements ReadStatement {
 	public void setNotInvalidKeyPhrase(final NotInvalidKeyPhrase notInvalidKeyPhrase) {
 		this.notInvalidKeyPhrase = notInvalidKeyPhrase;
 	}
-
 }

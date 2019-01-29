@@ -98,6 +98,8 @@ import io.proleap.cobol.CobolParser.StringStatementContext;
 import io.proleap.cobol.CobolParser.SubtractStatementContext;
 import io.proleap.cobol.CobolParser.TerminateStatementContext;
 import io.proleap.cobol.CobolParser.UnstringStatementContext;
+import io.proleap.cobol.CobolParser.WriteAtEndOfPagePhraseContext;
+import io.proleap.cobol.CobolParser.WriteNotAtEndOfPagePhraseContext;
 import io.proleap.cobol.CobolParser.WriteStatementContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
 import io.proleap.cobol.asg.metamodel.Scope;
@@ -221,7 +223,11 @@ import io.proleap.cobol.asg.metamodel.procedure.terminate.TerminateStatement;
 import io.proleap.cobol.asg.metamodel.procedure.terminate.impl.TerminateStatementImpl;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.UnstringStatement;
 import io.proleap.cobol.asg.metamodel.procedure.unstring.impl.UnstringStatementImpl;
+import io.proleap.cobol.asg.metamodel.procedure.write.AtEndOfPagePhrase;
+import io.proleap.cobol.asg.metamodel.procedure.write.NotAtEndOfPagePhrase;
 import io.proleap.cobol.asg.metamodel.procedure.write.WriteStatement;
+import io.proleap.cobol.asg.metamodel.procedure.write.impl.AtEndOfPagePhraseImpl;
+import io.proleap.cobol.asg.metamodel.procedure.write.impl.NotAtEndOfPagePhraseImpl;
 import io.proleap.cobol.asg.metamodel.procedure.write.impl.WriteStatementImpl;
 import io.proleap.cobol.asg.metamodel.valuestmt.ArithmeticValueStmt;
 import io.proleap.cobol.asg.metamodel.valuestmt.ConditionValueStmt;
@@ -1786,12 +1792,15 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 			// at end of page
 			if (ctx.writeAtEndOfPagePhrase() != null) {
-				result.addAtEndOfPagePhrase(ctx.writeAtEndOfPagePhrase());
+				final AtEndOfPagePhrase atEndOfPagePhrase = createAtEndOfPagePhrase(ctx.writeAtEndOfPagePhrase());
+				result.setAtEndOfPagePhrase(atEndOfPagePhrase);
 			}
 
 			// not at end of page
 			if (ctx.writeNotAtEndOfPagePhrase() != null) {
-				result.addNotAtEndOfPagePhrase(ctx.writeNotAtEndOfPagePhrase());
+				final NotAtEndOfPagePhrase notAtEndOfPagePhrase = createNotAtEndOfPagePhrase(
+						ctx.writeNotAtEndOfPagePhrase());
+				result.setNotAtEndOfPagePhrase(notAtEndOfPagePhrase);
 			}
 
 			// invalid key
@@ -1807,6 +1816,22 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			}
 
 			registerStatement(result);
+		}
+
+		return result;
+	}
+
+	protected AtEndOfPagePhrase createAtEndOfPagePhrase(final WriteAtEndOfPagePhraseContext ctx) {
+		AtEndOfPagePhrase result = (AtEndOfPagePhrase) getASGElement(ctx);
+
+		if (result == null) {
+			result = new AtEndOfPagePhraseImpl(programUnit, ctx);
+
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
+
+			registerASGElement(result);
 		}
 
 		return result;
@@ -1833,6 +1858,22 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 
 		if (result == null) {
 			result = new InvalidKeyPhraseImpl(programUnit, ctx);
+
+			for (final StatementContext statementContext : ctx.statement()) {
+				result.addStatement(statementContext);
+			}
+
+			registerASGElement(result);
+		}
+
+		return result;
+	}
+
+	protected NotAtEndOfPagePhrase createNotAtEndOfPagePhrase(final WriteNotAtEndOfPagePhraseContext ctx) {
+		NotAtEndOfPagePhrase result = (NotAtEndOfPagePhrase) getASGElement(ctx);
+
+		if (result == null) {
+			result = new NotAtEndOfPagePhraseImpl(programUnit, ctx);
 
 			for (final StatementContext statementContext : ctx.statement()) {
 				result.addStatement(statementContext);

@@ -11,4 +11,8 @@
  PROCEDURE DIVISION.
     WRITE ITEMS 
        FROM SOMEID1
-       BEFORE ADVANCING 3 LINES.
+       BEFORE ADVANCING 3 LINES
+       AT EOP DISPLAY 'at end of page'
+       NOT AT EOP DISPLAY 'not at end of page'
+       INVALID KEY DISPLAY 'invalid key'
+       NOT INVALID KEY DISPLAY 'valid key'.

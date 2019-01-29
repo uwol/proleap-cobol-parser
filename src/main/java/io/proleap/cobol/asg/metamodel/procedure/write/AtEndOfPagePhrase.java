@@ -8,14 +8,7 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.write;
 
-import java.util.List;
+import io.proleap.cobol.asg.metamodel.Scope;
 
-import io.proleap.cobol.asg.metamodel.CobolDivisionElement;
-import io.proleap.cobol.asg.metamodel.procedure.Statement;
-
-public interface AtEndOfPagePhrase extends CobolDivisionElement {
-
-	void addStatement(Statement statement);
-
-	List<Statement> getStatements();
+public interface AtEndOfPagePhrase extends Scope {
 }

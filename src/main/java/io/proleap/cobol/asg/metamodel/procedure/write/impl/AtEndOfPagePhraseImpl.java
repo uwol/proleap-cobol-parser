@@ -8,35 +8,18 @@
 
 package io.proleap.cobol.asg.metamodel.procedure.write.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.proleap.cobol.CobolParser.WriteAtEndOfPagePhraseContext;
 import io.proleap.cobol.asg.metamodel.ProgramUnit;
-import io.proleap.cobol.asg.metamodel.impl.CobolDivisionElementImpl;
-import io.proleap.cobol.asg.metamodel.procedure.Statement;
+import io.proleap.cobol.asg.metamodel.impl.ScopeImpl;
 import io.proleap.cobol.asg.metamodel.procedure.write.AtEndOfPagePhrase;
 
-public class AtEndOfPagePhraseImpl extends CobolDivisionElementImpl implements AtEndOfPagePhrase {
+public class AtEndOfPagePhraseImpl extends ScopeImpl implements AtEndOfPagePhrase {
 
 	protected WriteAtEndOfPagePhraseContext ctx;
-
-	protected List<Statement> statements = new ArrayList<Statement>();
 
 	public AtEndOfPagePhraseImpl(final ProgramUnit programUnit, final WriteAtEndOfPagePhraseContext ctx) {
 		super(programUnit, ctx);
 
 		this.ctx = ctx;
 	}
-
-	@Override
-	public void addStatement(final Statement statement) {
-		statements.add(statement);
-	}
-
-	@Override
-	public List<Statement> getStatements() {
-		return statements;
-	}
-
 }

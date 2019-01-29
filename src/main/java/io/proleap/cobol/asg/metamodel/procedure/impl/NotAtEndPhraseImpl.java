@@ -22,5 +22,4 @@ public class NotAtEndPhraseImpl extends ScopeImpl implements NotAtEndPhrase {
 
 		this.ctx = ctx;
 	}
-
 }
