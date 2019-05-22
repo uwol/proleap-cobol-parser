@@ -78,7 +78,7 @@ public class SearchStatementImpl extends StatementImpl implements SearchStatemen
 			// type and statements
 			final WhenPhrase.WhenType type;
 
-			if (ctx.NEXT() != null) {
+			if (ctx.nextSentenceStatement() != null) {
 				type = WhenPhrase.WhenType.NEXT_SENTENCE;
 			} else if (!ctx.statement().isEmpty()) {
 				for (final StatementContext statementContext : ctx.statement()) {

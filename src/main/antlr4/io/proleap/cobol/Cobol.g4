@@ -1907,7 +1907,7 @@ searchVarying
    ;
 
 searchWhen
-   : WHEN condition (NEXT SENTENCE | statement*)
+   : WHEN condition (nextSentenceStatement | statement*)
    ;
 
 // send statement
@@ -2561,7 +2561,7 @@ textName
 // literal ----------------------------------
 
 cobolWord
-   : IDENTIFIER 
+   : IDENTIFIER
    | ABORT | AS | ASCII | ASSOCIATED_DATA | ASSOCIATED_DATA_LENGTH | ATTRIBUTE | AUTO | AUTO_SKIP
    | BACKGROUND_COLOR | BACKGROUND_COLOUR | BEEP | BELL | BINARY | BIT | BLINK | BLOB | BOUNDS
    | CAPABLE | CCSVERSION | CHANGED | CHANNEL | CLOB | CLOSE_DISPOSITION | COBOL | COMMITMENT | CONTROL_POINT | CONVENTION | CRUNCH | CURSOR
