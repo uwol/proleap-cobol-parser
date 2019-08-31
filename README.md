@@ -12,8 +12,6 @@ The parser is developed test-driven, passes the **NIST test suite** and has succ
 
 💫 **Star** if you like our work.
 
-[![Build](https://img.shields.io/travis/uwol/proleap-cobol-parser.svg)](https://travis-ci.org/uwol/proleap-cobol-parser)
-[![Coverage](https://coveralls.io/repos/github/uwol/proleap-cobol-parser/badge.svg?branch=master)](https://coveralls.io/github/uwol/proleap-cobol-parser?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![ProLeap on Twitter](https://img.shields.io/twitter/follow/proleap_io.svg?style=social&label=Follow)](https://twitter.com/proleap_io)
 
