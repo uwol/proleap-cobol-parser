@@ -199,8 +199,13 @@ Release process
 
 * Milestones of the grammar are published in the [ANTLR grammars repo](https://github.com/antlr/grammars-v4).
 
-
 License
 -------
 
 Licensed under the MIT License. See LICENSE for details.
+
+See also
+--------
+* [R COBOL Data Integration Package](https://github.com/thospfuller/rcoboldi/) : An R package that facilitates the importation of COBOL CopyBook data directly into the [R Project for Statistical Computing](https://www.r-project.org/) as properly structured data frames.
+* [JRecord](https://github.com/bmTas/JRecord) : Read Cobol data files in Java on GitHub
+* [AbsaOSS cobrix](https://github.com/AbsaOSS/cobrix) : A COBOL parser and Mainframe/EBCDIC data source for Apache Spark
