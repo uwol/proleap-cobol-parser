@@ -8,13 +8,10 @@
 
 package io.proleap.cobol.preprocessor.impl;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -77,20 +74,8 @@ public class CobolPreprocessorImpl implements CobolPreprocessor {
 		LOG.info("Preprocessing file {} with line format {} and charset {}.", cobolFile.getName(), params.getFormat(),
 				charset);
 
-		final InputStream inputStream = new FileInputStream(cobolFile);
-		final InputStreamReader inputStreamReader = new InputStreamReader(inputStream, charset);
-		final BufferedReader bufferedInputStreamReader = new BufferedReader(inputStreamReader);
-		final StringBuffer outputBuffer = new StringBuffer();
-
-		String line = null;
-
-		while ((line = bufferedInputStreamReader.readLine()) != null) {
-			outputBuffer.append(line + NEWLINE);
-		}
-
-		bufferedInputStreamReader.close();
-
-		final String result = process(outputBuffer.toString(), params);
+		final String cobolFileContent = Files.readString(cobolFile.toPath(), charset);
+		final String result = process(cobolFileContent, params);
 		return result;
 	}
 
