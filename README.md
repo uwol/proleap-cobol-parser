@@ -64,7 +64,7 @@ To include the parser in your Maven project build it and add the dependency:
 <dependency>
   <groupId>io.github.uwol</groupId>
   <artifactId>proleap-cobol-parser</artifactId>
-  <version>3.0.0</version>
+  <version>4.0.0</version>
 </dependency>
 ```
 
@@ -146,7 +146,7 @@ Features
 Build process
 -------------
 
-The build process is based on Maven (version 3 or higher). Building requires a JDK 8 and generates a Maven JAR, which can be used in other Maven projects as a dependency.
+The build process is based on Maven (version 3 or higher). Building requires a JDK 11 and generates a Maven JAR, which can be used in other Maven projects as a dependency.
 
 * Clone or download the repository.
 * In [Eclipse](https://eclipse.org) import the directory as a an `existing Maven project`.
