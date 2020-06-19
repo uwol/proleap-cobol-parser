@@ -4,10 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -34,7 +34,7 @@ public class CopyOfTest {
 		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, params);
 
 		final File expectedFile = new File(DIR + "/CopyOf.cbl.preprocessed");
-		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
+		final String expected = Files.readString(expectedFile.toPath(), StandardCharsets.UTF_8);
 		assertEquals(expected, preProcessedInput);
 	}
 
@@ -52,7 +52,7 @@ public class CopyOfTest {
 		final String preProcessedInput = new CobolPreprocessorImpl().process(inputFile, params);
 
 		final File expectedFile = new File(DIR + "/CopyOf.cbl.preprocessed");
-		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
+		final String expected = Files.readString(expectedFile.toPath(), StandardCharsets.UTF_8);
 		assertEquals(expected, preProcessedInput);
 	}
 }

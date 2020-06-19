@@ -13,12 +13,12 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.Trees;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,7 +58,7 @@ public class CobolParseTestRunnerImpl implements CobolParseTestRunner {
 
 	protected void doCompareParseTree(final File treeFile, final StartRuleContext startRule, final CobolParser parser)
 			throws IOException {
-		final String treeFileData = FileUtils.readFileToString(treeFile, StandardCharsets.UTF_8);
+		final String treeFileData = Files.readString(treeFile.toPath(), StandardCharsets.UTF_8);
 
 		if (!StringUtils.isEmpty(treeFileData)) {
 			LOG.info("Comparing parse tree with file {}.", treeFile.getName());

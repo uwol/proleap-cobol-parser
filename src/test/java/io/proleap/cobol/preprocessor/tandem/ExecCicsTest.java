@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 import io.proleap.cobol.asg.params.CobolParserParams;
@@ -25,7 +25,7 @@ public class ExecCicsTest {
 
 		final File expectedFile = new File(
 				"src/test/resources/io/proleap/cobol/preprocessor/tandem/ExecCics.cbl.preprocessed");
-		final String expected = FileUtils.readFileToString(expectedFile, StandardCharsets.UTF_8);
+		final String expected = Files.readString(expectedFile.toPath(), StandardCharsets.UTF_8);
 		assertEquals(expected, preProcessedInput);
 	}
 }
