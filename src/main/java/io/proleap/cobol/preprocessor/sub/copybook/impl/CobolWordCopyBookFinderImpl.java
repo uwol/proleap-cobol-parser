@@ -10,11 +10,11 @@ package io.proleap.cobol.preprocessor.sub.copybook.impl;
 
 import java.io.File;
 
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 
 import io.proleap.cobol.CobolPreprocessorParser.CobolWordContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
+import io.proleap.cobol.asg.util.FilenameUtils;
 import io.proleap.cobol.preprocessor.sub.copybook.CobolWordCopyBookFinder;
 
 public class CobolWordCopyBookFinderImpl implements CobolWordCopyBookFinder {

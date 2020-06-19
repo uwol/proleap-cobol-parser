@@ -9,16 +9,22 @@
 package io.proleap.cobol.preprocessor.sub.copybook.impl;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Collectors;
 
-import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.CobolPreprocessorParser.FilenameContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.preprocessor.sub.copybook.FilenameCopyBookFinder;
 
 public class FilenameCopyBookFinderImpl implements FilenameCopyBookFinder {
+
+	private final static Logger LOG = LoggerFactory.getLogger(FilenameCopyBookFinderImpl.class);
 
 	@Override
 	public File findCopyBook(final CobolParserParams params, final FilenameContext ctx) {
@@ -44,10 +50,15 @@ public class FilenameCopyBookFinderImpl implements FilenameCopyBookFinder {
 	}
 
 	protected File findCopyBookInDirectory(final File copyBooksDirectory, final FilenameContext ctx) {
-		for (final File copyBookCandidate : FileUtils.listFiles(copyBooksDirectory, null, true)) {
-			if (isMatchingCopyBook(copyBookCandidate, copyBooksDirectory, ctx)) {
-				return copyBookCandidate;
+		try {
+			for (final File copyBookCandidate : Files.walk(copyBooksDirectory.toPath()).map(Path::toFile)
+					.collect(Collectors.toList())) {
+				if (isMatchingCopyBook(copyBookCandidate, copyBooksDirectory, ctx)) {
+					return copyBookCandidate;
+				}
 			}
+		} catch (final IOException e) {
+			LOG.warn(e.getMessage(), e);
 		}
 
 		return null;

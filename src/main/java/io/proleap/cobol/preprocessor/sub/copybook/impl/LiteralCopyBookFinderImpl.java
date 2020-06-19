@@ -9,10 +9,14 @@
 package io.proleap.cobol.preprocessor.sub.copybook.impl;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Collectors;
 
-import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.proleap.cobol.CobolPreprocessorParser.LiteralContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
@@ -20,6 +24,8 @@ import io.proleap.cobol.preprocessor.sub.copybook.LiteralCopyBookFinder;
 import io.proleap.cobol.preprocessor.sub.util.PreprocessorStringUtils;
 
 public class LiteralCopyBookFinderImpl implements LiteralCopyBookFinder {
+
+	private final static Logger LOG = LoggerFactory.getLogger(LiteralCopyBookFinderImpl.class);
 
 	@Override
 	public File findCopyBook(final CobolParserParams params, final LiteralContext ctx) {
@@ -45,10 +51,15 @@ public class LiteralCopyBookFinderImpl implements LiteralCopyBookFinder {
 	}
 
 	protected File findCopyBookInDirectory(final File copyBooksDirectory, final LiteralContext ctx) {
-		for (final File copyBookCandidate : FileUtils.listFiles(copyBooksDirectory, null, true)) {
-			if (isMatchingCopyBook(copyBookCandidate, copyBooksDirectory, ctx)) {
-				return copyBookCandidate;
+		try {
+			for (final File copyBookCandidate : Files.walk(copyBooksDirectory.toPath()).map(Path::toFile)
+					.collect(Collectors.toList())) {
+				if (isMatchingCopyBook(copyBookCandidate, copyBooksDirectory, ctx)) {
+					return copyBookCandidate;
+				}
 			}
+		} catch (final IOException e) {
+			LOG.warn(e.getMessage(), e);
 		}
 
 		return null;

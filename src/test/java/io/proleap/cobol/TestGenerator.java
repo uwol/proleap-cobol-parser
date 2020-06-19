@@ -16,7 +16,6 @@ import java.util.Arrays;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import io.proleap.cobol.CobolParser.StartRuleContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
+import io.proleap.cobol.asg.util.FilenameUtils;
 import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 import io.proleap.cobol.preprocessor.impl.CobolPreprocessorImpl;
 import io.proleap.cobol.util.TreeUtils;

@@ -17,7 +17,6 @@ import java.util.Scanner;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +31,7 @@ import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.asg.params.impl.CobolParserParamsImpl;
 import io.proleap.cobol.asg.runner.CobolParserRunner;
 import io.proleap.cobol.asg.runner.ThrowingErrorListener;
+import io.proleap.cobol.asg.util.FilenameUtils;
 import io.proleap.cobol.asg.visitor.ParserVisitor;
 import io.proleap.cobol.asg.visitor.impl.CobolCompilationUnitVisitorImpl;
 import io.proleap.cobol.asg.visitor.impl.CobolDataDivisionStep1VisitorImpl;
