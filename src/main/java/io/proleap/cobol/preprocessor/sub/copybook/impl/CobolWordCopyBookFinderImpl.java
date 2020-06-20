@@ -10,8 +10,6 @@ package io.proleap.cobol.preprocessor.sub.copybook.impl;
 
 import java.io.File;
 
-import org.apache.commons.lang.StringUtils;
-
 import io.proleap.cobol.CobolPreprocessorParser.CobolWordContext;
 import io.proleap.cobol.asg.params.CobolParserParams;
 import io.proleap.cobol.asg.util.FilenameUtils;
@@ -72,7 +70,7 @@ public class CobolWordCopyBookFinderImpl implements CobolWordCopyBookFinder {
 
 	protected boolean isMatchingCopyBookWithExtension(final File copyBookCandidate, final String copyBookIdentifier,
 			final String copyBookExtension) {
-		final String copyBookFilename = StringUtils.isEmpty(copyBookExtension) ? copyBookIdentifier
+		final String copyBookFilename = copyBookExtension == null || copyBookExtension.isEmpty() ? copyBookIdentifier
 				: copyBookIdentifier + "." + copyBookExtension;
 		final String copyBookCandidateName = copyBookCandidate.getName();
 		final boolean result = copyBookFilename.equalsIgnoreCase(copyBookCandidateName);

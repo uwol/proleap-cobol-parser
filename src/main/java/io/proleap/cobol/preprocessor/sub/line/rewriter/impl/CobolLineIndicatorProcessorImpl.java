@@ -11,8 +11,6 @@ package io.proleap.cobol.preprocessor.sub.line.rewriter.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
-
 import io.proleap.cobol.preprocessor.CobolPreprocessor;
 import io.proleap.cobol.preprocessor.sub.CobolLine;
 import io.proleap.cobol.preprocessor.sub.CobolLineTypeEnum;
@@ -62,7 +60,7 @@ public class CobolLineIndicatorProcessorImpl implements CobolLineIndicatorProces
 					conditionalRightTrimmedContentArea, line);
 			break;
 		case CONTINUATION:
-			if (StringUtils.isEmpty(conditionalRightTrimmedContentArea)) {
+			if (conditionalRightTrimmedContentArea == null || conditionalRightTrimmedContentArea.isEmpty()) {
 				result = CobolLine.copyCobolLineWithIndicatorAndContentArea(CobolPreprocessor.WS, EMPTY_STRING, line);
 			}
 			/**

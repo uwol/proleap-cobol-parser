@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -1553,7 +1552,7 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 	}
 
 	protected String getSymbol(final String name) {
-		return StringUtils.isEmpty(name) ? name : name.toUpperCase();
+		return name == null || name.isEmpty() ? name : name.toUpperCase();
 	}
 
 	private boolean isSameInData(final DataDescriptionEntry candidateDataDescriptionEntry,
@@ -1569,7 +1568,8 @@ public class ProgramUnitElementImpl extends CompilationUnitElementImpl implement
 				final String currentParentSymbol = getSymbol(currentParent.getName());
 				final String parentInDataCtxSymbol = getSymbol(determineName(parentCtx));
 
-				if (StringUtils.isEmpty(currentParentSymbol) || !currentParentSymbol.equals(parentInDataCtxSymbol)) {
+				if (currentParentSymbol == null || currentParentSymbol.isEmpty()
+						|| !currentParentSymbol.equals(parentInDataCtxSymbol)) {
 					result = false;
 					break;
 				}

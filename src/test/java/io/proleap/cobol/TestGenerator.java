@@ -16,7 +16,6 @@ import java.util.Arrays;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -116,7 +115,8 @@ public class TestGenerator {
 						subOutputDirectory.mkdirs();
 
 						// determine the package name of test classes
-						final String subPackageName = StringUtils.isEmpty(packageName) ? subInputDirectoryName
+						final String subPackageName = packageName == null || packageName.isEmpty()
+								? subInputDirectoryName
 								: packageName + "." + subInputDirectoryName;
 
 						generateTestClasses(subInputDirectory, subOutputDirectory, subPackageName);
