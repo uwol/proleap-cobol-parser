@@ -10,6 +10,7 @@ package io.proleap.cobol.asg.params.impl;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import io.proleap.cobol.asg.params.CobolDialect;
@@ -18,7 +19,7 @@ import io.proleap.cobol.preprocessor.CobolPreprocessor.CobolSourceFormatEnum;
 
 public class CobolParserParamsImpl implements CobolParserParams {
 
-	protected Charset charset = Charset.defaultCharset();
+	protected Charset charset = StandardCharsets.UTF_8;
 
 	protected List<File> copyBookDirectories;
 
