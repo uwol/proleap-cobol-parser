@@ -8,7 +8,7 @@ The ASG is generated from the AST by **semantic analysis** and provides data and
 flow information (e. g. variable access). EXEC SQL, EXEC SQLIMS and EXEC CICS
 statements are extracted as texts.
 
-The parser is developed test-driven, passes the **NIST test suite** and has successfully been **applied to numerous COBOL files** from banking and insurance.
+The parser is developed test-driven, passes the **NIST test suite** and has successfully been **applied to numerous COBOL files** from banking and insurance. It is used by the [ProLeap analyzer, interpreter & transformer for COBOL](https://github.com/proleap/proleap-cobol).
 
 💫 **Star** if you like our work.
 
@@ -117,6 +117,7 @@ Where to look next
 - [ANTLR4 COBOL grammar](src/main/antlr4/io/proleap/cobol/Cobol.g4)
 - [ANTLR4 COBOL preprocessor grammar](src/main/antlr4/io/proleap/cobol/CobolPreprocessor.g4)
 - [Unit test code examples](src/test/java/io/proleap/cobol/asg/data/workingstorage)
+- [ProLeap analyzer, interpreter & transformer for COBOL](https://github.com/proleap/proleap-cobol)
 
 
 How to cite
