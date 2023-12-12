@@ -23,7 +23,7 @@
 		<maven.compiler.target>17</maven.compiler.target>
 		<exclude.tests>nothing.to.exclude</exclude.tests>
 		<antlr.version>4.7.2</antlr.version>
-		<slf4j.version>1.7.28</slf4j.version>
+		<slf4j.version>2.0.9</slf4j.version>
 	</properties>
 	<profiles>
 		<profile>
