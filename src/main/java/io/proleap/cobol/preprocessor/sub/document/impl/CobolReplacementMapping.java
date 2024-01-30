@@ -58,7 +58,7 @@ public class CobolReplacementMapping implements Comparable<CobolReplacementMappi
 				regexParts[i] = Pattern.quote(part);
 			}
 
-			result = String.join(regexSeparator, regexParts);
+			result = "(?i)" + String.join(regexSeparator, regexParts);
 		}
 
 		return result;
