@@ -1669,7 +1669,7 @@ moveStatement
    ;
 
 moveToStatement
-   : moveToSendingArea TO identifier+
+   : moveToSendingArea TO (identifier ','?)+
    ;
 
 moveToSendingArea
