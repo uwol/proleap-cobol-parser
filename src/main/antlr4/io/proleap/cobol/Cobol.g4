@@ -2295,7 +2295,7 @@ power
    ;
 
 basis
-   : LPARENCHAR arithmeticExpression RPARENCHAR | identifier | literal
+   : LPARENCHAR arithmeticExpression RPARENCHAR | literal | identifier
    ;
 
 // condition ----------------------------------
@@ -2361,11 +2361,11 @@ abbreviation
 // identifier ----------------------------------
 
 identifier
-   : qualifiedDataName | tableCall | functionCall | specialRegister
+   : tableCall | functionCall | specialRegister | qualifiedDataName
    ;
 
 tableCall
-   : qualifiedDataName (LPARENCHAR subscript (COMMACHAR? subscript)* RPARENCHAR)* referenceModifier?
+   : qualifiedDataName ((LPARENCHAR subscript (COMMACHAR? subscript)* RPARENCHAR)+ referenceModifier? | referenceModifier)
    ;
 
 functionCall
