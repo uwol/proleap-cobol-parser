@@ -13,10 +13,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
+import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.DefaultErrorStrategy;
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.atn.PredictionMode;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -217,14 +221,44 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 		// pass the tokens to the parser
 		final CobolParser parser = new CobolParser(tokens);
 
-		if (!params.getIgnoreSyntaxErrors()) {
-			// register an error listener, so that preprocessing stops on errors
-			parser.removeErrorListeners();
-			parser.addErrorListener(new ThrowingErrorListener());
-		}
+		StartRuleContext ctx = null;
 
-		// specify our entry point
-		final StartRuleContext ctx = parser.startRule();
+		// Stage 1: Fast SLL prediction mode with BailErrorStrategy
+		try {
+			parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+			parser.removeErrorListeners();
+			parser.setErrorHandler(new BailErrorStrategy());
+
+			ctx = parser.startRule();
+		} catch (final ParseCancellationException | RecognitionException ex) {
+			// Fast path failed on ambiguous or invalid rule: rewind and fall back to full LL
+			tokens.seek(0);
+			parser.reset();
+			parser.getInterpreter().setPredictionMode(PredictionMode.LL);
+
+			if (!params.getIgnoreSyntaxErrors()) {
+				parser.removeErrorListeners();
+				parser.addErrorListener(new ThrowingErrorListener());
+			} else {
+				parser.setErrorHandler(new DefaultErrorStrategy());
+			}
+
+			ctx = parser.startRule();
+		} catch (final Exception ex) {
+			// Any unexpected parser exception during SLL: rewind and fall back to LL
+			tokens.seek(0);
+			parser.reset();
+			parser.getInterpreter().setPredictionMode(PredictionMode.LL);
+
+			if (!params.getIgnoreSyntaxErrors()) {
+				parser.removeErrorListeners();
+				parser.addErrorListener(new ThrowingErrorListener());
+			} else {
+				parser.setErrorHandler(new DefaultErrorStrategy());
+			}
+
+			ctx = parser.startRule();
+		}
 
 		// analyze contained compilation units
 		final List<String> lines = splitLines(preProcessedInput);
@@ -234,14 +268,29 @@ public class CobolParserRunnerImpl implements CobolParserRunner {
 	}
 
 	protected List<String> splitLines(final String preProcessedInput) {
-		final Scanner scanner = new Scanner(preProcessedInput);
-		final List<String> result = new ArrayList<String>();
-
-		while (scanner.hasNextLine()) {
-			result.add(scanner.nextLine());
+		if (preProcessedInput == null || preProcessedInput.isEmpty()) {
+			return new ArrayList<String>();
 		}
 
-		scanner.close();
+		final List<String> result = new ArrayList<String>();
+		final int len = preProcessedInput.length();
+		int start = 0;
+
+		for (int i = 0; i < len; i++) {
+			final char c = preProcessedInput.charAt(i);
+			if (c == '\r') {
+				result.add(preProcessedInput.substring(start, i));
+				if (i + 1 < len && preProcessedInput.charAt(i + 1) == '\n') {
+					i++;
+				}
+				start = i + 1;
+			} else if (c == '\n') {
+				result.add(preProcessedInput.substring(start, i));
+				start = i + 1;
+			}
+		}
+
+		result.add(preProcessedInput.substring(start));
 		return result;
 	}
 }
