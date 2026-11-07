@@ -1,0 +1,13 @@
+# Ensure consistent LF line endings across platforms.
+# ProLeap preprocessor and parser outputs normalize newlines to LF (\n).
+# Preserving LF in test resources prevents Windows checkout conversion from failing test assertions.
+
+* text=auto eol=lf
+*.java text diff=java eol=lf
+*.g4 text eol=lf
+*.cbl text eol=lf
+*.CBL text eol=lf
+*.preprocessed text eol=lf
+*.tree text eol=lf
+*.xml text eol=lf
+*.md text eol=lf
